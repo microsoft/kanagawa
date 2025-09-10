@@ -1,0 +1,120 @@
+cabal-version:       2.2
+name:                kanagawa
+version:             0.1.0.0
+synopsis:            Kanagawa Compiler
+author:              Adam Sapek, David Cox
+maintainer:          adamsap@microsoft.com
+copyright:           (C) Microsoft
+category:            Language
+build-type:          Simple
+license:             MIT
+license-file:        LICENSE
+
+Flag Debug {
+  Description: Debug build, don't optimize
+  Default:     False
+}
+
+executable kanagawa
+  if flag(Debug)
+    ghc-options:       -Wall -threaded -feager-blackholing -with-rtsopts=-A128M -O0
+  else
+    ghc-options:       -Wall -threaded -feager-blackholing -with-rtsopts=-A128M
+
+  default-extensions:  RecordWildCards
+                     , PatternSynonyms
+  main-is:             Main.hs
+  other-modules:       Options
+                       Options.CmdArgs
+                       Options.FFI
+                       ParseTree
+                       ParseTree.FFI
+                       ParseTree.Types
+                       Paths_kanagawa
+  build-depends:       base
+                     , cmdargs              >= 0.10.10
+                     , containers
+                     , directory
+                     , filepath
+                     , hashable
+                     , kanagawa
+                     , megaparsec
+                     , mtl
+                     , prettyprinter
+                     , text
+
+  include-dirs:        cpp
+
+  if os(linux)
+    extra-libraries:   kanagawa stdc++ dl
+  else
+    extra-libraries:   kanagawa
+
+  -- yes on MacOS: - required for exception handling to work correctly
+  if os(darwin)
+      ld-options:      -Wl,-keep_dwarf_unwind
+      ld-options:      -Wl,-rpath,$ORIGIN
+
+  hs-source-dirs:      hs/app
+  default-language:    Haskell2010
+
+library
+  if flag(Debug)
+    ghc-options:       -Wall -O0
+  else
+    ghc-options:       -Wall
+
+  default-extensions:  FlexibleContexts
+                     , RecordWildCards
+                     , PatternSynonyms
+                     , OverloadedStrings
+  exposed-modules:     Language.Kanagawa.Closure
+                       Language.Kanagawa.Constexpr
+                       Language.Kanagawa.Desugar
+                       Language.Kanagawa.Error
+                       Language.Kanagawa.Frontend
+                       Language.Kanagawa.Function
+                       Language.Kanagawa.Internal
+                       Language.Kanagawa.Mangle
+                       Language.Kanagawa.Parser
+                       Language.Kanagawa.Parser.IO
+                       Language.Kanagawa.Parser.Lexer
+                       Language.Kanagawa.Parser.Options
+                       Language.Kanagawa.Parser.Pattern
+                       Language.Kanagawa.Parser.SymbolTable
+                       Language.Kanagawa.Parser.Syntax
+                       Language.Kanagawa.Parser.Syntax.FixPattern
+                       Language.Kanagawa.Parser.Syntax.Pattern
+                       Language.Kanagawa.Parser.Syntax.TH
+                       Language.Kanagawa.PrettyPrint
+                       Language.Kanagawa.Recursion
+                       Language.Kanagawa.Symbols
+                       Language.Kanagawa.Template
+                       Language.Kanagawa.Type
+                       Language.Kanagawa.Type.Inference
+                       Language.Kanagawa.TypeCheck
+                       Language.Kanagawa.Warning
+
+  build-depends:       base                 >= 4.9 && < 5.0
+                     , containers           >= 0.6.0.1
+                     , hashable             >= 1.4.4.0
+                     , unordered-containers >= 0.2.20
+                     , directory            >= 1.1
+                     , filepath             >= 1.0
+                     , integer-logarithms   >= 1.0.3
+                     , megaparsec           >= 9.0
+                     , mtl                  >= 2.2
+                     , splitmix             <= 0.1.2
+                     , edit-distance        >= 0.2.2.1
+                     , parallel             >= 3.2.2.0
+                     , parser-combinators   >= 1.3.0
+                     , prettyprinter        >= 1.7.1
+                     , template-haskell     >= 2.14.0.0
+                     , text                 >= 1.2 && < 1.3
+
+  hs-source-dirs:      hs
+  default-language:    Haskell2010
+
+  -- add $ORIGIN to rpath, to enable libkanagawa.so to be found adjacent to the kanagawa compiler binary
+  if !os(windows)
+      ld-options:      -Wl,-rpath,$ORIGIN

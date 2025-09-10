@@ -1,0 +1,68 @@
+OUTPUT_FORMAT("elf32-littleriscv", "elf32-littleriscv", "elf32-littleriscv")
+OUTPUT_ARCH(riscv)
+
+MEMORY
+{
+  imem (rx)  : ORIGIN = 0x80000000, LENGTH = 0x00200000
+  dmem (rwx) : ORIGIN = 0x80200000, LENGTH = 0x00020000
+}
+
+STACK_SIZE = 0x1000;
+
+SECTIONS
+{
+    .text :
+    {
+        *(.text*)
+    } > imem
+
+    .data :
+    {
+        __DATA_BEGIN__ = .;
+        *(.data .data.* .gnu.linkonce.d.*)
+    } > dmem
+
+    .data1 :
+    {
+       *(.data1)
+    } > dmem
+
+    .rodata :
+    {
+        *(.rodata .rodata.* .gnu.linkonce.r.*)
+    } > dmem AT > dmem
+
+    .sdata :
+    {
+        __SDATA_BEGIN__ = .;
+        *(.srodata.cst16) *(.srodata.cst8) *(.srodata.cst4) *(.srodata.cst2) *(.srodata .srodata.*)
+        *(.sdata .sdata.* .gnu.linkonce.s.*)
+    } > dmem AT > dmem
+
+    _edata = .; PROVIDE (edata = .);
+    . = .;
+
+    __bss_start = .;
+
+    .sbss :
+    {
+        *(.dynsbss)
+        *(.sbss .sbss.* .gnu.linkonce.sb.*)
+        *(.scommon)
+    } > dmem
+
+    .bss :
+    {
+       *(.dynbss)
+       *(.bss .bss.* .gnu.linkonce.b.*)
+       *(COMMON)
+    } > dmem
+
+    . = ALIGN(32 / 8);
+    . = SEGMENT_START("ldata-segment", .);
+    . = ALIGN(32 / 8);
+    __BSS_END__ = .;
+    __global_pointer$ = MIN(__SDATA_BEGIN__ + 0x800,
+                        MAX(__DATA_BEGIN__ + 0x800, __BSS_END__ - 0x800));
+    _end = .; PROVIDE (end = .);
+}

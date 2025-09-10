@@ -1,0 +1,25 @@
+OUTPUT_FORMAT("elf32-littleriscv", "elf32-littleriscv", "elf32-littleriscv")
+OUTPUT_ARCH(riscv)
+
+MEMORY
+{
+  imem (rx) : ORIGIN = 0x80000000, LENGTH = 0x00200000
+  dmem (rw) : ORIGIN = 0x80200000, LENGTH = 0x00002000
+}
+
+STACK_SIZE = 0x1000;
+
+SECTIONS
+{
+    .text :
+    {
+        *(.text*)
+    } > imem
+
+    .data :
+    {
+        __DATA_BEGIN__ = .;
+        *(.data .data.* .gnu.linkonce.d.*)
+    } > dmem
+
+}

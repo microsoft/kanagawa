@@ -1,0 +1,13 @@
+hal_auto_pipeline_chain.sv
+hal_dcfifo_timing.sdc
+hal_dsp.sv
+hal_dual_clock_dual_port_ram.sv
+hal_dual_clock_fifo.sv
+hal_dual_port_ram.sv
+hal_non_mergeable_registers.sv
+hal_ready_valid_fifo.sv
+hal_reset_synchronizer.sv
+hal_show_ahead_fifo.sv
+hal_simple_dual_port_ram_tile.sv
+hal_simple_quad_port_memory.sv
+hal_sync_regs.sv
