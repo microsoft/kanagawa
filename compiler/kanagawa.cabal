@@ -1,6 +1,6 @@
-cabal-version:       2.2
+cabal-version:       3.12
 name:                kanagawa
-version:             0.1.0.0
+version:             1.0.0
 synopsis:            Kanagawa Compiler
 author:              Adam Sapek, David Cox
 maintainer:          adamsap@microsoft.com
@@ -50,7 +50,6 @@ executable kanagawa
   else
     extra-libraries:   kanagawa
 
-  -- yes on MacOS: - required for exception handling to work correctly
   if os(darwin)
       ld-options:      -Wl,-keep_dwarf_unwind
       ld-options:      -Wl,-rpath,$ORIGIN
@@ -64,6 +63,7 @@ library
   else
     ghc-options:       -Wall
 
+  hs-source-dirs:      hs/lib
   default-extensions:  FlexibleContexts
                      , RecordWildCards
                      , PatternSynonyms
@@ -104,15 +104,14 @@ library
                      , integer-logarithms   >= 1.0.3
                      , megaparsec           >= 9.0
                      , mtl                  >= 2.2
-                     , splitmix             <= 0.1.2
+                     , splitmix             >= 0.1.2
                      , edit-distance        >= 0.2.2.1
                      , parallel             >= 3.2.2.0
                      , parser-combinators   >= 1.3.0
                      , prettyprinter        >= 1.7.1
-                     , template-haskell     >= 2.14.0.0
-                     , text                 >= 1.2 && < 1.3
+                     , template-haskell     >= 2.18.0.0
+                     , text                 >= 1.2
 
-  hs-source-dirs:      hs
   default-language:    Haskell2010
 
   -- add $ORIGIN to rpath, to enable libkanagawa.so to be found adjacent to the kanagawa compiler binary
