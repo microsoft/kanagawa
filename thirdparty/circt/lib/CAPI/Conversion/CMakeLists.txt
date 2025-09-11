@@ -1,0 +1,42 @@
+add_circt_public_c_api_library(CIRCTCAPIConversion
+  Passes.cpp
+
+  LINK_LIBS PUBLIC
+  CIRCTAffineToLoopSchedule
+  CIRCTAIGToComb
+  CIRCTArcToLLVM
+  CIRCTCalyxToFSM
+  CIRCTCalyxToHW
+  CIRCTCalyxNative
+  CIRCTCombToAIG
+  CIRCTCombToArith
+  CIRCTCombToDatapath
+  CIRCTCombToLLVM
+  CIRCTCombToSMT
+  CIRCTConvertToArcs
+  CIRCTDatapathToSMT
+  CIRCTDCToHW
+  CIRCTExportChiselInterface
+  CIRCTExportVerilog
+  CIRCTFIRRTLToHW
+  CIRCTFSMToSV
+  CIRCTHandshakeToDC
+  CIRCTHandshakeToHW
+  CIRCTHWArithToHW
+  CIRCTHWToLLVM
+  CIRCTHWToBTOR2
+  CIRCTHWToSMT
+  CIRCTHWToSV
+  CIRCTHWToSystemC
+  CIRCTLoopScheduleToCalyx
+  CIRCTLTLToCore
+  CIRCTMooreToCore
+  CIRCTPipelineToHW
+  CIRCTSCFToCalyx
+  CIRCTSeqToSV
+  CIRCTSimToSV
+  CIRCTSMTToZ3LLVM
+  CIRCTCFToHandshake
+  CIRCTVerifToSMT
+  CIRCTVerifToSV
+)

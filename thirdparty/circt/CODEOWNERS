@@ -1,0 +1,62 @@
+## Dialects, Conversions, Tools
+
+# Arc
+**/Dialect/Arc @fabianschuiki @maerhart
+tools/arcilator @fabianschuiki @maerhart
+
+# Calyx
+**/Dialect/Calyx @rachitnigam @cgyurgyik @andrewb1999 @jiahanxie353
+**/Conversion/CalyxToFSM @rachitnigam @cgyurgyik @andrewb1999 @jiahanxie353
+**/Conversion/CalyxToHW @rachitnigam @cgyurgyik @andrewb1999 @jiahanxie353
+**/Conversion/SCFToCalyx @rachitnigam @cgyurgyik @andrewb1999 @jiahanxie353
+**/Conversion/CalyxNative @rachitnigam @cgyurgyik @andrewb1999 @jiahanxie353
+**/Conversion/LoopScheduleToCalyx @rachitnigam @cgyurgyik @andrewb1999 @jiahanxie353
+
+# Comb
+**/Dialect/Comb @darthscsi
+
+# DC
+**/Dialect/DC @mortbopet
+
+# ESI
+**/Dialect/ESI @teqdruid
+
+# FIRRTL
+**/FIRRTL* @darthscsi @seldridge
+
+# FSM
+**/Dialect/FSM @mortbopet
+
+# HWArith
+**/Dialect/HWArith @mortbopet @teqdruid
+
+# LLHD
+**/LLHD* @fabianschuiki @maerhart
+
+# Pipeline
+**/Dialect/Pipeline @mortbopet
+
+# Handshake
+**/Handshake* @Dinistro @mortbopet
+
+# HW
+**/Dialect/HW @darthscsi
+
+# SMT
+**/Dialect/SMT @maerhart
+lib/Conversion/SMTToZ3LLVM @maerhart
+
+# SV
+**/Dialect/SV @darthscsi
+
+# Kanagawa
+**/Dialect/Kanagawa @teqdruid @mortbopet @blakep-msft
+
+
+## Infra
+
+# CI
+.github @teqdruid
+
+# PrettyPrinter
+**/Support/Pretty* @dtzSiFive
