@@ -1,0 +1,21 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "setuptools_scm==7.1.0",
+    "wheel",
+    "ninja",
+    "cmake>=3.12",
+    # MLIR build depends.
+    "numpy",
+    "pybind11>=2.11,<=2.12",
+    "nanobind==2.4.0",
+    "PyYAML",
+]
+build-backend = "setuptools.build_meta"
+
+# Enable version inference from Git.
+[tool.setuptools_scm]
+root = "../../.."
+tag_regex = "^firtool-(\\d+\\.\\d+\\.\\d+)?$"
+local_scheme = "no-local-version"
+git_describe_command = "git describe --dirty --tags --long --match firtool*"

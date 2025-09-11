@@ -1,0 +1,50 @@
+add_circt_dialect_library(CIRCTArcTransforms
+  AddTaps.cpp
+  AllocateState.cpp
+  ArcCanonicalizer.cpp
+  Dedup.cpp
+  FindInitialVectors.cpp
+  InferMemories.cpp
+  InferStateProperties.cpp
+  InlineArcs.cpp
+  IsolateClocks.cpp
+  LatencyRetiming.cpp
+  LowerArcsToFuncs.cpp
+  LowerClocksToFuncs.cpp
+  LowerLUT.cpp
+  LowerState.cpp
+  LowerVectorizations.cpp
+  LowerVerifSimulations.cpp
+  MakeTables.cpp
+  MergeIfs.cpp
+  MuxToControlFlow.cpp
+  PrintCostModel.cpp
+  SimplifyVariadicOps.cpp
+  SplitFuncs.cpp
+  SplitLoops.cpp
+  StripSV.cpp
+
+  DEPENDS
+  CIRCTArcTransformsIncGen
+
+  LINK_LIBS PUBLIC
+  CIRCTArc
+  CIRCTArcExternalInterfaces
+  CIRCTComb
+  CIRCTEmit
+  CIRCTHW
+  CIRCTLLHD
+  CIRCTOM
+  CIRCTSeq
+  CIRCTSim
+  CIRCTSupport
+  CIRCTSV
+  CIRCTVerif
+  MLIRFuncDialect
+  MLIRIR
+  MLIRLLVMDialect
+  MLIRPass
+  MLIRSCFDialect
+  MLIRTransformUtils
+  MLIRVectorDialect
+)

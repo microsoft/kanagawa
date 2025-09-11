@@ -1,0 +1,54 @@
+[build-system]
+requires = [
+  "setuptools>=68",
+  "setuptools_scm>=8.0",
+  "wheel",
+  "cmake>=3.12",
+
+  # MLIR build depends.
+  "numpy",
+  "pybind11>=2.11,<=2.12",
+  "nanobind==2.4.0",
+  "PyYAML",
+
+  # PyCDE depends
+  "cocotb>=1.6.2",
+  "cocotb-test>=0.2.2",
+  "jinja2",
+]
+build-backend = "setuptools.build_meta"
+
+# Enable version inference from Git.
+[tool.setuptools_scm]
+root = "../.."
+tag_regex = "^pycde-(\\d+\\.\\d+\\.\\d+)?$"
+local_scheme = "no-local-version"
+git_describe_command = "git describe --dirty --tags --long --match pycde*"
+
+[tool.cibuildwheel]
+build-frontend = "build"
+manylinux-x86_64-image = "ghcr.io/circt/images/pycde-build"
+
+[tool.cibuildwheel.linux]
+# Use our internal auditwheel script so as to not mess up the collateral.
+environment-pass = [
+  "SCCACHE_GHA_ENABLED",
+  "ACTIONS_CACHE_URL",
+  "ACTIONS_RUNTIME_TOKEN",
+  "CMAKE_GENERATOR",
+  "SETUPTOOLS_SCM_DEBUG",
+  "BUILD_TYPE",
+  "RUN_TESTS",
+  "COMPILER_LAUNCHER",
+]
+
+[project]
+name = "pycde"
+dynamic = ["version"]
+description = "Python CIRCT Design Entry"
+authors = [{ name = "John Demme", email = "John.Demme@microsoft.com" }]
+dependencies = ['numpy', 'jinja2']
+requires-python = ">=3.8"
+
+[project.urls]
+"Homepage" = "https://circt.llvm.org/docs/PyCDE/"
