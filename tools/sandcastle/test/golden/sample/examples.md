@@ -1,15 +1,19 @@
-sample.examples [&equiv;](../index.md)
-======================================
+# sample.examples [&equiv;](../index.md)
 
-Index
------
+## Index
 
--   <a href="../sample/examples.md" id="index-link" class="link">sample.examples</a>
-    -   <a href="../sample/examples.md#sample-examples-collapse_example" id="index-link" class="link"><code>collapse_example</code></a>
-    -   <a href="../sample/examples.md#sample-examples-collapse_examples" id="index-link" class="link"><code>collapse_examples</code></a>
-    -   <a href="../sample/examples.md#sample-examples-multiple_examples" id="index-link" class="link"><code>multiple_examples</code></a>
-    -   <a href="../sample/examples.md#sample-examples-nested_example" id="index-link" class="link"><code>nested_example</code></a>
-    -   <a href="../sample/examples.md#sample-examples-summary_examples" id="index-link" class="link"><code>summary_examples</code></a>
+- <a href="../sample/examples.md" id="index-link"
+  class="link">sample.examples</a>
+  - <a href="../sample/examples.md#sample-examples-collapse_example"
+    id="index-link" class="link"><code>collapse_example</code></a>
+  - <a href="../sample/examples.md#sample-examples-collapse_examples"
+    id="index-link" class="link"><code>collapse_examples</code></a>
+  - <a href="../sample/examples.md#sample-examples-multiple_examples"
+    id="index-link" class="link"><code>multiple_examples</code></a>
+  - <a href="../sample/examples.md#sample-examples-nested_example"
+    id="index-link" class="link"><code>nested_example</code></a>
+  - <a href="../sample/examples.md#sample-examples-summary_examples"
+    id="index-link" class="link"><code>summary_examples</code></a>
 
 ------------------------------------------------------------------------
 
@@ -91,18 +95,18 @@ output
 
 <summary>Callbacks and Fields</summary>
 
--   <pre style="font-family:monospace;background-color:#f2f3f4;color:#373d3f;border:1px solid #dddddd;border-left:3px solid #0080ff;border-radius:5px 5px 5px 5px;margin-bottom:0.5em;padding:0.5em 1em 0.5em 1em">
-    <span style="color:#60ac39">const</span> <span style="color:#60ac39">auto</span> <span style="font-weight:bold">variable</span> <a style="color:#c5c8c6" href="#sample-examples-nested_example-variable" id="sample-examples-nested_example-variable">§</a>
-    </pre>
-    <details>
-    <summary>Example</summary>
+- <pre style="font-family:monospace;background-color:#f2f3f4;color:#373d3f;border:1px solid #dddddd;border-left:3px solid #0080ff;border-radius:5px 5px 5px 5px;margin-bottom:0.5em;padding:0.5em 1em 0.5em 1em">
+  <span style="color:#60ac39">const</span> <span style="color:#60ac39">auto</span> <span style="font-weight:bold">variable</span> <a style="color:#c5c8c6" href="#sample-examples-nested_example-variable" id="sample-examples-nested_example-variable">§</a>
+  </pre>
+  <details>
+  <summary>Example</summary>
 
-    ``` kanagawa
-    >>> some_nested_example()
-    output
-    ```
+  ``` kanagawa
+  >>> some_nested_example()
+  output
+  ```
 
-    </details>
+  </details>
 
 </details>
 <pre style="font-family:monospace;background-color:#f2f3f4;color:#373d3f;border:1px solid #dddddd;border-left:3px solid #0080ff;border-radius:5px 5px 5px 5px;margin-bottom:0.5em;padding:0.5em 1em 0.5em 1em">

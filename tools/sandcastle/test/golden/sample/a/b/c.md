@@ -1,11 +1,11 @@
-sample.a.b.c [&equiv;](../../../index.md)
-=========================================
+# sample.a.b.c [&equiv;](../../../index.md)
 
-Index
------
+## Index
 
--   <a href="../../../sample/a/b/c.md" id="index-link" class="link">sample.a.b.c</a>
-    -   <a href="../../../sample/a/b/c.md#sample-a-b-c-c_alias" id="index-link" class="link"><code>c_alias</code></a>
+- <a href="../../../sample/a/b/c.md" id="index-link"
+  class="link">sample.a.b.c</a>
+  - <a href="../../../sample/a/b/c.md#sample-a-b-c-c_alias" id="index-link"
+    class="link"><code>c_alias</code></a>
 
 ------------------------------------------------------------------------
 

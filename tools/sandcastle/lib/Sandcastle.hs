@@ -18,7 +18,6 @@ import Data.Function
 import Data.Functor
 import Data.List
 import Data.Text (Text)
-import qualified Data.Text as T
 import Prettyprinter.Render.Text (putDoc)
 import Language.Kanagawa.Parser.IO (exitErrors, parseProgram)
 import Language.Kanagawa.PrettyPrint (prettyExp)
@@ -75,10 +74,10 @@ app =
       & writePandoc fmt
       & UTF8.writeFile (output cli </> "index" <.> ext)
 
-writePandoc :: Format -> Pandoc -> String
+writePandoc :: Format -> Pandoc -> Text
 writePandoc fmt pdoc = case lookup (formatPandoc fmt) writers of
   Just (TextWriter writer) -> case runPure $ writer opts pdoc of
-      Right t -> T.unpack t
+      Right t -> t
       Left perr -> error $ show perr
   _ -> error "Invalid writer."
   where
