@@ -1,1 +1,1 @@
-packages: . ../../compiler/hs
+packages: . ../../compiler

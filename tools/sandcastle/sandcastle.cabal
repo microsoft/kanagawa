@@ -1,6 +1,6 @@
-cabal-version:       2.2
+cabal-version:       3.12
 name:                sandcastle
-version:             0.1.0.0
+version:             1.0.0
 synopsis:            Generate documentation from annotated Kanagawa source code.
 author:              Adam Sapek, David Cox
 maintainer:          adamsap@microsoft.com, coxdavid@microsoft.com
@@ -16,11 +16,11 @@ executable sandcastle
   ghc-options:         -Wall -O2
   build-depends:       base
                      , cmdargs        >= 0.10.10
-                     , sandcastle-lib
+                     , sandcastle
                      , text
   default-language:    Haskell2010
 
-library sandcastle-lib
+library
   hs-source-dirs:      lib
   exposed-modules:     Sandcastle
   other-modules:       Sandcastle.Cli
@@ -29,22 +29,22 @@ library sandcastle-lib
                        Sandcastle.Monad
                        Sandcastle.Tree
   ghc-options:         -Wall
-  build-depends:       base                 >= 4.9   && < 5.0
-                     , blaze-html           >= 0.9   && < 0.10
-                     , clay                 >= 0.15  && < 0.16
-                     , containers           >= 0.6   && < 0.7
-                     , directory            >= 1.3   && < 1.4
-                     , extra                >= 1.6   && < 1.8
-                     , filepath             >= 1.0   && < 1.5
-                     , filepattern          >= 0.1   && < 0.2
-                     , hashable             >= 1.3   && < 1.5
-                     , kanagawa             >= 0.1   && < 0.2
-                     , mtl                  >= 2.2   && < 2.3
-                     , pandoc               >= 2.9   && < 2.10
-                     , pandoc-types         >= 1.20  && < 1.21
+  build-depends:       base                 >= 4.9 && < 5.0
+                     , blaze-html           >= 0.9
+                     , clay                 >= 0.15
+                     , containers           >= 0.6
+                     , directory            >= 1.3
+                     , extra                >= 1.6
+                     , filepath             >= 1.0
+                     , filepattern          >= 0.1
+                     , hashable             >= 1.3
+                     , kanagawa             >= 1.0
+                     , mtl                  >= 2.2
+                     , pandoc               >= 3.0
+                     , pandoc-types         >= 1.20
                      , prettyprinter        >= 1.7.1
                      , pretty-simple
-                     , process              >= 1.6   && < 1.7
+                     , process              >= 1.6 && < 1.7
                      , unordered-containers >= 0.2.20
                      , text                 >= 0.11
   default-language:    Haskell2010
@@ -56,7 +56,7 @@ test-suite test
   ghc-options:         -Wall -threaded -O2
   build-depends:       base
                      , filepath
-                     , sandcastle-lib
+                     , sandcastle
                      , tasty           >= 1.2   && < 1.5
                      , tasty-golden    >= 2.3   && < 2.4
   default-language:    Haskell2010

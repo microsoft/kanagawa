@@ -1,12 +1,13 @@
-sample.self\_exposed [&equiv;](../index.md)
-===========================================
+# sample.self\_exposed [&equiv;](../index.md)
 
-Index
------
+## Index
 
--   <a href="../sample/self_exposed.md" id="index-link" class="link">sample.self_exposed</a>
-    -   <a href="../sample/self_exposed.md#sample-self_exposed-some_alias" id="index-link" class="link"><code>some_alias</code></a>
-    -   <a href="../sample/self_exposed.md#sample-self_exposed-some_other_alias" id="index-link" class="link"><code>some_other_alias</code></a>
+- <a href="../sample/self_exposed.md" id="index-link"
+  class="link">sample.self_exposed</a>
+  - <a href="../sample/self_exposed.md#sample-self_exposed-some_alias"
+    id="index-link" class="link"><code>some_alias</code></a>
+  - <a href="../sample/self_exposed.md#sample-self_exposed-some_other_alias"
+    id="index-link" class="link"><code>some_other_alias</code></a>
 
 ------------------------------------------------------------------------
 
