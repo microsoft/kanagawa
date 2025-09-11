@@ -55,7 +55,7 @@ deriveUnidirPatternSynAndCompletePragma f t = do
         synName <- patternSynName name
         argNames <- patternSynArgNames $ length types
         let argVarPs = map VarP argNames
-        return (synName, PatSynD synName (PrefixPatSyn argNames) Unidir (ConP f [WildP, ConP name argVarPs]))
+        return (synName, PatSynD synName (PrefixPatSyn argNames) Unidir (ConP f [] [WildP, ConP name [] argVarPs]))
 
 -- Same as deriveUnidirPatternSynAndCompletePragma but ommits the COMPLETE pragma
 deriveUnidirPatternSyn :: Name -> Name -> Q [Dec]
@@ -77,7 +77,7 @@ deriveUnidirPatternSyn f t = init <$> deriveUnidirPatternSynAndCompletePragma f 
 --
 deriveExplBidirPatternSyn :: Name -> Q [Dec]
 deriveExplBidirPatternSyn t = do
-    TyConI (DataD _ _ [KindedTV e _, KindedTV a _] _ constructors _) <- reify t
+    TyConI (DataD _ _ [KindedTV e _ _, KindedTV a _ _] _ constructors _) <- reify t
     concat <$> mapConM (patternSyn e a) constructors
   where
     patternSyn e a name types = do
@@ -95,5 +95,5 @@ deriveExplBidirPatternSyn t = do
             sig = PatSynSigD synName $ ForallT [] [] $ ForallT [] [] $ foldr arrow notedExpT types
             pat = PatSynD synName (PrefixPatSyn argNames)
                         (ExplBidir [Clause argVarPs (NormalB (notedExpE (foldl AppE (ConE name) argVarEs))) []])
-                        (ConP 'NotedExp [WildP, ConP name argVarPs])
+                        (ConP 'NotedExp [] [WildP, ConP name [] argVarPs])
         return [sig, pat]

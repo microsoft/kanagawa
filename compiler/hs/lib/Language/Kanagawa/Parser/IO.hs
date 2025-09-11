@@ -25,20 +25,12 @@ import Data.List (intercalate)
 import Language.Kanagawa.Error (FileException(FileException))
 import Language.Kanagawa.Internal (readFileUtf8)
 import Language.Kanagawa.Parser
-    ( Cache
-    , ParseResult
-    , SymbolTable
-    , cmdargsSpecialModule
-    , optionsSpecialModule
-    , parseKanagawa
-    )
 import Language.Kanagawa.Parser.Lexer (Config(Config))
 import Language.Kanagawa.Parser.Options
 import Language.Kanagawa.Parser.SymbolTable
-    (Needed(Needed), addImport, emptySymbolTable)
 import System.Directory (canonicalizePath, findFile, getCurrentDirectory)
 import System.Exit
-import System.FilePath (FilePath, takeDirectory, (</>), (<.>))
+import System.FilePath (takeDirectory, (</>), (<.>))
 import Text.Megaparsec.Error
 import Text.Megaparsec.Stream
 

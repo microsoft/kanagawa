@@ -122,11 +122,10 @@ instantiateTemplates templatePasses templateIterations (program, hasErrors)
         -- Create an instance of the template for a given set of arguments
         -- by decorating the declName identifier and replacing occurrences of
         -- TypeParam with corresponding arguments.
-        makeInstance (args, n) = setTypeOfInstance templateQualifiedName (zip (map getName templateParams) args')
+        makeInstance (args@(Seq args'), n) = setTypeOfInstance templateQualifiedName (zip (map getName templateParams) args')
                                $ desugar (modifyDeclScopeName mangleScope)
                                $ desugarWithNote n rewrite instanceDecl
           where
-            Seq args' = args
             instanceName = getName instanceDecl
             instanceDecl = renote mangleDeclName templateDecl
             mangleScope x | templateQualifiedName `isPrefixOf` x = setAt (length templateQualifiedName - 1) instanceName x
@@ -138,6 +137,7 @@ instantiateTemplates templatePasses templateIterations (program, hasErrors)
                 | getQualifier x == templateQualifiedName     = ScopedNameF s (renote (mangleTemplateScopedName t args) <$> a) b
             rewrite _ x                                       = resolveTypeParam t args' x
             mangleDeclName x = x { declName = mangleTemplateIdentifier t args $ declName x }
+        makeInstance _ = undefined 
 
     instantiate x = deduplicateInstances $ removeNestedSeq x
 
