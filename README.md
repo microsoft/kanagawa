@@ -31,3 +31,18 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+# Building
+
+TODO: Flesh this out - just collecting notes here for now.
+
+- Check out the repository, for example:
+`git clone https://github.com/microsoft/kanagawa.git`
+
+- Download dependencies and set an environment variable to tell the build where these live
+
+- Change into the newly cloned directory
+`cd kanagawa`
+
+- Initialize git submodules
+`git submodule update --init --recursive`
