@@ -1,0 +1,3 @@
+[submodule "thirdparty/circt"]
+	path = thirdparty/circt
+	url = https://github.com/llvm/circt.git
