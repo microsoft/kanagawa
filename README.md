@@ -5,6 +5,8 @@ It introduces **Wavefront Threading**, a new execution model that makes concurre
 
 Unlike traditional HLS tools, which often require pragmas and heuristics to guide the compiler, Kanagawa allows you to directly express concurrency, synchronization, and scheduling in code. This combines the productivity of software-like programming with the performance and efficiency of hand-written RTL.
 
+For a detailed discussion of the language, see the ACM paper, [Wavefront Threading Enables Effective High-Level Synthesis](https://dl.acm.org/doi/10.1145/3656420)
+
 ## Background
 
 Kanagawa addresses a longstanding challenge in digital design: bridging the gap between high-level programming and efficient hardware implementation. Conventional HDLs like Verilog and VHDL offer control but little abstraction. Existing HLS tools promise productivity but often fall short in predictable performance. Kanagawa takes a different approach.
