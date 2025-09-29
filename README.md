@@ -13,7 +13,7 @@ Kanagawa addresses a longstanding challenge in digital design: bridging the gap 
 - **Wavefront Threading**: Threads execute in a deterministic order, eliminating much of the synchronization burden.
 - **Wavefront Consistency**: A memory model aligned with synchronous circuits for clarity and correctness.
 - **Composable Abstractions**: Functions, lambdas, closures, and strong static typing provide zero-cost abstractions.
-- **Reusable Libraries**: Includes generic data structures, algorithms, and IP blocks (e.g., RISC-V cores, floating point, cryptography).
+- **Reusable Libraries**: Includes generic data structures, algorithms, and IP blocks (e.g., RISC-V cores, floating point).
 
 ### Productivity and Efficiency
 Kanagawa designs are highly competitive with hand-written RTL in area, performance, and power, while requiring far less code. Programmers can quickly explore design tradeoffs—static scheduling, dynamic scheduling, speculative execution—without rewriting entire designs:contentReference[oaicite:1]{index=1}.
