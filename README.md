@@ -7,7 +7,7 @@ Unlike traditional HLS tools, which often require pragmas and heuristics to guid
 
 ## Background
 
-Kanagawa addresses a longstanding challenge in digital design: bridging the gap between high-level programming and efficient hardware implementation:contentReference[oaicite:0]{index=0}. Conventional HDLs like Verilog and VHDL offer control but little abstraction. Existing HLS tools promise productivity but often fall short in predictable performance. Kanagawa takes a different approach.
+Kanagawa addresses a longstanding challenge in digital design: bridging the gap between high-level programming and efficient hardware implementation. Conventional HDLs like Verilog and VHDL offer control but little abstraction. Existing HLS tools promise productivity but often fall short in predictable performance. Kanagawa takes a different approach.
 
 ### Key Features
 - **Wavefront Threading**: Threads execute in a deterministic order, eliminating much of the synchronization burden.
@@ -16,10 +16,10 @@ Kanagawa addresses a longstanding challenge in digital design: bridging the gap 
 - **Reusable Libraries**: Includes generic data structures, algorithms, and IP blocks (e.g., RISC-V cores, floating point).
 
 ### Productivity and Efficiency
-Kanagawa designs are highly competitive with hand-written RTL in area, performance, and power, while requiring far less code. Programmers can quickly explore design tradeoffs—static scheduling, dynamic scheduling, speculative execution—without rewriting entire designs:contentReference[oaicite:1]{index=1}.
+Kanagawa designs are highly competitive with hand-written RTL in area, performance, and power, while requiring far less code. Programmers can quickly explore design tradeoffs—static scheduling, dynamic scheduling, speculative execution—without rewriting entire designs.
 
 ### Real-World Impact
-Kanagawa has been used for accelerators in Microsoft Azure, cryptographic research prototypes, and even full RISC-V cores. In FPGA and ASIC benchmarks, Kanagawa implementations have matched or surpassed SystemVerilog designs, often with less than half the code:contentReference[oaicite:2]{index=2}.
+Kanagawa has been used for accelerators in Microsoft Azure, cryptographic research prototypes, and even full RISC-V cores. In benchmarks, Kanagawa implementations have matched or surpassed SystemVerilog designs, often with less than half the code.
 
 ### Open Source
 This repository provides the Kanagawa language, compiler toolchain, and libraries. We welcome contributions from hardware designers, language researchers, and anyone curious about pushing hardware programming forward.
