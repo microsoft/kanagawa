@@ -1,11 +1,10 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-#
 # kanagawac - The Kanagawa compiler back-end as a shared library.
 # This library is linked with the front-end code to produce the final
 # kanagawa executable.
-#
+
 set(CPP_SOURCES
     backend_common.cpp
     branch_and_bound.cpp
@@ -181,3 +180,14 @@ target_link_libraries(kanagawac PRIVATE
 # Add CIRCT include directories
 get_target_property(CIRCT_INCLUDES CIRCTHW INCLUDE_DIRECTORIES)
 target_include_directories(kanagawac PUBLIC "${CIRCT_INCLUDES}")
+
+file(MAKE_DIRECTORY ${KANAGAWA_BIN_DIR})
+
+add_custom_command(
+    TARGET kanagawac
+    POST_BUILD
+    COMMAND
+        ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:kanagawac>
+        "${KANAGAWA_BIN_DIR}/"
+)

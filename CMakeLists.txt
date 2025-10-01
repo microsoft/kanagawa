@@ -5,6 +5,9 @@ cmake_minimum_required(VERSION 3.30)
 
 project(kanagawa LANGUAGES CXX)
 
+set(KANAGAWA_DIST_DIR "${CMAKE_BINARY_DIR}/dist")
+set(KANAGAWA_BIN_DIR "${KANAGAWA_DIST_DIR}/bin")
+
 # Find all dependent libraries, headers, and tools.
 include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/deps.cmake)
 

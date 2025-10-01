@@ -4,4 +4,5 @@
 # Add build of the compiler back-end
 add_subdirectory(cpp)
 
-# TODO: Add build of the compiler front-end
+# Add build of the compiler front-end
+add_subdirectory(hs)

@@ -3,13 +3,17 @@ TODO: Flesh this out - just collecting notes here for now.
 __Third Party Libraries and Tools__
 
 Building the Kanagawa compiler and the documentation tool, Sandcastle, are supported on Linux.
-The following tools are needed to build the kanagawa compiler and run the core tests
+The following tools are needed to build the kanagawa compiler and run the core tests. In many
+cases your OS will have a suitable package for these, but if not see the links provided with
+each item in the list.
 
 - GCC 11.4.0 or later
-- Haskell 8.6.5 or later (see https://www.haskell.org/ghcup/install/#linux-ubuntu)
-- Boost C++ library version 1.83.0 or later
-- CMake version 3.26 or later
-- Verilator version 5.036. See the [Verilator documentation](https://veripool.org/guide/latest/install.html#git-quick-install) for detailed instructions.
+- ghcup (Haskell 9.2.8 and cabal 3.12.1.0 or later) (see https://www.haskell.org/ghcup/install/#linux-ubuntu)
+- Boost C++ library version 1.83.0 or later (see https://www.boost.org/)
+- CMake version 3.26 or later (see https://cmake.org/)
+- Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)
+- Verilator version 5.036. See the [Verilator documentation](https://veripool.org/guide/latest/install.html#git-quick-install) for detailed instructions. Note that version 5.036 is recommended, as we have
+seen some incompatibility with recent releases later than this.
 
 To run the tests for the Kanagawa RISC-V processor implementation, you will need to install:
 
@@ -27,7 +31,7 @@ __Building Kanagawa__
 - Check out the repository, for example:
 `git clone https://github.com/microsoft/kanagawa.git`
 
-- Download dependencies and set an environment variable to tell the build where these live
+- Install the dependencies listed above.
 
 - Change into the newly cloned directory
 `cd kanagawa`
@@ -35,5 +39,24 @@ __Building Kanagawa__
 - Initialize git submodules
 `git submodule update --init --recursive`
 
-cmake -S ../kanagawa -B . -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake
+- Make a directory to build into. In the example command-line below, we assume the kanagawa source repo
+is at `~/kanagawa` and the build directory is `~/kanagawa-build`
 
+- Run cmake generate. In the example command-line below, explicit paths for each dependency are provided.
+```
+cmake
+    -S $HOME/kanagawa
+    -B $HOME/kanagawa-build
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    -DBoost_DIR=$HOME/boost/lib/cmake/Boost-1.83.0
+    -DGHCUP_DIR=/home/user/.ghcup/bin
+    -DVERILATOR_EXE=/opt/verilator/bin/verilator
+```
+
+If Boost was installed via an OS package, you might also use this option to point CMake at the standard
+system installation location for CMake library configurations:
+
+```
+-DCMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake
+```
