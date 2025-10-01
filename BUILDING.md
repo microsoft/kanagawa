@@ -35,3 +35,5 @@ __Building Kanagawa__
 - Initialize git submodules
 `git submodule update --init --recursive`
 
+cmake -S ../kanagawa -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake
+
