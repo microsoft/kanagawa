@@ -46,9 +46,9 @@ executable kanagawa
   include-dirs:        cpp
 
   if os(linux)
-    extra-libraries:   kanagawa stdc++ dl
+    extra-libraries:   kanagawac stdc++ dl
   else
-    extra-libraries:   kanagawa
+    extra-libraries:   kanagawac
 
   if os(darwin)
       ld-options:      -Wl,-keep_dwarf_unwind
@@ -114,6 +114,6 @@ library
 
   default-language:    Haskell2010
 
-  -- add $ORIGIN to rpath, to enable libkanagawa.so to be found adjacent to the kanagawa compiler binary
+  -- add $ORIGIN to rpath, to enable libkanagawac.so to be found adjacent to the kanagawa compiler binary
   if !os(windows)
       ld-options:      -Wl,-rpath,$ORIGIN
