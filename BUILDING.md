@@ -8,7 +8,7 @@ cases your OS will have a suitable package for these, but if not see the links p
 each item in the list.
 
 - GCC 11.4.0 or later
-- ghcup (Haskell 9.2.8 and cabal 3.12.1.0 or later) (see https://www.haskell.org/ghcup/install/#linux-ubuntu)
+- ghcup (Haskell 9.6.7 and cabal 3.12.1.0) (see https://www.haskell.org/ghcup/install/#linux-ubuntu)
 - Boost C++ library version 1.83.0 or later (see https://www.boost.org/)
 - CMake version 3.26 or later (see https://cmake.org/)
 - Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)

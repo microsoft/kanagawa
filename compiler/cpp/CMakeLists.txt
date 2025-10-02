@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-# kanagawac - The Kanagawa compiler back-end as a shared library.
+# kanagawa_lib - The Kanagawa compiler back-end as a shared library.
 # This library is linked with the front-end code to produce the final
 # kanagawa executable.
 
@@ -40,29 +40,34 @@ set(CPP_SOURCES
     verilog.cpp
 )
 
-add_library(kanagawac SHARED ${CPP_SOURCES})
+add_library(kanagawa_lib SHARED ${CPP_SOURCES})
 
-# target_compile_definitions(kanagawac PRIVATE KANAGAWA_SKIP_CONSISTENCY_CHECKS=1)
+# Change the actual library filename to "kanagawa.dll" on Windows, "libkanagawa.so" (on Linux), etc.
+set_target_properties(kanagawa_lib PROPERTIES
+    OUTPUT_NAME ${KANAGAWA_SHARED_LIBRARY_NAME}
+)
 
-target_include_directories(kanagawac PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# target_compile_definitions(kanagawa_lib PRIVATE KANAGAWA_SKIP_CONSISTENCY_CHECKS=1)
+
+target_include_directories(kanagawa_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Enable pre-compiled headers for faster builds
-target_precompile_headers(kanagawac PRIVATE [["pch.h"]])
+target_precompile_headers(kanagawa_lib PRIVATE [["pch.h"]])
 set_source_files_properties(platform.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 set_source_files_properties(stack_trace.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
 # Despite the misleading name, this adds Boost to the include path using the information
 # gleaned from a call to find_package
-target_link_libraries(kanagawac PRIVATE Boost::headers)
+target_link_libraries(kanagawa_lib PRIVATE Boost::headers)
 
 # Make boost stack trace print function names in addition to addresses
-target_compile_definitions(kanagawac PRIVATE "BOOST_STACKTRACE_USE_ADDR2LINE")
+target_compile_definitions(kanagawa_lib PRIVATE "BOOST_STACKTRACE_USE_ADDR2LINE")
 
 # Link with pthread library for threading support
-target_link_libraries(kanagawac PRIVATE Threads::Threads)
+target_link_libraries(kanagawa_lib PRIVATE Threads::Threads)
 
 # Add CIRCT targets/library dependencies
-target_link_libraries(kanagawac PRIVATE
+target_link_libraries(kanagawa_lib PRIVATE
     CIRCTComb
     CIRCTCombTransforms
     CIRCTExportVerilog
@@ -179,15 +184,5 @@ target_link_libraries(kanagawac PRIVATE
 
 # Add CIRCT include directories
 get_target_property(CIRCT_INCLUDES CIRCTHW INCLUDE_DIRECTORIES)
-target_include_directories(kanagawac PUBLIC "${CIRCT_INCLUDES}")
+target_include_directories(kanagawa_lib PUBLIC "${CIRCT_INCLUDES}")
 
-file(MAKE_DIRECTORY ${KANAGAWA_BIN_DIR})
-
-add_custom_command(
-    TARGET kanagawac
-    POST_BUILD
-    COMMAND
-        ${CMAKE_COMMAND} -E copy_if_different
-        $<TARGET_FILE:kanagawac>
-        "${KANAGAWA_BIN_DIR}/"
-)
