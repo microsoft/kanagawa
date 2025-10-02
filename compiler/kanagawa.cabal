@@ -8,7 +8,7 @@ copyright:           (C) Microsoft
 category:            Language
 build-type:          Simple
 license:             MIT
-license-file:        LICENSE
+license-file:        ../LICENSE
 
 Flag Debug {
   Description: Debug build, don't optimize
@@ -46,9 +46,9 @@ executable kanagawa
   include-dirs:        cpp
 
   if os(linux)
-    extra-libraries:   kanagawac stdc++ dl
+    extra-libraries:   kanagawa-backend stdc++ dl
   else
-    extra-libraries:   kanagawac
+    extra-libraries:   kanagawa-backend
 
   if os(darwin)
       ld-options:      -Wl,-keep_dwarf_unwind
@@ -114,6 +114,6 @@ library
 
   default-language:    Haskell2010
 
-  -- add $ORIGIN to rpath, to enable libkanagawac.so to be found adjacent to the kanagawa compiler binary
+  -- add $ORIGIN to rpath, to enable libkanagawa-backend.so to be found adjacent to the kanagawa compiler binary
   if !os(windows)
       ld-options:      -Wl,-rpath,$ORIGIN
