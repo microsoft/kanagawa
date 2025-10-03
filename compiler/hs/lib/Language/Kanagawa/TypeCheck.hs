@@ -278,8 +278,8 @@ templateTypeCheck symbols = desugar check
                 validate Auto InitializerListF{}                = argError "Initializer list can't be used as an argument for `auto` parameter"
 
                 validate typ (IntLiteralF _ i)
-                    | tIsSigned $ theType typ                   = IntLiteralF (Just $ LiteralType SignedLiteral width) $ truncateInt width i
-                    | tIsUnsigned $ theType typ                 = IntLiteralF (Just $ LiteralType UnsignedLiteral width) $ truncateUInt width i
+                    | tIsSigned (theType typ) && width > 0      = IntLiteralF (Just $ LiteralType SignedLiteral width) $ truncateInt width i
+                    | tIsUnsigned (theType typ) && width > 0    = IntLiteralF (Just $ LiteralType UnsignedLiteral width) $ truncateUInt width i
                     | Auto <- typ                               = IntLiteralF Nothing i
                   where
                     width = fromJust $ sizeOf typ
