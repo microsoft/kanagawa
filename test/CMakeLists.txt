@@ -2,3 +2,4 @@
 # Licensed under the MIT License.
 
 add_subdirectory(syntax)
+add_subdirectory(library)

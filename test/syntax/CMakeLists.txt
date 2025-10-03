@@ -1,6 +1,10 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+# This file contains a set of unit tests designed to validate that compiler front-end
+# is parsing correctly. This includes both parsing of valid sources and generation
+# of the appropriate error code when parsing invalid sources.
+
 # Add a phoney target to "build" syntax tests. Because these tests
 # do not require a separate build step, all this does it validate
 # that the kanagawa compiler has been built.
