@@ -215,31 +215,8 @@ def main():
 
             sys.exit(1)
 
-        if expected_error != 0 and exit_code != 1:
-            error_msg = f"Failure! Expected compiler exit code 1, got {exit_code}"
-            print(error_msg)
-
-            # Write error to .error file
-            error_file_name = Path(args.testfile).stem + ".error"
-            with open(error_file_name, 'w') as error_file:
-                error_file.write(error_msg + '\n')
-                error_file.write(f"Stdout:\n{result.stdout}\n")
-                error_file.write(f"Stderr:\n{result.stderr}\n")
-                error_file.write('-' * 50 + '\n')
-                if temp_file_name.exists():
-                    with open(temp_file_name, 'r') as temp_file:
-                        error_file.write(temp_file.read())
-
-            # Print temp file contents
-            if temp_file_name.exists():
-                with open(temp_file_name, 'r') as temp_file:
-                    temp_contents = temp_file.read()
-                print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
-
-            sys.exit(1)
-
-        if expected_error == 0 and exit_code != 0:
-            error_msg = f"Failure! Expected compiler exit code 0, got {exit_code}"
+        if (expected_error != 0 and exit_code != 1) or (expected_error == 0 and exit_code != 0):
+            error_msg = f"Failure! Expected compiler exit code {expected_error}, got {exit_code}"
             print(error_msg)
 
             # Write error to .error file
