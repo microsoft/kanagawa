@@ -9,7 +9,7 @@
 # do not require a separate build step, all this does it validate
 # that the kanagawa compiler has been built.
 
-add_custom_target(build_syntax_tests
+add_custom_target(syntax_tests
     DEPENDS kanagawa::exe
 )
 

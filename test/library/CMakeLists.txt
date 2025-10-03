@@ -5,6 +5,9 @@
 # of the Kanagawa standard library. The tests are run within the Verilator
 # RTL simulator.
 
+add_custom_target(library_tests
+    DEPENDS kanagawa::exe
+)
 
 # Create a CMake target to build a library unit test. This function also
 # creates a CTest target that can be used to run the test.
@@ -62,7 +65,7 @@ function(add_library_test test_name test_source)
     "--frequency=250"
     "--reset-cycles=5"
     "--register-ratio=3"
-    "--output=${OUTPUT_DIR}/"
+    "--backend=sv"
     "--import-dir=${CMAKE_SOURCE_DIR}/library"
     "--resource-usage=${OUTPUT_DIR}/resources.rpt"
     "--define=verbose#true"
@@ -80,6 +83,9 @@ function(add_library_test test_name test_source)
     OPTIONS ${KANAGAWA_OPTIONS}
   )
 
+  add_dependencies(library_tests ${TARGET_NAME})
+
 endfunction()
 
 add_library_test(control_async "control/async.k")
+add_library_test(data_buffer "data/buffer.k")

@@ -6,6 +6,7 @@
 # Usage:
 #   add_kanagawa(<target>
 #     [OUTPUT_DIR <dir>]
+#     [OUTPUT_PREFIX <prefix>]
 #     [CLEAN_OUTPUT_DIR]
 #     [WORKING_DIRECTORY <dir>]
 #     SOURCES <src1> [<src2> ...]
@@ -17,7 +18,7 @@
 #
 function(add_kanagawa target)
   set(_opts CLEAN_OUTPUT_DIR)
-  set(_one  OUTPUT_DIR WORKING_DIRECTORY)
+  set(_one  OUTPUT_DIR WORKING_DIRECTORY OUTPUT_PREFIX)
   set(_multi SOURCES OPTIONS)
   cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
 
@@ -74,14 +75,16 @@ function(add_kanagawa target)
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${_inputs_file}" "${_args_in_outdir}"
   )
 
+  set(KANAGAWA_OUTPUT "${_ARG_OUTPUT_DIR}/${_ARG_OUTPUT_PREFIX}")
+
   add_custom_command(
     OUTPUT "${_stamp}"
     BYPRODUCTS
       "${_args_in_outdir}"
     ${_pre_commands}
     COMMAND "$<TARGET_FILE:kanagawa::exe>"
-            --out "${_ARG_OUTPUT_DIR}"
             ${_ARG_OPTIONS}
+            --output "${KANAGAWA_OUTPUT}"
             ${_ARG_SOURCES}
     COMMAND ${CMAKE_COMMAND} -E echo "Kanagawa HLS completed for '${target}'" > "${_stamp}"
     DEPENDS
