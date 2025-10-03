@@ -209,8 +209,8 @@ reifyEnums e = e
 
 validateTypedLiterals :: DesugarAlgebra n (ParseError s e)
 validateTypedLiterals (IntLiteralF (Just t) x)
-    | outOfRange t        = desugarError $ "Literal out of range for `" ++ showPretty t ++ "`"
     | literalWidth t == 0 = desugarError $ "Invalid literal type specifier `" ++ showPretty t ++ "`"
+    | outOfRange t        = desugarError $ "Literal out of range for `" ++ showPretty t ++ "`"
   where
     outOfRange (LiteralType SignedLiteral w)   = x /= truncateInt w x
     outOfRange (LiteralType UnsignedLiteral w) = x /= truncateUInt w x
