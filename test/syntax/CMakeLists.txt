@@ -11,7 +11,7 @@ add_custom_target(build_syntax_tests
 
 # Add a target to run all syntax tests
 add_custom_target(run_syntax_tests
-    COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_CURRENT_BINARY_DIR} -R "^syntax_test\\." --output-on-failure --verbose
+    COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_CURRENT_BINARY_DIR} -R "^syntax\\." --output-on-failure --verbose
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Run all syntax tests"
     USES_TERMINAL
@@ -24,7 +24,7 @@ function(add_syntax_test TEST_NAME)
 
     cmake_parse_arguments(_ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-    set(TEST_NAME_WITH_PREFIX "syntax_test.${TEST_NAME}")
+    set(TEST_NAME_WITH_PREFIX "syntax.${TEST_NAME}")
 
     if (_ARG_TEST_FILE)
         set(TEST_FILE ${_ARG_TEST_FILE})
