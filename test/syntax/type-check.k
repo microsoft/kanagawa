@@ -271,6 +271,13 @@ expected:0
 
     inline void main()
     {
+        static NFoo<0, 10> x;
+    }
+
+expected:1
+
+    inline void main()
+    {
         static NFoo<10, 1.0> x;
     }
 
@@ -413,7 +420,7 @@ expected:1
     inline void main()
     {
         static B b;
-
+        
         b.Go(10);
     }
 
@@ -441,7 +448,7 @@ expected:0
     inline void main()
     {
         static B b;
-
+        
         b.Go(10);
     }
 
