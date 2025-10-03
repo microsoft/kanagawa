@@ -14,6 +14,7 @@ each item in the list.
 - Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)
 - Verilator version 5.036. See the [Verilator documentation](https://veripool.org/guide/latest/install.html#git-quick-install) for detailed instructions. Note that version 5.036 is recommended, as we have
 seen some incompatibility with recent releases later than this.
+- Python version 3.x
 
 To run the tests for the Kanagawa RISC-V processor implementation, you will need to install:
 

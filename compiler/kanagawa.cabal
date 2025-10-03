@@ -8,7 +8,7 @@ copyright:           (C) Microsoft
 category:            Language
 build-type:          Simple
 license:             MIT
-license-file:        ../LICENSE
+license-file:        LICENSE
 
 Flag Debug {
   Description: Debug build, don't optimize

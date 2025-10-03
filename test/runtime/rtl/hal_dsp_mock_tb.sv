@@ -151,7 +151,7 @@ module KanagawaHALDSP_mock_umul27_tb;
     end
 endmodule
 
-module KanagawaHALDSP_SimOnly_imul27_tb;
+module KanagawaHALDSP_mock_imul27_tb;
 
     localparam int LATENCY = 3;
 
@@ -322,7 +322,7 @@ module KanagawaHALDSP_SimOnly_imul27_tb;
     end
 endmodule
 
-module KanagawaHALDSP_SimOnly_fmul32_tb;
+module KanagawaHALDSP_mock_fmul32_tb;
 
     localparam int LATENCY = 3;
 
@@ -461,7 +461,7 @@ module KanagawaHALDSP_SimOnly_fmul32_tb;
     end
 endmodule
 
-module KanagawaHALDSP_SimOnly_fadd32_tb;
+module KanagawaHALDSP_mock_fadd32_tb;
 
     localparam int LATENCY = 3;
 
@@ -600,7 +600,7 @@ module KanagawaHALDSP_SimOnly_fadd32_tb;
     end
 endmodule
 
-module KanagawaHALDSP_SimOnly_fsub32_tb;
+module KanagawaHALDSP_mock_fsub32_tb;
 
     localparam int LATENCY = 3;
 
@@ -739,7 +739,7 @@ module KanagawaHALDSP_SimOnly_fsub32_tb;
     end
 endmodule
 
-module KanagawaHALDSP_SimOnly_fmac32_tb;
+module KanagawaHALDSP_mock_fmac32_tb;
 
     localparam int LATENCY = 3;
 
@@ -871,7 +871,7 @@ module KanagawaHALDSP_SimOnly_fmac32_tb;
 endmodule
 
 
-module KanagawaHALDSP_SimOnly_fmad32_tb;
+module KanagawaHALDSP_mock_fmad32_tb;
 
     localparam int LATENCY = 3;
 
