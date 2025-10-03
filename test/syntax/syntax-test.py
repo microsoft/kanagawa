@@ -4,7 +4,6 @@ import os
 import re
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 def main():
@@ -18,40 +17,68 @@ def main():
     args = parser.parse_args()
 
     TEMP_FILE_NAME = "syntax_test_temp_file.k"
+    test_path = Path(args.testfile)
 
-    if not os.path.isfile(args.testfile):
+    if not test_path.is_file():
         print(f"File does not exist: {args.testfile}")
         sys.exit(1)
 
     # Clean up files from previous runs
-    test_file_base = Path(args.testfile).stem
-    done_file = test_file_base + ".done"
-    error_file = test_file_base + ".error"
+    test_file_base = test_path.stem
+    done_path = Path(f"{test_file_base}.done")
+    error_path = Path(f"{test_file_base}.error")
 
-    if os.path.exists(done_file):
-        os.remove(done_file)
-    if os.path.exists(error_file):
-        os.remove(error_file)
+    for p in (done_path, error_path):
+        try:
+            p.unlink(missing_ok=True)
+        except Exception:
+            pass
 
-    with open(args.testfile, 'r') as f:
-        lines = f.readlines()
+    lines = test_path.read_text(encoding='utf-8').splitlines()
 
     # Create subfolder based on test file base name
     subfolder = Path(test_file_base)
     subfolder.mkdir(exist_ok=True)
 
-    temp_file_name = subfolder / TEMP_FILE_NAME
+    temp_file_path = subfolder / TEMP_FILE_NAME
 
     imports = ''
     if args.helper:
         imports = f'import helper.{args.helper}'
 
-    with open(temp_file_name, 'w', encoding='ascii') as f:
-        if imports:
-            f.write(imports + '\n')
+    def write_temp_header():
+        with temp_file_path.open('w', encoding='ascii') as f:
+            if imports:
+                f.write(imports + '\n')
 
-    for line in lines:
-        line = line.strip()
+    write_temp_header()
+
+    # --- single failure path to remove duplication ---
+    def fail(msg: str, *, result: subprocess.CompletedProcess | None = None, include_temp: bool = True):
+        """
+        Print msg, write .error file with stdout/stderr (when available) and
+        include current temp file contents (when requested), then exit(1).
+        """
+        print(msg)
+
+        with error_path.open('w', encoding='utf-8', newline='') as ef:
+            ef.write(msg + '\n')
+            if result is not None:
+                ef.write(f"Stdout:\n{result.stdout}\n")
+                ef.write(f"Stderr:\n{result.stderr}\n")
+            ef.write('-' * 50 + '\n')
+            if include_temp and temp_file_path.exists():
+                ef.write(temp_file_path.read_text(encoding='ascii'))
+
+        if include_temp and temp_file_path.exists():
+            temp_contents = temp_file_path.read_text(encoding='ascii')
+            print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
+
+        sys.exit(1)
+    # --------------------------------------------------
+
+    for raw_line in lines:
+        line = raw_line.strip()
         expected_error = 0
         expected_warning = ""
 
@@ -59,11 +86,11 @@ def main():
         warning_match = re.search(r'warning:([^\s]*)', line)
 
         if error_match:
-            expected_error = int(error_match.group(1))
+            expected_error = int(error_match.group(1) or 0)
         elif warning_match:
             expected_warning = warning_match.group(1)
         else:
-            with open(temp_file_name, 'a', encoding='ascii') as f:
+            with temp_file_path.open('a', encoding='ascii') as f:
                 f.write(line + '\n')
             continue
 
@@ -74,9 +101,7 @@ def main():
         # Build command
         cmd = [args.kanagawa]
         if args.options:
-            # Split the options string and add to command
-            option_list = args.options.split()
-            cmd.extend(option_list)
+            cmd.extend(args.options.split())
         cmd.extend(['--place-iterations=1', '--import-dir', args.helperdir, TEMP_FILE_NAME])
 
         # Run test in subfolder
@@ -88,14 +113,14 @@ def main():
                 print(output_line)
 
                 if first_compile_error_code == 0:
-                    error_match = re.search(r'Error (\d+)', output_line)
-                    if error_match:
-                        first_compile_error_code = int(error_match.group(1))
+                    m = re.search(r'Error (\d+)', output_line)
+                    if m:
+                        first_compile_error_code = int(m.group(1))
 
                 if first_compile_warning_code == "":
-                    warning_match = re.search(r'warning:.*\[--Wno-([^\]]*)\]$', output_line)
-                    if warning_match:
-                        first_compile_warning_code = warning_match.group(1)
+                    wm = re.search(r'warning:.*\[--Wno-([^\]]*)\]$', output_line)
+                    if wm:
+                        first_compile_warning_code = wm.group(1)
 
                 if output_line.strip() == "Call Stack:":
                     internal_compiler_error = 1
@@ -103,149 +128,44 @@ def main():
             exit_code = result.returncode
 
         except Exception as e:
-            error_msg = f"Error running command: {e}"
-            print(error_msg)
-
-            # Write error to .error file
-            error_file_name = Path(args.testfile).stem + ".error"
-            with open(error_file_name, 'w') as error_file:
-                error_file.write(error_msg + '\n')
-                error_file.write('-' * 50 + '\n')
-                if temp_file_name.exists():
-                    with open(temp_file_name, 'r') as temp_file:
-                        error_file.write(temp_file.read())
-
-            # Print temp file contents
-            if temp_file_name.exists():
-                with open(temp_file_name, 'r') as temp_file:
-                    temp_contents = temp_file.read()
-                print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
-
-            sys.exit(1)
+            fail(f"Error running command: {e}", result=None, include_temp=True)
 
         if internal_compiler_error != 0:
-            error_msg = "Unexpected internal compiler error"
-            print(error_msg)
-
-            # Write error to .error file
-            error_file_name = Path(args.testfile).stem + ".error"
-            with open(error_file_name, 'w') as error_file:
-                error_file.write(error_msg + '\n')
-                error_file.write(f"Stdout:\n{result.stdout}\n")
-                error_file.write(f"Stderr:\n{result.stderr}\n")
-                error_file.write('-' * 50 + '\n')
-                if temp_file_name.exists():
-                    with open(temp_file_name, 'r') as temp_file:
-                        error_file.write(temp_file.read())
-
-            # Print temp file contents
-            if temp_file_name.exists():
-                with open(temp_file_name, 'r') as temp_file:
-                    temp_contents = temp_file.read()
-                print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
-
-            sys.exit(1)
+            fail("Unexpected internal compiler error", result=result, include_temp=True)
 
         if expected_error != first_compile_error_code:
-            error_msg = f"Unexpected result. Expected error: {expected_error} Actual: {first_compile_error_code}"
-            print(error_msg)
-
-            # Write error to .error file
-            error_file_name = Path(args.testfile).stem + ".error"
-            with open(error_file_name, 'w') as error_file:
-                error_file.write(error_msg + '\n')
-                error_file.write(f"Stdout:\n{result.stdout}\n")
-                error_file.write(f"Stderr:\n{result.stderr}\n")
-                error_file.write('-' * 50 + '\n')
-                if temp_file_name.exists():
-                    with open(temp_file_name, 'r') as temp_file:
-                        error_file.write(temp_file.read())
-
-            # Print temp file contents
-            if temp_file_name.exists():
-                with open(temp_file_name, 'r') as temp_file:
-                    temp_contents = temp_file.read()
-                print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
-
-            sys.exit(1)
+            fail(
+                f"Unexpected result. Expected error: {expected_error} Actual: {first_compile_error_code}",
+                result=result,
+                include_temp=True
+            )
 
         if expected_warning == "0":
             if first_compile_warning_code != "":
-                error_msg = f"Unexpected result. Expected no warning. Actual: '{first_compile_warning_code}'"
-                print(error_msg)
-
-                # Write error to .error file
-                error_file_name = Path(args.testfile).stem + ".error"
-                with open(error_file_name, 'w') as error_file:
-                    error_file.write(error_msg + '\n')
-                    error_file.write(f"Stdout:\n{result.stdout}\n")
-                    error_file.write(f"Stderr:\n{result.stderr}\n")
-                    error_file.write('-' * 50 + '\n')
-                    if temp_file_name.exists():
-                        with open(temp_file_name, 'r') as temp_file:
-                            error_file.write(temp_file.read())
-
-                # Print temp file contents
-                if temp_file_name.exists():
-                    with open(temp_file_name, 'r') as temp_file:
-                        temp_contents = temp_file.read()
-                    print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
-
-                sys.exit(1)
+                fail(
+                    f"Unexpected result. Expected no warning. Actual: '{first_compile_warning_code}'",
+                    result=result,
+                    include_temp=True
+                )
         elif expected_warning != "" and expected_warning != first_compile_warning_code:
-            error_msg = f"Unexpected result. Expected warning: '{expected_warning}' Actual: '{first_compile_warning_code}'"
-            print(error_msg)
-
-            # Write error to .error file
-            error_file_name = Path(args.testfile).stem + ".error"
-            with open(error_file_name, 'w') as error_file:
-                error_file.write(error_msg + '\n')
-                error_file.write(f"Stdout:\n{result.stdout}\n")
-                error_file.write(f"Stderr:\n{result.stderr}\n")
-                error_file.write('-' * 50 + '\n')
-                if temp_file_name.exists():
-                    with open(temp_file_name, 'r') as temp_file:
-                        error_file.write(temp_file.read())
-
-            # Print temp file contents
-            if temp_file_name.exists():
-                with open(temp_file_name, 'r') as temp_file:
-                    temp_contents = temp_file.read()
-                print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
-
-            sys.exit(1)
+            fail(
+                f"Unexpected result. Expected warning: '{expected_warning}' Actual: '{first_compile_warning_code}'",
+                result=result,
+                include_temp=True
+            )
 
         if (expected_error != 0 and exit_code != 1) or (expected_error == 0 and exit_code != 0):
-            error_msg = f"Failure! Expected compiler exit code {expected_error}, got {exit_code}"
-            print(error_msg)
+            fail(
+                f"Failure! Expected compiler exit code {expected_error}, got {exit_code}",
+                result=result,
+                include_temp=True
+            )
 
-            # Write error to .error file
-            error_file_name = Path(args.testfile).stem + ".error"
-            with open(error_file_name, 'w') as error_file:
-                error_file.write(error_msg + '\n')
-                error_file.write(f"Stdout:\n{result.stdout}\n")
-                error_file.write(f"Stderr:\n{result.stderr}\n")
-                error_file.write('-' * 50 + '\n')
-                if temp_file_name.exists():
-                    with open(temp_file_name, 'r') as temp_file:
-                        error_file.write(temp_file.read())
-
-            # Print temp file contents
-            if temp_file_name.exists():
-                with open(temp_file_name, 'r') as temp_file:
-                    temp_contents = temp_file.read()
-                print(f"----- {TEMP_FILE_NAME} contents -----\n{temp_contents}")
-
-            sys.exit(1)
-
-        with open(temp_file_name, 'w', encoding='ascii') as f:
-            if imports:
-                f.write(imports + '\n')
+        # Reset temp file to header for the next block
+        write_temp_header()
 
     print("Success!")
-
-    done_file = Path(args.testfile).stem + ".done"
-    Path(done_file).touch()
+    done_path.touch()
 
 if __name__ == "__main__":
     main()
