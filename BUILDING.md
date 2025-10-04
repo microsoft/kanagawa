@@ -12,8 +12,7 @@ each item in the list.
 - Boost C++ library version 1.83.0 or later (see https://www.boost.org/)
 - CMake version 3.26 or later (see https://cmake.org/)
 - Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)
-- Verilator version 5.036. See the [Verilator documentation](https://veripool.org/guide/latest/install.html#git-quick-install) for detailed instructions. Note that version 5.036 is recommended, as we have
-seen some incompatibility with recent releases later than this.
+- Verilator version 5.036. See the [Verilator documentation](https://veripool.org/guide/latest/install.html#git-quick-install) for detailed instructions. Note that version 5.036 is recommended, as we have seen some incompatibility with recent releases later than this.
 - Python version 3.x
 
 To run the tests for the Kanagawa RISC-V processor implementation, you will need to install:
@@ -52,7 +51,7 @@ cmake
     -DCMAKE_BUILD_TYPE=RelWithDebInfo
     -DBoost_DIR=$HOME/boost/lib/cmake/Boost-1.83.0
     -DGHCUP_DIR=/home/user/.ghcup/bin
-    -DVERILATOR_EXE=/opt/verilator/bin/verilator
+    -DVERILATOR_ROOT=/usr/local/share/verilator
 ```
 
 If Boost was installed via an OS package, you might also use this option to point CMake at the standard

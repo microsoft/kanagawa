@@ -5,8 +5,6 @@
 `timescale 1ns/1ps
 `default_nettype none
 
-import KanagawaTypes::*;
-
 module Testbench;
 
     integer i, fid;
