@@ -13,7 +13,7 @@ class ProtocolAttributesClass
 public:
     [[no_backpressure]] uint32 PlusFour(uint32 x)
     {
-        OneMore(x + 1);
+        OneMore(static_cast(x + 1));
         return x + 4;
     }
 

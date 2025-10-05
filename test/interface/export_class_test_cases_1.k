@@ -85,7 +85,7 @@ public:
         // test callback_with_default
         unit::assert_equal(tag, x + 5, callback_with_default(x));
 
-        return callback(x + 1);
+        return callback(static_cast(x + 1));
     }
 
     // Test for calling a callback via a lambda
@@ -93,7 +93,7 @@ public:
     {
         return pipelined_last(1, [x](uint32 id)
         {
-            return callback(x + 2);
+            return callback(static_cast(x + 2));
         });
     }
 }
@@ -121,7 +121,7 @@ inline void InlineAttributeTest(unit::tag_t tag)
     public:
         void Test(unit::tag_t tag, uint32 i)
         {
-            uint32 expected = i + 4;
+            uint32 expected = static_cast(i + 4);
 
             uint32 actual = _classWithCallback.Entry(tag, i);
 

@@ -3,3 +3,4 @@
 
 add_subdirectory(syntax)
 add_subdirectory(library)
+add_subdirectory(interface)
