@@ -30,11 +30,8 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/thirdparty/circt/llvm/llvm)
 # Add build of the Kanagawa compiler
 add_subdirectory(compiler)
 
-# Include helper function for running the Kanagawa compiler to generate RTL
-include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/kanagawa.cmake)
-
-# Include helper function for running Verilator to build simulation executables
-include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/verilator.cmake)
+# Include helper functions for building unit tests
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/test_helper.cmake)
 
 # Unit tests
 add_subdirectory(test)

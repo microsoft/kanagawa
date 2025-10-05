@@ -24,7 +24,7 @@ private:
 
         uint16 result = _adder.Add(a, b);
 
-        uint16 expected_sum = a + b;
+        uint16 expected_sum = static_cast(a + b);
         unit::assert_equal(tag, expected_sum, result);
     }
 
