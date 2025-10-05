@@ -31,7 +31,7 @@ find_package(Threads REQUIRED)
 ####
 # Verilator
 
-# Users can override via: -DVERILATOR_EXE=/opt/verilator/bin/verilator
+# Users can override via: -DVERILATOR_ROOT=/opt/verilator/bin/verilator
 find_program(VERILATOR_EXE
   NAMES verilator
   HINTS
@@ -40,11 +40,11 @@ find_program(VERILATOR_EXE
     /usr/local/bin
     /usr/bin
 )
+
 if (VERILATOR_EXE)
   message(STATUS "Dependency: Verilator at ${VERILATOR_EXE}")
-  mark_as_advanced(VERILATOR_EXE)
 else()
-  message(WARNING "Verilator executable not found. Verilator-based tests will be disabled.")
+  message(WARNING "Verilator not found. Verilator-based tests will be disabled. Please install Verilator and/or define VERILATOR_EXE")
 endif()
 
 # Haskell (cabal and ghc)

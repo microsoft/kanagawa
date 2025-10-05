@@ -12,6 +12,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(LIKER_USES_LIBRT "rt")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Required to link a dynamic library with a static library
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 set(KANAGAWA_EXE_NAME "kanagawa")
 # This can not be the same as KANAGAWA_EXE_NAME (CMake does not like it)
 set(KANAGAWA_SHARED_LIBRARY_NAME "kanagawa-backend")
@@ -26,6 +29,12 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/thirdparty/circt/llvm/llvm)
 
 # Add build of the Kanagawa compiler
 add_subdirectory(compiler)
+
+# Include helper function for running the Kanagawa compiler to generate RTL
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/kanagawa.cmake)
+
+# Include helper function for running Verilator to build simulation executables
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/verilator.cmake)
 
 # Unit tests
 add_subdirectory(test)

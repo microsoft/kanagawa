@@ -4,7 +4,7 @@
 `timescale 1ns/1ps
 `default_nettype none
 
-module main;
+module Testbench;
     import RISCVCustomInstrWrapperTypes::*;
 
     integer i;
