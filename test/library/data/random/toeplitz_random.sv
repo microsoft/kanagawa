@@ -2,7 +2,7 @@
 //  Licensed under the MIT License.
 
 /*
-Module: main
+Module: Testbench
 
     Testbench for data.random.toeplitz toeplitz_random class.
 
@@ -60,7 +60,7 @@ class ToeplitzRandom #(parameter DataWidth, parameter KeyWidth);
     endfunction
 endclass
 
-module main #(parameter NUM_TEST_VECTORS = 100);
+module Testbench #(parameter NUM_TEST_VECTORS = 100);
 
     logic clk = 1'b0;
     always #5 clk = ~clk;

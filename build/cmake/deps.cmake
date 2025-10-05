@@ -31,24 +31,6 @@ find_package(Threads REQUIRED)
 ####
 # Verilator
 
-set(VERILATOR_HINTS)
-
-if (${VERILATOR_ROOT})
-  list(APPEND VERILATOR_HINTS "${VERILATOR_ROOT}")
-endif()
-
-if(NOT "$ENV{VERILATOR_ROOT}" STREQUAL "")
-  list(APPEND VERILATOR_HINTS "$ENV{VERILATOR_ROOT}")
-endif()
-
-list(APPEND VERILATOR_HINTS
-  "$ENV{HOME}/verilator"
-  /usr/local/share/verilator
-  /usr/share/verilator
-)
-
-find_package(verilator HINTS ${VERILATOR_HINTS})
-
 # Users can override via: -DVERILATOR_ROOT=/opt/verilator/bin/verilator
 find_program(VERILATOR_EXE
   NAMES verilator
@@ -59,10 +41,10 @@ find_program(VERILATOR_EXE
     /usr/bin
 )
 
-if (verilator_FOUND)
-  message(STATUS "Dependency: Verilator at ${VERILATOR_ROOT}")
+if (VERILATOR_EXE)
+  message(STATUS "Dependency: Verilator at ${VERILATOR_EXE}")
 else()
-  message(WARNING "Verilator not found. Verilator-based tests will be disabled. Please install Verilator and/or define VERILATOR_ROOT")
+  message(WARNING "Verilator not found. Verilator-based tests will be disabled. Please install Verilator and/or define VERILATOR_EXE")
 endif()
 
 # Haskell (cabal and ghc)

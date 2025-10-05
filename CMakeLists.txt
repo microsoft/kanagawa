@@ -12,6 +12,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(LIKER_USES_LIBRT "rt")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Required to link a dynamic library with a static library
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 set(KANAGAWA_EXE_NAME "kanagawa")
 # This can not be the same as KANAGAWA_EXE_NAME (CMake does not like it)
 set(KANAGAWA_SHARED_LIBRARY_NAME "kanagawa-backend")

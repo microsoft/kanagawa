@@ -10,8 +10,7 @@
 #   add_verilator(<verilate_target> <test_name>
 #     [OUTPUT_DIR <dir>]
 #     [WORKING_DIRECTORY <dir>]
-#     [MEM_DIR <directory-with-mem-files>]
-#     [REQUIRES <target-or-file> ...]]
+#     [DEPENDS <target-or-file> ...]]
 #     TESTBENCH <testbench-module-name>
 #     SOURCES <src1> [<src2> ...]
 #     [OPTIONS <opt1> <opt2> ...]
@@ -24,12 +23,12 @@
 #
 function(add_verilator verilate_target test_name)
   set(_opts)
-  set(_one  OUTPUT_DIR WORKING_DIRECTORY TESTBENCH MEM_DIR)
-  set(_multi SOURCES OPTIONS REQUIRES)
+  set(_one  OUTPUT_DIR WORKING_DIRECTORY TESTBENCH)
+  set(_multi SOURCES OPTIONS DEPENDS)
   cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
 
-  if (NOT VERILATOR_BIN)
-    message(FATAL_ERROR "add_verilator: VERILATOR_BIN is not set. Please ensure Verilator is installed and VERILATOR_ROOT is set to the path to the Verilator CMake package.")
+  if (NOT VERILATOR_EXE)
+    message(FATAL_ERROR "add_verilator: VERILATOR_EXE is not set. Please ensure Verilator is installed and VERILATOR_EXE is set to the path to the Verilator executable.")
   endif()
 
   if(NOT verilate_target)
@@ -58,7 +57,7 @@ function(add_verilator verilate_target test_name)
     --Mdir "${_ARG_OUTPUT_DIR}"
     --top-module "${_ARG_TESTBENCH}"
     --assert
-    -CFLAGS -O0
+    -CFLAGS -fcoroutines
     -DSIMULATION
   )
 
@@ -102,24 +101,13 @@ function(add_verilator verilate_target test_name)
     COMMAND ${CMAKE_COMMAND} -E make_directory "${_ARG_OUTPUT_DIR}"
   )
 
-  # If a MEM_DIR is provided, copy all .mem files from there to the OUTPUT_DIR.
-  # Get the list of .mem files at build time and copy them at build time, because
-  # they will not exist until after the HLS step has run.
-  if(_ARG_MEM_DIR)
-    list(APPEND PRE_COMMANDS
-      COMMAND ${CMAKE_COMMAND} -E echo "Copying memory initialization files from ${_ARG_MEM_DIR} to ${_ARG_OUTPUT_DIR}"
-      COMMAND /bin/sh -c "set -e; d='${_ARG_MEM_DIR}'; o='${_ARG_OUTPUT_DIR}'; \
-        if ls \"$d\"/*.mem >/dev/null 2>&1; then cp \"$d\"/*.mem \"$o\"/; fi"
-    )
-  endif()
-
   # Run Verilator to generate C++ from SystemVerilog
   add_custom_command(
     OUTPUT "${_ARG_OUTPUT_DIR}/V${_ARG_TESTBENCH}"
     ${PRE_COMMANDS}
     COMMAND ${CMAKE_COMMAND} -E echo "Running Verilator to generate C++ from SystemVerilog for target '${verilate_target}'"
-    COMMAND ${VERILATOR_BIN} ${VERILATOR_ARGS} ${_ARG_SOURCES}
-    DEPENDS ${REQUIRES}
+    COMMAND ${VERILATOR_EXE} ${VERILATOR_ARGS} ${_ARG_SOURCES}
+    DEPENDS ${_ARG_DEPENDS}
     WORKING_DIRECTORY "${_ARG_WORKING_DIRECTORY}"
     COMMENT "Verilating sources for target '${verilate_target}'"
     VERBATIM
@@ -129,8 +117,6 @@ function(add_verilator verilate_target test_name)
   add_custom_target(${verilate_target}
     DEPENDS "${_ARG_OUTPUT_DIR}/V${_ARG_TESTBENCH}"
   )
-
-  message(STATUS "add_verilator: Created target '${verilate_target}' to verilate test '${test_name}'")
 
   add_test(NAME ${test_name}
     COMMAND "${_ARG_OUTPUT_DIR}/V${_ARG_TESTBENCH}"
