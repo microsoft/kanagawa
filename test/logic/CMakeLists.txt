@@ -1,6 +1,10 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+# This file defines logic tests. These are unit tests that verify that
+# the Kanagawa generated RTL is logically correct.
+
+# This is the set of tests that are run for all the different option configurations
 set(LOGIC_TEST_SOURCES
     array_test_cases.k
     atomic_do.k
@@ -152,6 +156,8 @@ add_custom_target(run_logic_tests
     USES_TERMINAL
 )
 
+# All of the tests in the LOGIC_TEST_SOURCES list above are run for each of these test suite definitions
+# A test suite is a set of test run against a set of compiler options.
 add_logic_test_suite(default)
 add_logic_test_suite(O0 OPTIONS "-O0")
 add_logic_test_suite(O1 OPTIONS "-O1")
