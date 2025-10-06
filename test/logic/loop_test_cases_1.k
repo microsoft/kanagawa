@@ -295,7 +295,7 @@ inline void PredicatedRangeFor(unit::tag_t tag)
 
             unit::assert(tag, tid == _expected_tid);
 
-            _expected_tid++;
+            _expected_tid = static_cast(_expected_tid + 1); // Wrap OK
         }
     });
 }

@@ -177,7 +177,7 @@ private:
     [[pipelined]] void Foo431(uint32 idx, unit::tag_t tag)
     {
         // Create a live variable that will be used after the reording
-        uint32 idxTimesTwo = idx * 2;
+        uint32 idxTimesTwo = static_cast(idx * 2);
         uint32 idxTimesFour;
 
         reorder
@@ -235,7 +235,7 @@ private:
     [[pipelined, max_threads(512)]] void Foo432(uint32 idx, unit::tag_t tag)
     {
         // Create a live variable that will be used after the reording
-        uint32 idxTimesTwo = idx * 2;
+        uint32 idxTimesTwo = static_cast(idx * 2);
         uint32 idxTimesFour;
 
         reorder
@@ -244,7 +244,7 @@ private:
             // thread 1 will loop for 511 iterations
             // This ensures that threads leave in the opposite order that the enter
             // and at some point, the buffer will be full
-            uint32 loopIterations = 512 - (idx % 512);
+            uint32 loopIterations = static_cast(512 - (idx % 512));
 
             // Delay for a while, to ensure threads leave in a different order than they enter
             [[unordered]] for (const uint32 i : loopIterations)

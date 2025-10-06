@@ -287,7 +287,7 @@ public:
 
         b._a = index + 1;
         b._b = index + 2;
-        b._c = index;
+        b._c = static_cast(index);
 
         g_m177[index] = b;
     }
@@ -332,7 +332,7 @@ public:
     {
     [[unordered]] for (const uint32 i : 16)
         {
-            g_foo179.Set(i, i+2);
+            g_foo179.Set(i, static_cast(i+2));
         }
 
         unit::assert(tag, 3 == g_foo179.Get(1));
@@ -421,9 +421,9 @@ private:
 
     [[max_threads(1)]] void single_threaded(unit::tag_t tag, uint32 x)
     {
-        uint32 z = x * 3; // z will be saved in a context saver
+        uint32 z = static_cast(x * 3); // z will be saved in a context saver
         uint32 y = times_seven(x);
-        uint32 sum = y + z;
+        uint32 sum = static_cast(y + z);
 
         unit::assert_equal(tag, x * 10, sum);;
     }

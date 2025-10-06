@@ -4,7 +4,7 @@
 import test.unit as unit
 import test.runner
 
-// Array of structures, writing to 1 structure element should only 
+// Array of structures, writing to 1 structure element should only
 // update that element, not a read-modify-write of the entire struct
 class ArrayOfStructMemberUpdateStaticHelper
 {
@@ -45,7 +45,7 @@ inline void ArrayOfStructStaticMemberUpdateTest(unit::tag_t tag)
     helper.Test(tag);
 }
 
-// Array of structures, writing to 1 structure element should only 
+// Array of structures, writing to 1 structure element should only
 // update that element, not a read-modify-write of the entire struct
 class ArrayOfStructMemberUpdateDynamicHelper
 {
@@ -62,7 +62,7 @@ public:
     {
         pipelined_for(128, [](index_t<128> i)
         {
-            index_t<2> index = i;
+            index_t<2> index = static_cast(i);
 
             atomic
             {

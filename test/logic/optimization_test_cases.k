@@ -100,7 +100,7 @@ inline void TestZero(unit::tag_t tag)
         uint32 x = GetRandomValue(tid);
 
         // Test sign extension
-        int32 y = x - 100;
+        int32 y = static_cast(x - 100);
         int64 z = y;
 
         // op(x, 0) == x
@@ -154,7 +154,7 @@ public:
             uint32 x = GetRandomValue(tid);
 
             // Test sign extension
-            int32 y = x - 100;
+            int32 y = static_cast(x - 100);
             int64 z = y;
 
             unit::assert(tag, x == lutmul(x, 1));
@@ -252,7 +252,7 @@ public:
             // Test sign extension
             int32 allOnesSigned32 = cast<int32>(allOnes32);
             int64 allOnesSigned64 = cast<int64>(allOnes64);
-            int32 y = x - 100;
+            int32 y = static_cast(x - 100);
             int64 z = y;
             unit::assert(tag, z == (y & allOnesSigned32));
             unit::assert(tag, z == (allOnesSigned32 & y));
@@ -262,7 +262,7 @@ public:
             unit::assert(tag, ~z == (allOnesSigned32 ^ y));
 
             // Signed allOnes that is fewer bits than other source
-            int1 allOnesSigned1 = 1;
+            int1 allOnesSigned1 = static_cast(1);
             unit::assert(tag, z == (y & allOnesSigned1));
             unit::assert(tag, z == (allOnesSigned1 & y));
             unit::assert(tag, allOnesSigned64 == (y | allOnesSigned1));
@@ -294,7 +294,7 @@ inline void TestSelect(unit::tag_t tag)
             unit::assert(tag, x == mux(sel, x, x, x, x));
 
             // Test sign extension
-            int32 y = x - 100;
+            int32 y = static_cast(x - 100);
             int64 z = y;
             unit::assert(tag, z == mux(sel, y, y, y, y));
         }
@@ -322,18 +322,18 @@ inline void TestSelect(unit::tag_t tag)
 
 inline void ConstProp(unit::tag_t tag)
 {
-    const int32 a = 0xbeafcafe;
+    const int32 a = static_cast(0xbeafcafe);
     const int32 b = -1;
 
     // Unary ops
     int32 y = ~a;
     unit::assert(tag, y == 0x41503501);
 
-    int32 z = -a;
+    int32 z = static_cast(-a);
     unit::assert(tag, z == 0x41503502);
 
     // Binary op
-    int32 w = a + b;
+    int32 w = static_cast(a + b);
     unit::assert(tag, cast<uint32>(w) == 0xbeafcafd);
 
     // cast
@@ -595,7 +595,7 @@ inline void AndOneTest(unit::tag_t tag)
     {
         uint1 x = 1;
         int1 y = cast<int1>(i);
-        uint4 actual = x & y;
+        uint4 actual = static_cast(x & y);
         uint4 expected = i == 0 ? 0 : 1;
         unit::assert(tag, actual == expected);
     });
@@ -605,7 +605,7 @@ inline void AndOneTest(unit::tag_t tag)
     {
         uint1 x = 1;
         int1 y = cast<int1>(i);
-        uint4 actual = y & x;
+        uint4 actual = static_cast(y & x);
         uint4 expected = i == 0 ? 0 : 1;
         unit::assert(tag, actual == expected);
     });
@@ -637,7 +637,7 @@ inline void TestReduceCastWidth(unit::tag_t tag)
             uint4 b;
         };
 
-        S s = { i, 0 };
+        S s = { cast<uint4>(i), 0 };
 
         uint8 x = cast<uint8>(s);
 
@@ -656,12 +656,12 @@ inline void TestShiftAllBits(unit::tag_t tag)
 {
     pipelined_for(8, [tag](uint3 i)
     {
-        uint3 shlResult = i << 3;
+        uint3 shlResult = static_cast(i << 3);
         unit::assert(tag, 0 == shlResult);
 
         unit::assert(tag, 0 == (i >> 3));
 
-        int3 signedI = i;
+        int3 signedI = static_cast(i);
         const int3 expected = signedI < 0 ? -1 : 0;
 
         unit::assert(tag, expected == (signedI >> 3));
@@ -745,7 +745,7 @@ inline void AddToOr(unit::tag_t tag)
 
     pipelined_for(16, [tag](index_t<16> i)
     {
-        uint8 actual = (i * 16) + i;
+        uint8 actual = static_cast((i * 16) + i);
         uint8 expected = mux(i,
             0b00000000,
             0b00010001,
@@ -778,7 +778,7 @@ inline void ConstSelectBits(unit::tag_t tag)
                 return static_cast<uint32>(i + outer);
             });
 
-            index_t<64> select_index = (i << 3) | 0b101;
+            index_t<64> select_index = static_cast((i << 3) | 0b101);
 
             uint32 result = src_data[select_index];
 

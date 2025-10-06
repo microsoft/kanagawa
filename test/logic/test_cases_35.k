@@ -41,7 +41,7 @@ private:
     [[pipelined]] void Validate645(uint32 tid, uint32 totalThreadCount, unit::tag_t tag)
     {
         uint32 actual = g_mem645[tid];
-        uint32 expected = tid + totalThreadCount;
+        uint32 expected = static_cast(tid + totalThreadCount);
         unit::assert(tag, actual == expected);
     }
 
@@ -87,7 +87,7 @@ private:
         static for(const auto i : 4)
         {
             uint32 actual = g_mem646[i][tid];
-            uint32 expected = tid + i + totalThreadCount;
+            uint32 expected = static_cast(tid + i + totalThreadCount);
             unit::assert(tag, actual == expected);
         }
     }
@@ -147,7 +147,7 @@ private:
     [[pipelined]] void Validate647(uint32 tid, uint32 totalThreadCount, unit::tag_t tag)
     {
         uint32 actual = g_mem647[tid];
-        uint32 expected = tid + totalThreadCount*4; // this would be *8 if the update rate was correct
+        uint32 expected = static_cast(tid + totalThreadCount*4); // this would be *8 if the update rate was correct
         unit::assert(tag, actual == expected);
     }
 
@@ -180,8 +180,8 @@ public:
 // Decomposing additions/subtractions (unsigned, mismatching widths)
 inline void Helper653(uint64 a, uint9 b, uint64 expectedSum, uint64 expectedDiff, unit::tag_t tag)
 {
-    uint64 sum = a + b;
-    uint64 diff = a - b;
+    uint64 sum = static_cast(a + b);
+    uint64 diff = static_cast(a - b);
 
     unit::assert(tag, expectedSum == sum);
     unit::assert(tag, expectedDiff == diff);
@@ -196,8 +196,8 @@ inline void TestCase653(unit::tag_t tag)
 // Decomposing additions/subtractions (signed, mismatching widths)
 inline void Helper654(int64 a, int9 b, int64 expectedSum, int64 expectedDiff, unit::tag_t tag)
 {
-    int64 sum = a + b;
-    int64 diff = a - b;
+    int64 sum = static_cast(a + b);
+    int64 diff = static_cast(a - b);
 
     unit::assert(tag, expectedSum == sum);
     unit::assert(tag, expectedDiff == diff);
@@ -223,11 +223,11 @@ inline void TestCase655(unit::tag_t tag)
 {
     for (const uint32 i : 100)
     {
-        Helper655(i, i, true, tag);
-        Helper655(i, i - 1, false, tag);
-        Helper655(i, i - 2, false, tag);
-        Helper655(i, i + 1, false, tag);
-        Helper655(i, i + 2, false, tag);
+        Helper655(static_cast(i), static_cast(i), true, tag);
+        Helper655(static_cast(i), static_cast(i - 1), false, tag);
+        Helper655(static_cast(i), static_cast(i - 2), false, tag);
+        Helper655(static_cast(i), static_cast(i + 1), false, tag);
+        Helper655(static_cast(i), static_cast(i + 2), false, tag);
     }
 }
 

@@ -147,7 +147,7 @@ inline uint32[8] Helper664(uint256 a)
 
     static for(const auto i: 8)
     {
-        b[i] = a >> (i * 32);
+        b[i] = static_cast(a >> (i * 32));
     }
 
     return b;
@@ -678,7 +678,7 @@ class TestCase665
     [[pipelined]] void Helper665(uint32 tid)
     {
         // Loop in such a way that threads will run out of order
-        uint32 bound = 128 - tid;
+        uint32 bound = static_cast(128 - tid);
 
         for (const uint32 i : bound)
         {

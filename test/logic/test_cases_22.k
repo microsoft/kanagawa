@@ -35,7 +35,7 @@ public:
     {
         for (const uint32 i : 16)
         {
-            uint32 expected = 100 + i;
+            uint32 expected = static_cast(100 + i);
 
             uint32 actual = g_mem591[i];
 

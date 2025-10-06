@@ -5,7 +5,7 @@ import test.unit as unit
 import test.runner
 
 // Range-for, bound is known at compile time
-// Reorder buffer is removed, fifo between loop 
+// Reorder buffer is removed, fifo between loop
 // and successor to loop is made into passthrough
 inline void TransitiveControlFlow(unit::tag_t tag)
 {
@@ -43,7 +43,7 @@ inline void TransitiveControlFlowBackPressure(unit::tag_t tag)
         // random backpressure
         uint32 stallIterations = (tid * 7654321) % 64;
 
-        uint32 expected = tid + (LoopIterations * 5);
+        uint32 expected = static_cast(tid + (LoopIterations * 5));
 
         for (const auto i : stallIterations)
         {

@@ -83,7 +83,7 @@ public:
         unit::assert(tag, LogicalShiftRight(0xdeadbeef, -10) == 0x37A); // -10 should be interpreted as 22
 
         unit::assert(tag, ArithmeticShiftRight(8, 1) == 4);
-        unit::assert(tag, cast<uint32>(ArithmeticShiftRight(0xdeadbeef, -21)) == 0xFFFBD5B7); // should be interpreted as 11
+        unit::assert(tag, cast<uint32>(ArithmeticShiftRight(static_cast(0xdeadbeef), static_cast(-21))) == 0xFFFBD5B7); // should be interpreted as 11
 
         unit::assert(tag, ShiftLeft(8, 1) == 16);
         unit::assert(tag, ShiftLeft(8, -1) == 0x400000000); // -1 should be interpreted as 31

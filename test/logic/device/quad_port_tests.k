@@ -30,7 +30,7 @@ public:
             {
                 static uint9 _addr = 256;
                 val = _mem[_addr];
-                _addr++;
+                _addr = static_cast(_addr + 1); // Wrap OK
             }
 
             assert(val == i + 1000);
@@ -114,7 +114,7 @@ public:
 
                 atomic
                 {
-                    uint32 val = _mem[slotIndex];   
+                    uint32 val = _mem[slotIndex];
                     val = isFirst ? (i + 1) : (val + 1);
                     _mem[slotIndex] = val;
                     _resultA[slotIndex] = val;
@@ -125,7 +125,7 @@ public:
             {
                 uint32 val = _resultA[i];
 
-                uint32 expected = (i + 128);
+                uint32 expected = static_cast(i + 128);
 
                 assert(val == expected);
             });
@@ -153,7 +153,7 @@ public:
 
                 atomic
                 {
-                    uint32 val = _mem[slotIndex + 256];   
+                    uint32 val = _mem[slotIndex + 256];
                     val = isFirst ? (i + 1) : (val + 1);
                     _mem[slotIndex + 256] = val;
                     _resultB[slotIndex - 256] = val;
@@ -202,7 +202,7 @@ public:
             {
                 uint32 val = _mem[i];
 
-                uint32 expected = (i + 3);
+                uint32 expected = static_cast(i + 3);
 
                 assert(val == expected);
             });
@@ -230,7 +230,7 @@ public:
 
                 atomic
                 {
-                    uint32 val = _mem[slotIndex + 256];   
+                    uint32 val = _mem[slotIndex + 256];
                     val = isFirst ? (i + 1) : (val + 1);
                     _mem[slotIndex + 256] = val;
                     _result[slotIndex - 256] = val;

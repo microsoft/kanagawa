@@ -19,14 +19,14 @@ private:
             _twoCallSiteVoidTestCount++;
         }
     }
-    
+
 public:
     void run(unit::tag_t tag)
     {
         Helper();
-    
+
         Helper();
-    
+
         atomic do; while(_twoCallSiteVoidTestCount != 2);
     }
 }
@@ -70,7 +70,7 @@ public:
         uint32 min_count = minimum(call_count);
         uint32 max_count = maximum(call_count);
 
-        uint32 diff = max_count - min_count;
+        uint32 diff = static_cast(max_count - min_count);
         print("call_count {call_count} min_count {min_count} max_count {max_count} diff {diff}\n");
 
         const uint32 max_diff = (opt::optimize > 0) ? 8 : 20;

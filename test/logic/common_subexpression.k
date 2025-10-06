@@ -15,7 +15,7 @@ inline void Gather(unit::tag_t tag)
         bool[3] c = cast<bool[3]>(i);
 
         // should not be replaced with b or c
-        index_t<8> j = i + 1;
+        index_t<8> j = static_cast(i + 1);
         bool[3] d = cast<bool[3]>(j);
 
         unit::assert(tag, equal(b, c));
@@ -27,9 +27,9 @@ inline void Lut(unit::tag_t tag)
 {
     pipelined_for(4, [tag](uint32 i)
     {
-        uint2 a = i;
-        uint2 b = i + 1;
-        uint2 c = i - 1;
+        uint2 a = static_cast(i);
+        uint2 b = static_cast(i + 1);
+        uint2 c = static_cast(i - 1);
 
         uint2 d = (a | b) & c;
 

@@ -95,7 +95,7 @@ public:
         {
             uint32 val = mem509[i];
 
-            uint32 expected = (i + NumIterations);
+            uint32 expected = static_cast(i + NumIterations);
 
             unit::assert(tag, val == expected);
         }
@@ -130,7 +130,7 @@ public:
         {
             uint32 val = g_mem510[i];
 
-            uint32 expected = (i + 16);
+            uint32 expected = static_cast(i + 16);
 
             unit::assert(tag, val == expected);
         }
@@ -175,7 +175,7 @@ public:
         {
             uint32 val = mem511[i];
 
-            uint32 expected = (i + mux(cast<uint2>(i), 11, 11, 10, 0));
+            uint32 expected = static_cast(i + mux(cast<uint2>(i), 11, 11, 10, 0));
 
             unit::assert(tag, val == expected);
         }
@@ -219,7 +219,7 @@ public:
         {
             uint32 val = mem512[i];
 
-            uint32 expected = (i + 8);
+            uint32 expected = static_cast(i + 8);
 
             unit::assert(tag, val == expected);
         }

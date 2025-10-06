@@ -73,11 +73,11 @@ public:
 
             if (is_last && (opt::stall == 0))
             {
-                uint64 total_cycles = cycles() - first_cycle;
+                uint64 total_cycles = static_cast(cycles() - first_cycle);
 
                 if (total_cycles > total_inner_iteration_count)
                 {
-                    uint64 diff = total_cycles - total_inner_iteration_count;
+                    uint64 diff = static_cast(total_cycles - total_inner_iteration_count);
 
                     // The total execution time should be close to the total number of executions of the inner pipelined_for
                     unit::assert(tag, diff < 20);

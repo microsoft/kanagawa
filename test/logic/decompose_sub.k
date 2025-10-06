@@ -35,7 +35,7 @@ inline ResultType BitwiseSub(LhsType lhs, RhsType rhs)
         int2 a = cast<uint1>(ExtractBit(lhs, i)) - cast<uint1>(borrow);
         uint1 b = cast<uint1>(ExtractBit(rhs, i));
 
-        int2 diff = a - b;
+        int2 diff = static_cast(a - b);
 
         resultArray[i] = ExtractBit(diff, 0);
         borrow = ExtractBit(diff, 1);
@@ -52,12 +52,12 @@ inline void RandomTest(unit::tag_t tag)
         static lfsr_random<32> lhsLfsr;
         static lfsr_random<32> rhsLfsr;
 
-        LhsType lhs = lhsLfsr.next(make_optional(i == 0, 0xcafecafe));
-        RhsType rhs = lhsLfsr.next(make_optional<uint32>(i == 0, 0x12345678));
+        LhsType lhs = static_cast(lhsLfsr.next(make_optional(i == 0, 0xcafecafe)));
+        RhsType rhs = static_cast(lhsLfsr.next(make_optional<uint32>(i == 0, 0x12345678)));
 
-        ResultType actual = lhs - rhs;
+        ResultType actual = static_cast(lhs - rhs);
 
-        ResultType expected = BitwiseSub<ResultType>(lhs, rhs); //lhs + (~rhs + 1);
+        ResultType expected = static_cast(BitwiseSub<ResultType>(lhs, rhs)); //lhs + (~rhs + 1));
 
         unit::assert_equal(tag, expected, actual);
     });

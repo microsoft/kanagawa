@@ -96,7 +96,7 @@ inline uint32 Go768(uint32 x, (uint32) -> uint32 Do, unit::tag_t tag)
 
 inline void Foo768(uint32 i, unit::tag_t tag)
 {
-    auto x = Go768(2*i, [i](uint32 x) -> uint32 {return i + x;}, tag);
+    auto x = Go768(static_cast(2*i), [i](uint32 x) -> uint32 {return i + x;}, tag);
 
     if (i == 0)
         unit::assert(tag, x == 0);

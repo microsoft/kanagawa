@@ -130,7 +130,7 @@ class CallbackInitializedToMemberInner
 public:
     uint32 AddToRunningSum(uint32 x, uint32 y)
     {
-        uint32 s = x + y;
+        uint32 s = static_cast(x + y);
 
         uint32 result;
 
@@ -412,8 +412,8 @@ inline void LambdaDemux(unit::tag_t tag)
     public:
         void Test(unit::tag_t tag, uint32 x)
         {
-            uint32 actual = _inner.Test(x + N);
-            uint32 expected = ~(x + N);
+            uint32 actual = _inner.Test(static_cast(x + N));
+            uint32 expected = static_cast(~(x + N));
 
             unit::assert_equal(tag, expected, actual);
         }
@@ -538,7 +538,7 @@ inline void InitializerBeforeDeclarationTest(unit::tag_t tag)
     public:
         uint32 foo(uint32 x)
         {
-            return cb(x + 1);
+            return cb(static_cast(x + 1));
         }
     }
 

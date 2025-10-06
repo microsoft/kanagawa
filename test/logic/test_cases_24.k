@@ -15,7 +15,7 @@ public:
     {
         uint32 val = g_mem700[addr];
 
-        uint32 expected = (addr + 1);
+        uint32 expected = static_cast((addr + 1));
 
         unit::assert(tag, val == expected);
     }
@@ -124,7 +124,7 @@ public:
     }
 
     const uint32 g_x = 10;
-    const uint4 g_y = 26;
+    const uint4 g_y = cast<uint4>(26);
 
 template <uint8 N>
 using UInt = uint<N>;
@@ -140,7 +140,7 @@ private:
 public:
     void run(unit::tag_t tag)
     {
-        const UInt<4> z = 5 * 10 + 8;
+        const uint4 z = cast<uint4>(5 * 10 + 8);
         const auto s = bitsizeof S<uint6>;
 
         unit::assert(tag, 10 == ct702.Test702<uint32, 10>(tag));
@@ -169,7 +169,7 @@ public:
         return N;
     }
 
-    const uint2 x703 = 10;
+    const uint2 x703 = cast<uint2>(10);
     const uint4 y703 = 10;
 
 inline void TestCase703(unit::tag_t tag)

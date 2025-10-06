@@ -22,7 +22,7 @@ inline void BinaryOpVsMux(unit::tag_t tag)
     const int16 j = 4;
     pipelined_for (8, [tag](index_t<8> i)
     {
-        int16 actual = mux(cast<uint3>(i * 1), -(i + 1), lutmul(i,j), (i | -1), (i ^ -1), (i >> 2), (-i >> 3), 0, 0);
+        int16 actual = static_cast(mux(cast<uint3>(i * 1), -(i + 1), lutmul(i,j), (i | -1), (i ^ -1), (i >> 2), (-i >> 3), 0, 0));
         int16 expected = mux(cast<uint3>(i * 1), -1, 4, -1, -4, 1, -1, 0, 0);
 
         unit::assert_equal(tag, actual, expected);
@@ -137,7 +137,7 @@ private:
 
 public:
     void run(unit::tag_t tag)
-    {     
+    {
         pipelined_for(8, [](index_t<8> i)
         {
             ThreadRateTest(i);

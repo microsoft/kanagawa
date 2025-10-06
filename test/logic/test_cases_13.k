@@ -190,9 +190,9 @@ private:
 
     [[pipelined]] void Foo288(uint32 input, unit::tag_t tag)
     {
-        uint32 i = input + 1;
+        uint32 i = static_cast(input + 1);
 
-        uint32 x = g_mem288[i] + 1;
+        uint32 x = static_cast(g_mem288[i] + 1);
 
         unit::assert(tag, x == (i + 2 + 1));
     }
@@ -250,7 +250,7 @@ inline void TestCase292(unit::tag_t tag)
     uint32 x = 4;
     uint32 y = 7;
 
-    uint32 result = x - y;
+    uint32 result = static_cast(x - y);
 
     unit::assert(tag, result == 0xfffffffd);
 }

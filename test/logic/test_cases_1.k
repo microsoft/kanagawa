@@ -245,15 +245,15 @@ inline void TestCase38(unit::tag_t tag)
 inline void TestCase39(unit::tag_t tag)
 {
     uint3 x = 6;
-    uint2 y = x;
+    uint2 y = static_cast(x);
     unit::assert(tag, y == 2);
 }
 
 
 inline void TestCase40(unit::tag_t tag)
 {
-    int3 x = 6;
-    uint3 y = x;
+    int3 x = static_cast(6);
+    uint3 y = static_cast(x);
     unit::assert(tag, y == 6);
     unit::assert(tag, x == -2);
 }
@@ -262,7 +262,7 @@ inline void TestCase40(unit::tag_t tag)
 inline void TestCase41(unit::tag_t tag)
 {
     int3 x = -3;
-    uint3 y = x;
+    uint3 y = static_cast(x);
     unit::assert(tag, y == 5);
 }
 
@@ -342,7 +342,7 @@ inline void TestCase48(unit::tag_t tag)
 inline void TestCase49(unit::tag_t tag)
 {
     uint3 x = 4;
-    int3 y = -x;
+    int3 y = static_cast(-x);
     unit::assert(tag, y == -4);
 }
 

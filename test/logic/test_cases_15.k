@@ -62,13 +62,13 @@ public:
 
         if (g_b334)
         {
-            uint32 y = 7 + g_x334;
+            uint32 y = static_cast(7 + g_x334);
 
             x = y;
         }
         else
         {
-            uint32 z = 10 + g_x334;
+            uint32 z = static_cast(10 + g_x334);
 
             x = z;
         }
@@ -85,7 +85,7 @@ inline uint32 Foo335(uint2 x, uint2 y)
 
 inline void TestCase335(unit::tag_t tag)
 {
-    unit::assert(tag, 5 == Foo335(15, 2));
+    unit::assert(tag, 5 == Foo335(static_cast(15), 2));
 }
 
 // atomic call within atomic block
@@ -100,7 +100,7 @@ inline void TestCase336(unit::tag_t tag)
 
     atomic
     {
-        result = Foo336(15, 2);
+        result = Foo336(static_cast(15), 2);
     }
 
     unit::assert(tag, 5 == result);
@@ -114,7 +114,7 @@ inline uint32 Foo337(uint32 x, uint32 y)
 
 inline uint32 Bar337(uint32 z)
 {
-    return Foo337(z, z + 1);
+    return Foo337(z, static_cast(z + 1));
 }
 
 inline void TestCase337(unit::tag_t tag)
@@ -173,7 +173,7 @@ inline uint32 Foo340(uint32 x)
 
 inline void TestCase340(unit::tag_t tag)
 {
-    uint32 result = Foo340(2) + Foo340(4) + Foo340(5);
+    uint32 result = static_cast(Foo340(2) + Foo340(4) + Foo340(5));
 
     unit::assert(tag, result == 14);
 }
@@ -186,7 +186,7 @@ inline uint32 Foo341(uint32 x)
 
 inline void TestCase341(unit::tag_t tag)
 {
-    uint32 result = Foo341(2) + Foo341(4) + Foo341(5) + Foo341(6);
+    uint32 result = static_cast(Foo341(2) + Foo341(4) + Foo341(5) + Foo341(6));
 
     unit::assert(tag, result == 21);
 }
@@ -245,7 +245,7 @@ inline uint1 BinaryCmp344(uint32 i)
 
     static for (const auto i : 8)
     {
-        a2[i] = BinaryCmp344(a1[i] + 1);
+        a2[i] = BinaryCmp344(static_cast(a1[i] + 1));
     }
 
     // Sum
@@ -280,7 +280,7 @@ inline uint32 OneHot345(uint4 i)
 
     static for (const auto i : 8)
     {
-        a2[i] = OneHot345(a1[i] + 1);
+        a2[i] = OneHot345(static_cast(a1[i] + 1));
     }
 
     // Sum
@@ -322,7 +322,7 @@ inline void TestCase346(unit::tag_t tag)
 
     static for (const auto i : 8)
     {
-        uint32 expected = input[i] * 4;
+        uint32 expected = static_cast(input[i] * 4);
         uint32 actual = result[i];
 
         unit::assert(tag, expected == actual);

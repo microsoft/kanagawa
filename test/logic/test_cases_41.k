@@ -140,7 +140,7 @@ private:
 public:
     [[pipelined]] void Helper714(uint32 tid, unit::tag_t tag)
     {
-        uint32 data = tid + 1;
+        uint32 data = static_cast(tid + 1);
 
         g_mem714[tid] = data;
 
@@ -202,7 +202,7 @@ class Test716
 {
 private:
     uint32 g_716_val1 = 0;
-    uint32 g_716_val2 = 0;    
+    uint32 g_716_val2 = 0;
     uint32 g_validationThreadsDone716 = 0;
 
 public:
@@ -354,7 +354,7 @@ inline void TestCase720(unit::tag_t tag)
     uint32[8] b;
     static for(const auto i: 8)
     {
-        b[i] = a >> (i * 32);
+        b[i] = static_cast(a >> (i * 32));
     }
 
     unit::assert(tag, b[0] == 0x76543210);
@@ -457,7 +457,7 @@ public:
 
         for (const uint32 idx : 7)
         {
-            Helper723(idx, idx + 3);
+            Helper723(static_cast(idx), static_cast(idx + 3));
         }
 
         static for (const auto i : 7)
@@ -491,7 +491,7 @@ public:
             int32 idx = -i;
 
             uint32 actual = Helper724(idx);
-            uint32 expected = (512 - i) % 512;
+            uint32 expected = static_cast((512 - i) % 512);
 
             print("{i} {idx} {actual} {expected}\n");
             unit::assert(tag, actual == expected);

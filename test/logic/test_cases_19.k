@@ -7,7 +7,7 @@ import test.runner
 // Unsigned integer multiplication - implemented with multiple DSPs
 inline void Helper560(uint64 a, uint64 b, uint64 expected, unit::tag_t tag)
 {
-    uint64 actual = a * b;
+    uint64 actual = static_cast(a * b);
 
     unit::assert(tag, actual == expected);
 }
@@ -21,7 +21,7 @@ inline void TestCase560(unit::tag_t tag)
 // Signed integer multiplication - implemented with multiple DSPs
 inline void Helper563(int64 a, int64 b, int64 expected, unit::tag_t tag)
 {
-    int64 actual = a * b;
+    int64 actual = static_cast(a * b);
 
     unit::assert(tag, actual == expected);
 }

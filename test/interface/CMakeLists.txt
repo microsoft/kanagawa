@@ -119,7 +119,7 @@ add_interface_test(is_last_exported_class is_last_exported_class.k
   TESTBENCH
     is_last_exported_class.sv
   OPTIONS
-    "--Werror=false" # Warning 10  Call to function with [[last]] parameter without [[transaction_size]] at the call site
+    "--Wno-transaction-size" # Warning 10  Call to function with [[last]] parameter without [[transaction_size]] at the call site
 )
 
 add_interface_test(external_class external_class.k
@@ -173,7 +173,7 @@ add_interface_test(export_class_test_cases_3 export_class_test_cases_3.k
   EXTRA_RTL
     external_class.sv
   OPTIONS
-    "--Werror=false" # Warning 10  Call to function with [[last]] parameter without [[transaction_size]] at the call site
+    "--Wno-transaction-size" # Warning 10  Call to function with [[last]] parameter without [[transaction_size]] at the call site
 )
 
 add_interface_test(ecc_mem ecc_mem.k

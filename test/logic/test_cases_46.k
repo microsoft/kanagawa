@@ -29,7 +29,7 @@ public:
     [[pipelined]] void Validate757(uint32 tid, uint32 totalThreadCount, unit::tag_t tag)
     {
         uint32 actual = g_mem757[tid];
-        uint32 expected = tid + totalThreadCount;
+        uint32 expected = static_cast(tid + totalThreadCount);
         unit::assert(tag, actual == expected);
     }
 
@@ -114,20 +114,20 @@ public:
 
         atomic
         {
-            static uint9 ReadAddr = -1;
+            static uint9 ReadAddr = cast<uint9>(-1);
             static uint9 WriteAddr = 0;
 
             actual = Mem760[ReadAddr];
 
             Mem760[WriteAddr] = push ? tid : 0;
 
-            ReadAddr = push ? ReadAddr + 1 : ReadAddr - 1;
-            WriteAddr = push ? WriteAddr + 1 : WriteAddr - 1;
+            ReadAddr = static_cast(push ? ReadAddr + 1 : ReadAddr - 1); // Wrap OK
+            WriteAddr = static_cast(push ? WriteAddr + 1 : WriteAddr - 1); // Wrap OK
         }
 
         if (!push)
         {
-            uint32 expected = 31 - tid;
+            uint32 expected = static_cast(31 - tid);
             unit::assert(tag, actual == expected);
         }
     }
@@ -154,7 +154,7 @@ public:
 
         atomic
         {
-            static uint9 ReadAddr = -1;
+            static uint9 ReadAddr = cast<uint9>(-1);
             static uint9 WriteAddr = 0;
 
             actual = Mem761[ReadAddr];
@@ -164,13 +164,13 @@ public:
                 Mem761[WriteAddr] = tid;
             }
 
-            ReadAddr = push ? ReadAddr + 1 : ReadAddr - 1;
-            WriteAddr = push ? WriteAddr + 1 : WriteAddr - 1;
+            ReadAddr = static_cast(push ? ReadAddr + 1 : ReadAddr - 1); // Wrap OK
+            WriteAddr = static_cast(push ? WriteAddr + 1 : WriteAddr - 1); // Wrap OK
         }
 
         if (!push)
         {
-            uint32 expected = 31 - tid;
+            uint32 expected = static_cast(31 - tid);
             unit::assert(tag, actual == expected);
         }
     }
@@ -197,7 +197,7 @@ public:
 
         atomic
         {
-            static uint9 ReadAddr = -1;
+            static uint9 ReadAddr = cast<uint9>(-1);
             static uint9 WriteAddr = 0;
 
             if (!push)
@@ -210,13 +210,13 @@ public:
                 Mem762[WriteAddr] = tid;
             }
 
-            ReadAddr = push ? ReadAddr + 1 : ReadAddr - 1;
-            WriteAddr = push ? WriteAddr + 1 : WriteAddr - 1;
+            ReadAddr = static_cast(push ? ReadAddr + 1 : ReadAddr - 1); // Wrap OK
+            WriteAddr = static_cast(push ? WriteAddr + 1 : WriteAddr - 1); // Wrap OK
         }
 
         if (!push)
         {
-            uint32 expected = 31 - tid;
+            uint32 expected = static_cast(31 - tid);
             unit::assert(tag, actual == expected);
         }
     }
@@ -244,7 +244,7 @@ public:
 
         atomic
         {
-            static uint9 ReadAddr = -1;
+            static uint9 ReadAddr = cast<uint9>(-1);
             static uint9 WriteAddr = 0;
 
             if (!Predicate763)
@@ -257,8 +257,8 @@ public:
                 Mem763[WriteAddr] = tid;
             }
 
-            ReadAddr = push ? ReadAddr + 1 : ReadAddr - 1;
-            WriteAddr = push ? WriteAddr + 1 : WriteAddr - 1;
+            ReadAddr = static_cast(push ? ReadAddr + 1 : ReadAddr - 1); // Wrap OK
+            WriteAddr = static_cast(push ? WriteAddr + 1 : WriteAddr - 1); // Wrap OK
 
             Predicate763 = !Predicate763;
         }
@@ -267,7 +267,7 @@ public:
         {
             if (0 == (tid % 2))
             {
-                uint32 expected = 31 - tid;
+                uint32 expected = static_cast(31 - tid);
                 unit::assert(tag, actual == expected);
             }
         }
@@ -336,7 +336,7 @@ inline void Test764(unit::tag_t tag)
     // Carry
     Helper764a<uint64, uint65>(0xffffffffffffffff, 0x0000000000000001, 0x10000000000000000, tag);
     // Odd bit widths
-    Helper764a<uint127, uint128>(0x11111111222222223333333344444444, 0x111111111222222223333333344444444, 0x22222222444444446666666688888888, tag);
+    Helper764a<uint127, uint128>(0x11111111222222223333333344444444, static_cast(0x111111111222222223333333344444444), 0x22222222444444446666666688888888, tag);
     Helper764a<uint127, uint128>(0x7fffffffffffffffffffffffffffffff, 0x1, 0x80000000000000000000000000000000, tag);
 
     // Signed tests

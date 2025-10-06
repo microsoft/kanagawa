@@ -12,7 +12,7 @@ inline void TestAddZeroMsb(unit::tag_t tag)
         uint4 a = mux(tid, 3, 4, 15, 15);
         uint4 b = mux(tid, 1, 6, 12, 15);
 
-        uint8 actual = cast<uint8>(a) + cast<uint8>(b);
+        uint8 actual = static_cast(a + cast<uint8>(b));
 
         uint8 expected = mux(tid, 4, 10, 27, 30);
 
@@ -32,7 +32,7 @@ inline void TestAddLiteralRhsZeroMsb(unit::tag_t tag)
     {
         uint4 a = mux(tid, 3, 4, 15, 0);
 
-        uint8 actual = cast<uint8>(a) + 6;
+        uint8 actual = static_cast(cast<uint8>(a) + 6);
 
         uint8 expected = mux(tid, 9, 10, 21, 6);
 
@@ -50,7 +50,7 @@ inline void TestAddLiteralLhsZeroMsb(unit::tag_t tag)
     {
         uint4 a = mux(tid, 3, 4, 15, 0);
 
-        uint8 actual = 7 + cast<uint8>(a);
+        uint8 actual = static_cast(7 + cast<uint8>(a));
 
         uint8 expected = mux(tid, 10, 11, 22, 7);
 
@@ -68,10 +68,10 @@ inline void TestAddSignedZeroMsb(unit::tag_t tag)
 {
     pipelined_for (4, [tag](index_t<4> tid)
     {
-        int4 a = mux(tid, 3,  -4, 7,  -8);
-        int4 b = mux(tid, -1,  6, -8, -8);
+        int4 a = static_cast(mux(tid, 3,  -4, 7,  -8));
+        int4 b = static_cast(mux(tid, -1,  6, -8, -8));
 
-        int8 actual = cast<uint8>(a) + cast<uint8>(b);
+        int8 actual = static_cast(cast<uint8>(a) + cast<uint8>(b));
 
         int8 expected = mux(tid, 2, 2, -1, -16);
 

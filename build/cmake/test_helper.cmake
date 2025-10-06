@@ -72,7 +72,7 @@ function(add_kanagawa target)
   set(_pre_commands)
   if(_ARG_CLEAN_OUTPUT_DIR)
     list(APPEND _pre_commands
-      COMMAND ${CMAKE_COMMAND} -E rm -rf "${_ARG_OUTPUT_DIR}"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*"
     )
   endif()
   list(APPEND _pre_commands
@@ -107,6 +107,9 @@ function(add_kanagawa target)
 
   # Expose OUTPUT_DIR to caller
   set(${target}_OUTPUT_DIR "${_ARG_OUTPUT_DIR}" PARENT_SCOPE)
+
+  # Expose stamp file path to caller
+  set(${target}_STAMP_FILE "${_stamp}" PARENT_SCOPE)
 
   # Optional: include OUTPUT_DIR in 'clean'
   set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "${_ARG_OUTPUT_DIR}")
@@ -403,7 +406,7 @@ function(add_kanagawa_verilator_test test_name)
       WORKING_DIRECTORY ${VERILATOR_OUTPUT_DIR}
       TESTBENCH_MODULE ${TESTBENCH_MODULE}
       SOURCES ${RTL_FILES}
-      DEPENDS ${KANAGAWA_TARGET_NAME}
+      DEPENDS ${${KANAGAWA_TARGET_NAME}_STAMP_FILE}
     )
 
     add_dependencies(${TARGET_NAME} ${VERILATOR_TARGET_NAME})
