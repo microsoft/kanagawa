@@ -62,7 +62,7 @@ public:
     void run(unit::tag_t tag)
     {
         uint32 x = 4;
-    
+
         if(g_b253)
         {
             print("Print inside of flat_if {x}\n");
@@ -75,7 +75,7 @@ inline void TestCase256(unit::tag_t tag)
 {
    uint32 x = 5;
 
-   uint32 y = x * 4;
+   uint32 y = static_cast(x * 4);
 
    unit::assert(tag, y == 20);
 }
@@ -85,7 +85,7 @@ inline void TestCase257(unit::tag_t tag)
 {
    uint32 x = 5;
 
-   uint32 y = 4 * x;
+   uint32 y = static_cast(4 * x);
 
    unit::assert(tag, y == 20);
 }

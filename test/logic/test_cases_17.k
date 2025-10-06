@@ -65,7 +65,7 @@ private:
 public:
     myType Entry(unit::tag_t tag)
     {
-        myType transformed = _bar.Transform(9);
+        myType transformed = _bar.Transform(static_cast(9));
 
         unit::assert(tag, transformed == 2);
 
@@ -98,7 +98,7 @@ public:
     {
         uint32 prev = g_mem502[idx];
 
-        uint32 new = accumulate ? prev + val : val;
+        uint32 new = static_cast(accumulate ? prev + val : val);
 
         g_mem502[idx] = new;
 
@@ -245,7 +245,7 @@ public:
 
         print("rawhash {l2HashRaw}\n");
 
-        uint10 setIndex = l2HashRaw;
+        uint10 setIndex = static_cast(l2HashRaw);
         uint39 tagIn = (l2HashRaw >> 10) & 0x7fffffffff;
 
         print("SetIndex tagIn {setIndex} {tagIn}\n");
@@ -340,7 +340,7 @@ public:
         {
             uint32 val = g_mem508[i];
 
-            uint32 expected = (i + NumIterations);
+            uint32 expected = static_cast(i + NumIterations);
 
             unit::assert(tag, val == expected);
         }
@@ -386,7 +386,7 @@ public:
         {
             uint32 val = g_mem509[i];
 
-            uint32 expected = (i + NumIterations);
+            uint32 expected = static_cast(i + NumIterations);
 
             unit::assert(tag, val == expected);
         }
@@ -421,7 +421,7 @@ public:
         {
             uint32 val = g_mem510[i];
 
-            uint32 expected = (i + 256);
+            uint32 expected = static_cast(i + 256);
 
             unit::assert(tag, val == expected);
         }
@@ -466,7 +466,7 @@ public:
         {
             uint32 val = g_mem511[i];
 
-            uint32 expected = (i + mux(cast<uint2>(i), 171, 171, 170, 0));
+            uint32 expected = static_cast(i + mux(cast<uint2>(i), 171, 171, 170, 0));
 
             unit::assert(tag, val == expected);
         }
@@ -511,7 +511,7 @@ public:
         {
             uint32 val = g_mem512[i];
 
-            uint32 expected = (i + 128);
+            uint32 expected = static_cast(i + 128);
 
             unit::assert(tag, val == expected);
         }
@@ -562,7 +562,7 @@ public:
         {
             uint32 val = g_mem513[i];
 
-            uint32 expected = (i + 8);
+            uint32 expected = static_cast(i + 8);
 
             unit::assert(tag, val == expected);
         }

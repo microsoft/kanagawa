@@ -84,7 +84,7 @@ public:
     		cores[Q].core_id = Q;
     		cores[Q].reset();
     	}
-    
+
         static for (const auto Q : QUERY_LANES) {
     		cores[Q].validate(tag);
     	}
@@ -234,7 +234,7 @@ inline void TestCase546(unit::tag_t tag)
 {
     uint<Width546> x;
 
-    x = 10;
+    x = static_cast(10);
 
     unit::assert(tag, x == 2);
     unit::assert(tag, 3 == bitsizeof(x));
@@ -247,7 +247,7 @@ inline void TestCase547(unit::tag_t tag)
 {
     int<Width547> x;
 
-    x = -127;
+    x = static_cast(-127);
 
     unit::assert(tag, x == 1);
     unit::assert(tag, 4 == bitsizeof(x));
@@ -314,7 +314,7 @@ private:
         return _mem548[addr];
     }
 
-    Helper548[2] g_helper548 = 
+    Helper548[2] g_helper548 =
     {
         {.read_mem = ReadMemory},
         {.read_mem = ReadMemory}
@@ -430,13 +430,13 @@ private:
             _mem549[i][tid] = tid + 2 + i;
         }
     }
-    
+
     inline uint32 ReadMemory(uint32 addr, uint2 i)
     {
         return _mem549[i][addr];
     }
 
-    Helper549[2] g_helper549 = 
+    Helper549[2] g_helper549 =
     {
         {.read_mem = ReadMemory},
 

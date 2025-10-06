@@ -13,12 +13,12 @@ private:
 public:
     [[pipelined]] void Write384(uint32 idx)
     {
-        g_mem384[idx] = (idx + 4);
+        g_mem384[idx] = static_cast(idx + 4);
     }
 
     [[pipelined]] void Verify384(uint32 idx, unit::tag_t tag)
     {
-        uint8 expected = (idx + 4);
+        uint8 expected = static_cast(idx + 4);
         uint8 actual = g_mem384[idx];
 
         unit::assert(tag, expected == actual);
@@ -41,7 +41,7 @@ private:
 public:
     void run(unit::tag_t tag)
     {
-        uint1 c = cycles();
+        uint1 c = static_cast(cycles());
 
         g_389 += c;
     }

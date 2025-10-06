@@ -119,7 +119,7 @@ public:
         atomic
         {
             // wrapping is desired here
-            uint9 usedSlotCount = (_writePointer - _readPointer) - 1;
+            uint9 usedSlotCount = static_cast((_writePointer - _readPointer) - 1);
 
             shouldDrop = _shouldDrop;
 
@@ -341,7 +341,7 @@ public:
         }
 
         // Use cycle counter as a pseudo-random number in [0, UpperBound)
-        uint9 randomNumber = cycles();
+        uint9 randomNumber = static_cast(cycles());
 
         if (randomNumber >= PacketBufferUpperBound)
         {
@@ -379,7 +379,7 @@ public:
         atomic
         {
             // wrapping is desired here
-            uint9 usedSlotCount = (_writePointer - _readPointer) - 1;
+            uint9 usedSlotCount = static_cast((_writePointer - _readPointer) - 1);
 
             shouldDrop = _shouldDrop;
 
@@ -484,7 +484,7 @@ public:
             metaDataReadIndex = _metaDataReadPointer;
 
             // wrapping is desired here
-            uint9 numPacketsQueued = (_metaDataWritePointer - _metaDataReadPointer) - 1;
+            uint9 numPacketsQueued = static_cast((_metaDataWritePointer - _metaDataReadPointer) - 1);
 
             result._valid = (numPacketsQueued > 0);
 
@@ -554,13 +554,13 @@ public:
         bool endOfPacket = ((outputThreadIndex + 1) == threadCountOut);
 
         // Read data from the packet buffer (3 slots)
-        uint9 packetBufferSlot = startIndex + outputThreadIndex;
+        uint9 packetBufferSlot = static_cast(startIndex + outputThreadIndex);
 
         uint256[3] inputData;
 
         static for (const auto i : 3)
         {
-            inputData[i] = _packetBuffer.Read(packetBufferSlot + i);
+            inputData[i] = _packetBuffer.Read(static_cast(packetBufferSlot + i));
         }
 
         if (endOfPacket)
@@ -568,7 +568,7 @@ public:
             // Release all slots in the packet buffer - that was the final read
             // Slots are not released one at a time too keep the code simple
             // Most calls to this function would release 1 input slot, but some would release up to 3
-            _packetBuffer.ReleaseSlots(threadCountIn);
+            _packetBuffer.ReleaseSlots(static_cast(threadCountIn));
         }
 
         uint8[32] bufferToSend;
@@ -701,9 +701,9 @@ private:
 public:
     inline bool IsFull(uint9 writePointer)
     {
-        uint9 slotsUsed = writePointer - _readPointer;
+        uint9 slotsUsed = static_cast(writePointer - _readPointer);
 
-        uint9 slotsRemaining = (FifoSize475 - slotsUsed) - 1;
+        uint9 slotsRemaining = static_cast((FifoSize475 - slotsUsed) - 1);
 
         return slotsRemaining == 0;
     }
@@ -716,7 +716,7 @@ public:
         atomic
         {
             writePointer = _writePointer;
-            _writePointer++;
+            _writePointer = static_cast(_writePointer + 1); // Wrap OK
         }
 
         // Block until there is room
@@ -740,7 +740,7 @@ public:
     {
         atomic
         {
-            _readPointer++;
+            _readPointer = static_cast(_readPointer + 1); // Wrap OK
         }
     }
 }
@@ -779,7 +779,7 @@ public:
 
         unit::assert(tag, numEnqueued < FifoSize475);
 
-        uint32 val = g_fifo475.Read(idx);
+        uint32 val = g_fifo475.Read(static_cast(idx));
 
         unit::assert(tag, val == ~idx);
 
@@ -802,7 +802,7 @@ public:
 
         print("Begin waiting for cycle timer\n");
 
-        uint64 endCycle = beginCycle + 2000;
+        uint64 endCycle = static_cast(beginCycle + 2000);
 
         atomic do; while(cycles() < endCycle);
 
@@ -953,7 +953,7 @@ public:
     [[pipelined]] void Foo484(uint32 threadIdx, unit::tag_t tag)
     {
         uint32 i = 0;
-        uint8 iterations = (~threadIdx) ^ cycles();
+        uint8 iterations = static_cast((~threadIdx) ^ cycles());
         uint32 sum = 0;
 
         do
@@ -1005,7 +1005,7 @@ private:
 public:
     [[pipelined]] void Foo485(uint32 threadIdx, unit::tag_t tag)
     {
-        uint8 iterations = (~threadIdx) ^ cycles();
+        uint8 iterations = static_cast((~threadIdx) ^ cycles());
         uint32 sum = 0;
 
         for (const uint32 i : iterations)

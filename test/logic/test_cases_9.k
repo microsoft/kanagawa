@@ -75,7 +75,7 @@ inline void TestCase210(unit::tag_t tag)
     int96 x = -1;
     int96 y = 0xffffffff << 37;
 
-    int96 sum = y + x;
+    int96 sum = static_cast(y + x);
 
     unit::assert(tag, sum < y);
     unit::assert(tag, (sum + 1) == y);
@@ -91,14 +91,14 @@ public:
     void run(unit::tag_t tag)
     {
         uint32[4] ary;
-    
+
         ary[0] = 1;
         ary[1] = 2;
         ary[2] = 3;
         ary[3] = 4;
-    
+
         uint32 result = ary[g_index212];
-    
+
         unit::assert(tag, result == 3);
     }
 }
@@ -113,14 +113,14 @@ public:
     void run(unit::tag_t tag)
     {
         uint32[4] ary;
-    
+
         ary[0] = 1;
         ary[1] = 2;
         ary[2] = 3;
         ary[3] = 4;
-    
+
         ary[g_index213 + 1] = 7;
-    
+
         unit::assert(tag, ary[0] == 1);
         unit::assert(tag, ary[1] == 2);
         unit::assert(tag, ary[2] == 7);
@@ -139,29 +139,29 @@ public:
     void run(unit::tag_t tag)
     {
         uint32[4] ary;
-    
+
         ary[0] = 1;
         ary[1] = 2;
         ary[2] = 3;
         ary[3] = 4;
-    
+
         if (g_b214)
         {
             ary[g_index214 + 1] = 7;
         }
-    
+
         unit::assert(tag, ary[0] == 1);
         unit::assert(tag, ary[1] == 2);
         unit::assert(tag, ary[2] == 3);
         unit::assert(tag, ary[3] == 4);
-    
+
         g_b214 = true;
-    
+
         if (g_b214)
         {
             ary[g_index214 + 1] = 7;
         }
-    
+
         unit::assert(tag, ary[0] == 1);
         unit::assert(tag, ary[1] == 2);
         unit::assert(tag, ary[2] == 7);
@@ -183,9 +183,9 @@ public:
         g_ary215[1] = 2;
         g_ary215[2] = 3;
         g_ary215[3] = 4;
-    
+
         g_ary215[g_index215 + 1] = 7;
-    
+
         unit::assert(tag, g_ary215[0] == 1);
         unit::assert(tag, g_ary215[1] == 2);
         unit::assert(tag, g_ary215[2] == 7);
@@ -208,24 +208,24 @@ public:
         g_ary216[1] = 2;
         g_ary216[2] = 3;
         g_ary216[3] = 4;
-    
+
         if (g_b216)
         {
             g_ary216[g_index216 + 1] = 7;
         }
-    
+
         unit::assert(tag, g_ary216[0] == 1);
         unit::assert(tag, g_ary216[1] == 2);
         unit::assert(tag, g_ary216[2] == 3);
         unit::assert(tag, g_ary216[3] == 4);
-    
+
         g_b216 = true;
-    
+
         if (g_b216)
         {
             g_ary216[g_index216 + 1] = 7;
         }
-    
+
         unit::assert(tag, g_ary216[0] == 1);
         unit::assert(tag, g_ary216[1] == 2);
         unit::assert(tag, g_ary216[2] == 7);
@@ -245,19 +245,19 @@ public:
     {
         // 4 rows, 2 columns
         uint32[4][2] a;
-    
+
         a[0][0] = 1;
         a[0][1] = 2;
-    
+
         a[1][0] = 3;
         a[1][1] = 4;
-    
+
         a[2][0] = 5;
         a[2][1] = 6;
-    
+
         a[3][0] = 7;
         a[3][1] = 8;
-    
+
         unit::assert(tag, a[g_index217_1][g_index217_2] == 8);
     }
 }
@@ -267,28 +267,28 @@ class TestCase218
 {
 private:
     uint32 g_index218_1 = 3;
-    uint32 g_index218_2 = 1;    
+    uint32 g_index218_2 = 1;
 
 public:
     void run(unit::tag_t tag)
     {
         // 4 rows, 2 columns
         uint32[4][2] a;
-    
+
         a[0][0] = 1;
         a[0][1] = 2;
-    
+
         a[1][0] = 3;
         a[1][1] = 4;
-    
+
         a[2][0] = 5;
         a[2][1] = 6;
-    
+
         a[3][0] = 7;
         a[3][1] = 8;
-    
+
         a[g_index218_1][g_index218_2] = 11;
-    
+
         unit::assert(tag, a[3][1] == 11);
     }
 }
@@ -308,27 +308,27 @@ public:
     void run(unit::tag_t tag)
     {
         Foo219[4] ary;
-    
+
         Foo219 foo;
-    
+
         foo.x = 1;
         foo.y = 2;
         ary[0] = foo;
-    
+
         foo.x = 3;
         foo.y = 4;
         ary[1] = foo;
-    
+
         foo.x = 5;
         foo.y = 6;
         ary[2] = foo;
-    
+
         foo.x = 7;
         foo.y = 8;
         ary[3] = foo;
-    
+
         foo = ary[g_index219];
-    
+
         unit::assert(tag, foo.x == 5);
         unit::assert(tag, foo.y == 6);
     }
@@ -349,38 +349,38 @@ public:
     void run(unit::tag_t tag)
     {
         Foo220[4] ary;
-    
+
         Foo220 foo;
-    
+
         foo.x = 1;
         foo.y = 2;
         ary[0] = foo;
-    
+
         foo.x = 3;
         foo.y = 4;
         ary[1] = foo;
-    
+
         foo.x = 5;
         foo.y = 6;
         ary[2] = foo;
-    
+
         foo.x = 7;
         foo.y = 8;
         ary[3] = foo;
-    
+
         foo.x = 9;
         foo.y = 10;
         ary[g_index220] = foo;
-    
+
         unit::assert(tag, ary[2].x == 9);
         unit::assert(tag, ary[2].y == 10);
-    
+
         unit::assert(tag, ary[0].x == 1);
         unit::assert(tag, ary[0].y == 2);
-    
+
         unit::assert(tag, ary[1].x == 3);
         unit::assert(tag, ary[1].y == 4);
-    
+
         unit::assert(tag, ary[3].x == 7);
         unit::assert(tag, ary[3].y == 8);
     }
@@ -396,12 +396,12 @@ public:
     void run(unit::tag_t tag)
     {
         uint32[4] ary;
-    
+
         ary[0] = 2;
         ary[1] = 3;
         ary[2] = 4;
         ary[3] = 5;
-    
+
         // The read should wrap
         unit::assert(tag, ary[g_index221] == 3);
     }
@@ -419,17 +419,17 @@ public:
     {
         // 2 rows, 4 columns
         uint32[2][4] ary;
-    
+
         ary[0][0] = 1;
         ary[0][1] = 2;
         ary[0][2] = 3;
         ary[0][3] = 4;
-    
+
         ary[1][0] = 5;
         ary[1][1] = 6;
         ary[1][2] = 7;
         ary[1][3] = 8;
-    
+
         // The array is linearized, and then the read wraps
         unit::assert(tag, ary[g_index222_1][g_index222_2] == 5);
     }

@@ -28,7 +28,7 @@ inline void TestCase568(unit::tag_t tag)
 // unsigned = signed * signed
 inline void Helper569(int64 a, int64 b, uint128 expected, unit::tag_t tag)
 {
-    uint128 actual = a * b;
+    uint128 actual = static_cast(a * b);
 
     unit::assert(tag, actual == expected);
 }

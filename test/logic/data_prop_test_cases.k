@@ -49,7 +49,7 @@ inline void WaitForTest(unit::tag_t tag)
         static uint32 _x;
 
         // y is defined in this basic block
-        uint32 y = id + 4;
+        uint32 y = static_cast(id + 4);
 
         atomic
         {
@@ -77,7 +77,7 @@ public:
     {
         pipelined_for(128, [tag](uint32 id)
         {
-            uint32 x = id + 4;
+            uint32 x = static_cast(id + 4);
 
             uint32 result = 0;
 
@@ -103,7 +103,7 @@ public:
     {
         pipelined_for(128, [tag](uint32 id)
         {
-            uint32 x = id + 4;
+            uint32 x = static_cast(id + 4);
 
             uint32 result = 0;
 
@@ -133,7 +133,7 @@ inline void SyncCallToPipelinedTest(unit::tag_t tag)
 {
     pipelined_for(128, [tag](uint32 id)
     {
-        uint32 x = id + 4;
+        uint32 x = static_cast(id + 4);
 
         uint32[4] result = pipelined_map<4>(4, [x](index_t<4> i) -> uint32
         {
@@ -222,8 +222,8 @@ inline void WaitInputVarForTest(unit::tag_t tag)
     {
         static uint32 _i = 0;
 
-        uint32 id_plus_one = id + 1;
-        uint32 id_plus_two = id + 2;
+        uint32 id_plus_one = static_cast(id + 1);
+        uint32 id_plus_two = static_cast(id + 2);
 
         _i = id;
 
@@ -318,13 +318,13 @@ inline void OverlappingRangeTest(unit::tag_t tag)
     {
         uint32 x = tid + 1;
 
-        uint32 a = (x + 2);
-        uint32 b = (x * 7);
-        uint32 c = (x * 9) + 45;
+        uint32 a = static_cast(x + 2);
+        uint32 b = static_cast(x * 7);
+        uint32 c = static_cast((x * 9) + 45);
 
         stages<4>();
 
-        uint32 sum = a + b + c;
+        uint32 sum = static_cast(a + b + c);
 
         const uint32[8] expected_array =
         {

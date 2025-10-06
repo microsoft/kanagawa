@@ -7,7 +7,7 @@ import test.runner
 inline void TestCase50(unit::tag_t tag)
 {
     uint3 x = 4;
-    uint4 y = -x;
+    uint4 y = static_cast(-x);
     unit::assert(tag, y == 12);
 }
 
@@ -23,7 +23,7 @@ inline void TestCase51(unit::tag_t tag)
 inline void TestCase52(unit::tag_t tag)
 {
     uint3 x = 1;
-    int3 y = -x;
+    int3 y = static_cast(-x);
     unit::assert(tag, y == -1);
 }
 
@@ -39,7 +39,7 @@ inline void TestCase53(unit::tag_t tag)
 inline void TestCase54(unit::tag_t tag)
 {
     int3 x = -1;
-    uint3 y = ~x;
+    uint3 y = static_cast(~x);
     unit::assert(tag, y == 0);
 }
 
@@ -148,7 +148,7 @@ private:
 public:
     void run(unit::tag_t tag)
     {
-        uint3 y = x64 + 1;
+        uint3 y = static_cast(x64 + 1);
 
         unit::assert(tag, y == 3);
     }
@@ -165,7 +165,7 @@ public:
     {
         x65 = x65 + 1;
 
-        uint3 y = x65 + 1;
+        uint3 y = static_cast(x65 + 1);
 
         unit::assert(tag, y == 4);
     }
@@ -240,7 +240,7 @@ inline uint32 Foo70()
 
 inline void TestCase70(unit::tag_t tag)
 {
-    uint32 x = Foo70() + Foo70();
+    uint32 x = static_cast(Foo70() + Foo70());
 
     unit::assert(tag, x == 8);
 }
@@ -286,7 +286,7 @@ inline void TestCase73(unit::tag_t tag)
 
     // -3 is sign extended to 8 bits (11111101)
     // 1 is added to it by Foo to yeild 11111110 (254)
-    uint32 y = Foo73(x);
+    uint32 y = Foo73(static_cast(x));
 
     unit::assert(tag, y == 254);
 }
@@ -323,7 +323,7 @@ inline void test_main()
 
     unit::test<64>(unit::fixture<TestCase64>());
     unit::test<65>(unit::fixture<TestCase65>());
-    
+
     unit::test<66>(TestCase66);
     unit::test<67>(TestCase67);
     unit::test<68>(TestCase68);

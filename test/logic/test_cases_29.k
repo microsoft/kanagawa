@@ -45,7 +45,7 @@ inline uint8 Foo460(int8 x)
 
 inline void TestCase460(unit::tag_t tag)
 {
-    unit::assert(tag, 0xF5 == Foo460(0xAD));
+    unit::assert(tag, 0xF5 == Foo460(static_cast(0xAD)));
 
     unit::assert(tag, 9 == Foo460(0x48));
 }

@@ -40,7 +40,7 @@ inline void MultiplyFP16ToFixed(unit::tag_t tag, DecodedFP16 a, DecodedFP16 b)
     uint2 shiftAmountIndex = a.exponent | (b.exponent << 1);
 
     // Values for shiftAmountIndex = 1 or 2
-    int64 result = product << 17;
+    int64 result = static_cast(product << 17);
 
     if (shiftAmountIndex == 0)
     {
@@ -166,7 +166,7 @@ class TestCase536
 
         for (const uint32 i : 4)
         {
-            uint54 result = umul27(a, i);
+            uint54 result = umul27(a, static_cast(i));
 
             stages<4>();
 
@@ -178,7 +178,7 @@ class TestCase536
 
     [[pipelined]] void Helper536(uint32 threadId, unit::tag_t tag)
     {
-        Foo536(tag, threadId);
+        Foo536(tag, static_cast(threadId));
     }
 
 public:
@@ -195,9 +195,9 @@ inline void TestCase537(unit::tag_t tag)
     {
         range_for (1, 256, 17, [tag, a](uint32 b)
         {
-            uint32 actual = lutmul(a, b);
+            uint32 actual = static_cast(lutmul(a, b));
 
-            uint32 expected = umul27(a, b);
+            uint32 expected = static_cast(umul27(static_cast(a), static_cast(b)));
 
             unit::assert_equal(tag, expected, actual);
         });
@@ -213,7 +213,7 @@ inline void TestCase538(unit::tag_t tag)
         {
             int20 actual = lutmul(a, b);
 
-            int20 expected = imul27(a, b, false);
+            int20 expected = static_cast(imul27(a, b, false));
 
             unit::assert_equal(tag, expected, actual);
         });
@@ -282,8 +282,8 @@ class TestCase561
             }
             else
             {
-                srcOperands[0] = _561Operands[0] + 75432797865;
-                srcOperands[1] = _561Operands[1] - 1000159765413;
+                srcOperands[0] = static_cast(_561Operands[0] + 75432797865);
+                srcOperands[1] = static_cast(_561Operands[1] - 1000159765413);
             }
 
             _561Operands = srcOperands;
@@ -293,11 +293,11 @@ class TestCase561
         uint27[2] src0Parts = cast<uint27[2]>(srcOperands[0]);
         uint27[2] src1Parts = cast<uint27[2]>(srcOperands[1]);
 
-        uint108 expected =
+        uint108 expected = static_cast(
             (umul27(src0Parts[0], src1Parts[0]) << 0) +
             (umul27(src0Parts[0], src1Parts[1]) << 27) +
             (umul27(src0Parts[1], src1Parts[0]) << 27) +
-            (umul27(src0Parts[1], src1Parts[1]) << 54);
+            (umul27(src0Parts[1], src1Parts[1]) << 54));
 
         uint108 actual = srcOperands[0] * srcOperands[1];
 
@@ -331,8 +331,8 @@ class TestCase562
             }
             else
             {
-                srcOperands[0] = _562Operands[0] + 75432797865;
-                srcOperands[1] = _562Operands[1] - 1000159765413;
+                srcOperands[0] = static_cast(_562Operands[0] + 75432797865);
+                srcOperands[1] = static_cast(_562Operands[1] - 1000159765413);
             }
 
             _562Operands = srcOperands;
@@ -340,15 +340,15 @@ class TestCase562
 
         // Only look at bottom few bits of operand 1
         uint64 src0 = srcOperands[0];
-        uint17 src1 = srcOperands[1];
+        uint17 src1 = static_cast(srcOperands[1]);
 
         // Manually compute expected result
         uint27[3] src0Parts = cast<uint27[3]>(cast<uint81>(src0));
 
-        uint81 expected =
+        uint81 expected = static_cast(
             (umul27(src0Parts[0], src1) << 0) +
             (umul27(src0Parts[1], src1) << 27) +
-            (umul27(src0Parts[2], src1) << 54);
+            (umul27(src0Parts[2], src1) << 54));
 
         uint81 actual = src0 * src1;
 
@@ -405,9 +405,9 @@ class TestCase287
     // DSP input and output registers must be respected by logic/register ratio setting
     [[pipelined]] void Foo287(uint32 idx, unit::tag_t tag)
     {
-        uint32 expected = idx << 2;
+        uint32 expected = static_cast(idx << 2);
 
-        uint32 actual = umul27(4, idx);
+        uint32 actual = static_cast(umul27(4, static_cast(idx)));
 
         unit::assert_equal(tag, expected, actual);
     }
@@ -425,9 +425,9 @@ class TestCase289
 {
     [[pipelined]] void Foo289(uint32 idx, unit::tag_t tag)
     {
-        uint32 expected = (idx + 1) << 2;
+        uint32 expected = static_cast((idx + 1) << 2);
 
-        uint32 actual = umul27(4, idx + 1);
+        uint32 actual = static_cast(umul27(4, static_cast(idx + 1)));
 
         unit::assert_equal(tag, expected, actual);
     }
@@ -480,8 +480,8 @@ inline int64 MultiplyFloat16ToFixed_327(unit::tag_t tag, DecodedFP16_327 a, Deco
     // Choose from among 3 possible shift values
     uint2 shiftIndex = a._exponent + b._exponent;
 
-    int64 shifted15 = signedProduct << 15;
-    int64 shifted30 = signedProduct << 30;
+    int64 shifted15 = static_cast(signedProduct << 15);
+    int64 shifted30 = static_cast(signedProduct << 30);
 
     unit::assert(tag, shiftIndex != 3);
     int64 result = mux(shiftIndex, signedProduct, shifted15, shifted30, 0);
@@ -513,7 +513,7 @@ class TestCase342
 
         int54 expected = negate ? -(idx << 2) : idx << 2;
 
-        int54 actual = imul27(4, idx, negate);
+        int54 actual = imul27(4, static_cast(idx), negate);
 
         unit::assert_equal(tag, expected, actual);
     }
@@ -820,7 +820,7 @@ class TestCase490
             sum += threadIdx;
         }
 
-        uint32 expected = umul27(threadIdx, 10);
+        uint32 expected = static_cast(umul27(static_cast(threadIdx), 10));
 
         unit::assert_equal(tag, expected, sum);
     }

@@ -110,8 +110,8 @@ private:
 
         // Some comparisons are converted to subtractions
         // These are wide enough that the carry chain will be decomposed
-        uint64 shiftedA = a << shift;
-        uint64 shiftedB = b << shift;
+        uint64 shiftedA = static_cast(a << shift);
+        uint64 shiftedB = static_cast(b << shift);
 
         bool a_lt_b = shiftedA < shiftedB;
         bool a_le_b = shiftedA <= shiftedB;
@@ -174,12 +174,12 @@ private:
     // Decomposing comparisons (signed)
     [[pipelined]] void Helper652(uint8 tid, int8 baseA, int8 b, uint8 shift, unit::tag_t tag)
     {
-        int9 a = baseA + tid;
+        int9 a = static_cast(baseA + tid);
 
         // Some comparisons are converted to subtractions
         // These are wide enough that the carry chain will be decomposed
-        int64 shiftedA = a << shift;
-        int64 shiftedB = b << shift;
+        int64 shiftedA = static_cast(a << shift);
+        int64 shiftedB = static_cast(b << shift);
 
         bool a_lt_b = shiftedA < shiftedB;
         bool a_le_b = shiftedA <= shiftedB;

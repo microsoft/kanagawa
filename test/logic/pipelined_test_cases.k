@@ -114,7 +114,7 @@ inline void ThreadCountZeroTest(unit::tag_t tag)
         });
     });
 
-    uint64 elapsed = cycles() - start;
+    uint64 elapsed = static_cast(cycles() - start);
 
     if ((opt::optimize > 0) && (opt::stall == 0))
     {
@@ -139,7 +139,7 @@ inline void PipelinedMapTest(unit::tag_t tag)
         }
     });
 
-    uint64 elapsed = cycles() - start;
+    uint64 elapsed = static_cast(cycles() - start);
 
     // Verify that pipelined_map returns 1 result every 4 cycles
     if ((opt::optimize > 0) && (opt::stall == 0))
@@ -229,7 +229,7 @@ public:
 class PendingCountOverflow
 {
 private:
-    uint64 _pendingCountOverflowHelperTime = -1;
+    uint64 _pendingCountOverflowHelperTime = cast<uint64>(-1);
 
 public:
     [[max_threads(16)]] void PendingCountOverflowHelper(uint5 outerTid)

@@ -33,7 +33,7 @@ const auto MaxParseFlits = 8;
 
 inline bool IsBitSet(uint32 data, uint6 bit)
 {
-    const uint32 mask = 1 << bit;
+    const uint32 mask = static_cast(1 << bit);
     return (data & mask) == mask;
 }
 
@@ -121,17 +121,17 @@ inline SingleParseResult ParseSingleHeaderGroup(
         switch (etherType)
         {
         case 0x8100: // VLAN_TAG
- 
+
             break;
 
         case 0x0800: // IPv4
-            
+
             break;
 
         case 0x86DD: // IPv6
         {
 
-            
+
         }
         break;
         }
@@ -161,7 +161,7 @@ inline void ParseConstPropTest(unit::tag_t tag)
 
     {
         const auto result = IsBitSet(parseTypes[0], 2);
-        print("Parse: IsBitSet(parseTypes[0], 2) {result}\n"); 
+        print("Parse: IsBitSet(parseTypes[0], 2) {result}\n");
         unit::assert_equal(tag, false, result);
     }
 }

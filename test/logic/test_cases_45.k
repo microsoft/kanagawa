@@ -83,7 +83,7 @@ struct s742
 class Test742
 {
 private:
-    [[memory]] s742[512] g_mem742 = { {15, 16}, { 17, 18} };
+    [[memory]] s742[512] g_mem742 = { {cast<uint3>(15), cast<uint2>(16)}, { cast<uint3>(17), cast<uint2>(18)} };
 
 public:
     void run(unit::tag_t tag)
@@ -261,7 +261,7 @@ public:
     template<uint8 stageCount>
     [[pipelined]] void AccumulateAfterStages(uint32 index)
     {
-        uint8 local = index;
+        uint8 local = static_cast(index);
         static for (const auto i: stageCount)
         {
             atomic
@@ -321,7 +321,7 @@ inline void Test751(unit::tag_t tag)
     // Test for compiler consistency (future-proofing)
     uint32 x = 50;
     {
-        uint32 x = x + 10;
+        uint32 x = static_cast(x + 10);
 
         unit::assert(tag, x == 10);
     }
@@ -339,7 +339,7 @@ inline void Test753(unit::tag_t tag)
 {
     uint33 y = 234;
 
-    uint32 result = Foo753(cast<uint32>(y));
+    uint32 result = Foo753(static_cast(y));
 
     unit::assert(tag, result == 235);
 }

@@ -213,7 +213,7 @@ public:
 
 class Test524
 {
-private:    
+private:
     Foo524<false> g_foo524_1;
     Foo524<true> g_foo524_2;
 
@@ -228,9 +228,9 @@ public:
 // Common subexpression elimination needs to look at destination widths
 inline uint32 Foo526(uint32 x)
 {
-    uint2 y = x + 1;
+    uint2 y = static_cast(x + 1);
 
-    uint32 z = x + 1;
+    uint32 z = static_cast(x + 1);
 
     return y + z;
 }

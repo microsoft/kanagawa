@@ -228,7 +228,7 @@ inline void TestCase366(unit::tag_t tag)
 {
     int64 a = Foo366(true);
 
-    int64 b = a + 1;
+    int64 b = static_cast(a + 1);
 
     unit::assert(tag, b == 0);
 }
@@ -317,7 +317,7 @@ public:
 
 class Test374
 {
-private:    
+private:
     Foo374 g_foo374;
 
 public:
@@ -363,7 +363,7 @@ inline void TestCase376(unit::tag_t tag)
 
     uint64 cycleCountNew = cycles();
 
-    uint64 diff = cycleCountNew - cycleCountOld;
+    uint64 diff = static_cast(cycleCountNew - cycleCountOld);
 
     unit::assert(tag, diff > 0);
 }

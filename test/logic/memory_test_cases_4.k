@@ -126,7 +126,7 @@ inline void BypassArray(unit::tag_t tag)
             pipelined_for(64, [](index_t<64> tid)
             {
                 static lfsr_random<8> _lfsr;
-                index_t<8> x = _lfsr.next({});
+                index_t<8> x = static_cast(_lfsr.next({}));
 
                 bool[4] enable = { x > 2, x > 4, x < 3, true };
 
@@ -202,7 +202,7 @@ inline void BypassNoRepMixRates(unit::tag_t tag)
                 static lfsr_random<8> _lfsr;
 
                 // ensure hazards are spaced by at least 4 threads
-                index_t<8> x = (_lfsr.next({}) % 2) + (tid % 4) * 2;
+                index_t<8> x = static_cast((_lfsr.next({}) % 2) + (tid % 4) * 2);
 
                 // The same read-modify-write sequence is applied to the memory and the array
                 [[schedule(4)]]
@@ -241,7 +241,7 @@ inline void BypassNoRepMixRates(unit::tag_t tag)
 
             pipelined_for(8, [tag](index_t<8> x)
             {
-                uint32 expected = _array[x] + 1;
+                uint32 expected = static_cast(_array[x] + 1);
                 uint32 actual = _mem[x];
 
                 unit::assert_equal(tag, expected, actual);
@@ -270,7 +270,7 @@ inline void MemToArrayUnusedField(unit::tag_t tag)
         {
             pipelined_for(16, [](index_t<16> x)
             {
-                index_t<8> addr = x;
+                index_t<8> addr = static_cast(x);
                 bool init = x < 8;
 
                 atomic

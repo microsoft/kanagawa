@@ -28,7 +28,7 @@ public:
             unit::assert(tag, result == (tid + 1));
         });
 
-        uint64 elapsed = cycles() - start;
+        uint64 elapsed = static_cast(cycles() - start);
         unit::assert(tag, elapsed < 1200);
     }
 }
@@ -65,7 +65,7 @@ public:
             unit::assert(tag, result == (tid + 2));
         });
 
-        uint64 elapsed = cycles() - start;
+        uint64 elapsed = static_cast(cycles() - start);
         unit::assert(tag, elapsed < 1200);
     }
 }
@@ -97,7 +97,7 @@ public:
             unit::assert(tag, result == (tid + 2));
         });
 
-        uint64 elapsed = cycles() - start;
+        uint64 elapsed = static_cast(cycles() - start);
         unit::assert(tag, elapsed < 1200);
     }
 }
@@ -132,7 +132,7 @@ public:
         {
             uint32 result = LoopHelper(tid);
 
-            uint32 expected = (tid == 0) ? (tid + 1024) : (tid + 1);
+            uint32 expected = static_cast((tid == 0) ? (tid + 1024) : (tid + 1));
 
             unit::assert(tag, result == expected);
         });
@@ -169,7 +169,7 @@ public:
             });
         });
 
-        uint64 elapsedCycles = cycles() - startCycles;
+        uint64 elapsedCycles = static_cast(cycles() - startCycles);
 
         unit::assert(tag, elapsedCycles < 2700);
     }

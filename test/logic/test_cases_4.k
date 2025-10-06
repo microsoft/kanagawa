@@ -558,7 +558,7 @@ inline uint32 Foo118(uint32 x)
 
 inline void TestCase118(unit::tag_t tag)
 {
-    uint32 y = Foo118(1) + Foo118(2);
+    uint32 y = static_cast(Foo118(1) + Foo118(2));
 
     unit::assert(tag, y == 5);
 }
@@ -572,7 +572,7 @@ inline uint32 Foo119(uint32 x)
 
 inline void TestCase119(unit::tag_t tag)
 {
-    uint32 y = Foo119(1) + Foo119(2) + Foo119(3);
+    uint32 y = static_cast(Foo119(1) + Foo119(2) + Foo119(3));
 
     unit::assert(tag, y == 9);
 }
@@ -586,7 +586,7 @@ inline uint32 Foo120(uint32 x)
 
 inline void TestCase120(unit::tag_t tag)
 {
-    uint32 y = Foo120(1) + Foo120(2) + Foo120(3) + Foo120(4);
+    uint32 y = static_cast(Foo120(1) + Foo120(2) + Foo120(3) + Foo120(4));
 
     unit::assert(tag, y == 14);
 }
@@ -600,7 +600,7 @@ inline uint32 Foo121(uint32 x)
 
 inline void TestCase121(unit::tag_t tag)
 {
-    uint32 y = Foo121(1) + Foo121(2) + Foo121(3) + Foo121(4) + Foo121(5);
+    uint32 y = static_cast(Foo121(1) + Foo121(2) + Foo121(3) + Foo121(4) + Foo121(5));
 
     unit::assert(tag, y == 20);
 }
@@ -614,7 +614,7 @@ inline uint32 Foo122(uint32 x)
 
 inline void TestCase122(unit::tag_t tag)
 {
-    uint32 y = Foo122(1) + Foo122(2) + Foo122(3) + Foo122(4) + Foo122(5) + Foo122(6);
+    uint32 y = static_cast(Foo122(1) + Foo122(2) + Foo122(3) + Foo122(4) + Foo122(5) + Foo122(6));
 
     unit::assert(tag, y == 27);
 }
@@ -645,7 +645,7 @@ inline void TestCase124(unit::tag_t tag)
 
 inline void test_main()
 {
-    unit::test<100>(unit::fixture<Test100>());    
+    unit::test<100>(unit::fixture<Test100>());
     unit::test<101>(unit::fixture<Test101>());
     unit::test<102>(unit::fixture<Test102>());
     unit::test<103>(unit::fixture<Test103>());

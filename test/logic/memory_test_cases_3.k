@@ -52,7 +52,7 @@ public:
         {
             uint32 val = mem513[i];
 
-            uint32 expected = (i + 8);
+            uint32 expected = static_cast(i + 8);
 
             unit::assert(tag, val == expected);
         }
@@ -105,7 +105,7 @@ public:
             {
                 static uint32 _addr = 0;
 
-                uint5 addr = _addr + 1;
+                uint5 addr = static_cast(_addr + 1);
 
                 uint32 resultA = _memA[addr];
                 uint32 resultB = _memB[addr];
@@ -192,7 +192,7 @@ inline void SharedAddressLocalPredicate(unit::tag_t tag)
                     _addr++;
                 }
 
-                uint32 expected = (0 == (id % 2)) ? (id + 6) : 0;
+                uint32 expected = static_cast((0 == (id % 2)) ? (id + 6) : 0);
 
                 unit::assert(tag, result == expected);
             });

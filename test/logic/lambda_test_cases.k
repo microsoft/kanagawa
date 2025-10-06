@@ -214,7 +214,7 @@ inline void CaptureThisNotAutoInlinedMethodTest(unit::tag_t tag)
 
             // The GetX here is crucial, it ensures there is another call site to GetX()
             // which will disable auto-inlining
-            uint32 result = add_n_times<5>(GetX) + GetX();
+            uint32 result = static_cast(add_n_times<5>(GetX) + GetX());
 
             unit::assert(tag, result == 36);
         }
@@ -390,7 +390,7 @@ inline void MultipleReferenceParamTest(unit::tag_t tag)
         {
             auto callback = [fn]() -> uint32
             {
-                return fn(_x + 2);
+                return fn(static_cast(_x + 2));
             };
 
             return add_n_times<3>(callback);
@@ -408,7 +408,7 @@ inline void MultipleReferenceParamTest(unit::tag_t tag)
         {
             auto callback = [](uint32 y) -> uint32
             {
-                return _x + y;
+                return cast<uint32>(_x + y);
             };
 
             uint32 result = _helper1.Go(callback);
@@ -511,7 +511,7 @@ inline void NestedCaptureThisTest(unit::tag_t tag)
 
 inline uint32 Go((uint32) -> uint32 Do, uint32 x)
 {
-    return Do(x) + Do(x + 1);
+    return Do(x) + Do(static_cast(x + 1));
 }
 
 inline uint32 DoIt(uint32 x)
@@ -759,7 +759,7 @@ inline void NonInlineHOFTwoCallSites(unit::tag_t tag)
     class helper
     {
         uint32 _val = 3;
-    
+
         template<typename Closure>
         noinline uint32 noinlinefn(Closure closure)
         {

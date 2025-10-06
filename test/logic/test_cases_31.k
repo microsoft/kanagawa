@@ -14,7 +14,7 @@ public:
     [[pipelined]] void Foo486(uint32 threadIdx, unit::tag_t tag)
     {
         uint32 i = 0;
-        uint8 iterations = (~threadIdx) ^ cycles();
+        uint8 iterations = static_cast((~threadIdx) ^ cycles());
         uint32 sum = 0;
 
         for (const uint32 i : iterations)
@@ -65,7 +65,7 @@ private:
 public:
     [[pipelined]] void Foo487(uint32 threadIdx, unit::tag_t tag)
     {
-        uint8 iterations = (~threadIdx) ^ cycles();
+        uint8 iterations = static_cast((~threadIdx) ^ cycles());
         uint32 sum = 0;
 
         bool predicate = (0 == threadIdx % 2);
@@ -126,7 +126,7 @@ private:
 public:
     [[pipelined]] void Foo488(uint32 threadIdx, unit::tag_t tag)
     {
-        uint8 iterations = (~threadIdx) ^ cycles();
+        uint8 iterations = static_cast((~threadIdx) ^ cycles());
         uint32 sum = 0;
 
         bool predicate = (0 == threadIdx % 2);
@@ -205,7 +205,7 @@ class Foo491
 public:
     myType Add(myType a, myType b)
     {
-        myType result = a + b;
+        myType result = static_cast(a + b);
 
         print("Add {a} {b} {result}\n");
 
@@ -238,7 +238,7 @@ public:
         uint32 result_32 = g_foo491_32.Add(3, 4);
         unit::assert(tag, result_32 == 7);
 
-        uint2 result_2 = g_foo491_2.Add(3, 4);
+        uint2 result_2 = g_foo491_2.Add(3, static_cast(4));
         unit::assert(tag, result_2 == 3);
 
         uint32 c = g_foo491_32.AddConstant(10);
@@ -258,7 +258,7 @@ class Foo492
 public:
     myType Add(myType a, myType b)
     {
-        myType result = a + b;
+        myType result = static_cast(a + b);
 
         print("Add {a} {b} {result}\n");
 
@@ -288,7 +288,7 @@ class Foo493
 public:
     myType Add(myType a, myType b)
     {
-        myType result = a + b;
+        myType result = static_cast(a + b);
 
         print("Add {a} {b} {result}\n");
 
@@ -455,7 +455,7 @@ private:
 public:
     void Test(unit::tag_t tag)
     {
-        _foo.Set(9);
+        _foo.Set(static_cast(9));
 
         uint32 result = _foo.Add(1);
 
@@ -504,7 +504,7 @@ private:
 public:
     void Test(unit::tag_t tag)
     {
-        _foo.Set(10);
+        _foo.Set(static_cast(10));
 
         uint32 result = _foo.Add(1);
 

@@ -401,7 +401,7 @@ public:
 
     void run(unit::tag_t tag)
     {
-        uint32 a = g92 + 10;
+        uint32 a = static_cast(g92 + 10);
 
         unit::assert(tag, a == 10);
 
@@ -425,7 +425,7 @@ public:
         [[unordered]] for (const uint32 i : 10)
         {
             // Multi-cycle operation
-            uint32 y = ((i + x) << 3) + 7;
+            uint32 y = static_cast(((i + x) << 3) + 7);
 
             // Ensure y is not optimized away
             bla93 = y;
@@ -473,7 +473,7 @@ public:
 // flat if/else
 class Test95
 {
-private:    
+private:
     bool b95 = false;
 
 public:
@@ -498,7 +498,7 @@ public:
 // member assignment inside flat if/else
 class Test96
 {
-private:   
+private:
     bool b96 = false;
     struct Foo96
     {
@@ -531,7 +531,7 @@ public:
 // member assignment inside flat if/else
 class Test97
 {
-private:   
+private:
     bool b97 = true;
     struct Foo97
     {
@@ -564,7 +564,7 @@ public:
 // array assignment inside flat if/else
 class Test98
 {
-private:   
+private:
     bool b98 = false;
 
 public:
@@ -598,7 +598,7 @@ public:
 // array assignment inside flat if/else
 class Test99
 {
-private:   
+private:
     bool b99 = true;
 
 public:

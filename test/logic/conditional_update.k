@@ -4,7 +4,7 @@
 import test.unit as unit
 import test.runner
 
-// Tests implementation of writes to local variables under predicated control flow 
+// Tests implementation of writes to local variables under predicated control flow
 inline void If(unit::tag_t tag)
 {
     pipelined_for(8, [tag](index_t<8> tid)
@@ -45,7 +45,7 @@ inline void IfElse(unit::tag_t tag)
     });
 }
 
-// if-else ladder without final else 
+// if-else ladder without final else
 inline void DanglingIfElseLadder(unit::tag_t tag)
 {
     pipelined_for(8, [tag](index_t<8> tid)
@@ -72,7 +72,7 @@ inline void DanglingIfElseLadder(unit::tag_t tag)
     });
 }
 
-// if-else ladder with final else 
+// if-else ladder with final else
 inline void CompleteIfElseLadder(unit::tag_t tag)
 {
     pipelined_for(8, [tag](index_t<8> tid)
@@ -311,7 +311,7 @@ inline void LoopPredicate(unit::tag_t tag)
             result = i;
         }
 
-        uint32 expected = (tid == 0) ? 7 : (tid - 1);
+        uint32 expected = static_cast((tid == 0) ? 7 : (tid - 1));
 
         unit::assert(tag, result == expected);
     });
@@ -447,7 +447,7 @@ inline void ConditionalMem2ArrayRead(unit::tag_t tag)
         unit::assert(tag, result == expected);
     });
 }
- 
+
 // atomic do inside of control flow
 // operations before the atomic do
 // are moved into the start condition operations
@@ -461,22 +461,22 @@ public:
     void run(unit::tag_t tag)
     {
         bool do_wait = true;
-    
+
         async_exec([do_wait]()
         {
             if (do_wait)
             {
                 uint32 result = 4;
-    
+
                 atomic do; while(!g_waitForFlag);
-    
+
                 g_waitForResult = result;
             }
         });
-    
-    
+
+
         g_waitForFlag = true;
-    
+
         atomic do; while(g_waitForResult != 4);
     }
 }
@@ -602,7 +602,7 @@ inline void test_main()
 
     print("ConditionalMem2ArrayRead\n");
     unit::test<17>(ConditionalMem2ArrayRead);
-    
+
     print("WaitForInControlCase\n");
     unit::test<18>(unit::fixture<WaitForInControlCase>());
 

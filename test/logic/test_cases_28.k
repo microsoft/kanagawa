@@ -40,7 +40,7 @@ class TestCase442
 private:
     [[max_threads(1)]] uint32 Foo442(uint32 x)
     {
-        uint32 result = x + 1;
+        uint32 result = static_cast(x + 1);
         return result;
     }
 
@@ -110,14 +110,14 @@ private:
 
     [[max_threads(1)]] uint32 Foo445(uint64 addrIn)
     {
-        uint10 addr = addrIn;
+        uint10 addr = static_cast(addrIn);
 
         return g_mem445[addr];
     }
 
     [[pipelined]] void Bar445(uint32 addr, unit::tag_t tag)
     {
-        uint32 expected = (~addr) + 1;
+        uint32 expected = static_cast((~addr) + 1);
 
         g_mem445[addr] = expected;
 
@@ -159,7 +159,7 @@ private:
     // Single-threaded function will use unregistered output from memory
     [[max_threads(1), pipelined]] void Foo448(uint32 idx, unit::tag_t tag)
     {
-        uint32 expected = idx + 7;
+        uint32 expected = static_cast(idx + 7);
 
         uint32 val = g_mem448[idx];
 
@@ -169,7 +169,7 @@ private:
     // Multi-threaded function will use registered output from memory
     [[pipelined]] void Bar448(uint32 idx, unit::tag_t tag)
     {
-        uint32 expected = idx + 7;
+        uint32 expected = static_cast(idx + 7);
 
         uint32 val = g_mem448[idx];
 
@@ -263,7 +263,7 @@ inline uint8 Foo454(uint8 x, int6 y)
 
 inline void TestCase454(unit::tag_t tag)
 {
-    unit::assert(tag, 0xA2 == Foo454(0xAA, 0x33));
+    unit::assert(tag, 0xA2 == Foo454(0xAA, static_cast(0x33)));
 }
 
 // AND converted to a lut, with sign-extension

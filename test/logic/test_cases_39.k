@@ -36,7 +36,7 @@ public:
 
         for (const uint32 i : 8)
         {
-            uint32 expected = (i + 16);
+            uint32 expected = static_cast(i + 16);
             uint32 actual = g_mem689[i];
 
             unit::assert(tag, actual == expected);
@@ -64,7 +64,7 @@ public:
         atomic
         {
             uint32 actual = g_mem690[tid];
-            uint32 expected = tid + 3;
+            uint32 expected = static_cast(tid + 3);
             unit::assert(tag, actual == expected);
         }
     }
@@ -96,7 +96,7 @@ public:
 
             val++;
 
-            uint32 val2 = tid + 2;
+            uint32 val2 = static_cast(tid + 2);
 
             g_rmwMem691[slot] = val;
 
@@ -115,14 +115,14 @@ public:
 
         for (const uint32 i : 8)
         {
-            uint32 expected = (i + 16);
+            uint32 expected = static_cast(i + 16);
             uint32 actual = g_rmwMem691[i];
             unit::assert(tag, actual == expected);
         }
 
         for (const uint32 i : 128)
         {
-            uint32 expected = (i + 2);
+            uint32 expected = static_cast(i + 2);
             uint32 actual = g_writeMem691[i];
             unit::assert(tag, actual == expected);
         }
@@ -164,7 +164,7 @@ public:
 
         for (const uint32 i : 8)
         {
-            uint32 expected = (i == 0) ? 128 : (120 + i);
+            uint32 expected = static_cast((i == 0) ? 128 : (120 + i));
             uint32 actual = g_rmwMem692[i];
             unit::assert(tag, actual == expected);
         }
@@ -173,7 +173,7 @@ public:
 
 inline void Helper693(uint16 rhs, unit::tag_t tag)
 {
-    int16 imm16_signed = rhs;
+    int16 imm16_signed = static_cast(rhs);
     int32 imm16_sign_extended_old = cast<int32>(imm16_signed);
     int32 imm16_sign_extended_new = cast<int32>(cast<int16>(rhs));
     print("i_type_instr.imm16 = {rhs}\n");

@@ -49,7 +49,7 @@ inline void TestCase735(unit::tag_t tag)
     unit::assert(tag, cast<uint4>(cast<uint1>(b)) == 1);
     unit::assert(tag, cast<int4>(cast<uint1>(b)) == 1);
 
-    const int4 extendedResult = 0xF;
+    const int4 extendedResult = cast<int4>(0xF);
     unit::assert(tag, cast<uint4>(cast<int1>(b)) == 0xF);
     unit::assert(tag, cast<int4>(cast<int1>(b)) == extendedResult);
 }

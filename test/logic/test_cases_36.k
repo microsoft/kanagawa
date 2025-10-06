@@ -16,13 +16,13 @@ inline void Helper656(uint7 a, uint7 b, bool expected, unit::tag_t tag)
 
 inline void TestCase656(unit::tag_t tag)
 {
-    for (const uint32 i : 100)
+    for (const uint7 i : 100)
     {
         Helper656(i, i, true, tag);
-        Helper656(i, i - 1, false, tag);
-        Helper656(i, i - 2, false, tag);
-        Helper656(i, i + 1, false, tag);
-        Helper656(i, i + 2, false, tag);
+        Helper656(i, static_cast(i - 1), false, tag);
+        Helper656(i, static_cast(i - 2), false, tag);
+        Helper656(i, static_cast(i + 1), false, tag);
+        Helper656(i, static_cast(i + 2), false, tag);
     }
 }
 
@@ -38,13 +38,13 @@ inline void Helper657(uint8 a, uint8 b, bool expected, unit::tag_t tag)
 
 inline void TestCase657(unit::tag_t tag)
 {
-    for (const uint32 i : 100)
+    for (const uint8 i : 100)
     {
-        Helper657(i, i, true, tag);
-        Helper657(i, i - 1, false, tag);
-        Helper657(i, i - 2, false, tag);
-        Helper657(i, i + 1, false, tag);
-        Helper657(i, i + 2, false, tag);
+        Helper657(i, static_cast(i), true, tag);
+        Helper657(i, static_cast(i - 1), false, tag);
+        Helper657(i, static_cast(i - 2), false, tag);
+        Helper657(i, static_cast(i + 1), false, tag);
+        Helper657(i, static_cast(i + 2), false, tag);
     }
 }
 
