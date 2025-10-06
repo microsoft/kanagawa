@@ -1,3 +1,6 @@
 [submodule "thirdparty/circt"]
 	path = thirdparty/circt
 	url = https://github.com/llvm/circt.git
+[submodule "thirdparty/riscv-coremark"]
+	path = thirdparty/riscv-coremark
+	url = https://github.com/riscv-boom/riscv-coremark.git
