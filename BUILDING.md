@@ -57,6 +57,7 @@ cmake \
     -DBoost_DIR=$HOME/boost/lib/cmake/Boost-1.83.0 \
     -DGHCUP_DIR=/home/user/.ghcup/bin \
     -DVERILATOR_EXE=/usr/local/bin/verilator
+    -DRISCV64_GCC=$HOME/riscv64-unknown-elf-gcc/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14
 ```
 
 If Boost was installed via an OS package, you might also use this option to point CMake at the standard
