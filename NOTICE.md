@@ -12,3 +12,10 @@ SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
 Copyright (C) 2006-2024 John MacFarlane
 Licensed: GNU GPL, version 2 or above
+
+## Coremark EEMBC Wrapper
+
+BSD 3-Clause License
+
+Copyright (c) 2017, Christopher Celio
+All rights reserved.
