@@ -108,9 +108,9 @@ cases your OS will have a suitable package for these, but if not see the links p
 each item in the list.
 
 - GCC 11.4.0 or later
-- ghcup (Haskell 9.6.7 and cabal 3.12.1.0) (see https://www.haskell.org/ghcup/install/#linux-ubuntu)
+- ghcup (Haskell 9.6.7 and cabal 3.12.1.0) (see https://www.haskell.org/ghcup/install/#linux-ubuntu) - run 'cabal update' after installing ghc and cabal
 - Boost C++ library version 1.83.0 or later (see https://www.boost.org/)
-- CMake version 3.26 or later (see https://cmake.org/)
+- CMake version 3.30 or later (see https://cmake.org/)
 - Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)
 - Verilator version 5.036. See the [Verilator documentation](https://veripool.org/guide/latest/install.html#git-quick-install) for detailed instructions. Note that version 5.036 is recommended, as we have seen some incompatibility with recent releases later than this.
 - Python version 3.x
