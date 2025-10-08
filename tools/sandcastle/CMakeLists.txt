@@ -11,7 +11,7 @@ file(MAKE_DIRECTORY ${CABAL_WORKING_DIR})
 # Build the sandcastle exe using cabal
 
 # Where cabal will output the executable (a stable path)
-set(SANDCASTLE_EXE_DEST "${KANAGAWA_EXE_DIR}/sandcastle${CMAKE_EXECUTABLE_SUFFIX}")
+set(SANDCASTLE_EXE_DEST "${BUILD_OUTPUT_BIN_DIR}/sandcastle${CMAKE_EXECUTABLE_SUFFIX}")
 
 set(CABAL_OPTIONS
   "--with-compiler=${GHC_EXE}"
@@ -57,7 +57,7 @@ add_custom_command(
     TMP=${CABAL_WORKING_DIR}
     TEMP=${CABAL_WORKING_DIR}
     ${CABAL_EXE} ${CABAL_OPTIONS}
-  COMMAND ${CMAKE_COMMAND} -E make_directory "${KANAGAWA_EXE_DIR}"
+  COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_OUTPUT_BIN_DIR}"
   COMMAND
     ${CMAKE_COMMAND} -E copy_if_different
     "${CABAL_WORKING_DIR}/dist/build/x86_64-linux/${GHC_NAME}/sandcastle-1.0.0/x/sandcastle/build/sandcastle/sandcastle${CMAKE_EXECUTABLE_SUFFIX}"

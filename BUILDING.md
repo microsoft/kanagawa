@@ -131,6 +131,17 @@ The following table lists the different test types and the relevant CMake target
 | Chkdoc | Documentation checking and validation tests | chkdoc_tests | run_chkdoc_tests | `ctest --verbose -R "^chkdoc\\."` |
 | Sandcastle | Documentation generation tool tests | N/A | run_sandcastle_tests | `ctest --verbose -R "^sandcastle\\."` |
 
+## Preparing a release
+
+Until build automation / continuous integration is added, here are the steps to manually create a release
+
+1. Update VERSION in the root of the repo, and CHANGELOG.md, then commit/merge these changes to the main branch. This PR should
+   include the description you added in CHANGELOG.md
+2. Create a label in the source repo corresponding to the version, i.e. v1.0.0
+3. Starting with a clean build folder, run CMake to configure the build.
+4. Run `ninja prepare_release`. This target will build the necessary components, copy files into a release folder, and create a tarball for the release.
+5. Using the Github UI, create a release and upload the tarball created in step 4.
+
 ## Third Party Tools
 
 The following tools are needed to build the kanagawa compiler and run the core tests. In many

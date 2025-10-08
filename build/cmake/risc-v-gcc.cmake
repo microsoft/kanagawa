@@ -8,7 +8,7 @@
 # This executable creates .mem files from an executable in elf format
 add_executable(risc-v-elf2mem "${CMAKE_SOURCE_DIR}/library/processor/risc_v/util/elf2mem.cpp")
 set_target_properties(risc-v-elf2mem PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${KANAGAWA_EXE_DIR}"
+    RUNTIME_OUTPUT_DIRECTORY "${BUILD_OUTPUT_BIN_DIR}"
 )
 
 # Helper function for running the RISCV64-GCC compiler to generate an elf binary
