@@ -68,6 +68,23 @@ endif()
 if (CABAL_EXE)
   message(STATUS "Dependency: cabal at ${CABAL_EXE}")
   mark_as_advanced(CABAL_EXE)
+
+  # Get the actual cabal version by running cabal --numeric-version
+  execute_process(
+    COMMAND "${CABAL_EXE}" --numeric-version
+    OUTPUT_VARIABLE CABAL_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    RESULT_VARIABLE CABAL_VERSION_RESULT
+  )
+
+  if (CABAL_VERSION_RESULT EQUAL 0)
+    set(CABAL_NAME "cabal-${CABAL_VERSION}")
+    message(STATUS "cabal version: ${CABAL_VERSION}, using CABAL_NAME: ${CABAL_NAME}")
+  else()
+    # Fallback to the original method if version detection fails
+    get_filename_component(CABAL_NAME "${CABAL_EXE}" NAME_WE)
+    message(WARNING "Could not determine GHC version, falling back to: ${CABAL_NAME}")
+  endif()
 else()
   message(FATAL_ERROR "cabal not found. Install via ghcup or set CABAL_EXE.")
 endif()
