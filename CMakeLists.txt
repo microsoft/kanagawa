@@ -15,6 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Required to link a dynamic library with a static library
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+set(KANAGAWA_EXE_DIR "${CMAKE_BINARY_DIR}/kanagawa")
 set(KANAGAWA_EXE_NAME "kanagawa")
 # This can not be the same as KANAGAWA_EXE_NAME (CMake does not like it)
 set(KANAGAWA_SHARED_LIBRARY_NAME "kanagawa-backend")
@@ -32,6 +33,9 @@ add_subdirectory(compiler)
 
 # Include helper functions for building unit tests
 include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/test_helper.cmake)
+
+# Include RISC-V GCC wrapper and risc-v-elf2mem
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/risc-v-gcc.cmake)
 
 # Unit tests
 add_subdirectory(test)
