@@ -87,3 +87,13 @@ set_target_properties(sandcastle::exe PROPERTIES
 
 # Make the imported exe depend on the build of the real exe
 add_dependencies(sandcastle::exe sandcastle_exe)
+
+# Add a target to run all sandcastle tests
+add_custom_target(run_sandcastle_tests
+    COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_CURRENT_BINARY_DIR} -R "^sandcastle\\." --output-on-failure --verbose
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    DEPENDS sandcastle_exe
+    COMMENT "Run all sandcastle tests"
+    USES_TERMINAL
+)
+

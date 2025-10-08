@@ -84,6 +84,10 @@ ninja -j $(nproc) library_tests
 To run tests, we use ctest. The various test types use a prefix in the test name to allow a group of related tests
 to be run separately.
 
+Note that in WSL environments, processes will fail if the total memory footprint exceeds available memory and swap space.
+Because of limited memory and swapfile in WSL sessions, it is easy to run into this when running the unit tests. We
+recommend limiting the number of concurrent processes to 2 in these environments (with -j2 option to ninja or ctest).
+
 ```
   # Run library tests
   ctest --verbose -R "^library\\."
@@ -98,9 +102,34 @@ to be run separately.
 For convenience, CMake targets are provided to run all the tests of each type:
 
 ```
-ninja -j $(nproc) run_library_tests
-ninja -j $(nproc) run_syntax_tests
+ninja -j 2 run_syntax_tests
+ninja -j 2 run_interface_tests
+ninja -j 2 run_logic_tests
+ninja -j 2 run_library_tests
+ninja -j 2 run_runtime_rtl_tests
+ninja -j 2 run_compiler_tests
+ninja -j 2 run_chkdoc_tests
+ninja -j 2 run_sandcastle_tests
 ```
+
+These convenience targets should cause a build of any dependencies.
+
+The following table lists the different test types and the relevant CMake targets and sample ctest command line.
+
+// ...existing code...
+
+The following table lists the different test types and the relevant CMake targets and sample ctest command line.
+
+| Test Type | Description | Build Target | Run Target | CTest Command |
+|-----------|-------------|--------------|------------|---------------|
+| Syntax | Front-end parser and syntax validation tests | syntax_tests | run_syntax_tests | `ctest --verbose -R "^syntax\\."` |
+| Interface | Interface and API tests | interface_tests | run_interface_tests | `ctest --verbose -R "^interface\\."` |
+| Logic | Logic and behavioral tests | logic_tests | run_logic_tests | `ctest --verbose -R "^logic\\."` |
+| Library | Standard library functionality tests | library_tests | run_library_tests | `ctest --verbose -R "^library\\."` |
+| Runtime RTL | Runtime and RTL (Register Transfer Level) tests | runtime_rtl_tests | run_runtime_rtl_tests | `ctest --verbose -R "^runtime\\."` |
+| Compiler | Compiler functionality and code generation tests | compiler_tests | run_compiler_tests | `ctest --verbose -R "^compiler\\."` |
+| Chkdoc | Documentation checking and validation tests | chkdoc_tests | run_chkdoc_tests | `ctest --verbose -R "^chkdoc\\."` |
+| Sandcastle | Documentation generation tool tests | N/A | run_sandcastle_tests | `ctest --verbose -R "^sandcastle\\."` |
 
 ## Third Party Tools
 
