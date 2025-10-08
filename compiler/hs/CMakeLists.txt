@@ -65,7 +65,7 @@ file(GLOB KANAGAWA_CABAL_FILES CONFIGURE_DEPENDS
 
 list(APPEND KANAGAWA_HS_SOURCES ${KANAGAWA_CABAL_FILES})
 
-# Build the kanagwa executable and copy it to the dist/bin directory
+# Build the kanagawa executable and copy it to the dist/bin directory
 add_custom_command(
     OUTPUT ${KANAGAWA_EXE_DEST}
     COMMAND ${CMAKE_COMMAND} -E echo "Building kanagawa exe with Cabal"

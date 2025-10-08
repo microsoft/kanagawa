@@ -39,3 +39,6 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/risc-v-gcc.cmake)
 
 # Unit tests
 add_subdirectory(test)
+
+# Tools (sandcastle, chkdoc, ...)
+add_subdirectory(tools)
