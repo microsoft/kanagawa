@@ -189,3 +189,5 @@ add_library_test(processor_risc_v_mmio_4 processor/risc-v/mmio/mmio.k
     RISCVMMIOWrapper.sv
     RISCVMMIOWrapper_types.sv
 )
+
+add_subdirectory(processor)

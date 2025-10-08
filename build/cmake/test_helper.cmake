@@ -121,9 +121,11 @@ endfunction()
 # the CMake generation/configure step, which is not desirable.
 #
 # Usage:
-#   add_verilator(<verilate_target> <test_name>
+#   add_verilator(<verilate_target>
+#     [TEST_NAME test_name]
 #     [OUTPUT_DIR <dir>]
 #     [WORKING_DIRECTORY <dir>]
+#     [SIM_EXE_OUT_VAR <variable-name>]
 #     [DEPENDS <target-or-file> ...]]
 #     TESTBENCH_MODULE <testbench-module-name>
 #     SOURCES <src1> [<src2> ...]
@@ -135,9 +137,9 @@ endfunction()
 # simulation. The path to the executable is available via the target property
 # VERILATOR_OUTPUT.
 #
-function(add_verilator verilate_target test_name)
+function(add_verilator verilate_target)
   set(_opts)
-  set(_one  OUTPUT_DIR WORKING_DIRECTORY TESTBENCH_MODULE)
+  set(_one TEST_NAME OUTPUT_DIR WORKING_DIRECTORY TESTBENCH_MODULE SIM_EXE_OUT_VAR)
   set(_multi SOURCES OPTIONS DEPENDS)
   cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
 
@@ -229,15 +231,22 @@ function(add_verilator verilate_target test_name)
     VERBATIM
   )
 
+  # Optionally pass path to Verilator-generated simulation executable to caller
+  if (_ARG_SIM_EXE_OUT_VAR)
+    set(${_ARG_SIM_EXE_OUT_VAR} "${SIMULATION_EXE}" PARENT_SCOPE)
+  endif()
+
   # Create a phoney target that downstream can depend on
   add_custom_target(${verilate_target}
     DEPENDS ${SIMULATION_EXE}
   )
 
-  add_test(NAME ${test_name}
-    COMMAND ${SIMULATION_EXE}
-    WORKING_DIRECTORY "${_ARG_OUTPUT_DIR}"
-  )
+  if (_ARG_TEST_NAME)
+    add_test(NAME ${_ARG_TEST_NAME}
+      COMMAND ${SIMULATION_EXE}
+      WORKING_DIRECTORY "${_ARG_OUTPUT_DIR}"
+    )
+  endif()
 
 endfunction()
 
@@ -245,7 +254,7 @@ endfunction()
 # Verilator to build a simulation executable from that RTL, and creates
 # a ctest that will run that executable/simulation.
 # Usage:
-#   add_kanagawa_verilator_test(<test_name>
+#   add_kanagawa_verilator_test(<name>
 #     [SCOPE <test-scope>]
 #     SOURCES <kanagawa_source1> <kanagawa_source2> ...
 #     [OPTIONS <opt1> <opt2> ...]
@@ -264,9 +273,12 @@ endfunction()
 #     will result in a CTest name of "library.foo" and a build target of
 #     "library_test.foo".
 #
-#   test_name
-#     The name of the test. Along with <test_scope_>, this will be used to
-#     name the build target, ctest name, and the output directory.
+#   name
+#     A name used in the name of a target that will be created. Along with <test_scope>,
+#     this will be used to name the build target, ctest name, and the output directory.
+#
+#   NO_CTEST
+#     If set, no ctest will be created.
 #
 #   SOURCES
 #     One or more Kanagawa source files.
@@ -302,17 +314,17 @@ endfunction()
 #     particular type.
 #
 #   Notes:
-#     The generated RTL will be written to ${CMAKE_CURRENT_BINARY_DIR}/${test_name}
+#     The generated RTL will be written to ${CMAKE_CURRENT_BINARY_DIR}/${target}
 #     The Verilator simulation will be placed in a subfolder named 'verilator'
 #
-function(add_kanagawa_verilator_test test_name)
-  set(_opts)
+function(add_kanagawa_verilator_test name)
+  set(_opts NO_CTEST)
   set(_one SCOPE TESTBENCH TESTBENCH_MODULE AGGREGATE_TARGET)
   set(_multi OPTIONS SOURCES GENERATED_RTL EXTRA_RTL)
   cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
 
-  if (NOT test_name)
-    message(FATAL_ERROR "add_kanagawa_verilator_test: missing <test_name> as second argument.")
+  if (NOT name)
+    message(FATAL_ERROR "add_kanagawa_verilator_test: missing <name> as first argument.")
   endif()
 
   if (NOT _ARG_SOURCES)
@@ -320,14 +332,18 @@ function(add_kanagawa_verilator_test test_name)
   endif()
 
   if (_ARG_SCOPE)
-    set(SCOPED_TEST_NAME "${_ARG_SCOPE}.${test_name}")
-    set(TARGET_NAME "${_ARG_SCOPE}_test.${test_name}")
+    set(SCOPED_TEST_NAME "${_ARG_SCOPE}.${name}")
+    set(TARGET_NAME "${_ARG_SCOPE}_test.${name}")
   else()
-    set(SCOPED_TEST_NAME "${test_name}")
-    set(TARGET_NAME "test.${test_name}")
+    set(SCOPED_TEST_NAME "${name}")
+    set(TARGET_NAME "${name}")
   endif()
 
-  set(OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/${test_name}")
+  if (NO_CTEST)
+    set(SCOPED_TEST_NAME)
+  endif()
+
+  set(OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/${name}")
 
   set(KANAGAWA_OPTIONS
     "--Wall"
@@ -348,7 +364,7 @@ function(add_kanagawa_verilator_test test_name)
   endif()
 
   add_custom_target(${TARGET_NAME}
-    COMMENT "Building test: ${SCOPED_TEST_NAME}"
+    COMMENT "Building test: ${TARGET_NAME}"
   )
 
   set(KANAGAWA_TARGET_NAME "${TARGET_NAME}.kanagawa")
@@ -401,12 +417,20 @@ function(add_kanagawa_verilator_test test_name)
       "${OUTPUT_DIR}/verilator"
     )
 
-    add_verilator(${VERILATOR_TARGET_NAME} ${SCOPED_TEST_NAME}
+    set(SIM_EXE)
+
+    add_verilator(${VERILATOR_TARGET_NAME}
+      TEST_NAME ${SCOPED_TEST_NAME}
+      SIM_EXE_OUT_VAR "SIM_EXE"
       OUTPUT_DIR ${VERILATOR_OUTPUT_DIR}
       WORKING_DIRECTORY ${VERILATOR_OUTPUT_DIR}
       TESTBENCH_MODULE ${TESTBENCH_MODULE}
       SOURCES ${RTL_FILES}
       DEPENDS ${${KANAGAWA_TARGET_NAME}_STAMP_FILE}
+    )
+
+    set_target_properties(${TARGET_NAME} PROPERTIES
+      SIM_EXE "${SIM_EXE}"
     )
 
     add_dependencies(${TARGET_NAME} ${VERILATOR_TARGET_NAME})

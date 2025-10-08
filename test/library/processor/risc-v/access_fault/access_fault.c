@@ -1,4 +1,4 @@
-#include "../riscv_test.h"
+#include "../test.h"
 
 int main()
 {

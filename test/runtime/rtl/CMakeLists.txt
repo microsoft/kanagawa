@@ -33,7 +33,8 @@ function(add_runtime_rtl_test test_name testbench testbench_module)
   set(SCOPED_TEST_NAME "runtime_rtl.${test_name}")
 
   if (VERILATOR_EXE)
-      add_verilator(${TARGET_NAME} ${SCOPED_TEST_NAME}
+      add_verilator(${TARGET_NAME}
+        TEST_NAME ${SCOPED_TEST_NAME}
         OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/${test_name}"
         WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${test_name}"
         TESTBENCH_MODULE ${testbench_module}

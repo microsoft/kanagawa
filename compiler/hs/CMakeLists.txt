@@ -26,7 +26,6 @@ file(MAKE_DIRECTORY ${CABAL_WORKING_DIR})
 # Build the kanagawa exe using cabal
 
 # Where cabal will output the executable (a stable path)
-set(KANAGAWA_EXE_DIR "${CMAKE_BINARY_DIR}/kanagawa")
 set(KANAGAWA_EXE_DEST "${KANAGAWA_EXE_DIR}/kanagawa${CMAKE_EXECUTABLE_SUFFIX}")
 
 # This is needed to avoid generator expressions in OUTPUT
