@@ -32,7 +32,20 @@ function(add_chkdoc_test test_name document)
 
 endfunction()
 
+# Phoney target to ensure chkdoc test dependencies have been built
+add_custom_target(chkdoc_tests DEPENDS chkdoc)
+
+# Add a target to run all chkdoc tests
+add_custom_target(run_chkdoc_tests
+    COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_CURRENT_BINARY_DIR} -R "^chkdoc\\." --output-on-failure --verbose
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    DEPENDS chkdoc
+    COMMENT "Run all chkdoc tests"
+    USES_TERMINAL
+)
+
 add_chkdoc_test(effective_kanagawa effective-kanagawa.md)
 add_chkdoc_test(mapping_to_hardware "mapping-to-hardware.md")
 add_chkdoc_test(sandcastle sandcastle.md)
 add_chkdoc_test(programming_guide programming-guide.md)
+
