@@ -225,6 +225,19 @@ bool TestCodeBlock(const std::string& line_no,
     return false;
 }
 
+std::string GetFileExtension(const std::string& filename) {
+    // Find the last '.' in the filename
+    size_t pos = filename.find_last_of('.');
+
+    // No '.' found or it's the first character (like ".bashrc") → no extension
+    if (pos == std::string::npos || pos == 0 || pos == filename.length() - 1) {
+        return "";
+    }
+
+    // Return substring after the last '.'
+    return filename.substr(pos + 1);
+}
+
 int main(int argc, const char** argv)
 {
     int result = 1;
@@ -233,7 +246,9 @@ int main(int argc, const char** argv)
     {
         if (argc < 6)
         {
-            throw std::runtime_error("Incorrect argument count.  Expected: compiler-path contexts-path lib-path stdlib-path [context-file1.k context-file2.k] file1.md file2.md");
+            std::cout << "chkdoc: Checks that code snippets in markdown files compile correctly\n";
+            std::cout << "Usage:\n  chkdoc compiler-path contexts-path lib-path stdlib-path [context-file1.k context-file2.k] file1.md file2.md ..." << std::endl;
+            return 1;
         }
 
         const std::string compilerPath = argv[1];
@@ -250,7 +265,7 @@ int main(int argc, const char** argv)
         std::cout << "Library paths:\n";
         for (const std::string& s : libPaths)
         {
-            std::cout << s << "\n";
+            std::cout << "  " << s << "\n";
         }
 
         std::vector<std::string> contextFiles;
@@ -261,10 +276,16 @@ int main(int argc, const char** argv)
         {
             const std::string arg = argv[i];
 
-            if (arg.substr(arg.size() - 3) != ".k")
+            if (GetFileExtension(arg) != "k")
                 break;
 
             contextFiles.push_back(arg);
+        }
+
+        std::cout << "Context files:\n";
+        for (const std::string& s : contextFiles)
+        {
+            std::cout << "  " << s << "\n";
         }
 
         size_t errorCount = 0;
