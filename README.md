@@ -1,4 +1,4 @@
-A# Kanagawa: Wavefront Threading for Hardware Design
+# Kanagawa: Wavefront Threading for Hardware Design
 
 Kanagawa is a high-level, imperative programming language for hardware design.
 It introduces **Wavefront Threading**, a new execution model that makes concurrency explicit, enabling efficient and predictable parallel hardware.
