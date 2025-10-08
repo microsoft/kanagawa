@@ -26,11 +26,11 @@ file(MAKE_DIRECTORY ${CABAL_WORKING_DIR})
 # Build the kanagawa exe using cabal
 
 # Where cabal will output the executable (a stable path)
-set(KANAGAWA_EXE_DEST "${KANAGAWA_EXE_DIR}/kanagawa${CMAKE_EXECUTABLE_SUFFIX}")
+set(KANAGAWA_EXE_DEST "${BUILD_OUTPUT_BIN_DIR}/kanagawa${CMAKE_EXECUTABLE_SUFFIX}")
 
 # This is needed to avoid generator expressions in OUTPUT
 set(KANAGAWA_LIB_NAME "${CMAKE_SHARED_LIBRARY_PREFIX}${KANAGAWA_SHARED_LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}")
-set(KANAGAWA_LIB_DEST "${KANAGAWA_EXE_DIR}/${KANAGAWA_LIB_NAME}")
+set(KANAGAWA_LIB_DEST "${BUILD_OUTPUT_BIN_DIR}/${KANAGAWA_LIB_NAME}")
 
 set(CABAL_OPTIONS
     "--with-compiler=${GHC_EXE}"
@@ -73,7 +73,7 @@ add_custom_command(
         TMP=${CABAL_WORKING_DIR}
         TEMP=${CABAL_WORKING_DIR}
         ${CABAL_EXE} ${CABAL_OPTIONS} v2-build exe:kanagawa
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${KANAGAWA_EXE_DIR}"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_OUTPUT_BIN_DIR}"
     COMMAND
         ${CMAKE_COMMAND} -E copy_if_different
         "${CABAL_WORKING_DIR}/dist/build/x86_64-linux/${GHC_NAME}/kanagawa-1.0.0/x/kanagawa/build/kanagawa/kanagawa${CMAKE_EXECUTABLE_SUFFIX}"
@@ -90,7 +90,7 @@ add_custom_target(kanagawa_exe DEPENDS "${KANAGAWA_EXE_DEST}")
 # Copy the shared library next to the exe; re-runs whenever the lib changes
 add_custom_command(
     OUTPUT "${KANAGAWA_LIB_DEST}"
-    COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${KANAGAWA_EXE_DIR}>"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${BUILD_OUTPUT_BIN_DIR}>"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "$<TARGET_FILE:kanagawa_lib>"
         "$<SHELL_PATH:${KANAGAWA_LIB_DEST}>"

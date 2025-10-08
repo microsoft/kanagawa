@@ -3,7 +3,12 @@
 
 cmake_minimum_required(VERSION 3.30)
 
-project(kanagawa LANGUAGES CXX)
+
+file(READ "${CMAKE_SOURCE_DIR}/VERSION" VERSION_RAW)
+string(STRIP "${VERSION_RAW}" VERSION)
+message(STATUS "Project version: ${VERSION}")
+
+project(kanagawa VERSION ${VERSION} LANGUAGES CXX)
 
 enable_testing()
 
@@ -15,7 +20,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Required to link a dynamic library with a static library
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-set(KANAGAWA_EXE_DIR "${CMAKE_BINARY_DIR}/kanagawa")
+# This is where we stage binaries and generated docs during the build, so they are in a consistent location that is easy to locate
+set(BUILD_OUTPUT_DIR "${CMAKE_BINARY_DIR}/build")
+set(BUILD_OUTPUT_BIN_DIR "${BUILD_OUTPUT_DIR}/bin")
+
 set(KANAGAWA_EXE_NAME "kanagawa")
 # This can not be the same as KANAGAWA_EXE_NAME (CMake does not like it)
 set(KANAGAWA_SHARED_LIBRARY_NAME "kanagawa-backend")
@@ -42,3 +50,6 @@ add_subdirectory(test)
 
 # Tools (sandcastle, chkdoc, ...)
 add_subdirectory(tools)
+
+# Include helpers for building a release
+include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/release.cmake)
