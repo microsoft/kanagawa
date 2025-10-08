@@ -104,14 +104,14 @@ function(add_riscv_executable target)
 
   set(COREMARK_DIR "${CMAKE_SOURCE_DIR}/thirdparty/coremark")
 
-  list(FIND _ADD_RISCV_OPTIONS "-nostartfiles" _NO_START)
-  list(FIND _ADD_RISCV_OPTIONS "-nostdlib" _NO_STDLIB)
-  list(FIND _ADD_RISCV_DEFINITIONS "HAS_NO_STDOUT=1" _NO_STDOUT)
+  list(FIND _ARG_OPTIONS "-nostartfiles" no_start)
+  list(FIND _ARG_OPTIONS "-nostdlib" no_stdlib)
+  list(FIND _ARG_DEFINITIONS "HAS_NO_STDOUT=1" no_stdout)
 
   if(
-    ${_NO_STDLIB} EQUAL -1
-    AND ${_NO_START} EQUAL -1
-    AND ${_NO_STDOUT} EQUAL -1
+    ${no_stdlib} EQUAL -1
+    AND ${no_start} EQUAL -1
+    AND ${no_stdout} EQUAL -1
   )
     set(SOURCES
       "${COREMARK_DIR}/barebones/ee_printf.c"

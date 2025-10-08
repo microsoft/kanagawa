@@ -148,9 +148,11 @@ function(add_riscv_simulation_test test_name)
     COMMAND ${SIM_EXE} ${SIM_ARGS}
   )
 
-  add_dependencies(library_tests ${SCOPED_TARGET})
+  add_dependencies(riscv_library_tests ${SCOPED_TARGET})
 endfunction()
 
+add_custom_target(riscv_library_tests)
+add_dependencies(library_tests riscv_library_tests)
 
 add_riscv_simulation_exe(
   "riscv_sim.1hart"
@@ -194,12 +196,11 @@ add_riscv_simulation_exe(
 # from an .elf file created elsewhere, load and execute a RISC-V test program
 
 add_subdirectory(access_fault)
-# add_subdirectory(compliance)
-# add_subdirectory(coremark)
-# add_subdirectory(coremark-M)
+add_subdirectory(compliance)
+add_subdirectory(coremark)
 add_subdirectory(csr)
-# add_subdirectory(illegal)
-# add_subdirectory(invalid_instruction_address)
-# add_subdirectory(microarchitecture)
-# add_subdirectory(nullptr)
-# add_subdirectory(unaligned_branch_address)
+add_subdirectory(illegal)
+add_subdirectory(invalid_instruction_address)
+add_subdirectory(microarchitecture)
+add_subdirectory(nullptr)
+add_subdirectory(unaligned_branch_address)
