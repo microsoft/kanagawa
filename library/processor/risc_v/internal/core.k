@@ -548,7 +548,7 @@ public:
     {
         static for(const auto i : HARTS)
         {
-            hart[i].pc = pc[i] >> 2;
+            hart[i].pc = static_cast(pc[i] >> 2);
             hart[i].commit = true;
             hart[i].instret = 0;
             hart[i].pipeline_flush_pc.is_valid = false;
