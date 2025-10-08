@@ -1,4 +1,4 @@
-# Kanagawa: Wavefront Threading for Hardware Design
+A# Kanagawa: Wavefront Threading for Hardware Design
 
 Kanagawa is a high-level, imperative programming language for hardware design.
 It introduces **Wavefront Threading**, a new execution model that makes concurrency explicit, enabling efficient and predictable parallel hardware.
@@ -25,6 +25,14 @@ Kanagawa has been used for accelerators in Microsoft Azure, cryptographic resear
 
 ### Open Source
 This repository provides the Kanagawa language, compiler toolchain, and libraries. We welcome contributions from hardware designers, language researchers, and anyone curious about pushing hardware programming forward.
+
+### A note about licensing
+
+The Kanagawa compiler, library, documentation and all components, with the exception of sandcastle, are licensed under the MIT License.
+See LICENSE and NOTICE.md in the root of the enlistment for further details.
+
+The Sandcastle documentation generator, which utilizes the Pandoc library, is licensed under the GNU GENERAL PUBLIC LICENSE, Version 2.
+A copy of that LICENSE can be found in the sandcastle/ folder.
 
 ## Contributing
 
