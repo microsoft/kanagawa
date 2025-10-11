@@ -95,37 +95,35 @@ add_riscv_simulation_test(coremark_4hart
       "100000000"
 )
 
-# These are returning unexpected values
+add_riscv_simulation_test(coremark_1hart_m
+    SIM_EXE_TARGET
+        "riscv_sim.1hart_m"
+    ELF_TARGET
+        "risc_v_coremark_m"
+    CHECK_RESULTS_STDOUT
+      "CoreMark 1.0 : 2.62"
+    TIMEOUT_CYCLES
+      "50000000"
+)
 
-# add_riscv_simulation_test(coremark_1hart_m
-#     SIM_EXE_TARGET
-#         "riscv_sim.1hart_m"
-#     ELF_TARGET
-#         "risc_v_coremark"
-#     CHECK_RESULTS_STDOUT
-#       "CoreMark 1.0 : 2.62"
-#     TIMEOUT_CYCLES
-#       "50000000"
-# )
+add_riscv_simulation_test(coremark_2hart_m
+    SIM_EXE_TARGET
+        "riscv_sim.2hart_m"
+    ELF_TARGET
+        "risc_v_coremark_m"
+    CHECK_RESULTS_STDOUT
+      "CoreMark 1.0 : 1.70"
+    TIMEOUT_CYCLES
+      "50000000"
+)
 
-# add_riscv_simulation_test(coremark_2hart_m
-#     SIM_EXE_TARGET
-#         "riscv_sim.2hart_m"
-#     ELF_TARGET
-#         "risc_v_coremark"
-#     CHECK_RESULTS_STDOUT
-#       "CoreMark 1.0 : 1.70"
-#     TIMEOUT_CYCLES
-#       "50000000"
-# )
-
-# add_riscv_simulation_test(coremark_4hart_m
-#     SIM_EXE_TARGET
-#         "riscv_sim.4hart_m"
-#     ELF_TARGET
-#         "risc_v_coremark"
-#     CHECK_RESULTS_STDOUT
-#       "CoreMark 1.0 : 0.968"
-#     TIMEOUT_CYCLES
-#       "100000000"
-# )
+add_riscv_simulation_test(coremark_4hart_m
+    SIM_EXE_TARGET
+        "riscv_sim.4hart_m"
+    ELF_TARGET
+        "risc_v_coremark_m"
+    CHECK_RESULTS_STDOUT
+      "CoreMark 1.0 : 0.968"
+    TIMEOUT_CYCLES
+      "100000000"
+)
