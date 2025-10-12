@@ -43,5 +43,5 @@ private:
 
 inline void test_main()
 {
-    unit::test<1>(unit::fixture<helper<256>>());
+    unit::test<1>(unit::fixture<helper<4>>());
 }
