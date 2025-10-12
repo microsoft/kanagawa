@@ -31,7 +31,7 @@ set(LOGIC_TEST_SOURCES
     initializer_list.k
     lambda_test_cases.k
     last.k
-    # long_class_name.k # Disabled because it results in a 3.5GB SV file
+    long_class_name.k
     loop_test_cases_1.k
     loop_test_cases_2.k
     memory_test_cases_1.k
