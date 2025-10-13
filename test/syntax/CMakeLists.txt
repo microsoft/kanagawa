@@ -10,7 +10,7 @@
 # that the kanagawa compiler has been built.
 
 add_custom_target(syntax_tests
-    DEPENDS kanagawa::exe
+    DEPENDS kanagawa_runtime
 )
 
 # Add a target to run all syntax tests
