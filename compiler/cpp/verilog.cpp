@@ -7280,8 +7280,8 @@ class VerilogCompiler
 
                                 {
                                     // Optionally print values with $display
-                                    AutoSectionRAII ifDefBlock(_writer, true, "`ifdef PIPEDREAM_PRINT_DEBUG_VIEW",
-                                                               "`endif // PIPEDREAM_PRINT_DEBUG_VIEW");
+                                    AutoSectionRAII ifDefBlock(_writer, true, "`ifdef KANAGAWA_PRINT_DEBUG_VIEW",
+                                                               "`endif // KANAGAWA_PRINT_DEBUG_VIEW");
                                     AutoSectionRAII alwaysFFBlock(_writer, true, "always_ff @(posedge clk) begin",
                                                                   "end");
 
