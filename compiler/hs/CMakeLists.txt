@@ -9,12 +9,12 @@
 # Projects that need to run the Kanagawa compiler can do this:
 #
 # # Ensure Kanagawa is built
-# add_dependencies(my_target kanagawa::exe)
+# add_dependencies(my_target kanagawa_runtime)
 #
 # # Get the path to the Kanagawa executable and use it, with a dependency to make sure it's built
 # add_custom_command(
 #   COMMAND "$<TARGET_FILE:kanagawa::exe>" ...
-#   DEPENDS kanagawa::exe
+#   DEPENDS ${KANAGAWA_RUNTIME_TARGETS}
 #   ...
 # )
 
@@ -106,13 +106,15 @@ add_custom_target(kanagawa_lib_inplace
 
 # Phony target that represents both the exe and the shared library
 add_custom_target(kanagawa_runtime)
-add_dependencies(kanagawa_runtime kanagawa_exe kanagawa_lib_inplace)
+add_dependencies(kanagawa_runtime ${KANAGAWA_RUNTIME_TARGETS})
 
 # IMPORTED executable for convenient references. You can get the path to the exe with
+# $<TARGET_FILE:kanagawa::exe>
+# Note that a target should never depend on kanagawa::exe
+# because CMake does not know how to rebuild it
+# Instead, depend on kanagawa_runtime (for target level dependencies)
+# or ${KANAGAWA_RUNTIME_TARGETS} (for add_custom_command)
 add_executable(kanagawa::exe IMPORTED GLOBAL)
 set_target_properties(kanagawa::exe PROPERTIES
     IMPORTED_LOCATION "${KANAGAWA_EXE_DEST}"
 )
-
-# Make the imported exe depend on the build of the real exe (+ lib copy)
-add_dependencies(kanagawa::exe kanagawa_runtime)

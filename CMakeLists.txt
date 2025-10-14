@@ -28,6 +28,13 @@ set(KANAGAWA_EXE_NAME "kanagawa")
 # This can not be the same as KANAGAWA_EXE_NAME (CMake does not like it)
 set(KANAGAWA_SHARED_LIBRARY_NAME "kanagawa-backend")
 
+# List of targets which comprise kanagawa_runtime 
+set(KANAGAWA_RUNTIME_TARGETS
+    kanagawa_lib_inplace
+    kanagawa_lib
+    kanagawa_exe
+)
+
 # Find all dependent libraries, headers, and tools.
 include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/deps.cmake)
 

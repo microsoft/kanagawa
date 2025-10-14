@@ -93,7 +93,7 @@ function(add_kanagawa target)
             ${_ARG_SOURCES}
     COMMAND ${CMAKE_COMMAND} -E echo "Kanagawa HLS completed for '${target}'" > "${_stamp}"
     DEPENDS
-      "$<TARGET_FILE:kanagawa::exe>"
+      ${KANAGAWA_RUNTIME_TARGETS}
       ${_ARG_SOURCES}
       "${_inputs_file}"
     WORKING_DIRECTORY "${_ARG_WORKING_DIRECTORY}"
@@ -103,7 +103,7 @@ function(add_kanagawa target)
 
   # Phony target others can depend on
   add_custom_target(${target} DEPENDS "${_stamp}")
-  add_dependencies(${target} kanagawa::exe)
+  add_dependencies(${target} kanagawa_runtime)
 
   # Expose OUTPUT_DIR to caller
   set(${target}_OUTPUT_DIR "${_ARG_OUTPUT_DIR}" PARENT_SCOPE)
@@ -126,7 +126,7 @@ endfunction()
 #     [OUTPUT_DIR <dir>]
 #     [WORKING_DIRECTORY <dir>]
 #     [SIM_EXE_OUT_VAR <variable-name>]
-#     [DEPENDS <target-or-file> ...]]
+#     [DEPENDS <target-or-file> ...]
 #     TESTBENCH_MODULE <testbench-module-name>
 #     SOURCES <src1> [<src2> ...]
 #     [OPTIONS <opt1> <opt2> ...]
