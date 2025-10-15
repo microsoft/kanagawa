@@ -55,19 +55,18 @@ containerStyle :: Css
 containerStyle = ".container" ? do
   display       flex
   flexDirection row
-  height        (vh 100)
 
 navStyle :: Css
 navStyle = ".nav" ? do
-  position          fixed
+  position          sticky
   flexBasis         (pct 10)
   backgroundColor   antiFlashWhite
   padding           (px 20) (px 20) (px 20) (px 20)
-  top               (px 20)
+  top               (vh 10)
   height            maxContent
   maxHeight         (vh 80)
   overflowY         auto
-  width             maxContent
+  minWidth          maxContent
   margin            (em 3) (em 3) (em 3) (em 3)
 
 navListPadding :: Css
