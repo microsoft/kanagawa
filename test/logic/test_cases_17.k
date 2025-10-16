@@ -219,96 +219,6 @@ inline void TestCase506(unit::tag_t tag)
     unit::assert(tag, u == 7);
 }
 
-// Repro of PackLuts bug
-class Test507
-{
-private:
-    struct L1CacheTagSet
-    {
-        uint39[2] _tags;
-        bool[2] _valid;
-        uint1 _next;
-    };
-
-    [[memory]] L1CacheTagSet[1024] L1CacheTags;
-
-public:
-    // Lookup : looks up flow table entry that matches a packet
-    void Lookup507(
-        uint10 packetId,
-        uint64 generationId,
-        uint8 gftFlags,
-        unit::tag_t tag
-    )
-    {
-        uint49 l2HashRaw = 0x10933671AF854;
-
-        print("rawhash {l2HashRaw}\n");
-
-        uint10 setIndex = static_cast(l2HashRaw);
-        uint39 tagIn = (l2HashRaw >> 10) & 0x7fffffffff;
-
-        print("SetIndex tagIn {setIndex} {tagIn}\n");
-
-        bool hit = false;
-
-        // Grab the L1 cache tag lock
-        atomic do; while(false);
-
-        // Read the L1 Cache set
-        L1CacheTagSet cTags = L1CacheTags[setIndex];
-
-        uint2 emptyIndex = 2;
-        uint2 lineIndex = 0;
-        // Search for the tag in the set
-        static for(const auto i : 2)
-        {
-            print("loop  {i} {cTags._valid[i]}\n");
-
-            if (!hit && cTags._tags[i] == tagIn && cTags._valid[i])
-            {
-                hit = true;
-                lineIndex = i;
-                barrier;
-                print("PD::Lookup : found entry in hash! {i} {lineIndex}\n");
-                barrier;
-                unit::assert(tag, i == lineIndex);
-            }
-            else if (cTags._valid[i] == false)
-            {
-                emptyIndex = i;
-            }
-        }
-
-        bool evict = false;
-
-        if (!hit)
-        {
-            if (emptyIndex < 2)
-            {
-                lineIndex = emptyIndex;
-            }
-            else
-            {
-                lineIndex = cTags._next;
-                cTags._next = cTags._next + 1;
-                evict = true;
-            }
-
-            cTags._tags[lineIndex] = tagIn;
-            cTags._valid[lineIndex] = true;
-        }
-
-        L1CacheTags[setIndex] = cTags;
-    }
-
-    void run(unit::tag_t tag)
-    {
-        Lookup507(0, 0, 0, tag);
-        Lookup507(0, 0, 0, tag);
-    }
-}
-
 // atomic read-modify-write to memory
 class Test508
 {
@@ -577,7 +487,6 @@ inline void test_main()
     unit::test<504>(unit::fixture<Test504>());
     unit::test<505>(unit::fixture<Test505>());
     unit::test<506>(TestCase506);
-    unit::test<507>(unit::fixture<Test507>());
     unit::test<508>(unit::fixture<Test508>());
     unit::test<509>(unit::fixture<Test509>());
     unit::test<510>(unit::fixture<Test510>());

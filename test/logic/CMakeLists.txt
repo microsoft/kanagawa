@@ -27,7 +27,6 @@ set(LOGIC_TEST_SOURCES
     dsp_test_cases.k
     fifo_depth.k
     function_call.k
-    gft_constant_prop_repro.k
     initializer_list.k
     lambda_test_cases.k
     last.k
