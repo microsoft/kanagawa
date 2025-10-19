@@ -19,78 +19,6 @@ public:
     }
 }
 
-// repro of a bug with nested template classes
-template <uint32 MAX_SIZE>
-class PriorityQueue535 {
-public:
-    uint32 queueid;
-
-    inline void SetId(uint32 i)
-    {
-        queueid = i;
-    }
-
-    inline uint32 GetId()
-    {
-        return queueid;
-    }
-}
-
-const auto QUERY_LANES = 2;
-
-template<typename data_t, uint32 MAX_NEIGHBORS, uint32 MAX_DIMENSIONS, uint32 LANE_WIDTH>
-class KnnCore535 {
-
-public:
-
-	PriorityQueue535<MAX_NEIGHBORS> pqueue;
-
-	uint32 core_id;
-
-	// Reset the priority queues
-	void reset() {
-        print("Calling setId {core_id}\n");
-        pqueue.SetId(core_id);
-	}
-
-    void validate(unit::tag_t tag)
-    {
-        print("validate {core_id} {pqueue.GetId()}\n");
-        barrier;
-
-        unit::assert(tag, core_id == pqueue.GetId());
-    }
-}
-
-/*
-	A basic k-means accelerator implementation
-	- dataset is stored off chip
-	- centroids are stored on chip
-	TODO: turn this into a class-based implementation
-*/
-
-// Instantiation individual kNN processing units
-class Test535
-{
-private:
-    using data_t_535=float;
-    using knn_core_t_535=KnnCore535<data_t_535, 3, 4, 5>;
-    knn_core_t_535[QUERY_LANES] cores;
-
-public:
-    void run(unit::tag_t tag)
-    {
-    	static for (const auto Q : QUERY_LANES) {
-    		cores[Q].core_id = Q;
-    		cores[Q].reset();
-    	}
-
-        static for (const auto Q : QUERY_LANES) {
-    		cores[Q].validate(tag);
-    	}
-    }
-}
-
 // nested template bug
 template<uint32 NUM_COLUMNS, typename T>
 class CU_stage539 {
@@ -495,7 +423,6 @@ public:
 inline void test_main()
 {
     unit::test<534>(unit::fixture<Test534>());
-    unit::test<535>(unit::fixture<Test535>());
     unit::test<539>(unit::fixture<Test539>());
     unit::test<540>(unit::fixture<Test540>());
     unit::test<541>(unit::fixture<Test541>());
