@@ -19,7 +19,7 @@ jobs:
       CCACHE_COMPILERCHECK: content
       CCACHE_CPP2: "true"
       CCACHE_BASEDIR: ${{ github.workspace }}
-      CCACHE_MAXSIZE: 500M
+      CCACHE_MAXSIZE: 8G
       BOOST_VERSION: "1.88.0"
 
     steps:
