@@ -21,14 +21,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # This is where we stage binaries and generated docs during the build, so they are in a consistent location that is easy to locate
-set(BUILD_OUTPUT_DIR "${CMAKE_BINARY_DIR}/build")
+set(BUILD_OUTPUT_DIR "${CMAKE_BINARY_DIR}/dist")
 set(BUILD_OUTPUT_BIN_DIR "${BUILD_OUTPUT_DIR}/bin")
 
 set(KANAGAWA_EXE_NAME "kanagawa")
 # This can not be the same as KANAGAWA_EXE_NAME (CMake does not like it)
 set(KANAGAWA_SHARED_LIBRARY_NAME "kanagawa-backend")
 
-# List of targets which comprise kanagawa_runtime 
+# List of targets which comprise kanagawa_runtime
 set(KANAGAWA_RUNTIME_TARGETS
     kanagawa_lib_inplace
     kanagawa_lib

@@ -1,0 +1,169 @@
+name: Build Compiler (Linux, out-of-tree)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-24.04
+
+    env:
+      CMAKE_BUILD_TYPE: RelWithDebInfo
+      CCACHE_COMPILERCHECK: content
+      CCACHE_MAXSIZE: 500M
+      BOOST_VERSION: "1.88.0"
+
+    steps:
+      - name: Set build dirs (use $RUNNER_TEMP)
+        shell: bash
+        run: |
+          echo "BUILD_DIR=$RUNNER_TEMP/build-ci" >> "$GITHUB_ENV"
+          echo "CCACHE_DIR=$RUNNER_TEMP/.ccache" >> "$GITHUB_ENV"
+
+      - name: Checkout (shallow, skip submodules)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: false
+
+      - name: Shallow init CIRCT (recursive, depth=1)
+        shell: bash
+        run: |
+          git submodule sync --recursive
+          git -c protocol.version=2 \
+              submodule update --init --recursive --depth 1
+
+      - name: Setup Haskell
+        id: haskell
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.6.7'
+          cabal-version: '3.12.1.0'
+          enable-stack: false
+
+      - name: Cache ghcup & cabal store
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.ghcup
+            ${{ steps.haskell.outputs.cabal-store }}
+          key: linux-ghc-9.6.7-cabal-3.12.1.0-${{ hashFiles('**/cabal.project*') }}
+          restore-keys: |
+            linux-ghc-9.6.7-cabal-3.12.1.0-
+
+      - name: cabal update
+        run: cabal update
+
+      - name: Init ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          max-size: ${{ env.CCACHE_MAXSIZE }}
+          verbose: 1
+
+      - name: Setup Verilator
+        uses: veryl-lang/setup-verilator@v1
+        with:
+          version: '5.036'
+
+      - name: Install Boost ${{ env.BOOST_VERSION }}
+        id: install_boost
+        uses: MarkusJx/install-boost@v2
+        with:
+          boost_version: ${{ env.BOOST_VERSION }}   # e.g. "1.88.0"
+          platform_version: '24.04'                 # ubuntu-24.04 runners
+          boost_install_dir: ${{ runner.temp }}
+
+      - name: Install deps (Ubuntu)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build pkg-config libgmp-dev
+
+      - name: Capture tool paths
+        id: paths
+        shell: bash
+        run: |
+          # Read BOOST_ROOT from the action OUTPUT
+          BOOST_ROOT_OUT="${{ steps.install_boost.outputs.BOOST_ROOT }}"
+          if [ -z "$BOOST_ROOT_OUT" ] || [ ! -d "$BOOST_ROOT_OUT" ]; then
+            echo "install-boost BOOST_ROOT output missing/invalid: '$BOOST_ROOT_OUT'" >&2
+            exit 1
+          fi
+          echo "BOOST_ROOT=$BOOST_ROOT_OUT" >> "$GITHUB_ENV"
+
+          ver="${BOOST_VERSION:-${{ env.BOOST_VERSION }}}"
+          candidates=(
+            "$BOOST_ROOT_OUT/lib/cmake/Boost-$ver"
+            "$BOOST_ROOT_OUT/lib64/cmake/Boost-$ver"
+            "$BOOST_ROOT_OUT/share/cmake/Boost-$ver"
+            "$BOOST_ROOT_OUT/lib/cmake"
+            "$BOOST_ROOT_OUT/lib64/cmake"
+            "$BOOST_ROOT_OUT/share/cmake"
+          )
+
+          found=""
+          for d in "${candidates[@]}"; do
+            if [ -f "$d/BoostConfig.cmake" ]; then
+              found="$d"
+              break
+            fi
+          done
+
+          if [ -z "$found" ]; then
+            echo "Could not locate BoostConfig.cmake under $BOOST_ROOT_OUT" >&2
+            echo "Checked:" >&2
+            printf "  - %s\n" "${candidates[@]}" >&2
+            echo "Directory snapshot of BOOST_ROOT:" >&2
+            (ls -la "$BOOST_ROOT_OUT" && echo "--- lib/cmake ---" && ls -la "$BOOST_ROOT_OUT/lib/cmake" 2>/dev/null || true) >&2
+            exit 1
+          fi
+
+          echo "BOOST_DIR=$found" >> "$GITHUB_ENV"
+
+          # ghcup & Verilator
+          echo "GHCUP_DIR=$HOME/.ghcup/bin" >> "$GITHUB_ENV"
+          VERILATOR_EXE="$(command -v verilator)"
+          [ -z "$VERILATOR_EXE" ] && { echo "Verilator not found"; exit 1; }
+          echo "VERILATOR_EXE=$VERILATOR_EXE" >> "$GITHUB_ENV"
+
+          # Help CMake search under BOOST_ROOT too
+          echo "CMAKE_PREFIX_PATH=$BOOST_ROOT_OUT${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}" >> "$GITHUB_ENV"
+
+      - name: Print tool versions/paths
+        run: |
+          ghc --version
+          cabal --version
+          verilator --version
+          echo "BOOST_ROOT=${{ env.BOOST_ROOT }}"
+          echo "BOOST_DIR=${{ env.BOOST_DIR }}"
+          echo "CMAKE_PREFIX_PATH=${{ env.CMAKE_PREFIX_PATH }}"
+
+      - name: Configure (CMake Generate)
+        run: |
+          cmake \
+            -S . \
+            -B "${{ env.BUILD_DIR }}" \
+            -G Ninja \
+            -DCMAKE_BUILD_TYPE="${{ env.CMAKE_BUILD_TYPE }}" \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_PREFIX_PATH="${{ env.CMAKE_PREFIX_PATH }}" \
+            -DBoost_DIR="${{ env.BOOST_DIR }}" \
+            -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
+            -DVERILATOR_EXE="${{ env.VERILATOR_EXE }}"
+
+      - name: Build kanagawa_runtime
+        run: cmake --build "${{ env.BUILD_DIR }}" --target kanagawa_runtime --parallel
+
+      - name: Upload compiler binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanagawa-linux-bin-${{ github.sha }}
+          path: ${{ env.BUILD_DIR }}/dist/bin/**
+          if-no-files-found: error
