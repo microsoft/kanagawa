@@ -2502,7 +2502,6 @@ void ArrayTypeStringTest()
     TestAssert("([[memory]] uint8[4])[64][32]" == mem_u8_64_32_4->GetName());
 }
 
-// Runs some basic sanity tests to validate internal compiler components
 int InternalTests()
 {
     int result = -1;
