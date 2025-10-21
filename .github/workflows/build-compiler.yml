@@ -17,6 +17,8 @@ jobs:
     env:
       CMAKE_BUILD_TYPE: RelWithDebInfo
       CCACHE_COMPILERCHECK: content
+      CCACHE_CPP2: "true"
+      CCACHE_BASEDIR: ${{ github.workspace }}
       CCACHE_MAXSIZE: 500M
       BOOST_VERSION: "1.88.0"
 
@@ -39,6 +41,49 @@ jobs:
           git submodule sync --recursive
           git -c protocol.version=2 \
               submodule update --init --recursive --depth 1
+
+      # Derive the CIRCT submodule commit
+      - name: Get CIRCT submodule SHA
+        id: circt
+        shell: bash
+        run: |
+          CIRCT_SHA=$(git ls-tree HEAD thirdparty/circt | awk '{print $3}')
+          if [ -z "$CIRCT_SHA" ]; then
+            echo "Could not determine CIRCT SHA. Check submodule path." >&2
+            exit 1
+          fi
+          echo "sha=$CIRCT_SHA" >> "$GITHUB_OUTPUT"
+
+      # Detect the C++ compiler & version (keeps cache safe across toolchain updates)
+      - name: Detect C++ compiler
+        id: ccinfo
+        shell: bash
+        run: |
+          if command -v clang++ >/dev/null 2>&1; then
+            CC_ID=clang
+            CC_VER=$(clang++ --version | head -n1 | tr ' ' '_')
+          elif command -v g++ >/dev/null 2>&1; then
+            CC_ID=gcc
+            CC_VER=$(g++ -dumpfullversion 2>/dev/null || g++ -dumpversion)
+          else
+            echo "No C++ compiler found on PATH" >&2
+            exit 1
+          fi
+          echo "id=$CC_ID"  >> "$GITHUB_OUTPUT"
+          echo "ver=$CC_VER" >> "$GITHUB_OUTPUT"
+
+      # Restore ccache across runs. Cache key includes compiler id+version, CIRCT sha, CMake build type, and build/cmake/circt.cmake hash.
+      - name: Restore ccache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: >
+            ccache-circt-${{ runner.os }}-${{ steps.ccinfo.outputs.id }}-${{ steps.ccinfo.outputs.ver }}-
+            ${{
+              steps.circt.outputs.sha
+            }}-${{ env.CMAKE_BUILD_TYPE }}-${{ hashFiles('build/cmake/circt.cmake') }}
+          restore-keys: |
+            ccache-circt-${{ runner.os }}-${{ steps.ccinfo.outputs.id }}-${{ steps.ccinfo.outputs.ver }}-
 
       - name: Setup Haskell
         id: haskell
@@ -160,6 +205,13 @@ jobs:
 
       - name: Build kanagawa_runtime
         run: cmake --build "${{ env.BUILD_DIR }}" --target kanagawa_runtime --parallel
+
+      - name: ccache stats
+        shell: bash
+        run: |
+          echo "==== ccache statistics ===="
+          ccache -s || true
+          echo "==========================="
 
       - name: Upload compiler binaries
         uses: actions/upload-artifact@v4
