@@ -19,15 +19,14 @@ jobs:
       CCACHE_COMPILERCHECK: content
       CCACHE_CPP2: "true"
       CCACHE_BASEDIR: ${{ github.workspace }}
-      CCACHE_NOHASHDIR: "true"
       CCACHE_MAXSIZE: 8G
       BOOST_VERSION: "1.88.0"
 
     steps:
-      - name: Set build dirs (use $RUNNER_TEMP)
+      - name: Set build dirs
         shell: bash
         run: |
-          echo "BUILD_DIR=$RUNNER_TEMP/build-ci" >> "$GITHUB_ENV"
+          echo "BUILD_DIR=$GITHUB_WORKSPACE/build-ci" >> "$GITHUB_ENV"
           echo "CCACHE_DIR=$RUNNER_TEMP/.ccache" >> "$GITHUB_ENV"
 
       - name: Checkout (shallow, skip submodules)
