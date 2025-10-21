@@ -8,8 +8,8 @@
 cmake_policy(SET CMP0167 NEW)
 
 ####
-# Boost version 1.74.0 or later
-find_package(Boost 1.74 CONFIG REQUIRED)
+# Boost version 1.83.0 or later
+find_package(Boost 1.83 CONFIG REQUIRED)
 
 # Pick the header target name that exists:
 if (TARGET Boost::headers)

@@ -54,7 +54,7 @@ cmake \
     -B $HOME/kanagawa-build \
     -G Ninja \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DBoost_DIR=$HOME/boost/lib/cmake/Boost-1.83.0 \
+    -DBoost_DIR=$HOME/boost/lib/cmake/Boost-1.88.0 \
     -DGHCUP_DIR=/home/user/.ghcup/bin \
     -DVERILATOR_EXE=/usr/local/bin/verilator
     -DRISCV64_GCC=$HOME/riscv64-unknown-elf-gcc/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14
@@ -150,7 +150,7 @@ each item in the list.
 
 - GCC 11.4.0 or later
 - ghcup (Haskell 9.6.7 and cabal 3.12.1.0) (see https://www.haskell.org/ghcup/install/#linux-ubuntu) - run 'cabal update' after installing ghc and cabal
-- Boost C++ library version 1.83.0 or later (see https://www.boost.org/)
+- Boost C++ library version 1.88.0 or later (see https://www.boost.org/)
 - CMake version 3.30 or later (see https://cmake.org/)
 - Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)
 - Verilator version 5.036. See the [Verilator documentation](https://veripool.org/guide/latest/install.html#git-quick-install) for detailed instructions. Note that version 5.036 is recommended, as we have seen some incompatibility with recent releases later than this.
