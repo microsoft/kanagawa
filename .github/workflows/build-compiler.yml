@@ -19,7 +19,7 @@ jobs:
       CCACHE_COMPILERCHECK: content
       CCACHE_CPP2: "true"
       CCACHE_BASEDIR: ${{ github.workspace }}
-      CCACHE_MAXSIZE: 8G
+      CCACHE_MAXSIZE: 2G
       BOOST_VERSION: "1.88.0"
 
     steps:
@@ -41,6 +41,17 @@ jobs:
           git submodule sync --recursive
           git -c protocol.version=2 \
               submodule update --init --recursive --depth 1
+
+      # Free up some disk space - this is a major constraint on GitHub-hosted runners
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          android: true
+          dotnet: true
+          haskell: false   # keep
+          docker-images: true
+          large-packages: true
+          tool-cache: false
 
       # Derive the CIRCT submodule commit
       - name: Get CIRCT submodule SHA
@@ -206,6 +217,11 @@ jobs:
       - name: Reset ccache stats
         run: ccache -z || true
 
+      - name: Disk usage (before build)
+        run: |
+          df -h
+          sudo du -h -d1 /usr/local | sort -h
+
       - name: Build kanagawa_runtime
         run: cmake --build "${{ env.BUILD_DIR }}" --target kanagawa_runtime --parallel
 
@@ -222,3 +238,18 @@ jobs:
           name: kanagawa-linux-bin-${{ github.sha }}
           path: ${{ env.BUILD_DIR }}/dist/bin/**
           if-no-files-found: error
+
+      - name: Reset ccache stats
+        if: always()
+        run: ccache -z || true
+
+      - name: Disk usage (after build)
+        if: always()
+        run: df -h
+
+      - name: Cleanup build dir & temp caches
+        if: always()
+        run: |
+          rm -rf "${{ env.BUILD_DIR }}" || true
+          rm -rf "$RUNNER_TEMP/.ccache/tmp" || true
+          du -sh "$RUNNER_TEMP" || true
