@@ -124,7 +124,7 @@ jobs:
           restore-keys: |
             ccache-circt-${{ runner.os }}-${{ steps.ccinfo.outputs.id }}-${{ steps.ccinfo.outputs.ver }}-
 
-      - name: Setup Haskell
+      - name: Install Haskell
         id: haskell
         uses: haskell-actions/setup@v2
         with:
@@ -151,12 +151,12 @@ jobs:
           max-size: ${{ env.CCACHE_MAXSIZE }}
           verbose: 1
 
-      - name: Setup Verilator
+      - name: Install Verilator
         uses: veryl-lang/setup-verilator@v1
         with:
           version: '5.036'
 
-      - name: Install Boost ${{ env.BOOST_VERSION }}
+      - name: Install Boost
         id: install_boost
         uses: MarkusJx/install-boost@v2
         with:
@@ -164,18 +164,18 @@ jobs:
           platform_version: ${{ inputs.boost-platform-version }}
           boost_install_dir: ${{ runner.temp }}
 
-      - name: Install deps (Linux)
+      - name: Install miscellaneous packages (Linux)
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake ninja-build pkg-config libgmp-dev
 
-      - name: Install deps (macOS)
+      - name: Install miscellaneous packages (macOS)
         if: runner.os == 'macOS'
         run: |
           brew install cmake ninja pkg-config gmp
 
-      - name: Setup Rust toolchain
+      - name: Install Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
@@ -276,7 +276,7 @@ jobs:
             cmake --build "${{ env.BUILD_DIR }}" --target "$target" --parallel
           done
 
-      - name: Run test targets
+      - name: Run tests
         if: ${{ inputs.test-targets != '' }}
         shell: bash
         run: |
