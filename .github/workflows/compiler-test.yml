@@ -1,0 +1,38 @@
+name: Kanagawa Compiler Build and Internal Test
+
+# This test builds the main Kanagawa targets on Linux and macOS and
+# then runs the compiler internal tests to ensure basic functionality.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-linux:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'kanagawa_runtime compiler_internal_test'
+      test-targets: 'run_compiler_tests'
+      artifact-name: 'kanagawa-linux-compiler-${{ github.sha }}'
+      artifact-path: 'build-ci/dist/**'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  # Temporarily disabled until the CMake configuration supports macOS
+  # build-macos:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'kanagawa_runtime'
+  #     test-targets: 'compiler_internal_test'
+  #     artifact-name: 'kanagawa-macos-compiler-${{ github.sha }}'
+  #     artifact-path: 'build-ci/dist/**'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'

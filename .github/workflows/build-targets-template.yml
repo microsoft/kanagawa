@@ -1,21 +1,49 @@
-name: Build Compiler (Linux, out-of-tree)
+name: Build and Test Targets Template
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  workflow_call:
+    inputs:
+      build-targets:
+        description: 'Space-separated list of CMake targets to build'
+        required: true
+        type: string
+      test-targets:
+        description: 'Space-separated list of CMake test targets to build (optional - will run after build-targets)'
+        required: false
+        type: string
+        default: ''
+      artifact-name:
+        description: 'Name for the artifact to upload (optional - if not provided, no artifact will be uploaded)'
+        required: false
+        type: string
+        default: ''
+      artifact-path:
+        description: 'Path to files to include in artifact'
+        required: false
+        type: string
+        default: 'build-ci/dist/bin/**'
+      cmake-build-type:
+        description: 'CMake build type'
+        required: false
+        type: string
+        default: 'RelWithDebInfo'
+      runs-on:
+        description: 'Runner type (ubuntu-24.04, macos-14, etc.)'
+        required: false
+        type: string
+        default: 'ubuntu-24.04'
+      boost-platform-version:
+        description: 'Platform version for Boost installation (24.04 for Ubuntu, 14 for macOS)'
+        required: false
+        type: string
+        default: '24.04'
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-24.04
+  build:
+    runs-on: ${{ inputs.runs-on }}
 
     env:
-      CMAKE_BUILD_TYPE: RelWithDebInfo
+      CMAKE_BUILD_TYPE: ${{ inputs.cmake-build-type }}
       CCACHE_COMPILERCHECK: content
       CCACHE_CPP2: "true"
       CCACHE_BASEDIR: ${{ github.workspace }}
@@ -110,9 +138,9 @@ jobs:
           path: |
             ~/.ghcup
             ${{ steps.haskell.outputs.cabal-store }}
-          key: linux-ghc-9.6.7-cabal-3.12.1.0-${{ hashFiles('**/cabal.project*') }}
+          key: ${{ runner.os }}-ghc-9.6.7-cabal-3.12.1.0-${{ hashFiles('**/cabal.project*') }}
           restore-keys: |
-            linux-ghc-9.6.7-cabal-3.12.1.0-
+            ${{ runner.os }}-ghc-9.6.7-cabal-3.12.1.0-
 
       - name: cabal update
         run: cabal update
@@ -133,13 +161,28 @@ jobs:
         uses: MarkusJx/install-boost@v2
         with:
           boost_version: ${{ env.BOOST_VERSION }}   # e.g. "1.88.0"
-          platform_version: '24.04'                 # ubuntu-24.04 runners
+          platform_version: ${{ inputs.boost-platform-version }}
           boost_install_dir: ${{ runner.temp }}
 
-      - name: Install deps (Ubuntu)
+      - name: Install deps (Linux)
+        if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake ninja-build pkg-config libgmp-dev
+
+      - name: Install deps (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install cmake ninja pkg-config gmp
+
+      - name: Setup Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          cache: true
+
+      - name: Install svgbob_cli
+        run: cargo install svgbob_cli --version 0.7.6
 
       - name: Capture tool paths
         id: paths
@@ -222,14 +265,36 @@ jobs:
           df -h
           sudo du -h -d1 /usr/local | sort -h
 
-      - name: Build kanagawa_runtime
-        run: cmake --build "${{ env.BUILD_DIR }}" --target kanagawa_runtime --parallel
+      ## Unique workflow steps: Build targets passed as input ##
 
-      - name: Build sandcastle
-        run: cmake --build "${{ env.BUILD_DIR }}" --target sandcastle_exe --parallel
+      - name: Build targets
+        shell: bash
+        run: |
+          # Build each target from the space-separated list
+          for target in ${{ inputs.build-targets }}; do
+            echo "Building target: $target"
+            cmake --build "${{ env.BUILD_DIR }}" --target "$target" --parallel
+          done
 
-      - name: Build risc-v-elf2mem
-        run: cmake --build "${{ env.BUILD_DIR }}" --target risc-v-elf2mem --parallel
+      - name: Run test targets
+        if: ${{ inputs.test-targets != '' }}
+        shell: bash
+        run: |
+          # Run each test target from the space-separated list
+          for target in ${{ inputs.test-targets }}; do
+            echo "Running test target: $target"
+            cmake --build "${{ env.BUILD_DIR }}" --target "$target" --parallel
+          done
+
+      - name: Upload artifacts
+        if: ${{ inputs.artifact-name != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ${{ inputs.artifact-path }}
+          if-no-files-found: error
+
+      ## End unique workflow steps ##
 
       - name: Log ccache stats
         shell: bash
@@ -237,13 +302,6 @@ jobs:
           echo "==== ccache statistics ===="
           ccache -s || true
           echo "==========================="
-
-      - name: Upload compiler binaries
-        uses: actions/upload-artifact@v4
-        with:
-          name: kanagawa-linux-bin-${{ github.sha }}
-          path: ${{ env.BUILD_DIR }}/dist/bin/**
-          if-no-files-found: error
 
       - name: Reset ccache stats
         if: always()
