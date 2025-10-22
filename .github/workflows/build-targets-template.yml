@@ -1,4 +1,4 @@
-name: Build Compiler Template (Reusable)
+name: Build and Test Targets Template
 
 on:
   workflow_call:
@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       test-targets:
-        description: 'Space-separated list of CMake test targets to run (optional - will run after build-targets)'
+        description: 'Space-separated list of CMake test targets to build (optional - will run after build-targets)'
         required: false
         type: string
         default: ''
@@ -286,7 +286,7 @@ jobs:
             cmake --build "${{ env.BUILD_DIR }}" --target "$target" --parallel
           done
 
-      - name: Upload compiler binaries
+      - name: Upload artifacts
         if: ${{ inputs.artifact-name != '' }}
         uses: actions/upload-artifact@v4
         with:
