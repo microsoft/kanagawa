@@ -225,6 +225,12 @@ jobs:
       - name: Build kanagawa_runtime
         run: cmake --build "${{ env.BUILD_DIR }}" --target kanagawa_runtime --parallel
 
+      - name: Build sandcastle
+        run: cmake --build "${{ env.BUILD_DIR }}" --target sandcastle_exe --parallel
+
+      - name: Build risc-v-elf2mem
+        run: cmake --build "${{ env.BUILD_DIR }}" --target risc-v-elf2mem --parallel
+
       - name: Log ccache stats
         shell: bash
         run: |
