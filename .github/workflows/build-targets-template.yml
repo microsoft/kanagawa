@@ -256,7 +256,7 @@ jobs:
             -DBoost_DIR="${{ env.BOOST_DIR }}" \
             -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
             -DVERILATOR_EXE="${{ env.VERILATOR_EXE }}" \
-            -DVERILATOR_PARALLEL_JOBS=2
+            -DKANAGAWA_HEAVY_PARALLEL_JOBS=2
 
       - name: Reset ccache stats
         run: ccache -z || true
