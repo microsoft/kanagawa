@@ -105,6 +105,11 @@ function(add_kanagawa target)
   add_custom_target(${target} DEPENDS "${_stamp}")
   add_dependencies(${target} kanagawa_runtime)
 
+  # If heavy job pool is configured, assign it to this target (Kanagawa compilation can be memory-intensive)
+  if(KANAGAWA_HEAVY_PARALLEL_JOBS)
+    set_property(TARGET ${target} PROPERTY JOB_POOL_COMPILE heavy_job_pool)
+  endif()
+
   # Expose OUTPUT_DIR to caller
   set(${target}_OUTPUT_DIR "${_ARG_OUTPUT_DIR}" PARENT_SCOPE)
 
@@ -240,6 +245,11 @@ function(add_verilator verilate_target)
   add_custom_target(${verilate_target}
     DEPENDS ${SIMULATION_EXE}
   )
+
+  # If heavy job pool is configured, assign it to this target (Verilator can be memory-intensive)
+  if(KANAGAWA_HEAVY_PARALLEL_JOBS)
+    set_property(TARGET ${verilate_target} PROPERTY JOB_POOL_COMPILE heavy_job_pool)
+  endif()
 
   if (_ARG_TEST_NAME)
     add_test(NAME ${_ARG_TEST_NAME}

@@ -48,7 +48,7 @@ private:
 public:
     void Test(unit::tag_t tag, uint32 i)
     {
-        _classWithCallback.Entry(tag, i, i + 6);
+        _classWithCallback.Entry(tag, i, static_cast(i + 6));
     }
 }
 
@@ -84,7 +84,7 @@ public:
         {
             // back to front to increase the chances
             // of catching an uninitialized entry
-            index_t<64> i = 64 - tid - 1;
+            index_t<64> i = static_cast(64 - tid - 1);
 
             uint32 actual = _mem[i];
             uint32 expected = (i % 8) + 1;
@@ -129,7 +129,7 @@ class EndTransactionOnCallbacksInner
 
     void CallCallback(unit::tag_t tag, uint32 tid, uint32 threadCount, uint32 callsite, [[last]] bool isLast)
     {
-        _callback(tag, tid, threadCount, N * 2 + callsite, isLast);
+        _callback(tag, tid, threadCount, static_cast(N * 2 + callsite), isLast);
     }
 
     template<auto M>

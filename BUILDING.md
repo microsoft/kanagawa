@@ -67,6 +67,15 @@ system installation location for CMake library configurations:
 -DCMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake
 ```
 
+If building in WSL or some memory constrained environment, you may wish to add this option:
+
+```
+-DKANAGAWA_HEAVY_PARALLEL_JOBS=2
+```
+
+This restricts the number of parallel jobs, for memory intensive tasks such as
+Kanagawa or Verilator compilation, to 2 - even if you forget to specify a `-j2` argument to CMake or Ninja.
+
 ### Building the compiler, unit tests, etc.
 
 To build individual targets, use ninja:
