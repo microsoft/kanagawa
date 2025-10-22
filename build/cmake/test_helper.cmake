@@ -241,6 +241,11 @@ function(add_verilator verilate_target)
     DEPENDS ${SIMULATION_EXE}
   )
 
+  # If Verilator job pool is configured, assign it to this target
+  if(VERILATOR_PARALLEL_JOBS)
+    set_property(TARGET ${verilate_target} PROPERTY JOB_POOL_COMPILE verilator_job_pool)
+  endif()
+
   if (_ARG_TEST_NAME)
     add_test(NAME ${_ARG_TEST_NAME}
       COMMAND ${SIMULATION_EXE}

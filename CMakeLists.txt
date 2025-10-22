@@ -46,6 +46,18 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/thirdparty/circt/llvm/llvm)
 # Add build of the Kanagawa compiler
 add_subdirectory(compiler)
 
+# Configure Verilator concurrency (limit for memory-constrained environments)
+set(VERILATOR_PARALLEL_JOBS "" CACHE STRING
+    "Maximum number of concurrent Verilator jobs. Leave empty for unlimited (default). Set to 2 for memory-constrained CI environments.")
+if(VERILATOR_PARALLEL_JOBS)
+  if(NOT CMAKE_GENERATOR MATCHES "Ninja")
+    message(WARNING "Verilator job pooling is only available with Ninja generators.")
+  else()
+    set_property(GLOBAL APPEND PROPERTY JOB_POOLS verilator_job_pool=${VERILATOR_PARALLEL_JOBS})
+    message(STATUS "Verilator job pool enabled with ${VERILATOR_PARALLEL_JOBS} parallel jobs")
+  endif()
+endif()
+
 # Include helper functions for building unit tests
 include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/test_helper.cmake)
 
