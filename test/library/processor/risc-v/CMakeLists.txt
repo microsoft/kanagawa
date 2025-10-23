@@ -159,8 +159,19 @@ function(add_riscv_simulation_test test_name)
   add_dependencies(riscv_library_tests ${SCOPED_TARGET})
 endfunction()
 
+# Add a custom target to build all the RISC-V library tests
 add_custom_target(riscv_library_tests)
+
 add_dependencies(library_tests riscv_library_tests)
+
+# Add a custom target to run all the RISC-V library tests
+add_custom_target(run_riscv_library_tests
+    COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_CURRENT_BINARY_DIR} -R "^library\\.riscv\\." --output-on-failure --verbose
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    DEPENDS riscv_library_tests
+    COMMENT "Run all RISC-V library tests"
+    USES_TERMINAL
+)
 
 add_riscv_simulation_exe(
   "riscv_sim.1hart"
@@ -199,6 +210,7 @@ add_riscv_simulation_exe(
   HARTS 8
   ENABLE_M
 )
+
 
 # Using one of the simulation executables created above, and an IMEM and DMEM file created
 # from an .elf file created elsewhere, load and execute a RISC-V test program
