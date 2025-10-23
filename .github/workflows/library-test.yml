@@ -1,0 +1,51 @@
+name: Library Tests
+
+# This test builds and runs the Kanagawa library tests split across multiple runners
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-group1-linux:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'library_tests_1'
+      test-targets: 'run_library_tests_1'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  build-group2-linux:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'library_tests_2'
+      test-targets: 'run_library_tests_2'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  # Temporarily disabled until the CMake configuration supports macOS
+  # build-macos:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'library_tests_1'
+  #     test-targets: 'run_library_tests_1'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
+  #
+  # build-macos:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'library_tests_2'
+  #     test-targets: 'run_library_tests_2'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
