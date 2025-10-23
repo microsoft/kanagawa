@@ -106,13 +106,25 @@ set(LOGIC_TEST_SOURCES
 
 function(add_logic_test_suite suite_name)
   set(_opts)
-  set(_one AGGREGATE_TARGET)
+  set(_one)
   set(_multi OPTIONS TEST_SOURCES)
   cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
 
   if (NOT _ARG_TEST_SOURCES)
     set(_ARG_TEST_SOURCES ${LOGIC_TEST_SOURCES})
   endif()
+
+  set(suit_target_name "logic_tests_${suite_name}")
+  add_custom_target(${suit_target_name})
+  add_dependencies(logic_tests ${suit_target_name})
+
+  add_custom_target("run_logic_tests_${suite_name}"
+      COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_CURRENT_BINARY_DIR} -R "^logic\\.${suite_name}\\." --output-on-failure --verbose
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+      DEPENDS ${suit_target_name}
+      COMMENT "Run all logic tests"
+      USES_TERMINAL
+  )
 
   set(OPTIONS
     "--Wno-initializer-overrides"
@@ -144,23 +156,15 @@ function(add_logic_test_suite suite_name)
       SCOPE logic
       SOURCES ${_srcfile}
       OPTIONS ${OPTIONS}
-      AGGREGATE_TARGET ${_ARG_AGGREGATE_TARGET}
+      AGGREGATE_TARGET ${suit_target_name}
       ${CLEAN_FLAG}
     )
   endforeach()
 
 endfunction()
 
-# Add targets to allow us to split up the logic tests across two Github workflows / PR checks
-add_custom_target(logic_tests_1)
-add_custom_target(logic_tests_2)
-add_custom_target(logic_tests_3)
-add_custom_target(logic_tests_4)
-
 # Add a target to build all logic tests
 add_custom_target(logic_tests)
-add_dependencies(logic_tests logic_tests_1 logic_tests_2 logic_tests_3 logic_tests_4)
-
 
 # Add a target to run all logic tests
 add_custom_target(run_logic_tests
@@ -173,30 +177,10 @@ add_custom_target(run_logic_tests
 
 # All of the tests in the LOGIC_TEST_SOURCES list above are run for each of these test suite definitions
 # A test suite is a set of test run against a set of compiler options.
-add_logic_test_suite(default
-  AGGREGATE_TARGET logic_tests_1
-)
-add_logic_test_suite(O0
-  AGGREGATE_TARGET logic_tests_1
-  OPTIONS "-O0"
-)
-add_logic_test_suite(O1
-  AGGREGATE_TARGET logic_tests_2
-  OPTIONS "-O1"
-)
-add_logic_test_suite(RMWR1
-  AGGREGATE_TARGET logic_tests_2
-  OPTIONS "--rmw-memory-read-delay=1"
-)
-add_logic_test_suite(MEM2REG
-  AGGREGATE_TARGET logic_tests_3
-  OPTIONS "--mem-to-reg=100000"
-)
-add_logic_test_suite(MEM_TO_ARRAY
-  AGGREGATE_TARGET logic_tests_3
-  OPTIONS "--force-mem-to-array=64"
-)
-add_logic_test_suite(STALL2
-  AGGREGATE_TARGET logic_tests_4
-  OPTIONS "--debug" "--stall=2"
-)
+add_logic_test_suite(DEFAULT)
+add_logic_test_suite(O0 OPTIONS "-O0")
+add_logic_test_suite(O1 OPTIONS "-O1")
+add_logic_test_suite(RMWR1 OPTIONS "--rmw-memory-read-delay=1")
+add_logic_test_suite(MEM2REG OPTIONS "--mem-to-reg=100000")
+add_logic_test_suite(MEM2ARRAY OPTIONS "--force-mem-to-array=64")
+add_logic_test_suite(STALL2 OPTIONS "--debug" "--stall=2")
