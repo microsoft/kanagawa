@@ -114,6 +114,18 @@ function(add_logic_test_suite suite_name)
     set(_ARG_TEST_SOURCES ${LOGIC_TEST_SOURCES})
   endif()
 
+  set(suit_target_name "logic_tests_${suite_name}")
+  add_custom_target(${suit_target_name})
+  add_dependencies(logic_tests ${suit_target_name})
+
+  add_custom_target("run_logic_tests_${suite_name}"
+      COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_CURRENT_BINARY_DIR} -R "^logic\\.${suite_name}\\." --output-on-failure --verbose
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+      DEPENDS ${suit_target_name}
+      COMMENT "Run all logic tests"
+      USES_TERMINAL
+  )
+
   set(OPTIONS
     "--Wno-initializer-overrides"
     "--Wno-shadow"
@@ -133,11 +145,19 @@ function(add_logic_test_suite suite_name)
     get_filename_component(BASE_NAME "${_srcfile}" NAME_WE)
     set(TEST_NAME "${suite_name}.${BASE_NAME}")
 
+    # Clean Verilator byproducts in GitHub Actions to save disk space
+    if(DEFINED ENV{GITHUB_ACTIONS})
+      set(CLEAN_FLAG CLEAN_VERILATOR_BYPRODUCTS)
+    else()
+      set(CLEAN_FLAG)
+    endif()
+
     add_kanagawa_verilator_test(${TEST_NAME}
       SCOPE logic
       SOURCES ${_srcfile}
       OPTIONS ${OPTIONS}
-      AGGREGATE_TARGET logic_tests
+      AGGREGATE_TARGET ${suit_target_name}
+      ${CLEAN_FLAG}
     )
   endforeach()
 
@@ -157,10 +177,10 @@ add_custom_target(run_logic_tests
 
 # All of the tests in the LOGIC_TEST_SOURCES list above are run for each of these test suite definitions
 # A test suite is a set of test run against a set of compiler options.
-add_logic_test_suite(default)
+add_logic_test_suite(DEFAULT)
 add_logic_test_suite(O0 OPTIONS "-O0")
 add_logic_test_suite(O1 OPTIONS "-O1")
-add_logic_test_suite(STALL2 OPTIONS "--debug" "--stall=2")
-add_logic_test_suite(MEM2REG OPTIONS "--mem-to-reg=100000")
-add_logic_test_suite(MEM_TO_ARRAY OPTIONS "--force-mem-to-array=64")
 add_logic_test_suite(RMWR1 OPTIONS "--rmw-memory-read-delay=1")
+add_logic_test_suite(MEM2REG OPTIONS "--mem-to-reg=100000")
+add_logic_test_suite(MEM2ARRAY OPTIONS "--force-mem-to-array=64")
+add_logic_test_suite(STALL2 OPTIONS "--debug" "--stall=2")

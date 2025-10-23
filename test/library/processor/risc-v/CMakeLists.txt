@@ -44,6 +44,13 @@ function(add_riscv_simulation_exe name)
     set(_ARG_TESTBENCH "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/testbench.sv")
   endif()
 
+  # Clean Verilator byproducts in GitHub Actions to save disk space
+  if(DEFINED ENV{GITHUB_ACTIONS})
+    set(CLEAN_FLAG CLEAN_VERILATOR_BYPRODUCTS)
+  else()
+    set(CLEAN_FLAG)
+  endif()
+
   # Add Kanagawa codegen and verilation, but do not generate a ctest
   # Multiple consumers of the Verilated executable will generate their
   # own ctest with different command-line arguments. This allows one
@@ -56,6 +63,7 @@ function(add_riscv_simulation_exe name)
     GENERATED_RTL
       risc_v_wrapper.sv
       risc_v_wrapper_types.sv
+    ${CLEAN_FLAG}
   )
 endfunction()
 

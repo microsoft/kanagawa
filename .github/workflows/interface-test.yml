@@ -1,6 +1,6 @@
 name: Interface Tests
 
-# This test builds the Kanagawa interface tests
+# This test builds and runs the Kanagawa interface tests
 
 on:
   push:
