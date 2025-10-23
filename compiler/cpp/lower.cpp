@@ -5388,8 +5388,12 @@ void SetFifoTransactionSizes(Program& program)
 
                         const Function* const dstFunction = dstBlock->_function;
 
+                        const bool isFunctionCall = (op._flags._enqueue._type == EnqueueType::FunctionCall);
+
                         if (transactionSize > 0)
                         {
+                            assert(isFunctionCall);
+
                             // Determine which bit is the end_transaction bit
                             const size_t endTransactionLocalRegister = dstFunction->GetEndTransactionRegister();
 
@@ -5399,7 +5403,7 @@ void SetFifoTransactionSizes(Program& program)
                             regDesc.Fifo()._transactionBitOffset = transactionBitOffset;
                             regDesc.Fifo()._transactionSize = transactionSize;
                         }
-                        else if (enableTransactionSizeWarning && dstFunction->HasEndTransactionParameter())
+                        else if (enableTransactionSizeWarning && dstFunction->HasEndTransactionParameter() && isFunctionCall)
                         {
                             Location loc = {};
 
