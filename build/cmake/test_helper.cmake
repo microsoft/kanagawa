@@ -175,6 +175,7 @@ function(add_verilator verilate_target)
 
   set(VERILATOR_ARGS
     --binary
+    --build-clean
     --Mdir "${_ARG_OUTPUT_DIR}"
     --top-module "${_ARG_TESTBENCH_MODULE}"
     --assert
