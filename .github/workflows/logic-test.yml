@@ -1,0 +1,88 @@
+name: Logic Tests
+
+# This test builds and runs Kanagawa logic tests
+# The logic tests are split into separate jobs to avoid disk space issues on a single runner
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-linux-1:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'logic_tests_1'
+      test-targets: 'run_logic_tests'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  build-linux-2:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'logic_tests_2'
+      test-targets: 'run_logic_tests'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  build-linux-3:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'logic_tests_3'
+      test-targets: 'run_logic_tests'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  build-linux-4:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'logic_tests_4'
+      test-targets: 'run_logic_tests'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  # Temporarily disabled until the CMake configuration supports macOS
+  # build-macos-1:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'logic_tests_1'
+  #     test-targets: 'run_logic_tests'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
+
+  # build-macos-2:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'logic_tests_2'
+  #     test-targets: 'run_logic_tests'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
+
+  # build-macos-3:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'logic_tests_3'
+  #     test-targets: 'run_logic_tests'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
+
+  # build-macos-4:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'logic_tests_4'
+  #     test-targets: 'run_logic_tests'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'

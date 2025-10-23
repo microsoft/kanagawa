@@ -146,10 +146,12 @@ endfunction()
 # Add targets to allow us to split up the logic tests across two Github workflows / PR checks
 add_custom_target(logic_tests_1)
 add_custom_target(logic_tests_2)
+add_custom_target(logic_tests_3)
+add_custom_target(logic_tests_4)
 
 # Add a target to build all logic tests
 add_custom_target(logic_tests)
-add_dependencies(logic_tests logic_tests_1 logic_tests_2)
+add_dependencies(logic_tests logic_tests_1 logic_tests_2 logic_tests_3 logic_tests_4)
 
 
 # Add a target to run all logic tests
@@ -163,10 +165,30 @@ add_custom_target(run_logic_tests
 
 # All of the tests in the LOGIC_TEST_SOURCES list above are run for each of these test suite definitions
 # A test suite is a set of test run against a set of compiler options.
-add_logic_test_suite(default AGGREGATE_TARGET logic_tests_1)
-add_logic_test_suite(O0 AGGREGATE_TARGET logic_tests_1 OPTIONS "-O0")
-add_logic_test_suite(O1 AGGREGATE_TARGET logic_tests_1 OPTIONS "-O1")
-add_logic_test_suite(RMWR1 AGGREGATE_TARGET logic_tests_1 OPTIONS "--rmw-memory-read-delay=1")
-add_logic_test_suite(STALL2 AGGREGATE_TARGET logic_tests_2 OPTIONS "--debug" "--stall=2")
-add_logic_test_suite(MEM2REG AGGREGATE_TARGET logic_tests_2 OPTIONS "--mem-to-reg=100000")
-add_logic_test_suite(MEM_TO_ARRAY AGGREGATE_TARGET logic_tests_2 OPTIONS "--force-mem-to-array=64")
+add_logic_test_suite(default
+  AGGREGATE_TARGET logic_tests_1
+)
+add_logic_test_suite(O0
+  AGGREGATE_TARGET logic_tests_1
+  OPTIONS "-O0"
+)
+add_logic_test_suite(O1
+  AGGREGATE_TARGET logic_tests_2
+  OPTIONS "-O1"
+)
+add_logic_test_suite(RMWR1
+  AGGREGATE_TARGET logic_tests_2
+  OPTIONS "--rmw-memory-read-delay=1"
+)
+add_logic_test_suite(MEM2REG
+  AGGREGATE_TARGET logic_tests_3
+  OPTIONS "--mem-to-reg=100000"
+)
+add_logic_test_suite(MEM_TO_ARRAY
+  AGGREGATE_TARGET logic_tests_3
+  OPTIONS "--force-mem-to-array=64"
+)
+add_logic_test_suite(STALL2
+  AGGREGATE_TARGET logic_tests_4
+  OPTIONS "--debug" "--stall=2"
+)
