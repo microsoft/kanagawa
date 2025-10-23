@@ -299,6 +299,8 @@ inline void TestIndirectTransaction(unit::tag_t tag)
     class Helper
     {
     private:
+        const auto MaxTransactionSize = TransactionSizeA > TransactionSizeB ? TransactionSizeA : TransactionSizeB;
+
         uint32 Shared([[last]] bool is_last)
         {
             return first(atomically([](uint32 prev)->uint32{return prev + 1;}));
@@ -308,7 +310,7 @@ inline void TestIndirectTransaction(unit::tag_t tag)
         // But calls Shared which has multiple call sites
         uint32 SingleCallSite([[last]] bool is_last)
         {
-            return Shared(is_last);
+            return [[transaction_size(MaxTransactionSize)]] Shared(is_last);
         }
 
         inline void ValidateResult(unit::tag_t tag, uint32 tid, uint32 transaction_size, uint32 actual)
