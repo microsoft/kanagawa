@@ -1,6 +1,6 @@
 name: Library Tests
 
-# This test builds and runs the Kanagawa library tests
+# This test builds and runs the Kanagawa library tests split across multiple runners
 
 on:
   push:
@@ -13,11 +13,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-linux:
+  build-group1-linux:
     uses: ./.github/workflows/build-targets-template.yml
     with:
-      build-targets: 'library_tests'
-      test-targets: 'run_library_tests'
+      build-targets: 'library_tests_1'
+      test-targets: 'run_library_tests_1'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  build-group2-linux:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'library_tests_2'
+      test-targets: 'run_library_tests_2'
       cmake-build-type: 'RelWithDebInfo'
       runs-on: 'ubuntu-24.04'
       boost-platform-version: '24.04'
@@ -26,8 +35,17 @@ jobs:
   # build-macos:
   #   uses: ./.github/workflows/build-targets-template.yml
   #   with:
-  #     build-targets: 'library_tests'
-  #     test-targets: 'run_library_tests'
+  #     build-targets: 'library_tests_1'
+  #     test-targets: 'run_library_tests_1'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
+  #
+  # build-macos:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'library_tests_2'
+  #     test-targets: 'run_library_tests_2'
   #     cmake-build-type: 'RelWithDebInfo'
   #     runs-on: 'macos-14'
   #     boost-platform-version: '14'
