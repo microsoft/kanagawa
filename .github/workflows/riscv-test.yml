@@ -1,0 +1,35 @@
+name: RISC-V Library Tests
+
+# This test builds and runs the RISC-V library tests that require the RISC-V GCC toolchain.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-linux:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'riscv_library_tests'
+      test-targets: 'run_riscv_library_tests'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+      install-riscv64-gcc: true
+
+  # Temporarily disabled until the CMake configuration supports macOS
+  # build-macos:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'riscv_library_tests'
+  #     test-targets: 'run_riscv_library_tests'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
+  #     install-riscv64-gcc: true

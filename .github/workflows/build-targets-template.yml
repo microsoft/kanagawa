@@ -37,6 +37,16 @@ on:
         required: false
         type: string
         default: '24.04'
+      install-riscv64-gcc:
+        description: 'Install RISC-V 64-bit GCC toolchain'
+        required: false
+        type: boolean
+        default: false
+      heavy-parallel-jobs:
+        description: 'Number of parallel jobs for heavy compilation tasks'
+        required: false
+        type: number
+        default: 2
 
 jobs:
   build:
@@ -184,6 +194,16 @@ jobs:
       - name: Install svgbob_cli
         run: cargo install svgbob_cli --version 0.7.6
 
+      - name: Install RISC-V 64-bit GCC toolchain
+        if: ${{ inputs.install-riscv64-gcc }}
+        shell: bash
+        run: |
+          ARCHIVE="riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz"
+          wget "https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/${ARCHIVE}"
+          tar -xzf "${ARCHIVE}" -C "$RUNNER_TEMP"
+          rm "${ARCHIVE}"
+          echo "RISCV64_GCC_DIR=$RUNNER_TEMP/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14" >> "$GITHUB_ENV"
+
       - name: Capture tool paths
         id: paths
         shell: bash
@@ -256,7 +276,8 @@ jobs:
             -DBoost_DIR="${{ env.BOOST_DIR }}" \
             -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
             -DVERILATOR_EXE="${{ env.VERILATOR_EXE }}" \
-            -DKANAGAWA_HEAVY_PARALLEL_JOBS=2
+            ${{ inputs.install-riscv64-gcc && format('-DRISCV64_GCC={0}', env.RISCV64_GCC_DIR) || '' }} \
+            -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }}
 
       - name: Reset ccache stats
         run: ccache -z || true

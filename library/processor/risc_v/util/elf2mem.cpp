@@ -68,9 +68,9 @@ int main(int argc, const char** argv)
 
         auto entry_point = LoadElf(
             std::bind(WriteMem, std::ref(imem), imemBaseAddr, _1, _2, _3, _4),
-            0xFFFFFFFF,
+            0x80000,
             std::bind(WriteMem, std::ref(dmem), dmemBaseAddr, _1, _2, _3, _4),
-            0xFFFFFFFF,
+            0x80000,
             elf.data(), elf.size() * sizeof(int32_t));
 
         std::string baseName = argv[1];
