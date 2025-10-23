@@ -8,6 +8,9 @@
 # Build chkdoc executable
 add_executable(chkdoc chkdoc.cpp)
 
+# Link against Boost headers (required for boost/algorithm/string.hpp)
+target_link_libraries(chkdoc PRIVATE Boost::headers)
+
 # chkdoc is dependent on the kanagawa compiler so that compiler changes
 # will cause the compiler to be rebuilt before running tests
 add_dependencies(chkdoc kanagawa_runtime)

@@ -1,0 +1,34 @@
+name: Check Documentation
+
+# This test builds and runs the chkdoc tests. These tests
+# validate Kanagawa code snippets embedded in markdown files.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-linux:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'chkdoc_tests'
+      test-targets: 'run_chkdoc_tests'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  # Temporarily disabled until the CMake configuration supports macOS
+  # build-macos:
+  #   uses: ./.github/workflows/build-targets-template.yml
+  #   with:
+  #     build-targets: 'chkdoc_tests'
+  #     test-targets: 'run_chkdoc_tests'
+  #     cmake-build-type: 'RelWithDebInfo'
+  #     runs-on: 'macos-14'
+  #     boost-platform-version: '14'
