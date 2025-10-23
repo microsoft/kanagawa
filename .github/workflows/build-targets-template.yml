@@ -42,6 +42,11 @@ on:
         required: false
         type: boolean
         default: false
+      heavy-parallel-jobs:
+        description: 'Number of parallel jobs for heavy compilation tasks'
+        required: false
+        type: number
+        default: 2
 
 jobs:
   build:
@@ -272,7 +277,7 @@ jobs:
             -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
             -DVERILATOR_EXE="${{ env.VERILATOR_EXE }}" \
             ${{ inputs.install-riscv64-gcc && format('-DRISCV64_GCC={0}', env.RISCV64_GCC_DIR) || '' }} \
-            -DKANAGAWA_HEAVY_PARALLEL_JOBS=2
+            -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }}
 
       - name: Reset ccache stats
         run: ccache -z || true
