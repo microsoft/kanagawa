@@ -133,11 +133,19 @@ function(add_logic_test_suite suite_name)
     get_filename_component(BASE_NAME "${_srcfile}" NAME_WE)
     set(TEST_NAME "${suite_name}.${BASE_NAME}")
 
+    # Clean Verilator byproducts in GitHub Actions to save disk space
+    if(DEFINED ENV{GITHUB_ACTIONS})
+      set(CLEAN_FLAG CLEAN_VERILATOR_BYPRODUCTS)
+    else()
+      set(CLEAN_FLAG)
+    endif()
+
     add_kanagawa_verilator_test(${TEST_NAME}
       SCOPE logic
       SOURCES ${_srcfile}
       OPTIONS ${OPTIONS}
       AGGREGATE_TARGET ${_ARG_AGGREGATE_TARGET}
+      ${CLEAN_FLAG}
     )
   endforeach()
 

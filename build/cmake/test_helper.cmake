@@ -131,6 +131,7 @@ endfunction()
 #     [OUTPUT_DIR <dir>]
 #     [WORKING_DIRECTORY <dir>]
 #     [SIM_EXE_OUT_VAR <variable-name>]
+#     [CLEAN_BYPRODUCTS]
 #     [DEPENDS <target-or-file> ...]
 #     TESTBENCH_MODULE <testbench-module-name>
 #     SOURCES <src1> [<src2> ...]
@@ -143,7 +144,7 @@ endfunction()
 # VERILATOR_OUTPUT.
 #
 function(add_verilator verilate_target)
-  set(_opts)
+  set(_opts CLEAN_BYPRODUCTS)
   set(_one TEST_NAME OUTPUT_DIR WORKING_DIRECTORY TESTBENCH_MODULE SIM_EXE_OUT_VAR)
   set(_multi SOURCES OPTIONS DEPENDS)
   cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
@@ -175,7 +176,6 @@ function(add_verilator verilate_target)
 
   set(VERILATOR_ARGS
     --binary
-    --build-clean
     --Mdir "${_ARG_OUTPUT_DIR}"
     --top-module "${_ARG_TESTBENCH_MODULE}"
     --assert
@@ -225,12 +225,28 @@ function(add_verilator verilate_target)
 
   set(SIMULATION_EXE "${_ARG_OUTPUT_DIR}/V${_ARG_TESTBENCH_MODULE}")
 
+  # Optional post-build cleanup command
+  set(POST_COMMANDS)
+  if(_ARG_CLEAN_BYPRODUCTS)
+    list(APPEND POST_COMMANDS
+      COMMAND ${CMAKE_COMMAND} -E echo "Cleaning Verilator byproduct files for target '${verilate_target}'"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*.cpp"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*.h"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*.o"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*.a"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*.d"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*.mk"
+      COMMAND ${CMAKE_COMMAND} -E rm -f "${_ARG_OUTPUT_DIR}/*.dat"
+    )
+  endif()
+
   # Run Verilator to generate C++ from SystemVerilog
   add_custom_command(
     OUTPUT ${SIMULATION_EXE}
     ${PRE_COMMANDS}
     COMMAND ${CMAKE_COMMAND} -E echo "Running Verilator to generate C++ from SystemVerilog for target '${verilate_target}'"
     COMMAND ${VERILATOR_EXE} ${VERILATOR_ARGS} ${_ARG_SOURCES}
+    ${POST_COMMANDS}
     DEPENDS ${_ARG_DEPENDS}
     WORKING_DIRECTORY "${_ARG_WORKING_DIRECTORY}"
     COMMENT "Verilating sources for target '${verilate_target}'"
@@ -275,6 +291,7 @@ endfunction()
 #     [TESTBENCH_MODULE <systemverilog-module-name>]
 #     [OUTPUT_DIR <dir>]
 #     [AGGREGATE_TARGET <aggregate-target-name>]
+#     [CLEAN_VERILATOR_BYPRODUCTS]
 #
 #   SCOPE (optional)
 #     The type/scope of the test, for example "library", "syntax", "logic", etc.
@@ -319,6 +336,10 @@ endfunction()
 #     The name of the SystemVerilog testbench module. This is the top module
 #     in the Verilator simulation. Default: Testbench.
 #
+#   CLEAN_VERILATOR_BYPRODUCTS (optional)
+#     If set, Verilator intermediate files (C++ sources, object files, etc.)
+#     will be deleted after the simulation executable is built, saving disk space.
+#
 #   AGGREGATE_TARGET (optional)
 #     If provided, the test will be added as a dependency to the target with the
 #     specified name. This is useful to have a target to run all tests of a
@@ -329,7 +350,7 @@ endfunction()
 #     The Verilator simulation will be placed in a subfolder named 'verilator'
 #
 function(add_kanagawa_verilator_test name)
-  set(_opts NO_CTEST)
+  set(_opts NO_CTEST CLEAN_VERILATOR_BYPRODUCTS)
   set(_one SCOPE TESTBENCH TESTBENCH_MODULE AGGREGATE_TARGET)
   set(_multi OPTIONS SOURCES GENERATED_RTL EXTRA_RTL)
   cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
@@ -430,6 +451,11 @@ function(add_kanagawa_verilator_test name)
 
     set(SIM_EXE)
 
+    set(VERILATOR_OPTIONS)
+    if(_ARG_CLEAN_VERILATOR_BYPRODUCTS)
+      list(APPEND VERILATOR_OPTIONS CLEAN_BYPRODUCTS)
+    endif()
+
     add_verilator(${VERILATOR_TARGET_NAME}
       TEST_NAME ${SCOPED_TEST_NAME}
       SIM_EXE_OUT_VAR "SIM_EXE"
@@ -438,6 +464,7 @@ function(add_kanagawa_verilator_test name)
       TESTBENCH_MODULE ${TESTBENCH_MODULE}
       SOURCES ${RTL_FILES}
       DEPENDS ${${KANAGAWA_TARGET_NAME}_STAMP_FILE}
+      ${VERILATOR_OPTIONS}
     )
 
     set_target_properties(${TARGET_NAME} PROPERTIES

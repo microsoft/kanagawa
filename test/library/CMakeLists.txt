@@ -56,6 +56,13 @@ function(add_library_test test_name test_source)
     set(_ARG_TESTBENCH "${CMAKE_CURRENT_SOURCE_DIR}/${_ARG_TESTBENCH}")
   endif()
 
+  # Clean Verilator byproducts in GitHub Actions to save disk space
+  if(DEFINED ENV{GITHUB_ACTIONS})
+    set(CLEAN_FLAG CLEAN_VERILATOR_BYPRODUCTS)
+  else()
+    set(CLEAN_FLAG)
+  endif()
+
   add_kanagawa_verilator_test(${test_name}
     SCOPE library
     SOURCES ${test_source}
@@ -64,6 +71,7 @@ function(add_library_test test_name test_source)
     TESTBENCH ${_ARG_TESTBENCH}
     TESTBENCH_MODULE ${_ARG_TESTBENCH_MODULE}
     AGGREGATE_TARGET library_tests
+    ${CLEAN_FLAG}
   )
 endfunction()
 
