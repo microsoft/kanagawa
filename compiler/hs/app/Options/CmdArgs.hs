@@ -156,7 +156,7 @@ mode :: Mode (CmdArgs Options)
 mode = cmdArgsMode $ modes [compile &= auto, pretty] &=
     program "kanagawa" &=
     verbosity &=
-    help "Kanagawa compiler and language server" &=
+    help "Kanagawa compiler" &=
     summary ("Kanagawa Compiler " ++ showVersion version ++ ", (C) Microsoft")
 
 getOptions :: IO Options
