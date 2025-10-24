@@ -1,17 +1,10 @@
-name: Publish Library Documentation to Wiki
+name: Publish Library Documentation
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-    inputs:
-      push-to-wiki:
-        description: 'Push changes to Wiki repository'
-        required: false
-        type: boolean
-        default: false
 
-# Grant the workflow write access to repository contents (required for wiki pushes when allowed)
 permissions:
   contents: write
 
@@ -30,108 +23,9 @@ jobs:
       runs-on: 'ubuntu-24.04'
       boost-platform-version: '24.04'
 
-  publish-to-wiki:
-    needs: build-and-publish
-    runs-on: ubuntu-24.04
-    env:
-      WIKI_REPO: microsoft/kanagawa.wiki
-      DOCS_SUBDIR: library-docs
-
-    steps:
-      - name: Download library docs artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: 'library-docs-${{ github.sha }}'
-          path: library-docs
-
-      - name: Clone Wiki repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WIKI_PUSH_TOKEN: ${{ secrets.WIKI_PUSH_TOKEN }}
-        run: |
-          set -euo pipefail
-          TOKEN="${WIKI_PUSH_TOKEN:-${GITHUB_TOKEN:-}}"
-          if [ -z "$TOKEN" ]; then
-            echo "No token available (need GITHUB_TOKEN or WIKI_PUSH_TOKEN)" >&2
-            exit 1
-          fi
-          echo "Cloning wiki repo $WIKI_REPO"
-          # Use a token-based authenticated URL; suppress command echo of token
-          git clone "https://x-access-token:${TOKEN}@github.com/${WIKI_REPO}.git" wiki 2>&1 | sed 's/x-access-token:[^@]*/x-access-token:***'/
-          cd wiki
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${WIKI_REPO}.git"
-
-      - name: Copy library docs to Wiki
-        run: |
-          # Remove existing library docs to ensure deleted files are removed
-          rm -rf "wiki/${DOCS_SUBDIR}"
-
-          # Create the library-docs directory in the wiki
-          mkdir -p "wiki/${DOCS_SUBDIR}"
-
-          # Copy the generated HTML files to the wiki
-          cp -r library-docs/* "wiki/${DOCS_SUBDIR}/"
-
-      - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WIKI_PUSH_TOKEN: ${{ secrets.WIKI_PUSH_TOKEN }}
-        run: |
-          cd wiki
-          git add "${DOCS_SUBDIR}"
-
-          # Check if there are changes to commit
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update library documentation (automated from commit ${{ github.sha }})"
-
-            # Push to wiki if triggered by push to main, or if manually triggered with push-to-wiki=true
-            if [ "${{ github.event_name }}" = "push" ] || [ "${{ inputs.push-to-wiki }}" = "true" ]; then
-              echo "Preparing to push changes to Wiki..."
-              TOKEN="${WIKI_PUSH_TOKEN:-${GITHUB_TOKEN:-}}"
-              if [ -z "$TOKEN" ]; then
-                echo "No token available; skipping push" >&2
-                exit 0
-              fi
-              # Retry logic in case of transient errors
-              for attempt in 1 2 3; do
-                if git push 2>push_err.log; then
-                  echo "Push succeeded"
-                  break
-                else
-                  status=$?
-                  if grep -q '403' push_err.log; then
-                    echo "Received 403 from GitHub. The GITHUB_TOKEN may lack wiki write permissions." >&2
-                    echo "To fix: create a fine-grained PAT with 'Contents: Read & Write' for the repository (which covers wiki) and store it as WIKI_PUSH_TOKEN secret." >&2
-                    cat push_err.log >&2
-                    exit $status
-                  fi
-                  if [ $attempt -lt 3 ]; then
-                    echo "Push failed (attempt $attempt), retrying in $((attempt*5))s..." >&2
-                    sleep $((attempt*5))
-                  else
-                    echo "Push failed after $attempt attempts." >&2
-                    cat push_err.log >&2
-                    exit $status
-                  fi
-                fi
-              done
-            else
-              echo "Skipping push to Wiki (dry-run mode)"
-              echo "Changes that would be pushed:"
-              git show --stat
-            fi
-          fi
-
   publish-to-github-pages:
     needs: build-and-publish
     runs-on: ubuntu-24.04
-
-    # Only publish to GitHub Pages on push to main or manual trigger with push-to-wiki=true
-    if: github.event_name == 'push' || inputs.push-to-wiki == true
 
     steps:
       - name: Download library docs artifact
