@@ -1,0 +1,75 @@
+name: Publish Library Documentation to Wiki
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      push-to-wiki:
+        description: 'Push changes to Wiki repository'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      build-targets: 'libdoc'
+      artifact-name: 'library-docs-${{ github.sha }}'
+      artifact-path: 'build-ci/dist/doc/library/**'
+      cmake-build-type: 'RelWithDebInfo'
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+
+  publish-to-wiki:
+    needs: build-and-publish
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Download library docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: 'library-docs-${{ github.sha }}'
+          path: library-docs
+
+      - name: Clone Wiki repository
+        run: |
+          git clone https://github.com/microsoft/kanagawa.wiki.git wiki
+          cd wiki
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Copy library docs to Wiki
+        run: |
+          # Create the library-docs directory in the wiki if it doesn't exist
+          mkdir -p wiki/library-docs
+
+          # Copy the generated HTML files to the wiki
+          cp -r library-docs/* wiki/library-docs/
+
+      - name: Commit and push changes
+        run: |
+          cd wiki
+          git add library-docs
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update library documentation (automated from commit ${{ github.sha }})"
+
+            # Push to wiki if triggered by push to main, or if manually triggered with push-to-wiki=true
+            if [ "${{ github.event_name }}" = "push" ] || [ "${{ inputs.push-to-wiki }}" = "true" ]; then
+              echo "Pushing changes to Wiki..."
+              git push
+            else
+              echo "Skipping push to Wiki (dry-run mode)"
+              echo "Changes that would be pushed:"
+              git show --stat
+            fi
+          fi
