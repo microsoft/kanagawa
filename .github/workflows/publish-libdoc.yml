@@ -65,7 +65,10 @@ jobs:
 
       - name: Copy library docs to Wiki
         run: |
-          # Create the library-docs directory in the wiki if it doesn't exist
+          # Remove existing library docs to ensure deleted files are removed
+          rm -rf "wiki/${DOCS_SUBDIR}"
+
+          # Create the library-docs directory in the wiki
           mkdir -p "wiki/${DOCS_SUBDIR}"
 
           # Copy the generated HTML files to the wiki
@@ -122,3 +125,25 @@ jobs:
               git show --stat
             fi
           fi
+
+  publish-to-github-pages:
+    needs: build-and-publish
+    runs-on: ubuntu-24.04
+
+    # Only publish to GitHub Pages on push to main or manual trigger with push-to-wiki=true
+    if: github.event_name == 'push' || inputs.push-to-wiki == true
+
+    steps:
+      - name: Download library docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: 'library-docs-${{ github.sha }}'
+          path: library-docs
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./library-docs
+          destination_dir: library-docs
+          commit_message: "Update library documentation from ${{ github.sha }}"
