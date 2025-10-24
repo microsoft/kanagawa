@@ -1,0 +1,1239 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/vector.html" id="index-link"
+class="link">data.vector</a>
+<ul>
+<li><a href="../data/vector.html#data-vector-all" id="index-link"
+class="link"><code>all</code></a></li>
+<li><a href="../data/vector.html#data-vector-and" id="index-link"
+class="link"><code>and</code></a></li>
+<li><a href="../data/vector.html#data-vector-any" id="index-link"
+class="link"><code>any</code></a></li>
+<li><a href="../data/vector.html#data-vector-append" id="index-link"
+class="link"><code>append</code></a></li>
+<li><a href="../data/vector.html#data-vector-at" id="index-link"
+class="link"><code>at</code></a></li>
+<li><a href="../data/vector.html#data-vector-back" id="index-link"
+class="link"><code>back</code></a></li>
+<li><a href="../data/vector.html#data-vector-capacity" id="index-link"
+class="link"><code>capacity</code></a></li>
+<li><a href="../data/vector.html#data-vector-cat_optionals"
+id="index-link" class="link"><code>cat_optionals</code></a></li>
+<li><a href="../data/vector.html#data-vector-clear" id="index-link"
+class="link"><code>clear</code></a></li>
+<li><a href="../data/vector.html#data-vector-empty" id="index-link"
+class="link"><code>empty</code></a></li>
+<li><a href="../data/vector.html#data-vector-equal" id="index-link"
+class="link"><code>equal</code></a></li>
+<li><a href="../data/vector.html#data-vector-equal_by" id="index-link"
+class="link"><code>equal_by</code></a></li>
+<li><a href="../data/vector.html#data-vector-erase" id="index-link"
+class="link"><code>erase</code></a></li>
+<li><a href="../data/vector.html#data-vector-first_valid"
+id="index-link" class="link"><code>first_valid</code></a></li>
+<li><a href="../data/vector.html#data-vector-from_array" id="index-link"
+class="link"><code>from_array</code></a></li>
+<li><a href="../data/vector.html#data-vector-from_optional"
+id="index-link" class="link"><code>from_optional</code></a></li>
+<li><a href="../data/vector.html#data-vector-front" id="index-link"
+class="link"><code>front</code></a></li>
+<li><a href="../data/vector.html#data-vector-gather" id="index-link"
+class="link"><code>gather</code></a></li>
+<li><a href="../data/vector.html#data-vector-inclusive_scan"
+id="index-link" class="link"><code>inclusive_scan</code></a></li>
+<li><a href="../data/vector.html#data-vector-insert" id="index-link"
+class="link"><code>insert</code></a></li>
+<li><a href="../data/vector.html#data-vector-last_valid" id="index-link"
+class="link"><code>last_valid</code></a></li>
+<li><a href="../data/vector.html#data-vector-make_vector"
+id="index-link" class="link"><code>make_vector</code></a></li>
+<li><a href="../data/vector.html#data-vector-map" id="index-link"
+class="link"><code>map</code></a></li>
+<li><a href="../data/vector.html#data-vector-map_optional"
+id="index-link" class="link"><code>map_optional</code></a></li>
+<li><a href="../data/vector.html#data-vector-map_reduce" id="index-link"
+class="link"><code>map_reduce</code></a></li>
+<li><a href="../data/vector.html#data-vector-maximum" id="index-link"
+class="link"><code>maximum</code></a></li>
+<li><a href="../data/vector.html#data-vector-minimum" id="index-link"
+class="link"><code>minimum</code></a></li>
+<li><a href="../data/vector.html#data-vector-or" id="index-link"
+class="link"><code>or</code></a></li>
+<li><a href="../data/vector.html#data-vector-pop_back" id="index-link"
+class="link"><code>pop_back</code></a></li>
+<li><a href="../data/vector.html#data-vector-prefix_sum" id="index-link"
+class="link"><code>prefix_sum</code></a></li>
+<li><a href="../data/vector.html#data-vector-push_back" id="index-link"
+class="link"><code>push_back</code></a></li>
+<li><a href="../data/vector.html#data-vector-reduce" id="index-link"
+class="link"><code>reduce</code></a></li>
+<li><a href="../data/vector.html#data-vector-repeat" id="index-link"
+class="link"><code>repeat</code></a></li>
+<li><a href="../data/vector.html#data-vector-reserve" id="index-link"
+class="link"><code>reserve</code></a></li>
+<li><a href="../data/vector.html#data-vector-resize" id="index-link"
+class="link"><code>resize</code></a></li>
+<li><a href="../data/vector.html#data-vector-scatter" id="index-link"
+class="link"><code>scatter</code></a></li>
+<li><a href="../data/vector.html#data-vector-sharded_for_each"
+id="index-link" class="link"><code>sharded_for_each</code></a></li>
+<li><a href="../data/vector.html#data-vector-sharded_map"
+id="index-link" class="link"><code>sharded_map</code></a></li>
+<li><a href="../data/vector.html#data-vector-size" id="index-link"
+class="link"><code>size</code></a></li>
+<li><a href="../data/vector.html#data-vector-sum" id="index-link"
+class="link"><code>sum</code></a></li>
+<li><a href="../data/vector.html#data-vector-unique" id="index-link"
+class="link"><code>unique</code></a></li>
+<li><a href="../data/vector.html#data-vector-unique_by" id="index-link"
+class="link"><code>unique_by</code></a></li>
+<li><a href="../data/vector.html#data-vector-unzip" id="index-link"
+class="link"><code>unzip</code></a></li>
+<li><a href="../data/vector.html#data-vector-unzip_with" id="index-link"
+class="link"><code>unzip_with</code></a></li>
+<li><a href="../data/vector.html#data-vector-vector" id="index-link"
+class="link"><code>vector</code></a></li>
+<li><a href="../data/vector.html#data-vector-zip" id="index-link"
+class="link"><code>zip</code></a></li>
+<li><a href="../data/vector.html#data-vector-zip_with" id="index-link"
+class="link"><code>zip_with</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.vector <a href="../index.html">&equiv;</a></h1>
+<p>Operations on variable-length arrays.</p>
+<p>This module is intended to be imported qualified, to avoid name
+clashes with <code>data.array</code> functions. For example:</p>
+<pre class="kanagawa"><code>import data.vector as V</code></pre>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">struct</span> <span class="identifier">vector</span> <a class="anchor" href="#data-vector-vector" id="data-vector-vector">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Maximum size.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+T[N] <span class="identifier">data</span> <a class="anchor" href="#data-vector-$quasi0-data" id="data-vector-$quasi0-data">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">size</span> <a class="anchor" href="#data-vector-$quasi0-size" id="data-vector-$quasi0-size">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">make_vector</span>(T[N] <span class="identifier">a</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">s</span>) <a class="anchor" href="#data-vector-make_vector" id="data-vector-make_vector">§</a>
+</pre>
+<div class="docs">
+<p>Create a vector with specified data and size</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">from_array</span>(T[N] <span class="identifier">a</span>) <a class="anchor" href="#data-vector-from_array" id="data-vector-from_array">§</a>
+</pre>
+<div class="docs">
+<p>Construct a vector from an array.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; from_array&lt;uint8&gt;({1, 2, 3})
+{{1, 2, 3}, 3}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, <span class="literal">1</span>&gt; <span class="identifier">from_optional</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">o</span>) <a class="anchor" href="#data-vector-from_optional" id="data-vector-from_optional">§</a>
+</pre>
+<div class="docs">
+<p>Construct a vector with capacity 1 from an optional. If the optional
+is invalid then return an empty vector otherwise return a singleton
+vector.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; from_optional({true, 0xFF})
+{{0xFF}, 1}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">repeat</span>(T <span class="identifier">x</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">length</span>) <a class="anchor" href="#data-vector-repeat" id="data-vector-repeat">§</a>
+</pre>
+<div class="docs">
+<p>Construct a vector by replicating a value <code>length</code>
+times.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; repeat&lt;3&gt;(3, 2)
+{{3, 3, 0}, 2}
+
+&gt;&gt;&gt; vector&lt;uint8, 2&gt; v = repeat(2, 2)
+{{2, 2}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">at</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">i</span>) <a class="anchor" href="#data-vector-at" id="data-vector-at">§</a>
+</pre>
+<div class="docs">
+<p>Access element <code>i</code>. Equivalent to <code>v.data[i]</code>.
+If <code>i</code> is greater than or equal to <code>v.size</code> then a
+<code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; at({{0, 1, 2, 3}, 4}, 2)
+2</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">front</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-front" id="data-vector-front">§</a>
+</pre>
+<div class="docs">
+<p>Return the first element in the vector. Equivalent to
+<code>v.data[0]</code>. If the vector is empty then a
+<code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; front({{0, 1, 2}, 2})
+0</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">back</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-back" id="data-vector-back">§</a>
+</pre>
+<div class="docs">
+<p>Return the last element in the vector. Equivalent to
+<code>v.data[v.size - 1]</code>. If the vector is empty then a
+<code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; back({{0, 1, 2}, 2})
+1</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">size</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-size" id="data-vector-size">§</a>
+</pre>
+<div class="docs">
+<p>Return the number of elements. Equivalent to <code>v.size</code>.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; size({{1, 2, 3}, 2})
+2</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">empty</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-empty" id="data-vector-empty">§</a>
+</pre>
+<div class="docs">
+<p>Check whether the vector is empty. Equivalent to
+<code>v.size == 0</code>.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; empty({{0, 1, 2}, 0})
+true
+
+&gt;&gt;&gt; empty({{0, 1, 2}, 1})
+false</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">capacity</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-capacity" id="data-vector-capacity">§</a>
+</pre>
+<div class="docs">
+<p>Return the maximum number of elements.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; capacity({{0, 1, 2}, 0})
+3</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">reserve</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-reserve" id="data-vector-reserve">§</a>
+</pre>
+<div class="docs">
+<p>Reserve <code>M</code> number of elements. If <code>M</code> is less
+than <code>v.size</code> then a <code>assert</code> is triggered.
+Reserving the same capacity as the input vector returns the orginal
+vector.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; reserve&lt;5&gt;({{0, 1, 2}, 3})
+{{0, 1, 2, 0, 0}, 3}
+
+&gt;&gt;&gt; reserve&lt;3&gt;({{0, 1, 2, 3, 4}, 3})
+{{0, 1, 2}, 3}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">resize</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">length</span>) <a class="anchor" href="#data-vector-resize" id="data-vector-resize">§</a>
+</pre>
+<div class="docs">
+<p>Resize the vector to contain <code>length</code> elements. Equivalent
+to <code>v.size = length;</code>. If <code>length &gt; v.size</code>
+then new elements are undefined. If <code>length</code> is greater than
+<code>N</code> then a <code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; resize({{0, 1, 2, 3}, 4}, 2)
+{{0, 1, 2, 3}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">clear</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-clear" id="data-vector-clear">§</a>
+</pre>
+<div class="docs">
+<p>Clear the contents. Equivalent to <code>v.size = 0;</code>.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; clear({{0, 1, 2, 3}, 4})
+{{0, 1, 2, 3}, 0}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">insert</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">pos</span>, T <span class="identifier">value</span>) <a class="anchor" href="#data-vector-insert" id="data-vector-insert">§</a>
+</pre>
+<div class="docs">
+<p>Insert <code>value</code> before position <code>pos</code> in vector
+<code>v</code>. If <code>pos &gt; v.size</code> or
+<code>v.size &gt;= N</code> then a <code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; insert({{0, 0, 0, 0}, 3}, 2, 0x20)
+{{0, 0, 0x20, 0}, 4}
+
+&gt;&gt;&gt; insert({{0xFF, 0xFF}, 0}, 0, 0)
+{{0, 0xFF}, 1}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">erase</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">pos</span>) <a class="anchor" href="#data-vector-erase" id="data-vector-erase">§</a>
+</pre>
+<div class="docs">
+<p>Erase element at position <code>pos</code> from vector
+<code>v</code>. If <code>pos &gt;= v.size</code> or the vector is empty
+then a <code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; erase(1, {{0, 1, 2}, 3})
+{{0, 2, 2}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">push_back</span>(T <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-push_back" id="data-vector-push_back">§</a>
+</pre>
+<div class="docs">
+<p>Append element <code>x</code> to the end of vector <code>v</code>. If
+<code>v.size &gt;= N</code> then a <code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; push_back(0xFF, {{0, 1, 2}, 2})
+{{0, 1, 0xFF}, 3}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">pop_back</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-pop_back" id="data-vector-pop_back">§</a>
+</pre>
+<div class="docs">
+<p>Remove the last element of the vector. If the vector is empty then a
+<code>assert</code> is triggered.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; pop_back({{0, 1, 2, 3}, 2})
+{{0, 1, 2, 3}, 1}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">append</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-append" id="data-vector-append">§</a>
+</pre>
+<div class="docs">
+<p>Append vectors. If the sum of the vector sizes is greater than
+<code>N</code> then a <code>assert</code> is triggered.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; append({{1, 2, 0, 0}, 2}, {{3, 4, 0, 0}, 2})
+{{1, 2, 3, 4}, 4}
+
+&gt;&gt;&gt; append({{1, 2, 3}, 2}, {0xFF, 0xFF, 0xFF}, 0})
+{{1, 2, 3}, 2}
+
+&gt;&gt;&gt; append({{1, 2, 3}, 0}, {{0xFF, 0xFF, 0xFF}, 2})
+{{0xFF, 0xFF, 3}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">map</span>((T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>) <a class="anchor" href="#data-vector-map" id="data-vector-map">§</a>
+</pre>
+<div class="docs">
+<p>Map vector of input values to result values.</p>
+<img src="./vector.0.svg" />
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; map(increment, {{1, 2, 3, 4}, 3})
+{{2, 3, 4, 0}, 3}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">gather</span>(<span class="builtin">bool</span>[N] <span class="identifier">valids</span>, T[N] <span class="identifier">data</span>) <a class="anchor" href="#data-vector-gather" id="data-vector-gather">§</a>
+</pre>
+<div class="docs">
+<p>Gather entries in data that are marked as valid to the front of an
+array, maintaining ordering, and return the resulting array.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>data = {1, 2, 3, 4, 5, 6, 7, 8}
+valids = {false, true, false, true, true, false, false, true}
+result = { {2, 4, 5, 8, X, X, X, X}, 4 } where X is undefined</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">scatter</span>(<span class="builtin">bool</span>[N] <span class="identifier">valids</span>, T[N] <span class="identifier">data</span>) <a class="anchor" href="#data-vector-scatter" id="data-vector-scatter">§</a>
+</pre>
+<div class="docs">
+<p>Scatter the entries in data into the entries marked as true in the
+valid array.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>data = {2, 4, 5, 8, 0, 0, 0, 0}
+valids = {false, true, false, true, true, false, false, true}
+result = { {X, 2, X, 4, 5, X, X, 8 }, 4 } where X is undefined</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">unique_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unique_by" id="data-vector-unique_by">§</a>
+</pre>
+<div class="docs">
+<p>De-duplicate vector elements with user-supplied equality predicate.
+For each element e, check the previous elements for duplicates. If there
+are any duplicates, mark element e as invalid. Return a vector of
+optionals where all valid elements are unique.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; unique_by(optional::equal, {{{true, 1}, {false, 1}, {true, 1}}, 3})
+{{{true, {true, 1}}, {true, {false, 1}}, {false, {true, 1}}}, 3}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">unique</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unique" id="data-vector-unique">§</a>
+</pre>
+<div class="docs">
+<p>De-duplicate vector elements. Similar to <code>unique_by</code> but
+uses the <code>==</code> operator. For each element e, check the
+previous elements for duplicates. If there are any duplicates, mark
+element e as invalid. Return a vector of optionals where all valid
+elements are unique.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; unique({{1}, 1})
+{{{true, 1}}, 1}
+
+&gt;&gt;&gt; unique({{1}, 0})
+{{{false, 0}}, 0}
+
+&gt;&gt;&gt; unique({{1, 2}, 2})
+{{{true, 1}, {true, 2}}, 2}
+
+&gt;&gt;&gt; unique({{1, 1}, 2})
+{{{true, 1}, {false, 1}}, 2}
+
+&gt;&gt;&gt; unique({{1, 1}, 1})
+{{{true, 1}, {false, 0}}, 1}
+
+&gt;&gt;&gt; unique({{1, 2, 3, 2}, 4})
+{{{true, 1}, {true, 2}, {true, 3}, {false, 2}}, 4}
+
+&gt;&gt;&gt; unique({{1, 2, 3, 2}, 2})
+{{{true, 1}, {true, 2}, {false, 0}, {false, 0}}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">reduce</span>((T, T) -&gt; T <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-reduce" id="data-vector-reduce">§</a>
+</pre>
+<div class="docs">
+<p>Implement a binary reducer tree using a function to reduce a pair of
+inputs.</p>
+<img src="./vector.1.svg" />
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; reduce(add, {{0x9, 0x2, 0x5}, 3});
+0x10
+
+&gt;&gt;&gt; reduce&lt;bool&gt;([](bool x, bool y){ return x || y; }, {{false, true, false}, 2});
+true
+
+&gt;&gt;&gt; reduce(add&lt;uint8, uint8&gt;, {{2}, 1})
+2
+
+&gt;&gt;&gt; reduce(add&lt;uint8, uint8&gt;, {{1, 2, 3}, 2})
+3</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span>R <span class="identifier">map_reduce</span>((T) -&gt; R <span class="identifier">map_fn</span>, (R, R) -&gt; R <span class="identifier">reduce_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-map_reduce" id="data-vector-map_reduce">§</a>
+</pre>
+<div class="docs">
+<p>Implements map-reduce. Inputs are first mapped into the appropriate
+result type <code>R</code> and then reduced to a single output using a
+binary reduction tree.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; map_reduce
+        ( [](uint8 a){ return a % 2 == 0; }
+        , [](bool x, bool y){ return x &amp;&amp; y; }
+        , {{2, 4, 7}, 2}
+        );
+true</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">or</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-or" id="data-vector-or">§</a>
+</pre>
+<div class="docs">
+<p>Return true if any of the elements are true. Return false if the
+vector is empty.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; or({{false, false, true}, 3})
+true
+
+&gt;&gt;&gt; or({{false, false, true}, 2})
+false
+
+&gt;&gt;&gt; or({{false, false, true}, 0})
+false</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">and</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-and" id="data-vector-and">§</a>
+</pre>
+<div class="docs">
+<p>Return true if all of the elements are true. Return true if the
+vector is empty.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; and({{true, true, false}, 3})
+false
+
+&gt;&gt;&gt; and({{true, true, false}, 2})
+true
+
+&gt;&gt;&gt; and({{true, true, false}, 0})
+true</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">any</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-any" id="data-vector-any">§</a>
+</pre>
+<div class="docs">
+<p>Return true if any of the elements satisfy the predicate. Return
+false if the vector is empty.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; any(even, {{1, 3, 6}, 3})
+true
+
+&gt;&gt;&gt; any(even, {{1, 3, 6}, 2})
+false
+
+&gt;&gt;&gt; any(even, {{1, 3, 6}, 0})
+false</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">all</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-all" id="data-vector-all">§</a>
+</pre>
+<div class="docs">
+<p>Return true if all of the elements satisfy the predicate. Return true
+if the vector is empty.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; all(odd, {{1, 3, 6}, 3})
+false
+
+&gt;&gt;&gt; all(odd, {{1, 3, 6}, 2})
+true
+
+&gt;&gt;&gt; all(odd, {{1, 3, 6}, 0})
+true</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">minimum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-minimum" id="data-vector-minimum">§</a>
+</pre>
+<div class="docs">
+<p>Return the minimum element from a vector of integers. Return
+undefined if the vector is empty.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; minimum({{4, 64, 2}, 3})
+2
+
+&gt;&gt;&gt; minimum({{4, 64, 2}, 2})
+4</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">maximum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-maximum" id="data-vector-maximum">§</a>
+</pre>
+<div class="docs">
+<p>Return the maximum element from a vector of integers. Return
+undefined if the vector is empty.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; maximum({5, -23, 182}, 3})
+182
+
+&gt;&gt;&gt; maximum({5, -23, 182}, 2})
+5</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span>R <span class="identifier">sum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-sum" id="data-vector-sum">§</a>
+</pre>
+<div class="docs">
+<p>Sum of the vector elements. Return undefined if the vector is
+empty.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; sum({{3, -9, 7}, 3})
+1
+
+&gt;&gt;&gt; sum({{3, -9, 7}, 2})
+-6</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">first_valid</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-first_valid" id="data-vector-first_valid">§</a>
+</pre>
+<div class="docs">
+<p>Given a vector of <code>optional&lt;T&gt;</code>, return the first
+(lowest vector index) valid element. If there are no valid elements or
+the vector is empty then return invalid.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; first_valid({{{true, 1}, {false, 2}, {true, 3}}, 3})
+{true, 1}
+
+&gt;&gt;&gt; first_valid({{{false, 1}, {false, 2}, {true, 3}}, 2})
+{false, 2}
+
+&gt;&gt;&gt; first_valid({{{true, 1}, {false, 2}, {true, 3}}, 0})
+{false, 0}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">last_valid</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-last_valid" id="data-vector-last_valid">§</a>
+</pre>
+<div class="docs">
+<p>Given a vector of <code>optional&lt;T&gt;</code>, return the last
+(highest vector index) valid element. If there are no valid elements or
+the vector is empty then return invalid.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; last_valid({{{true, 1}, {false, 2}, {true, 3}}, 3})
+{true, 3}
+
+&gt;&gt;&gt; last_valid({{{true, 1}, {false, 2}, {true, 3}}, 2})
+{true, 1}
+
+&gt;&gt;&gt; last_valid({{{false, 1}, {false, 2}, {true, 3}}, 2})
+{false, 1}
+
+&gt;&gt;&gt; last_valid({{{true, 1}, {false, 2}, {true, 3}}, 0})
+{false, 0}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">map_optional</span>((T) -&gt; <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;R&gt; <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-map_optional" id="data-vector-map_optional">§</a>
+</pre>
+<div class="docs">
+<p>Return a vector containing only valid mapped elements.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; map_optional( [](uint8 x)
+                  {
+                      return make_optional(odd(x), x);
+                  }
+                , {{1, 2, 3}, 3}
+                )
+{{1, 3, 0}, 2}
+
+&gt;&gt;&gt; map_optional( [](uint8 x)
+                  {
+                      return make_optional(even(x), x);
+                  }
+                , {{1, 2, 3}, 3}
+                )
+{{2, 3, 0}, 1}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">cat_optionals</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-cat_optionals" id="data-vector-cat_optionals">§</a>
+</pre>
+<div class="docs">
+<p>Return a vector containing only valid input elements.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; cat_optionals({{{false, 0}, {true, 1}, {true, 2}}, 3)
+{{1, 2, 0}, 2}
+
+&gt;&gt;&gt; cat_optionals({{{true, true}, {true, false}, {true, true}}, 2})
+{{true, false, false}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> S, <span class="keyword">auto</span> N, <span class="keyword">typename</span> T, <span class="keyword">auto</span> M&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip_with</span>((S, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;S, N&gt; <span class="identifier">s</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">t</span>) <a class="anchor" href="#data-vector-zip_with" id="data-vector-zip_with">§</a>
+</pre>
+<div class="docs">
+<p>Combine elements of two vectors using specified function. Any
+remaining elements of the longer vector are dropped. The capacity of the
+zipped vector is the minimum of <code>N</code> and <code>M</code>.</p>
+<img src="./vector.2.svg" />
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; zip_with(add, {{1, 2, 3, 4}, 3}, {{1, 2, 3, 4, 5}, 4})
+{{2, 4, 6, 0}, 3}
+
+&gt;&gt;&gt; zip_with(add, {{1, 2, 3, 4}, 3}, {{0}, 0})
+{{0}, 0}
+
+&gt;&gt;&gt; zip_with(make_optional, {{true, false, true}, 3}, {{-22, 5}, 2})
+{{{true, -22}, {false, 5}}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> S, <span class="keyword">auto</span> N, <span class="keyword">typename</span> T, <span class="keyword">auto</span> M&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;S, N&gt; <span class="identifier">s</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">t</span>) <a class="anchor" href="#data-vector-zip" id="data-vector-zip">§</a>
+</pre>
+<div class="docs">
+<p>Combine two vectors into a vector of pairs. Any remaining elements of
+the longer vector are dropped. The maximum size of the zipped vector is
+the minimum of <code>N</code> and <code>M</code>.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; zip({{1, 2}, 2}, {{true, false}, 2})
+{{{1, true}, {2, false}}, 2}
+
+&gt;&gt;&gt; zip({{1, 2}, 2}, {{1, 2, 3}, 3})
+{{{1, 1}, {2, 2}}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;L, N&gt;, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt;&gt;
+<span class="identifier">unzip_with</span>((T) -&gt; <a class="link" href="../data/tuple.html#data-tuple-tuple2"><span class="identifier">tuple2</span></a>&lt;L, R&gt; <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unzip_with" id="data-vector-unzip_with">§</a>
+</pre>
+<div class="docs">
+<p>Transform a vector <code>v</code> into a pair of vectors using a
+projection <code>f</code>.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; unzip_with(optional_to_pair, {{{true, 1}, {false, 2}, {true, 3}}, 2})
+{{{true, false, false}, 2}, {{1, 2, 0}, 2}}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;L, N&gt;, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt;&gt; <span class="identifier">unzip</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;L, R&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unzip" id="data-vector-unzip">§</a>
+</pre>
+<div class="docs">
+<p>Transform a vector of pairs into a pair of vectors.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; unzip({{{0, 0}, {-1, 1}, {-2, 2}, {-3, 3}}, 4})
+{{{0, -1, -2, -3}, 4}, {{0, 1, 2, 3}, 4}}
+
+&gt;&gt;&gt; unzip({{{0, 0}, {-1, 1}, {-2, 2}, {-3, 3}}, 3})
+{{{0, -1, -2, 0}, 3}, {{0, 1, 2, 0}, 3}}
+
+&gt;&gt;&gt; unzip({{{0, 0}, {-1, 1}, {-2, 2}, {-3, 3}}, 0})
+{{{0, 0, 0, 0}, 0}, {{0, 0, 0, 0}, 0}}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">inclusive_scan</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">input</span>, (R, R) -&gt; R <span class="identifier">AssociativeFn</span>) <a class="anchor" href="#data-vector-inclusive_scan" id="data-vector-inclusive_scan">§</a>
+</pre>
+<div class="docs">
+<p>Perform an inclusive scan on the given vector.</p>
+<img src="./vector.3.svg" />
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; inclusive_scan({{1, 2, 3}, 3}, add)
+{{1, 3, 6}, 3}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">prefix_sum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-prefix_sum" id="data-vector-prefix_sum">§</a>
+</pre>
+<div class="docs">
+<p>Compute the prefix sum of the given vector.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; prefix_sum({{0, 1, 2, 3}, 4})
+{{0, 1, 3, 6}, 4}
+
+&gt;&gt;&gt; prefix_sum({{0, 1, 2, 3}, 3})
+{{0, 1, 3, 3}, 3}
+
+&gt;&gt;&gt; prefix_sum({{0, 1, 2, 3, 4}, 3})
+{{0, 1, 3, 0, 0}, 3}
+
+&gt;&gt;&gt; prefix_sum({{5}, 1})
+{{5}, 1}
+
+&gt;&gt;&gt; prefix_sum({{5}, 0})
+{{5}, 0}
+
+&gt;&gt;&gt; prefix_sum({{3, 2, 1}, 2})
+{{3, 5, 1}, 2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">auto</span> M&gt;
+<span class="modifier">inline </span>
+<span class="builtin">bool</span> <span class="identifier">equal_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-equal_by" id="data-vector-equal_by">§</a>
+</pre>
+<div class="docs">
+<p>Element-wise equality comparison of vectors using specified function.
+Return false if the vectors differ in size.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; equal_by( optional::equal
+            , {{{true, 0x23}, {false, 0xFF}, {true, 0x19}, {false, 0x20}}, 4}
+            , {{{true, 0x23}, {false, 0x00}, {true, 0x19}}, 3}
+            )
+false
+
+&gt;&gt;&gt; equal_by( optional::equal
+            , {{{true, 0x23}, {false, 0xFF}, {true, 0x19}, {false, 0x20}}, 3}
+            , {{{true, 0x23}, {false, 0x00}, {true, 0x19}}, 3}
+            )
+true</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">auto</span> M&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-equal" id="data-vector-equal">§</a>
+</pre>
+<div class="docs">
+<p>Element-wise comparison of vectors for equality using
+<code>==</code>. Return false if the vectors differ in size.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; equal({{1, 2, 3}, 3}, {{1, 2, 3, 4}, 4})
+false
+
+&gt;&gt;&gt; equal({{1, 2, 3}, 3}, {{1, 2, 3, 4}, 3})
+true</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> Shards,
+    <span class="keyword">auto</span> N,
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">sharded_map</span>(
+    (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt;, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>,
+    (T) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt; <span class="identifier">get_shard_idx</span>,
+    <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>
+    ) <a class="anchor" href="#data-vector-sharded_map" id="data-vector-sharded_map">§</a>
+</pre>
+<div class="docs">
+<p>Transform a vector containing up to <code>N</code> elements according
+to a caller-specified function (<code>f</code>). Computation is spread
+across <code>Shards</code> instances of <code>f</code>.
+<code>get_shard_idx</code> is used to determine which instance processes
+each element. Each instance can transform at most one input element per
+cycle. Return type is a vector with the same size as the input
+vector.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Shards
+</pre>
+<div class="docs">
+<p>Number of replicas to <code>f</code> to instantiate.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Maximum number of input/output elements.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of each input element.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>
+</pre>
+<div class="docs">
+<p>Maximum number of threads concurrently executing inside of
+<code>parallel_map</code>. Caller must ensure this limit is not
+exceeded.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt;, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>
+</pre>
+<div class="docs">
+<p>Function used to transform input elements.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(T) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt; <span class="identifier">get_shard_idx</span>
+</pre>
+<div class="docs">
+<p>Function used to determine which hardware instance processes a given
+input element.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>
+</pre>
+<div class="docs">
+<p>Input data.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> Shards,
+    <span class="keyword">auto</span> N,
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">sharded_for_each</span>(
+    (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">f</span>,
+    (T) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt; <span class="identifier">get_shard_idx</span>,
+    <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>
+    ) <a class="anchor" href="#data-vector-sharded_for_each" id="data-vector-sharded_for_each">§</a>
+</pre>
+<div class="docs">
+<p>Execute a caller-specified function (<code>f</code>) once for each
+input element. Computation is spread across <code>Shards</code>
+instances of <code>f</code>. <code>get_shard_idx</code> is used to
+determine which instance processes each element. Each instance can
+transform at most one input element per cycle.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Shards
+</pre>
+<div class="docs">
+<p>Number of replicas to <code>f</code> to instantiate.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Maximum number of input/output elements.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of each input element.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>
+</pre>
+<div class="docs">
+<p>Maximum number of threads concurrently executing inside of
+<code>parallel_map</code>. Caller must ensure this limit is not
+exceeded.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">f</span>
+</pre>
+<div class="docs">
+<p>Function used to process input elements.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(T) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt; <span class="identifier">get_shard_idx</span>
+</pre>
+<div class="docs">
+<p>Function used to determine which hardware instance processes a given
+input element.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>
+</pre>
+<div class="docs">
+<p>Input data.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

@@ -1,0 +1,377 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../numeric/fixed.html" id="index-link"
+class="link">numeric.fixed</a>
+<ul>
+<li><a href="../numeric/fixed.html#numeric-fixed-abs" id="index-link"
+class="link"><code>abs</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-ceil" id="index-link"
+class="link"><code>ceil</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-cos" id="index-link"
+class="link"><code>cos</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-dim" id="index-link"
+class="link"><code>dim</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-exp" id="index-link"
+class="link"><code>exp</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-exp2" id="index-link"
+class="link"><code>exp2</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-fixed" id="index-link"
+class="link"><code>fixed</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-floor" id="index-link"
+class="link"><code>floor</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-invsqrt"
+id="index-link" class="link"><code>invsqrt</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-log" id="index-link"
+class="link"><code>log</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-log10" id="index-link"
+class="link"><code>log10</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-log2" id="index-link"
+class="link"><code>log2</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-max" id="index-link"
+class="link"><code>max</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-min" id="index-link"
+class="link"><code>min</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-pow" id="index-link"
+class="link"><code>pow</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-reciprocal"
+id="index-link" class="link"><code>reciprocal</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-round" id="index-link"
+class="link"><code>round</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-sin" id="index-link"
+class="link"><code>sin</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-sqrt" id="index-link"
+class="link"><code>sqrt</code></a></li>
+<li><a href="../numeric/fixed.html#numeric-fixed-trunc" id="index-link"
+class="link"><code>trunc</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>numeric.fixed <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="keyword">struct</span> <span class="identifier">fixed</span> <a class="anchor" href="#numeric-fixed-fixed" id="numeric-fixed-fixed">§</a>
+</pre>
+<div class="docs">
+<p>Fixed-point representation.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> I
+</pre>
+<div class="docs">
+<p>Integer bit-width.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> F
+</pre>
+<div class="docs">
+<p>Fractional bit-width.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="builtin">int</span>&lt;(I + F)&gt; <span class="identifier">value</span> <a class="anchor" href="#numeric-fixed-$quasi0-value" id="numeric-fixed-$quasi0-value">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">round</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-round" id="numeric-fixed-round">§</a>
+</pre>
+<div class="docs">
+<p>Round half up.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; round(-23.5)
+-23
+
+&gt;&gt;&gt; round(23.5)
+24</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">ceil</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-ceil" id="numeric-fixed-ceil">§</a>
+</pre>
+<div class="docs">
+<p>Ceiling.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">floor</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-floor" id="numeric-fixed-floor">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">trunc</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-trunc" id="numeric-fixed-trunc">§</a>
+</pre>
+<div class="docs">
+<p>Truncate.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">abs</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-abs" id="numeric-fixed-abs">§</a>
+</pre>
+<div class="docs">
+<p>Return the absolute value of x.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">min</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-min" id="numeric-fixed-min">§</a>
+</pre>
+<div class="docs">
+<p>Return the smaller of x and y.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">max</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-max" id="numeric-fixed-max">§</a>
+</pre>
+<div class="docs">
+<p>Return the larger of x and y.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">dim</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-dim" id="numeric-fixed-dim">§</a>
+</pre>
+<div class="docs">
+<p>Return the positive difference between x and y,
+i.e. <code>max(x - y, 0)</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">reciprocal</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-reciprocal" id="numeric-fixed-reciprocal">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log2</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log2" id="numeric-fixed-log2">§</a>
+</pre>
+<div class="docs">
+<p>Base-2 logarithm.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log10</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log10" id="numeric-fixed-log10">§</a>
+</pre>
+<div class="docs">
+<p>Base-10 logarithm.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log" id="numeric-fixed-log">§</a>
+</pre>
+<div class="docs">
+<p>Base-e logarithm.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">sin</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-sin" id="numeric-fixed-sin">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">cos</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-cos" id="numeric-fixed-cos">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">exp2</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-exp2" id="numeric-fixed-exp2">§</a>
+</pre>
+<div class="docs">
+<p>Base-2 exponent.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">exp</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-exp" id="numeric-fixed-exp">§</a>
+</pre>
+<div class="docs">
+<p>Base-e exponent.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">invsqrt</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-invsqrt" id="numeric-fixed-invsqrt">§</a>
+</pre>
+<div class="docs">
+<p>Return the reciprocal of the square root of x.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">sqrt</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-sqrt" id="numeric-fixed-sqrt">§</a>
+</pre>
+<div class="docs">
+<p>Return the square root of x. This function provides better accuracy
+than calling <code>invsqrt</code> and then multiplying by x.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">pow</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">base</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">expo</span>) <a class="anchor" href="#numeric-fixed-pow" id="numeric-fixed-pow">§</a>
+</pre>
+<div class="docs">
+<p>Raise <code>base</code> to the power of <code>expo</code>.</p>
+</div>
+</section>
+</div>
+</div>

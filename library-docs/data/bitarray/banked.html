@@ -1,0 +1,498 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/bitarray/banked.html" id="index-link"
+class="link">data.bitarray.banked</a>
+<ul>
+<li><a
+href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"
+id="index-link" class="link"><code>bitarray</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.bitarray.banked <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> Size,
+    <span class="keyword">auto</span> WordWidth,
+    <span class="keyword">auto</span> Banks,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">bitarray</span> <a class="anchor" href="#data-bitarray-banked-bitarray" id="data-bitarray-banked-bitarray">§</a>
+</pre>
+<div class="docs">
+<p>A fixed sized array of bits, stored internally as a set of banks,
+where each bank is an array of words. Provides methods to read or write
+at multiple bits or words</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Size
+</pre>
+<div class="docs">
+<p>Number of bits in the bit vector.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> WordWidth
+</pre>
+<div class="docs">
+<p>Number of bits in each word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Banks
+</pre>
+<div class="docs">
+<p>Number of banks. Higher values increase throughput and resource
+usage.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+</pre>
+<div class="docs">
+<p>Memory implementation.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">bit_addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-bit_addr_t" id="data-bitarray-banked-bitarray-bit_addr_t">§</a>
+</pre>
+<div class="docs">
+<p>Represents the address of a single bit.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">word_addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<span class="identifier">WordCount</span>&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-word_addr_t" id="data-bitarray-banked-bitarray-word_addr_t">§</a>
+</pre>
+<div class="docs">
+<p>Represents the address of a single word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">word_t</span> = <span class="builtin">uint</span>&lt;WordWidth&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-word_t" id="data-bitarray-banked-bitarray-word_t">§</a>
+</pre>
+<div class="docs">
+<p>A single word which can be read or written.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxCount&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, MaxCount&gt;
+<span class="identifier">read_bits</span>(<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_bits" id="data-bitarray-banked-bitarray-read_bits">§</a>
+</pre>
+<div class="docs">
+<p>Get the value of multiple bits.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>Addresses of bits to read.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">read_bit</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_bit" id="data-bitarray-banked-bitarray-read_bit">§</a>
+</pre>
+<div class="docs">
+<p>Get the value of one bit.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>
+</pre>
+<div class="docs">
+<p>Address of bit to read.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxCount&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a>, MaxCount&gt;
+<span class="identifier">read_words</span>(<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_words" id="data-bitarray-banked-bitarray-read_words">§</a>
+</pre>
+<div class="docs">
+<p>Get the value of multiple words.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>Addresses of words to read.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">read_word</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_word" id="data-bitarray-banked-bitarray-read_word">§</a>
+</pre>
+<div class="docs">
+<p>Get the value of a single multiple word.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>
+</pre>
+<div class="docs">
+<p>Addresses of the word to read.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxCount&gt;
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">write_bits</span>(
+    <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a>, <span class="builtin">bool</span>&gt;, MaxCount&gt; <span class="identifier">addresses_and_values</span>
+    ) <a class="anchor" href="#data-bitarray-banked-bitarray-write_bits" id="data-bitarray-banked-bitarray-write_bits">§</a>
+</pre>
+<div class="docs">
+<p>Set the values of multiple bits.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a>, <span class="builtin">bool</span>&gt;, MaxCount&gt; <span class="identifier">addresses_and_values</span>
+</pre>
+<div class="docs">
+<p>Addresses and values of bits to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_bit</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>, <span class="builtin">bool</span> <span class="identifier">value</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-write_bit" id="data-bitarray-banked-bitarray-write_bit">§</a>
+</pre>
+<div class="docs">
+<p>Set the value of one bit.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>
+</pre>
+<div class="docs">
+<p>Address of bit to write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>Value to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxCount&gt;
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">write_words</span>(
+    <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;
+        <a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a>, <a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a>&gt;,
+        MaxCount
+        &gt; <span class="identifier">addresses_and_values</span>
+    ) <a class="anchor" href="#data-bitarray-banked-bitarray-write_words" id="data-bitarray-banked-bitarray-write_words">§</a>
+</pre>
+<div class="docs">
+<p>Set the values of multiple words.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;
+    <a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a>, <a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a>&gt;,
+    MaxCount
+    &gt; <span class="identifier">addresses_and_values</span>
+</pre>
+<div class="docs">
+<p>Addresses and values of words to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_word</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>, <a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-write_word" id="data-bitarray-banked-bitarray-write_word">§</a>
+</pre>
+<div class="docs">
+<p>Set the value of one word.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>
+</pre>
+<div class="docs">
+<p>Address of word to write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>Value to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (Size % WordWidth))
+</pre>
+</li>
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<span class="identifier">WordCount</span> % Banks))
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

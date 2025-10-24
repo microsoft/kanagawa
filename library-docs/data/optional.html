@@ -1,0 +1,357 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/optional.html" id="index-link"
+class="link">data.optional</a>
+<ul>
+<li><a href="../data/optional.html#data-optional-equal" id="index-link"
+class="link"><code>equal</code></a></li>
+<li><a href="../data/optional.html#data-optional-equal_by"
+id="index-link" class="link"><code>equal_by</code></a></li>
+<li><a href="../data/optional.html#data-optional-from_optional"
+id="index-link" class="link"><code>from_optional</code></a></li>
+<li><a href="../data/optional.html#data-optional-is_valid"
+id="index-link" class="link"><code>is_valid</code></a></li>
+<li><a href="../data/optional.html#data-optional-join" id="index-link"
+class="link"><code>join</code></a></li>
+<li><a href="../data/optional.html#data-optional-just" id="index-link"
+class="link"><code>just</code></a></li>
+<li><a href="../data/optional.html#data-optional-lift2_optional"
+id="index-link" class="link"><code>lift2_optional</code></a></li>
+<li><a href="../data/optional.html#data-optional-lift_optional"
+id="index-link" class="link"><code>lift_optional</code></a></li>
+<li><a href="../data/optional.html#data-optional-make_optional"
+id="index-link" class="link"><code>make_optional</code></a></li>
+<li><a href="../data/optional.html#data-optional-optional"
+id="index-link" class="link"><code>optional</code></a></li>
+<li><a href="../data/optional.html#data-optional-optional_to_pair"
+id="index-link" class="link"><code>optional_to_pair</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.optional <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="keyword">struct</span> <span class="identifier">optional</span> <a class="anchor" href="#data-optional-optional" id="data-optional-optional">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">is_valid</span> <a class="anchor" href="#data-optional-$quasi0-is_valid" id="data-optional-$quasi0-is_valid">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+T <span class="identifier">value</span> <a class="anchor" href="#data-optional-$quasi0-value" id="data-optional-$quasi0-value">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">is_valid</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">x</span>) <a class="anchor" href="#data-optional-is_valid" id="data-optional-is_valid">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">make_optional</span>(<span class="builtin">bool</span> <span class="identifier">is_valid</span>, T <span class="identifier">value</span>) <a class="anchor" href="#data-optional-make_optional" id="data-optional-make_optional">§</a>
+</pre>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">just</span>(<span class="keyword">auto</span> <span class="identifier">value</span>) <a class="anchor" href="#data-optional-just" id="data-optional-just">§</a>
+</pre>
+<div class="docs">
+<p>Create optional with <code>is_valid</code> set to true.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">x</span>, <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-optional-equal" id="data-optional-equal">§</a>
+</pre>
+<div class="docs">
+<p>Compare optionals for equality. Return true when both arguments are
+invalid or both arguments are valid and have equal values.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; equal({false, 0x0}, {false, 0x1});
+true
+
+&gt;&gt;&gt; equal({true, 0x4}, {false, 0x4});
+false
+
+&gt;&gt;&gt; equal({true, 0x4}, {true, 0x4});
+true</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<span class="builtin">bool</span>, T&gt; <span class="identifier">optional_to_pair</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">x</span>) <a class="anchor" href="#data-optional-optional_to_pair" id="data-optional-optional_to_pair">§</a>
+</pre>
+<div class="docs">
+<p>Convert from <code>optional&lt;T&gt;</code> to
+<code>pair&lt;bool, T&gt;</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">from_optional</span>(T <span class="identifier">default_value</span>, <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">x</span>) <a class="anchor" href="#data-optional-from_optional" id="data-optional-from_optional">§</a>
+</pre>
+<div class="docs">
+<p>Convert from <code>optional&lt;T&gt;</code> to <code>T</code>, using
+a default value if necessary.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; from_optional(0x7, {false, 0x2});
+0x7
+
+&gt;&gt;&gt; from_optional(0x7, {true, 0x2});
+0x2</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">join</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;&gt; <span class="identifier">x</span>) <a class="anchor" href="#data-optional-join" id="data-optional-join">§</a>
+</pre>
+<div class="docs">
+<p>Remove one layer of <code>optional</code>, projecting <code>T</code>
+into the outer layer.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; join({false, {false, 0xFF}})
+{false, 0xFF}
+
+&gt;&gt;&gt; join({false, {true, 0xFF}})
+{false, 0xFF}
+
+&gt;&gt;&gt; join({true, {false, 0xFF}})
+{false, 0xFF}
+
+&gt;&gt;&gt; join({true, {true, 0xFF}})
+{true, 0xFF}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">x</span>, <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-optional-equal_by" id="data-optional-equal_by">§</a>
+</pre>
+<div class="docs">
+<p>Equality comparison of optionals using the specified function.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; equal_by([](uint8 x, uint8 y){ return even(x) &amp;&amp; even(y); }, {true, 0}, {false, 2})
+false
+
+&gt;&gt;&gt; equal_by([](uint8 x, uint8 y){ return even(x) &amp;&amp; even(y); }, {true, 0}, {true, 2})
+true
+
+&gt;&gt;&gt; equal_by([](uint8 x, uint8 y){ return even(x) &amp;&amp; even(y); }, {false, 0}, {false, 3})
+true</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">lift_optional</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">fn</span>) <a class="anchor" href="#data-optional-lift_optional" id="data-optional-lift_optional">§</a>
+</pre>
+<div class="docs">
+<p>Returns a function with the signature:
+<code>(optional&lt;A&gt;)-&gt;optional&lt;decltype(fn(A))&gt;</code>.
+The result is valid if and only if the input is valid. <code>fn</code>
+is called to compute the resulting value. If the result is invalid, then
+<code>fn</code> is not called, and the result value is undefined.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">fn</span>
+</pre>
+<div class="docs">
+<p>Function used to convert values.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">lift2_optional</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">fn</span>) <a class="anchor" href="#data-optional-lift2_optional" id="data-optional-lift2_optional">§</a>
+</pre>
+<div class="docs">
+<p>Returns a function with the signature:
+<code>(optional&lt;A&gt;, optional&lt;B&gt;)-&gt;optional&lt;decltype(fn(A, B))&gt;</code>.
+The result is valid if and only if both inputs are valid.
+<code>fn</code> is called to compute the resulting value. If the result
+is invalid, then <code>fn</code> is not called, and the result value is
+undefined.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">fn</span>
+</pre>
+<div class="docs">
+<p>Function used to convert values.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

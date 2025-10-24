@@ -1,0 +1,641 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../control/loop.html" id="index-link"
+class="link">control.loop</a>
+<ul>
+<li><a href="../control/loop.html#control-loop-parallel_for"
+id="index-link" class="link"><code>parallel_for</code></a></li>
+<li><a href="../control/loop.html#control-loop-parallel_for_each"
+id="index-link" class="link"><code>parallel_for_each</code></a></li>
+<li><a href="../control/loop.html#control-loop-parallel_map"
+id="index-link" class="link"><code>parallel_map</code></a></li>
+<li><a href="../control/loop.html#control-loop-pipelined_do"
+id="index-link" class="link"><code>pipelined_do</code></a></li>
+<li><a href="../control/loop.html#control-loop-pipelined_for"
+id="index-link" class="link"><code>pipelined_for</code></a></li>
+<li><a href="../control/loop.html#control-loop-pipelined_for_each"
+id="index-link" class="link"><code>pipelined_for_each</code></a></li>
+<li><a href="../control/loop.html#control-loop-pipelined_last"
+id="index-link" class="link"><code>pipelined_last</code></a></li>
+<li><a href="../control/loop.html#control-loop-pipelined_map"
+id="index-link" class="link"><code>pipelined_map</code></a></li>
+<li><a href="../control/loop.html#control-loop-range_for"
+id="index-link" class="link"><code>range_for</code></a></li>
+<li><a href="../control/loop.html#control-loop-while_do" id="index-link"
+class="link"><code>while_do</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>control.loop <a href="../index.html">&equiv;</a></h1>
+<p>Looping control flow constructs.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">range_for</span>(T <span class="identifier">begin</span>, T <span class="identifier">end</span>, <span class="keyword">auto</span> <span class="identifier">step</span>, (T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-range_for" id="control-loop-range_for">§</a>
+</pre>
+<div class="docs">
+<p>Execute body for a range of values starting from <code>begin</code>
+and ending before <code>end</code>, incrementing by <code>step</code> on
+each iteration.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">while_do</span>(() -&gt; <span class="builtin">bool</span> <span class="identifier">condition</span>, () -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-while_do" id="control-loop-while_do">§</a>
+</pre>
+<div class="docs">
+<p>Keep calling <code>body</code> while the <code>condition</code>
+returns true.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> I&gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_for</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_for" id="control-loop-pipelined_for">§</a>
+</pre>
+<div class="docs">
+<p>Spawn <code>count</code> threads executing <code>body</code>, which
+can be a lambda or a function taking one argument specifying the thread
+index from the range [0, <code>count</code>).</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>pipelined_for(x, [](uint4 i)
+{
+    // ...
+});
+
+void foo(uint8 i)
+{
+}
+
+pipelined_for(256, foo);</code></pre>
+</details>
+<h4 id="hardware"><strong>Hardware</strong></h4>
+<p>Each call to <code>pipelined_for</code> inserts a record into a FIFO.
+This FIFO holds the thread count and the values of captured variables. A
+finite state machine translates each FIFO record into
+<code>thread_count</code> calls to the inner function. A separate finite
+state machine unblocks the calling thread after
+<code>thread_count</code> threads have completed. Unblocking is achieved
+with a zero-width fifo.</p>
+<pre class="kanagawa"><code>void F(uint32 x, uint32 y)
+{
+    uint32 thread_count = x + 1;
+
+    pipelined_for(thread_count, [y](uint32 tid)
+    {
+    });
+}</code></pre>
+<img src="./loop.0.svg" />
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_for_each</span>(T[N] <span class="identifier">arr</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_for_each" id="control-loop-pipelined_for_each">§</a>
+</pre>
+<div class="docs">
+<p>Spawn a thread for each element of array <code>arr</code> calling
+<code>body</code> which can be a lambda or a function taking two
+arguments, the thread index and the element value.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>uint32[10] a;
+pipelined_for_each(a,  [](uint4 i, uint32 x)
+{
+    ...
+});</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> I&gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_do</span>((I) -&gt; <span class="builtin">bool</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_do" id="control-loop-pipelined_do">§</a>
+</pre>
+<div class="docs">
+<p>Spawn threads that will execute the <code>body</code> closure until
+it returns <code>false</code>. If <code>body</code> has an argument,
+then the number of threads used is <code>2^bitsizeof(I)</code>. This
+should be larger than the depth of the <code>body</code> pipeline. If
+<code>body</code> does not have an argument, then the number of threads
+used is .options::max_threads_limit. The function returns after
+<code>body</code> returns <code>false</code> and all in-flight threads
+“drain” from the loop. When an instance of <code>pipelined_do</code> is
+called multiple times, the threads for subsequent calls will not start
+until all threads for earlier calls have started (although not
+necessarily exited).</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>pipelined_do([](index_t&lt;32&gt; i)
+{
+    // ...
+    return !done;
+});
+
+pipelined_do([]()
+{
+    // ...
+    return !done;
+});</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> I, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T[N] <span class="identifier">pipelined_map</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_map" id="control-loop-pipelined_map">§</a>
+</pre>
+<div class="docs">
+<p>Spawn <code>count</code> threads executing <code>body</code>, which
+can be a lambda or a function taking one argument specifying the thread
+index from the range [0, <code>count</code>]. The function returns an
+array <code>T[N]</code> of values produced by <code>body</code>.
+<code>N</code> must not be greater than <code>count</code>.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>auto a = pipelined_map&lt;10&gt;(x, [](uint4 i) -&gt; uint32
+{
+    // ...
+});</code></pre>
+</details>
+<h4 id="hardware"><strong>Hardware</strong></h4>
+<p>The hardware generated for <code>pipelined_map</code> is similar to
+the hardware generated for <code>pipelined_for</code>. The thread
+collection finite state machine concatenates the return values from each
+inner thread into an array and returns that array to the caller.</p>
+<pre class="kanagawa"><code>uint32[4] F(uint32 x, uint32 y)
+{
+    uint32 thread_count = x + 1;
+
+    uint32[4] result = pipelined_map
+        ( thread_count,
+              [y](uint32 tid) -&gt; uint32
+              {
+                  return y + tid;
+              }
+        );
+
+    return result;
+}</code></pre>
+<img src="./loop.1.svg" />
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> T, T default_value = {}&gt;
+<span class="modifier">inline </span>T <span class="identifier">pipelined_last</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_last" id="control-loop-pipelined_last">§</a>
+</pre>
+<div class="docs">
+<p>Spawn <code>count</code> threads executing <code>body</code>, which
+can be a lambda or a function taking one argument specifying the thread
+index from the range [0, <code>count</code>]. The function returns
+result produced by last call to <code>body</code>.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>auto a = pipelined_last(x, [](uint4 i)
+{
+    // ...
+});</code></pre>
+</details>
+<h4 id="hardware"><strong>Hardware</strong></h4>
+<p>The hardware generated for <code>pipelined_last</code> is similar to
+the hardware generated for <code>pipelined_for</code>. The thread
+collection finite state machine ignores the return value from all inner
+threads except the last one, where
+<code>tid == (thread_count - 1)</code>. This value is returned to the
+caller. If the thread count is equal to 0, then
+<code>default_value</code> is returned.</p>
+<pre class="kanagawa"><code>uint32 F(uint32 x, uint32 y)
+{
+    uint32 thread_count = x + 1;
+
+    uint32 result = pipelined_last
+        (thread_count,
+            [y](uint32 tid)
+            {
+                return y + tid;
+            }
+        );
+
+    return result;
+}</code></pre>
+<img src="./loop.2.svg" />
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>&gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">parallel_for</span>(<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">count</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_for" id="control-loop-parallel_for">§</a>
+</pre>
+<div class="docs">
+<p>Spawn <code>count</code> threads executing <code>body</code>, which
+can be a lambda or a function taking one argument specifying the thread
+index from the range [0, <code>count</code>).</p>
+<p>Threads execute across <code>N</code> instances of the function
+<code>body</code>. There are no ordering guarantees among threads
+spawned by one call to <code>parallel_for</code>. If there are two calls
+(<code>A</code> and <code>B</code>) to a single
+<code>parallel_for</code> call site, resulting in threads
+<code>A0</code>, <code>A1</code>, <code>B0</code>, <code>B1</code>
+executing <code>body</code>, then thread <code>A0</code> will begin
+executing <code>body</code> ahead of <code>B0</code> and <code>A1</code>
+will begin executing <code>body</code> ahead of <code>B1</code>.</p>
+<p><code>count</code> must be less than <code>N</code>.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>parallel_for(x, [](uint4 i)
+{
+    // ...
+});
+
+void foo(uint8 i)
+{
+}
+
+parallel_for(256, foo);</code></pre>
+</details>
+<h4 id="hardware"><strong>Hardware</strong></h4>
+<p>Each call to <code>parallel_for</code> broadcasts captured variables
+to <code>N</code> FIFOs. Each of these FIFOs is associated with a
+pipeline which is an instance of <code>body</code>. After executing
+<code>body</code>, a counter is incremented, which is used to block the
+calling thread until all calls to <code>body</code> have completed.</p>
+<pre class="kanagawa"><code>void F(uint32 x, uint32 y)
+{
+    parallel_for(2, [x, y](index_t&lt;2&gt; tid)
+    {
+    });
+}</code></pre>
+<img src="./loop.3.svg" />
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Number of replicas to <code>body</code> to instantiate.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>
+</pre>
+<div class="docs">
+<p>Maximum number of threads concurrently executing inside of
+<code>parallel_for</code>. Caller must ensure this limit is not
+exceeded.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">count</span>
+</pre>
+<div class="docs">
+<p>Number of times that <code>body</code> will be invoked. Must be no
+greater than <code>N</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>
+</pre>
+<div class="docs">
+<p>Function to invoke.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>&gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">parallel_for_each</span>(T[N] <span class="identifier">arr</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_for_each" id="control-loop-parallel_for_each">§</a>
+</pre>
+<div class="docs">
+<p>Spawn a thread for each element of array <code>arr</code> calling
+<code>body</code> which can be a lambda or a function taking two
+arguments, the thread index and the element value.</p>
+<p>Threads execute across <code>N</code> instances of the function
+<code>body</code>. There are no ordering guarantees among threads
+spawned by one call to <code>parallel_for_each</code>. If there are two
+calls (<code>A</code> and <code>B</code>) to a single
+<code>parallel_for_each</code> call site, resulting in threads
+<code>A0</code>, <code>A1</code>, <code>B0</code>, <code>B1</code>
+executing <code>body</code>, then thread <code>A0</code> will begin
+executing <code>body</code> ahead of <code>B0</code> and <code>A1</code>
+will begin executing <code>body</code> ahead of <code>B1</code>.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>uint32[10] a;
+parallel_for_each(a,  [](uint4 i, uint32 x)
+{
+    ...
+});</code></pre>
+</details>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of each input array element.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Number of replicas to <code>body</code> to instantiate.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>
+</pre>
+<div class="docs">
+<p>Maximum number of threads concurrently executing inside of
+<code>parallel_for_each</code>. Caller must ensure this limit is not
+exceeded.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+T[N] <span class="identifier">arr</span>
+</pre>
+<div class="docs">
+<p>Input array to be processed (each element is processed by a separate
+call to <code>body</code>).</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>
+</pre>
+<div class="docs">
+<p>Function which processes one input array element on each call.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T, <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>&gt;
+<span class="modifier">inline </span>T[N] <span class="identifier">parallel_map</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_map" id="control-loop-parallel_map">§</a>
+</pre>
+<div class="docs">
+<p>Spawn <code>count</code> threads executing <code>body</code>, which
+can be a lambda or a function taking one argument specifying the thread
+index from the range [0, <code>count</code>]. The function returns an
+array <code>T[N]</code> of values produced by <code>body</code>.
+<code>N</code> must not be greater than <code>count</code>.</p>
+<p>Threads execute across <code>N</code> instances of the function
+<code>body</code>. There are no ordering guarantees among threads
+spawned by one call to <code>parallel_map</code>. If there are two calls
+(<code>A</code> and <code>B</code>) to a single
+<code>parallel_map</code> call site, resulting in threads
+<code>A0</code>, <code>A1</code>, <code>B0</code>, <code>B1</code>
+executing <code>body</code>, then thread <code>A0</code> will begin
+executing <code>body</code> ahead of <code>B0</code> and <code>A1</code>
+will begin executing <code>body</code> ahead of <code>B1</code>.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>auto a = parallel_map&lt;4&gt;(x, [](uint2 i) -&gt; uint32
+{
+    // ...
+});</code></pre>
+</details>
+<h4 id="hardware"><strong>Hardware</strong></h4>
+<p>Each call to <code>parallel_map</code> broadcasts captured variables
+to <code>N</code> FIFOs. Each of these FIFOs is associated with a
+pipeline which is an instance of <code>body</code>. After executing
+<code>body</code>, the return result is placed into a FIFO. Results from
+all FIFOs are dequeued and returned.</p>
+<pre class="kanagawa"><code>void F(uint32 x, uint32 y)
+{
+    parallel_map&lt;2&gt;(2, [x, y](index_t&lt;2&gt; tid) -&gt; uint32
+    {
+         return x + y;
+    });
+}</code></pre>
+<img src="./loop.4.svg" />
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Number of replicas to <code>body</code> to instantiate.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of each output array element.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>
+</pre>
+<div class="docs">
+<p>Maximum number of threads concurrently executing inside of
+<code>parallel_map</code>. Caller must ensure this limit is not
+exceeded.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> <span class="identifier">count</span>
+</pre>
+<div class="docs">
+<p>Number of times that <code>body</code> will be invoked. Must be no
+greater than <code>N</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; T <span class="identifier">body</span>
+</pre>
+<div class="docs">
+<p>Function which returns one array element on each call.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

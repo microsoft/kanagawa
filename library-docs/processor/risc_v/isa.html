@@ -1,0 +1,1466 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../processor/risc_v/isa.html" id="index-link"
+class="link">processor.risc_v.isa</a>
+<ul>
+<li><a href="../../processor/risc_v/isa.html#processor-risc_v-isa-ABI"
+id="index-link" class="link"><code>ABI</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-B_type"
+id="index-link" class="link"><code>B_type</code></a></li>
+<li><a href="../../processor/risc_v/isa.html#processor-risc_v-isa-Base"
+id="index-link" class="link"><code>Base</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-Branch"
+id="index-link" class="link"><code>Branch</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-Extension"
+id="index-link" class="link"><code>Extension</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-Format"
+id="index-link" class="link"><code>Format</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"
+id="index-link" class="link"><code>Funct3</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"
+id="index-link" class="link"><code>Funct7</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-I_type"
+id="index-link" class="link"><code>I_type</code></a></li>
+<li><a href="../../processor/risc_v/isa.html#processor-risc_v-isa-Instr"
+id="index-link" class="link"><code>Instr</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-J_type"
+id="index-link" class="link"><code>J_type</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-LoadStore"
+id="index-link" class="link"><code>LoadStore</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-MiscMem"
+id="index-link" class="link"><code>MiscMem</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-MulDiv"
+id="index-link" class="link"><code>MulDiv</code></a></li>
+<li><a href="../../processor/risc_v/isa.html#processor-risc_v-isa-Op"
+id="index-link" class="link"><code>Op</code></a></li>
+<li><a href="../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"
+id="index-link" class="link"><code>RVG</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-R_type"
+id="index-link" class="link"><code>R_type</code></a></li>
+<li><a href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"
+id="index-link" class="link"><code>Reg</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-S_type"
+id="index-link" class="link"><code>S_type</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-System"
+id="index-link" class="link"><code>System</code></a></li>
+<li><a href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"
+id="index-link" class="link"><code>Types</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-U_type"
+id="index-link" class="link"><code>U_type</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-decode_format"
+id="index-link" class="link"><code>decode_format</code></a></li>
+<li><a
+href="../../processor/risc_v/isa.html#processor-risc_v-isa-sign_extend"
+id="index-link" class="link"><code>sign_extend</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>processor.risc_v.isa <a href="../../index.html">&equiv;</a></h1>
+<p>RISC-V ISA types, constants and helper functions.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">Base</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-isa-Base" id="processor-risc_v-isa-Base">§</a>
+</pre>
+<div class="docs">
+<p>Base ISA identifier</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">RV32I</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV32I" id="processor-risc_v-isa-Base-RV32I">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">RV32E</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV32E" id="processor-risc_v-isa-Base-RV32E">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">RV64I</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV64I" id="processor-risc_v-isa-Base-RV64I">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">Extension</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-isa-Extension" id="processor-risc_v-isa-Extension">§</a>
+</pre>
+<div class="docs">
+<p>Standard ISA extension identifier</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">None</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Extension-None" id="processor-risc_v-isa-Extension-None">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">M</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Extension-M" id="processor-risc_v-isa-Extension-M">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">Funct7</span> = <span class="keyword">uint7</span> <a class="anchor" href="#processor-risc_v-isa-Funct7" id="processor-risc_v-isa-Funct7">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a> ISA&gt;
+<span class="keyword">class</span> <span class="identifier">Types</span> <a class="anchor" href="#processor-risc_v-isa-Types" id="processor-risc_v-isa-Types">§</a>
+</pre>
+<div class="docs">
+<p>Data types for specified base ISA</p>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">int_t</span> = <span class="builtin">int</span>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">int_size</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-int_t" id="processor-risc_v-isa-Types-int_t">§</a>
+</pre>
+<div class="docs">
+<p>Signed XLEN bits wide integer</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">uint_t</span> = <span class="builtin">uint</span>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">int_size</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-uint_t" id="processor-risc_v-isa-Types-uint_t">§</a>
+</pre>
+<div class="docs">
+<p>Unsigned XLEN bits wide integer</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">register_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">registers</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-register_index_t" id="processor-risc_v-isa-Types-register_index_t">§</a>
+</pre>
+<div class="docs">
+<p>Register index</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Types</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">Decoded</span> <a class="anchor" href="#processor-risc_v-isa-Types-Decoded" id="processor-risc_v-isa-Types-Decoded">§</a>
+</pre>
+<div class="docs">
+<p>Decoded instruction fields</p>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rd" id="processor-risc_v-isa-Types-$quasi0-rd">§</a>
+</pre>
+<div class="docs">
+<p>Destination register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rs1" id="processor-risc_v-isa-Types-$quasi0-rs1">§</a>
+</pre>
+<div class="docs">
+<p>First operand register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rs2" id="processor-risc_v-isa-Types-$quasi0-rs2">§</a>
+</pre>
+<div class="docs">
+<p>Second operand register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-int_t"><span class="identifier">int_t</span></a> <span class="identifier">imm</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-imm" id="processor-risc_v-isa-Types-$quasi0-imm">§</a>
+</pre>
+<div class="docs">
+<p>Immediate operand (not valid for R-type instructions)</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-funct7" id="processor-risc_v-isa-Types-$quasi0-funct7">§</a>
+</pre>
+<div class="docs">
+<p>funct7 field (valid only for R-type instructions)</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">RVG</span> : <span class="keyword">uint5</span> <a class="anchor" href="#processor-risc_v-isa-RVG" id="processor-risc_v-isa-RVG">§</a>
+</pre>
+<div class="docs">
+<p>General-purpose ISA major opcodes</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">LOAD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LOAD" id="processor-risc_v-isa-RVG-LOAD">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">LOAD_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LOAD_FP" id="processor-risc_v-isa-RVG-LOAD_FP">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">custom_0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_0" id="processor-risc_v-isa-RVG-custom_0">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">MISC_MEM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MISC_MEM" id="processor-risc_v-isa-RVG-MISC_MEM">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">OP_IMM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_IMM" id="processor-risc_v-isa-RVG-OP_IMM">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">AUIPC</span> <a class="anchor" href="#processor-risc_v-isa-RVG-AUIPC" id="processor-risc_v-isa-RVG-AUIPC">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">OP_IMM_32</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_IMM_32" id="processor-risc_v-isa-RVG-OP_IMM_32">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">long0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long0" id="processor-risc_v-isa-RVG-long0">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">STORE</span> <a class="anchor" href="#processor-risc_v-isa-RVG-STORE" id="processor-risc_v-isa-RVG-STORE">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">STORE_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-STORE_FP" id="processor-risc_v-isa-RVG-STORE_FP">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">custom_1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_1" id="processor-risc_v-isa-RVG-custom_1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">AMO</span> <a class="anchor" href="#processor-risc_v-isa-RVG-AMO" id="processor-risc_v-isa-RVG-AMO">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">OP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP" id="processor-risc_v-isa-RVG-OP">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">LUI</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LUI" id="processor-risc_v-isa-RVG-LUI">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">OP_32</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_32" id="processor-risc_v-isa-RVG-OP_32">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">long1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long1" id="processor-risc_v-isa-RVG-long1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">MADD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MADD" id="processor-risc_v-isa-RVG-MADD">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">MSUB</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MSUB" id="processor-risc_v-isa-RVG-MSUB">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">NMSUB</span> <a class="anchor" href="#processor-risc_v-isa-RVG-NMSUB" id="processor-risc_v-isa-RVG-NMSUB">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">NMADD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-NMADD" id="processor-risc_v-isa-RVG-NMADD">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">OP_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_FP" id="processor-risc_v-isa-RVG-OP_FP">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">reserved0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved0" id="processor-risc_v-isa-RVG-reserved0">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">custom_2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_2" id="processor-risc_v-isa-RVG-custom_2">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">long2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long2" id="processor-risc_v-isa-RVG-long2">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">BRANCH</span> <a class="anchor" href="#processor-risc_v-isa-RVG-BRANCH" id="processor-risc_v-isa-RVG-BRANCH">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">JALR</span> <a class="anchor" href="#processor-risc_v-isa-RVG-JALR" id="processor-risc_v-isa-RVG-JALR">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">reserved1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved1" id="processor-risc_v-isa-RVG-reserved1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">JAL</span> <a class="anchor" href="#processor-risc_v-isa-RVG-JAL" id="processor-risc_v-isa-RVG-JAL">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">SYSTEM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-SYSTEM" id="processor-risc_v-isa-RVG-SYSTEM">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">reserved2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved2" id="processor-risc_v-isa-RVG-reserved2">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">custom_3</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_3" id="processor-risc_v-isa-RVG-custom_3">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">long3</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long3" id="processor-risc_v-isa-RVG-long3">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">Funct3</span> = <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-isa-Funct3" id="processor-risc_v-isa-Funct3">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">Op</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-Op" id="processor-risc_v-isa-Op">§</a>
+</pre>
+<div class="docs">
+<p>OP/OP_IMM minor opcodes</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">ADD</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Op-ADD" id="processor-risc_v-isa-Op-ADD">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">SLL</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLL" id="processor-risc_v-isa-Op-SLL">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">SLT</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLT" id="processor-risc_v-isa-Op-SLT">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">SLTU</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLTU" id="processor-risc_v-isa-Op-SLTU">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">XOR</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-Op-XOR" id="processor-risc_v-isa-Op-XOR">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">SR</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-Op-SR" id="processor-risc_v-isa-Op-SR">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">OR</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-Op-OR" id="processor-risc_v-isa-Op-OR">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">AND</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-Op-AND" id="processor-risc_v-isa-Op-AND">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">MulDiv</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-MulDiv" id="processor-risc_v-isa-MulDiv">§</a>
+</pre>
+<div class="docs">
+<p>“M” standard extension minor opcodes</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">MUL</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MUL" id="processor-risc_v-isa-MulDiv-MUL">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">MULH</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULH" id="processor-risc_v-isa-MulDiv-MULH">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">MULHSU</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULHSU" id="processor-risc_v-isa-MulDiv-MULHSU">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">MULHU</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULHU" id="processor-risc_v-isa-MulDiv-MULHU">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">DIV</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-DIV" id="processor-risc_v-isa-MulDiv-DIV">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">DIVU</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-DIVU" id="processor-risc_v-isa-MulDiv-DIVU">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">REM</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-REM" id="processor-risc_v-isa-MulDiv-REM">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">REMU</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-REMU" id="processor-risc_v-isa-MulDiv-REMU">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">Branch</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-Branch" id="processor-risc_v-isa-Branch">§</a>
+</pre>
+<div class="docs">
+<p>BRANCH minor opcodes</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">BEQ</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BEQ" id="processor-risc_v-isa-Branch-BEQ">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">BNE</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BNE" id="processor-risc_v-isa-Branch-BNE">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">BLT</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BLT" id="processor-risc_v-isa-Branch-BLT">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">BGE</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BGE" id="processor-risc_v-isa-Branch-BGE">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">BLTU</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BLTU" id="processor-risc_v-isa-Branch-BLTU">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">BGEU</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BGEU" id="processor-risc_v-isa-Branch-BGEU">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">LoadStore</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-LoadStore" id="processor-risc_v-isa-LoadStore">§</a>
+</pre>
+<div class="docs">
+<p>LOAD/STORE minor opcodes</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">B</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-B" id="processor-risc_v-isa-LoadStore-B">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">H</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-H" id="processor-risc_v-isa-LoadStore-H">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">W</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-W" id="processor-risc_v-isa-LoadStore-W">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">BU</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-BU" id="processor-risc_v-isa-LoadStore-BU">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">HU</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-HU" id="processor-risc_v-isa-LoadStore-HU">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">System</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-System" id="processor-risc_v-isa-System">§</a>
+</pre>
+<div class="docs">
+<p>SYSTEM minor opcodes</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">PRIV</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-System-PRIV" id="processor-risc_v-isa-System-PRIV">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">CSRRW</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRW" id="processor-risc_v-isa-System-CSRRW">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">CSRRS</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRS" id="processor-risc_v-isa-System-CSRRS">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">CSRRC</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRC" id="processor-risc_v-isa-System-CSRRC">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">CSRRWI</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRWI" id="processor-risc_v-isa-System-CSRRWI">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">CSRRSI</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRSI" id="processor-risc_v-isa-System-CSRRSI">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">CSRRCI</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRCI" id="processor-risc_v-isa-System-CSRRCI">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">MiscMem</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-MiscMem" id="processor-risc_v-isa-MiscMem">§</a>
+</pre>
+<div class="docs">
+<p>MISC_MEM mino opcodes</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">FENCE</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-MiscMem-FENCE" id="processor-risc_v-isa-MiscMem-FENCE">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">Reg</span> = <span class="keyword">uint5</span> <a class="anchor" href="#processor-risc_v-isa-Reg" id="processor-risc_v-isa-Reg">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">ABI</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <a class="anchor" href="#processor-risc_v-isa-ABI" id="processor-risc_v-isa-ABI">§</a>
+</pre>
+<div class="docs">
+<p>Mnemonics for integer registers in the standard calling
+convention</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">zero</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-ABI-zero" id="processor-risc_v-isa-ABI-zero">§</a>
+</pre>
+<div class="docs">
+<p>Hard-wired zero</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">ra</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-ABI-ra" id="processor-risc_v-isa-ABI-ra">§</a>
+</pre>
+<div class="docs">
+<p>Return address</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sp</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-ABI-sp" id="processor-risc_v-isa-ABI-sp">§</a>
+</pre>
+<div class="docs">
+<p>Stack pointer</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">gp</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-ABI-gp" id="processor-risc_v-isa-ABI-gp">§</a>
+</pre>
+<div class="docs">
+<p>Global pointer</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">tp</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-ABI-tp" id="processor-risc_v-isa-ABI-tp">§</a>
+</pre>
+<div class="docs">
+<p>Thread pointer</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">t0</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t0" id="processor-risc_v-isa-ABI-t0">§</a>
+</pre>
+<div class="docs">
+<p>Temporary/alternate link register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">t1</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t1" id="processor-risc_v-isa-ABI-t1">§</a>
+</pre>
+<div class="docs">
+<p>Temporary</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">t2</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t2" id="processor-risc_v-isa-ABI-t2">§</a>
+</pre>
+<div class="docs">
+<p>Temporary</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s0</span> = <span class="literal">8</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s0" id="processor-risc_v-isa-ABI-s0">§</a>
+</pre>
+<div class="docs">
+<p>Frame pointer</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s1</span> = <span class="literal">9</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s1" id="processor-risc_v-isa-ABI-s1">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a0</span> = <span class="literal">10</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a0" id="processor-risc_v-isa-ABI-a0">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments/return values</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a1</span> = <span class="literal">11</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a1" id="processor-risc_v-isa-ABI-a1">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments/return values</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a2</span> = <span class="literal">12</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a2" id="processor-risc_v-isa-ABI-a2">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a3</span> = <span class="literal">13</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a3" id="processor-risc_v-isa-ABI-a3">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a4</span> = <span class="literal">14</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a4" id="processor-risc_v-isa-ABI-a4">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a5</span> = <span class="literal">15</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a5" id="processor-risc_v-isa-ABI-a5">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a6</span> = <span class="literal">16</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a6" id="processor-risc_v-isa-ABI-a6">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">a7</span> = <span class="literal">17</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a7" id="processor-risc_v-isa-ABI-a7">§</a>
+</pre>
+<div class="docs">
+<p>Function arguments</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s2</span> = <span class="literal">18</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s2" id="processor-risc_v-isa-ABI-s2">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s3</span> = <span class="literal">19</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s3" id="processor-risc_v-isa-ABI-s3">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s4</span> = <span class="literal">20</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s4" id="processor-risc_v-isa-ABI-s4">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s5</span> = <span class="literal">21</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s5" id="processor-risc_v-isa-ABI-s5">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s6</span> = <span class="literal">22</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s6" id="processor-risc_v-isa-ABI-s6">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s7</span> = <span class="literal">23</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s7" id="processor-risc_v-isa-ABI-s7">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s8</span> = <span class="literal">24</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s8" id="processor-risc_v-isa-ABI-s8">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s9</span> = <span class="literal">25</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s9" id="processor-risc_v-isa-ABI-s9">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s10</span> = <span class="literal">26</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s10" id="processor-risc_v-isa-ABI-s10">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">s11</span> = <span class="literal">27</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s11" id="processor-risc_v-isa-ABI-s11">§</a>
+</pre>
+<div class="docs">
+<p>Saved register</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">t3</span> = <span class="literal">28</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t3" id="processor-risc_v-isa-ABI-t3">§</a>
+</pre>
+<div class="docs">
+<p>Temporary</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">t4</span> = <span class="literal">29</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t4" id="processor-risc_v-isa-ABI-t4">§</a>
+</pre>
+<div class="docs">
+<p>Temporary</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">t5</span> = <span class="literal">30</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t5" id="processor-risc_v-isa-ABI-t5">§</a>
+</pre>
+<div class="docs">
+<p>Temporary</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">t6</span> = <span class="literal">31</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t6" id="processor-risc_v-isa-ABI-t6">§</a>
+</pre>
+<div class="docs">
+<p>Temporary</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span>int32 <span class="identifier">sign_extend</span>(<span class="builtin">uint</span>&lt;N&gt; <span class="identifier">x</span>) <a class="anchor" href="#processor-risc_v-isa-sign_extend" id="processor-risc_v-isa-sign_extend">§</a>
+</pre>
+<div class="docs">
+<p>Sign-extend an integer to XLEN bits</p>
+</div>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">R_type</span> <a class="anchor" href="#processor-risc_v-isa-R_type" id="processor-risc_v-isa-R_type">§</a>
+</pre>
+<div class="docs">
+<p>R-type instruction format</p>
+<img src="./isa.0.svg" />
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-opcode" id="processor-risc_v-isa-$quasi1-opcode">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rd" id="processor-risc_v-isa-$quasi1-rd">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-funct3" id="processor-risc_v-isa-$quasi1-funct3">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rs1" id="processor-risc_v-isa-$quasi1-rs1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rs2" id="processor-risc_v-isa-$quasi1-rs2">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-funct7" id="processor-risc_v-isa-$quasi1-funct7">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">I_type</span> <a class="anchor" href="#processor-risc_v-isa-I_type" id="processor-risc_v-isa-I_type">§</a>
+</pre>
+<div class="docs">
+<p>I-type instruction format</p>
+<img src="./isa.1.svg" />
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-opcode" id="processor-risc_v-isa-$quasi2-opcode">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-rd" id="processor-risc_v-isa-$quasi2-rd">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-funct3" id="processor-risc_v-isa-$quasi2-funct3">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-rs1" id="processor-risc_v-isa-$quasi2-rs1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint12</span> <span class="identifier">imm_11_0</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-imm_11_0" id="processor-risc_v-isa-$quasi2-imm_11_0">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">S_type</span> <a class="anchor" href="#processor-risc_v-isa-S_type" id="processor-risc_v-isa-S_type">§</a>
+</pre>
+<div class="docs">
+<p>S-type instruction format</p>
+<img src="./isa.2.svg" />
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-opcode" id="processor-risc_v-isa-$quasi3-opcode">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint5</span> <span class="identifier">imm_4_0</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-imm_4_0" id="processor-risc_v-isa-$quasi3-imm_4_0">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-funct3" id="processor-risc_v-isa-$quasi3-funct3">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-rs1" id="processor-risc_v-isa-$quasi3-rs1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-rs2" id="processor-risc_v-isa-$quasi3-rs2">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint7</span> <span class="identifier">imm_11_5</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-imm_11_5" id="processor-risc_v-isa-$quasi3-imm_11_5">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">B_type</span> <a class="anchor" href="#processor-risc_v-isa-B_type" id="processor-risc_v-isa-B_type">§</a>
+</pre>
+<div class="docs">
+<p>B-type instruction format</p>
+<img src="./isa.3.svg" />
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-opcode" id="processor-risc_v-isa-$quasi4-opcode">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint1</span> <span class="identifier">imm_11</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_11" id="processor-risc_v-isa-$quasi4-imm_11">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint4</span> <span class="identifier">imm_4_1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_4_1" id="processor-risc_v-isa-$quasi4-imm_4_1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-funct3" id="processor-risc_v-isa-$quasi4-funct3">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-rs1" id="processor-risc_v-isa-$quasi4-rs1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-rs2" id="processor-risc_v-isa-$quasi4-rs2">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint6</span> <span class="identifier">imm_10_5</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_10_5" id="processor-risc_v-isa-$quasi4-imm_10_5">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint1</span> <span class="identifier">imm_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_12" id="processor-risc_v-isa-$quasi4-imm_12">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">U_type</span> <a class="anchor" href="#processor-risc_v-isa-U_type" id="processor-risc_v-isa-U_type">§</a>
+</pre>
+<div class="docs">
+<p>U-type instruction format</p>
+<img src="./isa.4.svg" />
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-opcode" id="processor-risc_v-isa-$quasi5-opcode">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-rd" id="processor-risc_v-isa-$quasi5-rd">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint20</span> <span class="identifier">imm_31_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-imm_31_12" id="processor-risc_v-isa-$quasi5-imm_31_12">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">J_type</span> <a class="anchor" href="#processor-risc_v-isa-J_type" id="processor-risc_v-isa-J_type">§</a>
+</pre>
+<div class="docs">
+<p>J-type instruction format</p>
+<img src="./isa.5.svg" />
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-opcode" id="processor-risc_v-isa-$quasi6-opcode">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-rd" id="processor-risc_v-isa-$quasi6-rd">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint8</span> <span class="identifier">imm_19_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_19_12" id="processor-risc_v-isa-$quasi6-imm_19_12">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint1</span> <span class="identifier">imm_11</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_11" id="processor-risc_v-isa-$quasi6-imm_11">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint10</span> <span class="identifier">imm_10_1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_10_1" id="processor-risc_v-isa-$quasi6-imm_10_1">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint1</span> <span class="identifier">imm_20</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_20" id="processor-risc_v-isa-$quasi6-imm_20">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">union</span> <span class="identifier">Instr</span> <a class="anchor" href="#processor-risc_v-isa-Instr" id="processor-risc_v-isa-Instr">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-R_type"><span class="identifier">R_type</span></a> <span class="identifier">r</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-r" id="processor-risc_v-isa-$quasi7-r">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-I_type"><span class="identifier">I_type</span></a> <span class="identifier">i</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-i" id="processor-risc_v-isa-$quasi7-i">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-S_type"><span class="identifier">S_type</span></a> <span class="identifier">s</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-s" id="processor-risc_v-isa-$quasi7-s">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-B_type"><span class="identifier">B_type</span></a> <span class="identifier">b</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-b" id="processor-risc_v-isa-$quasi7-b">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-U_type"><span class="identifier">U_type</span></a> <span class="identifier">u</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-u" id="processor-risc_v-isa-$quasi7-u">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-J_type"><span class="identifier">J_type</span></a> <span class="identifier">j</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-j" id="processor-risc_v-isa-$quasi7-j">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">Format</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-isa-Format" id="processor-risc_v-isa-Format">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">R</span> <a class="anchor" href="#processor-risc_v-isa-Format-R" id="processor-risc_v-isa-Format-R">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">I</span> <a class="anchor" href="#processor-risc_v-isa-Format-I" id="processor-risc_v-isa-Format-I">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">S</span> <a class="anchor" href="#processor-risc_v-isa-Format-S" id="processor-risc_v-isa-Format-S">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">B</span> <a class="anchor" href="#processor-risc_v-isa-Format-B" id="processor-risc_v-isa-Format-B">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">U</span> <a class="anchor" href="#processor-risc_v-isa-Format-U" id="processor-risc_v-isa-Format-U">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">J</span> <a class="anchor" href="#processor-risc_v-isa-Format-J" id="processor-risc_v-isa-Format-J">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">Invalid</span> <a class="anchor" href="#processor-risc_v-isa-Format-Invalid" id="processor-risc_v-isa-Format-Invalid">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a> ISA&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">decode_format</span>(<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Instr"><span class="identifier">Instr</span></a> <span class="identifier">instr</span>, <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">format</span>) <a class="anchor" href="#processor-risc_v-isa-decode_format" id="processor-risc_v-isa-decode_format">§</a>
+</pre>
+<div class="docs">
+<p>Decode instruction word in given instruction format</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Instr"><span class="identifier">Instr</span></a> <span class="identifier">instr</span>
+</pre>
+<div class="docs">
+<p>Instruction word</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">format</span>
+</pre>
+<div class="docs">
+<p>Instruction format</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

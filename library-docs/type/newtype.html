@@ -1,0 +1,206 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../type/newtype.html" id="index-link"
+class="link">type.newtype</a>
+<ul>
+<li><a href="../type/newtype.html#type-newtype-newtype" id="index-link"
+class="link"><code>newtype</code></a></li>
+<li><a href="../type/newtype.html#type-newtype-unwrap_newtype"
+id="index-link" class="link"><code>unwrap_newtype</code></a></li>
+<li><a href="../type/newtype.html#type-newtype-wrap_newtype"
+id="index-link" class="link"><code>wrap_newtype</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>type.newtype <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="keyword">struct</span> <span class="identifier">newtype</span> <a class="anchor" href="#type-newtype-newtype" id="type-newtype-newtype">§</a>
+</pre>
+<div class="docs">
+<p>Defines a struct with one field of type <code>T</code>. At runtime a
+value of newtype<T> is equivalent to a value of type T. Since newtype<T>
+is a unique type that is not implicitly convertible to/from T, it can be
+used to improve type safety.</p>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+T <span class="identifier">unwrap</span> <a class="anchor" href="#type-newtype-$quasi0-unwrap" id="type-newtype-$quasi0-unwrap">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../type/newtype.html#type-newtype-newtype"><span class="identifier">newtype</span></a>&lt;T&gt; <span class="identifier">wrap_newtype</span>(T <span class="identifier">x</span>) <a class="anchor" href="#type-newtype-wrap_newtype" id="type-newtype-wrap_newtype">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value into a newtype</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">unwrap_newtype</span>(<a class="link" href="../type/newtype.html#type-newtype-newtype"><span class="identifier">newtype</span></a>&lt;T&gt; <span class="identifier">x</span>) <a class="anchor" href="#type-newtype-unwrap_newtype" id="type-newtype-unwrap_newtype">§</a>
+</pre>
+<div class="docs">
+<p>Unwrap a value of a newtype</p>
+</div>
+</section>
+</div>
+</div>

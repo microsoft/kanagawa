@@ -1,0 +1,358 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/string.html" id="index-link"
+class="link">data.string</a>
+<ul>
+<li><a href="../data/string.html#data-string-angles" id="index-link"
+class="link"><code>angles</code></a></li>
+<li><a href="../data/string.html#data-string-append" id="index-link"
+class="link"><code>append</code></a></li>
+<li><a href="../data/string.html#data-string-backquotes" id="index-link"
+class="link"><code>backquotes</code></a></li>
+<li><a href="../data/string.html#data-string-braces" id="index-link"
+class="link"><code>braces</code></a></li>
+<li><a href="../data/string.html#data-string-brackets" id="index-link"
+class="link"><code>brackets</code></a></li>
+<li><a href="../data/string.html#data-string-comma_sep" id="index-link"
+class="link"><code>comma_sep</code></a></li>
+<li><a href="../data/string.html#data-string-concatenate"
+id="index-link" class="link"><code>concatenate</code></a></li>
+<li><a href="../data/string.html#data-string-empty" id="index-link"
+class="link"><code>empty</code></a></li>
+<li><a href="../data/string.html#data-string-eol" id="index-link"
+class="link"><code>eol</code></a></li>
+<li><a href="../data/string.html#data-string-fold_map" id="index-link"
+class="link"><code>fold_map</code></a></li>
+<li><a href="../data/string.html#data-string-parens" id="index-link"
+class="link"><code>parens</code></a></li>
+<li><a href="../data/string.html#data-string-punctuate" id="index-link"
+class="link"><code>punctuate</code></a></li>
+<li><a href="../data/string.html#data-string-quotes" id="index-link"
+class="link"><code>quotes</code></a></li>
+<li><a href="../data/string.html#data-string-replicate" id="index-link"
+class="link"><code>replicate</code></a></li>
+<li><a href="../data/string.html#data-string-show" id="index-link"
+class="link"><code>show</code></a></li>
+<li><a href="../data/string.html#data-string-squotes" id="index-link"
+class="link"><code>squotes</code></a></li>
+<li><a href="../data/string.html#data-string-unlines" id="index-link"
+class="link"><code>unlines</code></a></li>
+<li><a href="../data/string.html#data-string-unwords" id="index-link"
+class="link"><code>unwords</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.string <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">eol</span> = <span class="literal">&quot;
+&quot;</span> <a class="anchor" href="#data-string-eol" id="data-string-eol">§</a>
+</pre>
+<div class="docs">
+<p>End-of-line string</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">empty</span> = <span class="literal">&quot;&quot;</span> <a class="anchor" href="#data-string-empty" id="data-string-empty">§</a>
+</pre>
+<div class="docs">
+<p>Empty string</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">show</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-show" id="data-string-show">§</a>
+</pre>
+<div class="docs">
+<p>String representation of the argument</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; show(bitsizeof uint32);
+ &quot;32&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">append</span>(<span class="builtin">string</span> <span class="identifier">x</span>, <span class="builtin">string</span> <span class="identifier">y</span>) <a class="anchor" href="#data-string-append" id="data-string-append">§</a>
+</pre>
+<div class="docs">
+<p>Append two strings</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; append(&quot;foo&quot;, &quot;bar&quot;)
+ &quot;foobar&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">replicate</span>(<span class="builtin">string</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-replicate" id="data-string-replicate">§</a>
+</pre>
+<div class="docs">
+<p>Return a string that contains <code>x</code> replicated
+<code>N</code> times</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">concatenate</span>(<span class="builtin">string</span>[N] <span class="identifier">x</span>) <a class="anchor" href="#data-string-concatenate" id="data-string-concatenate">§</a>
+</pre>
+<div class="docs">
+<p>Concatenate an array of strings</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; concatenate({&quot;f&quot;, &quot;o&quot;, &quot;o&quot;, eol});
+ &quot;foo\n&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">fold_map</span>((T) -&gt; <span class="builtin">string</span> <span class="identifier">fn</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-string-fold_map" id="data-string-fold_map">§</a>
+</pre>
+<div class="docs">
+<p>Map elements of an array to strings and concatenate results</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; fold_map(show, {0, 1, 2, 3, 4});
+ &quot;01234&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">unlines</span>(<span class="builtin">string</span>[N] <span class="identifier">x</span>) <a class="anchor" href="#data-string-unlines" id="data-string-unlines">§</a>
+</pre>
+<div class="docs">
+<p>Append end-of-line to each input string and concatenate</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; unlines({0, 1, 2, 3, 4});
+ &quot;0\n1\n2\n3\n4\n&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">punctuate</span>(<span class="builtin">string</span> <span class="identifier">sep</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-string-punctuate" id="data-string-punctuate">§</a>
+</pre>
+<div class="docs">
+<p>Join string representations of input values with a separator</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; punctuate(&quot;, &quot;, {0, 1, 2, 3, 4});
+ &quot;0, 1, 2, 3, 4&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">unwords</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-string-unwords" id="data-string-unwords">§</a>
+</pre>
+<div class="docs">
+<p>Join string representations of input values with separating
+spaces</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; unwords({0, 1, 2, 3, 4});
+ &quot;0 1 2 3 4&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">comma_sep</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-string-comma_sep" id="data-string-comma_sep">§</a>
+</pre>
+<div class="docs">
+<p>Comma separate values</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code> &gt;&gt;&gt; comma_sep({0, 1, 2, 3, 4});
+ &quot;0, 1, 2, 3, 4&quot;</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">parens</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-parens" id="data-string-parens">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value in parentheses</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">braces</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-braces" id="data-string-braces">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value in braces</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">brackets</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-brackets" id="data-string-brackets">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value in square brackets</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">angles</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-angles" id="data-string-angles">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value in angle brackets</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">quotes</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-quotes" id="data-string-quotes">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value in quotes</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">squotes</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-squotes" id="data-string-squotes">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value in single quotes</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">backquotes</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-string-backquotes" id="data-string-backquotes">§</a>
+</pre>
+<div class="docs">
+<p>Wrap a value in backquotes</p>
+</div>
+</section>
+</div>
+</div>

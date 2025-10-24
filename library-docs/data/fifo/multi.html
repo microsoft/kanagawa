@@ -1,0 +1,289 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/fifo/multi.html" id="index-link"
+class="link">data.fifo.multi</a>
+<ul>
+<li><a href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"
+id="index-link" class="link"><code>multi_fifo</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.fifo.multi <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> Size,
+    <span class="keyword">auto</span> N,
+    <span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>,
+    <span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">multi_fifo</span> <a class="anchor" href="#data-fifo-multi-multi_fifo" id="data-fifo-multi-multi_fifo">§</a>
+</pre>
+<div class="docs">
+<p>This class implements a set of FIFOs that use a single, statically
+partitioned block of memory. Note that when using the blocking version,
+a call for one of the FIFO instances that blocks will also block
+subsequent calls for other FIFO instances, even if those calls would
+otherwise not block. In other words, there is head of line blocking
+across FIFOs.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of each entry in the FIFO.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Size
+</pre>
+<div class="docs">
+<p>Maximum number of entries that can be stored in each FIFO.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Number of FIFOs.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>
+</pre>
+<div class="docs">
+<p>Block on enqueue if the FIFO is full until an entry frees up. By
+default this is true. Otherwise, the caller must ensure that the FIFO is
+not full.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
+</pre>
+<div class="docs">
+<p>Block on dequeue if the FIFO is empty until an entry arrives. By
+default, this is true. Otherwise, the caller must ensure that the FIFO
+is not empty.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">pointer_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-fifo-multi-multi_fifo-pointer_t" id="data-fifo-multi-multi_fifo-pointer_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">fifo_idx_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <a class="anchor" href="#data-fifo-multi-multi_fifo-fifo_idx_t" id="data-fifo-multi-multi_fifo-fifo_idx_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">count</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-count" id="data-fifo-multi-multi_fifo-count">§</a>
+</pre>
+<div class="docs">
+<p>Return the number of elements that have been written and not read.
+Note that this can be out of date the instant it is read due to other
+threads reading or writing to the FIFO. This cannot be used for checking
+empty or full for non-blocking versions of the FIFO.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+T <span class="identifier">dequeue</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>, <span class="builtin">bool</span> <span class="identifier">pop</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-dequeue" id="data-fifo-multi-multi_fifo-dequeue">§</a>
+</pre>
+<div class="docs">
+<p>Read one entry from a FIFO. Block if the FIFO is empty and
+<code>DequeueBlocking</code> is true. If <code>pop</code> is false then
+the entry is left on the FIFO, equivalent to <code>front</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>, T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-enqueue" id="data-fifo-multi-multi_fifo-enqueue">§</a>
+</pre>
+<div class="docs">
+<p>Write one entry to a FIFO. Block if the FIFO is full and
+<code>EnqueueBlocking</code> is true.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

@@ -1,0 +1,204 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/order.html" id="index-link"
+class="link">data.order</a>
+<ul>
+<li><a href="../data/order.html#data-order-equal" id="index-link"
+class="link"><code>equal</code></a></li>
+<li><a href="../data/order.html#data-order-greater_than" id="index-link"
+class="link"><code>greater_than</code></a></li>
+<li><a href="../data/order.html#data-order-less_than" id="index-link"
+class="link"><code>less_than</code></a></li>
+<li><a href="../data/order.html#data-order-max" id="index-link"
+class="link"><code>max</code></a></li>
+<li><a href="../data/order.html#data-order-min" id="index-link"
+class="link"><code>min</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.order <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">min</span>(<span class="keyword">auto</span> <span class="identifier">a</span>, <span class="keyword">auto</span> <span class="identifier">b</span>) <a class="anchor" href="#data-order-min" id="data-order-min">§</a>
+</pre>
+<div class="docs">
+<p>Return the smaller of two values.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">max</span>(<span class="keyword">auto</span> <span class="identifier">a</span>, <span class="keyword">auto</span> <span class="identifier">b</span>) <a class="anchor" href="#data-order-max" id="data-order-max">§</a>
+</pre>
+<div class="docs">
+<p>Return the larger of two values.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">less_than</span>(<span class="keyword">auto</span> <span class="identifier">x</span>, <span class="keyword">auto</span> <span class="identifier">y</span>) <a class="anchor" href="#data-order-less_than" id="data-order-less_than">§</a>
+</pre>
+<div class="docs">
+<p>Return true if the first argument is less than the second.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">greater_than</span>(<span class="keyword">auto</span> <span class="identifier">x</span>, <span class="keyword">auto</span> <span class="identifier">y</span>) <a class="anchor" href="#data-order-greater_than" id="data-order-greater_than">§</a>
+</pre>
+<div class="docs">
+<p>Return true if the first argument is greater than the second.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal</span>(<span class="keyword">auto</span> <span class="identifier">x</span>, <span class="keyword">auto</span> <span class="identifier">y</span>) <a class="anchor" href="#data-order-equal" id="data-order-equal">§</a>
+</pre>
+<div class="docs">
+<p>Return equality of inputs.</p>
+</div>
+</section>
+</div>
+</div>

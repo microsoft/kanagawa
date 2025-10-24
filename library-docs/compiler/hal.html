@@ -1,0 +1,486 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../compiler/hal.html" id="index-link"
+class="link">compiler.hal</a>
+<ul>
+<li><a href="../compiler/hal.html#compiler-hal-addbf16x3"
+id="index-link" class="link"><code>addbf16x3</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-facc32" id="index-link"
+class="link"><code>facc32</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-fadd32" id="index-link"
+class="link"><code>fadd32</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-fmac32" id="index-link"
+class="link"><code>fmac32</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-fmad32" id="index-link"
+class="link"><code>fmad32</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-fmul32" id="index-link"
+class="link"><code>fmul32</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-fsub32" id="index-link"
+class="link"><code>fsub32</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-imul18" id="index-link"
+class="link"><code>imul18</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-imul27" id="index-link"
+class="link"><code>imul27</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-imul32" id="index-link"
+class="link"><code>imul32</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-umul18" id="index-link"
+class="link"><code>umul18</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-umul18x2" id="index-link"
+class="link"><code>umul18x2</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-umul27" id="index-link"
+class="link"><code>umul27</code></a></li>
+<li><a href="../compiler/hal.html#compiler-hal-umul32" id="index-link"
+class="link"><code>umul32</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>compiler.hal <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">fmul32</span> <a class="anchor" href="#compiler-hal-fmul32" id="compiler-hal-fmul32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="builtin">float32</span> <span class="identifier">op</span>(<span class="builtin">float32</span> <span class="identifier">x</span>, <span class="builtin">float32</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-fmul32-op" id="compiler-hal-fmul32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__fmul32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-fmul32"><span class="identifier">fmul32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">fadd32</span> <a class="anchor" href="#compiler-hal-fadd32" id="compiler-hal-fadd32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="builtin">float32</span> <span class="identifier">op</span>(<span class="builtin">float32</span> <span class="identifier">x</span>, <span class="builtin">float32</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-fadd32-op" id="compiler-hal-fadd32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__fadd32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-fadd32"><span class="identifier">fadd32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">fsub32</span> <a class="anchor" href="#compiler-hal-fsub32" id="compiler-hal-fsub32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="builtin">float32</span> <span class="identifier">op</span>(<span class="builtin">float32</span> <span class="identifier">x</span>, <span class="builtin">float32</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-fsub32-op" id="compiler-hal-fsub32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__fsub32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-fsub32"><span class="identifier">fsub32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">fmac32</span> <a class="anchor" href="#compiler-hal-fmac32" id="compiler-hal-fmac32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="builtin">float32</span> <span class="identifier">op</span>(<span class="builtin">float32</span> <span class="identifier">x</span>, <span class="builtin">float32</span> <span class="identifier">y</span>, <span class="builtin">bool</span> <span class="identifier">accumulate</span>) <a class="anchor" href="#compiler-hal-fmac32-op" id="compiler-hal-fmac32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__fmac32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-fmac32"><span class="identifier">fmac32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">fmad32</span> <a class="anchor" href="#compiler-hal-fmad32" id="compiler-hal-fmad32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="builtin">float32</span> <span class="identifier">op</span>(<span class="builtin">float32</span> <span class="identifier">x</span>, <span class="builtin">float32</span> <span class="identifier">y</span>, <span class="builtin">float32</span> <span class="identifier">z</span>) <a class="anchor" href="#compiler-hal-fmad32-op" id="compiler-hal-fmad32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__fmad32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-fmad32"><span class="identifier">fmad32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">umul27</span> <a class="anchor" href="#compiler-hal-umul27" id="compiler-hal-umul27">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="keyword">uint54</span> <span class="identifier">op</span>(<span class="keyword">uint27</span> <span class="identifier">x</span>, <span class="keyword">uint27</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-umul27-op" id="compiler-hal-umul27-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__umul27&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-umul27"><span class="identifier">umul27</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">imul27</span> <a class="anchor" href="#compiler-hal-imul27" id="compiler-hal-imul27">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span>int54 <span class="identifier">op</span>(int27 <span class="identifier">x</span>, int27 <span class="identifier">y</span>, <span class="builtin">bool</span> <span class="identifier">negate</span>) <a class="anchor" href="#compiler-hal-imul27-op" id="compiler-hal-imul27-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__imul27&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-imul27"><span class="identifier">imul27</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">umul18x2</span> <a class="anchor" href="#compiler-hal-umul18x2" id="compiler-hal-umul18x2">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="keyword">uint72</span> <span class="identifier">op</span>(<span class="keyword">uint36</span> <span class="identifier">x</span>, <span class="keyword">uint36</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-umul18x2-op" id="compiler-hal-umul18x2-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__umul18x2&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-umul18x2"><span class="identifier">umul18x2</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">umul32</span> <a class="anchor" href="#compiler-hal-umul32" id="compiler-hal-umul32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="keyword">uint64</span> <span class="identifier">op</span>(<span class="keyword">uint32</span> <span class="identifier">x</span>, <span class="keyword">uint32</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-umul32-op" id="compiler-hal-umul32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__umul32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-umul32"><span class="identifier">umul32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">imul32</span> <a class="anchor" href="#compiler-hal-imul32" id="compiler-hal-imul32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span>int64 <span class="identifier">op</span>(int32 <span class="identifier">x</span>, int32 <span class="identifier">y</span>, <span class="builtin">bool</span> <span class="identifier">negate</span>) <a class="anchor" href="#compiler-hal-imul32-op" id="compiler-hal-imul32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__imul32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-imul32"><span class="identifier">imul32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">facc32</span> <a class="anchor" href="#compiler-hal-facc32" id="compiler-hal-facc32">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="builtin">float32</span> <span class="identifier">op</span>(<span class="builtin">float32</span> <span class="identifier">x</span>, <span class="builtin">bool</span> <span class="identifier">accumulate</span>) <a class="anchor" href="#compiler-hal-facc32-op" id="compiler-hal-facc32-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__facc32&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-facc32"><span class="identifier">facc32</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">addbf16x3</span> <a class="anchor" href="#compiler-hal-addbf16x3" id="compiler-hal-addbf16x3">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="keyword">uint48</span> <span class="identifier">op</span>(<span class="keyword">uint48</span> <span class="identifier">x</span>, <span class="keyword">uint48</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-addbf16x3-op" id="compiler-hal-addbf16x3-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__addbf16x3&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-addbf16x3"><span class="identifier">addbf16x3</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">umul18</span> <a class="anchor" href="#compiler-hal-umul18" id="compiler-hal-umul18">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span><span class="keyword">uint36</span> <span class="identifier">op</span>(<span class="keyword">uint18</span> <span class="identifier">x</span>, <span class="keyword">uint18</span> <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-umul18-op" id="compiler-hal-umul18-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__umul18&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-umul18"><span class="identifier">umul18</span></a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="builtin">string</span> DEVICE_FAMILY, <span class="keyword">auto</span> LATENCY&gt;
+<span class="keyword">class</span> <span class="identifier">imul18</span> <a class="anchor" href="#compiler-hal-imul18" id="compiler-hal-imul18">§</a>
+</pre>
+<div class="docs">
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+[[<span class="attribute">latency</span>(LATENCY)]] <span class="keyword">extern</span>int36 <span class="identifier">op</span>(int18 <span class="identifier">x</span>, int18 <span class="identifier">y</span>) <a class="anchor" href="#compiler-hal-imul18-op" id="compiler-hal-imul18-op">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+[[<span class="attribute">name</span>(<span class="literal">&quot;_hardware_dsp__imul18&quot;</span>)]] <span class="keyword">extern</span> <a class="link" href="../compiler/hal.html#compiler-hal-imul18"><span class="identifier">imul18</span></a>
+</pre>
+</section>
+</div>
+</div>

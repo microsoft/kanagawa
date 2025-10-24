@@ -1,0 +1,373 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../control/fsm.html" id="index-link"
+class="link">control.fsm</a>
+<ul>
+<li><a href="../control/fsm.html#control-fsm-apply_update"
+id="index-link" class="link"><code>apply_update</code></a></li>
+<li><a href="../control/fsm.html#control-fsm-speculate_updates"
+id="index-link" class="link"><code>speculate_updates</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>control.fsm <a href="../index.html">&equiv;</a></h1>
+<p>Finite state machine helpers.</p>
+<p>FSMs can be tricky to implement in a manner that results in high
+clock frequency and high throughput (input element processed per
+thread).</p>
+<p>Consider a FSM implemented with a function <code>f</code> which can
+compute a new state given a previous state and a new input value:</p>
+<pre class="kanagawa"><code>atomic
+{
+    new_state = f(prev_state, input);
+}
+
+// computation of FSM output values can occur
+// after the atomic block.</code></pre>
+<p>If <code>f</code> is complex, then this atomic block can be the
+critical path for the whole design. Additionally this can process at
+most one state transition per clock cycle. A design that can process two
+transitions per clock cycle is:</p>
+<pre class="kanagawa"><code>atomic
+{
+    new_state = f(f(prev_state, input1), input2);
+}</code></pre>
+<p>however, that design has an even longer critical path.</p>
+<p>If the total number of possible states is low (say 8 in this
+example), then one can precompute the output of <code>f</code> for all
+possible states. This can be done before the atomic block:</p>
+<pre class="kanagawa"><code>State[8] table;
+
+static for (const auto i : 8)
+{
+    table[i] = f(f(cast&lt;State&gt;(i), input1), input2);
+}
+
+atomic
+{
+    new_state = table[cast&lt;uint3&gt;(prev_state)];
+}</code></pre>
+<p>This trades area for throughput and frequency because it invokes
+<code>f</code> 8 times more than the naive design. However, the critical
+path is simply an 8:1 mux, no matter how complex <code>f</code> is.
+Additionally, the critical path length does not increase with the number
+of input elements which are processed per cycle.</p>
+<p>Functions in this module contain abstractions useful for implementing
+this design pattern.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> StateCount, <span class="keyword">typename</span> SpeculativeUpdate&gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">speculate_updates</span>(
+    (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;StateCount&gt;) -&gt; SpeculativeUpdate <span class="identifier">fn</span>,
+    <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;StateCount&gt;&gt; <span class="identifier">override</span>
+    ) <a class="anchor" href="#control-fsm-speculate_updates" id="control-fsm-speculate_updates">§</a>
+</pre>
+<div class="docs">
+<p>Speculatively apply a state update to each possible current state and
+return all results.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> StateCount
+</pre>
+<div class="docs">
+<p>Total number of possible states.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> SpeculativeUpdate
+</pre>
+<div class="docs">
+<p>The output type of <code>fn</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;StateCount&gt;) -&gt; SpeculativeUpdate <span class="identifier">fn</span>
+</pre>
+<div class="docs">
+<p>Function which is called <code>StateCount</code> times with values
+equal to either: <code>0, 1, 2, ..., StateCount-1</code> or
+<code>override.value, override.value, ..., override.value</code></p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;StateCount&gt;&gt; <span class="identifier">override</span>
+</pre>
+<div class="docs">
+<p>If valid, then all returned results are equal to
+<code>fn(override.value)</code>. Useful for cases where downstream code
+should behave as if it ignores the “current” state.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> StateCount,
+    <span class="keyword">typename</span> State,
+    <span class="keyword">typename</span> SpeculativeUpdate,
+    <span class="keyword">typename</span> AggregatedUpdate = SpeculativeUpdate
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">apply_update</span>(
+    (SpeculativeUpdate[StateCount], State) -&gt; AggregatedUpdate <span class="identifier">aggregate</span>,
+    (AggregatedUpdate, State) -&gt; State <span class="identifier">apply</span>,
+    SpeculativeUpdate[StateCount] <span class="identifier">updates</span>
+    ) <a class="anchor" href="#control-fsm-apply_update" id="control-fsm-apply_update">§</a>
+</pre>
+<div class="docs">
+<p>Returns a closure which:</p>
+<ul>
+<li>Aggregates a set of pre-computed state updates into a final state
+update based on a concrete current state value.</li>
+<li>Computes a new state value based on the current state and the
+aggregated state update.</li>
+</ul>
+<p>The returned closure can be passed to functions like
+<code>atomically</code>.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> StateCount
+</pre>
+<div class="docs">
+<p>The number of pre-computed state updates.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> State
+</pre>
+<div class="docs">
+<p>A type that represent the current state.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> SpeculativeUpdate
+</pre>
+<div class="docs">
+<p>A type that represents a pre-computed update to apply to the
+state.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> AggregatedUpdate = SpeculativeUpdate
+</pre>
+<div class="docs">
+<p>A type that represents an aggregated update to apply to the
+state.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(SpeculativeUpdate[StateCount], State) -&gt; AggregatedUpdate <span class="identifier">aggregate</span>
+</pre>
+<div class="docs">
+<p>Function which computes a final state update to apply, based on the
+current state and an array of pre-computed states updates.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(AggregatedUpdate, State) -&gt; State <span class="identifier">apply</span>
+</pre>
+<div class="docs">
+<p>Function which applies a state update.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+SpeculativeUpdate[StateCount] <span class="identifier">updates</span>
+</pre>
+<div class="docs">
+<p>The array of speculatively pre-computed updates.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

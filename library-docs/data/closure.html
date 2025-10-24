@@ -1,0 +1,818 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/closure.html" id="index-link"
+class="link">data.closure</a>
+<ul>
+<li><a href="../data/closure.html#data-closure-make_capture1"
+id="index-link" class="link"><code>make_capture1</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture10"
+id="index-link" class="link"><code>make_capture10</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture11"
+id="index-link" class="link"><code>make_capture11</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture12"
+id="index-link" class="link"><code>make_capture12</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture13"
+id="index-link" class="link"><code>make_capture13</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture14"
+id="index-link" class="link"><code>make_capture14</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture15"
+id="index-link" class="link"><code>make_capture15</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture16"
+id="index-link" class="link"><code>make_capture16</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture17"
+id="index-link" class="link"><code>make_capture17</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture18"
+id="index-link" class="link"><code>make_capture18</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture19"
+id="index-link" class="link"><code>make_capture19</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture2"
+id="index-link" class="link"><code>make_capture2</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture20"
+id="index-link" class="link"><code>make_capture20</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture21"
+id="index-link" class="link"><code>make_capture21</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture3"
+id="index-link" class="link"><code>make_capture3</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture4"
+id="index-link" class="link"><code>make_capture4</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture5"
+id="index-link" class="link"><code>make_capture5</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture6"
+id="index-link" class="link"><code>make_capture6</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture7"
+id="index-link" class="link"><code>make_capture7</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture8"
+id="index-link" class="link"><code>make_capture8</code></a></li>
+<li><a href="../data/closure.html#data-closure-make_capture9"
+id="index-link" class="link"><code>make_capture9</code></a></li>
+</ul></li>
+<li><a href="../data/closure/core.html" id="index-link"
+class="link">data.closure.core</a>
+<ul>
+<li><a href="../data/closure/core.html#data-closure-core-Closure"
+id="index-link" class="link"><code>Closure</code></a></li>
+<li><a href="../data/closure/core.html#data-closure-core-make_capture0"
+id="index-link" class="link"><code>make_capture0</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.closure <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T0&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">make_capture1</span>(T0 <span class="identifier">x0</span>) <a class="anchor" href="#data-closure-make_capture1" id="data-closure-make_capture1">§</a>
+</pre>
+<div class="docs">
+<p>Capture 1 value</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T0, <span class="keyword">typename</span> T1&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">make_capture2</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>) <a class="anchor" href="#data-closure-make_capture2" id="data-closure-make_capture2">§</a>
+</pre>
+<div class="docs">
+<p>Capture 2 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T0, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">make_capture3</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>, T2 <span class="identifier">x2</span>) <a class="anchor" href="#data-closure-make_capture3" id="data-closure-make_capture3">§</a>
+</pre>
+<div class="docs">
+<p>Capture 3 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T0, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">make_capture4</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>, T2 <span class="identifier">x2</span>, T3 <span class="identifier">x3</span>) <a class="anchor" href="#data-closure-make_capture4" id="data-closure-make_capture4">§</a>
+</pre>
+<div class="docs">
+<p>Capture 4 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T0, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3, <span class="keyword">typename</span> T4&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">make_capture5</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>, T2 <span class="identifier">x2</span>, T3 <span class="identifier">x3</span>, T4 <span class="identifier">x4</span>) <a class="anchor" href="#data-closure-make_capture5" id="data-closure-make_capture5">§</a>
+</pre>
+<div class="docs">
+<p>Capture 5 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5
+    &gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">make_capture6</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>, T2 <span class="identifier">x2</span>, T3 <span class="identifier">x3</span>, T4 <span class="identifier">x4</span>, T5 <span class="identifier">x5</span>) <a class="anchor" href="#data-closure-make_capture6" id="data-closure-make_capture6">§</a>
+</pre>
+<div class="docs">
+<p>Capture 6 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6
+    &gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">make_capture7</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>, T2 <span class="identifier">x2</span>, T3 <span class="identifier">x3</span>, T4 <span class="identifier">x4</span>, T5 <span class="identifier">x5</span>, T6 <span class="identifier">x6</span>) <a class="anchor" href="#data-closure-make_capture7" id="data-closure-make_capture7">§</a>
+</pre>
+<div class="docs">
+<p>Capture 7 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span> <span class="identifier">make_capture8</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>, T2 <span class="identifier">x2</span>, T3 <span class="identifier">x3</span>, T4 <span class="identifier">x4</span>, T5 <span class="identifier">x5</span>, T6 <span class="identifier">x6</span>, T7 <span class="identifier">x7</span>) <a class="anchor" href="#data-closure-make_capture8" id="data-closure-make_capture8">§</a>
+</pre>
+<div class="docs">
+<p>Capture 8 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture9</span>(T0 <span class="identifier">x0</span>, T1 <span class="identifier">x1</span>, T2 <span class="identifier">x2</span>, T3 <span class="identifier">x3</span>, T4 <span class="identifier">x4</span>, T5 <span class="identifier">x5</span>, T6 <span class="identifier">x6</span>, T7 <span class="identifier">x7</span>, T8 <span class="identifier">x8</span>) <a class="anchor" href="#data-closure-make_capture9" id="data-closure-make_capture9">§</a>
+</pre>
+<div class="docs">
+<p>Capture 9 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture10</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>
+    ) <a class="anchor" href="#data-closure-make_capture10" id="data-closure-make_capture10">§</a>
+</pre>
+<div class="docs">
+<p>Capture 10 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture11</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>
+    ) <a class="anchor" href="#data-closure-make_capture11" id="data-closure-make_capture11">§</a>
+</pre>
+<div class="docs">
+<p>Capture 11 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture12</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>
+    ) <a class="anchor" href="#data-closure-make_capture12" id="data-closure-make_capture12">§</a>
+</pre>
+<div class="docs">
+<p>Capture 12 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture13</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>
+    ) <a class="anchor" href="#data-closure-make_capture13" id="data-closure-make_capture13">§</a>
+</pre>
+<div class="docs">
+<p>Capture 13 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture14</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>
+    ) <a class="anchor" href="#data-closure-make_capture14" id="data-closure-make_capture14">§</a>
+</pre>
+<div class="docs">
+<p>Capture 14 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13,
+    <span class="keyword">typename</span> T14
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture15</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>,
+    T14 <span class="identifier">x14</span>
+    ) <a class="anchor" href="#data-closure-make_capture15" id="data-closure-make_capture15">§</a>
+</pre>
+<div class="docs">
+<p>Capture 15 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13,
+    <span class="keyword">typename</span> T14,
+    <span class="keyword">typename</span> T15
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture16</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>,
+    T14 <span class="identifier">x14</span>,
+    T15 <span class="identifier">x15</span>
+    ) <a class="anchor" href="#data-closure-make_capture16" id="data-closure-make_capture16">§</a>
+</pre>
+<div class="docs">
+<p>Capture 16 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13,
+    <span class="keyword">typename</span> T14,
+    <span class="keyword">typename</span> T15,
+    <span class="keyword">typename</span> T16
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture17</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>,
+    T14 <span class="identifier">x14</span>,
+    T15 <span class="identifier">x15</span>,
+    T16 <span class="identifier">x16</span>
+    ) <a class="anchor" href="#data-closure-make_capture17" id="data-closure-make_capture17">§</a>
+</pre>
+<div class="docs">
+<p>Capture 17 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13,
+    <span class="keyword">typename</span> T14,
+    <span class="keyword">typename</span> T15,
+    <span class="keyword">typename</span> T16,
+    <span class="keyword">typename</span> T17
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture18</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>,
+    T14 <span class="identifier">x14</span>,
+    T15 <span class="identifier">x15</span>,
+    T16 <span class="identifier">x16</span>,
+    T17 <span class="identifier">x17</span>
+    ) <a class="anchor" href="#data-closure-make_capture18" id="data-closure-make_capture18">§</a>
+</pre>
+<div class="docs">
+<p>Capture 18 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13,
+    <span class="keyword">typename</span> T14,
+    <span class="keyword">typename</span> T15,
+    <span class="keyword">typename</span> T16,
+    <span class="keyword">typename</span> T17,
+    <span class="keyword">typename</span> T18
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture19</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>,
+    T14 <span class="identifier">x14</span>,
+    T15 <span class="identifier">x15</span>,
+    T16 <span class="identifier">x16</span>,
+    T17 <span class="identifier">x17</span>,
+    T18 <span class="identifier">x18</span>
+    ) <a class="anchor" href="#data-closure-make_capture19" id="data-closure-make_capture19">§</a>
+</pre>
+<div class="docs">
+<p>Capture 19 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13,
+    <span class="keyword">typename</span> T14,
+    <span class="keyword">typename</span> T15,
+    <span class="keyword">typename</span> T16,
+    <span class="keyword">typename</span> T17,
+    <span class="keyword">typename</span> T18,
+    <span class="keyword">typename</span> T19
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture20</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>,
+    T14 <span class="identifier">x14</span>,
+    T15 <span class="identifier">x15</span>,
+    T16 <span class="identifier">x16</span>,
+    T17 <span class="identifier">x17</span>,
+    T18 <span class="identifier">x18</span>,
+    T19 <span class="identifier">x19</span>
+    ) <a class="anchor" href="#data-closure-make_capture20" id="data-closure-make_capture20">§</a>
+</pre>
+<div class="docs">
+<p>Capture 20 values</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T0,
+    <span class="keyword">typename</span> T1,
+    <span class="keyword">typename</span> T2,
+    <span class="keyword">typename</span> T3,
+    <span class="keyword">typename</span> T4,
+    <span class="keyword">typename</span> T5,
+    <span class="keyword">typename</span> T6,
+    <span class="keyword">typename</span> T7,
+    <span class="keyword">typename</span> T8,
+    <span class="keyword">typename</span> T9,
+    <span class="keyword">typename</span> T10,
+    <span class="keyword">typename</span> T11,
+    <span class="keyword">typename</span> T12,
+    <span class="keyword">typename</span> T13,
+    <span class="keyword">typename</span> T14,
+    <span class="keyword">typename</span> T15,
+    <span class="keyword">typename</span> T16,
+    <span class="keyword">typename</span> T17,
+    <span class="keyword">typename</span> T18,
+    <span class="keyword">typename</span> T19,
+    <span class="keyword">typename</span> T20
+    &gt;
+<span class="modifier">inline </span>
+<span class="keyword">auto</span>
+<span class="identifier">make_capture21</span>(
+    T0 <span class="identifier">x0</span>,
+    T1 <span class="identifier">x1</span>,
+    T2 <span class="identifier">x2</span>,
+    T3 <span class="identifier">x3</span>,
+    T4 <span class="identifier">x4</span>,
+    T5 <span class="identifier">x5</span>,
+    T6 <span class="identifier">x6</span>,
+    T7 <span class="identifier">x7</span>,
+    T8 <span class="identifier">x8</span>,
+    T9 <span class="identifier">x9</span>,
+    T10 <span class="identifier">x10</span>,
+    T11 <span class="identifier">x11</span>,
+    T12 <span class="identifier">x12</span>,
+    T13 <span class="identifier">x13</span>,
+    T14 <span class="identifier">x14</span>,
+    T15 <span class="identifier">x15</span>,
+    T16 <span class="identifier">x16</span>,
+    T17 <span class="identifier">x17</span>,
+    T18 <span class="identifier">x18</span>,
+    T19 <span class="identifier">x19</span>,
+    T20 <span class="identifier">x20</span>
+    ) <a class="anchor" href="#data-closure-make_capture21" id="data-closure-make_capture21">§</a>
+</pre>
+<div class="docs">
+<p>Capture 21 values</p>
+</div>
+</section>
+</div>
+</div>

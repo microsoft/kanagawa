@@ -1,0 +1,285 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../numeric/int/operator.html" id="index-link"
+class="link">numeric.int.operator</a>
+<ul>
+<li><a href="../../numeric/int/operator.html#numeric-int-operator-abs"
+id="index-link" class="link"><code>abs</code></a></li>
+<li><a href="../../numeric/int/operator.html#numeric-int-operator-add"
+id="index-link" class="link"><code>add</code></a></li>
+<li><a
+href="../../numeric/int/operator.html#numeric-int-operator-ceil_div"
+id="index-link" class="link"><code>ceil_div</code></a></li>
+<li><a
+href="../../numeric/int/operator.html#numeric-int-operator-ceil_div_mod"
+id="index-link" class="link"><code>ceil_div_mod</code></a></li>
+<li><a href="../../numeric/int/operator.html#numeric-int-operator-div"
+id="index-link" class="link"><code>div</code></a></li>
+<li><a
+href="../../numeric/int/operator.html#numeric-int-operator-div_mod"
+id="index-link" class="link"><code>div_mod</code></a></li>
+<li><a
+href="../../numeric/int/operator.html#numeric-int-operator-increment"
+id="index-link" class="link"><code>increment</code></a></li>
+<li><a href="../../numeric/int/operator.html#numeric-int-operator-mod"
+id="index-link" class="link"><code>mod</code></a></li>
+<li><a href="../../numeric/int/operator.html#numeric-int-operator-xor"
+id="index-link" class="link"><code>xor</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>numeric.int.operator <a href="../../index.html">&equiv;</a></h1>
+<p>Copyright: (c) Microsoft Corporation. All rights reserved.</p>
+<p>Integer operators.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">uint</span>&lt;<span class="builtin">bitsizeof</span>(T)&gt; <span class="identifier">abs</span>(T <span class="identifier">a</span>) <a class="anchor" href="#numeric-int-operator-abs" id="numeric-int-operator-abs">§</a>
+</pre>
+<div class="docs">
+<p>Compute the absolute value of <code>a</code>. The return type is an
+unsigned integer of the same width as <code>a</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>R <span class="identifier">add</span>(T <span class="identifier">a</span>, T <span class="identifier">b</span>) <a class="anchor" href="#numeric-int-operator-add" id="numeric-int-operator-add">§</a>
+</pre>
+<div class="docs">
+<p>Add two values of the input type <code>T</code> and return the result
+as the output type <code>R</code>, which might be larger. e.g. 3 fits in
+a <code>uint2</code>, but 3 + 3 does not.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; add&lt;uint3&gt;(3, 3);
+6</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">div</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-div" id="numeric-int-operator-div">§</a>
+</pre>
+<div class="docs">
+<p>Returns the floor of the quotient when dividing
+<code>numerator</code> by <code>denominator</code>.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">ceil_div</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-ceil_div" id="numeric-int-operator-ceil_div">§</a>
+</pre>
+<div class="docs">
+<p>Returns the ceiling of the quotient when dividing
+<code>numerator</code> by <code>denominator</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Offset = <span class="literal">0</span>&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-mod" id="numeric-int-operator-mod">§</a>
+</pre>
+<div class="docs">
+<p>Returns the remainder when dividing <code>numerator</code> by
+<code>denominator</code>. <code>Offset</code> is used to to adjust the
+range of repeated values. For example, if <code>mod&lt;4, 0&gt;</code>
+is applied to the array: <code>[0, 1, 2, 3, 4, 5]</code> the result is:
+<code>[0, 1, 2, 3, 0, 1]</code>. If <code>mod&lt;4, 1&gt;</code> is
+applied to the same array, the result is:
+<code>[4, 1, 2, 3, 4, 1]</code></p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Offset = <span class="literal">0</span>&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">div_mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-div_mod" id="numeric-int-operator-div_mod">§</a>
+</pre>
+<div class="docs">
+<p>Returns the floor of the quotient and remainder when dividing
+<code>numerator</code> by <code>denominator</code>. The quotient is
+returned in <code>first</code>. The remainder is returned in
+<code>second</code>. <code>Offset</code> is used to to adjust the range
+of repeated values. For example, if <code>mod&lt;4, 0&gt;</code> is
+applied to the array: <code>[0, 1, 2, 3, 4, 5]</code> the result is:
+<code>[0, 1, 2, 3, 0, 1]</code>. If <code>mod&lt;4, 1&gt;</code> is
+applied to the same array, the result is:
+<code>[4, 1, 2, 3, 4, 1]</code></p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Offset = <span class="literal">0</span>&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">ceil_div_mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-ceil_div_mod" id="numeric-int-operator-ceil_div_mod">§</a>
+</pre>
+<div class="docs">
+<p>Returns the ceiling of the quotient and remainder when dividing
+<code>numerator</code> by <code>denominator</code>. The quotient is
+returned in <code>first</code>. The remainder is returned in
+<code>second</code>. <code>Offset</code> is used to to adjust the range
+of repeated values. For example, if <code>mod&lt;4, 0&gt;</code> is
+applied to the array: <code>[0, 1, 2, 3, 4, 5]</code> the result is:
+<code>[0, 1, 2, 3, 0, 1]</code>. If <code>mod&lt;4, 1&gt;</code> is
+applied to the same array, the result is:
+<code>[4, 1, 2, 3, 4, 1]</code></p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">increment</span>(<span class="keyword">auto</span> <span class="identifier">a</span>) <a class="anchor" href="#numeric-int-operator-increment" id="numeric-int-operator-increment">§</a>
+</pre>
+<div class="docs">
+<p>Increment the input by 1.</p>
+<pre class="kanagawa"><code>prop&gt; increment(a) == a + 1</code></pre>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">xor</span>(<span class="keyword">auto</span> <span class="identifier">a</span>, <span class="keyword">auto</span> <span class="identifier">b</span>) <a class="anchor" href="#numeric-int-operator-xor" id="numeric-int-operator-xor">§</a>
+</pre>
+<div class="docs">
+<p>Return xor of inputs.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; xor(2, 3);
+1</code></pre>
+</details>
+</div>
+</section>
+</div>
+</div>

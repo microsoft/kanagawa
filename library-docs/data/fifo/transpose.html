@@ -1,0 +1,345 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/fifo/transpose.html" id="index-link"
+class="link">data.fifo.transpose</a>
+<ul>
+<li><a href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"
+id="index-link" class="link"><code>fifo</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.fifo.transpose <a href="../../index.html">&equiv;</a></h1>
+<p>Transposing fifo</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> ArraySize,
+    <span class="keyword">auto</span> ArrayDepth,
+    <span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>,
+    <span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">fifo</span> <a class="anchor" href="#data-fifo-transpose-fifo" id="data-fifo-transpose-fifo">§</a>
+</pre>
+<div class="docs">
+<p>A FIFO that accepts rows of type <code>T[ArraySize]</code>,
+transposes each square group of <code>ArraySize x ArraySize</code>
+elements, and returns columns of type <code>T[ArraySize]</code></p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Datatype for each array element</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> ArraySize
+</pre>
+<div class="docs">
+<p>Number of elements in input arrays, must be a power of 2.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> ArrayDepth
+</pre>
+<div class="docs">
+<p>Maximum number of arrays that can be stored, must be a power of
+2.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>
+</pre>
+<div class="docs">
+<p>Block on enqueue if the FIFO is full until an entry frees up. By
+default this is true. Otherwise, the caller must ensure that the FIFO is
+not full.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
+</pre>
+<div class="docs">
+<p>Block on dequeue if the FIFO is empty until an entry arrives. By
+default, this is true. Otherwise, the caller must ensure that the FIFO
+is not empty.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">array_t</span> = T[ArraySize] <a class="anchor" href="#data-fifo-transpose-fifo-array_t" id="data-fifo-transpose-fifo-array_t">§</a>
+</pre>
+<div class="docs">
+<p>Input and output array type</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">dequeue_and_discard</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_column_count</span>) <a class="anchor" href="#data-fifo-transpose-fifo-dequeue_and_discard" id="data-fifo-transpose-fifo-dequeue_and_discard">§</a>
+</pre>
+<div class="docs">
+<p>Read one column from FIFO and discard
+<code>discard_column_count</code> subsequent columns from the same
+square. Block if FIFO is empty and <code>DequeueBlocking</code> is
+true.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-transpose-fifo-dequeue" id="data-fifo-transpose-fifo-dequeue">§</a>
+</pre>
+<div class="docs">
+<p>Read one column from FIFO. Block if FIFO is empty and
+<code>DequeueBlocking</code> is true.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span>
+<span class="identifier">enqueue_and_discard</span>(
+    <a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>,
+    <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_row_count</span>
+    ) <a class="anchor" href="#data-fifo-transpose-fifo-enqueue_and_discard" id="data-fifo-transpose-fifo-enqueue_and_discard">§</a>
+</pre>
+<div class="docs">
+<p>Write <code>1 + discard_row_count</code> rows into the FIFO. Block if
+FIFO is full and <code>EnqueueBlocking</code> is true.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>
+</pre>
+<div class="docs">
+<p>The value of the first row to write into the FIFO.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_row_count</span>
+</pre>
+<div class="docs">
+<p>The number of additional rows (with undefined content) to write into
+the FIFO.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-transpose-fifo-enqueue" id="data-fifo-transpose-fifo-enqueue">§</a>
+</pre>
+<div class="docs">
+<p>Write one row into the FIFO. Block if FIFO is full and
+<code>EnqueueBlocking</code> is true.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Invariants</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (ArraySize &amp; (ArraySize - <span class="literal">1</span>)))
+</pre>
+<div class="docs">
+<p>ArraySize must be a power of 2</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (ArrayDepth &amp; (ArrayDepth - <span class="literal">1</span>)))
+</pre>
+<div class="docs">
+<p>ArrayDepth must be a power of 2</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

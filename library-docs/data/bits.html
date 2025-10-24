@@ -1,0 +1,563 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/bits.html" id="index-link"
+class="link">data.bits</a>
+<ul>
+<li><a href="../data/bits.html#data-bits-bitwise_and" id="index-link"
+class="link"><code>bitwise_and</code></a></li>
+<li><a href="../data/bits.html#data-bits-bitwise_nand" id="index-link"
+class="link"><code>bitwise_nand</code></a></li>
+<li><a href="../data/bits.html#data-bits-bitwise_nor" id="index-link"
+class="link"><code>bitwise_nor</code></a></li>
+<li><a href="../data/bits.html#data-bits-bitwise_or" id="index-link"
+class="link"><code>bitwise_or</code></a></li>
+<li><a href="../data/bits.html#data-bits-bitwise_xnor" id="index-link"
+class="link"><code>bitwise_xnor</code></a></li>
+<li><a href="../data/bits.html#data-bits-bitwise_xor" id="index-link"
+class="link"><code>bitwise_xor</code></a></li>
+<li><a href="../data/bits.html#data-bits-divide_and_roundup"
+id="index-link" class="link"><code>divide_and_roundup</code></a></li>
+<li><a href="../data/bits.html#data-bits-highest_one" id="index-link"
+class="link"><code>highest_one</code></a></li>
+<li><a href="../data/bits.html#data-bits-lowest_one" id="index-link"
+class="link"><code>lowest_one</code></a></li>
+<li><a href="../data/bits.html#data-bits-mask_greater_equal"
+id="index-link" class="link"><code>mask_greater_equal</code></a></li>
+<li><a href="../data/bits.html#data-bits-mask_greater_than"
+id="index-link" class="link"><code>mask_greater_than</code></a></li>
+<li><a href="../data/bits.html#data-bits-mask_less_equal"
+id="index-link" class="link"><code>mask_less_equal</code></a></li>
+<li><a href="../data/bits.html#data-bits-mask_less_than" id="index-link"
+class="link"><code>mask_less_than</code></a></li>
+<li><a href="../data/bits.html#data-bits-pop_count" id="index-link"
+class="link"><code>pop_count</code></a></li>
+<li><a href="../data/bits.html#data-bits-reduction" id="index-link"
+class="link"><code>reduction</code></a></li>
+<li><a href="../data/bits.html#data-bits-reduction_and" id="index-link"
+class="link"><code>reduction_and</code></a></li>
+<li><a href="../data/bits.html#data-bits-reduction_nand" id="index-link"
+class="link"><code>reduction_nand</code></a></li>
+<li><a href="../data/bits.html#data-bits-reduction_nor" id="index-link"
+class="link"><code>reduction_nor</code></a></li>
+<li><a href="../data/bits.html#data-bits-reduction_or" id="index-link"
+class="link"><code>reduction_or</code></a></li>
+<li><a href="../data/bits.html#data-bits-reduction_xnor" id="index-link"
+class="link"><code>reduction_xnor</code></a></li>
+<li><a href="../data/bits.html#data-bits-reduction_xor" id="index-link"
+class="link"><code>reduction_xor</code></a></li>
+<li><a href="../data/bits.html#data-bits-reverse" id="index-link"
+class="link"><code>reverse</code></a></li>
+<li><a href="../data/bits.html#data-bits-reverse_bytes" id="index-link"
+class="link"><code>reverse_bytes</code></a></li>
+<li><a href="../data/bits.html#data-bits-rotl" id="index-link"
+class="link"><code>rotl</code></a></li>
+<li><a href="../data/bits.html#data-bits-rotr" id="index-link"
+class="link"><code>rotr</code></a></li>
+<li><a href="../data/bits.html#data-bits-roundup_to_pow2"
+id="index-link" class="link"><code>roundup_to_pow2</code></a></li>
+</ul></li>
+<li><a href="../data/optional.html" id="index-link"
+class="link">data.optional</a>
+<ul>
+<li><a href="../data/optional.html#data-optional-optional"
+id="index-link" class="link"><code>optional</code></a></li>
+</ul></li>
+<li><a href="../type/stdtype.html" id="index-link"
+class="link">type.stdtype</a>
+<ul>
+<li><a href="../type/stdtype.html#type-stdtype-bitcount_t"
+id="index-link" class="link"><code>bitcount_t</code></a></li>
+<li><a href="../type/stdtype.html#type-stdtype-bitindex_t"
+id="index-link" class="link"><code>bitindex_t</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.bits <a href="../index.html">&equiv;</a></h1>
+<p>Bit manipulation functions for unsigned integers.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">rotl</span>(T <span class="identifier">value</span>, <a class="link" href="../type/stdtype.html#type-stdtype-bitindex_t"><span class="identifier">bitindex_t</span></a>&lt;T&gt; <span class="identifier">amount</span>) <a class="anchor" href="#data-bits-rotl" id="data-bits-rotl">§</a>
+</pre>
+<div class="docs">
+<p>Rotate the specified value left by the specified amount.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; rotl(0x9, 0);
+0x9
+
+&gt;&gt;&gt; rotl(0x9, 1);
+0x3
+
+&gt;&gt;&gt; rotl(0x9, 2);
+0x6
+
+&gt;&gt;&gt; rotl(0x9, 3);
+0xC</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">rotr</span>(T <span class="identifier">value</span>, <a class="link" href="../type/stdtype.html#type-stdtype-bitindex_t"><span class="identifier">bitindex_t</span></a>&lt;T&gt; <span class="identifier">amount</span>) <a class="anchor" href="#data-bits-rotr" id="data-bits-rotr">§</a>
+</pre>
+<div class="docs">
+<p>Rotate the specified value right by the specified amount.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; rotr(0x9, 0);
+0x9
+
+&gt;&gt;&gt; rotr(0x9, 1);
+0xC
+
+&gt;&gt;&gt; rotr(0x9, 2);
+0x6
+
+&gt;&gt;&gt; rotr(0x9, 3);
+0x3</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../type/stdtype.html#type-stdtype-bitindex_t"><span class="identifier">bitindex_t</span></a>&lt;T&gt;&gt; <span class="identifier">highest_one</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-bits-highest_one" id="data-bits-highest_one">§</a>
+</pre>
+<div class="docs">
+<p>Find the index of the highest 1 bit in the value. The result is an
+<code>optional&lt;bitindex_t&lt;T&gt;&gt;</code> with the
+<code>is_valid</code> field indicating if there are any 1 bits in the
+value. When <code>is_valid</code> is true then <code>value</code> is the
+index of the highest 1 bit.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; highest_one(0);
+{0x0, 0x0}
+
+&gt;&gt;&gt; highest_one(1);
+{0x1, 0x0}
+
+&gt;&gt;&gt; highest_one(0x32);
+{0x1, 0x5}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../type/stdtype.html#type-stdtype-bitindex_t"><span class="identifier">bitindex_t</span></a>&lt;T&gt;&gt; <span class="identifier">lowest_one</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-bits-lowest_one" id="data-bits-lowest_one">§</a>
+</pre>
+<div class="docs">
+<p>Find the index of the lowest 1 bit in the value. The result is an
+<code>optional&lt;bitindex_t&lt;T&gt;&gt;</code> with the
+<code>is_valid</code> field indicating if there are any 1 bits in the
+value. When <code>is_valid</code> is true then <code>value</code> is the
+index of the lowest 1 bit.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; lowest_one(0);
+{0x0, 0x0}
+
+&gt;&gt;&gt; lowest_one(1);
+{0x1, 0x0}
+
+&gt;&gt;&gt; lowest_one(0x34);
+{0x1, 0x2}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-bitcount_t"><span class="identifier">bitcount_t</span></a>&lt;T&gt; <span class="identifier">pop_count</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-bits-pop_count" id="data-bits-pop_count">§</a>
+</pre>
+<div class="docs">
+<p>Return a count of the number of bits set in the value.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; pop_count(0);
+0x0
+
+&gt;&gt;&gt; pop_count(1);
+0x1
+
+&gt;&gt;&gt; pop_count(0x34);
+0x3</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> DividendType, <span class="keyword">typename</span> DivisorType&gt;
+<span class="modifier">inline </span>
+DividendType
+<span class="identifier">divide_and_roundup</span>(DividendType <span class="identifier">dividend</span>, <span class="keyword">const</span> DivisorType <span class="identifier">divisor</span>) <a class="anchor" href="#data-bits-divide_and_roundup" id="data-bits-divide_and_roundup">§</a>
+</pre>
+<div class="docs">
+<p>Divide dividend by divisor and round the result up. Divisor must be
+an unsigned power of 2, known at compile time. Calling with (x, 32)
+returns the equivalent of (x + 31) / 32.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; divide_and_roundup(0, 0x20);
+0x0
+
+&gt;&gt;&gt; divide_and_roundup(1, 0x20);
+0x1
+
+&gt;&gt;&gt; divide_and_roundup(0x20, 0x20);
+0x1
+
+&gt;&gt;&gt; divide_and_roundup(0x81f, 0x40);
+0x21</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputType, <span class="keyword">typename</span> OutputType&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;OutputType&gt; <span class="identifier">roundup_to_pow2</span>(InputType <span class="identifier">input</span>) <a class="anchor" href="#data-bits-roundup_to_pow2" id="data-bits-roundup_to_pow2">§</a>
+</pre>
+<div class="docs">
+<p>Round up a value to the next larger power of two. For example, all
+values from 33 through 64 (inclusive) round up to 64. OutputType must be
+at least one bit larger than InputType.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; roundup_to_pow2&lt;uint15, uint16&gt;(0);
+{0x0, 0x0}
+
+&gt;&gt;&gt; roundup_to_pow2&lt;int7, int8&gt;(0x1f);
+{0x1, 0x20}
+
+&gt;&gt;&gt; roundup_to_pow2&lt;uint7, uint8&gt;(0x20);
+{0x1, 0x20}
+
+&gt;&gt;&gt; roundup_to_pow2&lt;uint15, uint16&gt;(0x21);
+{0x1, 0x40}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">reverse</span>(T <span class="identifier">data</span>) <a class="anchor" href="#data-bits-reverse" id="data-bits-reverse">§</a>
+</pre>
+<div class="docs">
+<p>Reverse all bits and return the same input data type.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; reverse(0xC);
+0x3
+
+&gt;&gt;&gt; reverse&lt;optional&lt;uint1&gt;&gt;({false, 0x1});
+{0x1, 0x0}
+
+&gt;&gt;&gt; reverse&lt;uint2[4]&gt;({0, 1, 2, 3});
+{0x3, 0x1, 0x2, 0x0}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">reverse_bytes</span>(T <span class="identifier">data</span>) <a class="anchor" href="#data-bits-reverse_bytes" id="data-bits-reverse_bytes">§</a>
+</pre>
+<div class="docs">
+<p>Reverse input byte-by-byte and return as the same data type.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; reverse_bytes&lt;uint8&gt;(0xC);
+0xC
+
+&gt;&gt;&gt; reverse_bytes&lt;uint32&gt;(0xB01DFACE);
+0xCEFA1DB0
+
+&gt;&gt;&gt; reverse_bytes&lt;uint8[4]&gt;({0, 1, 2, 3});
+{0x3, 0x2, 0x1, 0x0}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span>[N] <span class="identifier">mask_greater_equal</span>(T <span class="identifier">arg</span>) <a class="anchor" href="#data-bits-mask_greater_equal" id="data-bits-mask_greater_equal">§</a>
+</pre>
+<div class="docs">
+<p>Return array <code>bool[N]</code> with element at i the result of i
+&gt;= arg.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; mask_greater_equal&lt;4&gt;(2);
+{0x0, 0x0, 0x1, 0x1}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span>[N] <span class="identifier">mask_less_than</span>(T <span class="identifier">arg</span>) <a class="anchor" href="#data-bits-mask_less_than" id="data-bits-mask_less_than">§</a>
+</pre>
+<div class="docs">
+<p>Return array <code>bool[N]</code> with element at i the result of i
+&lt; arg.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; mask_less_than&lt;4&gt;(2);
+{0x1, 0x1, 0x0, 0x0}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span>[N] <span class="identifier">mask_greater_than</span>(T <span class="identifier">arg</span>) <a class="anchor" href="#data-bits-mask_greater_than" id="data-bits-mask_greater_than">§</a>
+</pre>
+<div class="docs">
+<p>Return array <code>bool[N]</code> with element at i the result of i
+&gt; arg.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; mask_greater_than&lt;4&gt;(2);
+{0x0, 0x0, 0x0, 0x1}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span>[N] <span class="identifier">mask_less_equal</span>(T <span class="identifier">arg</span>) <a class="anchor" href="#data-bits-mask_less_equal" id="data-bits-mask_less_equal">§</a>
+</pre>
+<div class="docs">
+<p>Return array <code>bool[N]</code> with element at i the result of i
+&lt;= arg.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; mask_less_equal&lt;4&gt;(2);
+{0x1, 0x1, 0x1, 0x0}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">reduction</span>((<span class="builtin">bool</span>, <span class="builtin">bool</span>) -&gt; <span class="builtin">bool</span> <span class="identifier">f</span>, T <span class="identifier">x</span>) <a class="anchor" href="#data-bits-reduction" id="data-bits-reduction">§</a>
+</pre>
+<div class="docs">
+<p>Casts the specified scalar type to an array of booleans and applies
+the reduction operator to it</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">reduction_and</span>(T <span class="identifier">x</span>) <a class="anchor" href="#data-bits-reduction_and" id="data-bits-reduction_and">§</a>
+</pre>
+<div class="docs">
+<p>Verilog style AND reduction operator</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">reduction_or</span>(T <span class="identifier">x</span>) <a class="anchor" href="#data-bits-reduction_or" id="data-bits-reduction_or">§</a>
+</pre>
+<div class="docs">
+<p>Verilog style OR reduction operator</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">reduction_xor</span>(T <span class="identifier">x</span>) <a class="anchor" href="#data-bits-reduction_xor" id="data-bits-reduction_xor">§</a>
+</pre>
+<div class="docs">
+<p>Verilog style XOR reduction operator</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">reduction_xnor</span>(T <span class="identifier">x</span>) <a class="anchor" href="#data-bits-reduction_xnor" id="data-bits-reduction_xnor">§</a>
+</pre>
+<div class="docs">
+<p>Verilog style XNOR reduction operator</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">reduction_nand</span>(T <span class="identifier">x</span>) <a class="anchor" href="#data-bits-reduction_nand" id="data-bits-reduction_nand">§</a>
+</pre>
+<div class="docs">
+<p>Verilog style NAND reduction operator</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">reduction_nor</span>(T <span class="identifier">x</span>) <a class="anchor" href="#data-bits-reduction_nor" id="data-bits-reduction_nor">§</a>
+</pre>
+<div class="docs">
+<p>Verilog style NOR reduction operator</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">bitwise_and</span>(T <span class="identifier">x</span>, T <span class="identifier">y</span>) <a class="anchor" href="#data-bits-bitwise_and" id="data-bits-bitwise_and">§</a>
+</pre>
+<div class="docs">
+<p>AND operator applied to the bits of an arbitrary type.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">bitwise_or</span>(T <span class="identifier">x</span>, T <span class="identifier">y</span>) <a class="anchor" href="#data-bits-bitwise_or" id="data-bits-bitwise_or">§</a>
+</pre>
+<div class="docs">
+<p>OR operator applied to the bits of an arbitrary type.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">bitwise_xor</span>(T <span class="identifier">x</span>, T <span class="identifier">y</span>) <a class="anchor" href="#data-bits-bitwise_xor" id="data-bits-bitwise_xor">§</a>
+</pre>
+<div class="docs">
+<p>XOR operator applied to the bits of an arbitrary type.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">bitwise_nand</span>(T <span class="identifier">x</span>, T <span class="identifier">y</span>) <a class="anchor" href="#data-bits-bitwise_nand" id="data-bits-bitwise_nand">§</a>
+</pre>
+<div class="docs">
+<p>NAND operator applied to the bits of an arbitrary type.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">bitwise_nor</span>(T <span class="identifier">x</span>, T <span class="identifier">y</span>) <a class="anchor" href="#data-bits-bitwise_nor" id="data-bits-bitwise_nor">§</a>
+</pre>
+<div class="docs">
+<p>NOR operator applied to the bits of an arbitrary type.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">bitwise_xnor</span>(T <span class="identifier">x</span>, T <span class="identifier">y</span>) <a class="anchor" href="#data-bits-bitwise_xnor" id="data-bits-bitwise_xnor">§</a>
+</pre>
+<div class="docs">
+<p>XNOR operator applied to the bits of an arbitrary type.</p>
+</div>
+</section>
+</div>
+</div>

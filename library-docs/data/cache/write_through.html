@@ -1,0 +1,464 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/cache/write_through.html" id="index-link"
+class="link">data.cache.write_through</a>
+<ul>
+<li><a
+href="../../data/cache/write_through.html#data-cache-write_through-cache"
+id="index-link" class="link"><code>cache</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.cache.write_through <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> Key,
+    <span class="keyword">typename</span> Value,
+    <span class="keyword">typename</span> LUtime,
+    <span class="keyword">auto</span> Associativity,
+    <span class="keyword">auto</span> Depth
+    &gt;
+<span class="keyword">class</span> <span class="identifier">cache</span> <a class="anchor" href="#data-cache-write_through-cache" id="data-cache-write_through-cache">§</a>
+</pre>
+<div class="docs">
+<p>A cache that immediately writes data to the backing store.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Key
+</pre>
+<div class="docs">
+<p>The type of key for looking up a value in the cache.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Value
+</pre>
+<div class="docs">
+<p>The type of value stored in the cache.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> LUtime
+</pre>
+<div class="docs">
+<p>The type to use for storing the time a cache entry was most recently
+used. Using a wider type makes LRU eviction more accurate for a set
+associative cache, but for a direct cache where LRU does not apply,
+using uint1 saves space.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Associativity
+</pre>
+<div class="docs">
+<p>The number of entries to store for a given hash value. Use 1 to
+create a directly mapped cache.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Depth
+</pre>
+<div class="docs">
+<p>The total number of entries to cache. Must be a multiple of
+<code>Associativity</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-write_through-cache-set_index_t" id="data-cache-write_through-cache-set_index_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Callbacks and Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(Key <span class="identifier">key</span>) -&gt; Value <span class="identifier">load</span> <a class="anchor" href="#data-cache-write_through-cache-load" id="data-cache-write_through-cache-load">§</a>
+</pre>
+<div class="docs">
+<p>The callback function to invoke when a <code>get</code> call causes a
+cache miss.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(Key <span class="identifier">key</span>, Value <span class="identifier">value</span>) -&gt; <span class="keyword">void</span> <span class="identifier">store</span> <a class="anchor" href="#data-cache-write_through-cache-store" id="data-cache-write_through-cache-store">§</a>
+</pre>
+<div class="docs">
+<p>The callback function to invoke in a <code>put</code> call to store
+the new value to the backend store.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+Value
+<span class="identifier">store_value_in_cache</span>(
+    <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>,
+    <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<span class="identifier">entry_index_t</span> <span class="identifier">entry_index</span>,
+    Value <span class="identifier">newValue</span>,
+    <span class="builtin">bool</span> <span class="identifier">readFromCache</span>
+    ) <a class="anchor" href="#data-cache-write_through-cache-store_value_in_cache" id="data-cache-write_through-cache-store_value_in_cache">§</a>
+</pre>
+<div class="docs">
+<p>Stores a value in the cache, or reads the existing value if
+<code>readFromCache</code> is true. Called by both <code>get</code> and
+<code>put</code>, and serves as a single place with a single atomic
+block for manipulating the contents of the cached data. Returns the
+value now in the cache, which may have just been written there.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>
+</pre>
+<div class="docs">
+<p>The hashed value of the key.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<span class="identifier">entry_index_t</span> <span class="identifier">entry_index</span>
+</pre>
+<div class="docs">
+<p>The index within the cache line for the given entry.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+Value <span class="identifier">newValue</span>
+</pre>
+<div class="docs">
+<p>The value to store into the cache.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">readFromCache</span>
+</pre>
+<div class="docs">
+<p>Set to true if this function should return the existing value from
+the cache.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+Value
+<span class="identifier">get_or_put</span>(<span class="builtin">bool</span> <span class="identifier">is_get</span>, Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>, Value <span class="identifier">value</span>) <a class="anchor" href="#data-cache-write_through-cache-get_or_put" id="data-cache-write_through-cache-get_or_put">§</a>
+</pre>
+<div class="docs">
+<p>Gets or puts a value from/to the cache.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">is_get</span>
+</pre>
+<div class="docs">
+<p>Whether this is a get operation. If false, this is a put
+operation.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+Key <span class="identifier">key</span>
+</pre>
+<div class="docs">
+<p>The key to read or write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>
+</pre>
+<div class="docs">
+<p>The hashed value of the key.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+Value <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>The new value to put. Ignored if <code>is_get</code> is true.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-write_through-cache-initialize" id="data-cache-write_through-cache-initialize">§</a>
+</pre>
+<div class="docs">
+<p>Initialize or re-initialize a cache object. Re-initializing the cache
+invalidates all entries. The caller must ensure that intialize is not
+called concurrently with get or put.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+Value <span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>) <a class="anchor" href="#data-cache-write_through-cache-get" id="data-cache-write_through-cache-get">§</a>
+</pre>
+<div class="docs">
+<p>Gets a value from the cache.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+Key <span class="identifier">key</span>
+</pre>
+<div class="docs">
+<p>The key to lookup.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>
+</pre>
+<div class="docs">
+<p>The hashed value of the key.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">put</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>, Value <span class="identifier">value</span>) <a class="anchor" href="#data-cache-write_through-cache-put" id="data-cache-write_through-cache-put">§</a>
+</pre>
+<div class="docs">
+<p>Puts a value into the cache.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+Key <span class="identifier">key</span>
+</pre>
+<div class="docs">
+<p>The key to write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>
+</pre>
+<div class="docs">
+<p>The hashed value of the key.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+Value <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>The new value to put.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

@@ -1,0 +1,649 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/buffer/accumulating.html" id="index-link"
+class="link">data.buffer.accumulating</a>
+<ul>
+<li><a
+href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"
+id="index-link" class="link"><code>accumulating_buffer</code></a></li>
+<li><a
+href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"
+id="index-link"
+class="link"><code>multi_accumulating_buffer</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.buffer.accumulating <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> Size,
+    <span class="keyword">auto</span> BufferCount,
+    <span class="keyword">auto</span> InputSize = Size,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Container = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>,
+    <span class="builtin">bool</span> ResetWithInitialValues = <span class="literal">false</span>,
+    <span class="keyword">auto</span> FlitCount = <span class="literal">1</span>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">multi_accumulating_buffer</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer" id="data-buffer-accumulating-multi_accumulating_buffer">§</a>
+</pre>
+<div class="docs">
+<p>An array of buffers, each of which accumulates a given number of
+entries and returns them once a specified number are enqueued or when a
+call to enqueue explicitly requests that the buffered values be
+flushed.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of values stored in the accumulating buffer.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Size
+</pre>
+<div class="docs">
+<p>Maximum number of elements that can be stored in each buffer.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> BufferCount
+</pre>
+<div class="docs">
+<p>The number of buffers.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> InputSize = Size
+</pre>
+<div class="docs">
+<p>Maximum number of elements that can be appended to a buffer in one
+call.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Container = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+</pre>
+<div class="docs">
+<p>Template used to store buffer metadata and data.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> ResetWithInitialValues = <span class="literal">false</span>
+</pre>
+<div class="docs">
+<p>Reset the buffer metadata with initial values. If false, then the
+metadata will be reset with a <code>[[reset]]</code> function.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> FlitCount = <span class="literal">1</span>
+</pre>
+<div class="docs">
+<p>Number of calls to the output callback for each <code>Size</code>
+elements.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">buffer_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;BufferCount&gt; <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t" id="data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">input_vec_t</span> = <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, InputSize&gt; <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-input_vec_t" id="data-buffer-accumulating-multi_accumulating_buffer-input_vec_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Types</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">output</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-output" id="data-buffer-accumulating-multi_accumulating_buffer-output">§</a>
+</pre>
+<div class="docs">
+<p>Return type for <code>enqueue</code>.</p>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">value_count</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-value_count" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-value_count">§</a>
+</pre>
+<div class="docs">
+<p>The number of valid elements in the output.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+T[Size] <span class="identifier">values</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-values" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-values">§</a>
+</pre>
+<div class="docs">
+<p>Output values.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">empty</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-empty" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-empty">§</a>
+</pre>
+<div class="docs">
+<p>Flag to indicate whether accumulating_buffer is now empty.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"><span class="identifier">multi_accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-output"><span class="identifier">output</span></a>
+<span class="identifier">enqueue</span>(
+    <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"><span class="identifier">multi_accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t"><span class="identifier">buffer_index_t</span></a> <span class="identifier">buffer_index</span>,
+    T[InputSize] <span class="identifier">values</span>,
+    <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;InputSize&gt; <span class="identifier">value_count</span>,
+    <span class="builtin">bool</span> <span class="identifier">flush</span>
+    ) <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-enqueue" id="data-buffer-accumulating-multi_accumulating_buffer-enqueue">§</a>
+</pre>
+<div class="docs">
+<p>Write up to <code>InputSize</code> values to a buffer. If there is
+now a full flit of accumulated data associated with the specified buffer
+then the return structure will contain that flit. A caller can also
+explicitly retrieve a partial flit by setting the <code>flush</code>
+parameter to true. Returns an <code>output</code> in which up to Size
+values are valid (at most a single flit).</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"><span class="identifier">multi_accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t"><span class="identifier">buffer_index_t</span></a> <span class="identifier">buffer_index</span>
+</pre>
+</li>
+<li>
+<pre class="signature">
+T[InputSize] <span class="identifier">values</span>
+</pre>
+<div class="docs">
+<p>Values to enqueue.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;InputSize&gt; <span class="identifier">value_count</span>
+</pre>
+<div class="docs">
+<p>The number of entries in the values array that are valid. Must be
+between 0 and <code>InputSize</code>, inclusive.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">flush</span>
+</pre>
+<div class="docs">
+<p>If true, return up to Size elements, even if the buffer is not yet
+full.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">enqueue_with_callback</span>(
+    <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"><span class="identifier">multi_accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t"><span class="identifier">buffer_index_t</span></a> <span class="identifier">buffer_index</span>,
+    <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"><span class="identifier">multi_accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-input_vec_t"><span class="identifier">input_vec_t</span></a> <span class="identifier">values</span>,
+    <span class="builtin">bool</span> <span class="identifier">flush</span>,
+    ( <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, Size&gt;
+    ) -&gt; <span class="keyword">void</span> <span class="identifier">output_callback</span>
+    ) <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-enqueue_with_callback" id="data-buffer-accumulating-multi_accumulating_buffer-enqueue_with_callback">§</a>
+</pre>
+<div class="docs">
+<p>Write up to <code>InputSize</code> values to a buffer. Once
+<code>FlitCount</code> flits are accumulated for a given buffer then
+<code>output_callback</code> is called once per accumulated flit.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"><span class="identifier">multi_accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t"><span class="identifier">buffer_index_t</span></a> <span class="identifier">buffer_index</span>
+</pre>
+<div class="docs">
+<p>Which buffer to append to.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer"><span class="identifier">multi_accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-input_vec_t"><span class="identifier">input_vec_t</span></a> <span class="identifier">values</span>
+</pre>
+<div class="docs">
+<p>Values to enqueue.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">flush</span>
+</pre>
+<div class="docs">
+<p>If true, then call the callback for all buffer values associated with
+the buffer identified by <code>buffer_index</code>. The caller must
+ensure that the number of
+<code>buffered elements + values.size &lt;= FlitCount * Size</code> when
+true.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+( <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, Size&gt;
+) -&gt; <span class="keyword">void</span> <span class="identifier">output_callback</span>
+</pre>
+<div class="docs">
+<p>Function which is called once per output flit.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Invariants</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(InputSize &lt;= Size)
+</pre>
+<div class="docs">
+<p>A single call cannot appened more than <code>Size</code>
+elements.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Size, <span class="keyword">auto</span> InputSize = Size, <span class="keyword">auto</span> FlitCount = <span class="literal">1</span>&gt;
+<span class="keyword">class</span> <span class="identifier">accumulating_buffer</span> <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer" id="data-buffer-accumulating-accumulating_buffer">§</a>
+</pre>
+<div class="docs">
+<p>A buffer that accumulates elements into flits (fixed-sized arrays of
+elements).</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of values stored in the accumulating buffer.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Size
+</pre>
+<div class="docs">
+<p>Maximum number of elements that can be stored in a flit.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> InputSize = Size
+</pre>
+<div class="docs">
+<p>Maximum number of elements that can be appended to the buffer in one
+call.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> FlitCount = <span class="literal">1</span>
+</pre>
+<div class="docs">
+<p>Maximum number of flits that can be stored. The output callback is
+called once for each <code>Size</code> elements.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">output</span> = <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"><span class="identifier">accumulating_buffer</span></a>::<span class="identifier">buffer_t</span>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-output"><span class="identifier">output</span></a> <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-output" id="data-buffer-accumulating-accumulating_buffer-output">§</a>
+</pre>
+<div class="docs">
+<p>Return type for <code>enqueue</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">input_vec_t</span> = <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, InputSize&gt; <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-input_vec_t" id="data-buffer-accumulating-accumulating_buffer-input_vec_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"><span class="identifier">accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer-output"><span class="identifier">output</span></a>
+<span class="identifier">enqueue</span>(T[InputSize] <span class="identifier">values</span>, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;InputSize&gt; <span class="identifier">value_count</span>, <span class="builtin">bool</span> <span class="identifier">flush</span>) <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-enqueue" id="data-buffer-accumulating-accumulating_buffer-enqueue">§</a>
+</pre>
+<div class="docs">
+<p>Write up to <code>InputSize</code> values to the buffer. If there are
+now full flit of buffered data then the return structure will contain
+that flit. A caller can also explicitly retrieve a partial flit by
+setting the <code>flush</code> parameter to true. Returns an
+<code>output</code> in which up to Size values are valid (at most a
+single flit).</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+T[InputSize] <span class="identifier">values</span>
+</pre>
+<div class="docs">
+<p>An array of values to enqueue.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;InputSize&gt; <span class="identifier">value_count</span>
+</pre>
+<div class="docs">
+<p>The number of entries in the values array that are valid. Must be
+between 0 and <code>InputSize</code>, inclusive.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">flush</span>
+</pre>
+<div class="docs">
+<p>If true, return up to Size elements, even if the buffer is not yet
+full.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">enqueue_with_callback</span>(
+    <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"><span class="identifier">accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer-input_vec_t"><span class="identifier">input_vec_t</span></a> <span class="identifier">values</span>,
+    <span class="builtin">bool</span> <span class="identifier">flush</span>,
+    ( <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, Size&gt;
+    ) -&gt; <span class="keyword">void</span> <span class="identifier">output_callback</span>
+    ) <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-enqueue_with_callback" id="data-buffer-accumulating-accumulating_buffer-enqueue_with_callback">§</a>
+</pre>
+<div class="docs">
+<p>Write up to <code>InputSize</code> values to the buffer. Once
+<code>FlitCount</code> flits are accumulated then
+<code>output_callback</code> is called once per accumulated flit.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"><span class="identifier">accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer-input_vec_t"><span class="identifier">input_vec_t</span></a> <span class="identifier">values</span>
+</pre>
+<div class="docs">
+<p>Values to enqueue.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">flush</span>
+</pre>
+<div class="docs">
+<p>If true, then call the callback for all buffer values associated with
+the buffer identified by <code>buffer_index</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+( <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, Size&gt;
+) -&gt; <span class="keyword">void</span> <span class="identifier">output_callback</span>
+</pre>
+<div class="docs">
+<p>Function which is called once per output flit.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Invariants</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(InputSize &lt;= Size)
+</pre>
+<div class="docs">
+<p>A single call cannot appened more than <code>Size</code>
+elements.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

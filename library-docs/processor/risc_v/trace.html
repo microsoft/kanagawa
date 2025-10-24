@@ -1,0 +1,539 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../processor/risc_v/trace.html" id="index-link"
+class="link">processor.risc_v.trace</a>
+<ul>
+<li><a
+href="../../processor/risc_v/trace.html#processor-risc_v-trace-Instruction"
+id="index-link" class="link"><code>Instruction</code></a></li>
+<li><a
+href="../../processor/risc_v/trace.html#processor-risc_v-trace-disasm"
+id="index-link" class="link"><code>disasm</code></a></li>
+<li><a
+href="../../processor/risc_v/trace.html#processor-risc_v-trace-disasm_instr"
+id="index-link" class="link"><code>disasm_instr</code></a></li>
+<li><a
+href="../../processor/risc_v/trace.html#processor-risc_v-trace-print_memory_map"
+id="index-link" class="link"><code>print_memory_map</code></a></li>
+<li><a
+href="../../processor/risc_v/trace.html#processor-risc_v-trace-print_trace"
+id="index-link" class="link"><code>print_trace</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>processor.risc_v.trace <a href="../../index.html">&equiv;</a></h1>
+<p>Pretty printer for RISC-V disassembly.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">enum</span> <span class="identifier">Instruction</span> : <span class="keyword">uint6</span> <a class="anchor" href="#processor-risc_v-trace-Instruction" id="processor-risc_v-trace-Instruction">§</a>
+</pre>
+<div class="docs">
+<p>RV32i assembly instruction mnemonics (including pseudo
+instructions)</p>
+<details>
+<p><summary>Values</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="identifier">unknown</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-unknown" id="processor-risc_v-trace-Instruction-unknown">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">lui</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lui" id="processor-risc_v-trace-Instruction-lui">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">auipc</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-auipc" id="processor-risc_v-trace-Instruction-auipc">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">jal</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jal" id="processor-risc_v-trace-Instruction-jal">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">jalr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jalr" id="processor-risc_v-trace-Instruction-jalr">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">beq</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-beq" id="processor-risc_v-trace-Instruction-beq">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">bne</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bne" id="processor-risc_v-trace-Instruction-bne">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">blt</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-blt" id="processor-risc_v-trace-Instruction-blt">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">bge</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bge" id="processor-risc_v-trace-Instruction-bge">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">bltu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bltu" id="processor-risc_v-trace-Instruction-bltu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">bgeu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bgeu" id="processor-risc_v-trace-Instruction-bgeu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">lb</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lb" id="processor-risc_v-trace-Instruction-lb">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">lh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lh" id="processor-risc_v-trace-Instruction-lh">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">lw</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lw" id="processor-risc_v-trace-Instruction-lw">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">lbu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lbu" id="processor-risc_v-trace-Instruction-lbu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">lhu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lhu" id="processor-risc_v-trace-Instruction-lhu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sb</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sb" id="processor-risc_v-trace-Instruction-sb">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sh" id="processor-risc_v-trace-Instruction-sh">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sw</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sw" id="processor-risc_v-trace-Instruction-sw">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">addi</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-addi" id="processor-risc_v-trace-Instruction-addi">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">slti</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slti" id="processor-risc_v-trace-Instruction-slti">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sltiu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sltiu" id="processor-risc_v-trace-Instruction-sltiu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">xori</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-xori" id="processor-risc_v-trace-Instruction-xori">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">ori</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ori" id="processor-risc_v-trace-Instruction-ori">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">andi</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-andi" id="processor-risc_v-trace-Instruction-andi">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">slli</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slli" id="processor-risc_v-trace-Instruction-slli">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">srli</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srli" id="processor-risc_v-trace-Instruction-srli">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">srai</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srai" id="processor-risc_v-trace-Instruction-srai">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">add</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-add" id="processor-risc_v-trace-Instruction-add">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sub</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sub" id="processor-risc_v-trace-Instruction-sub">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sll</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sll" id="processor-risc_v-trace-Instruction-sll">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">slt</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slt" id="processor-risc_v-trace-Instruction-slt">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sltu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sltu" id="processor-risc_v-trace-Instruction-sltu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">xor</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-xor" id="processor-risc_v-trace-Instruction-xor">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">srl</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srl" id="processor-risc_v-trace-Instruction-srl">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">sra</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sra" id="processor-risc_v-trace-Instruction-sra">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">or</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-or" id="processor-risc_v-trace-Instruction-or">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">and</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-and" id="processor-risc_v-trace-Instruction-and">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">fence</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-fence" id="processor-risc_v-trace-Instruction-fence">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">ecall</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ecall" id="processor-risc_v-trace-Instruction-ecall">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">ebreak</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ebreak" id="processor-risc_v-trace-Instruction-ebreak">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">mul</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mul" id="processor-risc_v-trace-Instruction-mul">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">mulh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulh" id="processor-risc_v-trace-Instruction-mulh">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">mulhsu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulhsu" id="processor-risc_v-trace-Instruction-mulhsu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">mulhu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulhu" id="processor-risc_v-trace-Instruction-mulhu">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">csrr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-csrr" id="processor-risc_v-trace-Instruction-csrr">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">rdcycle</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdcycle" id="processor-risc_v-trace-Instruction-rdcycle">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">rdcycleh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdcycleh" id="processor-risc_v-trace-Instruction-rdcycleh">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">rdtime</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdtime" id="processor-risc_v-trace-Instruction-rdtime">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">rdtimeh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdtimeh" id="processor-risc_v-trace-Instruction-rdtimeh">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">rdinstret</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdinstret" id="processor-risc_v-trace-Instruction-rdinstret">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">ret</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ret" id="processor-risc_v-trace-Instruction-ret">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">j</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-j" id="processor-risc_v-trace-Instruction-j">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">jr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jr" id="processor-risc_v-trace-Instruction-jr">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">li</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-li" id="processor-risc_v-trace-Instruction-li">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">nop</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-nop" id="processor-risc_v-trace-Instruction-nop">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">mv</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mv" id="processor-risc_v-trace-Instruction-mv">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">disasm</span>(<span class="keyword">uint32</span> <span class="identifier">binary</span>, <a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-trace-disasm" id="processor-risc_v-trace-disasm">§</a>
+</pre>
+<div class="docs">
+<p>Return string representation of disassembled instruction</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../../processor/risc_v/trace.html#processor-risc_v-trace-Instruction"><span class="identifier">Instruction</span></a> <span class="identifier">disasm_instr</span>(<a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-trace-disasm_instr" id="processor-risc_v-trace-disasm_instr">§</a>
+</pre>
+<div class="docs">
+<p>Disassemble a decoded instruction</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>
+</pre>
+<div class="docs">
+<p>Decoded instruction from <code>trace</code> callback</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">print_trace</span>(
+    <span class="keyword">auto</span> <span class="identifier">hid</span>,
+    <span class="keyword">auto</span> <span class="identifier">pc</span>,
+    <span class="keyword">auto</span> <span class="identifier">instr</span>,
+    <a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
+    <a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;int32&gt; <span class="identifier">value</span>
+    ) <a class="anchor" href="#processor-risc_v-trace-print_trace" id="processor-risc_v-trace-print_trace">§</a>
+</pre>
+<div class="docs">
+<p>Print dynamic instruction trace. Can be used as <code>trace</code>
+handler.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> IMEM_LENGTH_WORDS,
+    <span class="keyword">auto</span> DMEM_LENGTH,
+    <span class="keyword">auto</span> MMIO_LENGTH,
+    <span class="keyword">auto</span> IMEM_ORIGIN_WORDS,
+    <span class="keyword">auto</span> DMEM_ORIGIN,
+    <span class="keyword">auto</span> MMIO_ORIGIN,
+    <span class="keyword">auto</span> IMEM_TCM_SIZE_WORDS
+    &gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">print_memory_map</span>() <a class="anchor" href="#processor-risc_v-trace-print_memory_map" id="processor-risc_v-trace-print_memory_map">§</a>
+</pre>
+<div class="docs">
+<p>Print a diagram of memory map. Usually this function is called
+indirectly via <code>print_memory_map</code> method of
+<code>RISC_V</code> class which passes appropriate template
+arguments.</p>
+</div>
+</section>
+</div>
+</div>

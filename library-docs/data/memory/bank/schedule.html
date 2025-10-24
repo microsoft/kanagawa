@@ -1,0 +1,446 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../../data/memory/bank/schedule.html" id="index-link"
+class="link">data.memory.bank.schedule</a>
+<ul>
+<li><a
+href="../../../data/memory/bank/schedule.html#data-memory-bank-schedule-read_requests_per_bank"
+id="index-link"
+class="link"><code>read_requests_per_bank</code></a></li>
+<li><a
+href="../../../data/memory/bank/schedule.html#data-memory-bank-schedule-schedule_read_requests"
+id="index-link"
+class="link"><code>schedule_read_requests</code></a></li>
+<li><a
+href="../../../data/memory/bank/schedule.html#data-memory-bank-schedule-schedule_write_requests"
+id="index-link"
+class="link"><code>schedule_write_requests</code></a></li>
+<li><a
+href="../../../data/memory/bank/schedule.html#data-memory-bank-schedule-write_requests_per_bank"
+id="index-link"
+class="link"><code>write_requests_per_bank</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.memory.bank.schedule <a
+href="../../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Banks, <span class="keyword">typename</span> Address, <span class="keyword">auto</span> Addresses&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Addresses&gt;[Banks]
+<span class="identifier">read_requests_per_bank</span>(
+    Address[Addresses] <span class="identifier">addresses</span>,
+    (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
+    ) <a class="anchor" href="#data-memory-bank-schedule-read_requests_per_bank" id="data-memory-bank-schedule-read_requests_per_bank">§</a>
+</pre>
+<div class="docs">
+<p>Count the number of unique read requests for each bank. More than 1
+request per bank indicates conflict.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Banks
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Address
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Addresses
+</pre>
+<div class="docs">
+<p>Number of addresses processed per call.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+Address[Addresses] <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>Input addresses, duplicates allowed.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
+</pre>
+<div class="docs">
+<p>Map <code>Address</code> to bank index.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Banks, <span class="keyword">typename</span> Address, <span class="keyword">auto</span> Addresses&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Addresses&gt;[Banks]
+<span class="identifier">write_requests_per_bank</span>(
+    <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Address&gt;[Addresses] <span class="identifier">addresses</span>,
+    (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
+    ) <a class="anchor" href="#data-memory-bank-schedule-write_requests_per_bank" id="data-memory-bank-schedule-write_requests_per_bank">§</a>
+</pre>
+<div class="docs">
+<p>Count the number of write requests for each bank. More than 1 request
+per bank indicates conflict.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Banks
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Address
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Addresses
+</pre>
+<div class="docs">
+<p>Number of addresses processed per call.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Address&gt;[Addresses] <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>Input addresses, valid duplicates <strong>not</strong> allowed.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
+</pre>
+<div class="docs">
+<p>Map <code>Address</code> to bank index.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Banks, <span class="keyword">typename</span> Address, <span class="keyword">auto</span> Addresses&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt;&gt;[Banks], <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt;&gt;[Addresses]&gt;
+<span class="identifier">schedule_read_requests</span>(
+    Address[Addresses] <span class="identifier">addresses</span>,
+    (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>,
+    <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt; <span class="identifier">iteration</span>
+    ) <a class="anchor" href="#data-memory-bank-schedule-schedule_read_requests" id="data-memory-bank-schedule-schedule_read_requests">§</a>
+</pre>
+<div class="docs">
+<p>For each iteration, calculate the pair:</p>
+<ol type="1">
+<li>The optional address indices for each bank.</li>
+<li>The optional bank index for each address.</li>
+</ol>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Banks
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Address
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Addresses
+</pre>
+<div class="docs">
+<p>Number of addresses processed per call.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+Address[Addresses] <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>Input addresses, duplicates allowed.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
+</pre>
+<div class="docs">
+<p>Map <code>Address</code> to bank index.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt; <span class="identifier">iteration</span>
+</pre>
+<div class="docs">
+<p>Index of bank requests to retrieve from schedule.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Banks, <span class="keyword">typename</span> Address, <span class="keyword">auto</span> Addresses&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt;&gt;[Banks]
+<span class="identifier">schedule_write_requests</span>(
+    <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Address&gt;[Addresses] <span class="identifier">addresses</span>,
+    (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>,
+    <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt; <span class="identifier">iteration</span>
+    ) <a class="anchor" href="#data-memory-bank-schedule-schedule_write_requests" id="data-memory-bank-schedule-schedule_write_requests">§</a>
+</pre>
+<div class="docs">
+<p>Calculate the optional address indices for each bank at specific
+iteration.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Banks
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Address
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Addresses
+</pre>
+<div class="docs">
+<p>Number of addresses processed per call.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Address&gt;[Addresses] <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>Input addresses, valid duplicates <strong>not</strong> allowed.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
+</pre>
+<div class="docs">
+<p>Map <code>Address</code> to bank index.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt; <span class="identifier">iteration</span>
+</pre>
+<div class="docs">
+<p>Index of bank requests to retrieve from schedule.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

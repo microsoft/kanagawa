@@ -1,0 +1,585 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/memory/pipelined.html" id="index-link"
+class="link">data.memory.pipelined</a>
+<ul>
+<li><a
+href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"
+id="index-link" class="link"><code>pipelined_memory</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.memory.pipelined <a href="../../index.html">&equiv;</a></h1>
+<p>Pipelined memory class.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> Depth,
+    <span class="keyword">auto</span> Banks,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">pipelined_memory</span> <a class="anchor" href="#data-memory-pipelined-pipelined_memory" id="data-memory-pipelined-pipelined_memory">§</a>
+</pre>
+<div class="docs">
+<p>A memory that is physically accessed over multiple clock cycles.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>The type of data stored in the memory.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Depth
+</pre>
+<div class="docs">
+<p>Total number of elements stored in the memory.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Banks
+</pre>
+<div class="docs">
+<p>Number physical memories that the logical memory comprises.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+</pre>
+<div class="docs">
+<p>Type of underlying memory to use.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Depth&gt; <a class="anchor" href="#data-memory-pipelined-pipelined_memory-addr_t" id="data-memory-pipelined-pipelined_memory-addr_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>T <span class="identifier">read</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-read" id="data-memory-pipelined-pipelined_memory-read">§</a>
+</pre>
+<div class="docs">
+<p>Read one element from the memory.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of the element to read.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span>T[N] <span class="identifier">read_vec</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>[N] <span class="identifier">addresses</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-read_vec" id="data-memory-pipelined-pipelined_memory-read_vec">§</a>
+</pre>
+<div class="docs">
+<p>Read <code>N</code> elements from the memory.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>The number of elements to read.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>[N] <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>The addresses to read from.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>, T <span class="identifier">data</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-write" id="data-memory-pipelined-pipelined_memory-write">§</a>
+</pre>
+<div class="docs">
+<p>Write one value into the memory. Must not be called concurrently with
+other calls that may write to the memory.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of the element to write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+T <span class="identifier">data</span>
+</pre>
+<div class="docs">
+<p>Data to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_vec</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>, T&gt;&gt;[N] <span class="identifier">writes</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-write_vec" id="data-memory-pipelined-pipelined_memory-write_vec">§</a>
+</pre>
+<div class="docs">
+<p>Write up to <code>N</code> values into the memory. Must not be called
+concurrently with other calls that may write to the memory. Throughput
+can be improved by de-duplicating writes to the same address before
+calling this method.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>The maximum number of elements to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>, T&gt;&gt;[N] <span class="identifier">writes</span>
+</pre>
+<div class="docs">
+<p>Addresses and corresponding values.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> BankUpdateRate = <span class="literal">1</span>&gt;
+<span class="modifier">inline </span><a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt; <span class="identifier">atomically</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>, (T) -&gt; T <span class="identifier">modify</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-atomically" id="data-memory-pipelined-pipelined_memory-atomically">§</a>
+</pre>
+<div class="docs">
+<p>Atomically read and write the memory. Returns both the old and new
+value for the specified element. Must not be called concurrently with
+other calls that may write to the memory. Note that <code>modify</code>
+may be called multiple times concurrently (one call site per bank).</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> BankUpdateRate = <span class="literal">1</span>
+</pre>
+<div class="docs">
+<p>If a given thread accesses a given bank, then the next
+<code>BankUpdateRate-1</code> threads must not access the same bank.
+This enables the implementation of <code>modify</code> to be
+pipelined.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of the element to read.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(T) -&gt; T <span class="identifier">modify</span>
+</pre>
+<div class="docs">
+<p>Function that accepts the value of the element read from the memory
+and returns a value to write into the memory at the same address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">auto</span> BankUpdateRate = <span class="literal">1</span>&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt;[N]
+<span class="identifier">atomically_vec</span>(
+    <a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>&gt;[N] <span class="identifier">addresses</span>,
+    (T, <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; T <span class="identifier">modify</span>
+    ) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-atomically_vec" id="data-memory-pipelined-pipelined_memory-atomically_vec">§</a>
+</pre>
+<div class="docs">
+<p>Atomically read and write the memory up to <code>N</code> times.
+Returns both the old and new value for the specified elements. Must not
+be called concurrently with other calls that may write to the memory.
+Throughput can be improved by de-duplicating accesses to the same
+address before calling this method. Note that <code>modify</code> may be
+called multiple times concurrently (one call site per bank).</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> BankUpdateRate = <span class="literal">1</span>
+</pre>
+<div class="docs">
+<p>If a given thread accesses a given bank, then the next
+<code>BankUpdateRate-1</code> threads must not access the same bank.
+This enables the implementation of <code>modify</code> to be
+pipelined.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>&gt;[N] <span class="identifier">addresses</span>
+</pre>
+<div class="docs">
+<p>Addresses of the element to access.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(T, <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; T <span class="identifier">modify</span>
+</pre>
+<div class="docs">
+<p>Function that accepts the value of an element read from the memory
+and an index of an element of the addresses array. This function returns
+a value to write into the memory at the same address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Ctx&gt;
+<span class="modifier">inline </span>
+Ctx
+<span class="identifier">bankwise_fold</span>(
+    <a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
+    Ctx <span class="identifier">initial</span>,
+    (<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, Ctx&gt;) -&gt; <a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, Ctx&gt; <span class="identifier">combine</span>
+    ) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-bankwise_fold" id="data-memory-pipelined-pipelined_memory-bankwise_fold">§</a>
+</pre>
+<div class="docs">
+<p>Combine and update the set of all elements with a given offset with a
+bank according to a user-specified function. Must not be called
+concurrently with other calls that may write to the memory.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Ctx
+</pre>
+<div class="docs">
+<p>Context type passed to and returned from the combine function.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Logical address of one element within the memory. All elements that
+have matching offsets within banks are combined.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+Ctx <span class="identifier">initial</span>
+</pre>
+<div class="docs">
+<p>Context value passed to the first call to <code>combine</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, Ctx&gt;) -&gt; <a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, Ctx&gt; <span class="identifier">combine</span>
+</pre>
+<div class="docs">
+<p>Combination function. Maps a previous value in the memory and the
+current context to a new value stored in the memory and a new
+context.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Invariants</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (Depth % Banks))
+</pre>
+<div class="docs">
+<p>Elements must be evenly distributed among banks.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+((<span class="literal">0</span> == (<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<span class="identifier">ElementsPerBank</span> &amp; (<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<span class="identifier">ElementsPerBank</span> - <span class="literal">1</span>))) || (Banks == <span class="literal">1</span>))
+</pre>
+<div class="docs">
+<p><code>ElementsPerBank</code> must be a power of 2 if there is more
+than 1 bank.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

@@ -1,0 +1,276 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/random/lfsr.html" id="index-link"
+class="link">data.random.lfsr</a>
+<ul>
+<li><a href="../../data/random/lfsr.html#data-random-lfsr-lfsr"
+id="index-link" class="link"><code>lfsr</code></a></li>
+<li><a href="../../data/random/lfsr.html#data-random-lfsr-lfsr_random"
+id="index-link" class="link"><code>lfsr_random</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.random.lfsr <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Width&gt;
+<span class="modifier">inline </span><span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">lfsr</span>(<span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">seed</span>) <a class="anchor" href="#data-random-lfsr-lfsr" id="data-random-lfsr-lfsr">§</a>
+</pre>
+<div class="docs">
+<p>A Linear Feedback Shift Register, which is a simple type of
+pseudo-random number generator. <code>lfsr_random</code> uses this
+function to generate successive pseudo-random numbers: pass any non-zero
+seed value into the initial call to the <code>lfsr</code> method, and
+then pass the returned value back in as the new seed on successive
+calls.</p>
+<p>The polynomial used for this LFSR will visit every value except zero.
+Never use zero as a seed, the LFSR will always return zero for a zero
+input. If you are looking for a traditional random number generator,
+this may not be a good choice because the LFSR will not revisit a value
+until it has visited all other <span
+class="math inline">2<sup><em>N</em></sup> − 2</span> values.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Width
+</pre>
+<div class="docs">
+<p>The bit-width of the LFSR. Widths from 2 to 32 inclusive are
+supported.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> SeedWidth&gt;
+<span class="keyword">class</span> <span class="identifier">lfsr_random</span> <a class="anchor" href="#data-random-lfsr-lfsr_random" id="data-random-lfsr-lfsr_random">§</a>
+</pre>
+<div class="docs">
+<p>A stateful pseudo-random number generator using a linear feedback
+shift register (LFSR).</p>
+<p>The polynomial used for this LFSR will visit every value except zero.
+Never use zero as a seed, the LFSR will always return zero for a zero
+input. If you are looking for a traditional random number generator,
+this may not be a good choice because the LFSR will not revisit a value
+until it has visited all other <span
+class="math inline">2<sup><em>N</em></sup> − 2</span> values.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> SeedWidth
+</pre>
+<div class="docs">
+<p>The bit-width of the LFSR. Widths from 2 to 32 inclusive are
+supported.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">value_t</span> = <span class="builtin">uint</span>&lt;SeedWidth&gt; <a class="anchor" href="#data-random-lfsr-lfsr_random-value_t" id="data-random-lfsr-lfsr_random-value_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/random/lfsr.html#data-random-lfsr-lfsr_random"><span class="identifier">lfsr_random</span></a>::<a class="link" href="../../data/random/lfsr.html#data-random-lfsr-lfsr_random-value_t"><span class="identifier">value_t</span></a> <span class="identifier">next</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">uint</span>&lt;SeedWidth&gt;&gt; <span class="identifier">seed</span>) <a class="anchor" href="#data-random-lfsr-lfsr_random-next" id="data-random-lfsr-lfsr_random-next">§</a>
+</pre>
+<div class="docs">
+<p>Get the next random number in the sequence, optionally seeding the
+random number generator first. Do not use zero for the seed value.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">uint</span>&lt;SeedWidth&gt;&gt; <span class="identifier">seed</span>
+</pre>
+<div class="docs">
+<p>If <code>is_valid</code> then seed the generator, otherwise
+ignore.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

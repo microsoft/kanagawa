@@ -1,0 +1,332 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/cache/internal.html" id="index-link"
+class="link">data.cache.internal</a>
+<ul>
+<li><a
+href="../../data/cache/internal.html#data-cache-internal-cache_tags"
+id="index-link" class="link"><code>cache_tags</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.cache.internal <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> LUtime, <span class="keyword">auto</span> Associativity, <span class="keyword">auto</span> Depth&gt;
+<span class="keyword">class</span> <span class="identifier">cache_tags</span> <a class="anchor" href="#data-cache-internal-cache_tags" id="data-cache-internal-cache_tags">§</a>
+</pre>
+<div class="docs">
+<p>Handles metadata related to entries in the cache, but does not store
+data.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Key
+</pre>
+<div class="docs">
+<p>The type of key for looking up a value in the cache.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> LUtime
+</pre>
+<div class="docs">
+<p>The type to use for storing the time a cache entry was most recently
+used. Using a wider type makes LRU eviction more accurate for a set
+associative cache, but for a direct cache where LRU does not apply,
+using <code>uint1</code> saves space.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Associativity
+</pre>
+<div class="docs">
+<p>The number of entries to store for a given hash value, keeping the
+most recently used values. Pass 1 to create a directly mapped cache.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Depth
+</pre>
+<div class="docs">
+<p>The total number of entries to cache. Must be a multiple of
+<code>Associativity</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-internal-cache_tags-set_index_t" id="data-cache-internal-cache_tags-set_index_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">entry_index_t</span> = <span class="builtin">uint</span>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<span class="identifier">_entryIndexBits</span>&gt; <a class="anchor" href="#data-cache-internal-cache_tags-entry_index_t" id="data-cache-internal-cache_tags-entry_index_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-internal-cache_tags-initialize" id="data-cache-internal-cache_tags-initialize">§</a>
+</pre>
+<div class="docs">
+<p>Initialize or re-initialize a cache object. Re-initializing the cache
+invalidates all entries. The caller must ensure that intialize is not
+called concurrently with <code>get</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="identifier">cache_tags_get_result</span>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-entry_index_t"><span class="identifier">entry_index_t</span></a>, Key&gt;
+<span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>, <span class="builtin">bool</span> <span class="identifier">mark_as_unwritten</span>) <a class="anchor" href="#data-cache-internal-cache_tags-get" id="data-cache-internal-cache_tags-get">§</a>
+</pre>
+<div class="docs">
+<p>Get the index of a value from the <code>cache_tags</code>, if
+present.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+Key <span class="identifier">key</span>
+</pre>
+<div class="docs">
+<p>The key to lookup.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>
+</pre>
+<div class="docs">
+<p>The hashed value of the key.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">mark_as_unwritten</span>
+</pre>
+<div class="docs">
+<p>Mark the cache entry as unwritten, meaning it hasn’t been written to
+the backing store yet.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Key&gt;
+<span class="identifier">get_and_clear_unwritten_key</span>(
+    <a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>,
+    <a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-entry_index_t"><span class="identifier">entry_index_t</span></a> <span class="identifier">entry_index</span>
+    ) <a class="anchor" href="#data-cache-internal-cache_tags-get_and_clear_unwritten_key" id="data-cache-internal-cache_tags-get_and_clear_unwritten_key">§</a>
+</pre>
+<div class="docs">
+<p>Returns the key at the given (set_index, entry_index) tuple as well
+as whether the value is unwritten. Marks the key as written. Must not be
+called concurrently with <code>get</code>.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>
+</pre>
+<div class="docs">
+<p>Set index of the key to lookup.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-entry_index_t"><span class="identifier">entry_index_t</span></a> <span class="identifier">entry_index</span>
+</pre>
+<div class="docs">
+<p>Way index of the key to lookup.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

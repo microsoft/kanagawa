@@ -1,0 +1,1278 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../processor/risc_v.html" id="index-link"
+class="link">processor.risc_v</a>
+<ul>
+<li><a href="../processor/risc_v.html#processor-risc_v-RISC_V"
+id="index-link" class="link"><code>RISC_V</code></a></li>
+</ul></li>
+<li><a href="../processor/risc_v/internal/core.html" id="index-link"
+class="link">processor.risc_v.internal.core</a>
+<ul>
+<li><a
+href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Optimize"
+id="index-link" class="link"><code>Optimize</code></a></li>
+<li><a
+href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Trap"
+id="index-link" class="link"><code>Trap</code></a></li>
+</ul></li>
+<li><a href="../processor/risc_v/internal/decoder.html" id="index-link"
+class="link">processor.risc_v.internal.decoder</a>
+<ul>
+<li><a
+href="../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"
+id="index-link" class="link"><code>MemorySize</code></a></li>
+<li><a
+href="../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Option"
+id="index-link" class="link"><code>Option</code></a></li>
+</ul></li>
+<li><a href="../processor/risc_v/isa.html" id="index-link"
+class="link">processor.risc_v.isa</a>
+<ul>
+<li><a href="../processor/risc_v/isa.html#processor-risc_v-isa-Base"
+id="index-link" class="link"><code>Base</code></a></li>
+<li><a
+href="../processor/risc_v/isa.html#processor-risc_v-isa-Extension"
+id="index-link" class="link"><code>Extension</code></a></li>
+<li><a href="../processor/risc_v/isa.html#processor-risc_v-isa-Format"
+id="index-link" class="link"><code>Format</code></a></li>
+<li><a href="../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"
+id="index-link" class="link"><code>Funct3</code></a></li>
+<li><a href="../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"
+id="index-link" class="link"><code>Funct7</code></a></li>
+<li><a href="../processor/risc_v/isa.html#processor-risc_v-isa-RVG"
+id="index-link" class="link"><code>RVG</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>processor.risc_v <a href="../index.html">&equiv;</a></h1>
+<p>The module implements a RISC-V processor core using RV32I base ISA
+with optional support for MUL* instructions from the “M” standard
+extension. Its features include support for multiple hardware threads
+(harts), Memory Mapped IO, instruction fetching from external memory
+(with an option to implement instruction cache), and support for custom
+instructions. The microarchitecture deploys a five-stage pipeline and
+dynamic branch prediction.</p>
+<p>Processor pipeline stalls occur only when a handler provided by the
+Execution Environment doesn’t return results immediately (e.g., when
+implementing asynchronous Memory Mapped IO load/store or instruction
+fetching from external memory with multi-cycle read), or if a
+trap/exception handler stalls. There are no stalls due to late results
+or data hazards.</p>
+<p>The RISC-V core can be configured into various variants that make
+different area/fmax/performance trade-offs.</p>
+<h3 id="hardware-threads">Hardware Threads</h3>
+<p>The core can be configured with 1, 2, 4, or 8 hardware threads
+(harts). Harts have independent architectural states but are
+time-multiplexed onto underlying core hardware and may share
+micro-architecture state (e.g., branch target buffer). All harts share
+tightly coupled instruction memory, and depending on configuration, may
+or may not share data memory or external instruction memory.</p>
+<h4 id="one-hardware-thread">One Hardware Thread</h4>
+<p>The 1-hart configuration is designed to balance single-threaded
+execution performance and small core size.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Instruction</th>
+<th style="text-align: left;">Cycles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Branch predicted (taken or not taken)</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Branch mispredicted</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Memory load</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">ECALL, EBREAK</td>
+<td style="text-align: left;">1+</td>
+</tr>
+<tr>
+<td style="text-align: left;">MUL, MULH, MULHSU, MULHU</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">All other instructions</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="two-hardware-threads">Two Hardware Threads</h4>
+<p>The 2-hart configuration provides 2 hardware execution threads and is
+designed to balance high IPC (instructions per cycle) and single-thread
+execution performance.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Instruction</th>
+<th style="text-align: left;">Cycles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Branch predicted (taken or not taken)</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Branch mispredicted</td>
+<td style="text-align: left;">3 (or 4 in Fmax optimized
+configuration)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Memory load</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">ECALL, EBREAK</td>
+<td style="text-align: left;">1+</td>
+</tr>
+<tr>
+<td style="text-align: left;">MUL, MULH, MULHSU, MULHU</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">All other instructions</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="four-hardware-threads">Four Hardware Threads</h4>
+<p>The 4-hart configuration provides 4 hardware execution threads and
+supports 1-cycle execution of all instructions, including multiplication
+instructions from the “M” extension.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Instruction</th>
+<th style="text-align: left;">Cycles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Branch predicted (taken or not taken)</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Branch mispredicted</td>
+<td style="text-align: left;">2 (or 3 in Fmax optimized
+configuration)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Memory load</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">ECALL, EBREAK</td>
+<td style="text-align: left;">1+</td>
+</tr>
+<tr>
+<td style="text-align: left;">MUL, MULH, MULHSU, MULHU</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">All other instructions</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="eight-hardware-threads">Eight Hardware Threads</h4>
+<p>The 8-hart configuration provides 8 hardware execution threads with
+an average performance of 1 instruction per cycle. This configuration is
+designed for highly parallel workloads that need maximum aggregate
+performance but can tolerate lower per-thread throughput.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Instruction</th>
+<th style="text-align: left;">Cycles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Branch predicted (taken or not taken)</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Branch mispredicted</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Memory load</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">ECALL, EBREAK</td>
+<td style="text-align: left;">1+</td>
+</tr>
+<tr>
+<td style="text-align: left;">MUL, MULH, MULHSU, MULHU</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">All other instructions</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="memory-map">Memory Map</h3>
+<p>Memory map can be controlled using <code>RISC_V</code> template
+parameters. In the default configuration, instruction memory starts at
+address 0, and separate data memory for each hardware thread follows
+immediately after instruction memory, e.g.:</p>
+<p><code>RISC_V&lt;2, 0x1000, 0x2000&gt; core;</code></p>
+<img src="./risc_v.0.svg" />
+<p>The core implements fast unaligned memory access in hardware, and
+there is no benefit to compile programs to force only aligned access
+(e.g., using gcc strict-align flag).</p>
+<p>All memory and MMIO addresses in the interfaces between the core and
+the execution environment are byte-aligned and all sizes are in bytes,
+unless explicitly specified otherwise.</p>
+<h3 id="extensibility">Extensibility</h3>
+<p>The core can be customized via callbacks provided by the Execution
+Environment to handle Memory Mapped IO, instruction fetching from
+external memory, system traps and exceptions, decoding and execution of
+custom instructions, and dynamic instruction tracing. All callbacks have
+default values and need to be overridden only when a particular
+functionality is enabled.</p>
+<p>Callbacks can be implemented as regular inline functions or fixed
+latency extern functions implemented in Verilog.</p>
+<h3 id="branch-prediction">Branch Prediction</h3>
+<p>The RISC-V core implements dynamic branch prediction using a 2-bit
+Branch Target Buffer.</p>
+<img src="./risc_v.1.svg" />
+<p>Size of BTB can be configured via <code>BTB_SIZE</code>
+parameter.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> HARTS,
+    <span class="keyword">auto</span> IMEM_LENGTH,
+    <span class="keyword">auto</span> DMEM_LENGTH,
+    <span class="keyword">auto</span> MMIO_LENGTH = <span class="literal">0</span>,
+    <span class="keyword">auto</span> IMEM_ORIGIN = <span class="literal">0</span>,
+    <span class="keyword">auto</span> DMEM_ORIGIN = ((IMEM_ORIGIN + IMEM_LENGTH) &lt;&lt; <span class="literal">2</span>),
+    <span class="keyword">auto</span> MMIO_ORIGIN = (DMEM_ORIGIN + DMEM_LENGTH),
+    <span class="keyword">auto</span> IMEM_TCM_SIZE = IMEM_LENGTH,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> DataMemory = <a class="link" href="../data/memory.html#data-memory-memory_norep"><span class="identifier">memory_norep</span></a>,
+    <span class="keyword">auto</span> EXTENSIONS = <a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Extension"><span class="identifier">Extension</span></a>::<a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Extension-None"><span class="identifier">None</span></a>,
+    <span class="keyword">auto</span> CONFIG = <a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Optimize"><span class="identifier">Optimize</span></a>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Optimize-Area"><span class="identifier">Area</span></a>,
+    <a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a> ISA = <a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a>::<a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Base-RV32I"><span class="identifier">RV32I</span></a>,
+    <span class="keyword">auto</span> BTB_SIZE = <span class="literal">1024</span>,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> InstrMemory = <a class="link" href="../data/memory.html#data-memory-memory_init"><span class="identifier">memory_init</span></a>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">RISC_V</span> <a class="anchor" href="#processor-risc_v-RISC_V" id="processor-risc_v-RISC_V">§</a>
+</pre>
+<div class="docs">
+<p>Class template implementing RISC-V processor core.</p>
+<details>
+<summary>Examples</summary>
+<p>A simple 1-hart core with 8KB of data and 64KB of instruction tightly
+coupled memory (TCM).</p>
+<pre class="kanagawa"><code>import processor.risc_v
+
+const auto HARTS = 1;
+const auto IMEM_LENGTH = 0x4000;
+const auto DMEM_LENGTH = 0x2000;
+
+RISC_V&lt;1, IMEM_LENGTH DMEM_LENGTH&gt; core;</code></pre>
+<p>By default the data TCM is implemented using simple dual-port memory,
+and the methods that expose DMEM access to the Execution Environment use
+the same read/write ports as the core. In this configuration, access to
+data TCM is safe only when the core is not running. Data TCM can be
+configured to use quad-port memory (on devices that support it) using
+the <code>Memory</code> template argument. In this configuration, the
+Execution Environment can read and write data memory concurrently with
+the core. Note that concurrent writes to the same address are still
+undefined. The Execution Environment may have at most one call-site for
+a DMEM read method and one for a DMEM write method.</p>
+<pre class="kanagawa"><code>import processor.risc_v
+
+const auto HARTS = 1;
+const auto IMEM_LENGTH = 0x4000;
+const auto DMEM_LENGTH = 0x2000;
+const auto MMIO_LENGTH = 0x0;
+
+template &lt;typename T, auto N&gt;
+using memory_quad_port = [[memory, quad_port]] T[N];
+
+RISC_V&lt;
+    HARTS,
+    IMEM_LENGTH,
+    DMEM_LENGTH,
+    MMIO_LENGTH,
+    0,
+    (IMEM_LENGTH &lt;&lt; 2),
+    0,
+    IMEM_LENGTH,
+    memory_quad_port&gt; core;</code></pre>
+</details>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> HARTS
+</pre>
+<div class="docs">
+<p>Number of hardware threads (harts), must be a power of 2.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> IMEM_LENGTH
+</pre>
+<div class="docs">
+<p>Length of instruction memory address space in 32-bit words.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> DMEM_LENGTH
+</pre>
+<div class="docs">
+<p>Length of data memory in bytes. By default the value specifies length
+of per-hart data memory. If <code>Option::HartsShareDMEM</code> bit of
+<code>CONFIG</code> parameter is set, the value specifies total length
+of data memory shared by all harts. In multi-hart configuration
+<code>DMEM_LENGTH</code> must be a power of 2 unless shared DMEM is
+used.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MMIO_LENGTH = <span class="literal">0</span>
+</pre>
+<div class="docs">
+<p>Length of Memory Mapped IO address space in bytes. The default value
+is <code>0</code> which disables MMIO support.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> IMEM_ORIGIN = <span class="literal">0</span>
+</pre>
+<div class="docs">
+<p>Start address of address space mapped to instruction memory in 32-bit
+words.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> DMEM_ORIGIN = ((IMEM_ORIGIN + IMEM_LENGTH) &lt;&lt; <span class="literal">2</span>)
+</pre>
+<div class="docs">
+<p>Start address of address space mapped to data memory. By default data
+memory starts right after instruction memory.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MMIO_ORIGIN = (DMEM_ORIGIN + DMEM_LENGTH)
+</pre>
+<div class="docs">
+<p>Beginning address of Memory Mapped IO address space. By default
+memory mapped IO starts right after data memory.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> IMEM_TCM_SIZE = IMEM_LENGTH
+</pre>
+<div class="docs">
+<p>Size in 32-bit words of tightly coupled instruction memory (TCM)
+instantiated by the core. The default value is equal to
+<code>IMEM_LENGTH</code>, which means that all of the instruction
+address space is mapped to the internal TCM. If the specified value is
+less than the <code>IMEM_LENGTH</code>, the reminder of instruction
+memory address space is handled by <code>external_fetch</code>
+callback.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> DataMemory = <a class="link" href="../data/memory.html#data-memory-memory_norep"><span class="identifier">memory_norep</span></a>
+</pre>
+<div class="docs">
+<p>Type alias template providing underlying implementation of data
+memory. The default is <code>mmemory_norep</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> EXTENSIONS = <a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Extension"><span class="identifier">Extension</span></a>::<a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Extension-None"><span class="identifier">None</span></a>
+</pre>
+<div class="docs">
+<p>ISA extensions implemented by the core. The default is
+<code>Extension::None</code>. The only other valid value is
+<code>Extension::M</code></p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> CONFIG = <a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Optimize"><span class="identifier">Optimize</span></a>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Optimize-Area"><span class="identifier">Area</span></a>
+</pre>
+<div class="docs">
+<p>Configuration flags. The default is <code>Optimize::Area</code>.
+Possible optimization flags are <code>Optimize::Area</code>,
+<code>Optimize::Fmax</code> (mutually exclusive). Other supported flags
+are defined by the <code>Option</code> enum.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a> ISA = <a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a>::<a class="link" href="../processor/risc_v/isa.html#processor-risc_v-isa-Base-RV32I"><span class="identifier">RV32I</span></a>
+</pre>
+<div class="docs">
+<p>Specifies the base ISA. The default and the only supported value at
+this time is <code>Base::RV32I</code></p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> BTB_SIZE = <span class="literal">1024</span>
+</pre>
+<div class="docs">
+<p>Number of entries in Branch Target Buffer. The default of 1024 is
+usually a good value for BTB realized as block RAM. If using block RAM
+is undesirable, a small BTB, for example with 8 entries, can give good
+results. When BTB_SIZE is less than 1024, the BTB is implemented as an
+array. The value must be a power of 2.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> InstrMemory = <a class="link" href="../data/memory.html#data-memory-memory_init"><span class="identifier">memory_init</span></a>
+</pre>
+<div class="docs">
+<p>Type alias template providing underlying implementation of
+instruction memory. The default is <code>mmemory_init</code> which
+instantiates memory with initialization. Specifying <code>memory</code>
+instead may be useful when initialization is not desirable, for example
+to allow using memories such as Xilinx UltraRAM which don’t support
+initialization. Note that when using memory without initialization, the
+execution environment must make sure that that any area of IMEM the core
+might read from is initialized before starting the core. Failure to do
+so will likely result in asserts during simulation due to undefined data
+being read from IMEM.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">system_trap_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-system_trap_t"><span class="identifier">system_trap_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-system_trap_t" id="processor-risc_v-RISC_V-system_trap_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">trace_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-trace_t"><span class="identifier">trace_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-trace_t" id="processor-risc_v-RISC_V-trace_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">mmio_access_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-mmio_access_t"><span class="identifier">mmio_access_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-mmio_access_t" id="processor-risc_v-RISC_V-mmio_access_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">mmio_load_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-mmio_load_t"><span class="identifier">mmio_load_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-mmio_load_t" id="processor-risc_v-RISC_V-mmio_load_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">mmio_store_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-mmio_store_t"><span class="identifier">mmio_store_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-mmio_store_t" id="processor-risc_v-RISC_V-mmio_store_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">external_fetch_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-external_fetch_t"><span class="identifier">external_fetch_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-external_fetch_t" id="processor-risc_v-RISC_V-external_fetch_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">custom_decode_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-custom_decode_t"><span class="identifier">custom_decode_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-custom_decode_t" id="processor-risc_v-RISC_V-custom_decode_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">custom_execute_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-custom_execute_t"><span class="identifier">custom_execute_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-custom_execute_t" id="processor-risc_v-RISC_V-custom_execute_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">imem_addr_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-imem_addr_t" id="processor-risc_v-RISC_V-imem_addr_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">dmem_addr_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-dmem_addr_t"><span class="identifier">dmem_addr_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-dmem_addr_t" id="processor-risc_v-RISC_V-dmem_addr_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">register_index_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<span class="identifier">register_index_t</span> <a class="anchor" href="#processor-risc_v-RISC_V-register_index_t" id="processor-risc_v-RISC_V-register_index_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">int_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-int_t" id="processor-risc_v-RISC_V-int_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">uint_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-uint_t" id="processor-risc_v-RISC_V-uint_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">hart_index_t</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core_t</span>::<a class="link" href="../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <a class="anchor" href="#processor-risc_v-RISC_V-hart_index_t" id="processor-risc_v-RISC_V-hart_index_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Callbacks and Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-system_trap_t"><span class="identifier">system_trap_t</span></a> <span class="identifier">system_trap</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_system_trap</span> <a class="anchor" href="#processor-risc_v-RISC_V-system_trap" id="processor-risc_v-RISC_V-system_trap">§</a>
+</pre>
+<div class="docs">
+<p>Callback to handle exceptions and traps. The default callback asserts
+in simulation on any system exception.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-trace_t"><span class="identifier">trace_t</span></a> <span class="identifier">trace</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_trace</span> <a class="anchor" href="#processor-risc_v-RISC_V-trace" id="processor-risc_v-RISC_V-trace">§</a>
+</pre>
+<div class="docs">
+<p>Dynamic instruction trace callback. The default callback is no-op.
+The <code>print_trace</code> method can be used to print disassembled
+instructions to the log stream.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-mmio_access_t"><span class="identifier">mmio_access_t</span></a> <span class="identifier">mmio_access</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_mmio_access</span> <a class="anchor" href="#processor-risc_v-RISC_V-mmio_access" id="processor-risc_v-RISC_V-mmio_access">§</a>
+</pre>
+<div class="docs">
+<p>The callback handles memory load/store within MMIO address space. If
+the access operation completes immediately, the <code>is_valid</code> of
+the returned result should be set to true. For load access the
+<code>value</code> of the returned result is the result of the load. For
+store access the <code>value</code> of the returned result is ignored.
+If the operation will complete asynchronously the <code>is_valid</code>
+of the returned result should be set to false, and execution environment
+should indicate completion of load/store by calling the
+<code>mmio_load_result</code> or <code>mmio_store_completed</code>
+method respectively.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-mmio_load_t"><span class="identifier">mmio_load_t</span></a> <span class="identifier">mmio_load</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_mmio_load</span> <a class="anchor" href="#processor-risc_v-RISC_V-mmio_load" id="processor-risc_v-RISC_V-mmio_load">§</a>
+</pre>
+<div class="docs">
+<p>The callback handles memory loads within MMIO address space. The
+callback result is <code>optional&lt;int_t&gt;</code>. The callback may
+return result immediately, setting <code>is_valid</code> to true, or
+asynchronously by calling the <code>mmio_load_result</code> method
+later. By default the callback asserts in simulation. The callbacks is
+used only when <code>mmio_access</code> callback uses the default
+implementation.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-mmio_store_t"><span class="identifier">mmio_store_t</span></a> <span class="identifier">mmio_store</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_mmio_store</span> <a class="anchor" href="#processor-risc_v-RISC_V-mmio_store" id="processor-risc_v-RISC_V-mmio_store">§</a>
+</pre>
+<div class="docs">
+<p>The callback handles memory stores within MMIO address space. The
+callback result is <code>bool</code>. The callback should return
+<code>true</code> if the program running on the core can consider the
+store as committed, or <code>false</code> if the store should be
+considered as pending. In the latter case, the hart that made the
+request stalls until the core’s method <code>mmio_store_completed</code>
+is called. By default the callback asserts in simulation. The callbacks
+is used only when <code>mmio_access</code> callback uses the default
+implementation.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-external_fetch_t"><span class="identifier">external_fetch_t</span></a> <span class="identifier">external_fetch</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_external_fetch</span> <a class="anchor" href="#processor-risc_v-RISC_V-external_fetch" id="processor-risc_v-RISC_V-external_fetch">§</a>
+</pre>
+<div class="docs">
+<p>Optional external instruction memory support is enabled by specifying
+<code>IMEM_TCM_SIZE</code> that is less than <code>IMEM_LENGTH</code>.
+In this case instruction fetch for addresses above
+<code>IMEM_TCM_SIZE</code> are directed to the Execution Environment via
+this callback. The default callback asserts in simulation.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-custom_decode_t"><span class="identifier">custom_decode_t</span></a> <span class="identifier">custom_decode</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_custom_decode</span> <a class="anchor" href="#processor-risc_v-RISC_V-custom_decode" id="processor-risc_v-RISC_V-custom_decode">§</a>
+</pre>
+<div class="docs">
+<p>The <code>custom_decode</code> callback is called for instructions
+using one of the four major opcodes reserved for custom extensions:</p>
+<pre class="kanagawa"><code>RVG::custom_0
+RVG::custom_1
+RVG::custom_2
+RVG::custom_3</code></pre>
+<p>The callback should return one of the standard encoding formats used
+the custom instruction, or <code>Format::Invalid</code> if the major
+opcode is not implemented by the custom extension. The default callback
+decodes all custom instructions as invalid.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-custom_execute_t"><span class="identifier">custom_execute_t</span></a> <span class="identifier">custom_execute</span> = <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<span class="identifier">core</span>.<span class="identifier">default_custom_execute</span> <a class="anchor" href="#processor-risc_v-RISC_V-custom_execute" id="processor-risc_v-RISC_V-custom_execute">§</a>
+</pre>
+<div class="docs">
+<p>Callback is called to execute a custom instruction. The result
+returned by the callback is written to the destination register if the
+instruction encoding format specifies one. The result is ignored for
+formats <code>B</code> and <code>S</code>, or when destination register
+is <code>zero</code>. The default callback is no-op.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">start</span>(<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a>[HARTS] <span class="identifier">pc</span>) <a class="anchor" href="#processor-risc_v-RISC_V-start" id="processor-risc_v-RISC_V-start">§</a>
+</pre>
+<div class="docs">
+<p>Start the core.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a>[HARTS] <span class="identifier">pc</span>
+</pre>
+<div class="docs">
+<p>Array of initial program counters for each hart.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">stop</span>() <a class="anchor" href="#processor-risc_v-RISC_V-stop" id="processor-risc_v-RISC_V-stop">§</a>
+</pre>
+<div class="docs">
+<p>Request the core to stop. Note that the method doesn’t block until
+the core has finished running. Use <code>is_running</code> method to
+wait for the core to stop.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">is_running</span>() <a class="anchor" href="#processor-risc_v-RISC_V-is_running" id="processor-risc_v-RISC_V-is_running">§</a>
+</pre>
+<div class="docs">
+<p>Returns <code>true</code> if the core is running. Can be used to wait
+for the core to finish running after stop request.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">init_stack_pointers</span>(<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">stack_start</span>, <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">stack_size</span>) <a class="anchor" href="#processor-risc_v-RISC_V-init_stack_pointers" id="processor-risc_v-RISC_V-init_stack_pointers">§</a>
+</pre>
+<div class="docs">
+<p>Initialize stack pointers. Not necessary if the firmware startup code
+performs the initialization. When the option
+<code>Option::HartsShareDMEM</code> is set then each hart is allocated
+its own stack of the specified size, with the stack for hart 0 starting
+at the specified address, and stacks for remaining harts following below
+it in DMEM address space.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">stack_start</span>
+</pre>
+<div class="docs">
+<p>Start address of the stack. Must be 16 byte aligned. Since the stack
+grows down, the starting address usually is set to
+<code>DMEM_ORIGIN + DMEM_LENGTH - 0x10</code></p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">stack_size</span>
+</pre>
+<div class="docs">
+<p>Size of the stack for each hart.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">print_memory_map</span>() <a class="anchor" href="#processor-risc_v-RISC_V-print_memory_map" id="processor-risc_v-RISC_V-print_memory_map">§</a>
+</pre>
+<div class="docs">
+<p>Print a diagram of memory address space configuration.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">print_trace</span>(
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">inst</span>,
+    <a class="link" href="../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
+    <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a>&gt; <span class="identifier">value</span>
+    ) <a class="anchor" href="#processor-risc_v-RISC_V-print_trace" id="processor-risc_v-RISC_V-print_trace">§</a>
+</pre>
+<div class="docs">
+<p>Print dynamic instruction trace. The method can be used to initialize
+the <code>trace</code> callback.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Hart index.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of 32-bit instruction word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">inst</span>
+</pre>
+<div class="docs">
+<p>Instruction word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>
+</pre>
+<div class="docs">
+<p>Decoded instruction. Note that <code>Decoded</code> is an internal
+data type and may change w/o notice.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a>&gt; <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>An optional 32-bit value written by the instruction to the target
+register.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">external_fetch_result</span>(
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">value</span>
+    ) <a class="anchor" href="#processor-risc_v-RISC_V-external_fetch_result" id="processor-risc_v-RISC_V-external_fetch_result">§</a>
+</pre>
+<div class="docs">
+<p>Complete asynchronous external instruction fetch.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Index of the hart that performed the fetch.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of 32-bit instruction word that was fetched.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>32-bit instruction word.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">mmio_load_result</span>(<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#processor-risc_v-RISC_V-mmio_load_result" id="processor-risc_v-RISC_V-mmio_load_result">§</a>
+</pre>
+<div class="docs">
+<p>Complete asynchronous load from memory mapped IO.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Index of the hart that performed the asynchronous load from memory
+mapped IO.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>Result of memory mapped IO load.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">mmio_store_completed</span>(<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>) <a class="anchor" href="#processor-risc_v-RISC_V-mmio_store_completed" id="processor-risc_v-RISC_V-mmio_store_completed">§</a>
+</pre>
+<div class="docs">
+<p>Complete asynchronous store to memory mapped IO.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Index of the hart that performed the asynchronous store to memory
+mapped IO.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">imem_write</span>(<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>, <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#processor-risc_v-RISC_V-imem_write" id="processor-risc_v-RISC_V-imem_write">§</a>
+</pre>
+<div class="docs">
+<p>Write 32-bit word to tightly coupled instruction memory. The method
+is safe to call only when the core is not running.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of 32-bit word in instruction TCM to write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>32-bit instruction word.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">dmem_read</span>(<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-RISC_V-dmem_read" id="processor-risc_v-RISC_V-dmem_read">§</a>
+</pre>
+<div class="docs">
+<p>Read a 32-bit word from hart’s data memory.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Hart index.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>DMEM byte address to read from.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">dmem_write</span>(
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>,
+    <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;<span class="literal">4</span>&gt; <span class="identifier">size</span>
+    ) <a class="anchor" href="#processor-risc_v-RISC_V-dmem_write" id="processor-risc_v-RISC_V-dmem_write">§</a>
+</pre>
+<div class="docs">
+<p>Write specified number of bytes to hart’s data memory.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Hart index.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>DMEM byte address to write to.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>Value to write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;<span class="literal">4</span>&gt; <span class="identifier">size</span>
+</pre>
+<div class="docs">
+<p>Number of bytes of <code>value</code> to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">dmem_read_aligned</span>(<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-RISC_V-dmem_read_aligned" id="processor-risc_v-RISC_V-dmem_read_aligned">§</a>
+</pre>
+<div class="docs">
+<p>Read a 32-bit word from hart’s data memory at a 32-bit aligned
+address. More resource efficient than <code>dmem_read</code> when
+unaligned address support is not required.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Hart index.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>DMEM byte address to read from. Must be 32-bit aligned.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">dmem_write_aligned</span>(
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>,
+    <a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
+    ) <a class="anchor" href="#processor-risc_v-RISC_V-dmem_write_aligned" id="processor-risc_v-RISC_V-dmem_write_aligned">§</a>
+</pre>
+<div class="docs">
+<p>Write a 32-bit word to hart’s data memory at a 32-bit aligned
+address. More resource efficient than <code>dmem_write</code> when
+unaligned address support is not required.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>
+</pre>
+<div class="docs">
+<p>Hart index.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>DMEM byte address to write to. Must be 32-bit aligned.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V"><span class="identifier">RISC_V</span></a>::<a class="link" href="../processor/risc_v.html#processor-risc_v-RISC_V-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
+</pre>
+<div class="docs">
+<p>32-bit value to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

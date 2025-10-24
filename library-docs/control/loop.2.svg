@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="208" height="496" class="svgbob">
+  <style>.svgbob line, .svgbob path, .svgbob circle, .svgbob rect, .svgbob polygon {
+  stroke: black;
+  stroke-width: 2;
+  stroke-opacity: 1;
+  fill-opacity: 1;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+}
+
+.svgbob text {
+  white-space: pre;
+  fill: black;
+  font-family: Iosevka Fixed, monospace;
+  font-size: 14px;
+}
+
+.svgbob rect.backdrop {
+  stroke: none;
+  fill: white;
+}
+
+.svgbob .broken {
+  stroke-dasharray: 8;
+}
+
+.svgbob .filled {
+  fill: black;
+}
+
+.svgbob .bg_filled {
+  fill: white;
+  stroke-width: 1;
+}
+
+.svgbob .nofill {
+  fill: white;
+}
+
+.svgbob .end_marked_arrow {
+  marker-end: url(#arrow);
+}
+
+.svgbob .start_marked_arrow {
+  marker-start: url(#arrow);
+}
+
+.svgbob .end_marked_diamond {
+  marker-end: url(#diamond);
+}
+
+.svgbob .start_marked_diamond {
+  marker-start: url(#diamond);
+}
+
+.svgbob .end_marked_circle {
+  marker-end: url(#circle);
+}
+
+.svgbob .start_marked_circle {
+  marker-start: url(#circle);
+}
+
+.svgbob .end_marked_open_circle {
+  marker-end: url(#open_circle);
+}
+
+.svgbob .start_marked_open_circle {
+  marker-start: url(#open_circle);
+}
+
+.svgbob .end_marked_big_open_circle {
+  marker-end: url(#big_open_circle);
+}
+
+.svgbob .start_marked_big_open_circle {
+  marker-start: url(#big_open_circle);
+}
+
+</style>
+  <defs>
+    <marker id="arrow" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0,0 0,4 4,2 0,0"></polygon>
+    </marker>
+    <marker id="diamond" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0,2 2,0 4,2 2,4 0,2"></polygon>
+    </marker>
+    <marker id="circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="2" class="filled"></circle>
+    </marker>
+    <marker id="open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="2" class="bg_filled"></circle>
+    </marker>
+    <marker id="big_open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="3" class="bg_filled"></circle>
+    </marker>
+  </defs>
+  <rect class="backdrop" x="0" y="0" width="208" height="496"></rect>
+  <text x="58" y="28" >Entry</text>
+  <text x="106" y="28" >FIFO</text>
+  <text x="18" y="188" >Thread</text>
+  <text x="74" y="188" >Generation</text>
+  <text x="162" y="188" >FSM</text>
+  <text x="50" y="252" >body</text>
+  <text x="90" y="252" >Pipeline</text>
+  <text x="18" y="316" >Thread</text>
+  <text x="74" y="316" >Collection</text>
+  <text x="162" y="316" >FSM</text>
+  <text x="58" y="476" >Exit</text>
+  <text x="98" y="476" >FIFO</text>
+  <text x="34" y="92" >thread_count, y</text>
+  <text x="34" y="412" >y+thread_count-1</text>
+  <g>
+    <line x1="20" y1="40" x2="180" y2="40" class="solid"></line>
+    <line x1="20" y1="40" x2="20" y2="136" class="solid"></line>
+    <line x1="180" y1="40" x2="180" y2="136" class="solid"></line>
+    <line x1="20" y1="72" x2="180" y2="72" class="solid"></line>
+    <line x1="20" y1="104" x2="180" y2="104" class="solid"></line>
+    <line x1="20" y1="136" x2="180" y2="136" class="solid"></line>
+    <line x1="100" y1="136" x2="100" y2="168" class="solid"></line>
+    <line x1="4" y1="168" x2="196" y2="168" class="solid"></line>
+    <line x1="4" y1="168" x2="4" y2="200" class="solid"></line>
+    <line x1="196" y1="168" x2="196" y2="200" class="solid"></line>
+    <line x1="4" y1="200" x2="196" y2="200" class="solid"></line>
+    <line x1="100" y1="200" x2="100" y2="232" class="solid"></line>
+    <line x1="28" y1="232" x2="172" y2="232" class="solid"></line>
+    <line x1="28" y1="232" x2="28" y2="264" class="solid"></line>
+    <line x1="172" y1="232" x2="172" y2="264" class="solid"></line>
+    <line x1="28" y1="264" x2="172" y2="264" class="solid"></line>
+    <line x1="100" y1="264" x2="100" y2="296" class="solid"></line>
+    <line x1="4" y1="296" x2="196" y2="296" class="solid"></line>
+    <line x1="4" y1="296" x2="4" y2="328" class="solid"></line>
+    <line x1="196" y1="296" x2="196" y2="328" class="solid"></line>
+    <line x1="4" y1="328" x2="196" y2="328" class="solid"></line>
+    <line x1="100" y1="328" x2="100" y2="360" class="solid"></line>
+    <line x1="20" y1="360" x2="188" y2="360" class="solid"></line>
+    <line x1="20" y1="360" x2="20" y2="456" class="solid"></line>
+    <line x1="188" y1="360" x2="188" y2="456" class="solid"></line>
+    <line x1="20" y1="392" x2="188" y2="392" class="solid"></line>
+    <line x1="20" y1="424" x2="188" y2="424" class="solid"></line>
+    <line x1="20" y1="456" x2="188" y2="456" class="solid"></line>
+  </g>
+</svg>

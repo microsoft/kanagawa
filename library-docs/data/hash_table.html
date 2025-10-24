@@ -1,0 +1,493 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/hash_table.html" id="index-link"
+class="link">data.hash_table</a>
+<ul>
+<li><a href="../data/hash_table.html#data-hash_table-hash_table"
+id="index-link" class="link"><code>hash_table</code></a></li>
+<li><a href="../data/hash_table.html#data-hash_table-toeplitz_hash"
+id="index-link" class="link"><code>toeplitz_hash</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.hash_table <a href="../index.html">&equiv;</a></h1>
+<p>A data structure that maps keys to values using hashing.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Hash, <span class="keyword">typename</span> Key&gt;
+<span class="modifier">inline </span>Hash <span class="identifier">toeplitz_hash</span>(Key <span class="identifier">key</span>) <a class="anchor" href="#data-hash_table-toeplitz_hash" id="data-hash_table-toeplitz_hash">§</a>
+</pre>
+<div class="docs">
+<p>Computes a hash of input keys using an instance of the
+<code>toeplitz</code> class.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Hash
+</pre>
+<div class="docs">
+<p>Output hash type</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Key
+</pre>
+<div class="docs">
+<p>Input key type</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> Key,
+    <span class="keyword">typename</span> Value,
+    <span class="keyword">auto</span> Depth,
+    <span class="keyword">auto</span> Associativity,
+    (Key) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;(Depth / Associativity)&gt; hash_fn
+        = <a class="link" href="../data/hash_table.html#data-hash_table-toeplitz_hash"><span class="identifier">toeplitz_hash</span></a>&lt;<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;(Depth / Associativity)&gt;, Key&gt;,
+    <span class="keyword">auto</span> GenerationBits = <span class="literal">4</span>,
+    <span class="keyword">auto</span> MaxIterations = Depth,
+    <span class="keyword">auto</span> DataBanks = <span class="literal">1</span>,
+    <span class="keyword">auto</span> HistorySize = <span class="literal">1</span>,
+    <span class="keyword">auto</span> MaxThreads = <span class="literal">512</span>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">hash_table</span> <a class="anchor" href="#data-hash_table-hash_table" id="data-hash_table-hash_table">§</a>
+</pre>
+<div class="docs">
+<p>A mapping from <code>Key</code> to <code>Value</code>. Use
+<code>insert_or_update</code> to insert, lookup, modify, and reset the
+mapping. The only way to remove entries from the table is to reset the
+entire table to the initial empty state.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Key
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> Value
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Depth
+</pre>
+<div class="docs">
+<p>Maximum number of elements that can be stored.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Associativity
+</pre>
+<div class="docs">
+<p>Number of locations to consider on each search iteration. Larger
+values lead to more resource consumption and higher throughput.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(Key) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;(Depth / Associativity)&gt; hash_fn
+    = <a class="link" href="../data/hash_table.html#data-hash_table-toeplitz_hash"><span class="identifier">toeplitz_hash</span></a>&lt;<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;(Depth / Associativity)&gt;, Key&gt;
+</pre>
+<div class="docs">
+<p>Function that maps a key to a location in the hash table.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> GenerationBits = <span class="literal">4</span>
+</pre>
+<div class="docs">
+<p>Number of bits to ammortize reset costs. Higher values lead to more
+resource consumption, and lower the average cost of reset.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxIterations = Depth
+</pre>
+<div class="docs">
+<p>Maximum number of search iterations before returning an error</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> DataBanks = <span class="literal">1</span>
+</pre>
+<div class="docs">
+<p>Number of banks to store values. If <code>Depth</code> is high, then
+increasing <code>DataBanks</code> can improve clock frequency.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> HistorySize = <span class="literal">1</span>
+</pre>
+<div class="docs">
+<p>Size of arrays used to detect hazards. Larger values increase
+frequency and resource usage.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxThreads = <span class="literal">512</span>
+</pre>
+<div class="docs">
+<p>Maximum number of threads that can be present inside of
+<code>insert_or_update</code> concurrently. Caller does not need to
+ensure this limit is respected. Higher values enable more concurrency
+which can improve performance if the allocation function compiles to a
+deep pipeline or if <code>DataBanks</code> is set to a large value.
+Lower values save resources by using narrower counters to track
+in-flight threads.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Types</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">result</span> <a class="anchor" href="#data-hash_table-hash_table-result" id="data-hash_table-hash_table-result">§</a>
+</pre>
+<div class="docs">
+<p>Return value on a successful <code>insert_or_update</code></p>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">inserted</span> <a class="anchor" href="#data-hash_table-hash_table-$quasi1-inserted" id="data-hash_table-hash_table-$quasi1-inserted">§</a>
+</pre>
+<div class="docs">
+<p>True if this is the first time the associated key has been used since
+the hash table was reset.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;Value, Value&gt; <span class="identifier">value</span> <a class="anchor" href="#data-hash_table-hash_table-$quasi1-value" id="data-hash_table-hash_table-$quasi1-value">§</a>
+</pre>
+<div class="docs">
+<p>Values in the hash table before and after the lookup When an key is
+first inserted into the table, <code>value.first</code> is the value
+returned by <code>allocate_fn</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">test_thread_count</span>(<span class="builtin">bool</span> <span class="identifier">reset</span>) <a class="anchor" href="#data-hash_table-hash_table-test_thread_count" id="data-hash_table-hash_table-test_thread_count">§</a>
+</pre>
+<div class="docs">
+<p>Used to block the first thread of each generation until
+<code>_threads_in_flight</code> is zero</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../data/hash_table.html#data-hash_table-hash_table"><span class="identifier">hash_table</span></a>::<a class="link" href="../data/hash_table.html#data-hash_table-hash_table-result"><span class="identifier">result</span></a>&gt;
+<span class="identifier">insert_or_update</span>(
+    Key <span class="identifier">key</span>,
+    <span class="builtin">bool</span> <span class="identifier">reset</span>,
+    <span class="builtin">bool</span> <span class="identifier">insert_on_miss</span>,
+    () -&gt; Value <span class="identifier">allocate_fn</span>,
+    (Value, <span class="builtin">bool</span>) -&gt; Value <span class="identifier">access_fn</span>
+    ) <a class="anchor" href="#data-hash_table-hash_table-insert_or_update" id="data-hash_table-hash_table-insert_or_update">§</a>
+</pre>
+<div class="docs">
+<p>Combined function that can be used to:</p>
+<ol type="1">
+<li>Insert a new <code>(Key, Value)</code> pair.</li>
+<li>Lookup the <code>Value</code> associated with a <code>Key</code>
+that is already present in the table.</li>
+<li>Modify the <code>Value</code> associated with a <code>Key</code>
+that is already present in the table.</li>
+<li>Reset the table to the initial state.</li>
+</ol>
+<p>Inserts, lookups, and modifications use an iterative search. A hash
+of the input key is used to determine the starting location for the
+search. On each iteration, <code>Associativity</code> locations are
+checked in parallel. If a matching key is found then the hash table runs
+at full throughput. Otherwise, the search loop proceeds, searching
+<code>Associativity</code> new locations on each iteration. Callers must
+ensure there are never concurrent calls to this function from separate
+call sites. Calls to <code>allocate_fn</code> occur in the same order as
+calls to <code>insert_or_update</code>.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+Key <span class="identifier">key</span>
+</pre>
+<div class="docs">
+<p>Key used to find a location to store the value</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">reset</span>
+</pre>
+<div class="docs">
+<p>True if all elements in the hash table should be removed before
+performing the search.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">insert_on_miss</span>
+</pre>
+<div class="docs">
+<p>True if a new <code>(Key, Value)</code> pair should be inserted into
+the table if a pair with a matching <code>key</code> is not already
+present.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+() -&gt; Value <span class="identifier">allocate_fn</span>
+</pre>
+<div class="docs">
+<p>Function that is called when a key is inserted into the hash table.
+Returns a value that is passed to <code>access_fn</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(Value, <span class="builtin">bool</span>) -&gt; Value <span class="identifier">access_fn</span>
+</pre>
+<div class="docs">
+<p>Function that accepts a previous value and a bool indicating if an
+insert occured. Returns a new value to store in the hash table
+associated with the key. If <code>key</code> was not already present in
+the table then, the first parameter is the value returned by
+<code>allocate_fn</code> and the second parameter is <code>true</code>.
+Otherwise, the first parameter is the value currently stored in the
+table and the second parameter is <code>false</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Invariants</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (Depth % Associativity))
+</pre>
+<div class="docs">
+<p>All sets must have the same number of elements</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (<a class="link" href="../data/hash_table.html#data-hash_table-hash_table"><span class="identifier">hash_table</span></a>::<span class="identifier">NumSets</span> &amp; (<a class="link" href="../data/hash_table.html#data-hash_table-hash_table"><span class="identifier">hash_table</span></a>::<span class="identifier">NumSets</span> - <span class="literal">1</span>)))
+</pre>
+<div class="docs">
+<p>Set count must be a power of 2</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+(MaxIterations &gt; <span class="literal">0</span>)
+</pre>
+<div class="docs">
+<p>MaxIterations must be positive, otherwise no lookup operation could
+ever succeed</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

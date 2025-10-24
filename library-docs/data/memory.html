@@ -1,0 +1,269 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/memory.html" id="index-link"
+class="link">data.memory</a>
+<ul>
+<li><a href="../data/memory.html#data-memory-ecc" id="index-link"
+class="link"><code>ecc</code></a></li>
+<li><a href="../data/memory.html#data-memory-memory" id="index-link"
+class="link"><code>memory</code></a></li>
+<li><a href="../data/memory.html#data-memory-memory_ecc" id="index-link"
+class="link"><code>memory_ecc</code></a></li>
+<li><a href="../data/memory.html#data-memory-memory_ecc_norep"
+id="index-link" class="link"><code>memory_ecc_norep</code></a></li>
+<li><a href="../data/memory.html#data-memory-memory_ecc_relaxed"
+id="index-link" class="link"><code>memory_ecc_relaxed</code></a></li>
+<li><a href="../data/memory.html#data-memory-memory_ecc_strict"
+id="index-link" class="link"><code>memory_ecc_strict</code></a></li>
+<li><a href="../data/memory.html#data-memory-memory_init"
+id="index-link" class="link"><code>memory_init</code></a></li>
+<li><a href="../data/memory.html#data-memory-memory_norep"
+id="index-link" class="link"><code>memory_norep</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.memory <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">using</span> <span class="identifier">memory</span> = [[<span class="attribute">memory</span>]] T[N] <a class="anchor" href="#data-memory-memory" id="data-memory-memory">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">using</span> <span class="identifier">memory_norep</span> = [[<span class="attribute">memory</span>, <span class="attribute">non_replicated</span>]] T[N] <a class="anchor" href="#data-memory-memory_norep" id="data-memory-memory_norep">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">using</span> <span class="identifier">memory_init</span> = [[<span class="attribute">memory</span>, <span class="attribute">initialize</span>]] T[N] <a class="anchor" href="#data-memory-memory_init" id="data-memory-memory_init">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="keyword">struct</span> <span class="identifier">ecc</span> <a class="anchor" href="#data-memory-ecc" id="data-memory-ecc">§</a>
+</pre>
+<div class="docs">
+<p>Type returned by reads from <code>memory_ecc</code> of type
+<code>T</code></p>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">error</span> <a class="anchor" href="#data-memory-$quasi0-error" id="data-memory-$quasi0-error">§</a>
+</pre>
+<div class="docs">
+<p>True when an ECC error was detected, regardless of whether it was
+corrected or not.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">data</span> <a class="anchor" href="#data-memory-$quasi0-data" id="data-memory-$quasi0-data">§</a>
+</pre>
+<div class="docs">
+<p>Value read from the memory, valid if there was no ECC error, or an
+error was corrected.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">using</span> <span class="identifier">memory_ecc</span> = [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_ecc</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc" id="data-memory-memory_ecc">§</a>
+</pre>
+<div class="docs">
+<p>Alias for error correction code (ECC) memory of type <code>T</code>
+and depth of <code>N</code>. Reads from the memory return values of type
+<code>ecc&lt;T&gt;</code>. Writes to the memory take values of type
+<code>T</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">using</span> <span class="identifier">memory_ecc_norep</span> = [[<span class="attribute">memory</span>, <span class="attribute">non_replicated</span>, <span class="attribute">ecc</span>(<span class="identifier">make_ecc</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_norep" id="data-memory-memory_ecc_norep">§</a>
+</pre>
+<div class="docs">
+<p>Alias for non-replicated, ECC memory of type <code>T</code> and depth
+of <code>N</code>. Reads from the memory return values of type
+<code>ecc&lt;T&gt;</code>. Writes to the memory take values of type
+<code>T</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">using</span> <span class="identifier">memory_ecc_strict</span> =
+    [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_optional_from_ecc_error</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_strict" id="data-memory-memory_ecc_strict">§</a>
+</pre>
+<div class="docs">
+<p>Alias for ECC memory of type <code>T</code> and depth of
+<code>N</code>. Reads from the memory return values of type
+<code>optional&lt;T&gt;</code> that is valid if no ECC error, even a
+correctable one, was detected. Writes to the memory take values of type
+<code>T</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
+<span class="keyword">using</span> <span class="identifier">memory_ecc_relaxed</span> =
+    [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_optional_from_ecc_valid</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_relaxed" id="data-memory-memory_ecc_relaxed">§</a>
+</pre>
+<div class="docs">
+<p>Alias for ECC memory of type <code>T</code> and depth of
+<code>N</code>. Reads from the memory return values of type
+<code>optional&lt;T&gt;</code> that is valid if there was no ECC error,
+or an error was corrected. Writes to the memory take values of type
+<code>T</code>.</p>
+</div>
+</section>
+</div>
+</div>

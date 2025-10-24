@@ -1,0 +1,380 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/function.html" id="index-link"
+class="link">data.function</a>
+<ul>
+<li><a href="../data/function.html#data-function-apply" id="index-link"
+class="link"><code>apply</code></a></li>
+<li><a href="../data/function.html#data-function-bind" id="index-link"
+class="link"><code>bind</code></a></li>
+<li><a href="../data/function.html#data-function-bind1st"
+id="index-link" class="link"><code>bind1st</code></a></li>
+<li><a href="../data/function.html#data-function-bind2nd"
+id="index-link" class="link"><code>bind2nd</code></a></li>
+<li><a href="../data/function.html#data-function-compose"
+id="index-link" class="link"><code>compose</code></a></li>
+<li><a href="../data/function.html#data-function-compose2"
+id="index-link" class="link"><code>compose2</code></a></li>
+<li><a href="../data/function.html#data-function-compose_endo"
+id="index-link" class="link"><code>compose_endo</code></a></li>
+<li><a href="../data/function.html#data-function-constant"
+id="index-link" class="link"><code>constant</code></a></li>
+<li><a href="../data/function.html#data-function-curry" id="index-link"
+class="link"><code>curry</code></a></li>
+<li><a href="../data/function.html#data-function-curry3" id="index-link"
+class="link"><code>curry3</code></a></li>
+<li><a href="../data/function.html#data-function-flip" id="index-link"
+class="link"><code>flip</code></a></li>
+<li><a href="../data/function.html#data-function-id" id="index-link"
+class="link"><code>id</code></a></li>
+<li><a href="../data/function.html#data-function-not" id="index-link"
+class="link"><code>not</code></a></li>
+<li><a href="../data/function.html#data-function-not2" id="index-link"
+class="link"><code>not2</code></a></li>
+<li><a href="../data/function.html#data-function-on1st" id="index-link"
+class="link"><code>on1st</code></a></li>
+<li><a href="../data/function.html#data-function-on2nd" id="index-link"
+class="link"><code>on2nd</code></a></li>
+<li><a href="../data/function.html#data-function-selecting"
+id="index-link" class="link"><code>selecting</code></a></li>
+<li><a href="../data/function.html#data-function-uncurry"
+id="index-link" class="link"><code>uncurry</code></a></li>
+<li><a href="../data/function.html#data-function-uncurry1"
+id="index-link" class="link"><code>uncurry1</code></a></li>
+<li><a href="../data/function.html#data-function-uncurry3"
+id="index-link" class="link"><code>uncurry3</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.function <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">id</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-function-id" id="data-function-id">§</a>
+</pre>
+<div class="docs">
+<p>Identity function.</p>
+<pre class="kanagawa"><code>prop&gt; id(x) == x</code></pre>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">constant</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-function-constant" id="data-function-constant">§</a>
+</pre>
+<div class="docs">
+<p>Return a generic closure which ignores its argument and always
+returns <code>x</code></p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; apply(constant(false), 10)
+false</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">compose</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, (<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">g</span>) <a class="anchor" href="#data-function-compose" id="data-function-compose">§</a>
+</pre>
+<div class="docs">
+<p>Function composition</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">compose2</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, (<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">g</span>) <a class="anchor" href="#data-function-compose2" id="data-function-compose2">§</a>
+</pre>
+<div class="docs">
+<p>Composition with a binary function</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; zip_with(compose2(reinterpret_cast&lt;uint32&gt;, f32::mul), {1.2, 3.0}, {9.0, 4.3})
+{0xCD, 0x67}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">apply</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-function-apply" id="data-function-apply">§</a>
+</pre>
+<div class="docs">
+<p>Apply one argument to a curried function</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">curry</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-curry" id="data-function-curry">§</a>
+</pre>
+<div class="docs">
+<p>Curry a binary function</p>
+<p>A curried function is a function that takes one argument at a
+time.</p>
+<p>For example, a curried binary functions is a unary function that
+returns a unary function. Curried functions can be applied using
+<code>apply</code> or converted into uncurried functions using
+<code>uncurry</code>.</p>
+<pre class="kanagawa"><code>prop&gt; apply(apply(curry(add), 1), 2) == add(1, 2)</code></pre>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">curry3</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-curry3" id="data-function-curry3">§</a>
+</pre>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">uncurry1</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-uncurry1" id="data-function-uncurry1">§</a>
+</pre>
+<div class="docs">
+<p>Convert a curried function into uncurried unary function</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">uncurry</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-uncurry" id="data-function-uncurry">§</a>
+</pre>
+<div class="docs">
+<p>Convert a curried function into uncurried binary function</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">uncurry3</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-uncurry3" id="data-function-uncurry3">§</a>
+</pre>
+<div class="docs">
+<p>Convert a curried function into uncurried three parameter
+function</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">bind</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-function-bind" id="data-function-bind">§</a>
+</pre>
+<div class="docs">
+<p>Bind a value to the function argument</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">bind1st</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#data-function-bind1st" id="data-function-bind1st">§</a>
+</pre>
+<div class="docs">
+<p>Bind a value to the first argument of a function</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; apply(bind1st(sub, 6), 3)
+3</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">on1st</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-on1st" id="data-function-on1st">§</a>
+</pre>
+<div class="docs">
+<p>Apply a function to the first argument</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">bind2nd</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <span class="keyword">auto</span> <span class="identifier">y</span>) <a class="anchor" href="#data-function-bind2nd" id="data-function-bind2nd">§</a>
+</pre>
+<div class="docs">
+<p>Bind a value to the second argument of a function</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; apply(bind2nd(sub, 2), 6)
+4</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">on2nd</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-on2nd" id="data-function-on2nd">§</a>
+</pre>
+<div class="docs">
+<p>Apply a function to the second argument</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">not</span>((<span class="keyword">auto</span>) -&gt; <span class="builtin">bool</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-not" id="data-function-not">§</a>
+</pre>
+<div class="docs">
+<p>Return true if the unary predicate is false</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; apply(not(is_valid), make_optional(true, 10))
+false</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">not2</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="builtin">bool</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-not2" id="data-function-not2">§</a>
+</pre>
+<div class="docs">
+<p>Return true if the binary predicate is false</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; zip_with(not2(less_than), {1, 2}, {3, 1});
+{false, true}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">selecting</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="builtin">bool</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-selecting" id="data-function-selecting">§</a>
+</pre>
+<div class="docs">
+<p>Select one of two arguments using the binary predicate</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; reduce(selecting(less_then), {1, 4, 0});
+0</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">flip</span>((<span class="keyword">auto</span>, <span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-flip" id="data-function-flip">§</a>
+</pre>
+<div class="docs">
+<p>Flip function parameters</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; zip_with(flip(less_than), {1, 2}, {3, 1});
+{false, true}</code></pre>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">compose_endo</span>((<span class="keyword">auto</span>) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-function-compose_endo" id="data-function-compose_endo">§</a>
+</pre>
+<div class="docs">
+<p>Compose the function <code>N</code> times.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; apply(compose_endo&lt;3&gt;(increment), 1)
+4
+
+&gt;&gt;&gt; apply(compose_endo&lt;3&gt;(compose_endo&lt;2&gt;(increment)), 1)
+7</code></pre>
+</details>
+</div>
+</section>
+</div>
+</div>

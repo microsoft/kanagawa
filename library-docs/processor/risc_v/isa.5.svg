@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="728" height="96" class="svgbob">
+  <style>.svgbob line, .svgbob path, .svgbob circle, .svgbob rect, .svgbob polygon {
+  stroke: black;
+  stroke-width: 2;
+  stroke-opacity: 1;
+  fill-opacity: 1;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+}
+
+.svgbob text {
+  white-space: pre;
+  fill: black;
+  font-family: Iosevka Fixed, monospace;
+  font-size: 14px;
+}
+
+.svgbob rect.backdrop {
+  stroke: none;
+  fill: white;
+}
+
+.svgbob .broken {
+  stroke-dasharray: 8;
+}
+
+.svgbob .filled {
+  fill: black;
+}
+
+.svgbob .bg_filled {
+  fill: white;
+  stroke-width: 1;
+}
+
+.svgbob .nofill {
+  fill: white;
+}
+
+.svgbob .end_marked_arrow {
+  marker-end: url(#arrow);
+}
+
+.svgbob .start_marked_arrow {
+  marker-start: url(#arrow);
+}
+
+.svgbob .end_marked_diamond {
+  marker-end: url(#diamond);
+}
+
+.svgbob .start_marked_diamond {
+  marker-start: url(#diamond);
+}
+
+.svgbob .end_marked_circle {
+  marker-end: url(#circle);
+}
+
+.svgbob .start_marked_circle {
+  marker-start: url(#circle);
+}
+
+.svgbob .end_marked_open_circle {
+  marker-end: url(#open_circle);
+}
+
+.svgbob .start_marked_open_circle {
+  marker-start: url(#open_circle);
+}
+
+.svgbob .end_marked_big_open_circle {
+  marker-end: url(#big_open_circle);
+}
+
+.svgbob .start_marked_big_open_circle {
+  marker-start: url(#big_open_circle);
+}
+
+</style>
+  <defs>
+    <marker id="arrow" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0,0 0,4 4,2 0,0"></polygon>
+    </marker>
+    <marker id="diamond" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0,2 2,0 4,2 2,4 0,2"></polygon>
+    </marker>
+    <marker id="circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="2" class="filled"></circle>
+    </marker>
+    <marker id="open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="2" class="bg_filled"></circle>
+    </marker>
+    <marker id="big_open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="3" class="bg_filled"></circle>
+    </marker>
+  </defs>
+  <rect class="backdrop" x="0" y="0" width="728" height="96"></rect>
+  <text x="26" y="28" >31</text>
+  <text x="106" y="28" >30</text>
+  <text x="210" y="28" >21</text>
+  <text x="290" y="28" >20</text>
+  <text x="314" y="28" >19</text>
+  <text x="450" y="28" >12</text>
+  <text x="474" y="28" >11</text>
+  <text x="626" y="28" >7</text>
+  <text x="642" y="28" >6</text>
+  <text x="706" y="28" >0</text>
+  <text x="34" y="60" >imm[20]</text>
+  <text x="130" y="60" >imm[10:1]</text>
+  <text x="242" y="60" >imm[11]</text>
+  <text x="354" y="60" >imm[19:12]</text>
+  <text x="546" y="60" >rd</text>
+  <text x="650" y="60" >opcode</text>
+  <g>
+    <line x1="20" y1="40" x2="716" y2="40" class="solid"></line>
+    <line x1="20" y1="40" x2="20" y2="72" class="solid"></line>
+    <line x1="100" y1="40" x2="100" y2="72" class="solid"></line>
+    <line x1="228" y1="40" x2="228" y2="72" class="solid"></line>
+    <line x1="308" y1="40" x2="308" y2="72" class="solid"></line>
+    <line x1="468" y1="40" x2="468" y2="72" class="solid"></line>
+    <line x1="636" y1="40" x2="636" y2="72" class="solid"></line>
+    <line x1="716" y1="40" x2="716" y2="72" class="solid"></line>
+    <line x1="20" y1="72" x2="716" y2="72" class="solid"></line>
+  </g>
+</svg>

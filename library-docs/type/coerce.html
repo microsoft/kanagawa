@@ -1,0 +1,235 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/optional.html" id="index-link"
+class="link">data.optional</a>
+<ul>
+<li><a href="../data/optional.html#data-optional-optional"
+id="index-link" class="link"><code>optional</code></a></li>
+</ul></li>
+<li><a href="../type/coerce.html" id="index-link"
+class="link">type.coerce</a>
+<ul>
+<li><a href="../type/coerce.html#type-coerce-checked_cast"
+id="index-link" class="link"><code>checked_cast</code></a></li>
+<li><a href="../type/coerce.html#type-coerce-reinterpret_cast"
+id="index-link" class="link"><code>reinterpret_cast</code></a></li>
+<li><a href="../type/coerce.html#type-coerce-safe_cast" id="index-link"
+class="link"><code>safe_cast</code></a></li>
+<li><a href="../type/coerce.html#type-coerce-static_cast"
+id="index-link" class="link"><code>static_cast</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>type.coerce <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">reinterpret_cast</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#type-coerce-reinterpret_cast" id="type-coerce-reinterpret_cast">§</a>
+</pre>
+<div class="docs">
+<p>Forcibly convert the input type to the output type <code>T</code>.
+This overrides any compile-time check from the built-in
+<code>cast</code> operator by casting the input to an intermediate
+<code>uint</code> type before casting to <code>T</code>. If
+<code>T</code> is wider than the input, then due to the intermediate
+trip through <code>uint</code> the result is zero extended. If
+<code>T</code> is narrower than the input, truncate the most-significant
+bits.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Output</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">static_cast</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#type-coerce-static_cast" id="type-coerce-static_cast">§</a>
+</pre>
+<div class="docs">
+<p>A wrapper around the built-in <code>cast</code> operator, allowing it
+to be used as a function</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">checked_cast</span>(<span class="keyword">auto</span> <span class="identifier">x</span>) <a class="anchor" href="#type-coerce-checked_cast" id="type-coerce-checked_cast">§</a>
+</pre>
+<div class="docs">
+<p><code>cast</code> then <code>assert</code> that the output equals the
+input.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> To, <span class="keyword">typename</span> From&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;To&gt; <span class="identifier">safe_cast</span>(From <span class="identifier">input</span>) <a class="anchor" href="#type-coerce-safe_cast" id="type-coerce-safe_cast">§</a>
+</pre>
+<div class="docs">
+<p>Cast a value from type <code>From</code> to type <code>To</code> and
+return whether the cast was done without losing information. For
+example, the <code>uint32</code> value <code>255</code> can be cast to a
+<code>uint8</code> without losing information, but casting the
+<code>uint32</code> value <code>257</code> to a <code>uint8</code> is
+lossy.</p>
+</div>
+</section>
+</div>
+</div>

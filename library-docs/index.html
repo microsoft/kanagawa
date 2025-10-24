@@ -1,0 +1,136 @@
+<h1>Modules</h1>
+<p><pre>
+
+<a href="base.html">base</a>
+└─ <a href="base/system.html">system</a>
+codec
+└─ <a href="codec/crc.html">crc</a>
+compiler
+├─ <a href="compiler/config.html">config</a>
+├─ device
+│  ├─ <a href="compiler/device/config.html">config</a>
+│  └─ <a href="compiler/device/schema.html">schema</a>
+├─ <a href="compiler/hal.html">hal</a>
+└─ <a href="compiler/options.html">options</a>
+control
+├─ <a href="control/async.html">async</a>
+│  └─ rendezvous
+│     ├─ <a href="control/async/rendezvous/lenient.html">lenient</a>
+│     └─ <a href="control/async/rendezvous/strict.html">strict</a>
+├─ <a href="control/fsm.html">fsm</a>
+├─ <a href="control/loop.html">loop</a>
+└─ <a href="control/wait.html">wait</a>
+data
+├─ <a href="data/array.html">array</a>
+├─ <a href="data/bitarray.html">bitarray</a>
+│  └─ <a href="data/bitarray/banked.html">banked</a>
+├─ <a href="data/bits.html">bits</a>
+├─ <a href="data/buffer.html">buffer</a>
+│  ├─ <a href="data/buffer/accumulating.html">accumulating</a>
+│  ├─ <a href="data/buffer/burst_write.html">burst_write</a>
+│  ├─ <a href="data/buffer/cyclic.html">cyclic</a>
+│  ├─ <a href="data/buffer/gearbox.html">gearbox</a>
+│  └─ <a href="data/buffer/pipelined.html">pipelined</a>
+├─ cache
+│  ├─ <a href="data/cache/internal.html">internal</a>
+│  ├─ <a href="data/cache/read_only.html">read_only</a>
+│  ├─ <a href="data/cache/write_only.html">write_only</a>
+│  └─ <a href="data/cache/write_through.html">write_through</a>
+├─ <a href="data/closure.html">closure</a>
+│  └─ <a href="data/closure/core.html">core</a>
+├─ <a href="data/counter.html">counter</a>
+│  └─ <a href="data/counter/saturating.html">saturating</a>
+├─ <a href="data/datetime.html">datetime</a>
+├─ <a href="data/fifo.html">fifo</a>
+│  ├─ <a href="data/fifo/array.html">array</a>
+│  ├─ <a href="data/fifo/multi.html">multi</a>
+│  ├─ <a href="data/fifo/transpose.html">transpose</a>
+│  └─ <a href="data/fifo/wide_to_narrow.html">wide_to_narrow</a>
+├─ <a href="data/function.html">function</a>
+├─ <a href="data/hash_table.html">hash_table</a>
+├─ <a href="data/memory.html">memory</a>
+│  ├─ bank
+│  │  └─ <a href="data/memory/bank/schedule.html">schedule</a>
+│  ├─ <a href="data/memory/byte_addressable.html">byte_addressable</a>
+│  ├─ <a href="data/memory/pipelined.html">pipelined</a>
+│  └─ <a href="data/memory/unaligned.html">unaligned</a>
+├─ <a href="data/optional.html">optional</a>
+├─ <a href="data/order.html">order</a>
+├─ random
+│  ├─ <a href="data/random/lfsr.html">lfsr</a>
+│  ├─ <a href="data/random/toeplitz.html">toeplitz</a>
+│  └─ <a href="data/random/xoshiro.html">xoshiro</a>
+├─ <a href="data/representation.html">representation</a>
+├─ <a href="data/string.html">string</a>
+├─ <a href="data/tuple.html">tuple</a>
+└─ <a href="data/vector.html">vector</a>
+debug
+├─ <a href="debug/print.html">print</a>
+└─ <a href="debug/sim_assert.html">sim_assert</a>
+hardware
+├─ <a href="hardware/config.html">config</a>
+└─ <a href="hardware/dsp.html">dsp</a>
+intel
+├─ agilex-7
+│  └─ <a href="intel/agilex-7/config.html">config</a>
+├─ arria-10
+│  └─ <a href="intel/arria-10/config.html">config</a>
+├─ <a href="intel/config.html">config</a>
+└─ stratix-10
+   └─ <a href="intel/stratix-10/config.html">config</a>
+<a href="mini-base.html">mini-base</a>
+numeric
+├─ <a href="numeric/complex.html">complex</a>
+├─ <a href="numeric/fixed.html">fixed</a>
+│  └─ <a href="numeric/fixed/internal.html">internal</a>
+├─ float
+│  └─ <a href="numeric/float/internal.html">internal</a>
+├─ <a href="numeric/float32.html">float32</a>
+│  ├─ <a href="numeric/float32/internal.html">internal</a>
+│  │  └─ <a href="numeric/float32/internal/operator.html">operator</a>
+│  └─ <a href="numeric/float32/operator.html">operator</a>
+├─ <a href="numeric/float64.html">float64</a>
+└─ <a href="numeric/int.html">int</a>
+   ├─ divider
+   │  ├─ <a href="numeric/int/divider/signed.html">signed</a>
+   │  │  ├─ <a href="numeric/int/divider/signed/iterative.html">iterative</a>
+   │  │  └─ <a href="numeric/int/divider/signed/unrolled.html">unrolled</a>
+   │  └─ <a href="numeric/int/divider/unsigned.html">unsigned</a>
+   │     ├─ <a href="numeric/int/divider/unsigned/iterative.html">iterative</a>
+   │     └─ <a href="numeric/int/divider/unsigned/unrolled.html">unrolled</a>
+   ├─ <a href="numeric/int/limits.html">limits</a>
+   ├─ <a href="numeric/int/multi_word.html">multi_word</a>
+   │  └─ <a href="numeric/int/multi_word/internal.html">internal</a>
+   └─ <a href="numeric/int/operator.html">operator</a>
+      ├─ <a href="numeric/int/operator/modular.html">modular</a>
+      └─ <a href="numeric/int/operator/unsigned.html">unsigned</a>
+processor
+└─ <a href="processor/risc_v.html">risc_v</a>
+   ├─ internal
+   │  ├─ <a href="processor/risc_v/internal/core.html">core</a>
+   │  └─ <a href="processor/risc_v/internal/decoder.html">decoder</a>
+   ├─ <a href="processor/risc_v/isa.html">isa</a>
+   └─ <a href="processor/risc_v/trace.html">trace</a>
+      └─ <a href="processor/risc_v/trace/risc_v_dv.html">risc_v_dv</a>
+sync
+├─ <a href="sync/atomic.html">atomic</a>
+│  └─ <a href="sync/atomic/init.html">init</a>
+└─ <a href="sync/lock.html">lock</a>
+   └─ <a href="sync/lock/multi.html">multi</a>
+test
+├─ internal
+│  ├─ <a href="test/internal/assert.html">assert</a>
+│  └─ <a href="test/internal/params.html">params</a>
+├─ <a href="test/runner.html">runner</a>
+└─ <a href="test/unit.html">unit</a>
+type
+├─ <a href="type/coerce.html">coerce</a>
+├─ <a href="type/cstddef.html">cstddef</a>
+├─ <a href="type/cstdint.html">cstdint</a>
+├─ <a href="type/newtype.html">newtype</a>
+└─ <a href="type/stdtype.html">stdtype</a>
+xilinx
+├─ <a href="xilinx/config.html">config</a>
+└─ ultrascaleplus
+   └─ <a href="xilinx/ultrascaleplus/config.html">config</a>
+</pre></p>

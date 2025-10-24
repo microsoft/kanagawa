@@ -1,0 +1,442 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/memory/unaligned.html" id="index-link"
+class="link">data.memory.unaligned</a>
+<ul>
+<li><a
+href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"
+id="index-link"
+class="link"><code>unaligned_read_aligned_write_memory</code></a></li>
+<li><a
+href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"
+id="index-link"
+class="link"><code>unaligned_read_unaligned_write_memory</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.memory.unaligned <a href="../../index.html">&equiv;</a></h1>
+<p>Memory supporting partial word access and unaligned addressing.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> WordSize,
+    <span class="keyword">auto</span> TotalSize,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">unaligned_read_unaligned_write_memory</span> <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory" id="data-memory-unaligned-unaligned_read_unaligned_write_memory">§</a>
+</pre>
+<div class="docs">
+<p>Memory supporting reads/writes of up to <code>WordSize</code>
+elements per cycle at aligned or unaligned address. The class internally
+instantiates <code>WordSize</code> logical memories that are
+<code>bitsizeof T</code> wide and <code>TotalSize / WordSize</code>
+deep.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of the memory element</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> WordSize
+</pre>
+<div class="docs">
+<p>Number of elements per word</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> TotalSize
+</pre>
+<div class="docs">
+<p>Total number of elements in memory</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+</pre>
+<div class="docs">
+<p>Memory implementation</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;TotalSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">element_count_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;WordSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">word_t</span> = T[WordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a>
+<span class="identifier">read_aligned</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-read_aligned" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-read_aligned">§</a>
+</pre>
+<div class="docs">
+<p>Read a word from a word aligned address</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N = <span class="literal">1</span>&gt;
+<span class="modifier">inline </span>
+<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a>
+<span class="identifier">read</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-read" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-read">§</a>
+</pre>
+<div class="docs">
+<p>Read a word from an address aligned at <code>N</code> element
+boundary</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">write_aligned</span>(
+    <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
+    <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>
+    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-write_aligned" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-write_aligned">§</a>
+</pre>
+<div class="docs">
+<p>Write a word to a word aligned address</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N = <span class="literal">1</span>&gt;
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">write</span>(
+    <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
+    <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>,
+    <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t"><span class="identifier">element_count_t</span></a> <span class="identifier">size</span>
+    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-write" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-write">§</a>
+</pre>
+<div class="docs">
+<p>Write specified number of elements to an address aligned at
+<code>N</code> element boundary. The <code>size</code> must be a
+multiple of <code>N</code> and no greater than
+<code>WordSize</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> WordSize,
+    <span class="keyword">auto</span> ReadWordSize,
+    <span class="keyword">auto</span> TotalSize,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">unaligned_read_aligned_write_memory</span> <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory" id="data-memory-unaligned-unaligned_read_aligned_write_memory">§</a>
+</pre>
+<div class="docs">
+<p>Memory capable of aligned or unaligned reads of
+<code>ReadWordSize</code> elements per cycle and <code>WordSize</code>
+element writes aligned to <code>WordSize</code>.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of the memory element.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> WordSize
+</pre>
+<div class="docs">
+<p>Number of elements per word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> ReadWordSize
+</pre>
+<div class="docs">
+<p>Number of elements to be returned per read. Must be power-of-2
+fraction or integer multiple of <code>WordSize</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> TotalSize
+</pre>
+<div class="docs">
+<p>Total number of elements in memory. Memory width is
+<code>WordSize * bitsizeof(T)</code> bits. Memory depth is
+<code>TotalSize / WordSize</code> words.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+</pre>
+<div class="docs">
+<p>Memory implementation.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;TotalSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">element_count_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;WordSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-element_count_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-element_count_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">word_t</span> = T[WordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-word_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">read_word_t</span> = T[ReadWordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t"><span class="identifier">read_word_t</span></a>
+<span class="identifier">read_aligned</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read_aligned" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read_aligned">§</a>
+</pre>
+<div class="docs">
+<p>Read a word from a word aligned address.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t"><span class="identifier">read_word_t</span></a>
+<span class="identifier">read</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read">§</a>
+</pre>
+<div class="docs">
+<p>Read a word from an unaligned address.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<span class="keyword">void</span>
+<span class="identifier">write_aligned</span>(
+    <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
+    <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>
+    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-write_aligned" id="data-memory-unaligned-unaligned_read_aligned_write_memory-write_aligned">§</a>
+</pre>
+<div class="docs">
+<p>Write a word to a word aligned address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

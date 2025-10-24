@@ -1,0 +1,396 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/random/toeplitz.html" id="index-link"
+class="link">data.random.toeplitz</a>
+<ul>
+<li><a
+href="../../data/random/toeplitz.html#data-random-toeplitz-toeplitz"
+id="index-link" class="link"><code>toeplitz</code></a></li>
+<li><a
+href="../../data/random/toeplitz.html#data-random-toeplitz-toeplitz_random"
+id="index-link" class="link"><code>toeplitz_random</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.random.toeplitz <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> PipelineCycles,
+    <span class="keyword">auto</span> HashWidth,
+    <span class="keyword">auto</span> DataWidth,
+    <span class="keyword">auto</span> KeyWidth,
+    <span class="builtin">uint</span>&lt;KeyWidth&gt; Key
+    &gt;
+<span class="keyword">class</span> <span class="identifier">toeplitz</span> <a class="anchor" href="#data-random-toeplitz-toeplitz" id="data-random-toeplitz-toeplitz">§</a>
+</pre>
+<div class="docs">
+<p>Implementation of the Toeplitz hash algorithm as described <a
+href="https://en.wikipedia.org/wiki/Toeplitz_Hash_Algorithm">here</a>.</p>
+<p>Input data is passed into <code>calc_hash</code> as one parallel data
+structure.</p>
+<p>If you need a key, a secure rng is a reasonable method of producing
+one. Here is a 256 byte key produced with the default Windows
+RNGCryptoServiceProvider. You can truncate it to whatever length you
+need.</p>
+<pre class="kanagawa"><code>6D 5A 1B A6 54 0E 36 AE 73 84 C9 47 79 71 0E 89 BA B5 77 83 62 E9 B3 02 C3 A2 CF 20 2B 56 15 A9
+DD 5E 8E F2 E2 EF 40 44 4F 7C 23 BB B7 6A 50 8B F4 8B E9 00 D8 A3 3D AE 88 29 FB 3C 64 37 71 A6
+C6 CD 1B F7 80 24 89 A2 35 5A B4 C2 43 56 04 2E 5F 67 99 BC BA 61 1C 0B C6 70 9B FA 9D AC 4B 74
+2A 8C 31 FA 41 56 81 8F 7D 77 B5 8C F7 B8 29 F6 06 8F 09 A3 20 B1 02 74 A0 95 3B 87 35 C7 2E 3A
+9D 47 2C 2D C7 C9 0B 9C 07 8E 76 7B 2C D6 47 79 28 F5 ED 41 A7 CD 3A 00 1D 1D A6 CC 6E 3D 0D 0C
+CD DB 40 FC 39 68 BA 50 41 F1 18 25 C7 03 4B 0C F4 3E DD 60 32 6F 41 B3 35 5B 8E E4 D7 93 5B 46
+C7 6A F8 E3 D5 37 17 65 9B 19 8A C8 07 CD 79 D8 C2 E3 EF C0 0E 81 70 81 2D E3 77 B9 96 B6 16 D2
+ED BD 4C 99 4E D8 0E 39 A2 49 1E 73 4A C1 51 05 09 52 85 6B 52 47 58 07 74 10 6D 78 E8 16 94 6E</code></pre>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> PipelineCycles
+</pre>
+<div class="docs">
+<p>The hash computation will be pipelined such that it can calculate a
+new result every <code>DataWidth</code> cycles. Increasing this lowers
+the area consumed to implement the hash at the expense of
+throughput.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> HashWidth
+</pre>
+<div class="docs">
+<p>The width of the output hash value.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> DataWidth
+</pre>
+<div class="docs">
+<p>The width of the input data.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> KeyWidth
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">uint</span>&lt;KeyWidth&gt; Key
+</pre>
+<div class="docs">
+<p>Key value used for hash computation. This value must be at least
+<code>HashWidth</code> bits wide.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">Hash_t</span> = <span class="builtin">uint</span>&lt;HashWidth&gt; <a class="anchor" href="#data-random-toeplitz-toeplitz-Hash_t" id="data-random-toeplitz-toeplitz-Hash_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">Data_t</span> = <span class="builtin">uint</span>&lt;DataWidth&gt; <a class="anchor" href="#data-random-toeplitz-toeplitz-Data_t" id="data-random-toeplitz-toeplitz-Data_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">Key_t</span> = <span class="builtin">uint</span>&lt;KeyWidth&gt; <a class="anchor" href="#data-random-toeplitz-toeplitz-Key_t" id="data-random-toeplitz-toeplitz-Key_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/random/toeplitz.html#data-random-toeplitz-toeplitz"><span class="identifier">toeplitz</span></a>::<a class="link" href="../../data/random/toeplitz.html#data-random-toeplitz-toeplitz-Hash_t"><span class="identifier">Hash_t</span></a> <span class="identifier">calc_hash</span>(<a class="link" href="../../data/random/toeplitz.html#data-random-toeplitz-toeplitz"><span class="identifier">toeplitz</span></a>::<a class="link" href="../../data/random/toeplitz.html#data-random-toeplitz-toeplitz-Data_t"><span class="identifier">Data_t</span></a> <span class="identifier">data</span>) <a class="anchor" href="#data-random-toeplitz-toeplitz-calc_hash" id="data-random-toeplitz-toeplitz-calc_hash">§</a>
+</pre>
+<div class="docs">
+<p>Calculate the Toeplitz hash of the supplied data.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Invariants</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(KeyWidth &gt;= HashWidth)
+</pre>
+</li>
+<li>
+<pre class="signature">
+(PipelineCycles &gt; <span class="literal">0</span>)
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> Width, <span class="keyword">auto</span> KeyWidth, <span class="builtin">uint</span>&lt;KeyWidth&gt; Key, <span class="keyword">auto</span> PipelineCycles&gt;
+<span class="keyword">class</span> <span class="identifier">toeplitz_random</span> <a class="anchor" href="#data-random-toeplitz-toeplitz_random" id="data-random-toeplitz-toeplitz_random">§</a>
+</pre>
+<div class="docs">
+<p>Implement a pseudo-random number generator by hashing a counter with
+a Toeplitz hash implementation. This implementation is more expensive
+than LFSR, but gives a result that is more analogous to the
+<code>std::random</code> algorithms in C++.</p>
+<p>A reasonable key for 256-bit or smaller widths is:
+<code>0x6D5A1BA6540E36AE7384C94779710E89BAB5778362E9B302C3A2CF202B5615A9</code></p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Width
+</pre>
+<div class="docs">
+<p>The width of the output in bits, as well as the width of the internal
+counter.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> KeyWidth
+</pre>
+<div class="docs">
+<p>The width of the Toeplitz hash key in bits.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">uint</span>&lt;KeyWidth&gt; Key
+</pre>
+<div class="docs">
+<p>Toeplitz hash key. The width of the key must be greater than or equal
+to the output <code>Width</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> PipelineCycles
+</pre>
+<div class="docs">
+<p>Pipeline cycles to use for the hash calculation. A value of 1 gives
+maximum throughput but consumes maximum area. Values larger than one
+reduce throughput and consume less area.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">next</span>(<span class="builtin">bool</span> <span class="identifier">set_seed</span>, <span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">seed</span>) <a class="anchor" href="#data-random-toeplitz-toeplitz_random-next" id="data-random-toeplitz-toeplitz_random-next">§</a>
+</pre>
+<div class="docs">
+<p>Get the next random number in the sequence, optionally seeding the
+random number generator first.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">set_seed</span>
+</pre>
+<div class="docs">
+<p>If true, the random number will be seeded with the specified
+seed.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">seed</span>
+</pre>
+<div class="docs">
+<p>The number to seed the random number generator. Ignored if
+<code>set_seed</code> is false.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

@@ -1,0 +1,375 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="base.html" id="index-link" class="link">base</a>
+<ul class="task-list">
+</ul></li>
+<li><a href="base/system.html" id="index-link"
+class="link">base.system</a>
+<ul>
+<li><a href="base/system.html#base-system-cycles" id="index-link"
+class="link"><code>cycles</code></a></li>
+<li><a href="base/system.html#base-system-stages" id="index-link"
+class="link"><code>stages</code></a></li>
+</ul></li>
+<li><a href="control/async.html" id="index-link"
+class="link">control.async</a>
+<ul>
+<li><a href="control/async.html#control-async-async_await"
+id="index-link" class="link"><code>async_await</code></a></li>
+<li><a href="control/async.html#control-async-async_exec"
+id="index-link" class="link"><code>async_exec</code></a></li>
+<li><a href="control/async.html#control-async-async_then"
+id="index-link" class="link"><code>async_then</code></a></li>
+<li><a href="control/async.html#control-async-async_then_void"
+id="index-link" class="link"><code>async_then_void</code></a></li>
+<li><a href="control/async.html#control-async-fork_join" id="index-link"
+class="link"><code>fork_join</code></a></li>
+</ul></li>
+<li><a href="control/loop.html" id="index-link"
+class="link">control.loop</a>
+<ul>
+<li><a href="control/loop.html#control-loop-parallel_for"
+id="index-link" class="link"><code>parallel_for</code></a></li>
+<li><a href="control/loop.html#control-loop-parallel_for_each"
+id="index-link" class="link"><code>parallel_for_each</code></a></li>
+<li><a href="control/loop.html#control-loop-parallel_map"
+id="index-link" class="link"><code>parallel_map</code></a></li>
+<li><a href="control/loop.html#control-loop-pipelined_do"
+id="index-link" class="link"><code>pipelined_do</code></a></li>
+<li><a href="control/loop.html#control-loop-pipelined_for"
+id="index-link" class="link"><code>pipelined_for</code></a></li>
+<li><a href="control/loop.html#control-loop-pipelined_for_each"
+id="index-link" class="link"><code>pipelined_for_each</code></a></li>
+<li><a href="control/loop.html#control-loop-pipelined_last"
+id="index-link" class="link"><code>pipelined_last</code></a></li>
+<li><a href="control/loop.html#control-loop-pipelined_map"
+id="index-link" class="link"><code>pipelined_map</code></a></li>
+<li><a href="control/loop.html#control-loop-range_for" id="index-link"
+class="link"><code>range_for</code></a></li>
+<li><a href="control/loop.html#control-loop-while_do" id="index-link"
+class="link"><code>while_do</code></a></li>
+</ul></li>
+<li><a href="control/wait.html" id="index-link"
+class="link">control.wait</a>
+<ul>
+<li><a href="control/wait.html#control-wait-wait" id="index-link"
+class="link"><code>wait</code></a></li>
+<li><a href="control/wait.html#control-wait-wait_until" id="index-link"
+class="link"><code>wait_until</code></a></li>
+</ul></li>
+<li><a href="data/array.html" id="index-link"
+class="link">data.array</a>
+<ul>
+<li><a href="data/array.html#data-array-array" id="index-link"
+class="link"><code>array</code></a></li>
+</ul></li>
+<li><a href="data/closure.html" id="index-link"
+class="link">data.closure</a>
+<ul>
+<li><a href="data/closure.html#data-closure-make_capture1"
+id="index-link" class="link"><code>make_capture1</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture10"
+id="index-link" class="link"><code>make_capture10</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture11"
+id="index-link" class="link"><code>make_capture11</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture12"
+id="index-link" class="link"><code>make_capture12</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture13"
+id="index-link" class="link"><code>make_capture13</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture14"
+id="index-link" class="link"><code>make_capture14</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture15"
+id="index-link" class="link"><code>make_capture15</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture16"
+id="index-link" class="link"><code>make_capture16</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture17"
+id="index-link" class="link"><code>make_capture17</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture18"
+id="index-link" class="link"><code>make_capture18</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture19"
+id="index-link" class="link"><code>make_capture19</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture2"
+id="index-link" class="link"><code>make_capture2</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture20"
+id="index-link" class="link"><code>make_capture20</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture21"
+id="index-link" class="link"><code>make_capture21</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture3"
+id="index-link" class="link"><code>make_capture3</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture4"
+id="index-link" class="link"><code>make_capture4</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture5"
+id="index-link" class="link"><code>make_capture5</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture6"
+id="index-link" class="link"><code>make_capture6</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture7"
+id="index-link" class="link"><code>make_capture7</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture8"
+id="index-link" class="link"><code>make_capture8</code></a></li>
+<li><a href="data/closure.html#data-closure-make_capture9"
+id="index-link" class="link"><code>make_capture9</code></a></li>
+</ul></li>
+<li><a href="data/closure/core.html" id="index-link"
+class="link">data.closure.core</a>
+<ul>
+<li><a href="data/closure/core.html#data-closure-core-Closure"
+id="index-link" class="link"><code>Closure</code></a></li>
+<li><a href="data/closure/core.html#data-closure-core-make_capture0"
+id="index-link" class="link"><code>make_capture0</code></a></li>
+</ul></li>
+<li><a href="data/memory.html" id="index-link"
+class="link">data.memory</a>
+<ul>
+<li><a href="data/memory.html#data-memory-ecc" id="index-link"
+class="link"><code>ecc</code></a></li>
+<li><a href="data/memory.html#data-memory-memory" id="index-link"
+class="link"><code>memory</code></a></li>
+<li><a href="data/memory.html#data-memory-memory_ecc" id="index-link"
+class="link"><code>memory_ecc</code></a></li>
+<li><a href="data/memory.html#data-memory-memory_ecc_norep"
+id="index-link" class="link"><code>memory_ecc_norep</code></a></li>
+<li><a href="data/memory.html#data-memory-memory_ecc_relaxed"
+id="index-link" class="link"><code>memory_ecc_relaxed</code></a></li>
+<li><a href="data/memory.html#data-memory-memory_ecc_strict"
+id="index-link" class="link"><code>memory_ecc_strict</code></a></li>
+<li><a href="data/memory.html#data-memory-memory_init" id="index-link"
+class="link"><code>memory_init</code></a></li>
+<li><a href="data/memory.html#data-memory-memory_norep" id="index-link"
+class="link"><code>memory_norep</code></a></li>
+</ul></li>
+<li><a href="data/optional.html" id="index-link"
+class="link">data.optional</a>
+<ul>
+<li><a href="data/optional.html#data-optional-make_optional"
+id="index-link" class="link"><code>make_optional</code></a></li>
+<li><a href="data/optional.html#data-optional-optional" id="index-link"
+class="link"><code>optional</code></a></li>
+</ul></li>
+<li><a href="data/tuple.html" id="index-link"
+class="link">data.tuple</a>
+<ul>
+<li><a href="data/tuple.html#data-tuple-first" id="index-link"
+class="link"><code>first</code></a></li>
+<li><a href="data/tuple.html#data-tuple-make_pair" id="index-link"
+class="link"><code>make_pair</code></a></li>
+<li><a href="data/tuple.html#data-tuple-pair" id="index-link"
+class="link"><code>pair</code></a></li>
+<li><a href="data/tuple.html#data-tuple-second" id="index-link"
+class="link"><code>second</code></a></li>
+</ul></li>
+<li><a href="debug/print.html" id="index-link"
+class="link">debug.print</a>
+<ul>
+<li><a href="debug/print.html#debug-print-print" id="index-link"
+class="link"><code>print</code></a></li>
+<li><a href="debug/print.html#debug-print-println" id="index-link"
+class="link"><code>println</code></a></li>
+</ul></li>
+<li><a href="hardware/dsp.html" id="index-link"
+class="link">hardware.dsp</a>
+<ul>
+<li><a href="hardware/dsp.html#hardware-dsp-fadd32" id="index-link"
+class="link"><code>fadd32</code></a></li>
+<li><a href="hardware/dsp.html#hardware-dsp-fmac32" id="index-link"
+class="link"><code>fmac32</code></a></li>
+<li><a href="hardware/dsp.html#hardware-dsp-fmad32" id="index-link"
+class="link"><code>fmad32</code></a></li>
+<li><a href="hardware/dsp.html#hardware-dsp-fmul32" id="index-link"
+class="link"><code>fmul32</code></a></li>
+<li><a href="hardware/dsp.html#hardware-dsp-fsub32" id="index-link"
+class="link"><code>fsub32</code></a></li>
+<li><a href="hardware/dsp.html#hardware-dsp-imul27" id="index-link"
+class="link"><code>imul27</code></a></li>
+<li><a href="hardware/dsp.html#hardware-dsp-umul27" id="index-link"
+class="link"><code>umul27</code></a></li>
+</ul></li>
+<li><a href="type/coerce.html" id="index-link"
+class="link">type.coerce</a>
+<ul>
+<li><a href="type/coerce.html#type-coerce-checked_cast" id="index-link"
+class="link"><code>checked_cast</code></a></li>
+<li><a href="type/coerce.html#type-coerce-reinterpret_cast"
+id="index-link" class="link"><code>reinterpret_cast</code></a></li>
+<li><a href="type/coerce.html#type-coerce-safe_cast" id="index-link"
+class="link"><code>safe_cast</code></a></li>
+<li><a href="type/coerce.html#type-coerce-static_cast" id="index-link"
+class="link"><code>static_cast</code></a></li>
+</ul></li>
+<li><a href="type/cstddef.html" id="index-link"
+class="link">type.cstddef</a>
+<ul>
+<li><a href="type/cstddef.html#type-cstddef-float" id="index-link"
+class="link"><code>float</code></a></li>
+<li><a href="type/cstddef.html#type-cstddef-size_t" id="index-link"
+class="link"><code>size_t</code></a></li>
+</ul></li>
+<li><a href="type/stdtype.html" id="index-link"
+class="link">type.stdtype</a>
+<ul>
+<li><a href="type/stdtype.html#type-stdtype-bitcount_t" id="index-link"
+class="link"><code>bitcount_t</code></a></li>
+<li><a href="type/stdtype.html#type-stdtype-bitindex_t" id="index-link"
+class="link"><code>bitindex_t</code></a></li>
+<li><a href="type/stdtype.html#type-stdtype-count_t" id="index-link"
+class="link"><code>count_t</code></a></li>
+<li><a href="type/stdtype.html#type-stdtype-index_t" id="index-link"
+class="link"><code>index_t</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>base <a href="index.html">&equiv;</a></h1>
+<hr />
+</section>
+</div>
+</div>

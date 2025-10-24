@@ -1,0 +1,452 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../numeric/float64.html" id="index-link"
+class="link">numeric.float64</a>
+<ul>
+<li><a href="../numeric/float64.html#numeric-float64-abs"
+id="index-link" class="link"><code>abs</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-add"
+id="index-link" class="link"><code>add</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-ceil"
+id="index-link" class="link"><code>ceil</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-dim"
+id="index-link" class="link"><code>dim</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-eq" id="index-link"
+class="link"><code>eq</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-floor"
+id="index-link" class="link"><code>floor</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-from_float32"
+id="index-link" class="link"><code>from_float32</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-from_int"
+id="index-link" class="link"><code>from_int</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-from_uint"
+id="index-link" class="link"><code>from_uint</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-gt" id="index-link"
+class="link"><code>gt</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-isfinite"
+id="index-link" class="link"><code>isfinite</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-isinf"
+id="index-link" class="link"><code>isinf</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-isnan"
+id="index-link" class="link"><code>isnan</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-isnormal"
+id="index-link" class="link"><code>isnormal</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-lt" id="index-link"
+class="link"><code>lt</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-max"
+id="index-link" class="link"><code>max</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-min"
+id="index-link" class="link"><code>min</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-mul"
+id="index-link" class="link"><code>mul</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-neg"
+id="index-link" class="link"><code>neg</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-round"
+id="index-link" class="link"><code>round</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-signbit"
+id="index-link" class="link"><code>signbit</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-sub"
+id="index-link" class="link"><code>sub</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-to_int"
+id="index-link" class="link"><code>to_int</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-to_uint"
+id="index-link" class="link"><code>to_uint</code></a></li>
+<li><a href="../numeric/float64.html#numeric-float64-trunc"
+id="index-link" class="link"><code>trunc</code></a></li>
+</ul></li>
+<li><a href="../numeric/float/internal.html" id="index-link"
+class="link">numeric.float.internal</a>
+<ul>
+<li><a
+href="../numeric/float/internal.html#numeric-float-internal-Denorm"
+id="index-link" class="link"><code>Denorm</code></a></li>
+<li><a
+href="../numeric/float/internal.html#numeric-float-internal-float64"
+id="index-link" class="link"><code>float64</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>numeric.float64 <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">add</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-add" id="numeric-float64-add">§</a>
+</pre>
+<div class="docs">
+<p>Addition.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">mul</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-mul" id="numeric-float64-mul">§</a>
+</pre>
+<div class="docs">
+<p>Multiplication.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">eq</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-eq" id="numeric-float64-eq">§</a>
+</pre>
+<div class="docs">
+<p>Compare two float64 values for equality.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">lt</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-lt" id="numeric-float64-lt">§</a>
+</pre>
+<div class="docs">
+<p>Check <code>in1</code> less than <code>in2</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">gt</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-gt" id="numeric-float64-gt">§</a>
+</pre>
+<div class="docs">
+<p>Check <code>in1</code> greater than <code>in2</code>.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">neg</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-neg" id="numeric-float64-neg">§</a>
+</pre>
+<div class="docs">
+<p>Negate.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">sub</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-sub" id="numeric-float64-sub">§</a>
+</pre>
+<div class="docs">
+<p>Subtract <code>in2</code> from <code>in1</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">from_int</span>(<span class="builtin">int</span>&lt;N&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_int" id="numeric-float64-from_int">§</a>
+</pre>
+<div class="docs">
+<p>Convert a signed integer to a float64.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Width of <code>value</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">from_uint</span>(<span class="builtin">uint</span>&lt;N&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_uint" id="numeric-float64-from_uint">§</a>
+</pre>
+<div class="docs">
+<p>Convert an unsigned integer to a float64.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Width of <code>value</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">int</span>&lt;N&gt;&gt; <span class="identifier">to_int</span>(<span class="keyword">uint64</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-to_int" id="numeric-float64-to_int">§</a>
+</pre>
+<div class="docs">
+<p>Convert a float64 to a signed integer</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Width of the signed integer.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">uint</span>&lt;N&gt;&gt; <span class="identifier">to_uint</span>(<span class="keyword">uint64</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-to_uint" id="numeric-float64-to_uint">§</a>
+</pre>
+<div class="docs">
+<p>Convert a float64 to an unsigned integer</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> N
+</pre>
+<div class="docs">
+<p>Width of the unsigned integer.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../numeric/float/internal.html#numeric-float-internal-float64"><span class="identifier">float64</span></a> <span class="identifier">from_float32</span>(<span class="builtin">float32</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_float32" id="numeric-float64-from_float32">§</a>
+</pre>
+<div class="docs">
+<p>Convert a float32 to a float64.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isnan</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isnan" id="numeric-float64-isnan">§</a>
+</pre>
+<div class="docs">
+<p>Check <code>x</code> is not a number.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isinf</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isinf" id="numeric-float64-isinf">§</a>
+</pre>
+<div class="docs">
+<p>Check <code>x</code> is positive or negative infinity.</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isfinite</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isfinite" id="numeric-float64-isfinite">§</a>
+</pre>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isnormal</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isnormal" id="numeric-float64-isnormal">§</a>
+</pre>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">signbit</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-signbit" id="numeric-float64-signbit">§</a>
+</pre>
+<div class="docs">
+<p>Return sign of <code>x</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">min</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-min" id="numeric-float64-min">§</a>
+</pre>
+<div class="docs">
+<p>Return the smaller of <code>x</code> and <code>y</code>. A NaN is
+treated as missing data, and the other value will be returned.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">max</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-max" id="numeric-float64-max">§</a>
+</pre>
+<div class="docs">
+<p>Return the larger of <code>x</code> and <code>y</code>. A NaN is
+treated as missing data, and the other value will be returned.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">ceil</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-ceil" id="numeric-float64-ceil">§</a>
+</pre>
+<div class="docs">
+<p>Return the smallest integer not less than <code>x</code>: (x )</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">floor</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-floor" id="numeric-float64-floor">§</a>
+</pre>
+<div class="docs">
+<p>Return the largest integer not greater than <code>x</code>: (x )</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">round</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-round" id="numeric-float64-round">§</a>
+</pre>
+<div class="docs">
+<p>Return the nearest integer to <code>x</code>, rounding halfway away
+from zero.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">trunc</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-trunc" id="numeric-float64-trunc">§</a>
+</pre>
+<div class="docs">
+<p>Return the nearest integer not greater in magnitude than
+<code>x</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">dim</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-dim" id="numeric-float64-dim">§</a>
+</pre>
+<div class="docs">
+<p>Return the positive difference between <code>x</code> and
+<code>y</code>, i.e. <code>max(x - y, 0)</code>.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">abs</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-abs" id="numeric-float64-abs">§</a>
+</pre>
+<div class="docs">
+<p>Return the absolute value of <code>x</code>: <span
+class="math inline">|<em>x</em>|</span></p>
+</div>
+</section>
+</div>
+</div>

@@ -1,0 +1,563 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../../data/buffer/cyclic.html" id="index-link"
+class="link">data.buffer.cyclic</a>
+<ul>
+<li><a
+href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"
+id="index-link" class="link"><code>cyclic_buffer</code></a></li>
+<li><a
+href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"
+id="index-link"
+class="link"><code>unaligned_cyclic_buffer</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.buffer.cyclic <a href="../../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">typename</span> T,
+    <span class="keyword">auto</span> WordSize,
+    <span class="keyword">auto</span> ReadWordSize,
+    <span class="keyword">auto</span> TotalSize,
+    <span class="keyword">typename</span> AddrType = <span class="keyword">uint64</span>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">unaligned_cyclic_buffer</span> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer" id="data-buffer-cyclic-unaligned_cyclic_buffer">§</a>
+</pre>
+<div class="docs">
+<p>A cyclic buffer with the following functionality:</p>
+<ul>
+<li>One data word can be written at a time until the buffer is full</li>
+<li>Words can be freed to create new write space in a FIFO manner</li>
+<li>Any valid element (written and not freed) can be read, even if not
+aligned to a word boundary</li>
+</ul>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of each element of the buffer.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> WordSize
+</pre>
+<div class="docs">
+<p>Number of elements per data word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> ReadWordSize
+</pre>
+<div class="docs">
+<p>Number of elements to be returned per read. Must be &lt;= to
+WordSize.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> TotalSize
+</pre>
+<div class="docs">
+<p>Total size of memory in elements.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> AddrType = <span class="keyword">uint64</span>
+</pre>
+<div class="docs">
+<p>Type to accumulate number of written and freed words. <strong>Ensure
+this will not overflow between calls to reset</strong>. Additionally,
+used to access and free buffer elements.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = AddrType <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-addr_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">word_t</span> = <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<span class="identifier">unaligned_memory_t</span>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t"><span class="identifier">word_t</span></a> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-word_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-word_t">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">read_word_t</span> = <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<span class="identifier">unaligned_memory_t</span>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t"><span class="identifier">read_word_t</span></a> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-reset" id="data-buffer-cyclic-unaligned_cyclic_buffer-reset">§</a>
+</pre>
+<div class="docs">
+<p>Reset cyclic buffer. This is not thread-safe and should not be called
+while any other functions are running.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">write</span>(T[WordSize] <span class="identifier">word</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-write" id="data-buffer-cyclic-unaligned_cyclic_buffer-write">§</a>
+</pre>
+<div class="docs">
+<p>Write one word. Maybe block until there is space in the buffer.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">free</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-free" id="data-buffer-cyclic-unaligned_cyclic_buffer-free">§</a>
+</pre>
+<div class="docs">
+<p>Free words up to, but not including, the specified address. Caller
+should ensure that this address is valid.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">wait</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-wait" id="data-buffer-cyclic-unaligned_cyclic_buffer-wait">§</a>
+</pre>
+<div class="docs">
+<p>Block until a fully valid word has been written to the passed
+address.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t"><span class="identifier">read_word_t</span></a>
+<span class="identifier">read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-read" id="data-buffer-cyclic-unaligned_cyclic_buffer-read">§</a>
+</pre>
+<div class="docs">
+<p>Wait for the entry at <code>addr</code> to be written and then read
+the value. The caller should ensure that this is not called for a free
+entry.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t"><span class="identifier">read_word_t</span></a>
+<span class="identifier">nonblocking_read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-nonblocking_read" id="data-buffer-cyclic-unaligned_cyclic_buffer-nonblocking_read">§</a>
+</pre>
+<div class="docs">
+<p>Read the value at the specified address. This version of read does
+not block to wait for the entry to be written. It is also inline to
+reduce the cost of multiple callsites. The caller should ensure that the
+address is valid (written and not freed).</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Size, <span class="keyword">typename</span> AddrType = <span class="keyword">uint64</span>&gt;
+<span class="keyword">class</span> <span class="identifier">cyclic_buffer</span> <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer" id="data-buffer-cyclic-cyclic_buffer">§</a>
+</pre>
+<div class="docs">
+<p>This class is a wrapper around a <code>unaligned_cyclic_buffer</code>
+with <code>WordSize == 1.</code></p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> T
+</pre>
+<div class="docs">
+<p>Type of each entry in the buffer.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Size
+</pre>
+<div class="docs">
+<p>Maximum number of entries that can be stored.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">typename</span> AddrType = <span class="keyword">uint64</span>
+</pre>
+<div class="docs">
+<p>Type to accumulate number of written and freed words. <strong>Ensure
+this will not overflow between calls to reset</strong>. Additionally,
+used to access and free buffer elements.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<span class="identifier">unaligned_cyclic_buffer_t</span>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-addr_t" id="data-buffer-cyclic-cyclic_buffer-addr_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-reset" id="data-buffer-cyclic-cyclic_buffer-reset">§</a>
+</pre>
+<div class="docs">
+<p>Reset cyclic buffer. This is not thread-safe and should not be called
+while any other functions are running.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">write</span>(T <span class="identifier">val</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-write" id="data-buffer-cyclic-cyclic_buffer-write">§</a>
+</pre>
+<div class="docs">
+<p>Wait for a free entry and write one entry.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">free</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-free" id="data-buffer-cyclic-cyclic_buffer-free">§</a>
+</pre>
+<div class="docs">
+<p>Free entries up to the specified address. Caller should ensure that
+this address is valid.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">wait</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-wait" id="data-buffer-cyclic-cyclic_buffer-wait">§</a>
+</pre>
+<div class="docs">
+<p>Block until the passed address has been written to.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+T <span class="identifier">read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-read" id="data-buffer-cyclic-cyclic_buffer-read">§</a>
+</pre>
+<div class="docs">
+<p>Wait for the entry at <code>addr</code> to be written and then read
+the value. The caller should ensure that this is not called for a free
+entry.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span>T <span class="identifier">nonblocking_read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-nonblocking_read" id="data-buffer-cyclic-cyclic_buffer-nonblocking_read">§</a>
+</pre>
+<div class="docs">
+<p>Read the value at the specified address. This version of read does
+not block to wait for the entry to be written. It is also inline to
+reduce the cost of multiple callsites. The caller should ensure that the
+address is valid (written and not freed).</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Element address.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

@@ -1,0 +1,398 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../sync/lock.html" id="index-link"
+class="link">sync.lock</a>
+<ul>
+<li><a href="../sync/lock.html#sync-lock-mutex" id="index-link"
+class="link"><code>mutex</code></a></li>
+<li><a href="../sync/lock.html#sync-lock-rwlock" id="index-link"
+class="link"><code>rwlock</code></a></li>
+<li><a href="../sync/lock.html#sync-lock-semaphore" id="index-link"
+class="link"><code>semaphore</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>sync.lock <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">class</span> <span class="identifier">mutex</span> <a class="anchor" href="#sync-lock-mutex" id="sync-lock-mutex">§</a>
+</pre>
+<div class="docs">
+<p>Mutex: mutually exclusive lock. Call <code>lock</code> to acquire the
+mutex and <code>unlock</code> to release it. You would typically use
+this class in instances where you have code that implements a
+read-modify-write pattern on some variable(s) which takes multiple
+cycles to complete. In cases where this operation could be completed
+within a single clock cycle, you may consider instead putting the code
+in a function which internally uses the <code>atomic</code> keyword to
+encapsulate the read-modify-write.</p>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">lock</span>() <a class="anchor" href="#sync-lock-mutex-lock" id="sync-lock-mutex-lock">§</a>
+</pre>
+<div class="docs">
+<p>Atomically acquire the lock if it is not already acquired, or block
+waiting on the lock to be released.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">unlock</span>() <a class="anchor" href="#sync-lock-mutex-unlock" id="sync-lock-mutex-unlock">§</a>
+</pre>
+<div class="docs">
+<p>Release the lock.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxThreads&gt;
+<span class="keyword">class</span> <span class="identifier">rwlock</span> <a class="anchor" href="#sync-lock-rwlock" id="sync-lock-rwlock">§</a>
+</pre>
+<div class="docs">
+<p>Reader-Writer lock is a synchronization primitive that allows
+multiple “threads” to acquire a read-lock, but only one thread may have
+(any) lock if that thread has the write lock.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> MaxThreads
+</pre>
+<div class="docs">
+<p>The maximum number of threads that might be manipulating the lock.
+This determines the maximum number of read-locks that can be
+outstanding. Typically 512 is a reasonable value to use here.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">lock</span>(<span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-rwlock-lock" id="sync-lock-rwlock-lock">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">read_lock</span>() <a class="anchor" href="#sync-lock-rwlock-read_lock" id="sync-lock-rwlock-read_lock">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_lock</span>() <a class="anchor" href="#sync-lock-rwlock-write_lock" id="sync-lock-rwlock-write_lock">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">unlock</span>(<span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-rwlock-unlock" id="sync-lock-rwlock-unlock">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">read_unlock</span>() <a class="anchor" href="#sync-lock-rwlock-read_unlock" id="sync-lock-rwlock-read_unlock">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">write_unlock</span>() <a class="anchor" href="#sync-lock-rwlock-write_unlock" id="sync-lock-rwlock-write_unlock">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">auto</span> I, <span class="keyword">auto</span> Blocking = <span class="literal">true</span>&gt;
+<span class="keyword">class</span> <span class="identifier">semaphore</span> <a class="anchor" href="#sync-lock-semaphore" id="sync-lock-semaphore">§</a>
+</pre>
+<div class="docs">
+<p><a
+href="https://en.wikipedia.org/wiki/Semaphore_(programming)">Semaphore</a></p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> M
+</pre>
+<div class="docs">
+<p>Maximum semaphore value.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> I
+</pre>
+<div class="docs">
+<p>Initial value for the semaphore count. Must be less than or equal to
+<code>M</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Blocking = <span class="literal">true</span>
+</pre>
+<div class="docs">
+<p>When true, this parameter causes the semaphore to block when wait is
+called. Setting to false should only be used when the caller can ensure
+that the semaphore count is greater than 0 when wait is called otherwise
+a <code>assert</code> is raised.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">sem_ctr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;M&gt; <a class="anchor" href="#sync-lock-semaphore-sem_ctr_t" id="sync-lock-semaphore-sem_ctr_t">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">test_and_decrement</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>) <a class="anchor" href="#sync-lock-semaphore-test_and_decrement" id="sync-lock-semaphore-test_and_decrement">§</a>
+</pre>
+<div class="docs">
+<p>Decrement the counter if the current count is greater or equal than
+<code>val</code>. This function is not inherently threadsafe and must be
+called from inside an <code>atomic</code>.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">wait</span>() <a class="anchor" href="#sync-lock-semaphore-wait" id="sync-lock-semaphore-wait">§</a>
+</pre>
+<div class="docs">
+<p>Decrement the semaphore count by 1 if it is nonzero otherwise
+block.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">wait_multiple</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>) <a class="anchor" href="#sync-lock-semaphore-wait_multiple" id="sync-lock-semaphore-wait_multiple">§</a>
+</pre>
+<div class="docs">
+<p>Decrement the semaphore count by <code>val</code> if it is nonzero
+otherwise block.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">post</span>() <a class="anchor" href="#sync-lock-semaphore-post" id="sync-lock-semaphore-post">§</a>
+</pre>
+<div class="docs">
+<p>Increment the semaphore count by 1, potentially waking a thread.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">count</span>() <a class="anchor" href="#sync-lock-semaphore-count" id="sync-lock-semaphore-count">§</a>
+</pre>
+<div class="docs">
+<p>Return current value of semaphore. Provided primarily for
+debug/diagnostic purposes.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">void</span> <span class="identifier">post_multiple</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">amount</span>) <a class="anchor" href="#sync-lock-semaphore-post_multiple" id="sync-lock-semaphore-post_multiple">§</a>
+</pre>
+<div class="docs">
+<p>Increment the semaphore count by the specified <code>amount</code>,
+potentially waking one or more threads.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Invariants</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(I &lt;= M)
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

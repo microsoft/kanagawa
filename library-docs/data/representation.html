@@ -1,0 +1,220 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/representation.html" id="index-link"
+class="link">data.representation</a>
+<ul>
+<li><a
+href="../data/representation.html#data-representation-binary_to_one_hot"
+id="index-link" class="link"><code>binary_to_one_hot</code></a></li>
+<li><a
+href="../data/representation.html#data-representation-endian_change"
+id="index-link" class="link"><code>endian_change</code></a></li>
+<li><a href="../data/representation.html#data-representation-onehot_mux"
+id="index-link" class="link"><code>onehot_mux</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.representation <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">auto</span> OutputWidth, <span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span><span class="builtin">bool</span>[OutputWidth] <span class="identifier">binary_to_one_hot</span>(T <span class="identifier">index</span>) <a class="anchor" href="#data-representation-binary_to_one_hot" id="data-representation-binary_to_one_hot">§</a>
+</pre>
+<div class="docs">
+<p>Generate a onehot of the specified width. A onehot is an array of
+booleans with a single value set to true. Calling with
+<code>OutputWidth</code> 8 and <code>index</code> 1 returns an array of
+8 bools with only bool 1 set to true. Or in binary, 00000010.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Count&gt;
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">onehot_mux</span>(<span class="builtin">uint</span>&lt;Count&gt; <span class="identifier">onehot</span>, T[Count] <span class="identifier">data</span>) <a class="anchor" href="#data-representation-onehot_mux" id="data-representation-onehot_mux">§</a>
+</pre>
+<div class="docs">
+<p>Similar to <code>mux</code>, but takes a <code>onehot</code> rather
+than an index as the first parameter. Also takes an array rather than a
+variable number of arguments for the selection list. The least
+significant bit in the onehot corresponds to index 0 in the data
+array.</p>
+<details>
+<summary>Examples</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; onehot_mux&lt;uint2, 4&gt;(1, {0, 1, 2, 3});
+0
+
+&gt;&gt;&gt; onehot_mux&lt;uint2, 4&gt;(2, {0, 1, 2, 3});
+1
+
+&gt;&gt;&gt; onehot_mux&lt;uint2, 4&gt;(4, {0, 1, 2, 3});
+2</code></pre>
+</details>
+<p>The <code>onehot</code> must be valid which means it has exactly one
+bit set. Like <code>mux</code>, <code>onehot_mux</code> requires that
+<code>Count</code> is a power of two.</p>
+</div>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="modifier">inline </span>T <span class="identifier">endian_change</span>(T <span class="identifier">input</span>) <a class="anchor" href="#data-representation-endian_change" id="data-representation-endian_change">§</a>
+</pre>
+<div class="docs">
+<p>Change a value from big endian to little endian, or vice versa. The
+input type must be of a size that’s a multiple of 8 bits.</p>
+<details>
+<summary>Example</summary>
+<pre class="kanagawa"><code>&gt;&gt;&gt; endian_change(0x12345678)
+0x78563412</code></pre>
+</details>
+</div>
+</section>
+</div>
+</div>

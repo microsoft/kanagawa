@@ -1,0 +1,278 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/datetime.html" id="index-link"
+class="link">data.datetime</a>
+<ul>
+<li><a href="../data/datetime.html#data-datetime-epoch_days_t"
+id="index-link" class="link"><code>epoch_days_t</code></a></li>
+<li><a href="../data/datetime.html#data-datetime-epoch_seconds_t"
+id="index-link" class="link"><code>epoch_seconds_t</code></a></li>
+<li><a href="../data/datetime.html#data-datetime-time_day_t"
+id="index-link" class="link"><code>time_day_t</code></a></li>
+<li><a href="../data/datetime.html#data-datetime-time_t" id="index-link"
+class="link"><code>time_t</code></a></li>
+<li><a href="../data/datetime.html#data-datetime-utc_days_to_epoch"
+id="index-link" class="link"><code>utc_days_to_epoch</code></a></li>
+<li><a href="../data/datetime.html#data-datetime-utc_time_to_epoch"
+id="index-link" class="link"><code>utc_time_to_epoch</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.datetime <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">time_t</span> <a class="anchor" href="#data-datetime-time_t" id="data-datetime-time_t">§</a>
+</pre>
+<div class="docs">
+<p>All fields are 0-based Year = 1995 means the year of Windows 95 Day =
+0 means the first day of the month</p>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">uint6</span> <span class="identifier">seconds</span> <a class="anchor" href="#data-datetime-$quasi0-seconds" id="data-datetime-$quasi0-seconds">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint6</span> <span class="identifier">minutes</span> <a class="anchor" href="#data-datetime-$quasi0-minutes" id="data-datetime-$quasi0-minutes">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint5</span> <span class="identifier">hours</span> <a class="anchor" href="#data-datetime-$quasi0-hours" id="data-datetime-$quasi0-hours">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint5</span> <span class="identifier">day</span> <a class="anchor" href="#data-datetime-$quasi0-day" id="data-datetime-$quasi0-day">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint4</span> <span class="identifier">month</span> <a class="anchor" href="#data-datetime-$quasi0-month" id="data-datetime-$quasi0-month">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint12</span> <span class="identifier">year</span> <a class="anchor" href="#data-datetime-$quasi0-year" id="data-datetime-$quasi0-year">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">struct</span> <span class="identifier">time_day_t</span> <a class="anchor" href="#data-datetime-time_day_t" id="data-datetime-time_day_t">§</a>
+</pre>
+<div class="docs">
+<p><code>time_t</code> with day as smallest element</p>
+<details>
+<p><summary>Fields</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">uint5</span> <span class="identifier">day</span> <a class="anchor" href="#data-datetime-$quasi1-day" id="data-datetime-$quasi1-day">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint4</span> <span class="identifier">month</span> <a class="anchor" href="#data-datetime-$quasi1-month" id="data-datetime-$quasi1-month">§</a>
+</pre>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">uint12</span> <span class="identifier">year</span> <a class="anchor" href="#data-datetime-$quasi1-year" id="data-datetime-$quasi1-year">§</a>
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">epoch_seconds_t</span> = <span class="keyword">uint36</span> <a class="anchor" href="#data-datetime-epoch_seconds_t" id="data-datetime-epoch_seconds_t">§</a>
+</pre>
+<div class="docs">
+<p>Enough bits to represent the number of seconds since Jan 1 1970 for
+all years covered by epoch related functions</p>
+</div>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">epoch_days_t</span> = <span class="keyword">uint19</span> <a class="anchor" href="#data-datetime-epoch_days_t" id="data-datetime-epoch_days_t">§</a>
+</pre>
+<div class="docs">
+<p>Enough bits to represent the number of days since Jan 1 1970 for all
+years covered by epoch related functions</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../data/datetime.html#data-datetime-epoch_days_t"><span class="identifier">epoch_days_t</span></a>&gt; <span class="identifier">utc_days_to_epoch</span>(<a class="link" href="../data/datetime.html#data-datetime-time_day_t"><span class="identifier">time_day_t</span></a> <span class="identifier">time</span>) <a class="anchor" href="#data-datetime-utc_days_to_epoch" id="data-datetime-utc_days_to_epoch">§</a>
+</pre>
+<div class="docs">
+<p>Converts a <code>time_day_t</code> to days since Jan 1 1970. The
+input year must be &gt; 1970 and must be less than 2994 Input time is
+assumed to be UTC (GMT time zone)</p>
+</div>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../data/datetime.html#data-datetime-epoch_seconds_t"><span class="identifier">epoch_seconds_t</span></a>&gt; <span class="identifier">utc_time_to_epoch</span>(<a class="link" href="../data/datetime.html#data-datetime-time_t"><span class="identifier">time_t</span></a> <span class="identifier">time</span>) <a class="anchor" href="#data-datetime-utc_time_to_epoch" id="data-datetime-utc_time_to_epoch">§</a>
+</pre>
+<div class="docs">
+<p>Converts a <code>time_t</code> to seconds since Jan 1 1970 The input
+year must be &gt; 1970 and must be less than 2994 Input time is assumed
+to be UTC (GMT time zone)</p>
+</div>
+</section>
+</div>
+</div>

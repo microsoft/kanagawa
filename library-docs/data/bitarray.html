@@ -1,0 +1,374 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../data/bitarray.html" id="index-link"
+class="link">data.bitarray</a>
+<ul>
+<li><a href="../data/bitarray.html#data-bitarray-bitarray"
+id="index-link" class="link"><code>bitarray</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>data.bitarray <a href="../index.html">&equiv;</a></h1>
+<hr />
+<pre class="signature">
+<span class="keyword">template</span> &lt;
+    <span class="keyword">auto</span> Size,
+    <span class="keyword">auto</span> WordWidth,
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+    &gt;
+<span class="keyword">class</span> <span class="identifier">bitarray</span> <a class="anchor" href="#data-bitarray-bitarray" id="data-bitarray-bitarray">§</a>
+</pre>
+<div class="docs">
+<p>A fixed sized array of bits, stored internally as a memory of words.
+Provides methods to read or write at bit and word granularity.</p>
+<details>
+<p><summary>Parameters</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> Size
+</pre>
+<div class="docs">
+<p>Number of bits in the bit vector.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">auto</span> WordWidth
+</pre>
+<div class="docs">
+<p>Number of bits in each word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
+</pre>
+<div class="docs">
+<p>Memory implementation.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Aliases</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">bit_addr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-bitarray-bitarray-bit_addr_t" id="data-bitarray-bitarray-bit_addr_t">§</a>
+</pre>
+<div class="docs">
+<p>Represents the address of a single bit.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">word_addr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<span class="identifier">WordCount</span>&gt; <a class="anchor" href="#data-bitarray-bitarray-word_addr_t" id="data-bitarray-bitarray-word_addr_t">§</a>
+</pre>
+<div class="docs">
+<p>Represents the address of a single word.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="keyword">using</span> <span class="identifier">word_t</span> = <span class="builtin">uint</span>&lt;WordWidth&gt; <a class="anchor" href="#data-bitarray-bitarray-word_t" id="data-bitarray-bitarray-word_t">§</a>
+</pre>
+<div class="docs">
+<p>A single word which can be read or written.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>Methods</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">read_bit</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-bitarray-bitarray-read_bit" id="data-bitarray-bitarray-read_bit">§</a>
+</pre>
+<div class="docs">
+<p>Get the value of a single bit from the bitarray.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of bit to read.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_bit</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>, <span class="builtin">bool</span> <span class="identifier">val</span>) <a class="anchor" href="#data-bitarray-bitarray-write_bit" id="data-bitarray-bitarray-write_bit">§</a>
+</pre>
+<div class="docs">
+<p>Set the value of a single bit in the bitarray. Note that this is
+implemented with a read-modify write. If <code>Memory</code> is
+<code>memory_norep</code> then concurrent reads and writes of the
+bitarray are not allowed. If <code>Memory</code> is <code>memory</code>,
+then each call site of <code>read_bit</code>, <code>write_bit</code>,
+and <code>read_word</code> add another replica.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of the bit to write.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="builtin">bool</span> <span class="identifier">val</span>
+</pre>
+<div class="docs">
+<p>Value to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">read_word</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-bitarray-bitarray-read_word" id="data-bitarray-bitarray-read_word">§</a>
+</pre>
+<div class="docs">
+<p>Get the value of a word.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of the word to read. Note that this is in terms of words, not
+bits.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+<li>
+<pre class="signature">
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_word</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>, <a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">word</span>) <a class="anchor" href="#data-bitarray-bitarray-write_word" id="data-bitarray-bitarray-write_word">§</a>
+</pre>
+<div class="docs">
+<p>Set the value of a word.</p>
+<details>
+<p><summary>Arguments</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>
+</pre>
+<div class="docs">
+<p>Address of the word to read. Note that this is in terms of words, not
+bits.</p>
+</div>
+</li>
+<li>
+<pre class="signature">
+<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">word</span>
+</pre>
+<div class="docs">
+<p>Word to write.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<details>
+<p><summary>General</summary></p>
+<div>
+<ul class="subList">
+<li>
+<pre class="signature">
+(<span class="literal">0</span> == (Size % WordWidth))
+</pre>
+</li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+</div>
+</div>

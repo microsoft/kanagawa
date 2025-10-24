@@ -1,0 +1,567 @@
+<style>
+a
+{
+  text-decoration : none;
+}
+
+a:hover
+{
+  text-decoration : underline;
+}
+
+.container
+{
+  display        : flex;
+  flex-direction : row;
+}
+
+.nav
+{
+  position         : -webkit-sticky;
+  position         : sticky;
+  flex-basis       : 10%;
+  background-color : #f2f3f4;
+  padding          : 20px 20px 20px 20px;
+  top              : 10vh;
+  height           : max-content;
+  max-height       : 80vh;
+  overflow-y       : auto;
+  min-width        : max-content;
+  margin           : 3em 3em 3em 3em;
+}
+
+.content
+{
+  flex-basis : 80%;
+  max-width  : 1450px;
+  margin     : 3em auto 3em auto;
+}
+
+.signature
+{
+  font-family      : monospace;
+  background-color : #f2f3f4;
+  color            : #373d3f;
+  border           : 1px solid #dddddd;
+  border-left      : 3px solid #0080ff;
+  border-radius    : 5px 5px 5px 5px;
+  margin-bottom    : 0.5em;
+  padding          : 0.5em 1em 0.5em 1em;
+}
+
+.body
+{
+  font-family : "", sans-serif;
+  font-size   : 1em;
+  padding     : 10px 10px 10px 10px;
+  color       : #1c1b24;
+  line-height : 1.4;
+}
+
+.docs
+{
+  padding-left  : 1em;
+  margin-top    : -0.4em;
+  margin-bottom : 1.4em;
+  border-left   : 1px solid #dcdcdc;
+}
+
+.docs details
+{
+  margin-top : 1em;
+}
+
+.body h1, h2, h3, h4
+{
+  color : #283665;
+}
+
+.kanagawa
+{
+  background-color : #f7f7f7;
+  padding          : 1em 1em 1em 1em;
+}
+
+.anchor
+{
+  color : #c5c8c6;
+}
+
+.attribute
+{
+  color : #ffa500;
+}
+
+.builtin
+{
+  color : #cfb017;
+}
+
+.identifier
+{
+  font-weight : bold;
+}
+
+.keyword
+{
+  color : #60ac39;
+}
+
+.link
+{
+  color : #6684e1;
+}
+
+.literal
+{
+  color : #d73737;
+}
+
+.modifier
+{
+  color : #b854d4;
+}
+
+.subList
+{
+  list-style-type : none;
+}
+
+code
+{
+  font-family : monospace;
+  font-size   : 1.2em;
+}
+
+.nav ul
+{
+  list-style-type : none;
+}
+
+.nav > ul
+{
+  padding-left : 0px;
+}
+
+
+/* Generated with Clay, http://fvisser.nl/clay */</style>
+<div id="body" class="body">
+<div id="container" class="container">
+<section id="nav" class="nav">
+<h2>Index</h2>
+<ul>
+<li><a href="../compiler/config.html" id="index-link"
+class="link">compiler.config</a>
+<ul>
+<li><a href="../compiler/config.html#compiler-config-almost_empty_depth"
+id="index-link" class="link"><code>almost_empty_depth</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-array_mux_cost_factor"
+id="index-link" class="link"><code>array_mux_cost_factor</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-array_register_cost_factor"
+id="index-link"
+class="link"><code>array_register_cost_factor</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-array_write_port_cost_factor"
+id="index-link"
+class="link"><code>array_write_port_cost_factor</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-block_ram_supports_ecc"
+id="index-link"
+class="link"><code>block_ram_supports_ecc</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-block_ram_supports_hardened_bypass"
+id="index-link"
+class="link"><code>block_ram_supports_hardened_bypass</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-block_ram_supports_quad_port"
+id="index-link"
+class="link"><code>block_ram_supports_quad_port</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-block_ram_supports_true_dual_port"
+id="index-link"
+class="link"><code>block_ram_supports_true_dual_port</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-default_clock_frequency_mhz"
+id="index-link"
+class="link"><code>default_clock_frequency_mhz</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-device_family"
+id="index-link" class="link"><code>device_family</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-device_name"
+id="index-link" class="link"><code>device_name</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-fifo_bits_per_register"
+id="index-link"
+class="link"><code>fifo_bits_per_register</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-fifo_depth_alignment"
+id="index-link" class="link"><code>fifo_depth_alignment</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-fifo_depth_pow2"
+id="index-link" class="link"><code>fifo_depth_pow2</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-fifo_fixed_cost"
+id="index-link" class="link"><code>fifo_fixed_cost</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-fifo_width_alignment"
+id="index-link" class="link"><code>fifo_width_alignment</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-global_data_propagation_ram_alignment"
+id="index-link"
+class="link"><code>global_data_propagation_ram_alignment</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-hal_device_family"
+id="index-link" class="link"><code>hal_device_family</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-integer_mul_src_width"
+id="index-link" class="link"><code>integer_mul_src_width</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-lut_based_shift_register_available"
+id="index-link"
+class="link"><code>lut_based_shift_register_available</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-memory_configurations"
+id="index-link" class="link"><code>memory_configurations</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-memory_init_file_type"
+id="index-link" class="link"><code>memory_init_file_type</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-memory_resources"
+id="index-link" class="link"><code>memory_resources</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-min_almost_full_depth"
+id="index-link" class="link"><code>min_almost_full_depth</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-min_auto_pipeline_depth"
+id="index-link"
+class="link"><code>min_auto_pipeline_depth</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-min_dual_clock_fifo_depth"
+id="index-link"
+class="link"><code>min_dual_clock_fifo_depth</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-min_fifo_depth"
+id="index-link" class="link"><code>min_fifo_depth</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-registers_require_power_on_initial_value"
+id="index-link"
+class="link"><code>registers_require_power_on_initial_value</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-signed_integer_mul_name"
+id="index-link"
+class="link"><code>signed_integer_mul_name</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-small_lut_size"
+id="index-link" class="link"><code>small_lut_size</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-supports_auto_pipelining"
+id="index-link"
+class="link"><code>supports_auto_pipelining</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-supports_dsp"
+id="index-link" class="link"><code>supports_dsp</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-supports_luts"
+id="index-link" class="link"><code>supports_luts</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-trade_area_for_speed"
+id="index-link" class="link"><code>trade_area_for_speed</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-unsigned_integer_mul_name"
+id="index-link"
+class="link"><code>unsigned_integer_mul_name</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-use_internal_buffer_fifo_optimization"
+id="index-link"
+class="link"><code>use_internal_buffer_fifo_optimization</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-use_thread_rate_in_fifo_sizing"
+id="index-link"
+class="link"><code>use_thread_rate_in_fifo_sizing</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-vendor"
+id="index-link" class="link"><code>vendor</code></a></li>
+<li><a
+href="../compiler/config.html#compiler-config-verilog_dont_merge_pragma_name"
+id="index-link"
+class="link"><code>verilog_dont_merge_pragma_name</code></a></li>
+<li><a href="../compiler/config.html#compiler-config-version"
+id="index-link" class="link"><code>version</code></a></li>
+</ul></li>
+</ul>
+</section>
+<section id="content" class="content">
+<h1>compiler.config <a href="../index.html">&equiv;</a></h1>
+<p>Compiler configuration parameters.</p>
+<p>The Compiler uses constants defined in this module as configuration
+parameters for code generation.</p>
+<p>Values of the parameters are imported from compiler.config.device,
+which combines default parameter values with device-specific values
+defined in in a device-specific module hardware.device.</p>
+<p>Your device, either directly or indirectly, MUST define values for
+each of these constants.</p>
+<hr />
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">version</span> = <a class="link" href="../compiler/config.html#compiler-config-version"><span class="identifier">version</span></a> <a class="anchor" href="#compiler-config-version" id="compiler-config-version">§</a>
+</pre>
+<div class="docs">
+<p>Version of device configuration schema</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_name</span> = <a class="link" href="../compiler/config.html#compiler-config-device_name"><span class="identifier">device_name</span></a> <a class="anchor" href="#compiler-config-device_name" id="compiler-config-device_name">§</a>
+</pre>
+<div class="docs">
+<p>Unambiguous name of the target device</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">vendor</span> = <a class="link" href="../compiler/config.html#compiler-config-vendor"><span class="identifier">vendor</span></a> <a class="anchor" href="#compiler-config-vendor" id="compiler-config-vendor">§</a>
+</pre>
+<div class="docs">
+<p>Name of the vendor that manufactures the target device, for example
+‘Intel’ or ‘Xilinx’</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_family</span> = <a class="link" href="../compiler/config.html#compiler-config-device_family"><span class="identifier">device_family</span></a> <a class="anchor" href="#compiler-config-device_family" id="compiler-config-device_family">§</a>
+</pre>
+<div class="docs">
+<p>Name of the device family into which the target device belongs, for
+example ‘Agilex 7’</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">hal_device_family</span> = <a class="link" href="../compiler/config.html#compiler-config-hal_device_family"><span class="identifier">hal_device_family</span></a> <a class="anchor" href="#compiler-config-hal_device_family" id="compiler-config-hal_device_family">§</a>
+</pre>
+<div class="docs">
+<p>Name of the device family that is significant to the Vendor RTL (or
+simulation libraries). This value is passed into HAL modules as a
+parameter, and in some cases passed down into the Vendor modules or used
+to enable or disable some conditional behavior.</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">trade_area_for_speed</span> = <a class="link" href="../compiler/config.html#compiler-config-trade_area_for_speed"><span class="identifier">trade_area_for_speed</span></a> <a class="anchor" href="#compiler-config-trade_area_for_speed" id="compiler-config-trade_area_for_speed">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_dsp</span> = (<a class="link" href="../compiler/config.html#compiler-config-integer_mul_src_width"><span class="identifier">integer_mul_src_width</span></a> != <span class="literal">0</span>) <a class="anchor" href="#compiler-config-supports_dsp" id="compiler-config-supports_dsp">§</a>
+</pre>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">integer_mul_src_width</span> = <a class="link" href="../compiler/config.html#compiler-config-integer_mul_src_width"><span class="identifier">integer_mul_src_width</span></a> <a class="anchor" href="#compiler-config-integer_mul_src_width" id="compiler-config-integer_mul_src_width">§</a>
+</pre>
+<div class="docs">
+<p>Width of source operands for an unsigned integer multiplication using
+a device DSP</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">unsigned_integer_mul_name</span> = <a class="link" href="../compiler/config.html#compiler-config-unsigned_integer_mul_name"><span class="identifier">unsigned_integer_mul_name</span></a> <a class="anchor" href="#compiler-config-unsigned_integer_mul_name" id="compiler-config-unsigned_integer_mul_name">§</a>
+</pre>
+<div class="docs">
+<p>Name of the intrinsic operation for 1 unsigned integer multiplication
+using a device DSP</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">signed_integer_mul_name</span> = <a class="link" href="../compiler/config.html#compiler-config-signed_integer_mul_name"><span class="identifier">signed_integer_mul_name</span></a> <a class="anchor" href="#compiler-config-signed_integer_mul_name" id="compiler-config-signed_integer_mul_name">§</a>
+</pre>
+<div class="docs">
+<p>Name of the intrinsic operation for 1 signed integer multiplication
+using a device DSP</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_fifo_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_fifo_depth"><span class="identifier">min_fifo_depth</span></a> <a class="anchor" href="#compiler-config-min_fifo_depth" id="compiler-config-min_fifo_depth">§</a>
+</pre>
+<div class="docs">
+<p>Minimum depth for a single clock fifo</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_dual_clock_fifo_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_dual_clock_fifo_depth"><span class="identifier">min_dual_clock_fifo_depth</span></a> <a class="anchor" href="#compiler-config-min_dual_clock_fifo_depth" id="compiler-config-min_dual_clock_fifo_depth">§</a>
+</pre>
+<div class="docs">
+<p>Minimum depth for a dual clock fifo</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_almost_full_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_almost_full_depth"><span class="identifier">min_almost_full_depth</span></a> <a class="anchor" href="#compiler-config-min_almost_full_depth" id="compiler-config-min_almost_full_depth">§</a>
+</pre>
+<div class="docs">
+<p>Minimum almost_full value for a fifo. This is the minimum value
+needed to overcome fifo read-&gt;almost_full latency</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">almost_empty_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-almost_empty_depth"><span class="identifier">almost_empty_depth</span></a> <a class="anchor" href="#compiler-config-almost_empty_depth" id="compiler-config-almost_empty_depth">§</a>
+</pre>
+<div class="docs">
+<p>Minimum value for the almost empty threshold for a single-clock
+FIFO</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_width_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_width_alignment"><span class="identifier">fifo_width_alignment</span></a> <a class="anchor" href="#compiler-config-fifo_width_alignment" id="compiler-config-fifo_width_alignment">§</a>
+</pre>
+<div class="docs">
+<p>Minimum width of LUTram based FIFO structures below which there are
+no area savings. Used in calculations for the local data propagation
+optimization</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_depth_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_depth_alignment"><span class="identifier">fifo_depth_alignment</span></a> <a class="anchor" href="#compiler-config-fifo_depth_alignment" id="compiler-config-fifo_depth_alignment">§</a>
+</pre>
+<div class="docs">
+<p>Minimum depth of LUTram based FIFO structures below which there are
+no area savings. Used in calculations for the local data propagation
+optimization</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_fixed_cost</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_fixed_cost"><span class="identifier">fifo_fixed_cost</span></a> <a class="anchor" href="#compiler-config-fifo_fixed_cost" id="compiler-config-fifo_fixed_cost">§</a>
+</pre>
+<div class="docs">
+<p>Fixed cost of a FIFO used in calculations for the local data
+propagation optimization Used in calculations for the local data
+propagation optimization</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_bits_per_register</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_bits_per_register"><span class="identifier">fifo_bits_per_register</span></a> <a class="anchor" href="#compiler-config-fifo_bits_per_register" id="compiler-config-fifo_bits_per_register">§</a>
+</pre>
+<div class="docs">
+<p>The number of bits in an implicit fifo that has the same area cost as
+1 pipeline register. Used in calculations for the local data propagation
+optimization</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_internal_buffer_fifo_optimization</span> = <a class="link" href="../compiler/config.html#compiler-config-use_internal_buffer_fifo_optimization"><span class="identifier">use_internal_buffer_fifo_optimization</span></a> <a class="anchor" href="#compiler-config-use_internal_buffer_fifo_optimization" id="compiler-config-use_internal_buffer_fifo_optimization">§</a>
+</pre>
+<div class="docs">
+<p><code>true</code> if it makes sense to use KanagawaInternalBufferFifo
+for basic blockswith start conditions as an Fmax optimization</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">fifo_depth_pow2</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_depth_pow2"><span class="identifier">fifo_depth_pow2</span></a> <a class="anchor" href="#compiler-config-fifo_depth_pow2" id="compiler-config-fifo_depth_pow2">§</a>
+</pre>
+<div class="docs">
+<p><code>true</code> if FIFO depths should be round up to a power of
+2</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_thread_rate_in_fifo_sizing</span> = <a class="link" href="../compiler/config.html#compiler-config-use_thread_rate_in_fifo_sizing"><span class="identifier">use_thread_rate_in_fifo_sizing</span></a> <a class="anchor" href="#compiler-config-use_thread_rate_in_fifo_sizing" id="compiler-config-use_thread_rate_in_fifo_sizing">§</a>
+</pre>
+<div class="docs">
+<p>true if basic block thread rates should be used when computing fifo
+depths. When set to false, a thread rate of 1 is assumed for sizing.
+This feature is used to work around an EDA tool bug for certain Intel
+devices.</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_auto_pipelining</span> = <a class="link" href="../compiler/config.html#compiler-config-supports_auto_pipelining"><span class="identifier">supports_auto_pipelining</span></a> <a class="anchor" href="#compiler-config-supports_auto_pipelining" id="compiler-config-supports_auto_pipelining">§</a>
+</pre>
+<div class="docs">
+<p>true if the platform supports a feature where the EDA tool chooses
+the number of additional pipeline registers to add as needed to improve
+placement and routing</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_auto_pipeline_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_auto_pipeline_depth"><span class="identifier">min_auto_pipeline_depth</span></a> <a class="anchor" href="#compiler-config-min_auto_pipeline_depth" id="compiler-config-min_auto_pipeline_depth">§</a>
+</pre>
+<div class="docs">
+<p>On platforms that support auto-pipelining, there is a mininum fixed
+depth of pipeline registers required.</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">verilog_dont_merge_pragma_name</span> = <a class="link" href="../compiler/config.html#compiler-config-verilog_dont_merge_pragma_name"><span class="identifier">verilog_dont_merge_pragma_name</span></a> <a class="anchor" href="#compiler-config-verilog_dont_merge_pragma_name" id="compiler-config-verilog_dont_merge_pragma_name">§</a>
+</pre>
+<div class="docs">
+<p>The Verilog pragma used to tell the synthesis tool not to merge a
+register with others</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_luts</span> = <a class="link" href="../compiler/config.html#compiler-config-supports_luts"><span class="identifier">supports_luts</span></a> <a class="anchor" href="#compiler-config-supports_luts" id="compiler-config-supports_luts">§</a>
+</pre>
+<div class="docs">
+<p>true if the device supports LUTs (should be true for all FPGAs)</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">small_lut_size</span> = <a class="link" href="../compiler/config.html#compiler-config-small_lut_size"><span class="identifier">small_lut_size</span></a> <a class="anchor" href="#compiler-config-small_lut_size" id="compiler-config-small_lut_size">§</a>
+</pre>
+<div class="docs">
+<p>//| Multiple LUTs of this size can fit into 1 resource (ALM, CLB)</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">lut_based_shift_register_available</span> = <a class="link" href="../compiler/config.html#compiler-config-lut_based_shift_register_available"><span class="identifier">lut_based_shift_register_available</span></a> <a class="anchor" href="#compiler-config-lut_based_shift_register_available" id="compiler-config-lut_based_shift_register_available">§</a>
+</pre>
+<div class="docs">
+<p>true if the platform supports a RAM-based shift register. Used in
+calculations for the local data propagation optimization</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">registers_require_power_on_initial_value</span> = <a class="link" href="../compiler/config.html#compiler-config-registers_require_power_on_initial_value"><span class="identifier">registers_require_power_on_initial_value</span></a> <a class="anchor" href="#compiler-config-registers_require_power_on_initial_value" id="compiler-config-registers_require_power_on_initial_value">§</a>
+</pre>
+<div class="docs">
+<p>true if control signals should have power-on value specified</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_hardened_bypass</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_hardened_bypass"><span class="identifier">block_ram_supports_hardened_bypass</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_hardened_bypass" id="compiler-config-block_ram_supports_hardened_bypass">§</a>
+</pre>
+<div class="docs">
+<p>If the block RAMs in the device support pipeline bypass (aka memory
+forwarding) for at least 2 stages</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_ecc</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_ecc"><span class="identifier">block_ram_supports_ecc</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_ecc" id="compiler-config-block_ram_supports_ecc">§</a>
+</pre>
+<div class="docs">
+<p>true if the device supports ECC for block RAMs</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_true_dual_port</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_true_dual_port"><span class="identifier">block_ram_supports_true_dual_port</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_true_dual_port" id="compiler-config-block_ram_supports_true_dual_port">§</a>
+</pre>
+<div class="docs">
+<p>true if the device supports block RAMs in a true dual-port
+configuration (i.e. two independent read/write ports).</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_quad_port</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_quad_port"><span class="identifier">block_ram_supports_quad_port</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_quad_port" id="compiler-config-block_ram_supports_quad_port">§</a>
+</pre>
+<div class="docs">
+<p>true if the device supports block RAMs in a simple quad-port
+configuration</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">global_data_propagation_ram_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-global_data_propagation_ram_alignment"><span class="identifier">global_data_propagation_ram_alignment</span></a> <a class="anchor" href="#compiler-config-global_data_propagation_ram_alignment" id="compiler-config-global_data_propagation_ram_alignment">§</a>
+</pre>
+<div class="docs">
+<p>For data propagation memories, the minimum width of 1 memory</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a> <span class="identifier">memory_init_file_type</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_init_file_type"><span class="identifier">memory_init_file_type</span></a> <a class="anchor" href="#compiler-config-memory_init_file_type" id="compiler-config-memory_init_file_type">§</a>
+</pre>
+<div class="docs">
+<p>The format to use for memory initialization files</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">memory_configurations</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_configurations"><span class="identifier">memory_configurations</span></a> <a class="anchor" href="#compiler-config-memory_configurations" id="compiler-config-memory_configurations">§</a>
+</pre>
+<div class="docs">
+<p>Valid memory configurations</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">memory_resources</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_resources"><span class="identifier">memory_resources</span></a> <a class="anchor" href="#compiler-config-memory_resources" id="compiler-config-memory_resources">§</a>
+</pre>
+<div class="docs">
+<p>Specifies the number of each type of memory resource that is
+available on the device.</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_mux_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_mux_cost_factor"><span class="identifier">array_mux_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_mux_cost_factor" id="compiler-config-array_mux_cost_factor">§</a>
+</pre>
+<div class="docs">
+<p>This value is multiplied by the number of muxes necessary to
+implement an array when estimating. the relative cost of synthesizing a
+memory structure as an array (logic) versus using a RAM primitive.</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_register_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_register_cost_factor"><span class="identifier">array_register_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_register_cost_factor" id="compiler-config-array_register_cost_factor">§</a>
+</pre>
+<div class="docs">
+<p>This value is multiplied by the number of registers necessary to
+implement an array when estimating. the relative cost of synthesizing a
+memory structure as an array (logic) versus using a RAM primitive.</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_write_port_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_write_port_cost_factor"><span class="identifier">array_write_port_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_write_port_cost_factor" id="compiler-config-array_write_port_cost_factor">§</a>
+</pre>
+<div class="docs">
+<p>This value is multiplied by the number of write ports necessary to
+implement an array when estimating. the relative cost of synthesizing a
+memory structure as an array (logic) versus using a RAM primitive.</p>
+</div>
+<pre class="signature">
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">default_clock_frequency_mhz</span> = <span class="literal">200</span> <a class="anchor" href="#compiler-config-default_clock_frequency_mhz" id="compiler-config-default_clock_frequency_mhz">§</a>
+</pre>
+</section>
+</div>
+</div>
