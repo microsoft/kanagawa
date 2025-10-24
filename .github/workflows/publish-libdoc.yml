@@ -38,8 +38,10 @@ jobs:
           path: library-docs
 
       - name: Clone Wiki repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git clone https://github.com/microsoft/kanagawa.wiki.git wiki
+          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/microsoft/kanagawa.wiki.git wiki
           cd wiki
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
