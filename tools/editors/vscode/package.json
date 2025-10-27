@@ -1,0 +1,39 @@
+{
+  "name": "kanagawa",
+  "displayName": "Kanagawa Language Support",
+  "description": "Syntax highlighting for the Kanagawa hardware description language",
+  "version": "0.1.0",
+  "publisher": "microsoft-kanagawa",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/kanagawa.git"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "kanagawa",
+        "aliases": [
+          "Kanagawa",
+          "kanagawa"
+        ],
+        "extensions": [
+          ".k"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "kanagawa",
+        "scopeName": "source.kanagawa",
+        "path": "./syntaxes/kanagawa.tmLanguage.json"
+      }
+    ]
+  }
+}
