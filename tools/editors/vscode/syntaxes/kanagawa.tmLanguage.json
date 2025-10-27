@@ -167,7 +167,7 @@
       "patterns": [
         {
           "name": "keyword.control.kanagawa",
-          "match": "\\b(?:break|case|continue|default|do|else|for|if|return|switch|while|unrolled_for)\\b"
+          "match": "\\b(?:break|case|continue|default|do|else|for|if|return|switch|while)\\b"
         },
         {
           "name": "keyword.control.atomic.kanagawa",
