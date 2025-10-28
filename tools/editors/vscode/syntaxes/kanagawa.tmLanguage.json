@@ -1,0 +1,342 @@
+{
+  "name": "Kanagawa",
+  "scopeName": "source.kanagawa",
+  "fileTypes": [
+    "k"
+  ],
+  "foldingStartMarker": "\\{\\s*$",
+  "foldingStopMarker": "^\\s*\\}",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#attributes"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#module"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "attributes": {
+      "patterns": [
+        {
+          "name": "meta.attribute.kanagawa",
+          "begin": "\\[\\[",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.attribute.begin.kanagawa"
+            }
+          },
+          "end": "\\]\\]",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.attribute.end.kanagawa"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#numbers"
+            },
+            {
+              "name": "support.function.attribute.kanagawa",
+              "match": "\\b(?:call_rate|ecc|fifo_depth|latency|max_threads|name|schedule|thread_rate|transaction_size|async|atomic|last|memory|initialize|no_backpressure|pure|non_replicated|pipelined|quad_port|reorder_by_looping|reset|unordered)\\b"
+            },
+            {
+              "include": "#keywords"
+            }
+          ]
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.documentation.kanagawa",
+          "begin": "//(?=\\s*[|<])",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.kanagawa"
+            }
+          },
+          "end": "$\\n?",
+          "patterns": [
+            {
+              "match": "[|<]",
+              "name": "punctuation.definition.comment.documentation.kanagawa"
+            }
+          ]
+        },
+        {
+          "name": "comment.line.double-slash.kanagawa",
+          "begin": "//",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.kanagawa"
+            }
+          },
+          "end": "$\\n?"
+        },
+        {
+          "name": "comment.block.documentation.kanagawa",
+          "begin": "/\\*(?=\\s*[|<])",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.kanagawa"
+            }
+          },
+          "end": "\\*/",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.end.kanagawa"
+            }
+          },
+          "patterns": [
+            {
+              "match": "[|<]",
+              "name": "punctuation.definition.comment.documentation.kanagawa"
+            }
+          ]
+        },
+        {
+          "name": "comment.block.kanagawa",
+          "begin": "/\\*",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.kanagawa"
+            }
+          },
+          "end": "\\*/",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.end.kanagawa"
+            }
+          }
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.kanagawa",
+          "match": "\\b(?:true|false)\\b"
+        }
+      ]
+    },
+    "interpolation-expression": {
+      "patterns": [
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#operators"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.kanagawa",
+          "match": "\\b(?:break|case|continue|default|do|else|for|if|return|switch|while)\\b"
+        },
+        {
+          "name": "keyword.control.atomic.kanagawa",
+          "match": "\\batomic\\b"
+        },
+        {
+          "name": "storage.modifier.kanagawa",
+          "match": "\\b(?:auto|const|inline|noinline|static)\\b"
+        },
+        {
+          "name": "keyword.declaration.kanagawa",
+          "match": "\\b(?:class|enum|export|extern|import|module|private|public|struct|template|typename|union|using)\\b"
+        },
+        {
+          "name": "keyword.operator.word.kanagawa",
+          "match": "\\b(?:as|barrier|bitsizeof|bitoffsetof|bytesizeof|byteoffsetof|cast|clog2|concat|decltype|fan_out|lutmul|mux|reorder|static_assert)\\b"
+        }
+      ]
+    },
+    "module": {
+      "patterns": [
+        {
+          "name": "meta.module.kanagawa",
+          "begin": "\\b(module)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.declaration.module.kanagawa"
+            }
+          },
+          "end": "(?=\\s*\\{)",
+          "patterns": [
+            {
+              "include": "#module-path"
+            }
+          ]
+        },
+        {
+          "name": "meta.import.kanagawa",
+          "begin": "\\b(import)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.import.kanagawa"
+            }
+          },
+          "end": "(?=;|$)",
+          "patterns": [
+            {
+              "include": "#module-path"
+            }
+          ]
+        }
+      ]
+    },
+    "module-path": {
+      "patterns": [
+        {
+          "match": ",",
+          "name": "punctuation.separator.sequence.kanagawa"
+        },
+        {
+          "match": "\\\\",
+          "name": "keyword.operator.module.reexport.kanagawa"
+        },
+        {
+          "match": "[A-Za-z_][\\w]*(?:\\.[A-Za-z_][\\w]*)*",
+          "name": "entity.name.namespace.kanagawa"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.kanagawa",
+          "match": "\\b\\d[\\d_]*\\.(?:\\d[\\d_]*)?(?:[eE][+-]?\\d[\\d_]*)?\\b"
+        },
+        {
+          "name": "constant.numeric.float.kanagawa",
+          "match": "(?<![\\w.])\\.\\d[\\d_]*(?:[eE][+-]?\\d[\\d_]*)?\\b"
+        },
+        {
+          "name": "constant.numeric.float.kanagawa",
+          "match": "\\b\\d[\\d_]*(?:[eE][+-]?\\d[\\d_]*)\\b"
+        },
+        {
+          "name": "constant.numeric.binary.kanagawa",
+          "match": "\\b0[bB][01_]+(?:[iu](?:\\d+))?\\b"
+        },
+        {
+          "name": "constant.numeric.octal.kanagawa",
+          "match": "\\b0[oO][0-7_]+(?:[iu](?:\\d+))?\\b"
+        },
+        {
+          "name": "constant.numeric.hex.kanagawa",
+          "match": "\\b0[xX][0-9a-fA-F_]+(?:[iu](?:\\d+))?\\b"
+        },
+        {
+          "name": "constant.numeric.integer.kanagawa",
+          "match": "\\b\\d[\\d_]*(?:[iu](?:\\d+))?\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.kanagawa",
+          "match": "(?:\\^\\^|&&|\\|\\||<<|>>|==|!=|>=|<=|::|\\+|\\-|\\*|/|%|&|\\||\\^|>|<|=|\\?|:|~|!)"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.kanagawa",
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.kanagawa"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.kanagawa"
+            }
+          },
+          "patterns": [
+            {
+              "name": "constant.character.escape.kanagawa",
+              "match": "\\\\."
+            },
+            {
+              "name": "constant.character.escape.brace.kanagawa",
+              "match": "(?:\\{\\{|\\}\\})"
+            },
+            {
+              "name": "meta.interpolation.kanagawa",
+              "begin": "\\{(?!\\{)",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.section.interpolation.begin.kanagawa"
+                }
+              },
+              "end": "\\}",
+              "endCaptures": {
+                "0": {
+                  "name": "punctuation.section.interpolation.end.kanagawa"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "#interpolation-expression"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.numeric.kanagawa",
+          "match": "\\b(?:u?int)(?:<[^>]+>|\\d+)?\\b"
+        },
+        {
+          "name": "storage.type.primitive.kanagawa",
+          "match": "\\b(?:bool|string|float|float32|void)\\b"
+        }
+      ]
+    }
+  }
+}
