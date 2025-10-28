@@ -3,6 +3,7 @@
 
 import test.unit as unit
 import test.runner
+import .options as opt
 
 // Tests that run slowly in other files are placed here
 // This file is kept small to avoid per-clock-cycle costs in the simulator that grow with the size of the IR
@@ -53,7 +54,7 @@ public:
 
         bool done = (tid == (threadCount - 1));
 
-        Helper638(1, done, tid, tag);
+        [[transaction_size(opt::max_threads_limit)]] Helper638(1, done, tid, tag);
 
         if (done)
         {
@@ -74,7 +75,7 @@ public:
 
         bool done = (tid == (threadCount - 1));
 
-        Helper638(2, done, tid, tag);
+        [[transaction_size(opt::max_threads_limit)]] Helper638(2, done, tid, tag);
 
         if (done)
         {
