@@ -14,11 +14,7 @@ enable_testing()
 
 # Set the C++ standard required
 set(CMAKE_CXX_STANDARD 17)
-set(LIKER_USES_LIBRT "rt")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-# Required to link a dynamic library with a static library
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # This is where we stage binaries and generated docs during the build, so they are in a consistent location that is easy to locate
 set(BUILD_OUTPUT_DIR "${CMAKE_BINARY_DIR}/dist")
@@ -38,10 +34,8 @@ set(KANAGAWA_RUNTIME_TARGETS
 # Find all dependent libraries, headers, and tools.
 include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/deps.cmake)
 
-# Set CIRCT-specific variables
-include(${CMAKE_CURRENT_SOURCE_DIR}/build/cmake/circt.cmake)
-# Add CIRCT to the build
-add_subdirectory(${CMAKE_SOURCE_DIR}/thirdparty/circt/llvm/llvm)
+# Adds CIRCT to the build, but keeps any CIRCT-specific settings in a separate scope
+add_subdirectory(thirdparty)
 
 # Add build of the Kanagawa compiler
 add_subdirectory(compiler)

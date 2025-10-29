@@ -272,7 +272,7 @@ jobs:
             -DCMAKE_BUILD_TYPE="${{ env.CMAKE_BUILD_TYPE }}" \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-            -DCMAKE_PREFIX_PATH="${{ env.CMAKE_PREFIX_PATH }}" \
+            -DCMAKE_PREFIX_PATH="${{ env.BOOST_DIR }}:${{ env.CMAKE_PREFIX_PATH }}" \
             -DBoost_DIR="${{ env.BOOST_DIR }}" \
             -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
             -DVERILATOR_EXE="${{ env.VERILATOR_EXE }}" \

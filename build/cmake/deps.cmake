@@ -8,8 +8,13 @@
 cmake_policy(SET CMP0167 NEW)
 
 ####
-# Boost version 1.83.0 or later
-find_package(Boost 1.83 CONFIG REQUIRED)
+# Boost version 1.88.0 or later
+
+find_package(Boost 1.88 CONFIG REQUIRED
+  HINTS
+    ${Boost_DIR}
+    ${Boost_DIR}/lib/cmake
+)
 
 # Pick the header target name that exists:
 if (TARGET Boost::headers)
@@ -44,7 +49,7 @@ find_program(VERILATOR_EXE
 if (VERILATOR_EXE)
   message(STATUS "Dependency: Verilator at ${VERILATOR_EXE}")
 else()
-  message(WARNING "Verilator not found. Verilator-based tests will be disabled. Please install Verilator and/or define VERILATOR_EXE")
+  message(STATUS "Verilator not found. Verilator-based tests will be disabled. Please install Verilator and/or define VERILATOR_EXE")
 endif()
 
 # Haskell (cabal and ghc)

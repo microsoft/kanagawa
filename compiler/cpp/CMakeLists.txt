@@ -40,6 +40,30 @@ set(CPP_SOURCES
     verilog.cpp
 )
 
+# Compiler settings for building Kanagawa C++
+
+# Stop CMake from auto-including pch.h
+# to ensure that source files are always valid C++
+set(CMAKE_CXX_COMPILE_OPTIONS_USE_PCH "")
+
+# Required to link a dynamic library with a static library
+if(UNIX)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+endif()
+
+# Default / common MSVC settings
+include(${CMAKE_SOURCE_DIR}/build/cmake/msvc.cmake)
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /DNOMINMAX /DWIN32_LEAN_AND_MEAN /W3 /WX /wd4244 /wd4624 /wd4146 /w15032 /wd4319 /wd4297 /wd4091 /wd4834 /wd4018 /wd4996 /wd4267 /wd4244 /DBOOST_INTERPROCESS_DETAIL_STD_FWD_HPP /DBOOST_ALL_NO_LIB /fp:strict" )
+    set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} /DNOMINMAX /DWIN32_LEAN_AND_MEAN /W3 /WX /wd4244 /wd4624 /wd4146 /w15032 /wd4319 /wd4297 /wd4091 /wd4834 /wd4018 /wd4996 /wd4267 /wd4244 /DBOOST_INTERPROCESS_DETAIL_STD_FWD_HPP /DBOOST_ALL_NO_LIB /fp:strict" )
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR /EHsc /bigobj /MP4")
+endif()
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+    set(CMAKE_CXX_FLAGS "-fstandalone-debug -DNDEBUG -DBOOST_USES_XMM")
+endif()
+
 add_library(kanagawa_lib SHARED ${CPP_SOURCES})
 
 # Change the actual library filename to "kanagawa.dll" on Windows, "libkanagawa.so" (on Linux), etc.
@@ -56,9 +80,17 @@ target_precompile_headers(kanagawa_lib PRIVATE [["pch.h"]])
 set_source_files_properties(platform.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 set_source_files_properties(stack_trace.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
-# Despite the misleading name, this adds Boost to the include path using the information
-# gleaned from a call to find_package
+# Adds Boost to the include path
 target_link_libraries(kanagawa_lib PRIVATE Boost::headers)
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    # Ensure that interface functions are exported
+    target_compile_definitions(kanagawa_lib PRIVATE "EXPORT_API")
+endif()
+
+if(WIN32)
+    target_link_libraries(kanagawa_lib PUBLIC ntdll.lib)
+endif()
 
 # Make boost stack trace print function names in addition to addresses
 target_compile_definitions(kanagawa_lib PRIVATE "BOOST_STACKTRACE_USE_ADDR2LINE")

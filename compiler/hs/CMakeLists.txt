@@ -65,6 +65,13 @@ file(GLOB KANAGAWA_CABAL_FILES CONFIGURE_DEPENDS
 
 list(APPEND KANAGAWA_HS_SOURCES ${KANAGAWA_CABAL_FILES})
 
+# Determine platform-specific architecture string for Cabal
+if(WIN32)
+    set(CABAL_ARCH_STRING "x86_64-windows")
+else()
+    set(CABAL_ARCH_STRING "x86_64-linux")
+endif()
+
 # Build the kanagawa executable and copy it to the dist/bin directory
 add_custom_command(
     OUTPUT ${KANAGAWA_EXE_DEST}
@@ -76,7 +83,7 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_OUTPUT_BIN_DIR}"
     COMMAND
         ${CMAKE_COMMAND} -E copy_if_different
-        "${CABAL_WORKING_DIR}/dist/build/x86_64-linux/${GHC_NAME}/kanagawa-1.0.0/x/kanagawa/build/kanagawa/kanagawa${CMAKE_EXECUTABLE_SUFFIX}"
+        "${CABAL_WORKING_DIR}/dist/build/${CABAL_ARCH_STRING}/${GHC_NAME}/kanagawa-1.0.0/x/kanagawa/build/kanagawa/kanagawa${CMAKE_EXECUTABLE_SUFFIX}"
         "${KANAGAWA_EXE_DEST}"
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/compiler
     DEPENDS ${KANAGAWA_HS_SOURCES} kanagawa_lib
