@@ -80,7 +80,7 @@
               "name": "punctuation.definition.comment.begin.kanagawa"
             }
           },
-          "end": "$\\n?",
+          "end": "$",
           "patterns": [
             {
               "match": "[|<]",
@@ -96,7 +96,7 @@
               "name": "punctuation.definition.comment.begin.kanagawa"
             }
           },
-          "end": "$\\n?"
+          "end": "$"
         },
         {
           "name": "comment.block.documentation.kanagawa",
@@ -197,7 +197,7 @@
               "name": "keyword.declaration.module.kanagawa"
             }
           },
-          "end": "(?=\\s*\\{)",
+          "end": "(?=//|/\\*|\\{|;|$)",
           "patterns": [
             {
               "include": "#module-path"
@@ -212,7 +212,7 @@
               "name": "keyword.other.import.kanagawa"
             }
           },
-          "end": "(?=;|$)",
+          "end": "(?=//|/\\*|\\{)",
           "patterns": [
             {
               "include": "#module-path"
@@ -271,10 +271,11 @@
     },
     "operators": {
       "patterns": [
-        {
-          "name": "keyword.operator.kanagawa",
-          "match": "(?:\\^\\^|&&|\\|\\||<<|>>|==|!=|>=|<=|::|\\+|\\-|\\*|/|%|&|\\||\\^|>|<|=|\\?|:|~|!)"
-        }
+        { "name": "keyword.operator.assignment.kanagawa", "match": "&&=|\\|\\|=|<<=|>>=|\\+=|-=|\\*=|/=|%=|&=|\\|=|\\^=|=" },
+        { "name": "keyword.operator.comparison.kanagawa", "match": "==|!=|>=|<=" },
+        { "name": "keyword.operator.kanagawa", "match": "::|->|<<|>>" },
+        { "name": "keyword.operator.comparison.kanagawa", "match": "<|>" },
+        { "name": "keyword.operator.kanagawa", "match": "\\+|-|\\*|/|%|&|\\||\\^|\\?|:|~|!" }
       ]
     },
     "strings": {
