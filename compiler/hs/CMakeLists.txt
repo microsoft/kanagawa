@@ -61,14 +61,8 @@ file(GLOB KANAGAWA_CABAL_FILES CONFIGURE_DEPENDS
 
 list(APPEND KANAGAWA_HS_SOURCES ${KANAGAWA_CABAL_FILES})
 
-# Determine platform-specific architecture string for Cabal
-if(WIN32)
-    set(CABAL_ARCH_STRING "x86_64-windows")
-elseif (APPLE)
-    set(CABAL_ARCH_STRING "aarch64-darwin")
-else()
-    set(CABAL_ARCH_STRING "x86_64-linux")
-endif()
+# Include cabal helpers
+include(${CMAKE_SOURCE_DIR}/build/cmake/cabal.cmake)
 
 # Build the kanagawa executable and copy it to the dist/bin directory
 add_custom_command(

@@ -82,6 +82,7 @@ jobs:
 
       # Free up some disk space - this is a major constraint on GitHub-hosted runners
       - name: Free disk space
+        if: runner.os == 'Linux'
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
           android: true
@@ -162,6 +163,7 @@ jobs:
           verbose: 1
 
       - name: Install Verilator
+        if: runner.os != 'Windows'
         uses: veryl-lang/setup-verilator@v1
         with:
           version: '5.036'
@@ -184,6 +186,11 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           brew install cmake ninja pkg-config gmp
+
+      - name: Install miscellaneous packages (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          choco install cmake ninja pkgconfiglite -y
 
       - name: Install Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
@@ -247,23 +254,33 @@ jobs:
 
           # ghcup & Verilator
           echo "GHCUP_DIR=$HOME/.ghcup/bin" >> "$GITHUB_ENV"
-          VERILATOR_EXE="$(command -v verilator)"
-          [ -z "$VERILATOR_EXE" ] && { echo "Verilator not found"; exit 1; }
-          echo "VERILATOR_EXE=$VERILATOR_EXE" >> "$GITHUB_ENV"
+
+          # Verilator is only installed on non-Windows runners
+          if [ "${{ runner.os }}" != "Windows" ]; then
+            VERILATOR_EXE="$(command -v verilator)"
+            [ -z "$VERILATOR_EXE" ] && { echo "Verilator not found"; exit 1; }
+            echo "VERILATOR_EXE=$VERILATOR_EXE" >> "$GITHUB_ENV"
+          fi
 
           # Help CMake search under BOOST_ROOT too
           echo "CMAKE_PREFIX_PATH=$BOOST_ROOT_OUT${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}" >> "$GITHUB_ENV"
 
       - name: Print tool versions/paths
+        shell: bash
         run: |
           ghc --version
           cabal --version
-          verilator --version
+          if [ "${{ runner.os }}" != "Windows" ]; then
+            verilator --version
+          else
+            echo "Verilator: not installed (Windows)"
+          fi
           echo "BOOST_ROOT=${{ env.BOOST_ROOT }}"
           echo "BOOST_DIR=${{ env.BOOST_DIR }}"
           echo "CMAKE_PREFIX_PATH=${{ env.CMAKE_PREFIX_PATH }}"
 
       - name: Configure (CMake Generate)
+        shell: bash
         run: |
           cmake \
             -S . \
@@ -275,7 +292,7 @@ jobs:
             -DCMAKE_PREFIX_PATH="${{ env.BOOST_DIR }}:${{ env.CMAKE_PREFIX_PATH }}" \
             -DBoost_DIR="${{ env.BOOST_DIR }}" \
             -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
-            -DVERILATOR_EXE="${{ env.VERILATOR_EXE }}" \
+            ${{ runner.os != 'Windows' && format('-DVERILATOR_EXE={0}', env.VERILATOR_EXE) || '' }} \
             ${{ inputs.install-riscv64-gcc && format('-DRISCV64_GCC={0}', env.RISCV64_GCC_DIR) || '' }} \
             -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }}
 
@@ -283,9 +300,12 @@ jobs:
         run: ccache -z || true
 
       - name: Disk usage (before build)
+        shell: bash
         run: |
-          df -h
-          sudo du -h -d1 /usr/local | sort -h
+          df -h || (wmic logicaldisk get size,freespace,caption 2>/dev/null || true)
+          if [ "${{ runner.os }}" != "Windows" ]; then
+            sudo du -h -d1 /usr/local | sort -h || true
+          fi
 
       ## Unique workflow steps: Build targets passed as input ##
 
@@ -331,10 +351,12 @@ jobs:
 
       - name: Disk usage (after build)
         if: always()
-        run: df -h
+        shell: bash
+        run: df -h || (wmic logicaldisk get size,freespace,caption 2>/dev/null || true)
 
       - name: Cleanup build dir & temp caches
         if: always()
+        shell: bash
         run: |
           rm -rf "${{ env.BUILD_DIR }}" || true
           rm -rf "$RUNNER_TEMP/.ccache/tmp" || true
