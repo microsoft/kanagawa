@@ -26,7 +26,6 @@ set(KANAGAWA_SHARED_LIBRARY_NAME "kanagawa-backend")
 
 # List of targets which comprise kanagawa_runtime
 set(KANAGAWA_RUNTIME_TARGETS
-    kanagawa_lib_inplace
     kanagawa_lib
     kanagawa_exe
 )

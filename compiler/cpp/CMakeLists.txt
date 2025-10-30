@@ -218,3 +218,27 @@ target_link_libraries(kanagawa_lib PRIVATE
 get_target_property(CIRCT_INCLUDES CIRCTHW INCLUDE_DIRECTORIES)
 target_include_directories(kanagawa_lib PUBLIC "${CIRCT_INCLUDES}")
 
+# This is needed to avoid generator expressions in OUTPUT
+set(KANAGAWA_LIB_NAME "${CMAKE_SHARED_LIBRARY_PREFIX}${KANAGAWA_SHARED_LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}")
+set(KANAGAWA_LIB_DEST "${BUILD_OUTPUT_BIN_DIR}/${KANAGAWA_LIB_NAME}")
+
+# Copy the shared library into the dest/bin directory
+add_custom_command(TARGET kanagawa_lib POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${BUILD_OUTPUT_BIN_DIR}>"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:kanagawa_lib>"
+        "${BUILD_OUTPUT_BIN_DIR}/$<TARGET_FILE_NAME:kanagawa_lib>"
+  # Re-run when the actual built lib changes, and only after the exe exists (dir ready)
+    VERBATIM
+)
+
+if (MSVC)
+    add_custom_command(TARGET kanagawa_lib POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${BUILD_OUTPUT_BIN_DIR}>"
+        # If there is a PDB, copy it. Otherwise, do a no-op.
+        COMMAND ${CMAKE_COMMAND} -E $<IF:$<BOOL:$<TARGET_PDB_FILE:kanagawa_lib>>,copy_if_different,true>
+                "$<TARGET_PDB_FILE:kanagawa_lib>"
+                "${BUILD_OUTPUT_BIN_DIR}/$<TARGET_FILE_BASE_NAME:kanagawa_lib>.pdb"
+        VERBATIM
+    )
+endif()
