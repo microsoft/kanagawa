@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.4] - 2025-10-30
+
+### Fixed
+- Correct highlighting when `as` keyword (alias) used on module imports
+
 ## [0.1.3] - 2025-10-30
 
 ### Fixed

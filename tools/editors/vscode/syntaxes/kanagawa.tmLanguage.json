@@ -193,15 +193,11 @@
           "name": "meta.module.kanagawa",
           "begin": "\\b(module)\\b",
           "beginCaptures": {
-            "1": {
-              "name": "keyword.declaration.module.kanagawa"
-            }
+            "1": { "name": "keyword.declaration.module.kanagawa" }
           },
           "end": "(?=//|/\\*|\\{|;|$)",
           "patterns": [
-            {
-              "include": "#module-path"
-            }
+            { "include": "#module-path" }
           ]
         },
         {
@@ -212,25 +208,32 @@
           },
           "end": "(?=\\s*(?://|/\\*|$))",
           "patterns": [
-            { "include": "#module-path" }
+            { "include": "#import-path" }
           ]
         }
       ]
     },
     "module-path": {
       "patterns": [
+        { "match": ",",  "name": "punctuation.separator.sequence.kanagawa" },
+        { "match": "\\\\", "name": "keyword.operator.module.reexport.kanagawa" },
+        { "match": "[A-Za-z_][\\w]*(?:\\.[A-Za-z_][\\w]*)*", "name": "entity.name.namespace.kanagawa" }
+      ]
+    },
+    "import-path": {
+      "patterns": [
         {
-          "match": ",",
-          "name": "punctuation.separator.sequence.kanagawa"
+          "name": "meta.import.alias.kanagawa",
+          "match": "([A-Za-z_][\\w]*(?:\\.[A-Za-z_][\\w]*)*)\\s+(as)\\s+([A-Za-z_]\\w*)",
+          "captures": {
+            "1": { "name": "entity.name.namespace.kanagawa" },
+            "2": { "name": "keyword.other.as.kanagawa" },
+            "3": { "name": "entity.name.namespace.alias.kanagawa" }
+          }
         },
-        {
-          "match": "\\\\",
-          "name": "keyword.operator.module.reexport.kanagawa"
-        },
-        {
-          "match": "[A-Za-z_][\\w]*(?:\\.[A-Za-z_][\\w]*)*",
-          "name": "entity.name.namespace.kanagawa"
-        }
+        { "match": ",",  "name": "punctuation.separator.sequence.kanagawa" },
+        { "match": "\\\\", "name": "keyword.operator.module.reexport.kanagawa" },
+        { "match": "[A-Za-z_][\\w]*(?:\\.[A-Za-z_][\\w]*)*", "name": "entity.name.namespace.kanagawa" }
       ]
     },
     "numbers": {
