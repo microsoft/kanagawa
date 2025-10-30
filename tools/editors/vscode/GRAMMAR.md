@@ -92,6 +92,17 @@ single-line and multi-line comments:
    multi-line comment */
 ```
 
+Comments can appear at the end of module declarations and import statements:
+
+```
+module Foo // This is a comment
+{
+    // ...
+}
+
+import processor.risc_v // This is also a comment
+```
+
 Kanagawa also supports a syntax for code documentation via comments. For example, you can annotate
 (document) the code following the comment by using this syntax:
 
@@ -450,7 +461,7 @@ enum Color : uint2
 
 ### Binary Operators
 
-Kanagawa supporst the following binary operators:
+Kanagawa supports the following binary operators:
 
 ```
 +
@@ -466,12 +477,6 @@ Kanagawa supporst the following binary operators:
 ^^
 <<
 >>
-==
-!=
->
->=
-<
-<=
 ```
 
 ### Unary Operators
@@ -485,6 +490,39 @@ Kanagawa supports the following unary operators:
 bitsizeof
 bytesizeof
 clog2
+```
+
+### Comparison Operators
+
+Kanagawa supports the following binary operators:
+
+```
+==
+!=
+>
+>=
+<
+<=
+```
+
+### Assignment Operators
+
+Kanagawa supports the following assignment operators:
+
+```
++=
+-=
+*=
+/=
+%=
+&=
+|=
+^=
+&&=
+||=
+^^=
+<<=
+>>=
 ```
 
 ### Ternary Operator
