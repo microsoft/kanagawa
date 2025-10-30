@@ -378,7 +378,7 @@ enum Format : uint3
 
 //| Decode instruction word in given instruction format
 template <Base ISA>
-inline auto decode_format
+inline Types<ISA>::Decoded decode_format
     ( Instr instr   //< Instruction word
     , Format format //< Instruction format
     )
