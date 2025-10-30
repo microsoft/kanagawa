@@ -185,7 +185,7 @@ related tools on Windows. Here are the dependencies that you must install:
 - C/C++ compiler. CMake should auto-detect it. Visual Studio 2022 Community Edition is a good option.
 - CMake version 3.30 or later (see https://cmake.org/)
 - Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)
-- [ghcup](https://www.haskell.org/ghcup/). I just installed whatever the default version was. After installation, close and re-open your Powershell session and then run `ghcup tui` to launch the interactive version of ghcup. Install Haskell 9.6.7 and cabal 3.12.1.0. Run `cabal update` after installation.
+- [ghcup](https://www.haskell.org/ghcup/). After installation, close and re-open your Powershell session and then run `ghcup tui` to launch the interactive version of ghcup. Install Haskell 9.6.7 and cabal 3.12.1.0. Run `cabal update` after installation.
 - Boost C++ library version 1.88.0 or later (see https://www.boost.org/). After extracting the archive, you will need to change into the extracted directory and run `.\bootstrap.bat` and then `.\b2.exe install --prefix=target_directory` (substitute `target_directory` with where you want Boost installed). The proper value to pass as Boost_DIR to CMake will be something like `...\boost_1_88_0\stage\lib\cmake\Boost-1.88.0`.
 To tell CMake about Boost so that the `find_package` command can find it, add `<boost-install-dir>\lib\cmake` to `CMAKE_PREFIX_PATH`. For example: `-DCMAKE_PREFIX_PATH=D:\boost.1.88.0\lib\cmake`
 
