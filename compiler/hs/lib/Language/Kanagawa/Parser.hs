@@ -179,7 +179,7 @@ program parseFile = (moduleDecl <|> declarations) >>= checkExposed >>= checkRedu
     moduleName = choice
         [ pure <$> L.symbol cmdargsSpecialModule
         , pure <$> L.symbol optionsSpecialModule
-        , name' `MP.sepBy1` dot
+        , dotSepName
         ] <?> "module name"
 
     moduleDecl = do

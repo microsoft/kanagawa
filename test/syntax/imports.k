@@ -17,7 +17,7 @@ expected:1
 expected:1
 
     import a1.a1
-    
+
     inline void main()
     {
         static a1<10> a;
@@ -26,7 +26,7 @@ expected:1
 expected:0
 
     import a1.a1
-    
+
     inline void main()
     {
         static b1<10> b;
@@ -36,7 +36,7 @@ expected:1
 
     import a1.a1
     import a1.b1.b1
-    
+
     inline void main()
     {
         static a1<10> a;
@@ -46,7 +46,7 @@ expected:1
 expected:0
 
     import a1.b1.b1
-    
+
     inline void main()
     {
         static b1<10> b;
@@ -55,7 +55,7 @@ expected:0
 expected:0
 
     import a1.b1.c1.c1
-    
+
     inline void main()
     {
         static c1<10> c;
@@ -64,7 +64,7 @@ expected:0
 expected:0
 
     import a1.b2.c1.c1
-    
+
     inline void main()
     {
         static c1<10> c;
@@ -77,7 +77,7 @@ expected:0
     {
         uint32 x;
     }
-    
+
     inline void main()
     {
         static c1 c;
@@ -143,7 +143,7 @@ expected:0
 expected:0
 
     import a1.b2.b2
-    
+
     inline void main()
     {
         static c1<10> c;
@@ -153,7 +153,7 @@ expected:1
 
     import a1.b1.c1.c1
     import a1.b2.c1.c1
-    
+
     inline void main()
     {
         static c1<10> c;
@@ -163,7 +163,7 @@ expected:1
 
     import a1.b1.b1
     import a1.b2.b2
-    
+
     inline void main()
     {
         static b1<10> b;
@@ -173,7 +173,7 @@ expected:0
 
     import a1.b1.b1
     import a1.b2.b2
-    
+
     inline void main()
     {
         static b2<10> b;
@@ -183,7 +183,7 @@ expected:0
 
     import a1.b1.b1
     import a1.b2.b2
-    
+
     inline void main()
     {
         static b1<10> b;
@@ -891,7 +891,7 @@ warning:0
     import diff.foo_minus_bar
 
     static assert(foo == 3);
-    
+
     inline void main()
     {
         static foo_t x;
@@ -1058,3 +1058,15 @@ expected:0
     static assert(x == 11);
 
 expected:0
+
+    import a1 .a1
+
+expected:1
+
+    import a1. a1
+
+expected:1
+
+    import a1 . a1
+
+expected:1
