@@ -208,15 +208,11 @@
           "name": "meta.import.kanagawa",
           "begin": "\\b(import)\\b",
           "beginCaptures": {
-            "1": {
-              "name": "keyword.other.import.kanagawa"
-            }
+            "1": { "name": "keyword.other.import.kanagawa" }
           },
-          "end": "(?=//|/\\*|\\{)",
+          "end": "(?=\\s*(?://|/\\*|$))",
           "patterns": [
-            {
-              "include": "#module-path"
-            }
+            { "include": "#module-path" }
           ]
         }
       ]
