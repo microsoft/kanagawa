@@ -129,7 +129,6 @@ function(add_logic_test_suite suite_name)
   set(OPTIONS
     "--Wno-initializer-overrides"
     "--Wno-shadow"
-    "--Wno-transaction-size"
     "--define=ECC_SUPPORT#true"
     "--using=COMPILE_PARAM_1#uint8"
     "--define=COMPILE_PARAM_2#9"
