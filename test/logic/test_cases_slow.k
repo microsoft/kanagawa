@@ -90,8 +90,8 @@ public:
             g_done638[i] = false;
         }
 
-        CallSite1_638(512, 512, tag);
-        CallSite2_638(512, 512, tag);
+        CallSite1_638(256, 256, tag);
+        CallSite2_638(256, 256, tag);
 
         // Wait for all threads to finish
         static for(const auto i : 2)
