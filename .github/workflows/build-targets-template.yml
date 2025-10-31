@@ -279,6 +279,10 @@ jobs:
           echo "BOOST_DIR=${{ env.BOOST_DIR }}"
           echo "CMAKE_PREFIX_PATH=${{ env.CMAKE_PREFIX_PATH }}"
 
+      - name: Setup MSVC Developer Command Prompt
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Configure (CMake Generate)
         shell: bash
         run: |
@@ -287,6 +291,7 @@ jobs:
             -B "${{ env.BUILD_DIR }}" \
             -G Ninja \
             -DCMAKE_BUILD_TYPE="${{ env.CMAKE_BUILD_TYPE }}" \
+            ${{ runner.os == 'Windows' && '-DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl' || '' }} \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DCMAKE_PREFIX_PATH="${{ env.BOOST_DIR }}:${{ env.CMAKE_PREFIX_PATH }}" \
