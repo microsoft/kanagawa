@@ -1,16 +1,21 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-#
-# Set CIRCT-specific CMake variables and validate CIRCT submodule presence.
-#
+# CIRCT
 
-if (NOT EXISTS ${CMAKE_SOURCE_DIR}/thirdparty/circt/CMakeLists.txt)
+if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/circt/CMakeLists.txt)
   message(FATAL_ERROR "Cannot find CIRCT submodule. Run `git submodule update --init`")
 endif()
-if (NOT EXISTS ${CMAKE_SOURCE_DIR}/thirdparty/circt/llvm/llvm/CMakeLists.txt)
+if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/circt/llvm/llvm/CMakeLists.txt)
   message(FATAL_ERROR "Cannot find CIRCT's LLVM submodule. Run `git submodule update --init --recursive` or `git submodule update --init` in `thirdparty/circt/llvm`")
 endif()
+
+# Required to link a dynamic library with a static library
+if(UNIX)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+endif()
+
+include(${CMAKE_SOURCE_DIR}/build/cmake/msvc.cmake)
 
 # CIRCT configuration
 set(LLVM_ENABLE_PROJECTS "mlir" CACHE STRING "Enable MLIR project")
@@ -33,3 +38,11 @@ set(CIRCT_LEC_DISABLE "ON")
 set(CIRCT_BINDINGS_PYTHON_ENABLED "OFF")
 set(CIRCT_BINDINGS_TCL_ENABLED "OFF")
 
+if (MSVC)
+  set(LLVM_ENABLE_PDB "ON" CACHE STRING "Generate PDB files along with libraries")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4996")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4996")
+endif()
+
+# Add CIRCT to the build
+add_subdirectory(circt/llvm/llvm)

@@ -7,6 +7,9 @@
 set(CABAL_WORKING_DIR ${CMAKE_BINARY_DIR}/sandcastletemp)
 file(MAKE_DIRECTORY ${CABAL_WORKING_DIR})
 
+# Include cabal helpers
+include(${CMAKE_SOURCE_DIR}/build/cmake/cabal.cmake)
+
 #
 # Build the sandcastle exe using cabal
 
@@ -60,7 +63,7 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_OUTPUT_BIN_DIR}"
   COMMAND
     ${CMAKE_COMMAND} -E copy_if_different
-    "${CABAL_WORKING_DIR}/dist/build/x86_64-linux/${GHC_NAME}/sandcastle-1.0.0/x/sandcastle/build/sandcastle/sandcastle${CMAKE_EXECUTABLE_SUFFIX}"
+    "${CABAL_WORKING_DIR}/dist/build/${CABAL_ARCH_STRING}/${GHC_NAME}/sandcastle-1.0.0/x/sandcastle/build/sandcastle/sandcastle${CMAKE_EXECUTABLE_SUFFIX}"
     "${SANDCASTLE_EXE_DEST}"
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/tools/sandcastle
   DEPENDS ${SANDCASTLE_HS_SOURCES}

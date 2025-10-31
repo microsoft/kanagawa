@@ -1,13 +1,36 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+# Default / common MSVC settings
+include(${CMAKE_SOURCE_DIR}/build/cmake/msvc.cmake)
+
 # Builds and creates a ctest to run Kanagawa compiler internal tests
 add_executable(compiler_internal_test main.cpp)
 
 target_include_directories(compiler_internal_test PRIVATE "${CMAKE_SOURCE_DIR}/compiler/cpp")
 
-target_link_libraries(compiler_internal_test kanagawa_lib)
-target_link_libraries(compiler_internal_test pthread ${CMAKE_DL_LIBS})
+target_link_libraries(compiler_internal_test PRIVATE kanagawa_lib Threads::Threads ${CMAKE_DL_LIBS})
+
+# Copy the kanagawa_lib shared library to the test directory so the test can find it at runtime
+add_custom_command(TARGET compiler_internal_test POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:kanagawa_lib>"
+        "$<TARGET_FILE_DIR:compiler_internal_test>/$<TARGET_FILE_NAME:kanagawa_lib>"
+    COMMENT "Copying kanagawa_lib DLL to test directory"
+    VERBATIM
+)
+
+# Copy the PDB file if present (Windows debug builds)
+if (MSVC)
+    add_custom_command(TARGET compiler_internal_test POST_BUILD
+        # If there is a PDB, copy it. Otherwise, do a no-op.
+        COMMAND ${CMAKE_COMMAND} -E $<IF:$<BOOL:$<TARGET_PDB_FILE:kanagawa_lib>>,copy_if_different,true>
+                "$<TARGET_PDB_FILE:kanagawa_lib>"
+                "$<TARGET_FILE_DIR:compiler_internal_test>/$<TARGET_FILE_BASE_NAME:kanagawa_lib>.pdb"
+        COMMENT "Copying kanagawa_lib PDB to test directory"
+        VERBATIM
+    )
+endif()
 
 add_test(
     NAME compiler.internal
