@@ -42,6 +42,21 @@ on:
         required: false
         type: boolean
         default: false
+      install-pandoc:
+        description: 'Install pandoc using pandoc/actions/setup'
+        required: false
+        type: boolean
+        default: false
+      install-rust:
+        description: 'Install Rust toolchain using actions-rust-lang/setup-rust-toolchain'
+        required: false
+        type: boolean
+        default: false
+      install-svgbob:
+        description: 'Install svgbob_cli using cargo'
+        required: false
+        type: boolean
+        default: false
       heavy-parallel-jobs:
         description: 'Number of parallel jobs for heavy compilation tasks'
         required: false
@@ -193,13 +208,19 @@ jobs:
         run: |
           choco install cmake ninja pkgconfiglite -y
 
+      - name: Install pandoc
+        if: ${{ inputs.install-pandoc }}
+        uses: pandoc/actions/setup@v1
+
       - name: Install Rust toolchain
+        if: ${{ inputs.install-rust }}
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
           cache: true
 
       - name: Install svgbob_cli
+        if: ${{ inputs.install-svgbob }}
         run: cargo install svgbob_cli --version 0.7.6
 
       - name: Install RISC-V 64-bit GCC toolchain
