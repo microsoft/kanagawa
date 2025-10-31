@@ -175,6 +175,7 @@ jobs:
           boost_version: ${{ env.BOOST_VERSION }}   # e.g. "1.88.0"
           platform_version: ${{ inputs.boost-platform-version }}
           boost_install_dir: ${{ runner.temp }}
+          toolset: ${{ runner.os == 'Windows' && 'msvc' || runner.os == 'macOS' && 'clang' || 'gcc' }}
 
       - name: Install miscellaneous packages (Linux)
         if: runner.os == 'Linux'

@@ -5,6 +5,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from typing import Optional
 
 def main():
     parser = argparse.ArgumentParser(description='Syntax tests for Kanagawa')
@@ -54,7 +55,7 @@ def main():
     write_temp_header()
 
     # --- single failure path to remove duplication ---
-    def fail(msg: str, *, result: subprocess.CompletedProcess | None = None, include_temp: bool = True):
+    def fail(msg: str, *, result: Optional[subprocess.CompletedProcess] = None, include_temp: bool = True):
         """
         Print msg, write .error file with stdout/stderr (when available) and
         include current temp file contents (when requested), then exit(1).
