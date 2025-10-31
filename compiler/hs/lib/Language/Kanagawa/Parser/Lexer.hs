@@ -11,7 +11,7 @@ module Language.Kanagawa.Parser.Lexer
     ( symbol
     , lexeme
     , name
-    , name'
+    , dotSepName
     , stringLiteral
     , integer
     , L.decimal
@@ -227,8 +227,8 @@ ident' f = (:) <$> (letterChar <|> char '_') <*> takeWhileP (Just "rest of ident
 ident :: MonadParsec e String m => m String
 ident = ident' isAlphaNumOrUnderscore
 
-name' :: (MonadParsec e String m, MonadReader Config m) => m String
-name' = lexeme $ try $ ident' isAlphaNumOrDashOrUnderscore
+dotSepName :: (MonadParsec e String m, MonadReader Config m) => m [String]
+dotSepName = lexeme $ try (ident' isAlphaNumOrDashOrUnderscore `sepBy1` char '.')
   where
     isAlphaNumOrDashOrUnderscore c = isAlphaNumOrUnderscore c || c == '-'
 
