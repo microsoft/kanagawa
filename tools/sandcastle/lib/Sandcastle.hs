@@ -68,8 +68,7 @@ app =
 
     -- Write module index file
     sort moduleList
-      & moduleForest ext
-      & (header 1 "Modules" <>)
+      & moduleForest ext fmt
       & doc
       & writePandoc fmt
       & UTF8.writeFile (output cli </> "index" <.> ext)

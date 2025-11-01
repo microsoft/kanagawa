@@ -779,9 +779,14 @@ classMembers bdy = catMaybes $ flip mapClassMembers bdy $ curry $ \case
 -- Module forest --
 -------------------
 
-moduleForest :: String -> [[String]] -> Blocks
-moduleForest ext =
-  blockHtml . withPre . drawPowerline . (fmap.fmap) T.pack . mkModuleForest ext
+moduleForest :: String -> Cli.Format -> [[String]] -> Blocks
+moduleForest ext fmt ms = case fmt of
+    Html     -> styleBlocks htmlStyle <> nav (hdr <> mods)
+    Markdown -> hdr <> mods
+  where
+    nav  = divWith ("nav", ["nav"], [])
+    hdr  = header 1 "Modules"
+    mods = blockHtml $ withPre $ drawPowerline $ (fmap.fmap) T.pack $ mkModuleForest ext ms
 
 mkModuleForest :: String -> [[String]] -> [Tree String]
 mkModuleForest ext = go [] . groupByHead
