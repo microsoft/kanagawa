@@ -297,6 +297,7 @@ memberGroup = \case
   Class{}         -> Types
   Enum{}          -> Types
   Function{}      -> Functions
+  FunctionDecl{}  -> Functions
   StaticAssert{}  -> Invariants
   Struct{}        -> Types
   Template _ decl -> memberGroup decl
@@ -397,8 +398,7 @@ rFunctionDecl
   -> (Doc SigAnn, Blocks)
 rFunctionDecl attrs rt ident fps anc desc =
   ( cat $ withAttrList attrs
-      [ annotate Keyword "extern"
-      , cat $ sig rt <> flatAlt "" " " :
+      [ cat $ sig rt <> flatAlt "" " " :
           [ nest 4 $ cat $ (<> [")" <+> anc]) $
               sig ident <> "(" : punctuate (flatAlt "," ", ") (sig <$> fps)
           ]
