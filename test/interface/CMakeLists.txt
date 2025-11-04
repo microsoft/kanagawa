@@ -126,8 +126,6 @@ add_interface_test(is_last_exported_class is_last_exported_class.k
     IsLastExportedClass_types.sv
   TESTBENCH
     is_last_exported_class.sv
-  OPTIONS
-    "--Wno-transaction-size" # Warning 10  Call to function with [[last]] parameter without [[transaction_size]] at the call site
 )
 
 add_interface_test(external_class external_class.k

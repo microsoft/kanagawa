@@ -19,7 +19,7 @@ public:
             {
                 pipelined_for(16, [](index_t<16> i)
                 {
-                    cb(i, i==15);
+                    [[transaction_size(16)]] cb(i, i==15);
                 });
             });
         }
