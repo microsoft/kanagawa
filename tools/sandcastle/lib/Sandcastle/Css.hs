@@ -112,7 +112,8 @@ docsDetailsStyle = ".docs details" ? do
   marginTop         (em 1)
 
 headersStyle :: Css
-headersStyle = ".body h1, h2, h3, h4" ? do
+headersStyle = "h1, h2, h3, h4" ? do
+  fontFamily        [""] [sansSerif]
   color             hokusaiDarkBlue
 
 kanagawaStyle :: Css
