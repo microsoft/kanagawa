@@ -30,7 +30,7 @@ executable kanagawa
                        ParseTree
                        ParseTree.FFI
                        ParseTree.Types
-                       Paths_kanagawa
+                       ReleaseVersion
   build-depends:       base
                      , cmdargs              >= 0.10.10
                      , containers

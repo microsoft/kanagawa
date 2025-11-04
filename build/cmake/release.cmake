@@ -3,6 +3,9 @@
 
 # This file contains CMake configuration to build a release
 
+# Start by creating a file at ${CMAKE_BINARY_DIR/VERSION} with the release version
+file(WRITE "${CMAKE_BINARY_DIR}/VERSION" "${RELEASE_VERSION}\n")
+
 install(
   PROGRAMS $<TARGET_FILE:kanagawa::exe>
   DESTINATION bin
@@ -31,12 +34,12 @@ install(
 install(
   FILES
     ${CMAKE_SOURCE_DIR}/LICENSE
-    ${CMAKE_SOURCE_DIR}/VERSION
     ${CMAKE_SOURCE_DIR}/NOTICE.md
     ${CMAKE_SOURCE_DIR}/README.md
     ${CMAKE_SOURCE_DIR}/SECURITY.md
     ${CMAKE_SOURCE_DIR}/SUPPORT.md
     ${CMAKE_SOURCE_DIR}/CHANGELOG.md
+    ${CMAKE_BINARY_DIR}/VERSION
   DESTINATION "."
   COMPONENT kanagawa
 )
@@ -62,7 +65,7 @@ normalize_system_name_for_release("${CMAKE_SYSTEM_PROCESSOR}" "unknown-arch" _re
 
 set(RELEASE_PLATFORM "${_release_system}-${_release_arch}")
 
-set(RELEASE_NAME "${PROJECT_NAME}-${VERSION}-${RELEASE_PLATFORM}")
+set(RELEASE_NAME "${PROJECT_NAME}-${RELEASE_VERSION}-${RELEASE_PLATFORM}")
 
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
   set(RELEASE_ARCHIVE_EXT "zip")
@@ -90,15 +93,20 @@ add_custom_target(prepare_release
           --component kanagawa
           --config $<CONFIG>
 
+  USES_TERMINAL
+  COMMENT "Building prerequisites anbd installing to ${STAGE_DIR}"
+)
+
+add_custom_target(prepare_release_archive
+  DEPENDS prepare_release
+
   # Create a platform-appropriate archive
   COMMAND ${CMAKE_COMMAND} -E tar "${RELEASE_ARCHIVE_FLAGS}"
     "${TARBALL_PATH}"
     ${RELEASE_ARCHIVE_FORMAT}
     "${RELEASE_NAME}"
 
-  USES_TERMINAL
-  COMMENT "Building prerequisites, installing to ${STAGE_DIR}, and creating a release package in ${TARBALL_PATH}"
+  COMMENT "Create a release package at ${TARBALL_PATH}"
 )
-
 
 
