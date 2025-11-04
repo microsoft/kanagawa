@@ -62,7 +62,16 @@ on:
         required: false
         type: number
         default: 2
-
+      extra-cmake-args:
+        description: 'Extra args appended to CMake configure'
+        required: false
+        type: string
+        default: ''
+      fetch-depth:
+        description: 'Checkout fetch-depth (0 to fetch all history/tags)'
+        required: false
+        type: string
+        default: '0'
 jobs:
   build:
     runs-on: ${{ inputs.runs-on }}
@@ -82,10 +91,10 @@ jobs:
           echo "BUILD_DIR=$GITHUB_WORKSPACE/build-ci" >> "$GITHUB_ENV"
           echo "CCACHE_DIR=$RUNNER_TEMP/.ccache" >> "$GITHUB_ENV"
 
-      - name: Checkout (shallow, skip submodules)
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: ${{ inputs.fetch-depth }}
           submodules: false
 
       - name: Shallow init CIRCT (recursive, depth=1)
@@ -322,6 +331,7 @@ jobs:
             ${{ runner.os != 'Windows' && format('-DVERILATOR_EXE={0}', env.VERILATOR_EXE) || '' }} \
             ${{ inputs.install-riscv64-gcc && format('-DRISCV64_GCC={0}', env.RISCV64_GCC_DIR) || '' }} \
             -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }}
+            ${{ inputs.extra-cmake-args }}
 
       - name: Reset ccache stats
         run: ccache -z || true
