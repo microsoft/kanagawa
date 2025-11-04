@@ -232,13 +232,12 @@ add_custom_command(TARGET kanagawa_lib POST_BUILD
     VERBATIM
 )
 
-if (MSVC)
+if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug|RelWithDebInfo")
     add_custom_command(TARGET kanagawa_lib POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory "$<SHELL_PATH:${BUILD_OUTPUT_BIN_DIR}>"
-        # If there is a PDB, copy it. Otherwise, do a no-op.
-        COMMAND ${CMAKE_COMMAND} -E $<IF:$<BOOL:$<TARGET_PDB_FILE:kanagawa_lib>>,copy_if_different,true>
-                "$<TARGET_PDB_FILE:kanagawa_lib>"
-                "${BUILD_OUTPUT_BIN_DIR}/$<TARGET_FILE_BASE_NAME:kanagawa_lib>.pdb"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_PDB_FILE:kanagawa_lib>"
+            "${BUILD_OUTPUT_BIN_DIR}/$<TARGET_FILE_BASE_NAME:kanagawa_lib>.pdb"
         VERBATIM
     )
 endif()

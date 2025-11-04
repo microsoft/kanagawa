@@ -330,7 +330,7 @@ jobs:
             -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
             ${{ runner.os != 'Windows' && format('-DVERILATOR_EXE={0}', env.VERILATOR_EXE) || '' }} \
             ${{ inputs.install-riscv64-gcc && format('-DRISCV64_GCC={0}', env.RISCV64_GCC_DIR) || '' }} \
-            -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }}
+            -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }} \
             ${{ inputs.extra-cmake-args }}
 
       - name: Reset ccache stats
