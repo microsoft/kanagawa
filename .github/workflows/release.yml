@@ -1,0 +1,109 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    if: github.ref == 'refs/heads/main'
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      tag:     ${{ steps.v.outputs.tag }}
+      extra_args: ${{ steps.v.outputs.extra_args }}
+      artifact_prefix: ${{ steps.v.outputs.artifact_prefix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+      - id: v
+        shell: bash
+        run: |
+          FILE_VER=$(sed 's/[[:space:]]*$//' < VERSION)
+          TAG="v${FILE_VER}"
+
+          # Check if tag already exists
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "ERROR: Tag $TAG already exists"; exit 1
+          fi
+
+          # Stable channel (no date)
+          EXTRA="-DBUILD_CHANNEL=release"
+          echo "version=$FILE_VER" >> $GITHUB_OUTPUT
+          echo "tag=$TAG"     >> $GITHUB_OUTPUT
+          echo "extra_args=$EXTRA" >> $GITHUB_OUTPUT
+          echo "artifact_prefix=kanagawa-${FILE_VER}" >> $GITHUB_OUTPUT
+      - name: Create and push tag
+        shell: bash
+        run: |
+          TAG="${{ steps.v.outputs.tag }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "$TAG"
+          git push origin "$TAG"
+
+  build-linux:
+    needs: prepare
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+      install-svgbob: true
+      install-pandoc: true
+      build-targets: 'prepare_release_archive'
+      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-linux-x86-64'
+      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-linux-x86-64.tar.gz'
+      cmake-build-type: 'Release'
+      extra-cmake-args: '${{ needs.prepare.outputs.extra_args }}'
+      fetch-depth: 0
+
+  build-windows:
+    needs: prepare
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      runs-on: 'windows-2022'
+      boost-platform-version: '2022'
+      install-svgbob: true
+      install-pandoc: true
+      build-targets: 'prepare_release_archive'
+      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-windows-amd64'
+      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-windows-amd64.zip'
+      cmake-build-type: 'Release'
+      extra-cmake-args: '${{ needs.prepare.outputs.extra_args }}'
+      fetch-depth: 0
+
+  publish:
+    needs: [prepare, build-linux, build-windows]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+      - name: Flatten artifact layout
+        shell: bash
+        run: |
+          shopt -s globstar nullglob
+          mkdir -p out
+          for f in dist/**/*; do [ -f "$f" ] && cp "$f" out/; done
+          ls -l out || true
+      - name: Generate checksums
+        shell: bash
+        run: |
+          cd out
+          for f in *; do [ -f "$f" ] || continue; shasum -a 256 "$f" > "$f.sha256"; done
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.prepare.outputs.tag }}
+          name: ${{ needs.prepare.outputs.tag }}
+          generate_release_notes: true
+          files: out/**
