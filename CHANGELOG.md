@@ -1,16 +1,19 @@
 # Changelog
-All notable changes to this project will be documented in this file.
+All NOTABLE changes to this project will be documented in this file.
+Check the release summary for a detailed history based on commits.
 
-## [1.1.0] - 2025-10-08
+## [1.1.0] - 2025-11-05
 ### Added
 - Support for Windows
 - Visual Studio Code extension
-- Improve type of RISC-V decode_format function - Declare explicit return type of the decode_format function instead of auto so that generated documentation shows the return type with a link to its description.
 - Robust test and release automation (CI) via Github Actions
+- Enhanced formatting of Kanagawa syntax in Sandcastle
+- Auto-publish of library code-docs
 
 ### Fixed
 - Fix overactive warning about missing transaction_size(N) attribute
 - Disallow white spaces within module names
+- Various small changes to unit tests that made it into the initial OSS release.
 
 ## [1.0.1] - 2025-10-08
 ### Added

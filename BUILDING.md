@@ -186,4 +186,15 @@ cmake -S kanagawa -B kanagawa-build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -
 
 ## Preparing a release
 
-Updates on an automated release process coming soon
+There is a GitHub workflow (Nightly prerelease) that runs nightly at 08:00 UTC. If there have been any changes checked into main since it last run, it will prepare and publish a release.
+These releases are marked as pre-release, and they are named based on the date.
+
+For official releases, the process is as follows:
+
+- Update CHANGELOG.MD with a summary of changes since the last official release. You can
+  check the commit history, or the summary in the nightly release description to help
+  with this task.
+- Update VERSION to increment the version number - major, minor, or patch as appropriate.
+- Prepare a PR with the aforementioned changes and merge it to main.
+- Once the PR is merged, run the Release workflow (release.yml). This will build
+  and publish a release, and if that is successful, assign a tag.
