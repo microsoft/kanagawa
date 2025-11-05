@@ -22,6 +22,7 @@ jobs:
       cmake-build-type: 'RelWithDebInfo'
       runs-on: 'ubuntu-24.04'
       boost-platform-version: '24.04'
+      install-svgbob: true
 
   # Temporarily disabled until the CMake configuration supports macOS
   # build-macos:
@@ -32,3 +33,4 @@ jobs:
   #     cmake-build-type: 'RelWithDebInfo'
   #     runs-on: 'macos-14'
   #     boost-platform-version: '14'
+  #     install-svgbob: true

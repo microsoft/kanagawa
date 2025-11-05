@@ -1,0 +1,124 @@
+name: Nightly prerelease
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # daily at 08:00 UTC
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    outputs:
+      base: ${{ steps.v.outputs.base }}
+      date: ${{ steps.v.outputs.date }}
+      tag:  ${{ steps.v.outputs.tag }}
+      extra_args: ${{ steps.v.outputs.extra_args }}
+      artifact_prefix: ${{ steps.v.outputs.artifact_prefix }}
+      has-changes: ${{ steps.check.outputs.has-changes }}
+    steps:
+      # Sparse checkout of only the VERSION file
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          sparse-checkout: |
+            VERSION
+      - id: check
+        shell: bash
+        run: |
+          # Get the last successful workflow run
+          LAST_RUN=$(gh run list --workflow=nightly-prerelease.yml --status=success --limit=1 --json createdAt -q '.[0].createdAt' 2>/dev/null || echo "")
+
+          if [ -z "$LAST_RUN" ]; then
+            echo "has-changes=true" >> $GITHUB_OUTPUT
+          else
+            # Check if commits exist after last run
+            COMMITS=$(git log --since="$LAST_RUN" --oneline | wc -l)
+            if [ $COMMITS -gt 0 ]; then
+              echo "has-changes=true" >> $GITHUB_OUTPUT
+            else
+              echo "has-changes=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - id: v
+        shell: bash
+        run: |
+          BASE=$(tr -d '\r' < VERSION)    # Get version number
+          DATE=$(date -u +%Y%m%d)
+          TAG="nightly-${DATE}"
+          # Channel/date for numeric CPP in Haskell:
+          EXTRA="-DBUILD_CHANNEL=nightly -DBUILD_DATE=${DATE}"
+          echo "base=$BASE" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+          echo "tag=$TAG"   >> $GITHUB_OUTPUT
+          echo "extra_args=$EXTRA" >> $GITHUB_OUTPUT
+          echo "artifact_prefix=kanagawa-${BASE}-nightly+${DATE}" >> $GITHUB_OUTPUT
+
+  build-linux:
+    needs: prepare
+    if: needs.prepare.outputs.has-changes == 'true'
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      runs-on: 'ubuntu-24.04'
+      boost-platform-version: '24.04'
+      install-svgbob: true
+      install-pandoc: true
+      build-targets: 'prepare_release_archive'
+      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-linux-x86-64'
+      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-linux-x86-64.tar.gz'
+      cmake-build-type: 'Release'
+      extra-cmake-args: '${{ needs.prepare.outputs.extra_args }}'
+      fetch-depth: '0'
+
+  build-windows:
+    needs: prepare
+    if: needs.prepare.outputs.has-changes == 'true'
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      runs-on: 'windows-2022'
+      boost-platform-version: '2022'
+      install-svgbob: true
+      install-pandoc: true
+      build-targets: 'prepare_release_archive'
+      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-windows-amd64'
+      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-windows-amd64.zip'
+      cmake-build-type: 'Release'
+      extra-cmake-args: '${{ needs.prepare.outputs.extra_args }}'
+      fetch-depth: '0'
+
+  publish:
+    needs: [prepare, build-linux, build-windows]
+    if: needs.prepare.outputs.has-changes == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+      - name: Flatten artifact layout
+        shell: bash
+        run: |
+          shopt -s globstar nullglob
+          mkdir -p out
+          for f in dist/**/*; do [ -f "$f" ] && cp "$f" out/; done
+          ls -l out || true
+      - name: Generate checksums
+        shell: bash
+        run: |
+          cd out
+          for f in *; do [ -f "$f" ] || continue; shasum -a 256 "$f" > "$f.sha256"; done
+      - name: Create/Update prerelease
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.prepare.outputs.tag }}
+          name: Nightly ${{ needs.prepare.outputs.date }}
+          prerelease: true
+          generate_release_notes: true
+          files: out/**

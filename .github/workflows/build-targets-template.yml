@@ -42,12 +42,36 @@ on:
         required: false
         type: boolean
         default: false
+      install-pandoc:
+        description: 'Install pandoc using pandoc/actions/setup'
+        required: false
+        type: boolean
+        default: false
+      install-rust:
+        description: 'Install Rust toolchain using actions-rust-lang/setup-rust-toolchain'
+        required: false
+        type: boolean
+        default: false
+      install-svgbob:
+        description: 'Install svgbob_cli using cargo'
+        required: false
+        type: boolean
+        default: false
       heavy-parallel-jobs:
         description: 'Number of parallel jobs for heavy compilation tasks'
         required: false
         type: number
         default: 2
-
+      extra-cmake-args:
+        description: 'Extra args appended to CMake configure'
+        required: false
+        type: string
+        default: ''
+      fetch-depth:
+        description: 'Checkout fetch-depth (0 to fetch all history/tags)'
+        required: false
+        type: string
+        default: '0'
 jobs:
   build:
     runs-on: ${{ inputs.runs-on }}
@@ -67,10 +91,10 @@ jobs:
           echo "BUILD_DIR=$GITHUB_WORKSPACE/build-ci" >> "$GITHUB_ENV"
           echo "CCACHE_DIR=$RUNNER_TEMP/.ccache" >> "$GITHUB_ENV"
 
-      - name: Checkout (shallow, skip submodules)
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: ${{ inputs.fetch-depth }}
           submodules: false
 
       - name: Shallow init CIRCT (recursive, depth=1)
@@ -193,13 +217,19 @@ jobs:
         run: |
           choco install cmake ninja pkgconfiglite -y
 
+      - name: Install pandoc
+        if: ${{ inputs.install-pandoc }}
+        uses: pandoc/actions/setup@v1
+
       - name: Install Rust toolchain
+        if: ${{ inputs.install-rust }}
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
           cache: true
 
       - name: Install svgbob_cli
+        if: ${{ inputs.install-svgbob }}
         run: cargo install svgbob_cli --version 0.7.6
 
       - name: Install RISC-V 64-bit GCC toolchain
@@ -300,7 +330,8 @@ jobs:
             -DGHCUP_DIR="${{ env.GHCUP_DIR }}" \
             ${{ runner.os != 'Windows' && format('-DVERILATOR_EXE={0}', env.VERILATOR_EXE) || '' }} \
             ${{ inputs.install-riscv64-gcc && format('-DRISCV64_GCC={0}', env.RISCV64_GCC_DIR) || '' }} \
-            -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }}
+            -DKANAGAWA_HEAVY_PARALLEL_JOBS=${{ inputs.heavy-parallel-jobs }} \
+            ${{ inputs.extra-cmake-args }}
 
       - name: Reset ccache stats
         run: ccache -z || true

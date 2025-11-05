@@ -10,10 +10,9 @@ module Options.CmdArgs
     ( getOptions
     ) where
 
-import Data.Version
 import Language.Kanagawa.Warning
 import Options
-import Paths_kanagawa
+import ReleaseVersion
 import System.Console.CmdArgs
 
 compile :: Options
@@ -157,7 +156,7 @@ mode = cmdArgsMode $ modes [compile &= auto, pretty] &=
     program "kanagawa" &=
     verbosity &=
     help "Kanagawa compiler" &=
-    summary ("Kanagawa Compiler " ++ showVersion version ++ ", (C) Microsoft")
+    summary ("Kanagawa Compiler " ++ makeReleaseName releaseVersion releaseBuildChannel ++ ", (C) Microsoft")
 
 getOptions :: IO Options
 getOptions = cmdArgsRun mode

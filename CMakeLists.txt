@@ -3,12 +3,43 @@
 
 cmake_minimum_required(VERSION 3.30)
 
+# Ensure VERSION file changes trigger reconfiguration
+set(VERSION_FILE "${CMAKE_SOURCE_DIR}/VERSION")
+set_property(DIRECTORY "${CMAKE_SOURCE_DIR}"
+  APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${VERSION_FILE}")
 
-file(READ "${CMAKE_SOURCE_DIR}/VERSION" VERSION_RAW)
-string(STRIP "${VERSION_RAW}" VERSION)
-message(STATUS "Project version: ${VERSION}")
+# Read VERSION file at configure time
+file(READ "${VERSION_FILE}" VER_FILE_CONTENTS)
+string(STRIP "${VER_FILE_CONTENTS}" PROJECT_VERSION)
 
-project(kanagawa VERSION ${VERSION} LANGUAGES CXX)
+# Optional: build channel (release/nightly/local) from CI
+set(BUILD_CHANNEL "${BUILD_CHANNEL}" CACHE STRING "Build channel")
+if(NOT BUILD_CHANNEL OR BUILD_CHANNEL STREQUAL "")
+  set(BUILD_CHANNEL "local")
+endif()
+
+if (BUILD_CHANNEL STREQUAL "nightly")
+  if (NOT BUILD_DATE OR BUILD_DATE STREQUAL "")
+    # Get the date in YYYYMMDD format
+    string(TIMESTAMP BUILD_DATE "%Y%m%d" UTC)
+  endif()
+
+  set(RELEASE_VERSION "${PROJECT_VERSION}-nightly+${BUILD_DATE}")
+elseif (BUILD_CHANNEL STREQUAL "release")
+  set(RELEASE_VERSION "${PROJECT_VERSION}")
+else()
+  set(RELEASE_VERSION "${PROJECT_VERSION}-local")
+endif()
+
+message(STATUS "RELEASE_VERSION:'${RELEASE_VERSION}'")
+
+project(kanagawa VERSION ${PROJECT_VERSION} LANGUAGES CXX)
+
+# Note: CMake will define these variables:
+#   CMAKE_PROJECT_VERSION
+#   CMAKE_PROJECT_VERSION_MAJOR
+#   CMAKE_PROJECT_VERSION_MINOR
+#   CMAKE_PROJECT_VERSION_PATCH
 
 enable_testing()
 
