@@ -191,6 +191,8 @@ void GetSFormat(const Operation& op, const std::function<void(const std::string&
                 case ParseTreeFormatSpecifierHexUpper:
                     specifier = "%x";
                     break;
+                default:
+                    break;
                 }
 
                 const bool toUpperCase = formatStringEntry._specifier == ParseTreeFormatSpecifierHexUpper;
@@ -12153,7 +12155,7 @@ void ModuleInstanceHelper::AddU64Parameter(const std::string& name, const uint64
 
     AddParameter(name, type, mlir::IntegerAttr::get(type, value));
 
-    SafeInsert(_parameterNameToU64Value, name, value);
+    SafeInsert(_parameterNameToU64Value, name, static_cast<size_t>(value));
 }
 
 void ModuleInstanceHelper::AddParameter(const std::string& name, const mlir::Type type, const mlir::Attribute value)

@@ -92,7 +92,7 @@ public:
         throw std::logic_error(std::string("DeviceConfigPropertyExtractor::Extract not implemented for type: ") + typeid(T).name());
     }
 
-    bool Validate(std::vector<std::string>& missingPropertyNames) const
+    bool Validate(std::vector<std::string>& missingPropertyNames) const override
     {
         if (!_found)
         {
@@ -370,7 +370,7 @@ public:
         _found = true;
     }
 
-    bool Validate(std::vector<std::string>& missingPropertyNames) const
+    bool Validate(std::vector<std::string>& missingPropertyNames) const override
     {
         if (!_found)
         {
@@ -520,7 +520,7 @@ public:
         _found = true;
     }
 
-    bool Validate(std::vector<std::string>& missingPropertyNames) const
+    bool Validate(std::vector<std::string>& missingPropertyNames) const override
     {
         if (!_found)
         {

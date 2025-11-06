@@ -6781,7 +6781,7 @@ void AssignQuadPortMemoryPorts(Program& program)
                                     if (pass == 0)
                                     {
                                         assert(op._flags._loadMemory._bypass);
-                                        SafeInsert(bypassMemories, memoryIndex, op._flags._loadMemory._readPort);
+                                        SafeInsert(bypassMemories, memoryIndex, static_cast<uint64_t>(op._flags._loadMemory._readPort));
                                     }
 
                                     completedQuadPortOperations.insert(&op);
@@ -7012,7 +7012,7 @@ void AssignMemoryPorts(Program& program)
             op._flags._loadMemory._readPort = currReadPort;
             currReadPort++;
 
-            const uint64_t readPort = op._flags._loadMemory._readPort;
+            const size_t readPort = op._flags._loadMemory._readPort;
             // Check that read ports are not reused
             SafeInsert(readPorts, readPort);
 

@@ -424,9 +424,9 @@ void WriteResourceUsage(const char* const fileName, const Program& program)
 void AddResourceUsageRecord(JsonValue& data, // list of records to append to
                             JsonValue& path, // path (object/function/basicblock/stage)
                             const size_t fileIndex, const size_t beginLineIn, const size_t endLine,
-                            const uint64_t registers, const uint64_t lutRamBits, const uint64_t lutRamUsage,
-                            const uint64_t bRamBits, const uint64_t bRamUsage, const uint64_t deepRamBits,
-                            const uint64_t deepRamUsage)
+                            const size_t registers, const size_t lutRamBits, const size_t lutRamUsage,
+                            const size_t bRamBits, const size_t bRamUsage, const size_t deepRamBits,
+                            const size_t deepRamUsage)
 {
     std::string fileName = g_compiler->GetSourceFileName(fileIndex);
     std::replace(fileName.begin(), fileName.end(), '\\', '/');
@@ -512,9 +512,9 @@ static void AddFifoRecord(const Program& program, const JsonValue& path, const s
                                        (FifoType::PassthroughUnregistered == regDesc.Fifo()._type);
     const char* fifoType = (passThroughRegistered ? "passthrough" : "fifo");
     const bool useLutRam = ShouldFifoUseLutRam(program, fifoIndex);
-    const uint64_t lutRamUsage =
+    const size_t lutRamUsage =
         useLutRam ? GetMemoryResourceUsage(deviceConfig._memory._lutRamConfigs, width, depth, replicaCount).first : 0;
-    const uint64_t blockRamUsage =
+    const size_t blockRamUsage =
         !useLutRam ? GetMemoryResourceUsage(deviceConfig._memory._blockRamConfigs, width, depth, replicaCount).first
                    : 0;
 
@@ -530,16 +530,16 @@ static void AddFifoRecord(const Program& program, const JsonValue& path, const s
         JsonValue record = JsonValue::CreateArray();
         record.PushBack(fifoPath.Move());
         record.PushBack(JsonValue(fileName));
-        record.PushBack(JsonValue(static_cast<uint64_t>(location._beginLine)));
-        record.PushBack(JsonValue(static_cast<uint64_t>(location._endLine)));
+        record.PushBack(JsonValue(static_cast<size_t>(location._beginLine)));
+        record.PushBack(JsonValue(static_cast<size_t>(location._endLine)));
 
         const size_t size = width * depth * replicaCount;
 
-        const uint64_t registers = (passThroughRegistered) ? width : 0;
-        const uint64_t lutRamBits = (passThroughRegistered || !useLutRam) ? 0 : size;
-        const uint64_t blockRamBits = (passThroughRegistered || useLutRam) ? 0 : size;
-        const uint64_t deepRamBits = 0;
-        const uint64_t deepRamUsage = 0;
+        const size_t registers = (passThroughRegistered) ? width : 0;
+        const size_t lutRamBits = (passThroughRegistered || !useLutRam) ? 0 : size;
+        const size_t blockRamBits = (passThroughRegistered || useLutRam) ? 0 : size;
+        const size_t deepRamBits = 0;
+        const size_t deepRamUsage = 0;
         record.PushBack(JsonValue(registers));
         record.PushBack(JsonValue(lutRamBits));
         record.PushBack(JsonValue(lutRamUsage));
@@ -563,24 +563,24 @@ static void AddFifoRecord(const Program& program, const JsonValue& path, const s
             JsonValue record = JsonValue::CreateArray();
             record.PushBack(sourcePath.Move());
             record.PushBack(JsonValue(fileName));
-            record.PushBack(JsonValue(static_cast<uint64_t>(location._beginLine)));
-            record.PushBack(JsonValue(static_cast<uint64_t>(location._endLine)));
+            record.PushBack(JsonValue(static_cast<size_t>(location._beginLine)));
+            record.PushBack(JsonValue(static_cast<size_t>(location._endLine)));
 
             const size_t size = source.second * depth * replicaCount;
-            const uint64_t registers = (passThroughRegistered) ? source.second : 0;
-            const uint64_t lutRamBits = (passThroughRegistered || !useLutRam) ? 0 : size;
-            const uint64_t blockRamBits = (passThroughRegistered || useLutRam) ? 0 : size;
-            const uint64_t deepRamBits = 0;
-            const uint64_t deepRamUsage = 0;
+            const size_t registers = (passThroughRegistered) ? source.second : 0;
+            const size_t lutRamBits = (passThroughRegistered || !useLutRam) ? 0 : size;
+            const size_t blockRamBits = (passThroughRegistered || useLutRam) ? 0 : size;
+            const size_t deepRamBits = 0;
+            const size_t deepRamUsage = 0;
             // Approximate contribution of this source to the whole FIFO
             const float fraction = source.second / float(width);
             record.PushBack(JsonValue(registers));
             record.PushBack(JsonValue(lutRamBits));
-            record.PushBack(JsonValue(static_cast<uint64_t>(lutRamUsage * fraction)));
+            record.PushBack(JsonValue(static_cast<size_t>(lutRamUsage * fraction)));
             record.PushBack(JsonValue(blockRamBits));
-            record.PushBack(JsonValue(static_cast<uint64_t>(blockRamUsage * fraction)));
+            record.PushBack(JsonValue(static_cast<size_t>(blockRamUsage * fraction)));
             record.PushBack(JsonValue(deepRamBits));
-            record.PushBack(JsonValue(static_cast<uint64_t>(deepRamUsage * fraction)));
+            record.PushBack(JsonValue(static_cast<size_t>(deepRamUsage * fraction)));
 
             root.PushBack(record.Move());
         }

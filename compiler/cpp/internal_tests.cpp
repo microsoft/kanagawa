@@ -1812,7 +1812,7 @@ void OptimizeLocalDataPropTest()
             range.first = rng() % 10;
             range.second = range.first + 1 + (rng() % 10);
 
-            SafeInsert(regWidth, i, 1 + (rng() % 16));
+            SafeInsert(regWidth, i, static_cast<size_t>(1 + (rng() % 16)));
 
             registerPropagations[range].insert(i);
         }
