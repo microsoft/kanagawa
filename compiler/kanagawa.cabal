@@ -50,10 +50,6 @@ executable kanagawa
   else
     extra-libraries:   kanagawa-backend
 
-  if os(darwin)
-      ld-options:      -Wl,-keep_dwarf_unwind
-      ld-options:      -Wl,-rpath,$ORIGIN
-
   hs-source-dirs:      hs/app
   default-language:    Haskell2010
 
@@ -114,6 +110,12 @@ library
 
   default-language:    Haskell2010
 
-  -- add $ORIGIN to rpath, to enable libkanagawa-backend.so to be found adjacent to the kanagawa compiler binary
-  if !os(windows)
+  -- Allow kanagawa-backend shared library to be found adjacent to the kanagawa compiler binary
+
+  if os(linux)
       ld-options:      -Wl,-rpath,$ORIGIN
+
+  if os(darwin)
+      ld-options:
+        -Wl,-rpath,@loader_path
+        -Wl,-rpath,@loader_path/../..

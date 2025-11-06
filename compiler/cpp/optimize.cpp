@@ -5484,6 +5484,9 @@ std::optional<SourceOperand> GetSelectIndexOptimizedResult(const Program& progra
         }
     }
     break;
+
+    default:
+        break;
     }
 
     assert(!result || (result->Width(program) == outputWidth));

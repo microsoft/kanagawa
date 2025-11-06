@@ -85,9 +85,18 @@ list(APPEND KANAGAWA_HS_SOURCES "${KANAGAWA_COMPILER_DIR}/kanagawa.cabal")
 include(${CMAKE_SOURCE_DIR}/build/cmake/cabal.cmake)
 
 # Build the kanagawa executable and copy it to the dist/bin directory
-add_custom_command(
-    OUTPUT ${KANAGAWA_EXE_DEST}
+set(KANAGAWA_BUILD_COMMANDS
     COMMAND ${CMAKE_COMMAND} -E echo "Building kanagawa exe with Cabal"
+)
+
+# On macOS, copy the shared library into the cabal build directory before building
+if(APPLE)
+    list(APPEND KANAGAWA_BUILD_COMMANDS
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:kanagawa_lib>" "${CABAL_WORKING_DIR}/dist/build/${CABAL_ARCH_STRING}/${GHC_NAME}/kanagawa-1.0.0/x/kanagawa/build/kanagawa/$<TARGET_FILE_NAME:kanagawa_lib>"
+    )
+endif()
+
+list(APPEND KANAGAWA_BUILD_COMMANDS
     COMMAND ${CMAKE_COMMAND} -E env
         TMP=${CABAL_WORKING_DIR}
         TEMP=${CABAL_WORKING_DIR}
@@ -97,6 +106,11 @@ add_custom_command(
         ${CMAKE_COMMAND} -E copy_if_different
         "${CABAL_WORKING_DIR}/dist/build/${CABAL_ARCH_STRING}/${GHC_NAME}/kanagawa-1.0.0/x/kanagawa/build/kanagawa/kanagawa${CMAKE_EXECUTABLE_SUFFIX}"
         "${KANAGAWA_EXE_DEST}"
+)
+
+add_custom_command(
+    OUTPUT ${KANAGAWA_EXE_DEST}
+    ${KANAGAWA_BUILD_COMMANDS}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/compiler
     DEPENDS ${KANAGAWA_HS_SOURCES} kanagawa_lib
     VERBATIM

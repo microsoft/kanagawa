@@ -37,6 +37,11 @@ on:
         required: false
         type: string
         default: '24.04'
+      boost-arch:
+        description: 'Architecture for Boost installation (x86, aarch64, or auto). Use auto to automatically select based on runner OS.'
+        required: false
+        type: string
+        default: 'auto'
       install-riscv64-gcc:
         description: 'Install RISC-V 64-bit GCC toolchain'
         required: false
@@ -187,7 +192,7 @@ jobs:
           verbose: 1
 
       - name: Install Verilator
-        if: runner.os != 'Windows'
+        if: runner.os == 'Linux'
         uses: veryl-lang/setup-verilator@v1
         with:
           version: '5.036'
@@ -200,22 +205,7 @@ jobs:
           platform_version: ${{ inputs.boost-platform-version }}
           boost_install_dir: ${{ runner.temp }}
           toolset: ${{ runner.os == 'Windows' && 'msvc' || runner.os == 'macOS' && 'clang' || 'gcc' }}
-
-      - name: Install miscellaneous packages (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake ninja-build pkg-config libgmp-dev
-
-      - name: Install miscellaneous packages (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          brew install cmake ninja pkg-config gmp
-
-      - name: Install miscellaneous packages (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          choco install cmake ninja pkgconfiglite -y
+          arch: ${{ inputs.boost-arch == 'auto' && (runner.os == 'macOS' && 'aarch64' || 'x86') || inputs.boost-arch }}
 
       - name: Install pandoc
         if: ${{ inputs.install-pandoc }}
@@ -250,6 +240,9 @@ jobs:
           BOOST_ROOT_OUT="${{ steps.install_boost.outputs.BOOST_ROOT }}"
           if [ -z "$BOOST_ROOT_OUT" ] || [ ! -d "$BOOST_ROOT_OUT" ]; then
             echo "install-boost BOOST_ROOT output missing/invalid: '$BOOST_ROOT_OUT'" >&2
+            # Get a directory of ${{ runner.temp }} for debugging
+            echo "Contents of boost_install_dir ($RUNNER_TEMP):" >&2
+            ls -la "$RUNNER_TEMP" >&2
             exit 1
           fi
           echo "BOOST_ROOT=$BOOST_ROOT_OUT" >> "$GITHUB_ENV"
@@ -287,7 +280,7 @@ jobs:
           echo "GHCUP_DIR=$HOME/.ghcup/bin" >> "$GITHUB_ENV"
 
           # Verilator is only installed on non-Windows runners
-          if [ "${{ runner.os }}" != "Windows" ]; then
+          if [ "${{ runner.os }}" == "Linux" ]; then
             VERILATOR_EXE="$(command -v verilator)"
             [ -z "$VERILATOR_EXE" ] && { echo "Verilator not found"; exit 1; }
             echo "VERILATOR_EXE=$VERILATOR_EXE" >> "$GITHUB_ENV"
@@ -301,10 +294,10 @@ jobs:
         run: |
           ghc --version
           cabal --version
-          if [ "${{ runner.os }}" != "Windows" ]; then
+          if [ "${{ runner.os }}" == "Linux" ]; then
             verilator --version
           else
-            echo "Verilator: not installed (Windows)"
+            echo "Verilator: not installed on this OS"
           fi
           echo "BOOST_ROOT=${{ env.BOOST_ROOT }}"
           echo "BOOST_DIR=${{ env.BOOST_DIR }}"

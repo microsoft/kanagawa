@@ -4,7 +4,7 @@
 if(WIN32)
     set(CABAL_ARCH_STRING "x86_64-windows")
 elseif (APPLE)
-    set(CABAL_ARCH_STRING "aarch64-darwin")
+    set(CABAL_ARCH_STRING "aarch64-osx")
 else()
     set(CABAL_ARCH_STRING "x86_64-linux")
 endif()

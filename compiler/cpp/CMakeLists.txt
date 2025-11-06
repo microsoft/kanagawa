@@ -95,6 +95,10 @@ endif()
 # Make boost stack trace print function names in addition to addresses
 target_compile_definitions(kanagawa_lib PRIVATE "BOOST_STACKTRACE_USE_ADDR2LINE")
 
+if(APPLE)
+    target_compile_definitions(kanagawa_lib PRIVATE "BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED")
+endif()
+
 # Link with pthread library for threading support
 target_link_libraries(kanagawa_lib PRIVATE Threads::Threads)
 
