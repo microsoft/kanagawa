@@ -71,8 +71,8 @@ jobs:
       install-svgbob: true
       install-pandoc: true
       build-targets: 'prepare_release_archive'
-      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-linux-x86-64'
-      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-linux-x86-64.tar.gz'
+      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-linux-x86_64'
+      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-linux-x86_64.tar.gz'
       cmake-build-type: 'Release'
       extra-cmake-args: '${{ needs.prepare.outputs.extra_args }}'
       fetch-depth: '0'
@@ -87,14 +87,30 @@ jobs:
       install-svgbob: true
       install-pandoc: true
       build-targets: 'prepare_release_archive'
-      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-windows-amd64'
-      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-windows-amd64.zip'
+      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-windows-x86_64'
+      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-windows-x86_64.zip'
+      cmake-build-type: 'Release'
+      extra-cmake-args: '${{ needs.prepare.outputs.extra_args }}'
+      fetch-depth: '0'
+
+  build-macos:
+    needs: prepare
+    if: needs.prepare.outputs.has-changes == 'true'
+    uses: ./.github/workflows/build-targets-template.yml
+    with:
+      runs-on: 'macos-15'
+      boost-platform-version: '15'
+      install-svgbob: true
+      install-pandoc: true
+      build-targets: 'prepare_release_archive'
+      artifact-name: '${{ needs.prepare.outputs.artifact_prefix }}-macos-arm64'
+      artifact-path: 'build-ci/${{ needs.prepare.outputs.artifact_prefix }}-macos-arm64.tar.gz'
       cmake-build-type: 'Release'
       extra-cmake-args: '${{ needs.prepare.outputs.extra_args }}'
       fetch-depth: '0'
 
   publish:
-    needs: [prepare, build-linux, build-windows]
+    needs: [prepare, build-linux, build-windows, build-macos]
     if: needs.prepare.outputs.has-changes == 'true'
     runs-on: ubuntu-24.04
     steps:
