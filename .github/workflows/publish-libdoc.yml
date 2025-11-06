@@ -22,6 +22,7 @@ jobs:
       cmake-build-type: 'RelWithDebInfo'
       runs-on: 'ubuntu-24.04'
       boost-platform-version: '24.04'
+      install-svgbob: true
 
   publish-to-github-pages:
     needs: build-and-publish
