@@ -27,6 +27,11 @@ install(
   COMPONENT kanagawa
 )
 install(
+  DIRECTORY ${CMAKE_SOURCE_DIR}/runtime/rtl/
+  DESTINATION runtime/rtl
+  COMPONENT kanagawa
+)
+install(
   DIRECTORY ${BUILD_OUTPUT_DIR}/doc/
   DESTINATION doc
   COMPONENT kanagawa
