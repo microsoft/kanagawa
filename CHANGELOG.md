@@ -2,6 +2,13 @@
 All NOTABLE changes to this project will be documented in this file.
 Check the release summary for a detailed history based on commits.
 
+## [1.2.0] - 2025-11-09
+### Added
+- MacOS (ARM64) support
+
+### Fixed
+- Add runtime/rtl to release package
+
 ## [1.1.0] - 2025-11-05
 ### Added
 - Support for Windows
