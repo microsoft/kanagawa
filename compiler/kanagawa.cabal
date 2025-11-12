@@ -1,7 +1,9 @@
 cabal-version:       3.12
 name:                kanagawa
 version:             1.0.0
-synopsis:            Kanagawa Compiler
+synopsis:            Kanagawa compiler frontend
+description:         Kanagawa is a High Level Synthesis (HLS) language for hardware design.
+homepage:            https://dl.acm.org/doi/10.1145/3656420
 author:              Adam Sapek, David Cox
 maintainer:          adamsap@microsoft.com
 copyright:           (C) Microsoft
@@ -9,6 +11,11 @@ category:            Language
 build-type:          Simple
 license:             MIT
 license-file:        LICENSE
+extra-source-files:  cpp/options.h, cpp/parse_tree.h
+
+source-repository head
+  type: git
+  location: https://github.com/microsoft/kanagawa
 
 Flag Debug {
   Description: Debug build, don't optimize
