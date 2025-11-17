@@ -13790,7 +13790,6 @@ void SerializeProgram(std::ostream& str, const Program& program)
 void SerializeFunction(std::ostream& str, const Function& function, const Program& program)
 {
     std::cout << "Function: " << function._name << "\n";
-    
     for (const BasicBlock& basicBlock : function._basicBlocks)
     {
         SerializeBasicBlock(str, basicBlock, program);
