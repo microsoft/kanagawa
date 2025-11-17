@@ -108,7 +108,11 @@ extern "C"
         // This is set both when an export class is used, and when it is defined
         ParseTreeFunctionModifierExportClassInterface = (1 << 14),
 
-        ParseTreeFunctionModifierPure = (1 << 15)
+        ParseTreeFunctionModifierPure = (1 << 15),
+
+        // Do not emit warnings about missing [[transaction_size()]] attribute
+        // for calls *from* this function
+        ParseTreeFunctionModifierNoSrcTxWarning = (1 << 16)
     } ParseTreeFunctionModifier;
 
     typedef enum _ParseTreeMemberProtectionModifier
