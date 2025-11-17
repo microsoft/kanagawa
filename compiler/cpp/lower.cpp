@@ -5363,7 +5363,6 @@ void PlaceNodes(Program& program)
 void SetFifoTransactionSizes(Program& program)
 {
     const bool enableTransactionSizeWarning = GetCodeGenConfig()._enableTransactionSizeWarning;
-    
     for (Function& function : program._functions)
     {
         // `function` is added by the compiler to handle
