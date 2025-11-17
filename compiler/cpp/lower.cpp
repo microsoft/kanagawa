@@ -5424,7 +5424,7 @@ void SetFifoTransactionSizes(Program& program)
 
                             g_compiler->WarningStream(loc, CompileWarning::LastWithoutTransactionSize)
                                 << "Call to function with [[last]] parameter without [[transaction_size]] at the call "
-                                   "site"; 
+                                   "site";
                         }
                     }
                 }
