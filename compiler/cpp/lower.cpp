@@ -5363,9 +5363,18 @@ void PlaceNodes(Program& program)
 void SetFifoTransactionSizes(Program& program)
 {
     const bool enableTransactionSizeWarning = GetCodeGenConfig()._enableTransactionSizeWarning;
-
     for (Function& function : program._functions)
     {
+        // `function` is added by the compiler to handle
+        // calls from external class callbacks
+        // Do not emit transaction size warnings for calls originating from `function`
+        // under the assumption that the external class properly uses store-and-forward
+        // before calling the callback
+        if (function._functionNode->GetModifiers() & ParseTreeFunctionModifierNoSrcTxWarning)
+        {
+            continue;
+        }
+
         for (BasicBlock& basicBlock : function._basicBlocks)
         {
             for (Stage& stage : basicBlock._stages)

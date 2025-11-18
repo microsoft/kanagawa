@@ -12069,7 +12069,11 @@ void ClassNode::CreateExternCallbacks()
 // Creates export functions that are connected to callbacks of the export class
 void ClassNode::CreateExportCallbacks(const std::string& objectName)
 {
-    CreateCallbacksHelper(ParseTreeFunctionModifierExport | ParseTreeFunctionModifierExportClassInterface,
+    // ParseTreeFunctionModifierNoSrcTxWarning is to disable warnings related to calls
+    // from these exported functions.  The assumption is that external code
+    // which calls the callback will not make the function call until they have
+    // an entire transaction ready to go
+    CreateCallbacksHelper(ParseTreeFunctionModifierExport | ParseTreeFunctionModifierExportClassInterface | ParseTreeFunctionModifierNoSrcTxWarning,
                           [&](const std::string& name, FunctionNode* const exportFunctionNode)
                           {
                               const ExportCallbackKey key(objectName, name);
@@ -13786,7 +13790,6 @@ void SerializeProgram(std::ostream& str, const Program& program)
 void SerializeFunction(std::ostream& str, const Function& function, const Program& program)
 {
     std::cout << "Function: " << function._name << "\n";
-
     for (const BasicBlock& basicBlock : function._basicBlocks)
     {
         SerializeBasicBlock(str, basicBlock, program);

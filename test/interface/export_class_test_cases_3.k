@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import .options as opt
 import test.unit as unit
 import test.runner
 
@@ -135,7 +136,7 @@ class EndTransactionOnCallbacksInner
     template<auto M>
     [[pipelined]] void CallSite(uint32 tid, uint32 threadCount, unit::tag_t tag)
     {
-        CallCallback(tag, tid, threadCount, M, (tid == threadCount - 1));
+        [[transaction_size(opt::max_threads_limit)]] CallCallback(tag, tid, threadCount, M, (tid == threadCount - 1));
     }
 
 public:

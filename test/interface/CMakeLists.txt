@@ -178,8 +178,6 @@ add_interface_test(export_class_test_cases_3 export_class_test_cases_3.k
     ExportClassWithExternObject.sv
   EXTRA_RTL
     external_class.sv
-  OPTIONS
-    "--Wno-transaction-size" # Warning 10  Call to function with [[last]] parameter without [[transaction_size]] at the call site
 )
 
 add_interface_test(ecc_mem ecc_mem.k
