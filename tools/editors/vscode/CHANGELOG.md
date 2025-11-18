@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.8] - 2025-11-17
+
+### Changed
+- Added icon
+
 ## [0.1.4] - 2025-10-30
 
 ### Fixed
