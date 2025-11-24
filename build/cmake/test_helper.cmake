@@ -214,9 +214,9 @@ function(add_verilator verilate_target)
 
   # Add support files
   list(APPEND VERILATOR_ARGS
-    -f "${CMAKE_SOURCE_DIR}/runtime/rtl/hal/mock/files.f"
     -f "${CMAKE_SOURCE_DIR}/runtime/rtl/files.f"
     -f "${CMAKE_SOURCE_DIR}/runtime/rtl/sim/files.f"
+    -f "${CMAKE_SOURCE_DIR}/runtime/rtl/hal/mock/files.f"
   )
 
   set(PRE_COMMANDS

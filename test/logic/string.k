@@ -4,7 +4,6 @@
 import data.optional
 import test.unit as unit
 import test.runner
-import compiler.config as config
 
 inline void Ternary(unit::tag_t tag)
 {
@@ -700,16 +699,12 @@ inline void Interpolation(unit::tag_t tag)
     __assert_str_eq("{bool_val:b}", "0");
     __assert_str_eq("{bool_val,-3:b}", "0  ");
 
-    // Work around Verilator errors in $bitstoshortreal
-    static if (config::device_name != "mock")
-    {
-        float fval = -2.3;
-        __assert_str_eq("{fval}", "-2.300000");
-        __assert_str_eq("{fval:d}", "3222483763");
-        __assert_str_eq("{fval:x}", "c0133333");
-        __assert_str_eq("{fval:o}", "30004631463");
-        __assert_str_eq("{fval:b}", "11000000000100110011001100110011");
-    }
+    float fval = -2.3;
+    __assert_str_eq("{fval}", "-2.300000");
+    __assert_str_eq("{fval:d}", "3222483763");
+    __assert_str_eq("{fval:x}", "c0133333");
+    __assert_str_eq("{fval:o}", "30004631463");
+    __assert_str_eq("{fval:b}", "11000000000100110011001100110011");
 
     Color c = Color::Green;
     __assert_str_eq("{c}", "Green");

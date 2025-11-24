@@ -248,9 +248,9 @@ void GetSFormat(const Operation& op, const std::function<void(const std::string&
 
             case FormatStringType::Float:
                 emitStr("string_table.align(");
-                emitStr("$sformatf(\"%f\", $bitstoshortreal(");
+                emitStr("KanagawaFunctions::shortreal_bits_to_string(");
                 emitSrcOp(formatStringEntry._operandIndex);
-                emitStr(")), " + std::to_string(formatStringEntry._alignment) + ")");
+                emitStr("), " + std::to_string(formatStringEntry._alignment) + ")");
                 break;
 
             default:
@@ -9803,11 +9803,6 @@ class VerilogCompiler
             {
                 switch (printEntry._type)
                 {
-                case PrintType::Uint:
-                case PrintType::Int:
-                    writer << ", " << triggeredOpHelper.GetSourceOperand(op, printEntry._operandIndex);
-                    break;
-
                 case PrintType::StringLiteral:
                     writer << ", \"" << EscapeSpecialChars(op._src[printEntry._operandIndex].GetStringLiteral())
                            << "\"";
@@ -9817,11 +9812,6 @@ class VerilogCompiler
                     writer << ", string_table.get("
                            << triggeredOpHelper.GetSourceOperand(op, printEntry._operandIndex, c_stringHandleWidth)
                            << ", 1'b1)";
-                    break;
-
-                case PrintType::Float:
-                    writer << ", $bitstoshortreal("
-                           << triggeredOpHelper.GetSourceOperand(op, printEntry._operandIndex, 64) << ")";
                     break;
 
                 default:
