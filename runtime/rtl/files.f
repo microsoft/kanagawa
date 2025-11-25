@@ -1,5 +1,6 @@
 # Files containing packages with types consumed by modules must come first
 types.sv
+functions.sv
 arbitration_chain.sv
 context_saver.sv
 cross_region_fifo.sv

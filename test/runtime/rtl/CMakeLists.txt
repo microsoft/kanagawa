@@ -60,6 +60,12 @@ add_custom_target(run_runtime_rtl_tests
     USES_TERMINAL
 )
 
+add_runtime_rtl_test(bits32_to_real functions_tb.sv bits32_to_real_tb)
+
+add_runtime_rtl_test(real_to_bits32 functions_tb.sv real_to_bits32_tb)
+
+add_runtime_rtl_test(shortreal_bits_to_string functions_tb.sv shortreal_bits_to_string_tb)
+
 add_runtime_rtl_test(hal_dsp_mock_umul27 hal_dsp_mock_tb.sv KanagawaHALDSP_mock_umul27_tb)
 
 add_runtime_rtl_test(hal_dsp_mock_imul27 hal_dsp_mock_tb.sv KanagawaHALDSP_mock_imul27_tb)
