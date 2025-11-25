@@ -24,6 +24,9 @@ package KanagawaFunctions;
         logic [10:0] exp11;
         logic [51:0] mant52;
         logic [63:0] bits64;
+        logic [23:0] mant24;
+        int shift_count;
+        int exp_val;
 
         // Extract single-precision components
         sign = bits32[31];
@@ -45,9 +48,15 @@ package KanagawaFunctions;
             end
             else begin
                 // Denormalized - need to normalize for double precision
-                // This is a simplified handling - full denorm support would be more complex
-                exp11 = 11'h380; // Minimum exponent offset
-                mant52 = {mant23, 29'b0};
+                mant24 = {1'b0, mant23};
+                shift_count = 0;
+                while (mant24[23] == 1'b0) begin
+                    mant24 = mant24 << 1;
+                    shift_count++;
+                end
+                mant52 = {mant24[22:0], 29'b0};
+                exp_val = 897 - shift_count;
+                exp11 = exp_val[10:0];
             end
         end
         else begin

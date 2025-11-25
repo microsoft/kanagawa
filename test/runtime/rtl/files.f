@@ -5,6 +5,7 @@ fifo_debug_tb.sv
 fifo_ptrs_ex_tb.sv
 fifo_ptrs_tb.sv
 fixed_delay_fifo_tb.sv
+functions_tb.sv
 hal_auto_pipeline_buffer_tb.sv
 hal_auto_pipeline_chain_tb.sv
 hal_dsp_mock_tb.sv
