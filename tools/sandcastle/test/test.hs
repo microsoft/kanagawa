@@ -49,6 +49,7 @@ goldenTests = do
                , no_implicit_base = True
                , output           = "test" </> "output"
                , svgbob           = True
+               , source_url       = ""
                , target_device    = ""
                , using            = []
                }
