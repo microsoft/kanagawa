@@ -31,6 +31,7 @@ data Env = Env
     , fileExt          :: String   -- ^ File format extension
     , moduleIdentifier :: [String]
     , outputDirectory  :: [FilePath]
+    , sourceUrl        :: String
     , svgbob           :: Bool     -- ^ Generate Svgbob diagrams
     , anchors          :: Set QualifiedName
     , symbols          :: Symbols
@@ -48,6 +49,7 @@ initEnv fExt cli ancs syms = Env
   , fileExt          = fExt
   , moduleIdentifier = mempty
   , outputDirectory  = splitPath $ Cli.output cli
+  , sourceUrl        = Cli.source_url cli
   , svgbob           = Cli.svgbob cli
   , anchors          = ancs
   , symbols          = syms

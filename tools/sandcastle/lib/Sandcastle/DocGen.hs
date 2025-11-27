@@ -4,6 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE PatternSynonyms   #-}
 {-# LANGUAGE TypeFamilies      #-}
+{-# LANGUAGE RecordWildCards   #-}
 
 {-|
 Copyright : (c) Microsoft Corporation
@@ -66,6 +67,7 @@ import Text.Pandoc
 import Text.Pandoc.Builder hiding (code, note)
 import qualified Text.Pandoc.Builder as B
 import Text.Pandoc.Walk
+import Text.Megaparsec.Pos
 
 -- | Read 'ExpSrc' and generate 'Pandoc' data.
 generatePandoc
@@ -136,6 +138,7 @@ spanExampleBlocks = \case
 -- | Signature annotations
 data SigAnn = Anchor   Text -- ^ href
                        Text -- ^ id
+            | Source   Text -- ^ href
             | Att
             | Builtin
             | Ident
@@ -214,6 +217,8 @@ encloseInTagFor = \case
   Anchor href ident -> H.a    H.! HA.class_ "anchor"
                               H.! HA.href   (H.textValue href)
                               H.! HA.id     (H.textValue ident)
+  Source href       -> H.a    H.! HA.class_ "source_link"
+                              H.! HA.href   (H.textValue href)
   Att               -> H.span H.! HA.class_ "attribute"
   Builtin           -> H.span H.! HA.class_ "builtin"
   Ident             -> H.span H.! HA.class_ "identifier"
@@ -228,6 +233,8 @@ encloseInMdTagFor = \case
   Anchor href ident -> H.a    H.! HA.style (inline anchorStyle)
                               H.! HA.href  (H.textValue href)
                               H.! HA.id    (H.textValue ident)
+  Source href       -> H.a    H.! HA.style (inline sourceLinkStyle)
+                              H.! HA.href  (H.textValue href)
   Att               -> H.span H.! HA.style (inline attributeStyle)
   Builtin           -> H.span H.! HA.style (inline builtinStyle)
   Ident             -> H.span H.! HA.style (inline identifierStyle)
@@ -816,12 +823,22 @@ mkModuleForest ext = go [] . groupByHead
 -- Utility --
 -------------
 
-anchor :: Monad m => ExpSrc -> m (Doc SigAnn)
-anchor e = return $ annotate (Anchor url name) section
+anchor :: MonadReader Env m => ExpSrc -> m (Doc SigAnn)
+anchor e = do
+    root <- asks sourceUrl
+    path <- asks moduleIdentifier
+    return (annotate (Anchor url name) section <> source root path)
   where
     name = T.pack $ hyphenateQualifiedName $ getQualifiedName e
     url  = "#" <> name
     section = "\x00A7" -- §
+    source [] _ = mempty
+    source root path = annotate (Source srcUrl) "source"
+      where
+        srcUrl = T.pack $ (<> lineNo (note $ unfix e)) $ addExtension (Posix.joinPath (root : path)) "k"
+        lineNo (SrcStack a _) = lineNo a
+        lineNo Src{..} = "#L" ++ show (unPos $ sourceLine begin)
+        lineNo SrcUnknown = mempty
 
 collapsible
   :: Inlines -- ^ summary

@@ -24,6 +24,7 @@ data Cli = Cli
     , no_implicit_base :: Bool
     , output           :: FilePath
     , svgbob           :: Bool
+    , source_url       :: String
     , target_device    :: String
     , using            :: [String]
     }
