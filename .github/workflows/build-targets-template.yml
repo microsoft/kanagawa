@@ -195,7 +195,7 @@ jobs:
         if: runner.os == 'Linux'
         uses: veryl-lang/setup-verilator@v1
         with:
-          version: '5.036'
+          version: '5.040'
 
       - name: Install Boost
         id: install_boost
