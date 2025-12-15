@@ -102,6 +102,21 @@ function(add_riscv_executable target)
       message(FATAL_ERROR "Could not find riscv64-unknown-elf-gcc in ${RISCV64_GCC}/bin")
   endif()
 
+  set(RISCV_MABI ilp32)
+
+  execute_process(
+    COMMAND ${RISCV64_GCC_EXE} -march=${_ARG_ARCH} -mabi=${RISCV_MABI} -print-libgcc-file-name
+    OUTPUT_VARIABLE RISCV_LIBGCC
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    RESULT_VARIABLE _r
+  )  
+
+  if(NOT _r EQUAL 0 OR RISCV_LIBGCC STREQUAL "" OR RISCV_LIBGCC MATCHES "^libgcc\\.a$")
+    message(FATAL_ERROR "Failed to query libgcc path from ${RISCV64_GCC_EXE}. Got: '${RISCV_LIBGCC}'")
+  endif()
+
+  get_filename_component(RISCV_GCC_MULTILIB_DIR "${RISCV_LIBGCC}" DIRECTORY)
+
   set(COREMARK_DIR "${CMAKE_SOURCE_DIR}/thirdparty/coremark")
 
   list(FIND _ARG_OPTIONS "-nostartfiles" no_start)
@@ -122,12 +137,12 @@ function(add_riscv_executable target)
   set(GCC_ARGS
     "-march=${_ARG_ARCH}"
     "-mno-div"
-    "-mabi=ilp32"
+    "-mabi=${RISCV_MABI}"
     "-mbranch-cost=1"
     "-mno-strict-align"
     "-I${COREMARK_DIR}"
     "-I${COREMARK_DIR}/barebones"
-    "-L${RISCV64_GCC}/lib/gcc/riscv64-unknown-elf/10.1.0/rv32i/ilp32"
+    "-L${RISCV_GCC_MULTILIB_DIR}"
     "-Wl,--script=${_ARG_LD_SCRIPT}"
     "-mtune=sifive-3-series"
   )

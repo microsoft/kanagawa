@@ -168,8 +168,15 @@ To build Sandcastle, you will need to install:
 
 ## Building on MacOS
 
-Assuming you have installed `homebrew`, setting up a build environment to build the compiler and run its unit tests
-on MacOS is as simple as running these commands in a terminal:
+You need to have `homebrew` installed to use the method described here. If you don't already have it installed,
+you can install it by running this command in a terminal session:
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Once `homebrew` is installed, setting up a build environment that supports building the compiler and most of the 
+unit tests is as simple as running these commands in a terminal:
 
 ```zsh
 brew install cmake ninja boost verilator
@@ -184,6 +191,14 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install svgbob_cli
 ```
 
+The above set-up will let you build the compiler, sandcastle, and run all the unit tests save those that require
+the RISC-V GCC cross-compiler. To install the cross-compiler, use these commands:
+
+```zsh
+brew tap riscv-software-src/riscv
+brew install riscv-tools
+```
+
 Then follow the instructions above to clone the repo, initialize the submodules, etc. Here is an example CMake command:
 
 ```zsh
@@ -194,7 +209,8 @@ cmake \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DBoost_DIR=/opt/homebrew/opt/boost/lib/cmake \
     -DGHCUP_DIR=$HOME/.ghcup/bin \
-    -DVERILATOR_EXE=/opt/homebrew/bin/verilator
+    -DVERILATOR_EXE=/opt/homebrew/bin/verilator \
+    -DRISCV64_GCC=/opt/homebrew/Cellar/riscv-gnu-toolchain/main    
 ```
 
 ## Building on Windows
