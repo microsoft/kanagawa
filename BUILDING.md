@@ -5,9 +5,10 @@ compiler and run the unit tests.
 
 ## Setting up your build environment
 
-At this time, building the Kanagawa compiler and the documentation tool, Sandcastle, is supported on Linux.
-If you are using Windows, you can use Windows Subsystem for Linux (WSL). At this time, the team is building
-and testing the project on Ubuntu 22, and Ubuntu 24 in a WSL session.
+At this time, the full Kanagawa build and test environment is supported on Linux (or Linux in WSL on Windows). However, building the compiler and related tools is supported on both Windows and MacOS, and all the unit tests, save those requiring the RISC-V cross-compiler,
+have been verified on MacOS.
+
+The CI checks that are run when a pull request is submitted run on Ubuntu 24, Windows 2019, and MacOS. The unit tests are only run on Ubuntu 24.
 
 ## Building the Kanagawa Compiler
 
@@ -55,7 +56,7 @@ cmake \
     -G Ninja \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DBoost_DIR=$HOME/boost/lib/cmake/Boost-1.88.0 \
-    -DGHCUP_DIR=/home/user/.ghcup/bin \
+    -DGHCUP_DIR=$HOME/.ghcup/bin \
     -DVERILATOR_EXE=/usr/local/bin/verilator
     -DRISCV64_GCC=$HOME/riscv64-unknown-elf-gcc/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14
 ```
@@ -161,10 +162,40 @@ To run the tests for the Kanagawa RISC-V processor implementation, you will need
 
 To build Sandcastle, you will need to install:
 - Rust cargo version 1.88.0 or later (see https://doc.rust-lang.org/cargo/getting-started/installation.html)
-- svgbob_clk (install by running `cargo install svgbob_cvi`)
+- svgbob_cli (install by running `cargo install svgbob_cli`)
 - nodejs version 16.20.2 or later (see https://github.com/nodesource/distributions)
 - yarn version 1.22.22 or later (see https://classic.yarnpkg.com/en/docs/install#linux-stable)
 
+## Building on MacOS
+
+Assuming you have installed `homebrew`, setting up a build environment to build the compiler and run its unit tests
+on MacOS is as simple as running these commands in a terminal:
+
+```zsh
+brew install cmake ninja boost verilator
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+
+To build Sandcastle and run the sandcastle and documentation check tests, run these commands to install the prerequisites:
+
+```zsh
+brew install nodejs yarn pandoc
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install svgbob_cli
+```
+
+Then follow the instructions above to clone the repo, initialize the submodules, etc. Here is an example CMake command:
+
+```
+cmake \
+    -S $HOME/kanagawa \
+    -B $HOME/kanagawa-build \
+    -G Ninja \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DBoost_DIR=/opt/homebrew/opt/boost/lib/cmake \
+    -DGHCUP_DIR=$HOME/.ghcup/bin \
+    -DVERILATOR_EXE=`/opt/homebrew/bin/verilator`
+```
 
 ## Building on Windows
 
