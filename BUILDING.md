@@ -194,7 +194,7 @@ cmake \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DBoost_DIR=/opt/homebrew/opt/boost/lib/cmake \
     -DGHCUP_DIR=$HOME/.ghcup/bin \
-    -DVERILATOR_EXE=`/opt/homebrew/bin/verilator`
+    -DVERILATOR_EXE=/opt/homebrew/bin/verilator
 ```
 
 ## Building on Windows
