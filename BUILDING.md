@@ -186,7 +186,7 @@ cargo install svgbob_cli
 
 Then follow the instructions above to clone the repo, initialize the submodules, etc. Here is an example CMake command:
 
-```
+```zsh
 cmake \
     -S $HOME/kanagawa \
     -B $HOME/kanagawa-build \
