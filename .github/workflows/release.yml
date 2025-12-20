@@ -36,7 +36,7 @@ jobs:
           fi
 
           # Stable channel (no date)
-          EXTRA="-DBUILD_CHANNEL=release"
+          EXTRA="-DBUILD_CHANNEL=release -DSOURCE_PERMALINK=https://github.com/microsoft/kanagawa/blob/${TAG}"
           echo "version=$FILE_VER" >> $GITHUB_OUTPUT
           echo "tag=$TAG"     >> $GITHUB_OUTPUT
           echo "extra_args=$EXTRA" >> $GITHUB_OUTPUT

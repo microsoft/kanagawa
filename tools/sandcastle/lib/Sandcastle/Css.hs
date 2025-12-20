@@ -9,6 +9,7 @@ module Sandcastle.Css
   , htmlStyle
   , signatureStyle
   , anchorStyle
+  , sourceLinkStyle
   , attributeStyle
   , builtinStyle
   , identifierStyle
@@ -124,6 +125,7 @@ kanagawaStyle = ".kanagawa" ? do
 syntaxStyle :: Css
 syntaxStyle = mconcat
   [ anchorStyle
+  , sourceLinkStyle
   , attributeStyle
   , builtinStyle
   , identifierStyle
@@ -135,6 +137,11 @@ syntaxStyle = mconcat
 
 anchorStyle :: Css
 anchorStyle = ".anchor" ? color gray
+
+sourceLinkStyle :: Css
+sourceLinkStyle = ".source_link" ? do
+    color gray
+    float floatRight
 
 attributeStyle :: Css
 attributeStyle = ".attribute" ? color orange

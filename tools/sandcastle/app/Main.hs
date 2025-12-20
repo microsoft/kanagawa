@@ -27,6 +27,7 @@ cli = Cli
     , import_dir       = [] &= help "Directories to search for imported files" &= typDir
     , no_implicit_base = False &= help "Disable implicit import of base library"
     , output           = "." &= help "Output directory for generated documentation, default is current working directory" &= typDir
+    , source_url       = [] &= help "Root url for links to the source files" &= typ "URL"
     , svgbob           = False &= help "Generate Svgbob diagrams"
     , target_device    = "Arria-10-GX-1150" &= help "Target FPGA device name" &= typ "STRING"
     , using            = [] &= help "Define a global type alias" &= name "using" &= name "u" &= explicit &= typ "name#type"
