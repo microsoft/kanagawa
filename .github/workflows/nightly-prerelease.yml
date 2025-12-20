@@ -54,7 +54,7 @@ jobs:
           DATE=$(date -u +%Y%m%d)
           TAG="nightly-${DATE}"
           # Channel/date for numeric CPP in Haskell:
-          EXTRA="-DBUILD_CHANNEL=nightly -DBUILD_DATE=${DATE} -DCURRENT_COMMIT=${TAG}"
+          EXTRA="-DBUILD_CHANNEL=nightly -DBUILD_DATE=${DATE} -DSOURCE_PERMALINK=https://github.com/microsoft/kanagawa/blob/${TAG}"
           echo "base=$BASE" >> $GITHUB_OUTPUT
           echo "date=$DATE" >> $GITHUB_OUTPUT
           echo "tag=$TAG"   >> $GITHUB_OUTPUT

@@ -77,8 +77,8 @@ function(add_md_to_html document)
 endfunction()
 
 # Generate docs for the standard library
-if (DEFINED CURRENT_COMMIT)
-    set(SOURCE_URL "--source-url=https://github.com/microsoft/kanagawa/blob/${CURRENT_COMMIT}/library")
+if (DEFINED SOURCE_PERMALINK)
+    set(SOURCE_URL "--source-url=${SOURCE_PERMALINK}/library")
 endif()
 
 add_custom_target(libdoc

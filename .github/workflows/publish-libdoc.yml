@@ -20,7 +20,7 @@ jobs:
       artifact-name: 'library-docs-${{ github.sha }}'
       artifact-path: 'build-ci/dist/doc/library/**'
       cmake-build-type: 'RelWithDebInfo'
-      extra-cmake-args: '-DCURRENT_COMMIT=${{ github.sha }}'
+      extra-cmake-args: '-DSOURCE_PERMALINK=https://github.com/microsoft/kanagawa/blob/${{ github.sha }}'
       runs-on: 'ubuntu-24.04'
       boost-platform-version: '24.04'
       install-svgbob: true
