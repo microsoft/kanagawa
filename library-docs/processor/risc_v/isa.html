@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -227,7 +233,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <p>RISC-V ISA types, constants and helper functions.</p>
 <hr />
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Base</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-isa-Base" id="processor-risc_v-isa-Base">§</a>
+<span class="keyword">enum</span> <span class="identifier">Base</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-isa-Base" id="processor-risc_v-isa-Base">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L41">source</a>
 </pre>
 <div class="docs">
 <p>Base ISA identifier</p>
@@ -237,17 +243,17 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">RV32I</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV32I" id="processor-risc_v-isa-Base-RV32I">§</a>
+<span class="identifier">RV32I</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV32I" id="processor-risc_v-isa-Base-RV32I">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L43">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">RV32E</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV32E" id="processor-risc_v-isa-Base-RV32E">§</a>
+<span class="identifier">RV32E</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV32E" id="processor-risc_v-isa-Base-RV32E">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L44">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">RV64I</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV64I" id="processor-risc_v-isa-Base-RV64I">§</a>
+<span class="identifier">RV64I</span> <a class="anchor" href="#processor-risc_v-isa-Base-RV64I" id="processor-risc_v-isa-Base-RV64I">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L45">source</a>
 </pre>
 </li>
 </ul>
@@ -255,7 +261,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Extension</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-isa-Extension" id="processor-risc_v-isa-Extension">§</a>
+<span class="keyword">enum</span> <span class="identifier">Extension</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-isa-Extension" id="processor-risc_v-isa-Extension">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L49">source</a>
 </pre>
 <div class="docs">
 <p>Standard ISA extension identifier</p>
@@ -265,12 +271,12 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">None</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Extension-None" id="processor-risc_v-isa-Extension-None">§</a>
+<span class="identifier">None</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Extension-None" id="processor-risc_v-isa-Extension-None">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L51">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">M</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Extension-M" id="processor-risc_v-isa-Extension-M">§</a>
+<span class="identifier">M</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Extension-M" id="processor-risc_v-isa-Extension-M">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L52">source</a>
 </pre>
 </li>
 </ul>
@@ -278,11 +284,11 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">Funct7</span> = <span class="keyword">uint7</span> <a class="anchor" href="#processor-risc_v-isa-Funct7" id="processor-risc_v-isa-Funct7">§</a>
+<span class="keyword">using</span> <span class="identifier">Funct7</span> = <span class="keyword">uint7</span> <a class="anchor" href="#processor-risc_v-isa-Funct7" id="processor-risc_v-isa-Funct7">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L55">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a> ISA&gt;
-<span class="keyword">class</span> <span class="identifier">Types</span> <a class="anchor" href="#processor-risc_v-isa-Types" id="processor-risc_v-isa-Types">§</a>
+<span class="keyword">class</span> <span class="identifier">Types</span> <a class="anchor" href="#processor-risc_v-isa-Types" id="processor-risc_v-isa-Types">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L59">source</a>
 </pre>
 <div class="docs">
 <p>Data types for specified base ISA</p>
@@ -292,7 +298,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">int_t</span> = <span class="builtin">int</span>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">int_size</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-int_t" id="processor-risc_v-isa-Types-int_t">§</a>
+<span class="keyword">using</span> <span class="identifier">int_t</span> = <span class="builtin">int</span>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">int_size</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-int_t" id="processor-risc_v-isa-Types-int_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L66">source</a>
 </pre>
 <div class="docs">
 <p>Signed XLEN bits wide integer</p>
@@ -300,7 +306,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">uint_t</span> = <span class="builtin">uint</span>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">int_size</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-uint_t" id="processor-risc_v-isa-Types-uint_t">§</a>
+<span class="keyword">using</span> <span class="identifier">uint_t</span> = <span class="builtin">uint</span>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">int_size</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-uint_t" id="processor-risc_v-isa-Types-uint_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L69">source</a>
 </pre>
 <div class="docs">
 <p>Unsigned XLEN bits wide integer</p>
@@ -308,7 +314,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">register_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">registers</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-register_index_t" id="processor-risc_v-isa-Types-register_index_t">§</a>
+<span class="keyword">using</span> <span class="identifier">register_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<span class="identifier">registers</span>&gt; <a class="anchor" href="#processor-risc_v-isa-Types-register_index_t" id="processor-risc_v-isa-Types-register_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L72">source</a>
 </pre>
 <div class="docs">
 <p>Register index</p>
@@ -323,7 +329,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">Decoded</span> <a class="anchor" href="#processor-risc_v-isa-Types-Decoded" id="processor-risc_v-isa-Types-Decoded">§</a>
+<span class="keyword">struct</span> <span class="identifier">Decoded</span> <a class="anchor" href="#processor-risc_v-isa-Types-Decoded" id="processor-risc_v-isa-Types-Decoded">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L75">source</a>
 </pre>
 <div class="docs">
 <p>Decoded instruction fields</p>
@@ -333,7 +339,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rd" id="processor-risc_v-isa-Types-$quasi0-rd">§</a>
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rd" id="processor-risc_v-isa-Types-$quasi0-rd">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L78">source</a>
 </pre>
 <div class="docs">
 <p>Destination register</p>
@@ -341,7 +347,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rs1" id="processor-risc_v-isa-Types-$quasi0-rs1">§</a>
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rs1" id="processor-risc_v-isa-Types-$quasi0-rs1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L81">source</a>
 </pre>
 <div class="docs">
 <p>First operand register</p>
@@ -349,7 +355,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rs2" id="processor-risc_v-isa-Types-$quasi0-rs2">§</a>
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-register_index_t"><span class="identifier">register_index_t</span></a>&gt; <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-rs2" id="processor-risc_v-isa-Types-$quasi0-rs2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L84">source</a>
 </pre>
 <div class="docs">
 <p>Second operand register</p>
@@ -357,7 +363,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-int_t"><span class="identifier">int_t</span></a> <span class="identifier">imm</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-imm" id="processor-risc_v-isa-Types-$quasi0-imm">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-int_t"><span class="identifier">int_t</span></a> <span class="identifier">imm</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-imm" id="processor-risc_v-isa-Types-$quasi0-imm">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L87">source</a>
 </pre>
 <div class="docs">
 <p>Immediate operand (not valid for R-type instructions)</p>
@@ -365,7 +371,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-funct7" id="processor-risc_v-isa-Types-$quasi0-funct7">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span> <a class="anchor" href="#processor-risc_v-isa-Types-$quasi0-funct7" id="processor-risc_v-isa-Types-$quasi0-funct7">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L90">source</a>
 </pre>
 <div class="docs">
 <p>funct7 field (valid only for R-type instructions)</p>
@@ -381,7 +387,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">RVG</span> : <span class="keyword">uint5</span> <a class="anchor" href="#processor-risc_v-isa-RVG" id="processor-risc_v-isa-RVG">§</a>
+<span class="keyword">enum</span> <span class="identifier">RVG</span> : <span class="keyword">uint5</span> <a class="anchor" href="#processor-risc_v-isa-RVG" id="processor-risc_v-isa-RVG">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L95">source</a>
 </pre>
 <div class="docs">
 <p>General-purpose ISA major opcodes</p>
@@ -391,162 +397,162 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">LOAD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LOAD" id="processor-risc_v-isa-RVG-LOAD">§</a>
+<span class="identifier">LOAD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LOAD" id="processor-risc_v-isa-RVG-LOAD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">LOAD_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LOAD_FP" id="processor-risc_v-isa-RVG-LOAD_FP">§</a>
+<span class="identifier">LOAD_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LOAD_FP" id="processor-risc_v-isa-RVG-LOAD_FP">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">custom_0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_0" id="processor-risc_v-isa-RVG-custom_0">§</a>
+<span class="identifier">custom_0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_0" id="processor-risc_v-isa-RVG-custom_0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">MISC_MEM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MISC_MEM" id="processor-risc_v-isa-RVG-MISC_MEM">§</a>
+<span class="identifier">MISC_MEM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MISC_MEM" id="processor-risc_v-isa-RVG-MISC_MEM">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">OP_IMM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_IMM" id="processor-risc_v-isa-RVG-OP_IMM">§</a>
+<span class="identifier">OP_IMM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_IMM" id="processor-risc_v-isa-RVG-OP_IMM">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">AUIPC</span> <a class="anchor" href="#processor-risc_v-isa-RVG-AUIPC" id="processor-risc_v-isa-RVG-AUIPC">§</a>
+<span class="identifier">AUIPC</span> <a class="anchor" href="#processor-risc_v-isa-RVG-AUIPC" id="processor-risc_v-isa-RVG-AUIPC">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">OP_IMM_32</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_IMM_32" id="processor-risc_v-isa-RVG-OP_IMM_32">§</a>
+<span class="identifier">OP_IMM_32</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_IMM_32" id="processor-risc_v-isa-RVG-OP_IMM_32">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">long0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long0" id="processor-risc_v-isa-RVG-long0">§</a>
+<span class="identifier">long0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long0" id="processor-risc_v-isa-RVG-long0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">STORE</span> <a class="anchor" href="#processor-risc_v-isa-RVG-STORE" id="processor-risc_v-isa-RVG-STORE">§</a>
+<span class="identifier">STORE</span> <a class="anchor" href="#processor-risc_v-isa-RVG-STORE" id="processor-risc_v-isa-RVG-STORE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">STORE_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-STORE_FP" id="processor-risc_v-isa-RVG-STORE_FP">§</a>
+<span class="identifier">STORE_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-STORE_FP" id="processor-risc_v-isa-RVG-STORE_FP">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">custom_1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_1" id="processor-risc_v-isa-RVG-custom_1">§</a>
+<span class="identifier">custom_1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_1" id="processor-risc_v-isa-RVG-custom_1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">AMO</span> <a class="anchor" href="#processor-risc_v-isa-RVG-AMO" id="processor-risc_v-isa-RVG-AMO">§</a>
+<span class="identifier">AMO</span> <a class="anchor" href="#processor-risc_v-isa-RVG-AMO" id="processor-risc_v-isa-RVG-AMO">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">OP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP" id="processor-risc_v-isa-RVG-OP">§</a>
+<span class="identifier">OP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP" id="processor-risc_v-isa-RVG-OP">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">LUI</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LUI" id="processor-risc_v-isa-RVG-LUI">§</a>
+<span class="identifier">LUI</span> <a class="anchor" href="#processor-risc_v-isa-RVG-LUI" id="processor-risc_v-isa-RVG-LUI">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">OP_32</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_32" id="processor-risc_v-isa-RVG-OP_32">§</a>
+<span class="identifier">OP_32</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_32" id="processor-risc_v-isa-RVG-OP_32">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">long1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long1" id="processor-risc_v-isa-RVG-long1">§</a>
+<span class="identifier">long1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long1" id="processor-risc_v-isa-RVG-long1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L101">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">MADD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MADD" id="processor-risc_v-isa-RVG-MADD">§</a>
+<span class="identifier">MADD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MADD" id="processor-risc_v-isa-RVG-MADD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">MSUB</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MSUB" id="processor-risc_v-isa-RVG-MSUB">§</a>
+<span class="identifier">MSUB</span> <a class="anchor" href="#processor-risc_v-isa-RVG-MSUB" id="processor-risc_v-isa-RVG-MSUB">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">NMSUB</span> <a class="anchor" href="#processor-risc_v-isa-RVG-NMSUB" id="processor-risc_v-isa-RVG-NMSUB">§</a>
+<span class="identifier">NMSUB</span> <a class="anchor" href="#processor-risc_v-isa-RVG-NMSUB" id="processor-risc_v-isa-RVG-NMSUB">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">NMADD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-NMADD" id="processor-risc_v-isa-RVG-NMADD">§</a>
+<span class="identifier">NMADD</span> <a class="anchor" href="#processor-risc_v-isa-RVG-NMADD" id="processor-risc_v-isa-RVG-NMADD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">OP_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_FP" id="processor-risc_v-isa-RVG-OP_FP">§</a>
+<span class="identifier">OP_FP</span> <a class="anchor" href="#processor-risc_v-isa-RVG-OP_FP" id="processor-risc_v-isa-RVG-OP_FP">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">reserved0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved0" id="processor-risc_v-isa-RVG-reserved0">§</a>
+<span class="identifier">reserved0</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved0" id="processor-risc_v-isa-RVG-reserved0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">custom_2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_2" id="processor-risc_v-isa-RVG-custom_2">§</a>
+<span class="identifier">custom_2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_2" id="processor-risc_v-isa-RVG-custom_2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">long2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long2" id="processor-risc_v-isa-RVG-long2">§</a>
+<span class="identifier">long2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long2" id="processor-risc_v-isa-RVG-long2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">BRANCH</span> <a class="anchor" href="#processor-risc_v-isa-RVG-BRANCH" id="processor-risc_v-isa-RVG-BRANCH">§</a>
+<span class="identifier">BRANCH</span> <a class="anchor" href="#processor-risc_v-isa-RVG-BRANCH" id="processor-risc_v-isa-RVG-BRANCH">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">JALR</span> <a class="anchor" href="#processor-risc_v-isa-RVG-JALR" id="processor-risc_v-isa-RVG-JALR">§</a>
+<span class="identifier">JALR</span> <a class="anchor" href="#processor-risc_v-isa-RVG-JALR" id="processor-risc_v-isa-RVG-JALR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">reserved1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved1" id="processor-risc_v-isa-RVG-reserved1">§</a>
+<span class="identifier">reserved1</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved1" id="processor-risc_v-isa-RVG-reserved1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">JAL</span> <a class="anchor" href="#processor-risc_v-isa-RVG-JAL" id="processor-risc_v-isa-RVG-JAL">§</a>
+<span class="identifier">JAL</span> <a class="anchor" href="#processor-risc_v-isa-RVG-JAL" id="processor-risc_v-isa-RVG-JAL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SYSTEM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-SYSTEM" id="processor-risc_v-isa-RVG-SYSTEM">§</a>
+<span class="identifier">SYSTEM</span> <a class="anchor" href="#processor-risc_v-isa-RVG-SYSTEM" id="processor-risc_v-isa-RVG-SYSTEM">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">reserved2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved2" id="processor-risc_v-isa-RVG-reserved2">§</a>
+<span class="identifier">reserved2</span> <a class="anchor" href="#processor-risc_v-isa-RVG-reserved2" id="processor-risc_v-isa-RVG-reserved2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">custom_3</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_3" id="processor-risc_v-isa-RVG-custom_3">§</a>
+<span class="identifier">custom_3</span> <a class="anchor" href="#processor-risc_v-isa-RVG-custom_3" id="processor-risc_v-isa-RVG-custom_3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">long3</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long3" id="processor-risc_v-isa-RVG-long3">§</a>
+<span class="identifier">long3</span> <a class="anchor" href="#processor-risc_v-isa-RVG-long3" id="processor-risc_v-isa-RVG-long3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L105">source</a>
 </pre>
 </li>
 </ul>
@@ -554,10 +560,10 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">Funct3</span> = <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-isa-Funct3" id="processor-risc_v-isa-Funct3">§</a>
+<span class="keyword">using</span> <span class="identifier">Funct3</span> = <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-isa-Funct3" id="processor-risc_v-isa-Funct3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L115">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Op</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-Op" id="processor-risc_v-isa-Op">§</a>
+<span class="keyword">enum</span> <span class="identifier">Op</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-Op" id="processor-risc_v-isa-Op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L118">source</a>
 </pre>
 <div class="docs">
 <p>OP/OP_IMM minor opcodes</p>
@@ -567,42 +573,42 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">ADD</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Op-ADD" id="processor-risc_v-isa-Op-ADD">§</a>
+<span class="identifier">ADD</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Op-ADD" id="processor-risc_v-isa-Op-ADD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L120">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SLL</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLL" id="processor-risc_v-isa-Op-SLL">§</a>
+<span class="identifier">SLL</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLL" id="processor-risc_v-isa-Op-SLL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L121">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SLT</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLT" id="processor-risc_v-isa-Op-SLT">§</a>
+<span class="identifier">SLT</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLT" id="processor-risc_v-isa-Op-SLT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L122">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SLTU</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLTU" id="processor-risc_v-isa-Op-SLTU">§</a>
+<span class="identifier">SLTU</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-Op-SLTU" id="processor-risc_v-isa-Op-SLTU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L123">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">XOR</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-Op-XOR" id="processor-risc_v-isa-Op-XOR">§</a>
+<span class="identifier">XOR</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-Op-XOR" id="processor-risc_v-isa-Op-XOR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L124">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SR</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-Op-SR" id="processor-risc_v-isa-Op-SR">§</a>
+<span class="identifier">SR</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-Op-SR" id="processor-risc_v-isa-Op-SR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L125">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">OR</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-Op-OR" id="processor-risc_v-isa-Op-OR">§</a>
+<span class="identifier">OR</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-Op-OR" id="processor-risc_v-isa-Op-OR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L126">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">AND</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-Op-AND" id="processor-risc_v-isa-Op-AND">§</a>
+<span class="identifier">AND</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-Op-AND" id="processor-risc_v-isa-Op-AND">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L127">source</a>
 </pre>
 </li>
 </ul>
@@ -610,7 +616,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MulDiv</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-MulDiv" id="processor-risc_v-isa-MulDiv">§</a>
+<span class="keyword">enum</span> <span class="identifier">MulDiv</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-MulDiv" id="processor-risc_v-isa-MulDiv">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L131">source</a>
 </pre>
 <div class="docs">
 <p>“M” standard extension minor opcodes</p>
@@ -620,42 +626,42 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">MUL</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MUL" id="processor-risc_v-isa-MulDiv-MUL">§</a>
+<span class="identifier">MUL</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MUL" id="processor-risc_v-isa-MulDiv-MUL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L133">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">MULH</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULH" id="processor-risc_v-isa-MulDiv-MULH">§</a>
+<span class="identifier">MULH</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULH" id="processor-risc_v-isa-MulDiv-MULH">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L134">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">MULHSU</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULHSU" id="processor-risc_v-isa-MulDiv-MULHSU">§</a>
+<span class="identifier">MULHSU</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULHSU" id="processor-risc_v-isa-MulDiv-MULHSU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L135">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">MULHU</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULHU" id="processor-risc_v-isa-MulDiv-MULHU">§</a>
+<span class="identifier">MULHU</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-MULHU" id="processor-risc_v-isa-MulDiv-MULHU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L136">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">DIV</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-DIV" id="processor-risc_v-isa-MulDiv-DIV">§</a>
+<span class="identifier">DIV</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-DIV" id="processor-risc_v-isa-MulDiv-DIV">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L137">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">DIVU</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-DIVU" id="processor-risc_v-isa-MulDiv-DIVU">§</a>
+<span class="identifier">DIVU</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-DIVU" id="processor-risc_v-isa-MulDiv-DIVU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L138">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">REM</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-REM" id="processor-risc_v-isa-MulDiv-REM">§</a>
+<span class="identifier">REM</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-REM" id="processor-risc_v-isa-MulDiv-REM">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L139">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">REMU</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-REMU" id="processor-risc_v-isa-MulDiv-REMU">§</a>
+<span class="identifier">REMU</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-MulDiv-REMU" id="processor-risc_v-isa-MulDiv-REMU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L140">source</a>
 </pre>
 </li>
 </ul>
@@ -663,7 +669,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Branch</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-Branch" id="processor-risc_v-isa-Branch">§</a>
+<span class="keyword">enum</span> <span class="identifier">Branch</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-Branch" id="processor-risc_v-isa-Branch">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L144">source</a>
 </pre>
 <div class="docs">
 <p>BRANCH minor opcodes</p>
@@ -673,32 +679,32 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">BEQ</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BEQ" id="processor-risc_v-isa-Branch-BEQ">§</a>
+<span class="identifier">BEQ</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BEQ" id="processor-risc_v-isa-Branch-BEQ">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L146">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">BNE</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BNE" id="processor-risc_v-isa-Branch-BNE">§</a>
+<span class="identifier">BNE</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BNE" id="processor-risc_v-isa-Branch-BNE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L147">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">BLT</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BLT" id="processor-risc_v-isa-Branch-BLT">§</a>
+<span class="identifier">BLT</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BLT" id="processor-risc_v-isa-Branch-BLT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L148">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">BGE</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BGE" id="processor-risc_v-isa-Branch-BGE">§</a>
+<span class="identifier">BGE</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BGE" id="processor-risc_v-isa-Branch-BGE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L149">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">BLTU</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BLTU" id="processor-risc_v-isa-Branch-BLTU">§</a>
+<span class="identifier">BLTU</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BLTU" id="processor-risc_v-isa-Branch-BLTU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L150">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">BGEU</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BGEU" id="processor-risc_v-isa-Branch-BGEU">§</a>
+<span class="identifier">BGEU</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-Branch-BGEU" id="processor-risc_v-isa-Branch-BGEU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L151">source</a>
 </pre>
 </li>
 </ul>
@@ -706,7 +712,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">LoadStore</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-LoadStore" id="processor-risc_v-isa-LoadStore">§</a>
+<span class="keyword">enum</span> <span class="identifier">LoadStore</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-LoadStore" id="processor-risc_v-isa-LoadStore">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L155">source</a>
 </pre>
 <div class="docs">
 <p>LOAD/STORE minor opcodes</p>
@@ -716,27 +722,27 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">B</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-B" id="processor-risc_v-isa-LoadStore-B">§</a>
+<span class="identifier">B</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-B" id="processor-risc_v-isa-LoadStore-B">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L157">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">H</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-H" id="processor-risc_v-isa-LoadStore-H">§</a>
+<span class="identifier">H</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-H" id="processor-risc_v-isa-LoadStore-H">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L158">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">W</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-W" id="processor-risc_v-isa-LoadStore-W">§</a>
+<span class="identifier">W</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-W" id="processor-risc_v-isa-LoadStore-W">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L159">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">BU</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-BU" id="processor-risc_v-isa-LoadStore-BU">§</a>
+<span class="identifier">BU</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-BU" id="processor-risc_v-isa-LoadStore-BU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L160">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">HU</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-HU" id="processor-risc_v-isa-LoadStore-HU">§</a>
+<span class="identifier">HU</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-LoadStore-HU" id="processor-risc_v-isa-LoadStore-HU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L161">source</a>
 </pre>
 </li>
 </ul>
@@ -744,7 +750,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">System</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-System" id="processor-risc_v-isa-System">§</a>
+<span class="keyword">enum</span> <span class="identifier">System</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-System" id="processor-risc_v-isa-System">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L165">source</a>
 </pre>
 <div class="docs">
 <p>SYSTEM minor opcodes</p>
@@ -754,37 +760,37 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">PRIV</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-System-PRIV" id="processor-risc_v-isa-System-PRIV">§</a>
+<span class="identifier">PRIV</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-System-PRIV" id="processor-risc_v-isa-System-PRIV">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L167">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRW</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRW" id="processor-risc_v-isa-System-CSRRW">§</a>
+<span class="identifier">CSRRW</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRW" id="processor-risc_v-isa-System-CSRRW">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L168">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRS</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRS" id="processor-risc_v-isa-System-CSRRS">§</a>
+<span class="identifier">CSRRS</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRS" id="processor-risc_v-isa-System-CSRRS">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L169">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRC</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRC" id="processor-risc_v-isa-System-CSRRC">§</a>
+<span class="identifier">CSRRC</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRC" id="processor-risc_v-isa-System-CSRRC">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L170">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRWI</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRWI" id="processor-risc_v-isa-System-CSRRWI">§</a>
+<span class="identifier">CSRRWI</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRWI" id="processor-risc_v-isa-System-CSRRWI">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L171">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRSI</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRSI" id="processor-risc_v-isa-System-CSRRSI">§</a>
+<span class="identifier">CSRRSI</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRSI" id="processor-risc_v-isa-System-CSRRSI">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L172">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRCI</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRCI" id="processor-risc_v-isa-System-CSRRCI">§</a>
+<span class="identifier">CSRRCI</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-System-CSRRCI" id="processor-risc_v-isa-System-CSRRCI">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L173">source</a>
 </pre>
 </li>
 </ul>
@@ -792,7 +798,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MiscMem</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-MiscMem" id="processor-risc_v-isa-MiscMem">§</a>
+<span class="keyword">enum</span> <span class="identifier">MiscMem</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <a class="anchor" href="#processor-risc_v-isa-MiscMem" id="processor-risc_v-isa-MiscMem">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L177">source</a>
 </pre>
 <div class="docs">
 <p>MISC_MEM mino opcodes</p>
@@ -802,7 +808,7 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">FENCE</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-MiscMem-FENCE" id="processor-risc_v-isa-MiscMem-FENCE">§</a>
+<span class="identifier">FENCE</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-MiscMem-FENCE" id="processor-risc_v-isa-MiscMem-FENCE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L179">source</a>
 </pre>
 </li>
 </ul>
@@ -810,10 +816,10 @@ id="index-link" class="link"><code>sign_extend</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">Reg</span> = <span class="keyword">uint5</span> <a class="anchor" href="#processor-risc_v-isa-Reg" id="processor-risc_v-isa-Reg">§</a>
+<span class="keyword">using</span> <span class="identifier">Reg</span> = <span class="keyword">uint5</span> <a class="anchor" href="#processor-risc_v-isa-Reg" id="processor-risc_v-isa-Reg">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L182">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">ABI</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <a class="anchor" href="#processor-risc_v-isa-ABI" id="processor-risc_v-isa-ABI">§</a>
+<span class="keyword">enum</span> <span class="identifier">ABI</span> : <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <a class="anchor" href="#processor-risc_v-isa-ABI" id="processor-risc_v-isa-ABI">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L185">source</a>
 </pre>
 <div class="docs">
 <p>Mnemonics for integer registers in the standard calling
@@ -824,7 +830,7 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">zero</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-ABI-zero" id="processor-risc_v-isa-ABI-zero">§</a>
+<span class="identifier">zero</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-isa-ABI-zero" id="processor-risc_v-isa-ABI-zero">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L186">source</a>
 </pre>
 <div class="docs">
 <p>Hard-wired zero</p>
@@ -832,7 +838,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">ra</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-ABI-ra" id="processor-risc_v-isa-ABI-ra">§</a>
+<span class="identifier">ra</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-isa-ABI-ra" id="processor-risc_v-isa-ABI-ra">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L187">source</a>
 </pre>
 <div class="docs">
 <p>Return address</p>
@@ -840,7 +846,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sp</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-ABI-sp" id="processor-risc_v-isa-ABI-sp">§</a>
+<span class="identifier">sp</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-isa-ABI-sp" id="processor-risc_v-isa-ABI-sp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L188">source</a>
 </pre>
 <div class="docs">
 <p>Stack pointer</p>
@@ -848,7 +854,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">gp</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-ABI-gp" id="processor-risc_v-isa-ABI-gp">§</a>
+<span class="identifier">gp</span> = <span class="literal">3</span> <a class="anchor" href="#processor-risc_v-isa-ABI-gp" id="processor-risc_v-isa-ABI-gp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L189">source</a>
 </pre>
 <div class="docs">
 <p>Global pointer</p>
@@ -856,7 +862,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">tp</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-ABI-tp" id="processor-risc_v-isa-ABI-tp">§</a>
+<span class="identifier">tp</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-isa-ABI-tp" id="processor-risc_v-isa-ABI-tp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L190">source</a>
 </pre>
 <div class="docs">
 <p>Thread pointer</p>
@@ -864,7 +870,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">t0</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t0" id="processor-risc_v-isa-ABI-t0">§</a>
+<span class="identifier">t0</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t0" id="processor-risc_v-isa-ABI-t0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L191">source</a>
 </pre>
 <div class="docs">
 <p>Temporary/alternate link register</p>
@@ -872,7 +878,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">t1</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t1" id="processor-risc_v-isa-ABI-t1">§</a>
+<span class="identifier">t1</span> = <span class="literal">6</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t1" id="processor-risc_v-isa-ABI-t1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L192">source</a>
 </pre>
 <div class="docs">
 <p>Temporary</p>
@@ -880,7 +886,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">t2</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t2" id="processor-risc_v-isa-ABI-t2">§</a>
+<span class="identifier">t2</span> = <span class="literal">7</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t2" id="processor-risc_v-isa-ABI-t2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L193">source</a>
 </pre>
 <div class="docs">
 <p>Temporary</p>
@@ -888,7 +894,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s0</span> = <span class="literal">8</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s0" id="processor-risc_v-isa-ABI-s0">§</a>
+<span class="identifier">s0</span> = <span class="literal">8</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s0" id="processor-risc_v-isa-ABI-s0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L194">source</a>
 </pre>
 <div class="docs">
 <p>Frame pointer</p>
@@ -896,7 +902,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s1</span> = <span class="literal">9</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s1" id="processor-risc_v-isa-ABI-s1">§</a>
+<span class="identifier">s1</span> = <span class="literal">9</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s1" id="processor-risc_v-isa-ABI-s1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L195">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -904,7 +910,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a0</span> = <span class="literal">10</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a0" id="processor-risc_v-isa-ABI-a0">§</a>
+<span class="identifier">a0</span> = <span class="literal">10</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a0" id="processor-risc_v-isa-ABI-a0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L196">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments/return values</p>
@@ -912,7 +918,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a1</span> = <span class="literal">11</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a1" id="processor-risc_v-isa-ABI-a1">§</a>
+<span class="identifier">a1</span> = <span class="literal">11</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a1" id="processor-risc_v-isa-ABI-a1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L197">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments/return values</p>
@@ -920,7 +926,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a2</span> = <span class="literal">12</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a2" id="processor-risc_v-isa-ABI-a2">§</a>
+<span class="identifier">a2</span> = <span class="literal">12</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a2" id="processor-risc_v-isa-ABI-a2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L198">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments</p>
@@ -928,7 +934,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a3</span> = <span class="literal">13</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a3" id="processor-risc_v-isa-ABI-a3">§</a>
+<span class="identifier">a3</span> = <span class="literal">13</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a3" id="processor-risc_v-isa-ABI-a3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L199">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments</p>
@@ -936,7 +942,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a4</span> = <span class="literal">14</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a4" id="processor-risc_v-isa-ABI-a4">§</a>
+<span class="identifier">a4</span> = <span class="literal">14</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a4" id="processor-risc_v-isa-ABI-a4">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L200">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments</p>
@@ -944,7 +950,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a5</span> = <span class="literal">15</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a5" id="processor-risc_v-isa-ABI-a5">§</a>
+<span class="identifier">a5</span> = <span class="literal">15</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a5" id="processor-risc_v-isa-ABI-a5">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L201">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments</p>
@@ -952,7 +958,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a6</span> = <span class="literal">16</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a6" id="processor-risc_v-isa-ABI-a6">§</a>
+<span class="identifier">a6</span> = <span class="literal">16</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a6" id="processor-risc_v-isa-ABI-a6">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L202">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments</p>
@@ -960,7 +966,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">a7</span> = <span class="literal">17</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a7" id="processor-risc_v-isa-ABI-a7">§</a>
+<span class="identifier">a7</span> = <span class="literal">17</span> <a class="anchor" href="#processor-risc_v-isa-ABI-a7" id="processor-risc_v-isa-ABI-a7">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L203">source</a>
 </pre>
 <div class="docs">
 <p>Function arguments</p>
@@ -968,7 +974,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s2</span> = <span class="literal">18</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s2" id="processor-risc_v-isa-ABI-s2">§</a>
+<span class="identifier">s2</span> = <span class="literal">18</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s2" id="processor-risc_v-isa-ABI-s2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L204">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -976,7 +982,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s3</span> = <span class="literal">19</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s3" id="processor-risc_v-isa-ABI-s3">§</a>
+<span class="identifier">s3</span> = <span class="literal">19</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s3" id="processor-risc_v-isa-ABI-s3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L205">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -984,7 +990,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s4</span> = <span class="literal">20</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s4" id="processor-risc_v-isa-ABI-s4">§</a>
+<span class="identifier">s4</span> = <span class="literal">20</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s4" id="processor-risc_v-isa-ABI-s4">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L206">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -992,7 +998,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s5</span> = <span class="literal">21</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s5" id="processor-risc_v-isa-ABI-s5">§</a>
+<span class="identifier">s5</span> = <span class="literal">21</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s5" id="processor-risc_v-isa-ABI-s5">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L207">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -1000,7 +1006,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s6</span> = <span class="literal">22</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s6" id="processor-risc_v-isa-ABI-s6">§</a>
+<span class="identifier">s6</span> = <span class="literal">22</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s6" id="processor-risc_v-isa-ABI-s6">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L208">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -1008,7 +1014,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s7</span> = <span class="literal">23</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s7" id="processor-risc_v-isa-ABI-s7">§</a>
+<span class="identifier">s7</span> = <span class="literal">23</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s7" id="processor-risc_v-isa-ABI-s7">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L209">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -1016,7 +1022,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s8</span> = <span class="literal">24</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s8" id="processor-risc_v-isa-ABI-s8">§</a>
+<span class="identifier">s8</span> = <span class="literal">24</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s8" id="processor-risc_v-isa-ABI-s8">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L210">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -1024,7 +1030,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s9</span> = <span class="literal">25</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s9" id="processor-risc_v-isa-ABI-s9">§</a>
+<span class="identifier">s9</span> = <span class="literal">25</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s9" id="processor-risc_v-isa-ABI-s9">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L211">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -1032,7 +1038,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s10</span> = <span class="literal">26</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s10" id="processor-risc_v-isa-ABI-s10">§</a>
+<span class="identifier">s10</span> = <span class="literal">26</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s10" id="processor-risc_v-isa-ABI-s10">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L212">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -1040,7 +1046,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">s11</span> = <span class="literal">27</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s11" id="processor-risc_v-isa-ABI-s11">§</a>
+<span class="identifier">s11</span> = <span class="literal">27</span> <a class="anchor" href="#processor-risc_v-isa-ABI-s11" id="processor-risc_v-isa-ABI-s11">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L213">source</a>
 </pre>
 <div class="docs">
 <p>Saved register</p>
@@ -1048,7 +1054,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">t3</span> = <span class="literal">28</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t3" id="processor-risc_v-isa-ABI-t3">§</a>
+<span class="identifier">t3</span> = <span class="literal">28</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t3" id="processor-risc_v-isa-ABI-t3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L214">source</a>
 </pre>
 <div class="docs">
 <p>Temporary</p>
@@ -1056,7 +1062,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">t4</span> = <span class="literal">29</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t4" id="processor-risc_v-isa-ABI-t4">§</a>
+<span class="identifier">t4</span> = <span class="literal">29</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t4" id="processor-risc_v-isa-ABI-t4">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L215">source</a>
 </pre>
 <div class="docs">
 <p>Temporary</p>
@@ -1064,7 +1070,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">t5</span> = <span class="literal">30</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t5" id="processor-risc_v-isa-ABI-t5">§</a>
+<span class="identifier">t5</span> = <span class="literal">30</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t5" id="processor-risc_v-isa-ABI-t5">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L216">source</a>
 </pre>
 <div class="docs">
 <p>Temporary</p>
@@ -1072,7 +1078,7 @@ convention</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">t6</span> = <span class="literal">31</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t6" id="processor-risc_v-isa-ABI-t6">§</a>
+<span class="identifier">t6</span> = <span class="literal">31</span> <a class="anchor" href="#processor-risc_v-isa-ABI-t6" id="processor-risc_v-isa-ABI-t6">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L217">source</a>
 </pre>
 <div class="docs">
 <p>Temporary</p>
@@ -1084,13 +1090,13 @@ convention</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>int32 <span class="identifier">sign_extend</span>(<span class="builtin">uint</span>&lt;N&gt; <span class="identifier">x</span>) <a class="anchor" href="#processor-risc_v-isa-sign_extend" id="processor-risc_v-isa-sign_extend">§</a>
+<span class="modifier">inline </span>int32 <span class="identifier">sign_extend</span>(<span class="builtin">uint</span>&lt;N&gt; <span class="identifier">x</span>) <a class="anchor" href="#processor-risc_v-isa-sign_extend" id="processor-risc_v-isa-sign_extend">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L222">source</a>
 </pre>
 <div class="docs">
 <p>Sign-extend an integer to XLEN bits</p>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">R_type</span> <a class="anchor" href="#processor-risc_v-isa-R_type" id="processor-risc_v-isa-R_type">§</a>
+<span class="keyword">struct</span> <span class="identifier">R_type</span> <a class="anchor" href="#processor-risc_v-isa-R_type" id="processor-risc_v-isa-R_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L234">source</a>
 </pre>
 <div class="docs">
 <p>R-type instruction format</p>
@@ -1101,32 +1107,32 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-opcode" id="processor-risc_v-isa-$quasi1-opcode">§</a>
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-opcode" id="processor-risc_v-isa-$quasi1-opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L236">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rd" id="processor-risc_v-isa-$quasi1-rd">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rd" id="processor-risc_v-isa-$quasi1-rd">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L237">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-funct3" id="processor-risc_v-isa-$quasi1-funct3">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-funct3" id="processor-risc_v-isa-$quasi1-funct3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L238">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rs1" id="processor-risc_v-isa-$quasi1-rs1">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rs1" id="processor-risc_v-isa-$quasi1-rs1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L239">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rs2" id="processor-risc_v-isa-$quasi1-rs2">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-rs2" id="processor-risc_v-isa-$quasi1-rs2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L240">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-funct7" id="processor-risc_v-isa-$quasi1-funct7">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span> <a class="anchor" href="#processor-risc_v-isa-$quasi1-funct7" id="processor-risc_v-isa-$quasi1-funct7">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L241">source</a>
 </pre>
 </li>
 </ul>
@@ -1134,7 +1140,7 @@ convention</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">I_type</span> <a class="anchor" href="#processor-risc_v-isa-I_type" id="processor-risc_v-isa-I_type">§</a>
+<span class="keyword">struct</span> <span class="identifier">I_type</span> <a class="anchor" href="#processor-risc_v-isa-I_type" id="processor-risc_v-isa-I_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L251">source</a>
 </pre>
 <div class="docs">
 <p>I-type instruction format</p>
@@ -1145,27 +1151,27 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-opcode" id="processor-risc_v-isa-$quasi2-opcode">§</a>
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-opcode" id="processor-risc_v-isa-$quasi2-opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L253">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-rd" id="processor-risc_v-isa-$quasi2-rd">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-rd" id="processor-risc_v-isa-$quasi2-rd">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L254">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-funct3" id="processor-risc_v-isa-$quasi2-funct3">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-funct3" id="processor-risc_v-isa-$quasi2-funct3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L255">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-rs1" id="processor-risc_v-isa-$quasi2-rs1">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-rs1" id="processor-risc_v-isa-$quasi2-rs1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L256">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint12</span> <span class="identifier">imm_11_0</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-imm_11_0" id="processor-risc_v-isa-$quasi2-imm_11_0">§</a>
+<span class="keyword">uint12</span> <span class="identifier">imm_11_0</span> <a class="anchor" href="#processor-risc_v-isa-$quasi2-imm_11_0" id="processor-risc_v-isa-$quasi2-imm_11_0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L257">source</a>
 </pre>
 </li>
 </ul>
@@ -1173,7 +1179,7 @@ convention</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">S_type</span> <a class="anchor" href="#processor-risc_v-isa-S_type" id="processor-risc_v-isa-S_type">§</a>
+<span class="keyword">struct</span> <span class="identifier">S_type</span> <a class="anchor" href="#processor-risc_v-isa-S_type" id="processor-risc_v-isa-S_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L272">source</a>
 </pre>
 <div class="docs">
 <p>S-type instruction format</p>
@@ -1184,32 +1190,32 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-opcode" id="processor-risc_v-isa-$quasi3-opcode">§</a>
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-opcode" id="processor-risc_v-isa-$quasi3-opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L274">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint5</span> <span class="identifier">imm_4_0</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-imm_4_0" id="processor-risc_v-isa-$quasi3-imm_4_0">§</a>
+<span class="keyword">uint5</span> <span class="identifier">imm_4_0</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-imm_4_0" id="processor-risc_v-isa-$quasi3-imm_4_0">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L275">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-funct3" id="processor-risc_v-isa-$quasi3-funct3">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-funct3" id="processor-risc_v-isa-$quasi3-funct3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L276">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-rs1" id="processor-risc_v-isa-$quasi3-rs1">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-rs1" id="processor-risc_v-isa-$quasi3-rs1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L277">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-rs2" id="processor-risc_v-isa-$quasi3-rs2">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-rs2" id="processor-risc_v-isa-$quasi3-rs2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L278">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint7</span> <span class="identifier">imm_11_5</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-imm_11_5" id="processor-risc_v-isa-$quasi3-imm_11_5">§</a>
+<span class="keyword">uint7</span> <span class="identifier">imm_11_5</span> <a class="anchor" href="#processor-risc_v-isa-$quasi3-imm_11_5" id="processor-risc_v-isa-$quasi3-imm_11_5">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L279">source</a>
 </pre>
 </li>
 </ul>
@@ -1217,7 +1223,7 @@ convention</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">B_type</span> <a class="anchor" href="#processor-risc_v-isa-B_type" id="processor-risc_v-isa-B_type">§</a>
+<span class="keyword">struct</span> <span class="identifier">B_type</span> <a class="anchor" href="#processor-risc_v-isa-B_type" id="processor-risc_v-isa-B_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L294">source</a>
 </pre>
 <div class="docs">
 <p>B-type instruction format</p>
@@ -1228,42 +1234,42 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-opcode" id="processor-risc_v-isa-$quasi4-opcode">§</a>
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-opcode" id="processor-risc_v-isa-$quasi4-opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L296">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">imm_11</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_11" id="processor-risc_v-isa-$quasi4-imm_11">§</a>
+<span class="keyword">uint1</span> <span class="identifier">imm_11</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_11" id="processor-risc_v-isa-$quasi4-imm_11">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L297">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint4</span> <span class="identifier">imm_4_1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_4_1" id="processor-risc_v-isa-$quasi4-imm_4_1">§</a>
+<span class="keyword">uint4</span> <span class="identifier">imm_4_1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_4_1" id="processor-risc_v-isa-$quasi4-imm_4_1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L298">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-funct3" id="processor-risc_v-isa-$quasi4-funct3">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">funct3</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-funct3" id="processor-risc_v-isa-$quasi4-funct3">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L299">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-rs1" id="processor-risc_v-isa-$quasi4-rs1">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-rs1" id="processor-risc_v-isa-$quasi4-rs1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L300">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-rs2" id="processor-risc_v-isa-$quasi4-rs2">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rs2</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-rs2" id="processor-risc_v-isa-$quasi4-rs2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L301">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint6</span> <span class="identifier">imm_10_5</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_10_5" id="processor-risc_v-isa-$quasi4-imm_10_5">§</a>
+<span class="keyword">uint6</span> <span class="identifier">imm_10_5</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_10_5" id="processor-risc_v-isa-$quasi4-imm_10_5">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L302">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">imm_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_12" id="processor-risc_v-isa-$quasi4-imm_12">§</a>
+<span class="keyword">uint1</span> <span class="identifier">imm_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi4-imm_12" id="processor-risc_v-isa-$quasi4-imm_12">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L303">source</a>
 </pre>
 </li>
 </ul>
@@ -1271,7 +1277,7 @@ convention</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">U_type</span> <a class="anchor" href="#processor-risc_v-isa-U_type" id="processor-risc_v-isa-U_type">§</a>
+<span class="keyword">struct</span> <span class="identifier">U_type</span> <a class="anchor" href="#processor-risc_v-isa-U_type" id="processor-risc_v-isa-U_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L319">source</a>
 </pre>
 <div class="docs">
 <p>U-type instruction format</p>
@@ -1282,17 +1288,17 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-opcode" id="processor-risc_v-isa-$quasi5-opcode">§</a>
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-opcode" id="processor-risc_v-isa-$quasi5-opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L321">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-rd" id="processor-risc_v-isa-$quasi5-rd">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-rd" id="processor-risc_v-isa-$quasi5-rd">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L322">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint20</span> <span class="identifier">imm_31_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-imm_31_12" id="processor-risc_v-isa-$quasi5-imm_31_12">§</a>
+<span class="keyword">uint20</span> <span class="identifier">imm_31_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi5-imm_31_12" id="processor-risc_v-isa-$quasi5-imm_31_12">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L323">source</a>
 </pre>
 </li>
 </ul>
@@ -1300,7 +1306,7 @@ convention</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">J_type</span> <a class="anchor" href="#processor-risc_v-isa-J_type" id="processor-risc_v-isa-J_type">§</a>
+<span class="keyword">struct</span> <span class="identifier">J_type</span> <a class="anchor" href="#processor-risc_v-isa-J_type" id="processor-risc_v-isa-J_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L339">source</a>
 </pre>
 <div class="docs">
 <p>J-type instruction format</p>
@@ -1311,32 +1317,32 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-opcode" id="processor-risc_v-isa-$quasi6-opcode">§</a>
+<span class="identifier">Opcode</span> <span class="identifier">opcode</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-opcode" id="processor-risc_v-isa-$quasi6-opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L341">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-rd" id="processor-risc_v-isa-$quasi6-rd">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Reg"><span class="identifier">Reg</span></a> <span class="identifier">rd</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-rd" id="processor-risc_v-isa-$quasi6-rd">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L342">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint8</span> <span class="identifier">imm_19_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_19_12" id="processor-risc_v-isa-$quasi6-imm_19_12">§</a>
+<span class="keyword">uint8</span> <span class="identifier">imm_19_12</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_19_12" id="processor-risc_v-isa-$quasi6-imm_19_12">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L343">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">imm_11</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_11" id="processor-risc_v-isa-$quasi6-imm_11">§</a>
+<span class="keyword">uint1</span> <span class="identifier">imm_11</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_11" id="processor-risc_v-isa-$quasi6-imm_11">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L344">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint10</span> <span class="identifier">imm_10_1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_10_1" id="processor-risc_v-isa-$quasi6-imm_10_1">§</a>
+<span class="keyword">uint10</span> <span class="identifier">imm_10_1</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_10_1" id="processor-risc_v-isa-$quasi6-imm_10_1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L345">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">imm_20</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_20" id="processor-risc_v-isa-$quasi6-imm_20">§</a>
+<span class="keyword">uint1</span> <span class="identifier">imm_20</span> <a class="anchor" href="#processor-risc_v-isa-$quasi6-imm_20" id="processor-risc_v-isa-$quasi6-imm_20">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L346">source</a>
 </pre>
 </li>
 </ul>
@@ -1344,7 +1350,7 @@ convention</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">union</span> <span class="identifier">Instr</span> <a class="anchor" href="#processor-risc_v-isa-Instr" id="processor-risc_v-isa-Instr">§</a>
+<span class="keyword">union</span> <span class="identifier">Instr</span> <a class="anchor" href="#processor-risc_v-isa-Instr" id="processor-risc_v-isa-Instr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L362">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -1353,32 +1359,32 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-R_type"><span class="identifier">R_type</span></a> <span class="identifier">r</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-r" id="processor-risc_v-isa-$quasi7-r">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-R_type"><span class="identifier">R_type</span></a> <span class="identifier">r</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-r" id="processor-risc_v-isa-$quasi7-r">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L364">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-I_type"><span class="identifier">I_type</span></a> <span class="identifier">i</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-i" id="processor-risc_v-isa-$quasi7-i">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-I_type"><span class="identifier">I_type</span></a> <span class="identifier">i</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-i" id="processor-risc_v-isa-$quasi7-i">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L365">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-S_type"><span class="identifier">S_type</span></a> <span class="identifier">s</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-s" id="processor-risc_v-isa-$quasi7-s">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-S_type"><span class="identifier">S_type</span></a> <span class="identifier">s</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-s" id="processor-risc_v-isa-$quasi7-s">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L366">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-B_type"><span class="identifier">B_type</span></a> <span class="identifier">b</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-b" id="processor-risc_v-isa-$quasi7-b">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-B_type"><span class="identifier">B_type</span></a> <span class="identifier">b</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-b" id="processor-risc_v-isa-$quasi7-b">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L367">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-U_type"><span class="identifier">U_type</span></a> <span class="identifier">u</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-u" id="processor-risc_v-isa-$quasi7-u">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-U_type"><span class="identifier">U_type</span></a> <span class="identifier">u</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-u" id="processor-risc_v-isa-$quasi7-u">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L368">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-J_type"><span class="identifier">J_type</span></a> <span class="identifier">j</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-j" id="processor-risc_v-isa-$quasi7-j">§</a>
+<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-J_type"><span class="identifier">J_type</span></a> <span class="identifier">j</span> <a class="anchor" href="#processor-risc_v-isa-$quasi7-j" id="processor-risc_v-isa-$quasi7-j">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L369">source</a>
 </pre>
 </li>
 </ul>
@@ -1386,7 +1392,7 @@ convention</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Format</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-isa-Format" id="processor-risc_v-isa-Format">§</a>
+<span class="keyword">enum</span> <span class="identifier">Format</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-isa-Format" id="processor-risc_v-isa-Format">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L374">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -1395,37 +1401,37 @@ convention</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">R</span> <a class="anchor" href="#processor-risc_v-isa-Format-R" id="processor-risc_v-isa-Format-R">§</a>
+<span class="identifier">R</span> <a class="anchor" href="#processor-risc_v-isa-Format-R" id="processor-risc_v-isa-Format-R">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L376">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">I</span> <a class="anchor" href="#processor-risc_v-isa-Format-I" id="processor-risc_v-isa-Format-I">§</a>
+<span class="identifier">I</span> <a class="anchor" href="#processor-risc_v-isa-Format-I" id="processor-risc_v-isa-Format-I">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L376">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">S</span> <a class="anchor" href="#processor-risc_v-isa-Format-S" id="processor-risc_v-isa-Format-S">§</a>
+<span class="identifier">S</span> <a class="anchor" href="#processor-risc_v-isa-Format-S" id="processor-risc_v-isa-Format-S">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L376">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">B</span> <a class="anchor" href="#processor-risc_v-isa-Format-B" id="processor-risc_v-isa-Format-B">§</a>
+<span class="identifier">B</span> <a class="anchor" href="#processor-risc_v-isa-Format-B" id="processor-risc_v-isa-Format-B">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L376">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">U</span> <a class="anchor" href="#processor-risc_v-isa-Format-U" id="processor-risc_v-isa-Format-U">§</a>
+<span class="identifier">U</span> <a class="anchor" href="#processor-risc_v-isa-Format-U" id="processor-risc_v-isa-Format-U">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L376">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">J</span> <a class="anchor" href="#processor-risc_v-isa-Format-J" id="processor-risc_v-isa-Format-J">§</a>
+<span class="identifier">J</span> <a class="anchor" href="#processor-risc_v-isa-Format-J" id="processor-risc_v-isa-Format-J">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L376">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Invalid</span> <a class="anchor" href="#processor-risc_v-isa-Format-Invalid" id="processor-risc_v-isa-Format-Invalid">§</a>
+<span class="identifier">Invalid</span> <a class="anchor" href="#processor-risc_v-isa-Format-Invalid" id="processor-risc_v-isa-Format-Invalid">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L376">source</a>
 </pre>
 </li>
 </ul>
@@ -1434,7 +1440,7 @@ convention</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a> ISA&gt;
-<span class="modifier">inline </span><a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;ISA&gt;::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decode_format</span>(<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Instr"><span class="identifier">Instr</span></a> <span class="identifier">instr</span>, <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">format</span>) <a class="anchor" href="#processor-risc_v-isa-decode_format" id="processor-risc_v-isa-decode_format">§</a>
+<span class="modifier">inline </span><a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;ISA&gt;::<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Types-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decode_format</span>(<a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Instr"><span class="identifier">Instr</span></a> <span class="identifier">instr</span>, <a class="link" href="../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">format</span>) <a class="anchor" href="#processor-risc_v-isa-decode_format" id="processor-risc_v-isa-decode_format">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/isa.k#L381">source</a>
 </pre>
 <div class="docs">
 <p>Decode instruction word in given instruction format</p>

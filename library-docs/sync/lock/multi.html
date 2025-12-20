@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -168,7 +174,7 @@ id="index-link" class="link"><code>multi_semaphore</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> NumMutexes&gt;
-<span class="keyword">class</span> <span class="identifier">multi_mutex</span> <a class="anchor" href="#sync-lock-multi-multi_mutex" id="sync-lock-multi-multi_mutex">§</a>
+<span class="keyword">class</span> <span class="identifier">multi_mutex</span> <a class="anchor" href="#sync-lock-multi-multi_mutex" id="sync-lock-multi-multi_mutex">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L15">source</a>
 </pre>
 <div class="docs">
 <p>An array of independent mutually exclusive locks, or mutexes. Call
@@ -180,12 +186,12 @@ it.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">init</span>() <a class="anchor" href="#sync-lock-multi-multi_mutex-init" id="sync-lock-multi-multi_mutex-init">§</a>
+<span class="keyword">void</span> <span class="identifier">init</span>() <a class="anchor" href="#sync-lock-multi-multi_mutex-init" id="sync-lock-multi-multi_mutex-init">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L23">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">lock</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;NumMutexes&gt; <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_mutex-lock" id="sync-lock-multi-multi_mutex-lock">§</a>
+<span class="keyword">void</span> <span class="identifier">lock</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;NumMutexes&gt; <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_mutex-lock" id="sync-lock-multi-multi_mutex-lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L35">source</a>
 </pre>
 <div class="docs">
 <p>Atomically acquire the lock with the specified index if it is not
@@ -194,7 +200,7 @@ already acquired otherwise block waiting on the lock to be released.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">unlock</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;NumMutexes&gt; <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_mutex-unlock" id="sync-lock-multi-multi_mutex-unlock">§</a>
+<span class="keyword">void</span> <span class="identifier">unlock</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;NumMutexes&gt; <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_mutex-unlock" id="sync-lock-multi-multi_mutex-unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L59">source</a>
 </pre>
 <div class="docs">
 <p>Release the lock with the specified index. You must never unlock a
@@ -208,7 +214,7 @@ thread tries to lock this same mutex.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxThreads, <span class="keyword">auto</span> NumLocks&gt;
-<span class="keyword">class</span> <span class="identifier">multi_rwlock</span> <a class="anchor" href="#sync-lock-multi-multi_rwlock" id="sync-lock-multi-multi_rwlock">§</a>
+<span class="keyword">class</span> <span class="identifier">multi_rwlock</span> <a class="anchor" href="#sync-lock-multi-multi_rwlock" id="sync-lock-multi-multi_rwlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L77">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -244,12 +250,12 @@ vector size.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">init</span>() <a class="anchor" href="#sync-lock-multi-multi_rwlock-init" id="sync-lock-multi-multi_rwlock-init">§</a>
+<span class="keyword">void</span> <span class="identifier">init</span>() <a class="anchor" href="#sync-lock-multi-multi_rwlock-init" id="sync-lock-multi-multi_rwlock-init">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L92">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">lock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>, <span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-lock" id="sync-lock-multi-multi_rwlock-lock">§</a>
+<span class="keyword">void</span> <span class="identifier">lock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>, <span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-lock" id="sync-lock-multi-multi_rwlock-lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L111">source</a>
 </pre>
 <div class="docs">
 <p>Attempt to acquire either a reader or a writer lock for the lock with
@@ -258,7 +264,7 @@ the specified index.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">unlock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>, <span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-unlock" id="sync-lock-multi-multi_rwlock-unlock">§</a>
+<span class="keyword">void</span> <span class="identifier">unlock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>, <span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-unlock" id="sync-lock-multi-multi_rwlock-unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L154">source</a>
 </pre>
 <div class="docs">
 <p>Release a reader or writer lock at the specified index. You must
@@ -268,7 +274,7 @@ otherwise you will create a deadlock situation.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">read_lock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-read_lock" id="sync-lock-multi-multi_rwlock-read_lock">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">read_lock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-read_lock" id="sync-lock-multi-multi_rwlock-read_lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L178">source</a>
 </pre>
 <div class="docs">
 <p>Acquire a reader lock on the lock at the specified index.</p>
@@ -276,7 +282,7 @@ otherwise you will create a deadlock situation.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_lock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-write_lock" id="sync-lock-multi-multi_rwlock-write_lock">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_lock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-write_lock" id="sync-lock-multi-multi_rwlock-write_lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L184">source</a>
 </pre>
 <div class="docs">
 <p>Acquire a writer lock on the lock at the specified index.</p>
@@ -284,7 +290,7 @@ otherwise you will create a deadlock situation.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">read_unlock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-read_unlock" id="sync-lock-multi-multi_rwlock-read_unlock">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">read_unlock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-read_unlock" id="sync-lock-multi-multi_rwlock-read_unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L190">source</a>
 </pre>
 <div class="docs">
 <p>Release a reader lock on the lock at the specified index.</p>
@@ -292,7 +298,7 @@ otherwise you will create a deadlock situation.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_unlock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-write_unlock" id="sync-lock-multi-multi_rwlock-write_unlock">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_unlock</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_rwlock"><span class="identifier">multi_rwlock</span></a>::<span class="identifier">rwlock_index_t</span> <span class="identifier">index</span>) <a class="anchor" href="#sync-lock-multi-multi_rwlock-write_unlock" id="sync-lock-multi-multi_rwlock-write_unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L196">source</a>
 </pre>
 <div class="docs">
 <p>Release a writer lock on the lock at the specified index.</p>
@@ -304,7 +310,7 @@ otherwise you will create a deadlock situation.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">auto</span> M, <span class="keyword">auto</span> I, <span class="keyword">auto</span> Blocking = <span class="literal">true</span>&gt;
-<span class="keyword">class</span> <span class="identifier">multi_semaphore</span> <a class="anchor" href="#sync-lock-multi-multi_semaphore" id="sync-lock-multi-multi_semaphore">§</a>
+<span class="keyword">class</span> <span class="identifier">multi_semaphore</span> <a class="anchor" href="#sync-lock-multi-multi_semaphore" id="sync-lock-multi-multi_semaphore">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L214">source</a>
 </pre>
 <div class="docs">
 <p>Multiple instance semaphore.</p>
@@ -357,12 +363,12 @@ If it is not a diagnostics assert is raised.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">sem_ctr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;M&gt; <a class="anchor" href="#sync-lock-multi-multi_semaphore-sem_ctr_t" id="sync-lock-multi-multi_semaphore-sem_ctr_t">§</a>
+<span class="keyword">using</span> <span class="identifier">sem_ctr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;M&gt; <a class="anchor" href="#sync-lock-multi-multi_semaphore-sem_ctr_t" id="sync-lock-multi-multi_semaphore-sem_ctr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L217">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">sem_idx_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <a class="anchor" href="#sync-lock-multi-multi_semaphore-sem_idx_t" id="sync-lock-multi-multi_semaphore-sem_idx_t">§</a>
+<span class="keyword">using</span> <span class="identifier">sem_idx_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <a class="anchor" href="#sync-lock-multi-multi_semaphore-sem_idx_t" id="sync-lock-multi-multi_semaphore-sem_idx_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L218">source</a>
 </pre>
 </li>
 </ul>
@@ -380,7 +386,7 @@ If it is not a diagnostics assert is raised.</p>
     <a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>,
     <a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>,
     <span class="builtin">bool</span> <span class="identifier">decrement_count</span>
-    ) <a class="anchor" href="#sync-lock-multi-multi_semaphore-test_and_decrement" id="sync-lock-multi-multi_semaphore-test_and_decrement">§</a>
+    ) <a class="anchor" href="#sync-lock-multi-multi_semaphore-test_and_decrement" id="sync-lock-multi-multi_semaphore-test_and_decrement">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L252">source</a>
 </pre>
 <div class="docs">
 <p>Check if the current count is greater than or equal to value. If
@@ -392,7 +398,7 @@ not inherently threadsafe, and must be called from inside an
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">wait</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>, <span class="builtin">bool</span> <span class="identifier">decrement_count</span>) <a class="anchor" href="#sync-lock-multi-multi_semaphore-wait" id="sync-lock-multi-multi_semaphore-wait">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">wait</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>, <span class="builtin">bool</span> <span class="identifier">decrement_count</span>) <a class="anchor" href="#sync-lock-multi-multi_semaphore-wait" id="sync-lock-multi-multi_semaphore-wait">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L282">source</a>
 </pre>
 <div class="docs">
 <p>If blocking, wait for the semaphore count to be non-zero and
@@ -409,7 +415,7 @@ count is non-zero, conditionally decrement the count, and assert if
     <a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>,
     <a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>,
     <span class="builtin">bool</span> <span class="identifier">decrement_count</span>
-    ) <a class="anchor" href="#sync-lock-multi-multi_semaphore-wait_multiple" id="sync-lock-multi-multi_semaphore-wait_multiple">§</a>
+    ) <a class="anchor" href="#sync-lock-multi-multi_semaphore-wait_multiple" id="sync-lock-multi-multi_semaphore-wait_multiple">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L290">source</a>
 </pre>
 <div class="docs">
 <p>If blocking, wait for the semaphore count to be greater than or equal
@@ -421,7 +427,7 @@ check if the semaphore count is greater than or equal to
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">post</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>) <a class="anchor" href="#sync-lock-multi-multi_semaphore-post" id="sync-lock-multi-multi_semaphore-post">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">post</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>) <a class="anchor" href="#sync-lock-multi-multi_semaphore-post" id="sync-lock-multi-multi_semaphore-post">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L296">source</a>
 </pre>
 <div class="docs">
 <p>Increment the semaphore count by 1, potentially waking a thread.</p>
@@ -429,7 +435,8 @@ check if the semaphore count is greater than or equal to
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">count</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>) <a class="anchor" href="#sync-lock-multi-multi_semaphore-count" id="sync-lock-multi-multi_semaphore-count">§</a>
+<span class="modifier">inline </span>
+<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">count</span>(<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>) <a class="anchor" href="#sync-lock-multi-multi_semaphore-count" id="sync-lock-multi-multi_semaphore-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L309">source</a>
 </pre>
 <div class="docs">
 <p>Return current value of semaphore. Provided primarily for
@@ -442,7 +449,7 @@ debug/diagnostic purposes.</p>
 <span class="identifier">post_multiple</span>(
     <a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_idx_t"><span class="identifier">sem_idx_t</span></a> <span class="identifier">which</span>,
     <a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore"><span class="identifier">multi_semaphore</span></a>::<a class="link" href="../../sync/lock/multi.html#sync-lock-multi-multi_semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">amount</span>
-    ) <a class="anchor" href="#sync-lock-multi-multi_semaphore-post_multiple" id="sync-lock-multi-multi_semaphore-post_multiple">§</a>
+    ) <a class="anchor" href="#sync-lock-multi-multi_semaphore-post_multiple" id="sync-lock-multi-multi_semaphore-post_multiple">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/lock/multi.k#L326">source</a>
 </pre>
 <div class="docs">
 <p>Increment the semaphore count by the specified <code>amount</code>,

@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -287,14 +293,14 @@ class="link"><code>use_thread_rate_in_fifo_sizing</code></a></li>
 <h1>intel.stratix-10.config <a href="../../index.html">&equiv;</a></h1>
 <hr />
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_family</span> = <span class="literal">&quot;stratix-10&quot;</span> <a class="anchor" href="#intel-stratix-10-config-device_family" id="intel-stratix-10-config-device_family">§</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_family</span> = <span class="literal">&quot;stratix-10&quot;</span> <a class="anchor" href="#intel-stratix-10-config-device_family" id="intel-stratix-10-config-device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L18">source</a>
 </pre>
 <div class="docs">
 <p>Name of the device family into which the target device belongs, for
 example ‘Agilex 7’</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">hal_device_family</span> = <span class="literal">&quot;Stratix10&quot;</span> <a class="anchor" href="#intel-stratix-10-config-hal_device_family" id="intel-stratix-10-config-hal_device_family">§</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">hal_device_family</span> = <span class="literal">&quot;Stratix10&quot;</span> <a class="anchor" href="#intel-stratix-10-config-hal_device_family" id="intel-stratix-10-config-hal_device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L23">source</a>
 </pre>
 <div class="docs">
 <p>Name of the device family that is significant to the Vendor RTL (or
@@ -303,54 +309,54 @@ parameter, and in some cases passed down into the Vendor modules or used
 to enable or disable some conditional behavior.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">integer_mul_src_width</span> = <span class="literal">27</span> <a class="anchor" href="#intel-stratix-10-config-integer_mul_src_width" id="intel-stratix-10-config-integer_mul_src_width">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">integer_mul_src_width</span> = <span class="literal">27</span> <a class="anchor" href="#intel-stratix-10-config-integer_mul_src_width" id="intel-stratix-10-config-integer_mul_src_width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L30">source</a>
 </pre>
 <div class="docs">
 <p>Width of source operands for an unsigned integer multiplication using
 a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">unsigned_integer_mul_name</span> = <span class="literal">&quot;umul27&quot;</span> <a class="anchor" href="#intel-stratix-10-config-unsigned_integer_mul_name" id="intel-stratix-10-config-unsigned_integer_mul_name">§</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">unsigned_integer_mul_name</span> = <span class="literal">&quot;umul27&quot;</span> <a class="anchor" href="#intel-stratix-10-config-unsigned_integer_mul_name" id="intel-stratix-10-config-unsigned_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L33">source</a>
 </pre>
 <div class="docs">
 <p>Name of the intrinsic operation for 1 unsigned integer multiplication
 using a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">signed_integer_mul_name</span> = <span class="literal">&quot;imul27&quot;</span> <a class="anchor" href="#intel-stratix-10-config-signed_integer_mul_name" id="intel-stratix-10-config-signed_integer_mul_name">§</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">signed_integer_mul_name</span> = <span class="literal">&quot;imul27&quot;</span> <a class="anchor" href="#intel-stratix-10-config-signed_integer_mul_name" id="intel-stratix-10-config-signed_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L36">source</a>
 </pre>
 <div class="docs">
 <p>Name of the intrinsic operation for 1 signed integer multiplication
 using a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#intel-stratix-10-config-min_fifo_depth" id="intel-stratix-10-config-min_fifo_depth">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#intel-stratix-10-config-min_fifo_depth" id="intel-stratix-10-config-min_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L43">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth for a single clock fifo</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_dual_clock_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#intel-stratix-10-config-min_dual_clock_fifo_depth" id="intel-stratix-10-config-min_dual_clock_fifo_depth">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_dual_clock_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#intel-stratix-10-config-min_dual_clock_fifo_depth" id="intel-stratix-10-config-min_dual_clock_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L46">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth for a dual clock fifo</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_almost_full_depth</span> = <span class="literal">4</span> <a class="anchor" href="#intel-stratix-10-config-min_almost_full_depth" id="intel-stratix-10-config-min_almost_full_depth">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_almost_full_depth</span> = <span class="literal">4</span> <a class="anchor" href="#intel-stratix-10-config-min_almost_full_depth" id="intel-stratix-10-config-min_almost_full_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L50">source</a>
 </pre>
 <div class="docs">
 <p>Minimum almost_full value for a fifo. This is the minimum value
 needed to overcome fifo read-&gt;almost_full latency</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">almost_empty_depth</span> = <span class="literal">4</span> <a class="anchor" href="#intel-stratix-10-config-almost_empty_depth" id="intel-stratix-10-config-almost_empty_depth">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">almost_empty_depth</span> = <span class="literal">4</span> <a class="anchor" href="#intel-stratix-10-config-almost_empty_depth" id="intel-stratix-10-config-almost_empty_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L53">source</a>
 </pre>
 <div class="docs">
 <p>Minimum value for the almost empty threshold for a single-clock
 FIFO</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_width_alignment</span> = <span class="literal">20</span> <a class="anchor" href="#intel-stratix-10-config-fifo_width_alignment" id="intel-stratix-10-config-fifo_width_alignment">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_width_alignment</span> = <span class="literal">20</span> <a class="anchor" href="#intel-stratix-10-config-fifo_width_alignment" id="intel-stratix-10-config-fifo_width_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L57">source</a>
 </pre>
 <div class="docs">
 <p>Minimum width of LUTram based FIFO structures below which there are
@@ -358,7 +364,7 @@ no area savings. Used in calculations for the local data propagation
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_depth_alignment</span> = <span class="literal">32</span> <a class="anchor" href="#intel-stratix-10-config-fifo_depth_alignment" id="intel-stratix-10-config-fifo_depth_alignment">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_depth_alignment</span> = <span class="literal">32</span> <a class="anchor" href="#intel-stratix-10-config-fifo_depth_alignment" id="intel-stratix-10-config-fifo_depth_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L61">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth of LUTram based FIFO structures below which there are
@@ -366,7 +372,7 @@ no area savings. Used in calculations for the local data propagation
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_fixed_cost</span> = <span class="literal">128</span> <a class="anchor" href="#intel-stratix-10-config-fifo_fixed_cost" id="intel-stratix-10-config-fifo_fixed_cost">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_fixed_cost</span> = <span class="literal">128</span> <a class="anchor" href="#intel-stratix-10-config-fifo_fixed_cost" id="intel-stratix-10-config-fifo_fixed_cost">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L65">source</a>
 </pre>
 <div class="docs">
 <p>Fixed cost of a FIFO used in calculations for the local data
@@ -374,7 +380,7 @@ propagation optimization Used in calculations for the local data
 propagation optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_bits_per_register</span> = <span class="literal">16</span> <a class="anchor" href="#intel-stratix-10-config-fifo_bits_per_register" id="intel-stratix-10-config-fifo_bits_per_register">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_bits_per_register</span> = <span class="literal">16</span> <a class="anchor" href="#intel-stratix-10-config-fifo_bits_per_register" id="intel-stratix-10-config-fifo_bits_per_register">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L69">source</a>
 </pre>
 <div class="docs">
 <p>The number of bits in an implicit fifo that has the same area cost as
@@ -382,14 +388,14 @@ propagation optimization</p>
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_internal_buffer_fifo_optimization</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-use_internal_buffer_fifo_optimization" id="intel-stratix-10-config-use_internal_buffer_fifo_optimization">§</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_internal_buffer_fifo_optimization</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-use_internal_buffer_fifo_optimization" id="intel-stratix-10-config-use_internal_buffer_fifo_optimization">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L73">source</a>
 </pre>
 <div class="docs">
 <p><code>true</code> if it makes sense to use KanagawaInternalBufferFifo
 for basic blockswith start conditions as an Fmax optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_thread_rate_in_fifo_sizing</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-use_thread_rate_in_fifo_sizing" id="intel-stratix-10-config-use_thread_rate_in_fifo_sizing">§</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_thread_rate_in_fifo_sizing</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-use_thread_rate_in_fifo_sizing" id="intel-stratix-10-config-use_thread_rate_in_fifo_sizing">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L78">source</a>
 </pre>
 <div class="docs">
 <p>true if basic block thread rates should be used when computing fifo
@@ -398,46 +404,46 @@ This feature is used to work around an EDA tool bug for certain Intel
 devices.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">small_lut_size</span> = <span class="literal">4</span> <a class="anchor" href="#intel-stratix-10-config-small_lut_size" id="intel-stratix-10-config-small_lut_size">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">small_lut_size</span> = <span class="literal">4</span> <a class="anchor" href="#intel-stratix-10-config-small_lut_size" id="intel-stratix-10-config-small_lut_size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L85">source</a>
 </pre>
 <div class="docs">
 <p>//| Multiple LUTs of this size can fit into 1 resource (ALM, CLB)</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">lut_based_shift_register_available</span> = <span class="literal">false</span> <a class="anchor" href="#intel-stratix-10-config-lut_based_shift_register_available" id="intel-stratix-10-config-lut_based_shift_register_available">§</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">lut_based_shift_register_available</span> = <span class="literal">false</span> <a class="anchor" href="#intel-stratix-10-config-lut_based_shift_register_available" id="intel-stratix-10-config-lut_based_shift_register_available">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L89">source</a>
 </pre>
 <div class="docs">
 <p>true if the platform supports a RAM-based shift register. Used in
 calculations for the local data propagation optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">registers_require_power_on_initial_value</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-registers_require_power_on_initial_value" id="intel-stratix-10-config-registers_require_power_on_initial_value">§</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">registers_require_power_on_initial_value</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-registers_require_power_on_initial_value" id="intel-stratix-10-config-registers_require_power_on_initial_value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L92">source</a>
 </pre>
 <div class="docs">
 <p>true if control signals should have power-on value specified</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_hardened_bypass</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-block_ram_supports_hardened_bypass" id="intel-stratix-10-config-block_ram_supports_hardened_bypass">§</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_hardened_bypass</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-block_ram_supports_hardened_bypass" id="intel-stratix-10-config-block_ram_supports_hardened_bypass">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L99">source</a>
 </pre>
 <div class="docs">
 <p>If the block RAMs in the device support pipeline bypass (aka memory
 forwarding) for at least 2 stages</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_ecc</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-block_ram_supports_ecc" id="intel-stratix-10-config-block_ram_supports_ecc">§</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_ecc</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-block_ram_supports_ecc" id="intel-stratix-10-config-block_ram_supports_ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L102">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports ECC for block RAMs</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_true_dual_port</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-block_ram_supports_true_dual_port" id="intel-stratix-10-config-block_ram_supports_true_dual_port">§</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_true_dual_port</span> = <span class="literal">true</span> <a class="anchor" href="#intel-stratix-10-config-block_ram_supports_true_dual_port" id="intel-stratix-10-config-block_ram_supports_true_dual_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L105">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports block RAMs in a true dual-port
 configuration (i.e. two independent read/write ports).</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">global_data_propagation_ram_alignment</span> = <span class="literal">40</span> <a class="anchor" href="#intel-stratix-10-config-global_data_propagation_ram_alignment" id="intel-stratix-10-config-global_data_propagation_ram_alignment">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">global_data_propagation_ram_alignment</span> = <span class="literal">40</span> <a class="anchor" href="#intel-stratix-10-config-global_data_propagation_ram_alignment" id="intel-stratix-10-config-global_data_propagation_ram_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L108">source</a>
 </pre>
 <div class="docs">
 <p>For data propagation memories, the minimum width of 1 memory</p>
@@ -458,7 +464,7 @@ configuration (i.e. two independent read/write ports).</p>
                                                      ,{.<span class="identifier">type_id</span> = <a class="link" href="../../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a>::<a class="link" href="../../compiler/device/schema.html#compiler-device-schema-MemoryType-Block"><span class="identifier">Block</span></a>
                                                       ,.<span class="identifier">cost</span> = <span class="literal">320.0</span>
                                                       ,.<span class="identifier">width</span> = <span class="literal">40</span>
-                                                      ,.<span class="identifier">depth</span> = <span class="literal">512</span>}} <a class="anchor" href="#intel-stratix-10-config-memory_configurations" id="intel-stratix-10-config-memory_configurations">§</a>
+                                                      ,.<span class="identifier">depth</span> = <span class="literal">512</span>}} <a class="anchor" href="#intel-stratix-10-config-memory_configurations" id="intel-stratix-10-config-memory_configurations">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/intel/stratix-10/config.k#L111">source</a>
 </pre>
 <div class="docs">
 <p>Valid memory configurations</p>

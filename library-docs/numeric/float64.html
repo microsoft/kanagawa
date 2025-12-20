@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -222,55 +228,55 @@ id="index-link" class="link"><code>float64</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">add</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-add" id="numeric-float64-add">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">add</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-add" id="numeric-float64-add">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L445">source</a>
 </pre>
 <div class="docs">
 <p>Addition.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">mul</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-mul" id="numeric-float64-mul">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">mul</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-mul" id="numeric-float64-mul">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L595">source</a>
 </pre>
 <div class="docs">
 <p>Multiplication.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">eq</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-eq" id="numeric-float64-eq">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">eq</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-eq" id="numeric-float64-eq">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L611">source</a>
 </pre>
 <div class="docs">
 <p>Compare two float64 values for equality.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">lt</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-lt" id="numeric-float64-lt">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">lt</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-lt" id="numeric-float64-lt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L640">source</a>
 </pre>
 <div class="docs">
 <p>Check <code>in1</code> less than <code>in2</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">gt</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-gt" id="numeric-float64-gt">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">gt</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-gt" id="numeric-float64-gt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L688">source</a>
 </pre>
 <div class="docs">
 <p>Check <code>in1</code> greater than <code>in2</code>.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">neg</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-neg" id="numeric-float64-neg">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">neg</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-neg" id="numeric-float64-neg">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L713">source</a>
 </pre>
 <div class="docs">
 <p>Negate.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">sub</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-sub" id="numeric-float64-sub">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">sub</span>(<span class="keyword">uint64</span> <span class="identifier">in1</span>, <span class="keyword">uint64</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float64-sub" id="numeric-float64-sub">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L722">source</a>
 </pre>
 <div class="docs">
 <p>Subtract <code>in2</code> from <code>in1</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">from_int</span>(<span class="builtin">int</span>&lt;N&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_int" id="numeric-float64-from_int">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">from_int</span>(<span class="builtin">int</span>&lt;N&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_int" id="numeric-float64-from_int">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L729">source</a>
 </pre>
 <div class="docs">
 <p>Convert a signed integer to a float64.</p>
@@ -292,7 +298,7 @@ id="index-link" class="link"><code>float64</code></a></li>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">from_uint</span>(<span class="builtin">uint</span>&lt;N&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_uint" id="numeric-float64-from_uint">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">from_uint</span>(<span class="builtin">uint</span>&lt;N&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_uint" id="numeric-float64-from_uint">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L736">source</a>
 </pre>
 <div class="docs">
 <p>Convert an unsigned integer to a float64.</p>
@@ -314,7 +320,7 @@ id="index-link" class="link"><code>float64</code></a></li>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">int</span>&lt;N&gt;&gt; <span class="identifier">to_int</span>(<span class="keyword">uint64</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-to_int" id="numeric-float64-to_int">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">int</span>&lt;N&gt;&gt; <span class="identifier">to_int</span>(<span class="keyword">uint64</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-to_int" id="numeric-float64-to_int">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L743">source</a>
 </pre>
 <div class="docs">
 <p>Convert a float64 to a signed integer</p>
@@ -336,7 +342,7 @@ id="index-link" class="link"><code>float64</code></a></li>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">uint</span>&lt;N&gt;&gt; <span class="identifier">to_uint</span>(<span class="keyword">uint64</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-to_uint" id="numeric-float64-to_uint">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">uint</span>&lt;N&gt;&gt; <span class="identifier">to_uint</span>(<span class="keyword">uint64</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-to_uint" id="numeric-float64-to_uint">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L758">source</a>
 </pre>
 <div class="docs">
 <p>Convert a float64 to an unsigned integer</p>
@@ -357,38 +363,38 @@ id="index-link" class="link"><code>float64</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../numeric/float/internal.html#numeric-float-internal-float64"><span class="identifier">float64</span></a> <span class="identifier">from_float32</span>(<span class="builtin">float32</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_float32" id="numeric-float64-from_float32">§</a>
+<span class="modifier">inline </span><a class="link" href="../numeric/float/internal.html#numeric-float-internal-float64"><span class="identifier">float64</span></a> <span class="identifier">from_float32</span>(<span class="builtin">float32</span> <span class="identifier">value</span>) <a class="anchor" href="#numeric-float64-from_float32" id="numeric-float64-from_float32">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L772">source</a>
 </pre>
 <div class="docs">
 <p>Convert a float32 to a float64.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isnan</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isnan" id="numeric-float64-isnan">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isnan</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isnan" id="numeric-float64-isnan">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L824">source</a>
 </pre>
 <div class="docs">
 <p>Check <code>x</code> is not a number.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isinf</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isinf" id="numeric-float64-isinf">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isinf</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isinf" id="numeric-float64-isinf">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L831">source</a>
 </pre>
 <div class="docs">
 <p>Check <code>x</code> is positive or negative infinity.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isfinite</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isfinite" id="numeric-float64-isfinite">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isfinite</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isfinite" id="numeric-float64-isfinite">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L837">source</a>
 </pre>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isnormal</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isnormal" id="numeric-float64-isnormal">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">isnormal</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-isnormal" id="numeric-float64-isnormal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L843">source</a>
 </pre>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">signbit</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-signbit" id="numeric-float64-signbit">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">signbit</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-signbit" id="numeric-float64-signbit">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L850">source</a>
 </pre>
 <div class="docs">
 <p>Return sign of <code>x</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">min</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-min" id="numeric-float64-min">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">min</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-min" id="numeric-float64-min">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L859">source</a>
 </pre>
 <div class="docs">
 <p>Return the smaller of <code>x</code> and <code>y</code>. A NaN is
@@ -396,7 +402,7 @@ treated as missing data, and the other value will be returned.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">max</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-max" id="numeric-float64-max">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">max</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-max" id="numeric-float64-max">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L867">source</a>
 </pre>
 <div class="docs">
 <p>Return the larger of <code>x</code> and <code>y</code>. A NaN is
@@ -404,21 +410,21 @@ treated as missing data, and the other value will be returned.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">ceil</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-ceil" id="numeric-float64-ceil">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">ceil</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-ceil" id="numeric-float64-ceil">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L874">source</a>
 </pre>
 <div class="docs">
 <p>Return the smallest integer not less than <code>x</code>: (x )</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">floor</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-floor" id="numeric-float64-floor">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">floor</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-floor" id="numeric-float64-floor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L881">source</a>
 </pre>
 <div class="docs">
 <p>Return the largest integer not greater than <code>x</code>: (x )</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">round</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-round" id="numeric-float64-round">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">round</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-round" id="numeric-float64-round">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L888">source</a>
 </pre>
 <div class="docs">
 <p>Return the nearest integer to <code>x</code>, rounding halfway away
@@ -426,7 +432,7 @@ from zero.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">trunc</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-trunc" id="numeric-float64-trunc">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">trunc</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-trunc" id="numeric-float64-trunc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L895">source</a>
 </pre>
 <div class="docs">
 <p>Return the nearest integer not greater in magnitude than
@@ -434,7 +440,7 @@ from zero.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">dim</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-dim" id="numeric-float64-dim">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">dim</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>, <span class="keyword">uint64</span> <span class="identifier">y</span>) <a class="anchor" href="#numeric-float64-dim" id="numeric-float64-dim">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L902">source</a>
 </pre>
 <div class="docs">
 <p>Return the positive difference between <code>x</code> and
@@ -442,7 +448,7 @@ from zero.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">abs</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-abs" id="numeric-float64-abs">§</a>
+<span class="modifier">inline </span><span class="keyword">uint64</span> <span class="identifier">abs</span>(<span class="keyword">uint64</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float64-abs" id="numeric-float64-abs">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float64.k#L920">source</a>
 </pre>
 <div class="docs">
 <p>Return the absolute value of <code>x</code>: <span

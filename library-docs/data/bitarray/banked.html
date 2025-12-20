@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -170,7 +176,7 @@ id="index-link" class="link"><code>bitarray</code></a></li>
     <span class="keyword">auto</span> Banks,
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
     &gt;
-<span class="keyword">class</span> <span class="identifier">bitarray</span> <a class="anchor" href="#data-bitarray-banked-bitarray" id="data-bitarray-banked-bitarray">§</a>
+<span class="keyword">class</span> <span class="identifier">bitarray</span> <a class="anchor" href="#data-bitarray-banked-bitarray" id="data-bitarray-banked-bitarray">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L21">source</a>
 </pre>
 <div class="docs">
 <p>A fixed sized array of bits, stored internally as a set of banks,
@@ -222,7 +228,7 @@ usage.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">bit_addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-bit_addr_t" id="data-bitarray-banked-bitarray-bit_addr_t">§</a>
+<span class="keyword">using</span> <span class="identifier">bit_addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-bit_addr_t" id="data-bitarray-banked-bitarray-bit_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L84">source</a>
 </pre>
 <div class="docs">
 <p>Represents the address of a single bit.</p>
@@ -230,7 +236,7 @@ usage.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">word_addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<span class="identifier">WordCount</span>&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-word_addr_t" id="data-bitarray-banked-bitarray-word_addr_t">§</a>
+<span class="keyword">using</span> <span class="identifier">word_addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<span class="identifier">WordCount</span>&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-word_addr_t" id="data-bitarray-banked-bitarray-word_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L87">source</a>
 </pre>
 <div class="docs">
 <p>Represents the address of a single word.</p>
@@ -238,7 +244,7 @@ usage.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">word_t</span> = <span class="builtin">uint</span>&lt;WordWidth&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-word_t" id="data-bitarray-banked-bitarray-word_t">§</a>
+<span class="keyword">using</span> <span class="identifier">word_t</span> = <span class="builtin">uint</span>&lt;WordWidth&gt; <a class="anchor" href="#data-bitarray-banked-bitarray-word_t" id="data-bitarray-banked-bitarray-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L90">source</a>
 </pre>
 <div class="docs">
 <p>A single word which can be read or written.</p>
@@ -256,7 +262,7 @@ usage.</p>
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxCount&gt;
 <span class="modifier">inline </span>
 <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, MaxCount&gt;
-<span class="identifier">read_bits</span>(<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_bits" id="data-bitarray-banked-bitarray-read_bits">§</a>
+<span class="identifier">read_bits</span>(<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_bits" id="data-bitarray-banked-bitarray-read_bits">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L94">source</a>
 </pre>
 <div class="docs">
 <p>Get the value of multiple bits.</p>
@@ -279,7 +285,7 @@ usage.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">read_bit</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_bit" id="data-bitarray-banked-bitarray-read_bit">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">read_bit</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_bit" id="data-bitarray-banked-bitarray-read_bit">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L108">source</a>
 </pre>
 <div class="docs">
 <p>Get the value of one bit.</p>
@@ -305,7 +311,7 @@ usage.</p>
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxCount&gt;
 <span class="modifier">inline </span>
 <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a>, MaxCount&gt;
-<span class="identifier">read_words</span>(<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_words" id="data-bitarray-banked-bitarray-read_words">§</a>
+<span class="identifier">read_words</span>(<a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a>, MaxCount&gt; <span class="identifier">addresses</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_words" id="data-bitarray-banked-bitarray-read_words">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L121">source</a>
 </pre>
 <div class="docs">
 <p>Get the value of multiple words.</p>
@@ -328,7 +334,7 @@ usage.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">read_word</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_word" id="data-bitarray-banked-bitarray-read_word">§</a>
+<span class="modifier">inline </span><a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">read_word</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-read_word" id="data-bitarray-banked-bitarray-read_word">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L135">source</a>
 </pre>
 <div class="docs">
 <p>Get the value of a single multiple word.</p>
@@ -356,7 +362,7 @@ usage.</p>
 <span class="keyword">void</span>
 <span class="identifier">write_bits</span>(
     <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a>, <span class="builtin">bool</span>&gt;, MaxCount&gt; <span class="identifier">addresses_and_values</span>
-    ) <a class="anchor" href="#data-bitarray-banked-bitarray-write_bits" id="data-bitarray-banked-bitarray-write_bits">§</a>
+    ) <a class="anchor" href="#data-bitarray-banked-bitarray-write_bits" id="data-bitarray-banked-bitarray-write_bits">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L147">source</a>
 </pre>
 <div class="docs">
 <p>Set the values of multiple bits.</p>
@@ -379,7 +385,7 @@ usage.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_bit</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>, <span class="builtin">bool</span> <span class="identifier">value</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-write_bit" id="data-bitarray-banked-bitarray-write_bit">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_bit</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">address</span>, <span class="builtin">bool</span> <span class="identifier">value</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-write_bit" id="data-bitarray-banked-bitarray-write_bit">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L164">source</a>
 </pre>
 <div class="docs">
 <p>Set the value of one bit.</p>
@@ -418,7 +424,7 @@ usage.</p>
         <a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a>, <a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a>&gt;,
         MaxCount
         &gt; <span class="identifier">addresses_and_values</span>
-    ) <a class="anchor" href="#data-bitarray-banked-bitarray-write_words" id="data-bitarray-banked-bitarray-write_words">§</a>
+    ) <a class="anchor" href="#data-bitarray-banked-bitarray-write_words" id="data-bitarray-banked-bitarray-write_words">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L174">source</a>
 </pre>
 <div class="docs">
 <p>Set the values of multiple words.</p>
@@ -444,7 +450,8 @@ usage.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_word</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>, <a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-write_word" id="data-bitarray-banked-bitarray-write_word">§</a>
+<span class="modifier">inline </span>
+<span class="keyword">void</span> <span class="identifier">write_word</span>(<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">address</span>, <a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../../data/bitarray/banked.html#data-bitarray-banked-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#data-bitarray-banked-bitarray-write_word" id="data-bitarray-banked-bitarray-write_word">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/bitarray/banked.k#L191">source</a>
 </pre>
 <div class="docs">
 <p>Set the value of one word.</p>

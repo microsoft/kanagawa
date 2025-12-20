@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -260,7 +266,7 @@ clashes with <code>data.array</code> functions. For example:</p>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="keyword">struct</span> <span class="identifier">vector</span> <a class="anchor" href="#data-vector-vector" id="data-vector-vector">§</a>
+<span class="keyword">struct</span> <span class="identifier">vector</span> <a class="anchor" href="#data-vector-vector" id="data-vector-vector">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L84">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -289,12 +295,12 @@ clashes with <code>data.array</code> functions. For example:</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-T[N] <span class="identifier">data</span> <a class="anchor" href="#data-vector-$quasi0-data" id="data-vector-$quasi0-data">§</a>
+T[N] <span class="identifier">data</span> <a class="anchor" href="#data-vector-$quasi0-data" id="data-vector-$quasi0-data">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L86">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">size</span> <a class="anchor" href="#data-vector-$quasi0-size" id="data-vector-$quasi0-size">§</a>
+<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">size</span> <a class="anchor" href="#data-vector-$quasi0-size" id="data-vector-$quasi0-size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L87">source</a>
 </pre>
 </li>
 </ul>
@@ -303,14 +309,14 @@ T[N] <span class="identifier">data</span> <a class="anchor" href="#data-vector-$
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">make_vector</span>(T[N] <span class="identifier">a</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">s</span>) <a class="anchor" href="#data-vector-make_vector" id="data-vector-make_vector">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">make_vector</span>(T[N] <span class="identifier">a</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">s</span>) <a class="anchor" href="#data-vector-make_vector" id="data-vector-make_vector">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L92">source</a>
 </pre>
 <div class="docs">
 <p>Create a vector with specified data and size</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">from_array</span>(T[N] <span class="identifier">a</span>) <a class="anchor" href="#data-vector-from_array" id="data-vector-from_array">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">from_array</span>(T[N] <span class="identifier">a</span>) <a class="anchor" href="#data-vector-from_array" id="data-vector-from_array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L110">source</a>
 </pre>
 <div class="docs">
 <p>Construct a vector from an array.</p>
@@ -322,7 +328,7 @@ T[N] <span class="identifier">data</span> <a class="anchor" href="#data-vector-$
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, <span class="literal">1</span>&gt; <span class="identifier">from_optional</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">o</span>) <a class="anchor" href="#data-vector-from_optional" id="data-vector-from_optional">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, <span class="literal">1</span>&gt; <span class="identifier">from_optional</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">o</span>) <a class="anchor" href="#data-vector-from_optional" id="data-vector-from_optional">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L123">source</a>
 </pre>
 <div class="docs">
 <p>Construct a vector with capacity 1 from an optional. If the optional
@@ -336,7 +342,7 @@ vector.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">repeat</span>(T <span class="identifier">x</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">length</span>) <a class="anchor" href="#data-vector-repeat" id="data-vector-repeat">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">repeat</span>(T <span class="identifier">x</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">length</span>) <a class="anchor" href="#data-vector-repeat" id="data-vector-repeat">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L138">source</a>
 </pre>
 <div class="docs">
 <p>Construct a vector by replicating a value <code>length</code>
@@ -352,7 +358,7 @@ times.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">at</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">i</span>) <a class="anchor" href="#data-vector-at" id="data-vector-at">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">at</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">i</span>) <a class="anchor" href="#data-vector-at" id="data-vector-at">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L156">source</a>
 </pre>
 <div class="docs">
 <p>Access element <code>i</code>. Equivalent to <code>v.data[i]</code>.
@@ -366,7 +372,7 @@ If <code>i</code> is greater than or equal to <code>v.size</code> then a
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">front</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-front" id="data-vector-front">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">front</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-front" id="data-vector-front">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L170">source</a>
 </pre>
 <div class="docs">
 <p>Return the first element in the vector. Equivalent to
@@ -380,7 +386,7 @@ If <code>i</code> is greater than or equal to <code>v.size</code> then a
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">back</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-back" id="data-vector-back">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">back</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-back" id="data-vector-back">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L184">source</a>
 </pre>
 <div class="docs">
 <p>Return the last element in the vector. Equivalent to
@@ -394,7 +400,7 @@ If <code>i</code> is greater than or equal to <code>v.size</code> then a
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">size</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-size" id="data-vector-size">§</a>
+<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">size</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-size" id="data-vector-size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L196">source</a>
 </pre>
 <div class="docs">
 <p>Return the number of elements. Equivalent to <code>v.size</code>.</p>
@@ -406,7 +412,7 @@ If <code>i</code> is greater than or equal to <code>v.size</code> then a
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">empty</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-empty" id="data-vector-empty">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">empty</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-empty" id="data-vector-empty">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L211">source</a>
 </pre>
 <div class="docs">
 <p>Check whether the vector is empty. Equivalent to
@@ -422,7 +428,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">capacity</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-capacity" id="data-vector-capacity">§</a>
+<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">capacity</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-capacity" id="data-vector-capacity">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L223">source</a>
 </pre>
 <div class="docs">
 <p>Return the maximum number of elements.</p>
@@ -434,7 +440,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">reserve</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-reserve" id="data-vector-reserve">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">reserve</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-reserve" id="data-vector-reserve">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L240">source</a>
 </pre>
 <div class="docs">
 <p>Reserve <code>M</code> number of elements. If <code>M</code> is less
@@ -452,7 +458,7 @@ vector.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">resize</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">length</span>) <a class="anchor" href="#data-vector-resize" id="data-vector-resize">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">resize</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">length</span>) <a class="anchor" href="#data-vector-resize" id="data-vector-resize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L260">source</a>
 </pre>
 <div class="docs">
 <p>Resize the vector to contain <code>length</code> elements. Equivalent
@@ -467,7 +473,7 @@ then new elements are undefined. If <code>length</code> is greater than
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">clear</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-clear" id="data-vector-clear">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">clear</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-clear" id="data-vector-clear">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L274">source</a>
 </pre>
 <div class="docs">
 <p>Clear the contents. Equivalent to <code>v.size = 0;</code>.</p>
@@ -479,7 +485,7 @@ then new elements are undefined. If <code>length</code> is greater than
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">insert</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">pos</span>, T <span class="identifier">value</span>) <a class="anchor" href="#data-vector-insert" id="data-vector-insert">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">insert</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">pos</span>, T <span class="identifier">value</span>) <a class="anchor" href="#data-vector-insert" id="data-vector-insert">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L290">source</a>
 </pre>
 <div class="docs">
 <p>Insert <code>value</code> before position <code>pos</code> in vector
@@ -496,7 +502,7 @@ then new elements are undefined. If <code>length</code> is greater than
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">erase</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">pos</span>) <a class="anchor" href="#data-vector-erase" id="data-vector-erase">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">erase</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">pos</span>) <a class="anchor" href="#data-vector-erase" id="data-vector-erase">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L311">source</a>
 </pre>
 <div class="docs">
 <p>Erase element at position <code>pos</code> from vector
@@ -510,7 +516,7 @@ then a <code>assert</code> is triggered.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">push_back</span>(T <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-push_back" id="data-vector-push_back">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">push_back</span>(T <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-push_back" id="data-vector-push_back">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L327">source</a>
 </pre>
 <div class="docs">
 <p>Append element <code>x</code> to the end of vector <code>v</code>. If
@@ -523,7 +529,7 @@ then a <code>assert</code> is triggered.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">pop_back</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-pop_back" id="data-vector-pop_back">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">pop_back</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-pop_back" id="data-vector-pop_back">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L343">source</a>
 </pre>
 <div class="docs">
 <p>Remove the last element of the vector. If the vector is empty then a
@@ -536,7 +542,7 @@ then a <code>assert</code> is triggered.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">append</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-append" id="data-vector-append">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">append</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-append" id="data-vector-append">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L364">source</a>
 </pre>
 <div class="docs">
 <p>Append vectors. If the sum of the vector sizes is greater than
@@ -555,7 +561,7 @@ then a <code>assert</code> is triggered.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">map</span>((T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>) <a class="anchor" href="#data-vector-map" id="data-vector-map">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">map</span>((T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>) <a class="anchor" href="#data-vector-map" id="data-vector-map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L390">source</a>
 </pre>
 <div class="docs">
 <p>Map vector of input values to result values.</p>
@@ -568,7 +574,7 @@ then a <code>assert</code> is triggered.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">gather</span>(<span class="builtin">bool</span>[N] <span class="identifier">valids</span>, T[N] <span class="identifier">data</span>) <a class="anchor" href="#data-vector-gather" id="data-vector-gather">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">gather</span>(<span class="builtin">bool</span>[N] <span class="identifier">valids</span>, T[N] <span class="identifier">data</span>) <a class="anchor" href="#data-vector-gather" id="data-vector-gather">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L409">source</a>
 </pre>
 <div class="docs">
 <p>Gather entries in data that are marked as valid to the front of an
@@ -582,7 +588,7 @@ result = { {2, 4, 5, 8, X, X, X, X}, 4 } where X is undefined</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">scatter</span>(<span class="builtin">bool</span>[N] <span class="identifier">valids</span>, T[N] <span class="identifier">data</span>) <a class="anchor" href="#data-vector-scatter" id="data-vector-scatter">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">scatter</span>(<span class="builtin">bool</span>[N] <span class="identifier">valids</span>, T[N] <span class="identifier">data</span>) <a class="anchor" href="#data-vector-scatter" id="data-vector-scatter">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L452">source</a>
 </pre>
 <div class="docs">
 <p>Scatter the entries in data into the entries marked as true in the
@@ -597,7 +603,8 @@ result = { {X, 2, X, 4, 5, X, X, 8 }, 4 } where X is undefined</code></pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
 <span class="modifier">inline </span>
-<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">unique_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unique_by" id="data-vector-unique_by">§</a>
+<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt;
+<span class="identifier">unique_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unique_by" id="data-vector-unique_by">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L483">source</a>
 </pre>
 <div class="docs">
 <p>De-duplicate vector elements with user-supplied equality predicate.
@@ -612,7 +619,7 @@ optionals where all valid elements are unique.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">unique</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unique" id="data-vector-unique">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">unique</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unique" id="data-vector-unique">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L529">source</a>
 </pre>
 <div class="docs">
 <p>De-duplicate vector elements. Similar to <code>unique_by</code> but
@@ -646,7 +653,7 @@ elements are unique.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">reduce</span>((T, T) -&gt; T <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-reduce" id="data-vector-reduce">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">reduce</span>((T, T) -&gt; T <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-reduce" id="data-vector-reduce">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L575">source</a>
 </pre>
 <div class="docs">
 <p>Implement a binary reducer tree using a function to reduce a pair of
@@ -669,7 +676,8 @@ true
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>R <span class="identifier">map_reduce</span>((T) -&gt; R <span class="identifier">map_fn</span>, (R, R) -&gt; R <span class="identifier">reduce_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-map_reduce" id="data-vector-map_reduce">§</a>
+<span class="modifier">inline </span>
+R <span class="identifier">map_reduce</span>((T) -&gt; R <span class="identifier">map_fn</span>, (R, R) -&gt; R <span class="identifier">reduce_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-map_reduce" id="data-vector-map_reduce">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L607">source</a>
 </pre>
 <div class="docs">
 <p>Implements map-reduce. Inputs are first mapped into the appropriate
@@ -687,7 +695,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">or</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-or" id="data-vector-or">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">or</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-or" id="data-vector-or">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L625">source</a>
 </pre>
 <div class="docs">
 <p>Return true if any of the elements are true. Return false if the
@@ -706,7 +714,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">and</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-and" id="data-vector-and">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">and</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<span class="builtin">bool</span>, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-and" id="data-vector-and">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L643">source</a>
 </pre>
 <div class="docs">
 <p>Return true if all of the elements are true. Return true if the
@@ -725,7 +733,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">any</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-any" id="data-vector-any">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">any</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-any" id="data-vector-any">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L662">source</a>
 </pre>
 <div class="docs">
 <p>Return true if any of the elements satisfy the predicate. Return
@@ -744,7 +752,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">all</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-all" id="data-vector-all">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">all</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-all" id="data-vector-all">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L681">source</a>
 </pre>
 <div class="docs">
 <p>Return true if all of the elements satisfy the predicate. Return true
@@ -763,7 +771,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">minimum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-minimum" id="data-vector-minimum">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">minimum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-minimum" id="data-vector-minimum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L697">source</a>
 </pre>
 <div class="docs">
 <p>Return the minimum element from a vector of integers. Return
@@ -779,7 +787,7 @@ undefined if the vector is empty.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">maximum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-maximum" id="data-vector-maximum">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">maximum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-maximum" id="data-vector-maximum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L718">source</a>
 </pre>
 <div class="docs">
 <p>Return the maximum element from a vector of integers. Return
@@ -795,7 +803,7 @@ undefined if the vector is empty.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>R <span class="identifier">sum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-sum" id="data-vector-sum">§</a>
+<span class="modifier">inline </span>R <span class="identifier">sum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-sum" id="data-vector-sum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L738">source</a>
 </pre>
 <div class="docs">
 <p>Sum of the vector elements. Return undefined if the vector is
@@ -811,7 +819,7 @@ empty.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">first_valid</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-first_valid" id="data-vector-first_valid">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">first_valid</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-first_valid" id="data-vector-first_valid">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L758">source</a>
 </pre>
 <div class="docs">
 <p>Given a vector of <code>optional&lt;T&gt;</code>, return the first
@@ -831,7 +839,7 @@ the vector is empty then return invalid.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">last_valid</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-last_valid" id="data-vector-last_valid">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">last_valid</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-last_valid" id="data-vector-last_valid">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L786">source</a>
 </pre>
 <div class="docs">
 <p>Given a vector of <code>optional&lt;T&gt;</code>, return the last
@@ -854,7 +862,7 @@ the vector is empty then return invalid.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">map_optional</span>((T) -&gt; <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;R&gt; <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-map_optional" id="data-vector-map_optional">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">map_optional</span>((T) -&gt; <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;R&gt; <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-map_optional" id="data-vector-map_optional">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L816">source</a>
 </pre>
 <div class="docs">
 <p>Return a vector containing only valid mapped elements.</p>
@@ -879,7 +887,7 @@ the vector is empty then return invalid.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">cat_optionals</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-cat_optionals" id="data-vector-cat_optionals">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">cat_optionals</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-cat_optionals" id="data-vector-cat_optionals">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L839">source</a>
 </pre>
 <div class="docs">
 <p>Return a vector containing only valid input elements.</p>
@@ -894,7 +902,7 @@ the vector is empty then return invalid.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> S, <span class="keyword">auto</span> N, <span class="keyword">typename</span> T, <span class="keyword">auto</span> M&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip_with</span>((S, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;S, N&gt; <span class="identifier">s</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">t</span>) <a class="anchor" href="#data-vector-zip_with" id="data-vector-zip_with">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip_with</span>((S, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;S, N&gt; <span class="identifier">s</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">t</span>) <a class="anchor" href="#data-vector-zip_with" id="data-vector-zip_with">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L871">source</a>
 </pre>
 <div class="docs">
 <p>Combine elements of two vectors using specified function. Any
@@ -915,7 +923,7 @@ zipped vector is the minimum of <code>N</code> and <code>M</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> S, <span class="keyword">auto</span> N, <span class="keyword">typename</span> T, <span class="keyword">auto</span> M&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;S, N&gt; <span class="identifier">s</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">t</span>) <a class="anchor" href="#data-vector-zip" id="data-vector-zip">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;S, N&gt; <span class="identifier">s</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">t</span>) <a class="anchor" href="#data-vector-zip" id="data-vector-zip">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L895">source</a>
 </pre>
 <div class="docs">
 <p>Combine two vectors into a vector of pairs. Any remaining elements of
@@ -934,7 +942,7 @@ the minimum of <code>N</code> and <code>M</code>.</p>
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
 <span class="modifier">inline </span>
 <a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;L, N&gt;, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt;&gt;
-<span class="identifier">unzip_with</span>((T) -&gt; <a class="link" href="../data/tuple.html#data-tuple-tuple2"><span class="identifier">tuple2</span></a>&lt;L, R&gt; <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unzip_with" id="data-vector-unzip_with">§</a>
+<span class="identifier">unzip_with</span>((T) -&gt; <a class="link" href="../data/tuple.html#data-tuple-tuple2"><span class="identifier">tuple2</span></a>&lt;L, R&gt; <span class="identifier">f</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unzip_with" id="data-vector-unzip_with">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L907">source</a>
 </pre>
 <div class="docs">
 <p>Transform a vector <code>v</code> into a pair of vectors using a
@@ -947,7 +955,7 @@ projection <code>f</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;L, N&gt;, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt;&gt; <span class="identifier">unzip</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;L, R&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unzip" id="data-vector-unzip">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;L, N&gt;, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt;&gt; <span class="identifier">unzip</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;<a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;L, R&gt;, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-unzip" id="data-vector-unzip">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L938">source</a>
 </pre>
 <div class="docs">
 <p>Transform a vector of pairs into a pair of vectors.</p>
@@ -966,7 +974,8 @@ projection <code>f</code>.</p>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
 <span class="modifier">inline </span>
-<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">inclusive_scan</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">input</span>, (R, R) -&gt; R <span class="identifier">AssociativeFn</span>) <a class="anchor" href="#data-vector-inclusive_scan" id="data-vector-inclusive_scan">§</a>
+<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt;
+<span class="identifier">inclusive_scan</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">input</span>, (R, R) -&gt; R <span class="identifier">AssociativeFn</span>) <a class="anchor" href="#data-vector-inclusive_scan" id="data-vector-inclusive_scan">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L970">source</a>
 </pre>
 <div class="docs">
 <p>Perform an inclusive scan on the given vector.</p>
@@ -979,7 +988,7 @@ projection <code>f</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">prefix_sum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-prefix_sum" id="data-vector-prefix_sum">§</a>
+<span class="modifier">inline </span><a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;R, N&gt; <span class="identifier">prefix_sum</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">v</span>) <a class="anchor" href="#data-vector-prefix_sum" id="data-vector-prefix_sum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L1027">source</a>
 </pre>
 <div class="docs">
 <p>Compute the prefix sum of the given vector.</p>
@@ -1007,7 +1016,8 @@ projection <code>f</code>.</p>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">auto</span> M&gt;
 <span class="modifier">inline </span>
-<span class="builtin">bool</span> <span class="identifier">equal_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-equal_by" id="data-vector-equal_by">§</a>
+<span class="builtin">bool</span>
+<span class="identifier">equal_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-equal_by" id="data-vector-equal_by">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L1049">source</a>
 </pre>
 <div class="docs">
 <p>Element-wise equality comparison of vectors using specified function.
@@ -1029,7 +1039,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">auto</span> M&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-equal" id="data-vector-equal">§</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal</span>(<a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>, <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, M&gt; <span class="identifier">y</span>) <a class="anchor" href="#data-vector-equal" id="data-vector-equal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L1065">source</a>
 </pre>
 <div class="docs">
 <p>Element-wise comparison of vectors for equality using
@@ -1056,7 +1066,7 @@ true</code></pre>
     (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt;, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>,
     (T) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt; <span class="identifier">get_shard_idx</span>,
     <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>
-    ) <a class="anchor" href="#data-vector-sharded_map" id="data-vector-sharded_map">§</a>
+    ) <a class="anchor" href="#data-vector-sharded_map" id="data-vector-sharded_map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L1112">source</a>
 </pre>
 <div class="docs">
 <p>Transform a vector containing up to <code>N</code> elements according
@@ -1153,7 +1163,7 @@ input element.</p>
     (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">f</span>,
     (T) -&gt; <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Shards&gt; <span class="identifier">get_shard_idx</span>,
     <a class="link" href="../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, N&gt; <span class="identifier">x</span>
-    ) <a class="anchor" href="#data-vector-sharded_for_each" id="data-vector-sharded_for_each">§</a>
+    ) <a class="anchor" href="#data-vector-sharded_for_each" id="data-vector-sharded_for_each">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/vector.k#L1206">source</a>
 </pre>
 <div class="docs">
 <p>Execute a caller-specified function (<code>f</code>) once for each

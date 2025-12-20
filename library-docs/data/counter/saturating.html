@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -165,7 +171,7 @@ id="index-link" class="link"><code>saturating_counter</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> Width&gt;
-<span class="keyword">class</span> <span class="identifier">saturating_counter</span> <a class="anchor" href="#data-counter-saturating-saturating_counter" id="data-counter-saturating-saturating_counter">§</a>
+<span class="keyword">class</span> <span class="identifier">saturating_counter</span> <a class="anchor" href="#data-counter-saturating-saturating_counter" id="data-counter-saturating-saturating_counter">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/counter/saturating.k#L13">source</a>
 </pre>
 <div class="docs">
 <p>Increment-only counter that will saturate rather than overflow.</p>
@@ -175,7 +181,7 @@ id="index-link" class="link"><code>saturating_counter</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">count_t</span> = <span class="builtin">uint</span>&lt;Width&gt; <a class="anchor" href="#data-counter-saturating-saturating_counter-count_t" id="data-counter-saturating-saturating_counter-count_t">§</a>
+<span class="keyword">using</span> <span class="identifier">count_t</span> = <span class="builtin">uint</span>&lt;Width&gt; <a class="anchor" href="#data-counter-saturating-saturating_counter-count_t" id="data-counter-saturating-saturating_counter-count_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/counter/saturating.k#L16">source</a>
 </pre>
 </li>
 </ul>
@@ -188,7 +194,7 @@ id="index-link" class="link"><code>saturating_counter</code></a></li>
 <li>
 <pre class="signature">
 <a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter"><span class="identifier">saturating_counter</span></a>::<a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter-count_t"><span class="identifier">count_t</span></a>
-<span class="identifier">increment</span>(<a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter"><span class="identifier">saturating_counter</span></a>::<a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter-count_t"><span class="identifier">count_t</span></a> <span class="identifier">inc_amount</span>, <span class="builtin">bool</span> <span class="identifier">clear_before_inc</span>) <a class="anchor" href="#data-counter-saturating-saturating_counter-increment" id="data-counter-saturating-saturating_counter-increment">§</a>
+<span class="identifier">increment</span>(<a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter"><span class="identifier">saturating_counter</span></a>::<a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter-count_t"><span class="identifier">count_t</span></a> <span class="identifier">inc_amount</span>, <span class="builtin">bool</span> <span class="identifier">clear_before_inc</span>) <a class="anchor" href="#data-counter-saturating-saturating_counter-increment" id="data-counter-saturating-saturating_counter-increment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/counter/saturating.k#L26">source</a>
 </pre>
 <div class="docs">
 <p>Increment the counter with an optional clear before increment. Return
@@ -199,7 +205,7 @@ for example periodic sampling of performance counters.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter"><span class="identifier">saturating_counter</span></a>::<a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter-count_t"><span class="identifier">count_t</span></a> <span class="identifier">get</span>() <a class="anchor" href="#data-counter-saturating-saturating_counter-get" id="data-counter-saturating-saturating_counter-get">§</a>
+<span class="modifier">inline </span><a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter"><span class="identifier">saturating_counter</span></a>::<a class="link" href="../../data/counter/saturating.html#data-counter-saturating-saturating_counter-count_t"><span class="identifier">count_t</span></a> <span class="identifier">get</span>() <a class="anchor" href="#data-counter-saturating-saturating_counter-get" id="data-counter-saturating-saturating_counter-get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/counter/saturating.k#L50">source</a>
 </pre>
 <div class="docs">
 <p>Get the current value of the counter.</p>

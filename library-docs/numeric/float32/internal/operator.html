@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -220,19 +226,19 @@ id="index-link" class="link"><code>unpackFloat32</code></a></li>
 href="../../../index.html">&equiv;</a></h1>
 <hr />
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">_mantissa_width</span> = <span class="literal">23</span> <a class="anchor" href="#numeric-float32-internal-operator-_mantissa_width" id="numeric-float32-internal-operator-_mantissa_width">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">_mantissa_width</span> = <span class="literal">23</span> <a class="anchor" href="#numeric-float32-internal-operator-_mantissa_width" id="numeric-float32-internal-operator-_mantissa_width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L33">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">_exponent_width</span> = <span class="literal">8</span> <a class="anchor" href="#numeric-float32-internal-operator-_exponent_width" id="numeric-float32-internal-operator-_exponent_width">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">_exponent_width</span> = <span class="literal">8</span> <a class="anchor" href="#numeric-float32-internal-operator-_exponent_width" id="numeric-float32-internal-operator-_exponent_width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L34">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">_exponent_bias</span> = <span class="literal">127</span> <a class="anchor" href="#numeric-float32-internal-operator-_exponent_bias" id="numeric-float32-internal-operator-_exponent_bias">§</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">_exponent_bias</span> = <span class="literal">127</span> <a class="anchor" href="#numeric-float32-internal-operator-_exponent_bias" id="numeric-float32-internal-operator-_exponent_bias">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L35">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">float32PackedFormat</span> = <a class="link" href="../../../numeric/float/internal.html#numeric-float-internal-floatPackedFormat"><span class="identifier">floatPackedFormat</span></a>&lt;<span class="literal">23</span>, <span class="literal">8</span>&gt; <a class="anchor" href="#numeric-float32-internal-operator-float32PackedFormat" id="numeric-float32-internal-operator-float32PackedFormat">§</a>
+<span class="keyword">using</span> <span class="identifier">float32PackedFormat</span> = <a class="link" href="../../../numeric/float/internal.html#numeric-float-internal-floatPackedFormat"><span class="identifier">floatPackedFormat</span></a>&lt;<span class="literal">23</span>, <span class="literal">8</span>&gt; <a class="anchor" href="#numeric-float32-internal-operator-float32PackedFormat" id="numeric-float32-internal-operator-float32PackedFormat">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L37">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">float32ExpandedFormat</span> <a class="anchor" href="#numeric-float32-internal-operator-float32ExpandedFormat" id="numeric-float32-internal-operator-float32ExpandedFormat">§</a>
+<span class="keyword">struct</span> <span class="identifier">float32ExpandedFormat</span> <a class="anchor" href="#numeric-float32-internal-operator-float32ExpandedFormat" id="numeric-float32-internal-operator-float32ExpandedFormat">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L39">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -241,17 +247,17 @@ href="../../../index.html">&equiv;</a></h1>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">uint24</span> <span class="identifier">mantissa</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi0-mantissa" id="numeric-float32-internal-operator-$quasi0-mantissa">§</a>
+<span class="keyword">uint24</span> <span class="identifier">mantissa</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi0-mantissa" id="numeric-float32-internal-operator-$quasi0-mantissa">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L41">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-int9 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi0-exponent" id="numeric-float32-internal-operator-$quasi0-exponent">§</a>
+int9 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi0-exponent" id="numeric-float32-internal-operator-$quasi0-exponent">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L42">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">sign</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi0-sign" id="numeric-float32-internal-operator-$quasi0-sign">§</a>
+<span class="keyword">uint1</span> <span class="identifier">sign</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi0-sign" id="numeric-float32-internal-operator-$quasi0-sign">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L43">source</a>
 </pre>
 </li>
 </ul>
@@ -259,7 +265,7 @@ int9 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-f
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">float32StickyFormat</span> <a class="anchor" href="#numeric-float32-internal-operator-float32StickyFormat" id="numeric-float32-internal-operator-float32StickyFormat">§</a>
+<span class="keyword">struct</span> <span class="identifier">float32StickyFormat</span> <a class="anchor" href="#numeric-float32-internal-operator-float32StickyFormat" id="numeric-float32-internal-operator-float32StickyFormat">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L46">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -268,22 +274,22 @@ int9 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-f
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">sticky</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-sticky" id="numeric-float32-internal-operator-$quasi1-sticky">§</a>
+<span class="keyword">uint1</span> <span class="identifier">sticky</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-sticky" id="numeric-float32-internal-operator-$quasi1-sticky">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L48">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint26</span> <span class="identifier">mantissaGuardRound</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-mantissaGuardRound" id="numeric-float32-internal-operator-$quasi1-mantissaGuardRound">§</a>
+<span class="keyword">uint26</span> <span class="identifier">mantissaGuardRound</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-mantissaGuardRound" id="numeric-float32-internal-operator-$quasi1-mantissaGuardRound">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L49">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-int10 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-exponent" id="numeric-float32-internal-operator-$quasi1-exponent">§</a>
+int10 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-exponent" id="numeric-float32-internal-operator-$quasi1-exponent">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L50">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">sign</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-sign" id="numeric-float32-internal-operator-$quasi1-sign">§</a>
+<span class="keyword">uint1</span> <span class="identifier">sign</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi1-sign" id="numeric-float32-internal-operator-$quasi1-sign">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L51">source</a>
 </pre>
 </li>
 </ul>
@@ -291,7 +297,7 @@ int10 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">productFormat</span> <a class="anchor" href="#numeric-float32-internal-operator-productFormat" id="numeric-float32-internal-operator-productFormat">§</a>
+<span class="keyword">struct</span> <span class="identifier">productFormat</span> <a class="anchor" href="#numeric-float32-internal-operator-productFormat" id="numeric-float32-internal-operator-productFormat">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L54">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -300,22 +306,22 @@ int10 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">uint24</span> <span class="identifier">sticky</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-sticky" id="numeric-float32-internal-operator-$quasi2-sticky">§</a>
+<span class="keyword">uint24</span> <span class="identifier">sticky</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-sticky" id="numeric-float32-internal-operator-$quasi2-sticky">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L56">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">round</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-round" id="numeric-float32-internal-operator-$quasi2-round">§</a>
+<span class="keyword">uint1</span> <span class="identifier">round</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-round" id="numeric-float32-internal-operator-$quasi2-round">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L57">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint1</span> <span class="identifier">guard</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-guard" id="numeric-float32-internal-operator-$quasi2-guard">§</a>
+<span class="keyword">uint1</span> <span class="identifier">guard</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-guard" id="numeric-float32-internal-operator-$quasi2-guard">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L58">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint24</span> <span class="identifier">product</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-product" id="numeric-float32-internal-operator-$quasi2-product">§</a>
+<span class="keyword">uint24</span> <span class="identifier">product</span> <a class="anchor" href="#numeric-float32-internal-operator-$quasi2-product" id="numeric-float32-internal-operator-$quasi2-product">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L59">source</a>
 </pre>
 </li>
 </ul>
@@ -324,19 +330,20 @@ int10 <span class="identifier">exponent</span> <a class="anchor" href="#numeric-
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../../../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32ExpandedFormat"><span class="identifier">float32ExpandedFormat</span></a> <span class="identifier">unpackFloat32</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32PackedFormat"><span class="identifier">float32PackedFormat</span></a> <span class="identifier">a</span>) <a class="anchor" href="#numeric-float32-internal-operator-unpackFloat32" id="numeric-float32-internal-operator-unpackFloat32">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32ExpandedFormat"><span class="identifier">float32ExpandedFormat</span></a> <span class="identifier">unpackFloat32</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32PackedFormat"><span class="identifier">float32PackedFormat</span></a> <span class="identifier">a</span>) <a class="anchor" href="#numeric-float32-internal-operator-unpackFloat32" id="numeric-float32-internal-operator-unpackFloat32">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L65">source</a>
 </pre>
 <div class="docs">
 <p>Apply exponent bias and add mantissa implied one.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">normalizeOutput2Zero</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">input</span>) <a class="anchor" href="#numeric-float32-internal-operator-normalizeOutput2Zero" id="numeric-float32-internal-operator-normalizeOutput2Zero">§</a>
+<span class="modifier">inline </span>
+<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">normalizeOutput2Zero</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">input</span>) <a class="anchor" href="#numeric-float32-internal-operator-normalizeOutput2Zero" id="numeric-float32-internal-operator-normalizeOutput2Zero">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L85">source</a>
 </pre>
 <div class="docs">
 <p>Set denorm values to 0.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">multNormalizeOutput1</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">in</span>) <a class="anchor" href="#numeric-float32-internal-operator-multNormalizeOutput1" id="numeric-float32-internal-operator-multNormalizeOutput1">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">multNormalizeOutput1</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">in</span>) <a class="anchor" href="#numeric-float32-internal-operator-multNormalizeOutput1" id="numeric-float32-internal-operator-multNormalizeOutput1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L99">source</a>
 </pre>
 <div class="docs">
 <p>Shift left to normalize small mantissa values. There is guaranteed to
@@ -345,7 +352,7 @@ mantissas are normalized before taking the product.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../../../numeric/float/internal.html#numeric-float-internal-Denorm"><span class="identifier">Denorm</span></a> denorm_mode&gt;
-<span class="modifier">inline </span><a class="link" href="../../../numeric/float/internal.html#numeric-float-internal-specialCaseFlags"><span class="identifier">specialCaseFlags</span></a> <span class="identifier">getSpecialCases</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32PackedFormat"><span class="identifier">float32PackedFormat</span></a> <span class="identifier">a</span>) <a class="anchor" href="#numeric-float32-internal-operator-getSpecialCases" id="numeric-float32-internal-operator-getSpecialCases">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../numeric/float/internal.html#numeric-float-internal-specialCaseFlags"><span class="identifier">specialCaseFlags</span></a> <span class="identifier">getSpecialCases</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32PackedFormat"><span class="identifier">float32PackedFormat</span></a> <span class="identifier">a</span>) <a class="anchor" href="#numeric-float32-internal-operator-getSpecialCases" id="numeric-float32-internal-operator-getSpecialCases">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L115">source</a>
 </pre>
 <div class="docs">
 <p>Check if nan, zero, inf, or finite.</p>
@@ -353,44 +360,48 @@ mantissas are normalized before taking the product.</p>
 <pre class="signature">
 <span class="modifier">inline </span>
 <span class="keyword">uint27</span>
-<span class="identifier">shiftRightSticky</span>(<span class="keyword">uint27</span> <span class="identifier">inMantissaGuardRoundSticky</span>, <span class="keyword">uint8</span> <span class="identifier">shiftRightAmount</span>) <a class="anchor" href="#numeric-float32-internal-operator-shiftRightSticky" id="numeric-float32-internal-operator-shiftRightSticky">§</a>
+<span class="identifier">shiftRightSticky</span>(
+    <span class="keyword">uint27</span> <span class="identifier">inMantissaGuardRoundSticky</span>,
+    <span class="keyword">uint8</span> <span class="identifier">shiftRightAmount</span>
+    ) <a class="anchor" href="#numeric-float32-internal-operator-shiftRightSticky" id="numeric-float32-internal-operator-shiftRightSticky">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L120">source</a>
 </pre>
 <pre class="signature">
 <span class="modifier">inline </span>
-<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">align</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32ExpandedFormat"><span class="identifier">float32ExpandedFormat</span></a> <span class="identifier">input</span>, <span class="keyword">uint8</span> <span class="identifier">shiftRightAmount</span>) <a class="anchor" href="#numeric-float32-internal-operator-align" id="numeric-float32-internal-operator-align">§</a>
+<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a>
+<span class="identifier">align</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32ExpandedFormat"><span class="identifier">float32ExpandedFormat</span></a> <span class="identifier">input</span>, <span class="keyword">uint8</span> <span class="identifier">shiftRightAmount</span>) <a class="anchor" href="#numeric-float32-internal-operator-align" id="numeric-float32-internal-operator-align">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L138">source</a>
 </pre>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">uint5</span> <span class="identifier">priorityOneEncoderCountDown26</span>(<span class="keyword">uint26</span> <span class="identifier">in</span>) <a class="anchor" href="#numeric-float32-internal-operator-priorityOneEncoderCountDown26" id="numeric-float32-internal-operator-priorityOneEncoderCountDown26">§</a>
+<span class="modifier">inline </span><span class="keyword">uint5</span> <span class="identifier">priorityOneEncoderCountDown26</span>(<span class="keyword">uint26</span> <span class="identifier">in</span>) <a class="anchor" href="#numeric-float32-internal-operator-priorityOneEncoderCountDown26" id="numeric-float32-internal-operator-priorityOneEncoderCountDown26">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L154">source</a>
 </pre>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">addNormalizeOutput1</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">in</span>) <a class="anchor" href="#numeric-float32-internal-operator-addNormalizeOutput1" id="numeric-float32-internal-operator-addNormalizeOutput1">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">addNormalizeOutput1</span>(<a class="link" href="../../../numeric/float32/internal/operator.html#numeric-float32-internal-operator-float32StickyFormat"><span class="identifier">float32StickyFormat</span></a> <span class="identifier">in</span>) <a class="anchor" href="#numeric-float32-internal-operator-addNormalizeOutput1" id="numeric-float32-internal-operator-addNormalizeOutput1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L161">source</a>
 </pre>
 <div class="docs">
 <p>Shift left to normalize small mantissa values. There is no guarantee
 the input isn’t all zeros.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">float32_mul_denormoff</span>(<span class="builtin">float32</span> <span class="identifier">in1</span>, <span class="builtin">float32</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float32-internal-operator-float32_mul_denormoff" id="numeric-float32-internal-operator-float32_mul_denormoff">§</a>
+<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">float32_mul_denormoff</span>(<span class="builtin">float32</span> <span class="identifier">in1</span>, <span class="builtin">float32</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float32-internal-operator-float32_mul_denormoff" id="numeric-float32-internal-operator-float32_mul_denormoff">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L187">source</a>
 </pre>
 <div class="docs">
 <p>Multiply two float32 values with denorm off and return the float32
 result.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">float32_add_denormoff</span>(<span class="builtin">float32</span> <span class="identifier">in1</span>, <span class="builtin">float32</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float32-internal-operator-float32_add_denormoff" id="numeric-float32-internal-operator-float32_add_denormoff">§</a>
+<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">float32_add_denormoff</span>(<span class="builtin">float32</span> <span class="identifier">in1</span>, <span class="builtin">float32</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float32-internal-operator-float32_add_denormoff" id="numeric-float32-internal-operator-float32_add_denormoff">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L251">source</a>
 </pre>
 <div class="docs">
 <p>Add two float32 values with denorm off and return the float32
 result.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">neg</span>(<span class="builtin">float32</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float32-internal-operator-neg" id="numeric-float32-internal-operator-neg">§</a>
+<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">neg</span>(<span class="builtin">float32</span> <span class="identifier">x</span>) <a class="anchor" href="#numeric-float32-internal-operator-neg" id="numeric-float32-internal-operator-neg">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L358">source</a>
 </pre>
 <div class="docs">
 <p>Negate input.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">float32_sub_denormoff</span>(<span class="builtin">float32</span> <span class="identifier">in1</span>, <span class="builtin">float32</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float32-internal-operator-float32_sub_denormoff" id="numeric-float32-internal-operator-float32_sub_denormoff">§</a>
+<span class="modifier">inline </span><span class="builtin">float32</span> <span class="identifier">float32_sub_denormoff</span>(<span class="builtin">float32</span> <span class="identifier">in1</span>, <span class="builtin">float32</span> <span class="identifier">in2</span>) <a class="anchor" href="#numeric-float32-internal-operator-float32_sub_denormoff" id="numeric-float32-internal-operator-float32_sub_denormoff">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/float32/internal/operator.k#L366">source</a>
 </pre>
 <div class="docs">
 <p>Subtract <code>in2</code> from <code>in1</code>.</p>

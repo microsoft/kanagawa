@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -184,7 +190,7 @@ href="../../../index.html">&equiv;</a></h1>
 <span class="identifier">read_requests_per_bank</span>(
     Address[Addresses] <span class="identifier">addresses</span>,
     (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
-    ) <a class="anchor" href="#data-memory-bank-schedule-read_requests_per_bank" id="data-memory-bank-schedule-read_requests_per_bank">§</a>
+    ) <a class="anchor" href="#data-memory-bank-schedule-read_requests_per_bank" id="data-memory-bank-schedule-read_requests_per_bank">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/memory/bank/schedule.k#L85">source</a>
 </pre>
 <div class="docs">
 <p>Count the number of unique read requests for each bank. More than 1
@@ -245,7 +251,7 @@ Address[Addresses] <span class="identifier">addresses</span>
 <span class="identifier">write_requests_per_bank</span>(
     <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Address&gt;[Addresses] <span class="identifier">addresses</span>,
     (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>
-    ) <a class="anchor" href="#data-memory-bank-schedule-write_requests_per_bank" id="data-memory-bank-schedule-write_requests_per_bank">§</a>
+    ) <a class="anchor" href="#data-memory-bank-schedule-write_requests_per_bank" id="data-memory-bank-schedule-write_requests_per_bank">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/memory/bank/schedule.k#L100">source</a>
 </pre>
 <div class="docs">
 <p>Count the number of write requests for each bank. More than 1 request
@@ -307,7 +313,7 @@ per bank indicates conflict.</p>
     Address[Addresses] <span class="identifier">addresses</span>,
     (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>,
     <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt; <span class="identifier">iteration</span>
-    ) <a class="anchor" href="#data-memory-bank-schedule-schedule_read_requests" id="data-memory-bank-schedule-schedule_read_requests">§</a>
+    ) <a class="anchor" href="#data-memory-bank-schedule-schedule_read_requests" id="data-memory-bank-schedule-schedule_read_requests">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/memory/bank/schedule.k#L162">source</a>
 </pre>
 <div class="docs">
 <p>For each iteration, calculate the pair:</p>
@@ -380,7 +386,7 @@ Address[Addresses] <span class="identifier">addresses</span>
     <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Address&gt;[Addresses] <span class="identifier">addresses</span>,
     (Address) -&gt; <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Banks&gt; <span class="identifier">address_to_bank_index</span>,
     <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Addresses&gt; <span class="identifier">iteration</span>
-    ) <a class="anchor" href="#data-memory-bank-schedule-schedule_write_requests" id="data-memory-bank-schedule-schedule_write_requests">§</a>
+    ) <a class="anchor" href="#data-memory-bank-schedule-schedule_write_requests" id="data-memory-bank-schedule-schedule_write_requests">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/memory/bank/schedule.k#L259">source</a>
 </pre>
 <div class="docs">
 <p>Calculate the optional address indices for each bank at specific

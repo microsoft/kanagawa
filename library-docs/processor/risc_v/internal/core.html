@@ -88,6 +88,12 @@ h1, h2, h3, h4
   color : #c5c8c6;
 }
 
+.source_link
+{
+  color : #c5c8c6;
+  float : right;
+}
+
 .attribute
 {
   color : #ffa500;
@@ -186,7 +192,7 @@ href="../../../index.html">&equiv;</a></h1>
 definitions from <code>processor.risc_v</code> module instead.</p>
 <hr />
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Trap</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap" id="processor-risc_v-internal-core-Trap">§</a>
+<span class="keyword">enum</span> <span class="identifier">Trap</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap" id="processor-risc_v-internal-core-Trap">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L22">source</a>
 </pre>
 <div class="docs">
 <p>System trap/exception identifier</p>
@@ -196,7 +202,7 @@ definitions from <code>processor.risc_v</code> module instead.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">InvalidInstructionAddress</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-InvalidInstructionAddress" id="processor-risc_v-internal-core-Trap-InvalidInstructionAddress">§</a>
+<span class="identifier">InvalidInstructionAddress</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-InvalidInstructionAddress" id="processor-risc_v-internal-core-Trap-InvalidInstructionAddress">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L26">source</a>
 </pre>
 <div class="docs">
 <p>Program counter moved to address outside specified instruction memory
@@ -205,7 +211,7 @@ address space.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">AccessFault</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-AccessFault" id="processor-risc_v-internal-core-Trap-AccessFault">§</a>
+<span class="identifier">AccessFault</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-AccessFault" id="processor-risc_v-internal-core-Trap-AccessFault">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L30">source</a>
 </pre>
 <div class="docs">
 <p>Memory access to address outside of data memory and memory mapped IO
@@ -214,7 +220,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">IllegalInstruction</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-IllegalInstruction" id="processor-risc_v-internal-core-Trap-IllegalInstruction">§</a>
+<span class="identifier">IllegalInstruction</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-IllegalInstruction" id="processor-risc_v-internal-core-Trap-IllegalInstruction">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L33">source</a>
 </pre>
 <div class="docs">
 <p>Invalid or illegal instruction was decoded.</p>
@@ -222,7 +228,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">ECALL</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-ECALL" id="processor-risc_v-internal-core-Trap-ECALL">§</a>
+<span class="identifier">ECALL</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-ECALL" id="processor-risc_v-internal-core-Trap-ECALL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L36">source</a>
 </pre>
 <div class="docs">
 <p>ECALL instruction was executed.</p>
@@ -230,7 +236,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">EBREAK</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-EBREAK" id="processor-risc_v-internal-core-Trap-EBREAK">§</a>
+<span class="identifier">EBREAK</span> = <span class="literal">5</span> <a class="anchor" href="#processor-risc_v-internal-core-Trap-EBREAK" id="processor-risc_v-internal-core-Trap-EBREAK">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L39">source</a>
 </pre>
 <div class="docs">
 <p>EBREAK instruction was executed.</p>
@@ -241,7 +247,7 @@ address spaces.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Optimize</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-core-Optimize" id="processor-risc_v-internal-core-Optimize">§</a>
+<span class="keyword">enum</span> <span class="identifier">Optimize</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-core-Optimize" id="processor-risc_v-internal-core-Optimize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L46">source</a>
 </pre>
 <div class="docs">
 <p>Optimization configuration bits</p>
@@ -251,7 +257,7 @@ address spaces.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Area</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-internal-core-Optimize-Area" id="processor-risc_v-internal-core-Optimize-Area">§</a>
+<span class="identifier">Area</span> = <span class="literal">0</span> <a class="anchor" href="#processor-risc_v-internal-core-Optimize-Area" id="processor-risc_v-internal-core-Optimize-Area">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L49">source</a>
 </pre>
 <div class="docs">
 <p>Optimize for minimal area.</p>
@@ -259,7 +265,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Fmax</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-internal-core-Optimize-Fmax" id="processor-risc_v-internal-core-Optimize-Fmax">§</a>
+<span class="identifier">Fmax</span> = <span class="literal">1</span> <a class="anchor" href="#processor-risc_v-internal-core-Optimize-Fmax" id="processor-risc_v-internal-core-Optimize-Fmax">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L52">source</a>
 </pre>
 <div class="docs">
 <p>Optimize for maximum frequency.</p>
@@ -286,7 +292,7 @@ address spaces.</p>
     <span class="keyword">auto</span> BTB_SIZE = <span class="literal">1024</span>,
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> InstrMemory = <a class="link" href="../../../data/memory.html#data-memory-memory_init"><span class="identifier">memory_init</span></a>
     &gt;
-<span class="keyword">class</span> <span class="identifier">Core</span> <a class="anchor" href="#processor-risc_v-internal-core-Core" id="processor-risc_v-internal-core-Core">§</a>
+<span class="keyword">class</span> <span class="identifier">Core</span> <a class="anchor" href="#processor-risc_v-internal-core-Core" id="processor-risc_v-internal-core-Core">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L88">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -295,7 +301,7 @@ address spaces.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">imem_addr_t</span> = <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;IMEM_LENGTH&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-imem_addr_t" id="processor-risc_v-internal-core-Core-imem_addr_t">§</a>
+<span class="keyword">using</span> <span class="identifier">imem_addr_t</span> = <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;IMEM_LENGTH&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-imem_addr_t" id="processor-risc_v-internal-core-Core-imem_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L127">source</a>
 </pre>
 <div class="docs">
 <p>Address of 32-bit word in instruction memory.</p>
@@ -303,7 +309,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">dmem_addr_t</span> = <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;DMEM_LENGTH&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_addr_t" id="processor-risc_v-internal-core-Core-dmem_addr_t">§</a>
+<span class="keyword">using</span> <span class="identifier">dmem_addr_t</span> = <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;DMEM_LENGTH&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_addr_t" id="processor-risc_v-internal-core-Core-dmem_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L130">source</a>
 </pre>
 <div class="docs">
 <p>Address of byte in data memory.</p>
@@ -311,7 +317,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">int_t</span> = <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;ISA&gt;::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-int_t" id="processor-risc_v-internal-core-Core-int_t">§</a>
+<span class="keyword">using</span> <span class="identifier">int_t</span> = <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;ISA&gt;::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-int_t" id="processor-risc_v-internal-core-Core-int_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L133">source</a>
 </pre>
 <div class="docs">
 <p>Signed, XLEN bits wide integer.</p>
@@ -319,7 +325,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">uint_t</span> = <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;ISA&gt;::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-uint_t" id="processor-risc_v-internal-core-Core-uint_t">§</a>
+<span class="keyword">using</span> <span class="identifier">uint_t</span> = <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;ISA&gt;::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-uint_t" id="processor-risc_v-internal-core-Core-uint_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L136">source</a>
 </pre>
 <div class="docs">
 <p>Unsigned, XLEN bits wide integer.</p>
@@ -327,7 +333,7 @@ address spaces.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">hart_index_t</span> = <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;HARTS&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-hart_index_t" id="processor-risc_v-internal-core-Core-hart_index_t">§</a>
+<span class="keyword">using</span> <span class="identifier">hart_index_t</span> = <a class="link" href="../../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;HARTS&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-hart_index_t" id="processor-risc_v-internal-core-Core-hart_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L139">source</a>
 </pre>
 <div class="docs">
 <p>Index of hardware thread (hart).</p>
@@ -337,7 +343,7 @@ address spaces.</p>
 <pre class="signature">
 <span class="keyword">using</span> <span class="identifier">system_trap_t</span> =
     ( <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Trap"><span class="identifier">Trap</span></a> <span class="identifier">trap</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>
-    ) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-system_trap_t" id="processor-risc_v-internal-core-Core-system_trap_t">§</a>
+    ) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-system_trap_t" id="processor-risc_v-internal-core-Core-system_trap_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L142">source</a>
 </pre>
 <div class="docs">
 <p>Type of callback to handle system exceptions and traps.</p>
@@ -382,7 +388,7 @@ address spaces.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">inst</span>,
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
     <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <span class="identifier">value</span>
-    ) -&gt; <span class="keyword">void</span> <a class="anchor" href="#processor-risc_v-internal-core-Core-trace_t" id="processor-risc_v-internal-core-Core-trace_t">§</a>
+    ) -&gt; <span class="keyword">void</span> <a class="anchor" href="#processor-risc_v-internal-core-Core-trace_t" id="processor-risc_v-internal-core-Core-trace_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L149">source</a>
 </pre>
 <div class="docs">
 <p>Type of dynamic instruction trace callback.</p>
@@ -445,7 +451,7 @@ register specified by <code>decoded.format.rd</code>.</p>
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span>,
     <span class="builtin">bool</span> <span class="identifier">sign_extend</span>,
     <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <span class="identifier">value</span>
-    ) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_access_t" id="processor-risc_v-internal-core-Core-mmio_access_t">§</a>
+    ) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_access_t" id="processor-risc_v-internal-core-Core-mmio_access_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L167">source</a>
 </pre>
 <div class="docs">
 <p>Type of callback to handle memory mapped IO access. If the access
@@ -522,7 +528,7 @@ method respectively.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span>,
     <span class="builtin">bool</span> <span class="identifier">sign_extend</span>
-    ) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_load_t" id="processor-risc_v-internal-core-Core-mmio_load_t">§</a>
+    ) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_load_t" id="processor-risc_v-internal-core-Core-mmio_load_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L180">source</a>
 </pre>
 <div class="docs">
 <p>Type of callback to handle load from memory mapped IO. The load
@@ -577,7 +583,7 @@ the callback return value to true, or asynchronously, by calling
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
-    ) -&gt; <span class="builtin">bool</span> <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_store_t" id="processor-risc_v-internal-core-Core-mmio_store_t">§</a>
+    ) -&gt; <span class="builtin">bool</span> <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_store_t" id="processor-risc_v-internal-core-Core-mmio_store_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L193">source</a>
 </pre>
 <div class="docs">
 <p>Type of callback to handle store to memory mapped IO. The callback
@@ -631,7 +637,8 @@ method.</p>
 <li>
 <pre class="signature">
 <span class="keyword">using</span> <span class="identifier">external_fetch_t</span> =
-    (<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-external_fetch_t" id="processor-risc_v-internal-core-Core-external_fetch_t">§</a>
+    ( <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>
+    ) -&gt; <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a>&gt; <a class="anchor" href="#processor-risc_v-internal-core-Core-external_fetch_t" id="processor-risc_v-internal-core-Core-external_fetch_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L201">source</a>
 </pre>
 <div class="docs">
 <p>Type of external instruction fetch handler.</p>
@@ -662,7 +669,7 @@ method.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">custom_decode_t</span> = (<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a> <span class="identifier">major_opcode</span>) -&gt; <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-custom_decode_t" id="processor-risc_v-internal-core-Core-custom_decode_t">§</a>
+<span class="keyword">using</span> <span class="identifier">custom_decode_t</span> = (<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a> <span class="identifier">major_opcode</span>) -&gt; <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-custom_decode_t" id="processor-risc_v-internal-core-Core-custom_decode_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L207">source</a>
 </pre>
 <div class="docs">
 <p>Type of callback of custom instruction decode handler.</p>
@@ -693,7 +700,7 @@ method.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">op2</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">imm</span>,
     <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span>
-    ) -&gt; <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-custom_execute_t" id="processor-risc_v-internal-core-Core-custom_execute_t">§</a>
+    ) -&gt; <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <a class="anchor" href="#processor-risc_v-internal-core-Core-custom_execute_t" id="processor-risc_v-internal-core-Core-custom_execute_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L212">source</a>
 </pre>
 <div class="docs">
 <p>Type of callback to execute custom instruction</p>
@@ -776,22 +783,22 @@ undefined otherwise.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipeline</span>() <a class="anchor" href="#processor-risc_v-internal-core-Core-pipeline" id="processor-risc_v-internal-core-Core-pipeline">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipeline</span>() <a class="anchor" href="#processor-risc_v-internal-core-Core-pipeline" id="processor-risc_v-internal-core-Core-pipeline">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L340">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">initialize</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a>[HARTS] <span class="identifier">pc</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-initialize" id="processor-risc_v-internal-core-Core-initialize">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">initialize</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a>[HARTS] <span class="identifier">pc</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-initialize" id="processor-risc_v-internal-core-Core-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L547">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">mmio_store_completed</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_store_completed" id="processor-risc_v-internal-core-Core-mmio_store_completed">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">mmio_store_completed</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_store_completed" id="processor-risc_v-internal-core-Core-mmio_store_completed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L568">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">mmio_load_result</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_load_result" id="processor-risc_v-internal-core-Core-mmio_load_result">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">mmio_load_result</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-mmio_load_result" id="processor-risc_v-internal-core-Core-mmio_load_result">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L579">source</a>
 </pre>
 </li>
 <li>
@@ -802,33 +809,34 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">instr</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-external_fetch_result" id="processor-risc_v-internal-core-Core-external_fetch_result">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-external_fetch_result" id="processor-risc_v-internal-core-Core-external_fetch_result">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L591">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">fetch</span>() <a class="anchor" href="#processor-risc_v-internal-core-Core-fetch" id="processor-risc_v-internal-core-Core-fetch">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">fetch</span>() <a class="anchor" href="#processor-risc_v-internal-core-Core-fetch" id="processor-risc_v-internal-core-Core-fetch">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L603">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decode</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">current</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-decode" id="processor-risc_v-internal-core-Core-decode">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decode</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">current</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-decode" id="processor-risc_v-internal-core-Core-decode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L808">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Operands</span> <span class="identifier">read</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">current</span>, <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-read" id="processor-risc_v-internal-core-Core-read">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Operands</span> <span class="identifier">read</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">current</span>, <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-read" id="processor-risc_v-internal-core-Core-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L813">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
 <span class="modifier">inline </span>
-<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">load</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">current</span>, <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-load" id="processor-risc_v-internal-core-Core-load">§</a>
+<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>
+<span class="identifier">load</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Current</span> <span class="identifier">current</span>, <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-load" id="processor-risc_v-internal-core-Core-load">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L846">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">multiply</span>(<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Operands</span> <span class="identifier">in</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-multiply" id="processor-risc_v-internal-core-Core-multiply">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">multiply</span>(<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Operands</span> <span class="identifier">in</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-multiply" id="processor-risc_v-internal-core-Core-multiply">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L870">source</a>
 </pre>
 </li>
 <li>
@@ -840,7 +848,7 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Operands</span> <span class="identifier">in</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">custom_result</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-execute" id="processor-risc_v-internal-core-Core-execute">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-execute" id="processor-risc_v-internal-core-Core-execute">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L883">source</a>
 </pre>
 </li>
 <li>
@@ -852,7 +860,7 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Operands</span> <span class="identifier">in</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Results</span> <span class="identifier">results</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-store" id="processor-risc_v-internal-core-Core-store">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-store" id="processor-risc_v-internal-core-Core-store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L952">source</a>
 </pre>
 </li>
 <li>
@@ -864,12 +872,12 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">loaded</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">Results</span> <span class="identifier">results</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-write" id="processor-risc_v-internal-core-Core-write">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-write" id="processor-risc_v-internal-core-Core-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L963">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">dmem_read</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-dmem_addr_t"><span class="identifier">dmem_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_read" id="processor-risc_v-internal-core-Core-dmem_read">§</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">dmem_read</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-dmem_addr_t"><span class="identifier">dmem_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_read" id="processor-risc_v-internal-core-Core-dmem_read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1088">source</a>
 </pre>
 </li>
 <li>
@@ -881,13 +889,14 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-dmem_addr_t"><span class="identifier">dmem_addr_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">dmem_t</span>::<a class="link" href="../../../data/memory/byte_addressable.html#data-memory-byte_addressable-byte_addressable_memory-byte_count_t"><span class="identifier">byte_count_t</span></a> <span class="identifier">size</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_write" id="processor-risc_v-internal-core-Core-dmem_write">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_write" id="processor-risc_v-internal-core-Core-dmem_write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1093">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
 <span class="modifier">inline </span>
-<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">dmem_read_aligned</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-dmem_addr_t"><span class="identifier">dmem_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_read_aligned" id="processor-risc_v-internal-core-Core-dmem_read_aligned">§</a>
+<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>
+<span class="identifier">dmem_read_aligned</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-dmem_addr_t"><span class="identifier">dmem_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_read_aligned" id="processor-risc_v-internal-core-Core-dmem_read_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1098">source</a>
 </pre>
 </li>
 <li>
@@ -898,17 +907,18 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-dmem_addr_t"><span class="identifier">dmem_addr_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_write_aligned" id="processor-risc_v-internal-core-Core-dmem_write_aligned">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-dmem_write_aligned" id="processor-risc_v-internal-core-Core-dmem_write_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1103">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">imem_write</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-imem_write" id="processor-risc_v-internal-core-Core-imem_write">§</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">imem_write</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">value</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-imem_write" id="processor-risc_v-internal-core-Core-imem_write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1108">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">register_get</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">register_index_t</span> <span class="identifier">reg</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-register_get" id="processor-risc_v-internal-core-Core-register_get">§</a>
+<span class="modifier">inline </span>
+<span class="keyword">auto</span> <span class="identifier">register_get</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">register_index_t</span> <span class="identifier">reg</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-register_get" id="processor-risc_v-internal-core-Core-register_get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1115">source</a>
 </pre>
 </li>
 <li>
@@ -919,14 +929,18 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<span class="identifier">register_index_t</span> <span class="identifier">reg</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-register_set" id="processor-risc_v-internal-core-Core-register_set">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-register_set" id="processor-risc_v-internal-core-Core-register_set">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1125">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
 <span class="modifier">inline </span>
 <span class="keyword">auto</span>
-<span class="identifier">default_system_trap</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Trap"><span class="identifier">Trap</span></a> <span class="identifier">trap</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">pc</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_system_trap" id="processor-risc_v-internal-core-Core-default_system_trap">§</a>
+<span class="identifier">default_system_trap</span>(
+    <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>,
+    <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Trap"><span class="identifier">Trap</span></a> <span class="identifier">trap</span>,
+    <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">pc</span>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_system_trap" id="processor-risc_v-internal-core-Core-default_system_trap">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1130">source</a>
 </pre>
 </li>
 <li>
@@ -939,7 +953,7 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">inst</span>,
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
     <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <span class="identifier">value</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_trace" id="processor-risc_v-internal-core-Core-default_trace">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_trace" id="processor-risc_v-internal-core-Core-default_trace">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1138">source</a>
 </pre>
 </li>
 <li>
@@ -953,7 +967,7 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span>,
     <span class="builtin">bool</span> <span class="identifier">sign_extend</span>,
     <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a>&gt; <span class="identifier">value</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_mmio_access" id="processor-risc_v-internal-core-Core-default_mmio_access">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_mmio_access" id="processor-risc_v-internal-core-Core-default_mmio_access">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1142">source</a>
 </pre>
 </li>
 <li>
@@ -965,7 +979,7 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span>,
     <span class="builtin">bool</span> <span class="identifier">sign_extend</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_mmio_load" id="processor-risc_v-internal-core-Core-default_mmio_load">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_mmio_load" id="processor-risc_v-internal-core-Core-default_mmio_load">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1158">source</a>
 </pre>
 </li>
 <li>
@@ -977,19 +991,19 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">value</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_mmio_store" id="processor-risc_v-internal-core-Core-default_mmio_store">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_mmio_store" id="processor-risc_v-internal-core-Core-default_mmio_store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1164">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
 <span class="modifier">inline </span>
 <a class="link" href="../../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-uint_t"><span class="identifier">uint_t</span></a>&gt;
-<span class="identifier">default_external_fetch</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_external_fetch" id="processor-risc_v-internal-core-Core-default_external_fetch">§</a>
+<span class="identifier">default_external_fetch</span>(<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-hart_index_t"><span class="identifier">hart_index_t</span></a> <span class="identifier">hid</span>, <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-imem_addr_t"><span class="identifier">imem_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_external_fetch" id="processor-risc_v-internal-core-Core-default_external_fetch">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1170">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">default_custom_decode</span>(<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a> <span class="identifier">major_opcode</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_custom_decode" id="processor-risc_v-internal-core-Core-default_custom_decode">§</a>
+<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">default_custom_decode</span>(<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a> <span class="identifier">major_opcode</span>) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_custom_decode" id="processor-risc_v-internal-core-Core-default_custom_decode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1176">source</a>
 </pre>
 </li>
 <li>
@@ -1004,7 +1018,7 @@ undefined otherwise.</p>
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">op2</span>,
     <a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core"><span class="identifier">Core</span></a>::<a class="link" href="../../../processor/risc_v/internal/core.html#processor-risc_v-internal-core-Core-int_t"><span class="identifier">int_t</span></a> <span class="identifier">imm</span>,
     <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Funct7"><span class="identifier">Funct7</span></a> <span class="identifier">funct7</span>
-    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_custom_execute" id="processor-risc_v-internal-core-Core-default_custom_execute">§</a>
+    ) <a class="anchor" href="#processor-risc_v-internal-core-Core-default_custom_execute" id="processor-risc_v-internal-core-Core-default_custom_execute">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/processor/risc_v/internal/core.k#L1181">source</a>
 </pre>
 </li>
 </ul>
