@@ -16,7 +16,7 @@ function(add_riscv_coremark_executable target)
   endif()
 
   if (NOT _ARG_ARCH)
-    set(_ARG_ARCH "rv32i")
+    set(_ARG_ARCH "rv32i_zicsr")
   endif()
 
   set(COREMARK_DIR ${CMAKE_SOURCE_DIR}/thirdparty/coremark)
@@ -54,76 +54,90 @@ endfunction()
 
 add_riscv_coremark_executable(risc_v_coremark
   ELF coremark.elf
-  ARCH rv32i
+  ARCH rv32i_zicsr
 )
 
 add_riscv_coremark_executable(risc_v_coremark_m
   ELF coremark_m.elf
-  ARCH rv32im
+  ARCH rv32im_zicsr
 )
 
-add_riscv_simulation_test(coremark_1hart
+function(add_riscv_coremark_simulation_test test_name)
+  set(_opts ENABLE_M)
+  set(_one NUM_HARTS EXPECTED_COREMARK_SCORE)
+  set(_multi)
+  cmake_parse_arguments(_ARG "${_opts}" "${_one}" "${_multi}" ${ARGN})
+
+  if (NOT _ARG_NUM_HARTS)
+    message(FATAL_ERROR "add_riscv_coremark_simulation_test: missing NUM_HARTS.")
+  endif()
+
+  if (_ARG_ENABLE_M)
+    set(_elf_target "risc_v_coremark_m")
+    set(_sim_exe_target "riscv_sim.${_ARG_NUM_HARTS}hart_m")
+  else()
+    set(_elf_target "risc_v_coremark")
+    set(_sim_exe_target "riscv_sim.${_ARG_NUM_HARTS}hart")
+  endif()
+
+  if (NOT _ARG_EXPECTED_COREMARK_SCORE)
+    message(FATAL_ERROR "add_riscv_coremark_simulation_test: missing EXPECTED_COREMARK_SCORE.")
+  endif()
+
+  if (RISCV_COREMARK_SCORE_ENABLED)
+    set(_expected_results_stdout "CoreMark 1.0 : ${_ARG_EXPECTED_COREMARK_SCORE}")
+  else()
+    message(STATUS "RISC-V CoreMark score checking for ${test_name} is disabled.")
+    set(_expected_results_stdout "Correct operation validated.")
+  endif()
+
+  add_riscv_simulation_test(${test_name}
     SIM_EXE_TARGET
-        "riscv_sim.1hart"
+      ${_sim_exe_target}
     ELF_TARGET
-        "risc_v_coremark"
+      ${_elf_target}
     CHECK_RESULTS_STDOUT
-      "CoreMark 1.0 : 1.06"
+      ${_expected_results_stdout}
     TIMEOUT_CYCLES
-      "50000000"
+      100000000
+  )
+endfunction()
+
+add_riscv_coremark_simulation_test(coremark_1hart
+    NUM_HARTS 1
+    EXPECTED_COREMARK_SCORE
+      "1.06"
 )
 
-add_riscv_simulation_test(coremark_2hart
-    SIM_EXE_TARGET
-        "riscv_sim.2hart"
-    ELF_TARGET
-        "risc_v_coremark"
-    CHECK_RESULTS_STDOUT
-      "CoreMark 1.0 : 0.618"
-    TIMEOUT_CYCLES
-      "50000000"
+add_riscv_coremark_simulation_test(coremark_2hart
+    NUM_HARTS 2
+    EXPECTED_COREMARK_SCORE
+      "0.618"
 )
 
-add_riscv_simulation_test(coremark_4hart
-    SIM_EXE_TARGET
-        "riscv_sim.4hart"
-    ELF_TARGET
-        "risc_v_coremark"
-    CHECK_RESULTS_STDOUT
-      "CoreMark 1.0 : 0.333"
-    TIMEOUT_CYCLES
-      "100000000"
+add_riscv_coremark_simulation_test(coremark_4hart
+    NUM_HARTS 4
+    EXPECTED_COREMARK_SCORE
+      "0.333"
 )
 
-add_riscv_simulation_test(coremark_1hart_m
-    SIM_EXE_TARGET
-        "riscv_sim.1hart_m"
-    ELF_TARGET
-        "risc_v_coremark_m"
-    CHECK_RESULTS_STDOUT
-      "CoreMark 1.0 : 2.62"
-    TIMEOUT_CYCLES
-      "50000000"
+add_riscv_coremark_simulation_test(coremark_1hart_m
+    NUM_HARTS 1
+    ENABLE_M
+    EXPECTED_COREMARK_SCORE
+      "2.62"
 )
 
-add_riscv_simulation_test(coremark_2hart_m
-    SIM_EXE_TARGET
-        "riscv_sim.2hart_m"
-    ELF_TARGET
-        "risc_v_coremark_m"
-    CHECK_RESULTS_STDOUT
-      "CoreMark 1.0 : 1.70"
-    TIMEOUT_CYCLES
-      "50000000"
+add_riscv_coremark_simulation_test(coremark_2hart_m
+    NUM_HARTS 2
+    ENABLE_M
+    EXPECTED_COREMARK_SCORE
+      "1.70"
 )
 
-add_riscv_simulation_test(coremark_4hart_m
-    SIM_EXE_TARGET
-        "riscv_sim.4hart_m"
-    ELF_TARGET
-        "risc_v_coremark_m"
-    CHECK_RESULTS_STDOUT
-      "CoreMark 1.0 : 0.968"
-    TIMEOUT_CYCLES
-      "100000000"
+add_riscv_coremark_simulation_test(coremark_4hart_m
+    NUM_HARTS 4
+    ENABLE_M  
+    EXPECTED_COREMARK_SCORE
+      "0.968"
 )

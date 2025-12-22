@@ -42,7 +42,6 @@ function(add_riscv_simulation_compliance_test extension)
       DEFINITIONS "XLEN=32"
       INCLUDE_DIRS
           "${RISCV_ARCH_TEST_DIR}/riscv-test-suite/env"
-          "${RISCV_ARCH_TEST_DIR}/riscv-test-env/p"
           "${CMAKE_CURRENT_SOURCE_DIR}"
     )
 
