@@ -1,6 +1,18 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+# Support this toolchain on any supported platform, for example:
+#  - riscv-none-elf-gcc (xPack GNU RISC-V Embedded GCC x86_64) 15.2.0
+#  - riscv-none-elf-gcc (xPack GNU RISC-V Embedded GCC arm64) 15.2.0
+set(RISCV_COREMARK_SUPPORTED_COMPILER_REGEX "riscv-none-elf-gcc \\(xPack GNU RISC-V Embedded GCC [A-Za-z0-9_]+\\) 15\\.2\\.0")
+set(RISCV_COREMARK_SUPPORTED_COMPILER_MSG "riscv-none-elf-gcc (xPack GNU RISC-V Embedded GCC <platform>) 15.2.0")
+
+if ("${RISCV_GCC_NAME_VERSION}" MATCHES "^${RISCV_COREMARK_SUPPORTED_COMPILER_REGEX}$")
+  set(RISCV_COREMARK_SCORE_ENABLED 1)
+else()
+  message(STATUS "RISC-V CoreMark score check disabled. Unsupported compiler version: ${RISCV_GCC_NAME_VERSION}. Supported versions: ${RISCV_COREMARK_SUPPORTED_COMPILER_MSG}")
+endif()
+
 function(add_riscv_coremark_executable target)
   set(_opts)
   set(_one ELF ARCH)
@@ -106,38 +118,38 @@ endfunction()
 add_riscv_coremark_simulation_test(coremark_1hart
     NUM_HARTS 1
     EXPECTED_COREMARK_SCORE
-      "1.06"
+      "1.079"
 )
 
 add_riscv_coremark_simulation_test(coremark_2hart
     NUM_HARTS 2
     EXPECTED_COREMARK_SCORE
-      "0.618"
+      "0.623"
 )
 
 add_riscv_coremark_simulation_test(coremark_4hart
     NUM_HARTS 4
     EXPECTED_COREMARK_SCORE
-      "0.333"
+      "0.336"
 )
 
 add_riscv_coremark_simulation_test(coremark_1hart_m
     NUM_HARTS 1
     ENABLE_M
     EXPECTED_COREMARK_SCORE
-      "2.62"
+      "2.125"
 )
 
 add_riscv_coremark_simulation_test(coremark_2hart_m
     NUM_HARTS 2
     ENABLE_M
     EXPECTED_COREMARK_SCORE
-      "1.70"
+      "1.468"
 )
 
 add_riscv_coremark_simulation_test(coremark_4hart_m
     NUM_HARTS 4
     ENABLE_M
     EXPECTED_COREMARK_SCORE
-      "0.968"
+      "1.367"
 )

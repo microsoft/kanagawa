@@ -199,7 +199,13 @@ brew tap riscv-software-src/riscv
 brew install riscv-tools
 ```
 
-Then follow the instructions above to clone the repo, initialize the submodules, etc. Here is an example CMake command:
+Alternatively, you can grab the darwin-arm64 release of RISC-V GCC from here:
+
+https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/tag/v15.2.0-1/
+
+This is the same version we use for testing on Linux, so it's a good choice.
+
+Then follow the instructions above to clone the repo, initialize the submodules, etc. Here is an example CMake command (assuming RISCV-64 GCC installed via homebrew):
 
 ```zsh
 cmake \

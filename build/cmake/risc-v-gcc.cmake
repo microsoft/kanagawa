@@ -4,39 +4,45 @@
 # This file contains CMake helper functions for cross-compiling RISC-V 64 code
 # using the RISCV64 GCC toolchain.
 
-set(RISCV_COREMARK_SUPPORTED_COMPILER_VERSION "SiFive GCC 10.1.0")
-
-find_program(RISCV64_GCC_EXE 
-  NAMES riscv64-unknown-elf-gcc riscv64-elf-gcc
-  HINTS "${RISCV64_GCC}/bin" "${RISCV64_GCC}"
-)
+# See if RISCV64_GCC is set to a directory or an executable
+if (DEFINED RISCV64_GCC)
+  if (IS_DIRECTORY "${RISCV64_GCC}")
+    message(STATUS "RISC-V GCC toolchain directory specified: ${RISCV64_GCC}")
+    find_program(RISCV64_GCC_EXE 
+      NAMES riscv-none-elf-gcc riscv64-unknown-elf-gcc riscv64-elf-gcc
+      HINTS "${RISCV64_GCC}/bin" "${RISCV64_GCC}"
+    )
+  elseif (IS_EXECUTABLE "${RISCV64_GCC}")
+    message(STATUS "RISC-V GCC executable specified: ${RISCV64_GCC}")
+    set(RISCV64_GCC_EXE "${RISCV64_GCC}")
+  else()
+    find_program(RISCV64_GCC_EXE 
+      NAMES riscv-none-elf-gcc riscv64-unknown-elf-gcc riscv64-elf-gcc
+    )
+  endif()
+endif()
 
 if (RISCV64_GCC_EXE)
 
   message(STATUS "Found RISCV-64 GCC compiler: ${RISCV64_GCC_EXE}")
 
+  # Determine the version of the found RISCV64 GCC compiler
   execute_process(
     COMMAND ${RISCV64_GCC_EXE} --version
-    OUTPUT_VARIABLE RISCV_GCC_VERSION_OUTPUT
+    OUTPUT_VARIABLE _riscv_gcc_version_output
     OUTPUT_STRIP_TRAILING_WHITESPACE
     RESULT_VARIABLE _version_result
   )
 
   if(_version_result EQUAL 0)
-    string(FIND "${RISCV_GCC_VERSION_OUTPUT}" "${RISCV_COREMARK_SUPPORTED_COMPILER_VERSION}" _version_match)
-    if(NOT _version_match EQUAL -1)
-      set(RISCV_COREMARK_SCORE_ENABLED 1)
-    endif()
-  endif()
-
-  if (NOT DEFINED RISCV_COREMARK_SCORE_ENABLED)
-    string(REGEX MATCH "^[^\n\r]*" _riscv_gcc_version_first_line "${RISCV_GCC_VERSION_OUTPUT}")
-    string(STRIP "${_riscv_gcc_version_first_line}" _riscv_gcc_version_first_line)
-    message(STATUS "RISC-V CoreMark score check disabled. Unsupported compiler version: ${_riscv_gcc_version_first_line}. Supported version: ${RISCV_COREMARK_SUPPORTED_COMPILER_VERSION}")
+    string(REPLACE "\r\n" "\n" _riscv_gcc_version_output "${_riscv_gcc_version_output}")
+    string(REGEX MATCH "^[^\n]+" RISCV_GCC_NAME_VERSION "${_riscv_gcc_version_output}")
   endif()
 
 else()
+
   message(STATUS "Could not find RISCV-64 GCC toolchain. RISC-V unit tests disabled.")
+
 endif()
 
 # This executable creates .mem files from an executable in elf format

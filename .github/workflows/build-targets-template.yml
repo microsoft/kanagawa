@@ -226,11 +226,29 @@ jobs:
         if: ${{ inputs.install-riscv64-gcc }}
         shell: bash
         run: |
-          ARCHIVE="riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz"
-          wget "https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/${ARCHIVE}"
-          tar -xzf "${ARCHIVE}" -C "$RUNNER_TEMP"
-          rm "${ARCHIVE}"
-          echo "RISCV64_GCC_DIR=$RUNNER_TEMP/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14" >> "$GITHUB_ENV"
+          set -euo pipefail
+
+          ARCHIVE="xpack-riscv-none-elf-gcc-15.2.0-1-linux-x64.tar.gz"
+          URL="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v15.2.0-1/${ARCHIVE}"
+
+          DEST="$RUNNER_TEMP/riscv-none-elf-gcc-xpack"
+          rm -rf "$DEST"
+          mkdir -p "$DEST"
+
+          curl -fL --retry 5 --retry-delay 2 -o "$DEST/$ARCHIVE" "$URL"
+          tar -xzf "$DEST/$ARCHIVE" -C "$DEST"
+          rm -f "$DEST/$ARCHIVE"
+
+          # Locate the toolchain root by finding the compiler.
+          RISCV_GCC_EXE="$(find "$DEST" -type f -path '*/bin/riscv-none-elf-gcc' -print -quit)"
+          if [ -z "${RISCV_GCC_EXE}" ] || [ ! -x "${RISCV_GCC_EXE}" ]; then
+            echo "Failed to locate riscv-none-elf-gcc under: $DEST" >&2
+            ls -la "$DEST" >&2 || true
+            exit 1
+          fi
+          RISCV_DIR="$(cd "$(dirname "${RISCV_GCC_EXE}")/.." && pwd)"
+
+          echo "RISCV64_GCC_DIR=$RISCV_DIR" >> "$GITHUB_ENV"
 
       - name: Capture tool paths
         id: paths
