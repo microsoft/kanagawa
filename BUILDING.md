@@ -158,7 +158,7 @@ each item in the list.
 To run the tests for the Kanagawa RISC-V processor implementation, you will need to install:
 
 - The RISC-V toolchain. It is recommended to use the
-[SiFive riscv64 toolchain, version  10.1.0](https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz)
+[xPack RISC-V embedded toolchain, version  15.2.0-1](https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v15.2.0-1/xpack-riscv-none-elf-gcc-15.2.0-1-linux-x64.tar.gz)
 
 To build Sandcastle, you will need to install:
 - Rust cargo version 1.88.0 or later (see https://doc.rust-lang.org/cargo/getting-started/installation.html)
