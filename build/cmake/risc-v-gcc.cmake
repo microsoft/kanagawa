@@ -138,7 +138,7 @@ function(add_riscv_executable target)
   set(RISCV_MABI ilp32)
 
   execute_process(
-    COMMAND ${RISCV64_GCC_EXE} -march=${_ARG_ARCH} -mabi=${RISCV_MABI} -print-libgcc-file-name
+    COMMAND ${RISCV64_GCC_EXE} -march=rv32i -mabi=${RISCV_MABI} -print-libgcc-file-name
     OUTPUT_VARIABLE RISCV_LIBGCC
     OUTPUT_STRIP_TRAILING_WHITESPACE
     RESULT_VARIABLE _r
