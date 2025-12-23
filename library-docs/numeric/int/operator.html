@@ -192,7 +192,7 @@ id="index-link" class="link"><code>xor</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span><span class="builtin">uint</span>&lt;<span class="builtin">bitsizeof</span>(T)&gt; <span class="identifier">abs</span>(T <span class="identifier">a</span>) <a class="anchor" href="#numeric-int-operator-abs" id="numeric-int-operator-abs">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L24">source</a>
+<span class="modifier">inline </span><span class="builtin">uint</span>&lt;<span class="builtin">bitsizeof</span>(T)&gt; <span class="identifier">abs</span>(T <span class="identifier">a</span>) <a class="anchor" href="#numeric-int-operator-abs" id="numeric-int-operator-abs">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L24">source</a>
 </pre>
 <div class="docs">
 <p>Compute the absolute value of <code>a</code>. The return type is an
@@ -200,7 +200,7 @@ unsigned integer of the same width as <code>a</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span>R <span class="identifier">add</span>(T <span class="identifier">a</span>, T <span class="identifier">b</span>) <a class="anchor" href="#numeric-int-operator-add" id="numeric-int-operator-add">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L56">source</a>
+<span class="modifier">inline </span>R <span class="identifier">add</span>(T <span class="identifier">a</span>, T <span class="identifier">b</span>) <a class="anchor" href="#numeric-int-operator-add" id="numeric-int-operator-add">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L56">source</a>
 </pre>
 <div class="docs">
 <p>Add two values of the input type <code>T</code> and return the result
@@ -213,14 +213,14 @@ a <code>uint2</code>, but 3 + 3 does not.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">div</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-div" id="numeric-int-operator-div">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L62">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">div</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-div" id="numeric-int-operator-div">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L62">source</a>
 </pre>
 <div class="docs">
 <p>Returns the floor of the quotient when dividing
 <code>numerator</code> by <code>denominator</code>.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">ceil_div</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-ceil_div" id="numeric-int-operator-ceil_div">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L69">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">ceil_div</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-ceil_div" id="numeric-int-operator-ceil_div">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L69">source</a>
 </pre>
 <div class="docs">
 <p>Returns the ceiling of the quotient when dividing
@@ -228,7 +228,7 @@ a <code>uint2</code>, but 3 + 3 does not.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> Offset = <span class="literal">0</span>&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-mod" id="numeric-int-operator-mod">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L86">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-mod" id="numeric-int-operator-mod">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L86">source</a>
 </pre>
 <div class="docs">
 <p>Returns the remainder when dividing <code>numerator</code> by
@@ -241,7 +241,7 @@ applied to the same array, the result is:
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> Offset = <span class="literal">0</span>&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">div_mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-div_mod" id="numeric-int-operator-div_mod">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L107">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">div_mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-div_mod" id="numeric-int-operator-div_mod">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L107">source</a>
 </pre>
 <div class="docs">
 <p>Returns the floor of the quotient and remainder when dividing
@@ -256,7 +256,7 @@ applied to the same array, the result is:
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> Offset = <span class="literal">0</span>&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">ceil_div_mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-ceil_div_mod" id="numeric-int-operator-ceil_div_mod">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L121">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">ceil_div_mod</span>(<span class="keyword">auto</span> <span class="identifier">numerator</span>, <span class="keyword">auto</span> <span class="identifier">denominator</span>) <a class="anchor" href="#numeric-int-operator-ceil_div_mod" id="numeric-int-operator-ceil_div_mod">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L121">source</a>
 </pre>
 <div class="docs">
 <p>Returns the ceiling of the quotient and remainder when dividing
@@ -270,14 +270,14 @@ applied to the same array, the result is:
 <code>[4, 1, 2, 3, 4, 1]</code></p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">increment</span>(<span class="keyword">auto</span> <span class="identifier">a</span>) <a class="anchor" href="#numeric-int-operator-increment" id="numeric-int-operator-increment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L129">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">increment</span>(<span class="keyword">auto</span> <span class="identifier">a</span>) <a class="anchor" href="#numeric-int-operator-increment" id="numeric-int-operator-increment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L129">source</a>
 </pre>
 <div class="docs">
 <p>Increment the input by 1.</p>
 <pre class="kanagawa"><code>prop&gt; increment(a) == a + 1</code></pre>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">xor</span>(<span class="keyword">auto</span> <span class="identifier">a</span>, <span class="keyword">auto</span> <span class="identifier">b</span>) <a class="anchor" href="#numeric-int-operator-xor" id="numeric-int-operator-xor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/numeric/int/operator.k#L140">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">xor</span>(<span class="keyword">auto</span> <span class="identifier">a</span>, <span class="keyword">auto</span> <span class="identifier">b</span>) <a class="anchor" href="#numeric-int-operator-xor" id="numeric-int-operator-xor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/int/operator.k#L140">source</a>
 </pre>
 <div class="docs">
 <p>Return xor of inputs.</p>

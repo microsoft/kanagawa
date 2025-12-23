@@ -301,33 +301,33 @@ defined in in a device-specific module hardware.device.</p>
 each of these constants.</p>
 <hr />
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">version</span> = <a class="link" href="../compiler/config.html#compiler-config-version"><span class="identifier">version</span></a> <a class="anchor" href="#compiler-config-version" id="compiler-config-version">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L25">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">version</span> = <a class="link" href="../compiler/config.html#compiler-config-version"><span class="identifier">version</span></a> <a class="anchor" href="#compiler-config-version" id="compiler-config-version">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L25">source</a>
 </pre>
 <div class="docs">
 <p>Version of device configuration schema</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_name</span> = <a class="link" href="../compiler/config.html#compiler-config-device_name"><span class="identifier">device_name</span></a> <a class="anchor" href="#compiler-config-device_name" id="compiler-config-device_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L28">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_name</span> = <a class="link" href="../compiler/config.html#compiler-config-device_name"><span class="identifier">device_name</span></a> <a class="anchor" href="#compiler-config-device_name" id="compiler-config-device_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L28">source</a>
 </pre>
 <div class="docs">
 <p>Unambiguous name of the target device</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">vendor</span> = <a class="link" href="../compiler/config.html#compiler-config-vendor"><span class="identifier">vendor</span></a> <a class="anchor" href="#compiler-config-vendor" id="compiler-config-vendor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L31">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">vendor</span> = <a class="link" href="../compiler/config.html#compiler-config-vendor"><span class="identifier">vendor</span></a> <a class="anchor" href="#compiler-config-vendor" id="compiler-config-vendor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L31">source</a>
 </pre>
 <div class="docs">
 <p>Name of the vendor that manufactures the target device, for example
 ‘Intel’ or ‘Xilinx’</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_family</span> = <a class="link" href="../compiler/config.html#compiler-config-device_family"><span class="identifier">device_family</span></a> <a class="anchor" href="#compiler-config-device_family" id="compiler-config-device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L34">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_family</span> = <a class="link" href="../compiler/config.html#compiler-config-device_family"><span class="identifier">device_family</span></a> <a class="anchor" href="#compiler-config-device_family" id="compiler-config-device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L34">source</a>
 </pre>
 <div class="docs">
 <p>Name of the device family into which the target device belongs, for
 example ‘Agilex 7’</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">hal_device_family</span> = <a class="link" href="../compiler/config.html#compiler-config-hal_device_family"><span class="identifier">hal_device_family</span></a> <a class="anchor" href="#compiler-config-hal_device_family" id="compiler-config-hal_device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L39">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">hal_device_family</span> = <a class="link" href="../compiler/config.html#compiler-config-hal_device_family"><span class="identifier">hal_device_family</span></a> <a class="anchor" href="#compiler-config-hal_device_family" id="compiler-config-hal_device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L39">source</a>
 </pre>
 <div class="docs">
 <p>Name of the device family that is significant to the Vendor RTL (or
@@ -336,60 +336,60 @@ parameter, and in some cases passed down into the Vendor modules or used
 to enable or disable some conditional behavior.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">trade_area_for_speed</span> = <a class="link" href="../compiler/config.html#compiler-config-trade_area_for_speed"><span class="identifier">trade_area_for_speed</span></a> <a class="anchor" href="#compiler-config-trade_area_for_speed" id="compiler-config-trade_area_for_speed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L42">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">trade_area_for_speed</span> = <a class="link" href="../compiler/config.html#compiler-config-trade_area_for_speed"><span class="identifier">trade_area_for_speed</span></a> <a class="anchor" href="#compiler-config-trade_area_for_speed" id="compiler-config-trade_area_for_speed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L42">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_dsp</span> = (<a class="link" href="../compiler/config.html#compiler-config-integer_mul_src_width"><span class="identifier">integer_mul_src_width</span></a> != <span class="literal">0</span>) <a class="anchor" href="#compiler-config-supports_dsp" id="compiler-config-supports_dsp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L47">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_dsp</span> = (<a class="link" href="../compiler/config.html#compiler-config-integer_mul_src_width"><span class="identifier">integer_mul_src_width</span></a> != <span class="literal">0</span>) <a class="anchor" href="#compiler-config-supports_dsp" id="compiler-config-supports_dsp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L47">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">integer_mul_src_width</span> = <a class="link" href="../compiler/config.html#compiler-config-integer_mul_src_width"><span class="identifier">integer_mul_src_width</span></a> <a class="anchor" href="#compiler-config-integer_mul_src_width" id="compiler-config-integer_mul_src_width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L50">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">integer_mul_src_width</span> = <a class="link" href="../compiler/config.html#compiler-config-integer_mul_src_width"><span class="identifier">integer_mul_src_width</span></a> <a class="anchor" href="#compiler-config-integer_mul_src_width" id="compiler-config-integer_mul_src_width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L50">source</a>
 </pre>
 <div class="docs">
 <p>Width of source operands for an unsigned integer multiplication using
 a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">unsigned_integer_mul_name</span> = <a class="link" href="../compiler/config.html#compiler-config-unsigned_integer_mul_name"><span class="identifier">unsigned_integer_mul_name</span></a> <a class="anchor" href="#compiler-config-unsigned_integer_mul_name" id="compiler-config-unsigned_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L53">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">unsigned_integer_mul_name</span> = <a class="link" href="../compiler/config.html#compiler-config-unsigned_integer_mul_name"><span class="identifier">unsigned_integer_mul_name</span></a> <a class="anchor" href="#compiler-config-unsigned_integer_mul_name" id="compiler-config-unsigned_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L53">source</a>
 </pre>
 <div class="docs">
 <p>Name of the intrinsic operation for 1 unsigned integer multiplication
 using a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">signed_integer_mul_name</span> = <a class="link" href="../compiler/config.html#compiler-config-signed_integer_mul_name"><span class="identifier">signed_integer_mul_name</span></a> <a class="anchor" href="#compiler-config-signed_integer_mul_name" id="compiler-config-signed_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L56">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">signed_integer_mul_name</span> = <a class="link" href="../compiler/config.html#compiler-config-signed_integer_mul_name"><span class="identifier">signed_integer_mul_name</span></a> <a class="anchor" href="#compiler-config-signed_integer_mul_name" id="compiler-config-signed_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L56">source</a>
 </pre>
 <div class="docs">
 <p>Name of the intrinsic operation for 1 signed integer multiplication
 using a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_fifo_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_fifo_depth"><span class="identifier">min_fifo_depth</span></a> <a class="anchor" href="#compiler-config-min_fifo_depth" id="compiler-config-min_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L64">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_fifo_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_fifo_depth"><span class="identifier">min_fifo_depth</span></a> <a class="anchor" href="#compiler-config-min_fifo_depth" id="compiler-config-min_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L64">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth for a single clock fifo</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_dual_clock_fifo_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_dual_clock_fifo_depth"><span class="identifier">min_dual_clock_fifo_depth</span></a> <a class="anchor" href="#compiler-config-min_dual_clock_fifo_depth" id="compiler-config-min_dual_clock_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L67">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_dual_clock_fifo_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_dual_clock_fifo_depth"><span class="identifier">min_dual_clock_fifo_depth</span></a> <a class="anchor" href="#compiler-config-min_dual_clock_fifo_depth" id="compiler-config-min_dual_clock_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L67">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth for a dual clock fifo</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_almost_full_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_almost_full_depth"><span class="identifier">min_almost_full_depth</span></a> <a class="anchor" href="#compiler-config-min_almost_full_depth" id="compiler-config-min_almost_full_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L71">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_almost_full_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_almost_full_depth"><span class="identifier">min_almost_full_depth</span></a> <a class="anchor" href="#compiler-config-min_almost_full_depth" id="compiler-config-min_almost_full_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L71">source</a>
 </pre>
 <div class="docs">
 <p>Minimum almost_full value for a fifo. This is the minimum value
 needed to overcome fifo read-&gt;almost_full latency</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">almost_empty_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-almost_empty_depth"><span class="identifier">almost_empty_depth</span></a> <a class="anchor" href="#compiler-config-almost_empty_depth" id="compiler-config-almost_empty_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L74">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">almost_empty_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-almost_empty_depth"><span class="identifier">almost_empty_depth</span></a> <a class="anchor" href="#compiler-config-almost_empty_depth" id="compiler-config-almost_empty_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L74">source</a>
 </pre>
 <div class="docs">
 <p>Minimum value for the almost empty threshold for a single-clock
 FIFO</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_width_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_width_alignment"><span class="identifier">fifo_width_alignment</span></a> <a class="anchor" href="#compiler-config-fifo_width_alignment" id="compiler-config-fifo_width_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L78">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_width_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_width_alignment"><span class="identifier">fifo_width_alignment</span></a> <a class="anchor" href="#compiler-config-fifo_width_alignment" id="compiler-config-fifo_width_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L78">source</a>
 </pre>
 <div class="docs">
 <p>Minimum width of LUTram based FIFO structures below which there are
@@ -397,7 +397,7 @@ no area savings. Used in calculations for the local data propagation
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_depth_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_depth_alignment"><span class="identifier">fifo_depth_alignment</span></a> <a class="anchor" href="#compiler-config-fifo_depth_alignment" id="compiler-config-fifo_depth_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L82">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_depth_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_depth_alignment"><span class="identifier">fifo_depth_alignment</span></a> <a class="anchor" href="#compiler-config-fifo_depth_alignment" id="compiler-config-fifo_depth_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L82">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth of LUTram based FIFO structures below which there are
@@ -405,7 +405,7 @@ no area savings. Used in calculations for the local data propagation
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_fixed_cost</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_fixed_cost"><span class="identifier">fifo_fixed_cost</span></a> <a class="anchor" href="#compiler-config-fifo_fixed_cost" id="compiler-config-fifo_fixed_cost">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L86">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_fixed_cost</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_fixed_cost"><span class="identifier">fifo_fixed_cost</span></a> <a class="anchor" href="#compiler-config-fifo_fixed_cost" id="compiler-config-fifo_fixed_cost">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L86">source</a>
 </pre>
 <div class="docs">
 <p>Fixed cost of a FIFO used in calculations for the local data
@@ -413,7 +413,7 @@ propagation optimization Used in calculations for the local data
 propagation optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_bits_per_register</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_bits_per_register"><span class="identifier">fifo_bits_per_register</span></a> <a class="anchor" href="#compiler-config-fifo_bits_per_register" id="compiler-config-fifo_bits_per_register">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L90">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_bits_per_register</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_bits_per_register"><span class="identifier">fifo_bits_per_register</span></a> <a class="anchor" href="#compiler-config-fifo_bits_per_register" id="compiler-config-fifo_bits_per_register">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L90">source</a>
 </pre>
 <div class="docs">
 <p>The number of bits in an implicit fifo that has the same area cost as
@@ -421,21 +421,21 @@ propagation optimization</p>
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_internal_buffer_fifo_optimization</span> = <a class="link" href="../compiler/config.html#compiler-config-use_internal_buffer_fifo_optimization"><span class="identifier">use_internal_buffer_fifo_optimization</span></a> <a class="anchor" href="#compiler-config-use_internal_buffer_fifo_optimization" id="compiler-config-use_internal_buffer_fifo_optimization">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L94">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_internal_buffer_fifo_optimization</span> = <a class="link" href="../compiler/config.html#compiler-config-use_internal_buffer_fifo_optimization"><span class="identifier">use_internal_buffer_fifo_optimization</span></a> <a class="anchor" href="#compiler-config-use_internal_buffer_fifo_optimization" id="compiler-config-use_internal_buffer_fifo_optimization">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L94">source</a>
 </pre>
 <div class="docs">
 <p><code>true</code> if it makes sense to use KanagawaInternalBufferFifo
 for basic blockswith start conditions as an Fmax optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">fifo_depth_pow2</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_depth_pow2"><span class="identifier">fifo_depth_pow2</span></a> <a class="anchor" href="#compiler-config-fifo_depth_pow2" id="compiler-config-fifo_depth_pow2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L97">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">fifo_depth_pow2</span> = <a class="link" href="../compiler/config.html#compiler-config-fifo_depth_pow2"><span class="identifier">fifo_depth_pow2</span></a> <a class="anchor" href="#compiler-config-fifo_depth_pow2" id="compiler-config-fifo_depth_pow2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L97">source</a>
 </pre>
 <div class="docs">
 <p><code>true</code> if FIFO depths should be round up to a power of
 2</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_thread_rate_in_fifo_sizing</span> = <a class="link" href="../compiler/config.html#compiler-config-use_thread_rate_in_fifo_sizing"><span class="identifier">use_thread_rate_in_fifo_sizing</span></a> <a class="anchor" href="#compiler-config-use_thread_rate_in_fifo_sizing" id="compiler-config-use_thread_rate_in_fifo_sizing">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L102">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_thread_rate_in_fifo_sizing</span> = <a class="link" href="../compiler/config.html#compiler-config-use_thread_rate_in_fifo_sizing"><span class="identifier">use_thread_rate_in_fifo_sizing</span></a> <a class="anchor" href="#compiler-config-use_thread_rate_in_fifo_sizing" id="compiler-config-use_thread_rate_in_fifo_sizing">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L102">source</a>
 </pre>
 <div class="docs">
 <p>true if basic block thread rates should be used when computing fifo
@@ -444,7 +444,7 @@ This feature is used to work around an EDA tool bug for certain Intel
 devices.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_auto_pipelining</span> = <a class="link" href="../compiler/config.html#compiler-config-supports_auto_pipelining"><span class="identifier">supports_auto_pipelining</span></a> <a class="anchor" href="#compiler-config-supports_auto_pipelining" id="compiler-config-supports_auto_pipelining">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L110">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_auto_pipelining</span> = <a class="link" href="../compiler/config.html#compiler-config-supports_auto_pipelining"><span class="identifier">supports_auto_pipelining</span></a> <a class="anchor" href="#compiler-config-supports_auto_pipelining" id="compiler-config-supports_auto_pipelining">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L110">source</a>
 </pre>
 <div class="docs">
 <p>true if the platform supports a feature where the EDA tool chooses
@@ -452,98 +452,98 @@ the number of additional pipeline registers to add as needed to improve
 placement and routing</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_auto_pipeline_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_auto_pipeline_depth"><span class="identifier">min_auto_pipeline_depth</span></a> <a class="anchor" href="#compiler-config-min_auto_pipeline_depth" id="compiler-config-min_auto_pipeline_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L114">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_auto_pipeline_depth</span> = <a class="link" href="../compiler/config.html#compiler-config-min_auto_pipeline_depth"><span class="identifier">min_auto_pipeline_depth</span></a> <a class="anchor" href="#compiler-config-min_auto_pipeline_depth" id="compiler-config-min_auto_pipeline_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L114">source</a>
 </pre>
 <div class="docs">
 <p>On platforms that support auto-pipelining, there is a mininum fixed
 depth of pipeline registers required.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">verilog_dont_merge_pragma_name</span> = <a class="link" href="../compiler/config.html#compiler-config-verilog_dont_merge_pragma_name"><span class="identifier">verilog_dont_merge_pragma_name</span></a> <a class="anchor" href="#compiler-config-verilog_dont_merge_pragma_name" id="compiler-config-verilog_dont_merge_pragma_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L121">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">verilog_dont_merge_pragma_name</span> = <a class="link" href="../compiler/config.html#compiler-config-verilog_dont_merge_pragma_name"><span class="identifier">verilog_dont_merge_pragma_name</span></a> <a class="anchor" href="#compiler-config-verilog_dont_merge_pragma_name" id="compiler-config-verilog_dont_merge_pragma_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L121">source</a>
 </pre>
 <div class="docs">
 <p>The Verilog pragma used to tell the synthesis tool not to merge a
 register with others</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_luts</span> = <a class="link" href="../compiler/config.html#compiler-config-supports_luts"><span class="identifier">supports_luts</span></a> <a class="anchor" href="#compiler-config-supports_luts" id="compiler-config-supports_luts">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L124">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">supports_luts</span> = <a class="link" href="../compiler/config.html#compiler-config-supports_luts"><span class="identifier">supports_luts</span></a> <a class="anchor" href="#compiler-config-supports_luts" id="compiler-config-supports_luts">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L124">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports LUTs (should be true for all FPGAs)</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">small_lut_size</span> = <a class="link" href="../compiler/config.html#compiler-config-small_lut_size"><span class="identifier">small_lut_size</span></a> <a class="anchor" href="#compiler-config-small_lut_size" id="compiler-config-small_lut_size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L127">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">small_lut_size</span> = <a class="link" href="../compiler/config.html#compiler-config-small_lut_size"><span class="identifier">small_lut_size</span></a> <a class="anchor" href="#compiler-config-small_lut_size" id="compiler-config-small_lut_size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L127">source</a>
 </pre>
 <div class="docs">
 <p>//| Multiple LUTs of this size can fit into 1 resource (ALM, CLB)</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">lut_based_shift_register_available</span> = <a class="link" href="../compiler/config.html#compiler-config-lut_based_shift_register_available"><span class="identifier">lut_based_shift_register_available</span></a> <a class="anchor" href="#compiler-config-lut_based_shift_register_available" id="compiler-config-lut_based_shift_register_available">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L131">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">lut_based_shift_register_available</span> = <a class="link" href="../compiler/config.html#compiler-config-lut_based_shift_register_available"><span class="identifier">lut_based_shift_register_available</span></a> <a class="anchor" href="#compiler-config-lut_based_shift_register_available" id="compiler-config-lut_based_shift_register_available">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L131">source</a>
 </pre>
 <div class="docs">
 <p>true if the platform supports a RAM-based shift register. Used in
 calculations for the local data propagation optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">registers_require_power_on_initial_value</span> = <a class="link" href="../compiler/config.html#compiler-config-registers_require_power_on_initial_value"><span class="identifier">registers_require_power_on_initial_value</span></a> <a class="anchor" href="#compiler-config-registers_require_power_on_initial_value" id="compiler-config-registers_require_power_on_initial_value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L134">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">registers_require_power_on_initial_value</span> = <a class="link" href="../compiler/config.html#compiler-config-registers_require_power_on_initial_value"><span class="identifier">registers_require_power_on_initial_value</span></a> <a class="anchor" href="#compiler-config-registers_require_power_on_initial_value" id="compiler-config-registers_require_power_on_initial_value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L134">source</a>
 </pre>
 <div class="docs">
 <p>true if control signals should have power-on value specified</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_hardened_bypass</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_hardened_bypass"><span class="identifier">block_ram_supports_hardened_bypass</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_hardened_bypass" id="compiler-config-block_ram_supports_hardened_bypass">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L141">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_hardened_bypass</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_hardened_bypass"><span class="identifier">block_ram_supports_hardened_bypass</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_hardened_bypass" id="compiler-config-block_ram_supports_hardened_bypass">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L141">source</a>
 </pre>
 <div class="docs">
 <p>If the block RAMs in the device support pipeline bypass (aka memory
 forwarding) for at least 2 stages</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_ecc</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_ecc"><span class="identifier">block_ram_supports_ecc</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_ecc" id="compiler-config-block_ram_supports_ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L144">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_ecc</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_ecc"><span class="identifier">block_ram_supports_ecc</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_ecc" id="compiler-config-block_ram_supports_ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L144">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports ECC for block RAMs</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_true_dual_port</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_true_dual_port"><span class="identifier">block_ram_supports_true_dual_port</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_true_dual_port" id="compiler-config-block_ram_supports_true_dual_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L147">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_true_dual_port</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_true_dual_port"><span class="identifier">block_ram_supports_true_dual_port</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_true_dual_port" id="compiler-config-block_ram_supports_true_dual_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L147">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports block RAMs in a true dual-port
 configuration (i.e. two independent read/write ports).</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_quad_port</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_quad_port"><span class="identifier">block_ram_supports_quad_port</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_quad_port" id="compiler-config-block_ram_supports_quad_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L150">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_quad_port</span> = <a class="link" href="../compiler/config.html#compiler-config-block_ram_supports_quad_port"><span class="identifier">block_ram_supports_quad_port</span></a> <a class="anchor" href="#compiler-config-block_ram_supports_quad_port" id="compiler-config-block_ram_supports_quad_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L150">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports block RAMs in a simple quad-port
 configuration</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">global_data_propagation_ram_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-global_data_propagation_ram_alignment"><span class="identifier">global_data_propagation_ram_alignment</span></a> <a class="anchor" href="#compiler-config-global_data_propagation_ram_alignment" id="compiler-config-global_data_propagation_ram_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L153">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">global_data_propagation_ram_alignment</span> = <a class="link" href="../compiler/config.html#compiler-config-global_data_propagation_ram_alignment"><span class="identifier">global_data_propagation_ram_alignment</span></a> <a class="anchor" href="#compiler-config-global_data_propagation_ram_alignment" id="compiler-config-global_data_propagation_ram_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L153">source</a>
 </pre>
 <div class="docs">
 <p>For data propagation memories, the minimum width of 1 memory</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a> <span class="identifier">memory_init_file_type</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_init_file_type"><span class="identifier">memory_init_file_type</span></a> <a class="anchor" href="#compiler-config-memory_init_file_type" id="compiler-config-memory_init_file_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L156">source</a>
+<span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a> <span class="identifier">memory_init_file_type</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_init_file_type"><span class="identifier">memory_init_file_type</span></a> <a class="anchor" href="#compiler-config-memory_init_file_type" id="compiler-config-memory_init_file_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L156">source</a>
 </pre>
 <div class="docs">
 <p>The format to use for memory initialization files</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">memory_configurations</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_configurations"><span class="identifier">memory_configurations</span></a> <a class="anchor" href="#compiler-config-memory_configurations" id="compiler-config-memory_configurations">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L159">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">memory_configurations</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_configurations"><span class="identifier">memory_configurations</span></a> <a class="anchor" href="#compiler-config-memory_configurations" id="compiler-config-memory_configurations">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L159">source</a>
 </pre>
 <div class="docs">
 <p>Valid memory configurations</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">memory_resources</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_resources"><span class="identifier">memory_resources</span></a> <a class="anchor" href="#compiler-config-memory_resources" id="compiler-config-memory_resources">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L162">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">memory_resources</span> = <a class="link" href="../compiler/config.html#compiler-config-memory_resources"><span class="identifier">memory_resources</span></a> <a class="anchor" href="#compiler-config-memory_resources" id="compiler-config-memory_resources">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L162">source</a>
 </pre>
 <div class="docs">
 <p>Specifies the number of each type of memory resource that is
 available on the device.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_mux_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_mux_cost_factor"><span class="identifier">array_mux_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_mux_cost_factor" id="compiler-config-array_mux_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L166">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_mux_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_mux_cost_factor"><span class="identifier">array_mux_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_mux_cost_factor" id="compiler-config-array_mux_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L166">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of muxes necessary to
@@ -551,7 +551,7 @@ implement an array when estimating. the relative cost of synthesizing a
 memory structure as an array (logic) versus using a RAM primitive.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_register_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_register_cost_factor"><span class="identifier">array_register_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_register_cost_factor" id="compiler-config-array_register_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L170">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_register_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_register_cost_factor"><span class="identifier">array_register_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_register_cost_factor" id="compiler-config-array_register_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L170">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of registers necessary to
@@ -559,7 +559,7 @@ implement an array when estimating. the relative cost of synthesizing a
 memory structure as an array (logic) versus using a RAM primitive.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_write_port_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_write_port_cost_factor"><span class="identifier">array_write_port_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_write_port_cost_factor" id="compiler-config-array_write_port_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L174">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_write_port_cost_factor</span> = <a class="link" href="../compiler/config.html#compiler-config-array_write_port_cost_factor"><span class="identifier">array_write_port_cost_factor</span></a> <a class="anchor" href="#compiler-config-array_write_port_cost_factor" id="compiler-config-array_write_port_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L174">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of write ports necessary to
@@ -567,7 +567,7 @@ implement an array when estimating. the relative cost of synthesizing a
 memory structure as an array (logic) versus using a RAM primitive.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">default_clock_frequency_mhz</span> = <span class="literal">200</span> <a class="anchor" href="#compiler-config-default_clock_frequency_mhz" id="compiler-config-default_clock_frequency_mhz">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/compiler/config.k#L176">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">default_clock_frequency_mhz</span> = <span class="literal">200</span> <a class="anchor" href="#compiler-config-default_clock_frequency_mhz" id="compiler-config-default_clock_frequency_mhz">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/config.k#L176">source</a>
 </pre>
 </section>
 </div>

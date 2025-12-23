@@ -172,7 +172,7 @@ id="index-link" class="link"><code>init_once</code></a></li>
 <h1>sync.atomic.init <a href="../../index.html">&equiv;</a></h1>
 <hr />
 <pre class="signature">
-<span class="keyword">class</span> <span class="identifier">init_once</span> <a class="anchor" href="#sync-atomic-init-init_once" id="sync-atomic-init-init_once">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/atomic/init.k#L14">source</a>
+<span class="keyword">class</span> <span class="identifier">init_once</span> <a class="anchor" href="#sync-atomic-init-init_once" id="sync-atomic-init-init_once">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/sync/atomic/init.k#L14">source</a>
 </pre>
 <div class="docs">
 <p>Holds a boolean state which is initially set to <code>false</code>
@@ -184,7 +184,7 @@ method.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">check</span>() <a class="anchor" href="#sync-atomic-init-init_once-check" id="sync-atomic-init-init_once-check">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/atomic/init.k#L18">source</a>
+<span class="builtin">bool</span> <span class="identifier">check</span>() <a class="anchor" href="#sync-atomic-init-init_once-check" id="sync-atomic-init-init_once-check">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/sync/atomic/init.k#L18">source</a>
 </pre>
 <div class="docs">
 <p>The first call returns <code>false</code> and all subsequent calls
@@ -197,7 +197,7 @@ return <code>true</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> Width&gt;
-<span class="modifier">inline </span><a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<span class="builtin">bool</span>, <span class="builtin">uint</span>&lt;Width&gt;&gt; <span class="identifier">init_generational</span>(<span class="builtin">bool</span> <span class="identifier">reset</span>) <a class="anchor" href="#sync-atomic-init-init_generational" id="sync-atomic-init-init_generational">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/sync/atomic/init.k#L40">source</a>
+<span class="modifier">inline </span><a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<span class="builtin">bool</span>, <span class="builtin">uint</span>&lt;Width&gt;&gt; <span class="identifier">init_generational</span>(<span class="builtin">bool</span> <span class="identifier">reset</span>) <a class="anchor" href="#sync-atomic-init-init_generational" id="sync-atomic-init-init_generational">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/sync/atomic/init.k#L40">source</a>
 </pre>
 <div class="docs">
 <p>Amortize the cost of initializing a set of variables by assigning a

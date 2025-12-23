@@ -173,7 +173,7 @@ id="index-link" class="link"><code>toeplitz_hash</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Hash, <span class="keyword">typename</span> Key&gt;
-<span class="modifier">inline </span>Hash <span class="identifier">toeplitz_hash</span>(Key <span class="identifier">key</span>) <a class="anchor" href="#data-hash_table-toeplitz_hash" id="data-hash_table-toeplitz_hash">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/hash_table.k#L29">source</a>
+<span class="modifier">inline </span>Hash <span class="identifier">toeplitz_hash</span>(Key <span class="identifier">key</span>) <a class="anchor" href="#data-hash_table-toeplitz_hash" id="data-hash_table-toeplitz_hash">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/hash_table.k#L29">source</a>
 </pre>
 <div class="docs">
 <p>Computes a hash of input keys using an instance of the
@@ -216,7 +216,7 @@ id="index-link" class="link"><code>toeplitz_hash</code></a></li>
     <span class="keyword">auto</span> HistorySize = <span class="literal">1</span>,
     <span class="keyword">auto</span> MaxThreads = <span class="literal">512</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">hash_table</span> <a class="anchor" href="#data-hash_table-hash_table" id="data-hash_table-hash_table">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/hash_table.k#L65">source</a>
+<span class="keyword">class</span> <span class="identifier">hash_table</span> <a class="anchor" href="#data-hash_table-hash_table" id="data-hash_table-hash_table">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/hash_table.k#L65">source</a>
 </pre>
 <div class="docs">
 <p>A mapping from <code>Key</code> to <code>Value</code>. Use
@@ -321,7 +321,7 @@ in-flight threads.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">result</span> <a class="anchor" href="#data-hash_table-hash_table-result" id="data-hash_table-hash_table-result">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/hash_table.k#L113">source</a>
+<span class="keyword">struct</span> <span class="identifier">result</span> <a class="anchor" href="#data-hash_table-hash_table-result" id="data-hash_table-hash_table-result">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/hash_table.k#L113">source</a>
 </pre>
 <div class="docs">
 <p>Return value on a successful <code>insert_or_update</code></p>
@@ -331,7 +331,7 @@ in-flight threads.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">inserted</span> <a class="anchor" href="#data-hash_table-hash_table-$quasi1-inserted" id="data-hash_table-hash_table-$quasi1-inserted">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/hash_table.k#L116">source</a>
+<span class="builtin">bool</span> <span class="identifier">inserted</span> <a class="anchor" href="#data-hash_table-hash_table-$quasi1-inserted" id="data-hash_table-hash_table-$quasi1-inserted">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/hash_table.k#L116">source</a>
 </pre>
 <div class="docs">
 <p>True if this is the first time the associated key has been used since
@@ -340,7 +340,7 @@ the hash table was reset.</p>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;Value, Value&gt; <span class="identifier">value</span> <a class="anchor" href="#data-hash_table-hash_table-$quasi1-value" id="data-hash_table-hash_table-$quasi1-value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/hash_table.k#L121">source</a>
+<a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;Value, Value&gt; <span class="identifier">value</span> <a class="anchor" href="#data-hash_table-hash_table-$quasi1-value" id="data-hash_table-hash_table-$quasi1-value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/hash_table.k#L121">source</a>
 </pre>
 <div class="docs">
 <p>Values in the hash table before and after the lookup When an key is
@@ -362,7 +362,7 @@ returned by <code>allocate_fn</code>.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">test_thread_count</span>(<span class="builtin">bool</span> <span class="identifier">reset</span>) <a class="anchor" href="#data-hash_table-hash_table-test_thread_count" id="data-hash_table-hash_table-test_thread_count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/hash_table.k#L139">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">test_thread_count</span>(<span class="builtin">bool</span> <span class="identifier">reset</span>) <a class="anchor" href="#data-hash_table-hash_table-test_thread_count" id="data-hash_table-hash_table-test_thread_count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/hash_table.k#L139">source</a>
 </pre>
 <div class="docs">
 <p>Used to block the first thread of each generation until
@@ -379,7 +379,7 @@ returned by <code>allocate_fn</code>.</p>
     <span class="builtin">bool</span> <span class="identifier">insert_on_miss</span>,
     () -&gt; Value <span class="identifier">allocate_fn</span>,
     (Value, <span class="builtin">bool</span>) -&gt; Value <span class="identifier">access_fn</span>
-    ) <a class="anchor" href="#data-hash_table-hash_table-insert_or_update" id="data-hash_table-hash_table-insert_or_update">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/hash_table.k#L170">source</a>
+    ) <a class="anchor" href="#data-hash_table-hash_table-insert_or_update" id="data-hash_table-hash_table-insert_or_update">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/hash_table.k#L170">source</a>
 </pre>
 <div class="docs">
 <p>Combined function that can be used to:</p>

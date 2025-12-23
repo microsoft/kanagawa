@@ -171,7 +171,7 @@ id="index-link" class="link"><code>cache_tags</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> LUtime, <span class="keyword">auto</span> Associativity, <span class="keyword">auto</span> Depth&gt;
-<span class="keyword">class</span> <span class="identifier">cache_tags</span> <a class="anchor" href="#data-cache-internal-cache_tags" id="data-cache-internal-cache_tags">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/cache/internal.k#L90">source</a>
+<span class="keyword">class</span> <span class="identifier">cache_tags</span> <a class="anchor" href="#data-cache-internal-cache_tags" id="data-cache-internal-cache_tags">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/internal.k#L90">source</a>
 </pre>
 <div class="docs">
 <p>Handles metadata related to entries in the cache, but does not store
@@ -226,12 +226,12 @@ most recently used values. Pass 1 to create a directly mapped cache.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-internal-cache_tags-set_index_t" id="data-cache-internal-cache_tags-set_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/cache/internal.k#L97">source</a>
+<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-internal-cache_tags-set_index_t" id="data-cache-internal-cache_tags-set_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/internal.k#L97">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">entry_index_t</span> = <span class="builtin">uint</span>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<span class="identifier">_entryIndexBits</span>&gt; <a class="anchor" href="#data-cache-internal-cache_tags-entry_index_t" id="data-cache-internal-cache_tags-entry_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/cache/internal.k#L98">source</a>
+<span class="keyword">using</span> <span class="identifier">entry_index_t</span> = <span class="builtin">uint</span>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<span class="identifier">_entryIndexBits</span>&gt; <a class="anchor" href="#data-cache-internal-cache_tags-entry_index_t" id="data-cache-internal-cache_tags-entry_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/internal.k#L98">source</a>
 </pre>
 </li>
 </ul>
@@ -243,7 +243,7 @@ most recently used values. Pass 1 to create a directly mapped cache.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-internal-cache_tags-initialize" id="data-cache-internal-cache_tags-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/cache/internal.k#L197">source</a>
+<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-internal-cache_tags-initialize" id="data-cache-internal-cache_tags-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/internal.k#L197">source</a>
 </pre>
 <div class="docs">
 <p>Initialize or re-initialize a cache object. Re-initializing the cache
@@ -254,7 +254,7 @@ called concurrently with <code>get</code>.</p>
 <li>
 <pre class="signature">
 <span class="identifier">cache_tags_get_result</span>&lt;<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-entry_index_t"><span class="identifier">entry_index_t</span></a>, Key&gt;
-<span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>, <span class="builtin">bool</span> <span class="identifier">mark_as_unwritten</span>) <a class="anchor" href="#data-cache-internal-cache_tags-get" id="data-cache-internal-cache_tags-get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/cache/internal.k#L206">source</a>
+<span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>, <span class="builtin">bool</span> <span class="identifier">mark_as_unwritten</span>) <a class="anchor" href="#data-cache-internal-cache_tags-get" id="data-cache-internal-cache_tags-get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/internal.k#L206">source</a>
 </pre>
 <div class="docs">
 <p>Get the index of a value from the <code>cache_tags</code>, if
@@ -299,7 +299,7 @@ the backing store yet.</p>
 <span class="identifier">get_and_clear_unwritten_key</span>(
     <a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>,
     <a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags"><span class="identifier">cache_tags</span></a>::<a class="link" href="../../data/cache/internal.html#data-cache-internal-cache_tags-entry_index_t"><span class="identifier">entry_index_t</span></a> <span class="identifier">entry_index</span>
-    ) <a class="anchor" href="#data-cache-internal-cache_tags-get_and_clear_unwritten_key" id="data-cache-internal-cache_tags-get_and_clear_unwritten_key">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/d4b90b87bcb4943b1f716bac4b4da61977a21ad4/library/data/cache/internal.k#L270">source</a>
+    ) <a class="anchor" href="#data-cache-internal-cache_tags-get_and_clear_unwritten_key" id="data-cache-internal-cache_tags-get_and_clear_unwritten_key">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/internal.k#L270">source</a>
 </pre>
 <div class="docs">
 <p>Returns the key at the given (set_index, entry_index) tuple as well
