@@ -158,7 +158,7 @@ each item in the list.
 To run the tests for the Kanagawa RISC-V processor implementation, you will need to install:
 
 - The RISC-V toolchain. It is recommended to use the
-[SiFive riscv64 toolchain, version  10.1.0](https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz)
+[xPack RISC-V embedded toolchain, version  15.2.0-1](https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v15.2.0-1/xpack-riscv-none-elf-gcc-15.2.0-1-linux-x64.tar.gz)
 
 To build Sandcastle, you will need to install:
 - Rust cargo version 1.88.0 or later (see https://doc.rust-lang.org/cargo/getting-started/installation.html)
@@ -168,8 +168,15 @@ To build Sandcastle, you will need to install:
 
 ## Building on MacOS
 
-Assuming you have installed `homebrew`, setting up a build environment to build the compiler and run its unit tests
-on MacOS is as simple as running these commands in a terminal:
+You need to have `homebrew` installed to use the method described here. If you don't already have it installed,
+you can install it by running this command in a terminal session:
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Once `homebrew` is installed, setting up a build environment that supports building the compiler and most of the 
+unit tests is as simple as running these commands in a terminal:
 
 ```zsh
 brew install cmake ninja boost verilator
@@ -184,7 +191,21 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install svgbob_cli
 ```
 
-Then follow the instructions above to clone the repo, initialize the submodules, etc. Here is an example CMake command:
+The above set-up will let you build the compiler, sandcastle, and run all the unit tests save those that require
+the RISC-V GCC cross-compiler. To install the cross-compiler, use these commands:
+
+```zsh
+brew tap riscv-software-src/riscv
+brew install riscv-tools
+```
+
+Alternatively, you can grab the darwin-arm64 release of RISC-V GCC from here:
+
+https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/tag/v15.2.0-1/
+
+This is the same version we use for testing on Linux, so it's a good choice.
+
+Then follow the instructions above to clone the repo, initialize the submodules, etc. Here is an example CMake command (assuming RISCV-64 GCC installed via homebrew):
 
 ```zsh
 cmake \
@@ -194,7 +215,8 @@ cmake \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DBoost_DIR=/opt/homebrew/opt/boost/lib/cmake \
     -DGHCUP_DIR=$HOME/.ghcup/bin \
-    -DVERILATOR_EXE=/opt/homebrew/bin/verilator
+    -DVERILATOR_EXE=/opt/homebrew/bin/verilator \
+    -DRISCV64_GCC=/opt/homebrew/Cellar/riscv-gnu-toolchain/main
 ```
 
 ## Building on Windows

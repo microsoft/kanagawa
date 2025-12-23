@@ -4,6 +4,46 @@
 # This file contains CMake helper functions for cross-compiling RISC-V 64 code
 # using the RISCV64 GCC toolchain.
 
+# See if RISCV64_GCC is set to a directory or an executable
+if (DEFINED RISCV64_GCC)
+  if (IS_DIRECTORY "${RISCV64_GCC}")
+    message(STATUS "RISC-V GCC toolchain directory specified: ${RISCV64_GCC}")
+    find_program(RISCV64_GCC_EXE 
+      NAMES riscv-none-elf-gcc riscv64-unknown-elf-gcc riscv64-elf-gcc
+      HINTS "${RISCV64_GCC}/bin" "${RISCV64_GCC}"
+    )
+  elseif (IS_EXECUTABLE "${RISCV64_GCC}")
+    message(STATUS "RISC-V GCC executable specified: ${RISCV64_GCC}")
+    set(RISCV64_GCC_EXE "${RISCV64_GCC}")
+  else()
+    find_program(RISCV64_GCC_EXE 
+      NAMES riscv-none-elf-gcc riscv64-unknown-elf-gcc riscv64-elf-gcc
+    )
+  endif()
+endif()
+
+if (RISCV64_GCC_EXE)
+
+  message(STATUS "Found RISCV-64 GCC compiler: ${RISCV64_GCC_EXE}")
+
+  # Determine the version of the found RISCV64 GCC compiler
+  execute_process(
+    COMMAND ${RISCV64_GCC_EXE} --version
+    OUTPUT_VARIABLE _riscv_gcc_version_output
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    RESULT_VARIABLE _version_result
+  )
+
+  if(_version_result EQUAL 0)
+    string(REPLACE "\r\n" "\n" _riscv_gcc_version_output "${_riscv_gcc_version_output}")
+    string(REGEX MATCH "^[^\n]+" RISCV_GCC_NAME_VERSION "${_riscv_gcc_version_output}")
+  endif()
+
+else()
+
+  message(STATUS "Could not find RISCV-64 GCC toolchain. RISC-V unit tests disabled.")
+
+endif()
 
 # This executable creates .mem files from an executable in elf format
 add_executable(risc-v-elf2mem "${CMAKE_SOURCE_DIR}/library/processor/risc_v/util/elf2mem.cpp")
@@ -82,7 +122,7 @@ function(add_riscv_executable target)
   endif()
 
   if (NOT _ARG_ARCH)
-    set(_ARG_ARCH rv32i)
+    set(_ARG_ARCH rv32i_zicsr)
   endif()
 
   if (NOT _ARG_LD_SCRIPT)
@@ -97,10 +137,24 @@ function(add_riscv_executable target)
     message(FATAL_ERROR "add_riscv_executable: missing SOURCES.")
   endif()
 
-  find_program(RISCV64_GCC_EXE NAMES riscv64-unknown-elf-gcc HINTS "${RISCV64_GCC}/bin")
   if (NOT RISCV64_GCC_EXE)
-      message(FATAL_ERROR "Could not find riscv64-unknown-elf-gcc in ${RISCV64_GCC}/bin")
+      message(FATAL_ERROR "Could not find RISCV-64 GCC toolchain. Please set RISCV64_GCC to the toolchain root directory or the GCC executable.")
   endif()
+
+  set(RISCV_MABI ilp32)
+
+  execute_process(
+    COMMAND ${RISCV64_GCC_EXE} -march=${_ARG_ARCH} -mabi=${RISCV_MABI} -print-libgcc-file-name
+    OUTPUT_VARIABLE RISCV_LIBGCC
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    RESULT_VARIABLE _r
+  )
+
+  if(NOT _r EQUAL 0 OR RISCV_LIBGCC STREQUAL "" OR RISCV_LIBGCC MATCHES "^libgcc\\.a$")
+    message(FATAL_ERROR "Failed to query libgcc path from ${RISCV64_GCC_EXE}. Got: '${RISCV_LIBGCC}'")
+  endif()
+
+  get_filename_component(RISCV_GCC_MULTILIB_DIR "${RISCV_LIBGCC}" DIRECTORY)
 
   set(COREMARK_DIR "${CMAKE_SOURCE_DIR}/thirdparty/coremark")
 
@@ -122,12 +176,12 @@ function(add_riscv_executable target)
   set(GCC_ARGS
     "-march=${_ARG_ARCH}"
     "-mno-div"
-    "-mabi=ilp32"
+    "-mabi=${RISCV_MABI}"
     "-mbranch-cost=1"
     "-mno-strict-align"
     "-I${COREMARK_DIR}"
     "-I${COREMARK_DIR}/barebones"
-    "-L${RISCV64_GCC}/lib/gcc/riscv64-unknown-elf/10.1.0/rv32i/ilp32"
+    "-L${RISCV_GCC_MULTILIB_DIR}"
     "-Wl,--script=${_ARG_LD_SCRIPT}"
     "-mtune=sifive-3-series"
   )
