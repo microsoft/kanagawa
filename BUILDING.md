@@ -210,7 +210,7 @@ cmake \
     -DBoost_DIR=/opt/homebrew/opt/boost/lib/cmake \
     -DGHCUP_DIR=$HOME/.ghcup/bin \
     -DVERILATOR_EXE=/opt/homebrew/bin/verilator \
-    -DRISCV64_GCC=/opt/homebrew/Cellar/riscv-gnu-toolchain/main    
+    -DRISCV64_GCC=/opt/homebrew/Cellar/riscv-gnu-toolchain/main
 ```
 
 ## Building on Windows

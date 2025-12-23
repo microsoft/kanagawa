@@ -137,7 +137,7 @@ add_riscv_coremark_simulation_test(coremark_2hart_m
 
 add_riscv_coremark_simulation_test(coremark_4hart_m
     NUM_HARTS 4
-    ENABLE_M  
+    ENABLE_M
     EXPECTED_COREMARK_SCORE
       "0.968"
 )

@@ -142,7 +142,7 @@ function(add_riscv_executable target)
     OUTPUT_VARIABLE RISCV_LIBGCC
     OUTPUT_STRIP_TRAILING_WHITESPACE
     RESULT_VARIABLE _r
-  )  
+  )
 
   if(NOT _r EQUAL 0 OR RISCV_LIBGCC STREQUAL "" OR RISCV_LIBGCC MATCHES "^libgcc\\.a$")
     message(FATAL_ERROR "Failed to query libgcc path from ${RISCV64_GCC_EXE}. Got: '${RISCV_LIBGCC}'")
