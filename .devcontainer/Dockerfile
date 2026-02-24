@@ -49,26 +49,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# ── CMake 3.30+ (from Kitware's official Ubuntu repository) ──────────────────
+# ── CMake 3.30+ (pre-built binary from GitHub releases) ──────────────────────
 # Ubuntu 24.04 ships CMake 3.28, but the project requires 3.30+.
-RUN wget -qO /tmp/kitware-key.asc https://apt.kitware.com/keys/kitware-archive-latest.asc \
-    && gpg --dearmor < /tmp/kitware-key.asc > /usr/share/keyrings/kitware-archive-keyring.gpg \
-    && rm /tmp/kitware-key.asc \
-    && echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ noble main' \
-       > /etc/apt/sources.list.d/kitware.list \
-    && apt-get update && apt-get install -y --no-install-recommends cmake \
-    && rm -rf /var/lib/apt/lists/*
+ARG CMAKE_VERSION=3.31.7
+RUN wget -q \
+        "https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz" \
+        -O /tmp/cmake.tar.gz \
+    && tar xzf /tmp/cmake.tar.gz -C /usr/local --strip-components=1 \
+    && rm /tmp/cmake.tar.gz
 
 # ── Boost 1.88.0 (built from source) ─────────────────────────────────────────
 ARG BOOST_VERSION=1.88.0
-ARG BOOST_VERSION_UNDERSCORED=1_88_0
-RUN wget -q "https://archives.boost.io/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_UNDERSCORED}.tar.gz" \
-         -O /tmp/boost.tar.gz \
+RUN wget -q \
+        "https://github.com/boostorg/boost/releases/download/boost-${BOOST_VERSION}/boost-${BOOST_VERSION}-b2-nodocs.tar.gz" \
+        -O /tmp/boost.tar.gz \
     && tar xzf /tmp/boost.tar.gz -C /tmp \
-    && cd "/tmp/boost_${BOOST_VERSION_UNDERSCORED}" \
+    && cd "/tmp/boost-${BOOST_VERSION}" \
     && ./bootstrap.sh --prefix=/usr/local \
     && ./b2 install -j"$(nproc)" \
-    && rm -rf /tmp/boost.tar.gz "/tmp/boost_${BOOST_VERSION_UNDERSCORED}"
+    && rm -rf /tmp/boost.tar.gz "/tmp/boost-${BOOST_VERSION}"
 
 # ── Verilator 5.040 (built from source) ──────────────────────────────────────
 # Ubuntu 24.04 packages an older version; the project requires exactly 5.040.
@@ -115,9 +114,10 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
         | sh -s -- -y --default-toolchain stable --no-modify-path \
     && cargo install svgbob_cli --version 0.7.6
 
-# ── Node.js LTS and yarn (for Sandcastle) ────────────────────────────────────
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
+# ── Node.js and yarn (for Sandcastle) ────────────────────────────────────────
+# Ubuntu 24.04 ships Node.js 18.x (≥ the 16.20.2 minimum required).
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends nodejs npm \
     && npm install -g yarn \
     && rm -rf /var/lib/apt/lists/*
 
