@@ -1,7 +1,1 @@
 packages: . ../../compiler
-
--- Pin the Hackage package index to the state when the golden test files were
--- last verified correct. Without this, a newer version of pandoc or other
--- dependencies may generate slightly different markdown output, causing the
--- golden tests to fail.
-index-state: 2025-12-20T14:56:00Z
