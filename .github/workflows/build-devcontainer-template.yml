@@ -1,0 +1,118 @@
+name: Build and Test Targets in Devcontainer Template
+
+# Reusable workflow: builds and tests CMake targets inside the devcontainer
+# Docker image (.devcontainer/Dockerfile) on a Linux runner.
+
+on:
+  workflow_call:
+    inputs:
+      build-targets:
+        description: "Space-separated list of CMake targets to build"
+        required: true
+        type: string
+      test-targets:
+        description: "Space-separated list of CMake test targets to run after build (optional)"
+        required: false
+        type: string
+        default: ""
+      cmake-build-type:
+        description: "CMake build type"
+        required: false
+        type: string
+        default: "RelWithDebInfo"
+      runs-on:
+        description: "Runner type (must be a Linux runner)"
+        required: false
+        type: string
+        default: "ubuntu-24.04"
+      heavy-parallel-jobs:
+        description: "Number of parallel jobs for heavy compilation tasks"
+        required: false
+        type: number
+        default: 2
+      extra-cmake-args:
+        description: "Extra args appended to CMake configure"
+        required: false
+        type: string
+        default: ""
+      fetch-depth:
+        description: "Checkout fetch-depth (0 to fetch all history/tags)"
+        required: false
+        type: string
+        default: "0"
+
+jobs:
+  build:
+    runs-on: ${{ inputs.runs-on }}
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: ${{ inputs.fetch-depth }}
+          submodules: false
+
+      - name: Shallow init submodules (recursive, depth=1)
+        shell: bash
+        run: |
+          git submodule sync --recursive
+          git -c protocol.version=2 \
+              submodule update --init --recursive --depth 1
+
+      # Free up disk space but keep Docker images
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          android: true
+          dotnet: true
+          haskell: true
+          docker-images: false
+          large-packages: true
+          tool-cache: true
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build devcontainer image
+        uses: docker/build-push-action@v6
+        with:
+          context: .devcontainer
+          load: true
+          tags: kanagawa-dev:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run build and tests in container
+        env:
+          BUILD_TARGETS: ${{ inputs.build-targets }}
+          TEST_TARGETS: ${{ inputs.test-targets }}
+          EXTRA_CMAKE_ARGS: ${{ inputs.extra-cmake-args }}
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/workspace:ro" \
+            -e BUILD_TARGETS \
+            -e TEST_TARGETS \
+            -e EXTRA_CMAKE_ARGS \
+            kanagawa-dev bash -c '
+              set -euo pipefail
+              # shellcheck disable=SC2086
+              cmake -S /workspace -B /tmp/build -G Ninja \
+                -DCMAKE_BUILD_TYPE="${{ inputs.cmake-build-type }}" \
+                -DKANAGAWA_HEAVY_PARALLEL_JOBS="${{ inputs.heavy-parallel-jobs }}" \
+                $EXTRA_CMAKE_ARGS
+              if [ -n "$BUILD_TARGETS" ]; then
+                for target in $BUILD_TARGETS; do
+                  echo "Building target: $target"
+                  ninja -C /tmp/build "$target"
+                done
+              fi
+              if [ -n "$TEST_TARGETS" ]; then
+                for target in $TEST_TARGETS; do
+                  echo "Running test target: $target"
+                  ninja -C /tmp/build "$target"
+                done
+              fi
+            '

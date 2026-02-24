@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   build-linux:
     uses: ./.github/workflows/build-targets-template.yml
@@ -22,3 +25,10 @@ jobs:
       cmake-build-type: 'RelWithDebInfo'
       runs-on: 'ubuntu-24.04'
       boost-platform-version: '24.04'
+
+  build-linux-container:
+    uses: ./.github/workflows/build-devcontainer-template.yml
+    with:
+      build-targets: 'interface_tests'
+      test-targets: 'run_interface_tests'
+      cmake-build-type: 'RelWithDebInfo'
