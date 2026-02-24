@@ -1,3 +1,4 @@
 .ghc.environment.*
 dist
 test/output/
+dist-newstyle
