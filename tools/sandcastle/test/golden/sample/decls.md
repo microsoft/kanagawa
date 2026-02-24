@@ -322,7 +322,9 @@ Third paragraph of definition 2.
 
 Math support:
 
-$$f(a) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z-a}\,\mathrm{d}z$$
+$$
+f(a) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z-a}\,\mathrm{d}z
+$$
 
 Inline mathematics: Area of a circle is $\pi r^2$ and
 $Nat(h^A,F)\cong FA$ is the yoneda lemma.
