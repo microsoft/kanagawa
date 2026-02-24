@@ -1,0 +1,36 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+//
+// VS Code / GitHub Codespaces devcontainer configuration.
+// Also used by GitHub Copilot coding agent as its build environment.
+//
+// See https://containers.dev/implementors/json_reference/ for the full spec.
+{
+    "name": "Kanagawa Build Environment",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    // Run once after the container is created and the repo is mounted.
+    // Initialises git submodules so the build is ready to go.
+    "postCreateCommand": "git submodule update --init --recursive",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // C/C++ support
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                // Haskell support
+                "haskell.haskell",
+                // Rust support (for Sandcastle)
+                "rust-lang.rust-analyzer"
+            ],
+            "settings": {
+                "cmake.configureOnOpen": false
+            }
+        }
+    },
+    // Forward no ports by default; add entries here if running a local server.
+    "forwardPorts": [],
+    // Run as root so all installed tools are accessible without path gymnastics.
+    "remoteUser": "root"
+}
