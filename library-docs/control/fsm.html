@@ -220,7 +220,7 @@ this design pattern.</p>
 <span class="identifier">speculate_updates</span>(
     (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;StateCount&gt;) -&gt; SpeculativeUpdate <span class="identifier">fn</span>,
     <a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;StateCount&gt;&gt; <span class="identifier">override</span>
-    ) <a class="anchor" href="#control-fsm-speculate_updates" id="control-fsm-speculate_updates">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/fsm.k#L70">source</a>
+    ) <a class="anchor" href="#control-fsm-speculate_updates" id="control-fsm-speculate_updates">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/fsm.k#L70">source</a>
 </pre>
 <div class="docs">
 <p>Speculatively apply a state update to each possible current state and
@@ -289,7 +289,7 @@ should behave as if it ignores the “current” state.</p>
     (SpeculativeUpdate[StateCount], State) -&gt; AggregatedUpdate <span class="identifier">aggregate</span>,
     (AggregatedUpdate, State) -&gt; State <span class="identifier">apply</span>,
     SpeculativeUpdate[StateCount] <span class="identifier">updates</span>
-    ) <a class="anchor" href="#control-fsm-apply_update" id="control-fsm-apply_update">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/fsm.k#L97">source</a>
+    ) <a class="anchor" href="#control-fsm-apply_update" id="control-fsm-apply_update">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/fsm.k#L97">source</a>
 </pre>
 <div class="docs">
 <p>Returns a closure which:</p>

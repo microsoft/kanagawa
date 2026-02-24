@@ -263,11 +263,11 @@ id="index-link" class="link"><code>zip_with_indices</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="keyword">using</span> <span class="identifier">array</span> = T[N] <a class="anchor" href="#data-array-array" id="data-array-array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L73">source</a>
+<span class="keyword">using</span> <span class="identifier">array</span> = T[N] <a class="anchor" href="#data-array-array" id="data-array-array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L73">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>R[N] <span class="identifier">inclusive_scan</span>(T[N] <span class="identifier">input</span>, (R, R) -&gt; R <span class="identifier">AssociativeFn</span>) <a class="anchor" href="#data-array-inclusive_scan" id="data-array-inclusive_scan">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L102">source</a>
+<span class="modifier">inline </span>R[N] <span class="identifier">inclusive_scan</span>(T[N] <span class="identifier">input</span>, (R, R) -&gt; R <span class="identifier">AssociativeFn</span>) <a class="anchor" href="#data-array-inclusive_scan" id="data-array-inclusive_scan">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L102">source</a>
 </pre>
 <div class="docs">
 <p>Perform an inclusive scan on the given array.</p>
@@ -280,7 +280,7 @@ id="index-link" class="link"><code>zip_with_indices</code></a></li>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>R[N] <span class="identifier">prefix_sum</span>(T[N] <span class="identifier">input</span>) <a class="anchor" href="#data-array-prefix_sum" id="data-array-prefix_sum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L149">source</a>
+<span class="modifier">inline </span>R[N] <span class="identifier">prefix_sum</span>(T[N] <span class="identifier">input</span>) <a class="anchor" href="#data-array-prefix_sum" id="data-array-prefix_sum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L149">source</a>
 </pre>
 <div class="docs">
 <p>Compute the prefix sum of the given array.</p>
@@ -296,7 +296,7 @@ id="index-link" class="link"><code>zip_with_indices</code></a></li>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
 <span class="modifier">inline </span>
-<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">partial_sort</span>(T <span class="identifier">x</span>, (T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">cmp</span>, <span class="builtin">bool</span> <span class="identifier">is_last</span>) <a class="anchor" href="#data-array-partial_sort" id="data-array-partial_sort">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L185">source</a>
+<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">partial_sort</span>(T <span class="identifier">x</span>, (T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">cmp</span>, <span class="builtin">bool</span> <span class="identifier">is_last</span>) <a class="anchor" href="#data-array-partial_sort" id="data-array-partial_sort">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L185">source</a>
 </pre>
 <div class="docs">
 <p>An inline function that returns the smallest N elements seen in a
@@ -380,7 +380,7 @@ can be reset for the next call.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span>T[N] <span class="identifier">bitonic_sort</span>(T[N] <span class="identifier">x</span>, (T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">cmp</span>) <a class="anchor" href="#data-array-bitonic_sort" id="data-array-bitonic_sort">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L285">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">bitonic_sort</span>(T[N] <span class="identifier">x</span>, (T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">cmp</span>) <a class="anchor" href="#data-array-bitonic_sort" id="data-array-bitonic_sort">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L285">source</a>
 </pre>
 <div class="docs">
 <p>Bitonic sorting network. Sorts the passed array such that cmp(x[i],
@@ -393,7 +393,7 @@ x[i + 1]) is true for all items.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">last_valid</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-last_valid" id="data-array-last_valid">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L332">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">last_valid</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-last_valid" id="data-array-last_valid">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L332">source</a>
 </pre>
 <div class="docs">
 <p>Given an array of <code>optional&lt;T&gt;</code>, return the last
@@ -412,14 +412,14 @@ false.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> I, <span class="keyword">auto</span> J&gt;
-<span class="modifier">inline </span>T[J][I] <span class="identifier">transpose</span>(T[I][J] <span class="identifier">src</span>) <a class="anchor" href="#data-array-transpose" id="data-array-transpose">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L344">source</a>
+<span class="modifier">inline </span>T[J][I] <span class="identifier">transpose</span>(T[I][J] <span class="identifier">src</span>) <a class="anchor" href="#data-array-transpose" id="data-array-transpose">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L344">source</a>
 </pre>
 <div class="docs">
 <p>Transpose rows and columns in a 2-dimensional array.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">typename</span> U&gt;
-<span class="modifier">inline </span>T[M] <span class="identifier">shift_array_right</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-shift_array_right" id="data-array-shift_array_right">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L390">source</a>
+<span class="modifier">inline </span>T[M] <span class="identifier">shift_array_right</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-shift_array_right" id="data-array-shift_array_right">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L390">source</a>
 </pre>
 <div class="docs">
 <p>Shift the elements of an arbitrary-typed array right by the given
@@ -483,7 +483,7 @@ the multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>T[(N - M)] <span class="identifier">drop</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-drop" id="data-array-drop">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L415">source</a>
+<span class="modifier">inline </span>T[(N - M)] <span class="identifier">drop</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-drop" id="data-array-drop">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L415">source</a>
 </pre>
 <div class="docs">
 <p>Drop first M elements of an array</p>
@@ -495,7 +495,7 @@ the multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>T[(N - <span class="literal">1</span>)] <span class="identifier">tail</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-tail" id="data-array-tail">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L434">source</a>
+<span class="modifier">inline </span>T[(N - <span class="literal">1</span>)] <span class="identifier">tail</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-tail" id="data-array-tail">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L434">source</a>
 </pre>
 <div class="docs">
 <p>Return an array containing all but the first element</p>
@@ -507,7 +507,7 @@ the multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>T[M] <span class="identifier">take</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-take" id="data-array-take">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L446">source</a>
+<span class="modifier">inline </span>T[M] <span class="identifier">take</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-take" id="data-array-take">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L446">source</a>
 </pre>
 <div class="docs">
 <p>Take first M elements of an array</p>
@@ -519,7 +519,7 @@ the multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>T[(N - <span class="literal">1</span>)] <span class="identifier">init</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-init" id="data-array-init">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L466">source</a>
+<span class="modifier">inline </span>T[(N - <span class="literal">1</span>)] <span class="identifier">init</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-init" id="data-array-init">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L466">source</a>
 </pre>
 <div class="docs">
 <p>Return the array without the last element</p>
@@ -531,7 +531,7 @@ the multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>T[((<span class="literal">2</span> * N) - <span class="literal">1</span>)] <span class="identifier">intersperse</span>(T <span class="identifier">a</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-intersperse" id="data-array-intersperse">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L478">source</a>
+<span class="modifier">inline </span>T[((<span class="literal">2</span> * N) - <span class="literal">1</span>)] <span class="identifier">intersperse</span>(T <span class="identifier">a</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-intersperse" id="data-array-intersperse">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L478">source</a>
 </pre>
 <div class="docs">
 <p>Intersperse a value between elements of an array</p>
@@ -543,7 +543,7 @@ the multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> U, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>T[M] <span class="identifier">shift_array_left</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-shift_array_left" id="data-array-shift_array_left">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L522">source</a>
+<span class="modifier">inline </span>T[M] <span class="identifier">shift_array_left</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-shift_array_left" id="data-array-shift_array_left">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L522">source</a>
 </pre>
 <div class="docs">
 <p>Shift the elements of an arbitrary-typed array left by the given
@@ -607,7 +607,7 @@ the multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">typename</span> U&gt;
-<span class="modifier">inline </span>T[M] <span class="identifier">rotate_array_right</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-rotate_array_right" id="data-array-rotate_array_right">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L638">source</a>
+<span class="modifier">inline </span>T[M] <span class="identifier">rotate_array_right</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-rotate_array_right" id="data-array-rotate_array_right">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L638">source</a>
 </pre>
 <div class="docs">
 <p>Rotate the elements of an arbitrary-typed array right by the given
@@ -670,7 +670,7 @@ multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">typename</span> U&gt;
-<span class="modifier">inline </span>T[M] <span class="identifier">rotate_array_left</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-rotate_array_left" id="data-array-rotate_array_left">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L675">source</a>
+<span class="modifier">inline </span>T[M] <span class="identifier">rotate_array_left</span>(T[N] <span class="identifier">data</span>, U <span class="identifier">amount</span>) <a class="anchor" href="#data-array-rotate_array_left" id="data-array-rotate_array_left">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L675">source</a>
 </pre>
 <div class="docs">
 <p>Rotate the elements of an arbitrary-typed array left by the given
@@ -733,7 +733,7 @@ multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">map</span>((T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-map" id="data-array-map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L705">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">map</span>((T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-map" id="data-array-map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L705">source</a>
 </pre>
 <div class="docs">
 <p>Map array of input values to result values.</p>
@@ -749,7 +749,7 @@ multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">map_indices</span>((<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-array-map_indices" id="data-array-map_indices">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L738">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">map_indices</span>((<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>) <a class="anchor" href="#data-array-map_indices" id="data-array-map_indices">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L738">source</a>
 </pre>
 <div class="docs">
 <p>Map array of indices to result values.</p>
@@ -762,7 +762,7 @@ multiplexers and hence area.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">foldr</span>((T, T) -&gt; T <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-foldr" id="data-array-foldr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L756">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">foldr</span>((T, T) -&gt; T <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-foldr" id="data-array-foldr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L756">source</a>
 </pre>
 <div class="docs">
 <p>Right-associative fold of an array.</p>
@@ -779,7 +779,7 @@ f(0, f(1, f(2, 3)));
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">foldl</span>((T, T) -&gt; T <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-foldl" id="data-array-foldl">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L781">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">foldl</span>((T, T) -&gt; T <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-foldl" id="data-array-foldl">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L781">source</a>
 </pre>
 <div class="docs">
 <p>Left-associative fold of an array.</p>
@@ -796,7 +796,7 @@ f(3, f(2, f(1, 0)));
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">reduce</span>((T, T) -&gt; T <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-reduce" id="data-array-reduce">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L829">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">reduce</span>((T, T) -&gt; T <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-reduce" id="data-array-reduce">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L829">source</a>
 </pre>
 <div class="docs">
 <p>Implement a binary reducer tree using a function to reduce a pair of
@@ -813,7 +813,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">typename</span> R&gt;
-<span class="modifier">inline </span>R <span class="identifier">map_reduce</span>((T) -&gt; R <span class="identifier">map_fn</span>, (R, R) -&gt; R <span class="identifier">reduce_fn</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-map_reduce" id="data-array-map_reduce">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L869">source</a>
+<span class="modifier">inline </span>R <span class="identifier">map_reduce</span>((T) -&gt; R <span class="identifier">map_fn</span>, (R, R) -&gt; R <span class="identifier">reduce_fn</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-map_reduce" id="data-array-map_reduce">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L869">source</a>
 </pre>
 <div class="docs">
 <p>Implements map-reduce. Inputs are first mapped into the appropriate
@@ -831,7 +831,7 @@ reduction tree.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">or</span>(<span class="builtin">bool</span>[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-or" id="data-array-or">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L888">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">or</span>(<span class="builtin">bool</span>[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-or" id="data-array-or">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L888">source</a>
 </pre>
 <div class="docs">
 <p>Returns true if any of the elements are true.</p>
@@ -849,7 +849,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">and</span>(<span class="builtin">bool</span>[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-and" id="data-array-and">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L912">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">and</span>(<span class="builtin">bool</span>[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-and" id="data-array-and">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L912">source</a>
 </pre>
 <div class="docs">
 <p>Returns true if all of the elements are true.</p>
@@ -867,7 +867,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">any</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-any" id="data-array-any">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L933">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">any</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-any" id="data-array-any">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L933">source</a>
 </pre>
 <div class="docs">
 <p>Returns true if any of the elements of array satisfies the
@@ -883,7 +883,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">all</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-all" id="data-array-all">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L949">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">all</span>((T) -&gt; <span class="builtin">bool</span> <span class="identifier">predicate</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-all" id="data-array-all">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L949">source</a>
 </pre>
 <div class="docs">
 <p>Returns true if all elements of the array satisfy the predicate.</p>
@@ -898,7 +898,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> S, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip_with</span>((S, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, S[N] <span class="identifier">x</span>, T[N] <span class="identifier">y</span>) <a class="anchor" href="#data-array-zip_with" id="data-array-zip_with">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L977">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip_with</span>((S, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, S[N] <span class="identifier">x</span>, T[N] <span class="identifier">y</span>) <a class="anchor" href="#data-array-zip_with" id="data-array-zip_with">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L977">source</a>
 </pre>
 <div class="docs">
 <p>Combines elements of two arrays using specified function.</p>
@@ -914,7 +914,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip_with_indices</span>((<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-zip_with_indices" id="data-array-zip_with_indices">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1015">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">zip_with_indices</span>((<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">auto</span> <span class="identifier">f</span>, T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-zip_with_indices" id="data-array-zip_with_indices">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1015">source</a>
 </pre>
 <div class="docs">
 <p>Map array of input values and their indices to result values.</p>
@@ -932,7 +932,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T1, T2&gt;[N] <span class="identifier">zip</span>(T1[N] <span class="identifier">x</span>, T2[N] <span class="identifier">y</span>) <a class="anchor" href="#data-array-zip" id="data-array-zip">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1027">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T1, T2&gt;[N] <span class="identifier">zip</span>(T1[N] <span class="identifier">x</span>, T2[N] <span class="identifier">y</span>) <a class="anchor" href="#data-array-zip" id="data-array-zip">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1027">source</a>
 </pre>
 <div class="docs">
 <p>Combines two arrays into an array of pairs.</p>
@@ -944,7 +944,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T = <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;&gt;
-<span class="modifier">inline </span>T[N] <span class="identifier">indices</span>() <a class="anchor" href="#data-array-indices" id="data-array-indices">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1043">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">indices</span>() <a class="anchor" href="#data-array-indices" id="data-array-indices">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1043">source</a>
 </pre>
 <div class="docs">
 <p>Returns array with each element value equal to its index.</p>
@@ -982,7 +982,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">minimum</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-minimum" id="data-array-minimum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1062">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">minimum</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-minimum" id="data-array-minimum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1062">source</a>
 </pre>
 <div class="docs">
 <p>Returns minimum element from an array of integers.</p>
@@ -994,7 +994,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">maximum</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-maximum" id="data-array-maximum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1080">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">maximum</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-maximum" id="data-array-maximum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1080">source</a>
 </pre>
 <div class="docs">
 <p>Returns maximum value in the array of integers.</p>
@@ -1006,7 +1006,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>R <span class="identifier">sum</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-sum" id="data-array-sum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1098">source</a>
+<span class="modifier">inline </span>R <span class="identifier">sum</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-sum" id="data-array-sum">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1098">source</a>
 </pre>
 <div class="docs">
 <p>Sum elements in an array.</p>
@@ -1018,7 +1018,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">first_valid</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-first_valid" id="data-array-first_valid">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1116">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">first_valid</span>(<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-first_valid" id="data-array-first_valid">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1116">source</a>
 </pre>
 <div class="docs">
 <p>Given an array of <code>optional&lt;T&gt;</code>, return the first
@@ -1044,7 +1044,7 @@ T[M]
     T[M] <span class="identifier">destination</span>,
     <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;M&gt; <span class="identifier">d_first</span>,
     <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">elements_to_copy</span>
-    ) <a class="anchor" href="#data-array-copy_array" id="data-array-copy_array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1137">source</a>
+    ) <a class="anchor" href="#data-array-copy_array" id="data-array-copy_array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1137">source</a>
 </pre>
 <div class="docs">
 <p>Copies an array or creates a subset of an array.</p>
@@ -1126,7 +1126,7 @@ T[M] <span class="identifier">destination</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">unique_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, T[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unique_by" id="data-array-unique_by">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1177">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">unique_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, T[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unique_by" id="data-array-unique_by">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1177">source</a>
 </pre>
 <div class="docs">
 <p>De-duplicate array elements with user-supplied equality predicate.
@@ -1161,7 +1161,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">unique</span>(T[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unique" id="data-array-unique">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1216">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[N] <span class="identifier">unique</span>(T[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unique" id="data-array-unique">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1216">source</a>
 </pre>
 <div class="docs">
 <p>De-duplicate array elements. Similar to <code>unique_by</code> but
@@ -1177,7 +1177,7 @@ elements are unique.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, T[N] <span class="identifier">xs</span>, T[N] <span class="identifier">ys</span>) <a class="anchor" href="#data-array-equal_by" id="data-array-equal_by">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1232">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal_by</span>((T, T) -&gt; <span class="builtin">bool</span> <span class="identifier">equality_fn</span>, T[N] <span class="identifier">xs</span>, T[N] <span class="identifier">ys</span>) <a class="anchor" href="#data-array-equal_by" id="data-array-equal_by">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1232">source</a>
 </pre>
 <div class="docs">
 <p>Element-wise equality comparison of arrays using specified
@@ -1193,7 +1193,7 @@ true</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal</span>(T[N] <span class="identifier">xs</span>, T[N] <span class="identifier">ys</span>) <a class="anchor" href="#data-array-equal" id="data-array-equal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1248">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">equal</span>(T[N] <span class="identifier">xs</span>, T[N] <span class="identifier">ys</span>) <a class="anchor" href="#data-array-equal" id="data-array-equal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1248">source</a>
 </pre>
 <div class="docs">
 <p>Element-wise comparison of arrays for equality using
@@ -1209,7 +1209,7 @@ false</code></pre>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R, <span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;L[N], R[N]&gt; <span class="identifier">unzip_with</span>((T) -&gt; <a class="link" href="../data/tuple.html#data-tuple-tuple2"><span class="identifier">tuple2</span></a>&lt;L, R&gt; <span class="identifier">f</span>, T[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unzip_with" id="data-array-unzip_with">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1266">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;L[N], R[N]&gt; <span class="identifier">unzip_with</span>((T) -&gt; <a class="link" href="../data/tuple.html#data-tuple-tuple2"><span class="identifier">tuple2</span></a>&lt;L, R&gt; <span class="identifier">f</span>, T[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unzip_with" id="data-array-unzip_with">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1266">source</a>
 </pre>
 <div class="docs">
 <p>Transform an array into a pair of arrays using a projection.</p>
@@ -1280,7 +1280,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;L[N], R[N]&gt; <span class="identifier">unzip</span>(<a class="link" href="../data/tuple.html#data-tuple-tuple2"><span class="identifier">tuple2</span></a>&lt;L, R&gt;[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unzip" id="data-array-unzip">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1290">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;L[N], R[N]&gt; <span class="identifier">unzip</span>(<a class="link" href="../data/tuple.html#data-tuple-tuple2"><span class="identifier">tuple2</span></a>&lt;L, R&gt;[N] <span class="identifier">xs</span>) <a class="anchor" href="#data-array-unzip" id="data-array-unzip">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1290">source</a>
 </pre>
 <div class="docs">
 <p>Transform an array of pairs into a pair of arrays.</p>
@@ -1292,7 +1292,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span>T[N] <span class="identifier">repeat</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-array-repeat" id="data-array-repeat">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1305">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">repeat</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-array-repeat" id="data-array-repeat">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1305">source</a>
 </pre>
 <div class="docs">
 <p>Construct an array with all elements equal to the same value</p>
@@ -1307,7 +1307,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span>T[<span class="literal">1</span>] <span class="identifier">singleton</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-array-singleton" id="data-array-singleton">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1325">source</a>
+<span class="modifier">inline </span>T[<span class="literal">1</span>] <span class="identifier">singleton</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-array-singleton" id="data-array-singleton">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1325">source</a>
 </pre>
 <div class="docs">
 <p>Construct array of one element with specified value</p>
@@ -1319,7 +1319,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span>T[N] <span class="identifier">iterate</span>((T) -&gt; T <span class="identifier">f</span>, T <span class="identifier">x</span>) <a class="anchor" href="#data-array-iterate" id="data-array-iterate">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1342">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">iterate</span>((T) -&gt; T <span class="identifier">f</span>, T <span class="identifier">x</span>) <a class="anchor" href="#data-array-iterate" id="data-array-iterate">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1342">source</a>
 </pre>
 <div class="docs">
 <p>Return an array of repeated applications of <code>f</code> to
@@ -1336,7 +1336,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">at</span>(T[N] <span class="identifier">x</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">i</span>) <a class="anchor" href="#data-array-at" id="data-array-at">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1360">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">at</span>(T[N] <span class="identifier">x</span>, <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">i</span>) <a class="anchor" href="#data-array-at" id="data-array-at">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1360">source</a>
 </pre>
 <div class="docs">
 <p>Access element <code>i</code>. Equivalent to <code>x[i]</code>. If
@@ -1350,7 +1350,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">front</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-front" id="data-array-front">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1373">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">front</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-front" id="data-array-front">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1373">source</a>
 </pre>
 <div class="docs">
 <p>Return the first element in the array. Equivalent to
@@ -1363,7 +1363,7 @@ T[N] <span class="identifier">xs</span>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">back</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-back" id="data-array-back">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/array.k#L1385">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">back</span>(T[N] <span class="identifier">x</span>) <a class="anchor" href="#data-array-back" id="data-array-back">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/array.k#L1385">source</a>
 </pre>
 <div class="docs">
 <p>Return the last element in the vector. Equivalent to

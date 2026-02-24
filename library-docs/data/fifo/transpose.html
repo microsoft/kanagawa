@@ -177,7 +177,7 @@ id="index-link" class="link"><code>fifo</code></a></li>
     <span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>,
     <span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">fifo</span> <a class="anchor" href="#data-fifo-transpose-fifo" id="data-fifo-transpose-fifo">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/transpose.k#L31">source</a>
+<span class="keyword">class</span> <span class="identifier">fifo</span> <a class="anchor" href="#data-fifo-transpose-fifo" id="data-fifo-transpose-fifo">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/transpose.k#L31">source</a>
 </pre>
 <div class="docs">
 <p>A FIFO that accepts rows of type <code>T[ArraySize]</code>,
@@ -241,7 +241,7 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">array_t</span> = T[ArraySize] <a class="anchor" href="#data-fifo-transpose-fifo-array_t" id="data-fifo-transpose-fifo-array_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/transpose.k#L41">source</a>
+<span class="keyword">using</span> <span class="identifier">array_t</span> = T[ArraySize] <a class="anchor" href="#data-fifo-transpose-fifo-array_t" id="data-fifo-transpose-fifo-array_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/transpose.k#L41">source</a>
 </pre>
 <div class="docs">
 <p>Input and output array type</p>
@@ -257,7 +257,7 @@ is not empty.</p>
 <li>
 <pre class="signature">
 <a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a>
-<span class="identifier">dequeue_and_discard</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_column_count</span>) <a class="anchor" href="#data-fifo-transpose-fifo-dequeue_and_discard" id="data-fifo-transpose-fifo-dequeue_and_discard">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/transpose.k#L93">source</a>
+<span class="identifier">dequeue_and_discard</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_column_count</span>) <a class="anchor" href="#data-fifo-transpose-fifo-dequeue_and_discard" id="data-fifo-transpose-fifo-dequeue_and_discard">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/transpose.k#L93">source</a>
 </pre>
 <div class="docs">
 <p>Read one column from FIFO and discard
@@ -268,7 +268,7 @@ true.</p>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-transpose-fifo-dequeue" id="data-fifo-transpose-fifo-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/transpose.k#L131">source</a>
+<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-transpose-fifo-dequeue" id="data-fifo-transpose-fifo-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/transpose.k#L131">source</a>
 </pre>
 <div class="docs">
 <p>Read one column from FIFO. Block if FIFO is empty and
@@ -281,7 +281,7 @@ true.</p>
 <span class="identifier">enqueue_and_discard</span>(
     <a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>,
     <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_row_count</span>
-    ) <a class="anchor" href="#data-fifo-transpose-fifo-enqueue_and_discard" id="data-fifo-transpose-fifo-enqueue_and_discard">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/transpose.k#L137">source</a>
+    ) <a class="anchor" href="#data-fifo-transpose-fifo-enqueue_and_discard" id="data-fifo-transpose-fifo-enqueue_and_discard">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/transpose.k#L137">source</a>
 </pre>
 <div class="docs">
 <p>Write <code>1 + discard_row_count</code> rows into the FIFO. Block if
@@ -314,7 +314,7 @@ the FIFO.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-transpose-fifo-enqueue" id="data-fifo-transpose-fifo-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/transpose.k#L169">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/transpose.html#data-fifo-transpose-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-transpose-fifo-enqueue" id="data-fifo-transpose-fifo-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/transpose.k#L169">source</a>
 </pre>
 <div class="docs">
 <p>Write one row into the FIFO. Block if FIFO is full and

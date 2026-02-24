@@ -177,7 +177,7 @@ id="index-link" class="link"><code>cache</code></a></li>
     <span class="keyword">auto</span> Associativity,
     <span class="keyword">auto</span> Depth
     &gt;
-<span class="keyword">class</span> <span class="identifier">cache</span> <a class="anchor" href="#data-cache-write_through-cache" id="data-cache-write_through-cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L20">source</a>
+<span class="keyword">class</span> <span class="identifier">cache</span> <a class="anchor" href="#data-cache-write_through-cache" id="data-cache-write_through-cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L20">source</a>
 </pre>
 <div class="docs">
 <p>A cache that immediately writes data to the backing store.</p>
@@ -239,7 +239,7 @@ create a directly mapped cache.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-write_through-cache-set_index_t" id="data-cache-write_through-cache-set_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L35">source</a>
+<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-write_through-cache-set_index_t" id="data-cache-write_through-cache-set_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L35">source</a>
 </pre>
 </li>
 </ul>
@@ -251,7 +251,7 @@ create a directly mapped cache.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-(Key <span class="identifier">key</span>) -&gt; Value <span class="identifier">load</span> <a class="anchor" href="#data-cache-write_through-cache-load" id="data-cache-write_through-cache-load">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L24">source</a>
+(Key <span class="identifier">key</span>) -&gt; Value <span class="identifier">load</span> <a class="anchor" href="#data-cache-write_through-cache-load" id="data-cache-write_through-cache-load">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L24">source</a>
 </pre>
 <div class="docs">
 <p>The callback function to invoke when a <code>get</code> call causes a
@@ -260,7 +260,7 @@ cache miss.</p>
 </li>
 <li>
 <pre class="signature">
-(Key <span class="identifier">key</span>, Value <span class="identifier">value</span>) -&gt; <span class="keyword">void</span> <span class="identifier">store</span> <a class="anchor" href="#data-cache-write_through-cache-store" id="data-cache-write_through-cache-store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L28">source</a>
+(Key <span class="identifier">key</span>, Value <span class="identifier">value</span>) -&gt; <span class="keyword">void</span> <span class="identifier">store</span> <a class="anchor" href="#data-cache-write_through-cache-store" id="data-cache-write_through-cache-store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L28">source</a>
 </pre>
 <div class="docs">
 <p>The callback function to invoke in a <code>put</code> call to store
@@ -283,7 +283,7 @@ Value
     <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<span class="identifier">entry_index_t</span> <span class="identifier">entry_index</span>,
     Value <span class="identifier">newValue</span>,
     <span class="builtin">bool</span> <span class="identifier">readFromCache</span>
-    ) <a class="anchor" href="#data-cache-write_through-cache-store_value_in_cache" id="data-cache-write_through-cache-store_value_in_cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L46">source</a>
+    ) <a class="anchor" href="#data-cache-write_through-cache-store_value_in_cache" id="data-cache-write_through-cache-store_value_in_cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L46">source</a>
 </pre>
 <div class="docs">
 <p>Stores a value in the cache, or reads the existing value if
@@ -341,7 +341,7 @@ Value
     Key <span class="identifier">key</span>,
     <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>,
     Value <span class="identifier">value</span>
-    ) <a class="anchor" href="#data-cache-write_through-cache-get_or_put" id="data-cache-write_through-cache-get_or_put">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L78">source</a>
+    ) <a class="anchor" href="#data-cache-write_through-cache-get_or_put" id="data-cache-write_through-cache-get_or_put">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L78">source</a>
 </pre>
 <div class="docs">
 <p>Gets or puts a value from/to the cache.</p>
@@ -389,7 +389,7 @@ Value <span class="identifier">value</span>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-write_through-cache-initialize" id="data-cache-write_through-cache-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L110">source</a>
+<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-write_through-cache-initialize" id="data-cache-write_through-cache-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L110">source</a>
 </pre>
 <div class="docs">
 <p>Initialize or re-initialize a cache object. Re-initializing the cache
@@ -399,7 +399,7 @@ called concurrently with get or put.</p>
 </li>
 <li>
 <pre class="signature">
-Value <span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>) <a class="anchor" href="#data-cache-write_through-cache-get" id="data-cache-write_through-cache-get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L116">source</a>
+Value <span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>) <a class="anchor" href="#data-cache-write_through-cache-get" id="data-cache-write_through-cache-get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L116">source</a>
 </pre>
 <div class="docs">
 <p>Gets a value from the cache.</p>
@@ -430,7 +430,7 @@ Key <span class="identifier">key</span>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">put</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>, Value <span class="identifier">value</span>) <a class="anchor" href="#data-cache-write_through-cache-put" id="data-cache-write_through-cache-put">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/write_through.k#L127">source</a>
+<span class="keyword">void</span> <span class="identifier">put</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/write_through.html#data-cache-write_through-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>, Value <span class="identifier">value</span>) <a class="anchor" href="#data-cache-write_through-cache-put" id="data-cache-write_through-cache-put">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/cache/write_through.k#L127">source</a>
 </pre>
 <div class="docs">
 <p>Puts a value into the cache.</p>

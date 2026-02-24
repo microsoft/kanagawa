@@ -176,7 +176,7 @@ id="index-link" class="link"><code>multi_fifo</code></a></li>
     <span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>,
     <span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">multi_fifo</span> <a class="anchor" href="#data-fifo-multi-multi_fifo" id="data-fifo-multi-multi_fifo">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/multi.k#L26">source</a>
+<span class="keyword">class</span> <span class="identifier">multi_fifo</span> <a class="anchor" href="#data-fifo-multi-multi_fifo" id="data-fifo-multi-multi_fifo">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/multi.k#L26">source</a>
 </pre>
 <div class="docs">
 <p>This class implements a set of FIFOs that use a single, statically
@@ -242,12 +242,12 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">pointer_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-fifo-multi-multi_fifo-pointer_t" id="data-fifo-multi-multi_fifo-pointer_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/multi.k#L29">source</a>
+<span class="keyword">using</span> <span class="identifier">pointer_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-fifo-multi-multi_fifo-pointer_t" id="data-fifo-multi-multi_fifo-pointer_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/multi.k#L29">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">fifo_idx_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <a class="anchor" href="#data-fifo-multi-multi_fifo-fifo_idx_t" id="data-fifo-multi-multi_fifo-fifo_idx_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/multi.k#L30">source</a>
+<span class="keyword">using</span> <span class="identifier">fifo_idx_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <a class="anchor" href="#data-fifo-multi-multi_fifo-fifo_idx_t" id="data-fifo-multi-multi_fifo-fifo_idx_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/multi.k#L30">source</a>
 </pre>
 </li>
 </ul>
@@ -259,7 +259,7 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">count</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-count" id="data-fifo-multi-multi_fifo-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/multi.k#L50">source</a>
+<span class="modifier">inline </span><a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">count</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-count" id="data-fifo-multi-multi_fifo-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/multi.k#L50">source</a>
 </pre>
 <div class="docs">
 <p>Return the number of elements that have been written and not read.
@@ -270,7 +270,7 @@ empty or full for non-blocking versions of the FIFO.</p>
 </li>
 <li>
 <pre class="signature">
-T <span class="identifier">dequeue</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>, <span class="builtin">bool</span> <span class="identifier">pop</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-dequeue" id="data-fifo-multi-multi_fifo-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/multi.k#L57">source</a>
+T <span class="identifier">dequeue</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>, <span class="builtin">bool</span> <span class="identifier">pop</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-dequeue" id="data-fifo-multi-multi_fifo-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/multi.k#L57">source</a>
 </pre>
 <div class="docs">
 <p>Read one entry from a FIFO. Block if the FIFO is empty and
@@ -280,7 +280,7 @@ the entry is left on the FIFO, equivalent to <code>front</code>.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>, T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-enqueue" id="data-fifo-multi-multi_fifo-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo/multi.k#L85">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo"><span class="identifier">multi_fifo</span></a>::<a class="link" href="../../data/fifo/multi.html#data-fifo-multi-multi_fifo-fifo_idx_t"><span class="identifier">fifo_idx_t</span></a> <span class="identifier">which</span>, T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-multi-multi_fifo-enqueue" id="data-fifo-multi-multi_fifo-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/fifo/multi.k#L85">source</a>
 </pre>
 <div class="docs">
 <p>Write one entry to a FIFO. Block if the FIFO is full and

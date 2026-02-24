@@ -189,7 +189,7 @@ class="link"><code>while_do</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">range_for</span>(T <span class="identifier">begin</span>, T <span class="identifier">end</span>, <span class="keyword">auto</span> <span class="identifier">step</span>, (T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-range_for" id="control-loop-range_for">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L30">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">range_for</span>(T <span class="identifier">begin</span>, T <span class="identifier">end</span>, <span class="keyword">auto</span> <span class="identifier">step</span>, (T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-range_for" id="control-loop-range_for">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L30">source</a>
 </pre>
 <div class="docs">
 <p>Execute body for a range of values starting from <code>begin</code>
@@ -197,7 +197,7 @@ and ending before <code>end</code>, incrementing by <code>step</code> on
 each iteration.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">while_do</span>(() -&gt; <span class="builtin">bool</span> <span class="identifier">condition</span>, () -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-while_do" id="control-loop-while_do">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L43">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">while_do</span>(() -&gt; <span class="builtin">bool</span> <span class="identifier">condition</span>, () -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-while_do" id="control-loop-while_do">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L43">source</a>
 </pre>
 <div class="docs">
 <p>Keep calling <code>body</code> while the <code>condition</code>
@@ -205,7 +205,7 @@ returns true.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> I&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_for</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_for" id="control-loop-pipelined_for">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L132">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_for</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_for" id="control-loop-pipelined_for">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L132">source</a>
 </pre>
 <div class="docs">
 <p>Spawn <code>count</code> threads executing <code>body</code>, which
@@ -244,7 +244,7 @@ with a zero-width fifo.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_for_each</span>(T[N] <span class="identifier">arr</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_for_each" id="control-loop-pipelined_for_each">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L153">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_for_each</span>(T[N] <span class="identifier">arr</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_for_each" id="control-loop-pipelined_for_each">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L153">source</a>
 </pre>
 <div class="docs">
 <p>Spawn a thread for each element of array <code>arr</code> calling
@@ -261,7 +261,7 @@ pipelined_for_each(a,  [](uint4 i, uint32 x)
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> I&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_do</span>((I) -&gt; <span class="builtin">bool</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_do" id="control-loop-pipelined_do">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L185">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pipelined_do</span>((I) -&gt; <span class="builtin">bool</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_do" id="control-loop-pipelined_do">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L185">source</a>
 </pre>
 <div class="docs">
 <p>Spawn threads that will execute the <code>body</code> closure until
@@ -292,7 +292,7 @@ pipelined_do([]()
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> I, <span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span>T[N] <span class="identifier">pipelined_map</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_map" id="control-loop-pipelined_map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L269">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">pipelined_map</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_map" id="control-loop-pipelined_map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L269">source</a>
 </pre>
 <div class="docs">
 <p>Spawn <code>count</code> threads executing <code>body</code>, which
@@ -330,7 +330,7 @@ inner thread into an array and returns that array to the caller.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> I, <span class="keyword">typename</span> T, T default_value = {}&gt;
-<span class="modifier">inline </span>T <span class="identifier">pipelined_last</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_last" id="control-loop-pipelined_last">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L350">source</a>
+<span class="modifier">inline </span>T <span class="identifier">pipelined_last</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (I) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-pipelined_last" id="control-loop-pipelined_last">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L350">source</a>
 </pre>
 <div class="docs">
 <p>Spawn <code>count</code> threads executing <code>body</code>, which
@@ -370,7 +370,7 @@ caller. If the thread count is equal to 0, then
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">parallel_for</span>(<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">count</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_for" id="control-loop-parallel_for">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L582">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">parallel_for</span>(<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;N&gt; <span class="identifier">count</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_for" id="control-loop-parallel_for">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L582">source</a>
 </pre>
 <div class="docs">
 <p>Spawn <code>count</code> threads executing <code>body</code>, which
@@ -464,7 +464,7 @@ greater than <code>N</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">parallel_for_each</span>(T[N] <span class="identifier">arr</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_for_each" id="control-loop-parallel_for_each">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L617">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">parallel_for_each</span>(T[N] <span class="identifier">arr</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;, T) -&gt; <span class="keyword">void</span> <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_for_each" id="control-loop-parallel_for_each">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L617">source</a>
 </pre>
 <div class="docs">
 <p>Spawn a thread for each element of array <code>arr</code> calling
@@ -547,7 +547,7 @@ call to <code>body</code>).</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T, <span class="keyword">auto</span> MaxCallerThreads = <span class="identifier">max_threads_limit</span>&gt;
-<span class="modifier">inline </span>T[N] <span class="identifier">parallel_map</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_map" id="control-loop-parallel_map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/loop.k#L711">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">parallel_map</span>(<span class="keyword">auto</span> <span class="identifier">count</span>, (<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; T <span class="identifier">body</span>) <a class="anchor" href="#control-loop-parallel_map" id="control-loop-parallel_map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/control/loop.k#L711">source</a>
 </pre>
 <div class="docs">
 <p>Spawn <code>count</code> threads executing <code>body</code>, which
