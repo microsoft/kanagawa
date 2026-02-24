@@ -12,7 +12,7 @@
     },
     // Run once after the container is created and the repo is mounted.
     // Initialises git submodules so the build is ready to go.
-    "postCreateCommand": "git submodule update --init --recursive",
+    "postCreateCommand": "git submodule sync --recursive && git -c protocol.version=2 submodule update --init --recursive --depth 1",
     "customizations": {
         "vscode": {
             "extensions": [

@@ -7,39 +7,39 @@ on:
   workflow_call:
     inputs:
       build-targets:
-        description: 'Space-separated list of CMake targets to build'
+        description: "Space-separated list of CMake targets to build"
         required: true
         type: string
       test-targets:
-        description: 'Space-separated list of CMake test targets to run after build (optional)'
+        description: "Space-separated list of CMake test targets to run after build (optional)"
         required: false
         type: string
-        default: ''
+        default: ""
       cmake-build-type:
-        description: 'CMake build type'
+        description: "CMake build type"
         required: false
         type: string
-        default: 'RelWithDebInfo'
+        default: "RelWithDebInfo"
       runs-on:
-        description: 'Runner type (must be a Linux runner)'
+        description: "Runner type (must be a Linux runner)"
         required: false
         type: string
-        default: 'ubuntu-24.04'
+        default: "ubuntu-24.04"
       heavy-parallel-jobs:
-        description: 'Number of parallel jobs for heavy compilation tasks'
+        description: "Number of parallel jobs for heavy compilation tasks"
         required: false
         type: number
         default: 2
       extra-cmake-args:
-        description: 'Extra args appended to CMake configure'
+        description: "Extra args appended to CMake configure"
         required: false
         type: string
-        default: ''
+        default: ""
       fetch-depth:
-        description: 'Checkout fetch-depth (0 to fetch all history/tags)'
+        description: "Checkout fetch-depth (0 to fetch all history/tags)"
         required: false
         type: string
-        default: '0'
+        default: "0"
 
 jobs:
   build:
@@ -68,10 +68,10 @@ jobs:
         with:
           android: true
           dotnet: true
-          haskell: false
+          haskell: true
           docker-images: false
           large-packages: true
-          tool-cache: false
+          tool-cache: true
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
