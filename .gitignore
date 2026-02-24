@@ -13,4 +13,3 @@ CMakeUserPresets.json
 .vscode
 build-ci
 .DS_Store
-dist-newstyle
