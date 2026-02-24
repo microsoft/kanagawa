@@ -77,6 +77,11 @@ on:
         required: false
         type: string
         default: '0'
+      use-devcontainer:
+        description: 'Build and test inside the devcontainer Docker image (.devcontainer/Dockerfile) instead of installing tools natively'
+        required: false
+        type: boolean
+        default: false
 jobs:
   build:
     runs-on: ${{ inputs.runs-on }}
@@ -91,6 +96,7 @@ jobs:
 
     steps:
       - name: Set build dirs
+        if: ${{ !inputs.use-devcontainer }}
         shell: bash
         run: |
           echo "BUILD_DIR=$GITHUB_WORKSPACE/build-ci" >> "$GITHUB_ENV"
@@ -111,7 +117,7 @@ jobs:
 
       # Free up some disk space - this is a major constraint on GitHub-hosted runners
       - name: Free disk space
-        if: runner.os == 'Linux'
+        if: runner.os == 'Linux' && !inputs.use-devcontainer
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
           android: true
@@ -121,8 +127,21 @@ jobs:
           large-packages: true
           tool-cache: false
 
+      # Free disk space for devcontainer path - keep docker images
+      - name: Free disk space (devcontainer)
+        if: runner.os == 'Linux' && inputs.use-devcontainer
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          android: true
+          dotnet: true
+          haskell: false
+          docker-images: false
+          large-packages: true
+          tool-cache: false
+
       # Derive the CIRCT submodule commit
       - name: Get CIRCT submodule SHA
+        if: ${{ !inputs.use-devcontainer }}
         id: circt
         shell: bash
         run: |
@@ -135,6 +154,7 @@ jobs:
 
       # Detect the C++ compiler & version (keeps cache safe across toolchain updates)
       - name: Detect C++ compiler
+        if: ${{ !inputs.use-devcontainer }}
         id: ccinfo
         shell: bash
         run: |
@@ -153,6 +173,7 @@ jobs:
 
       # Restore ccache across runs. Cache key includes compiler id+version, CIRCT sha, CMake build type, and build/cmake/circt.cmake hash.
       - name: Restore ccache
+        if: ${{ !inputs.use-devcontainer }}
         uses: actions/cache@v4
         with:
           path: ${{ env.CCACHE_DIR }}
@@ -165,6 +186,7 @@ jobs:
             ccache-circt-${{ runner.os }}-${{ steps.ccinfo.outputs.id }}-${{ steps.ccinfo.outputs.ver }}-
 
       - name: Install Haskell
+        if: ${{ !inputs.use-devcontainer }}
         id: haskell
         uses: haskell-actions/setup@v2
         with:
@@ -173,6 +195,7 @@ jobs:
           enable-stack: false
 
       - name: Cache ghcup & cabal store
+        if: ${{ !inputs.use-devcontainer }}
         uses: actions/cache@v4
         with:
           path: |
@@ -183,21 +206,24 @@ jobs:
             ${{ runner.os }}-ghc-9.6.7-cabal-3.12.1.0-
 
       - name: cabal update
+        if: ${{ !inputs.use-devcontainer }}
         run: cabal update
 
       - name: Init ccache
+        if: ${{ !inputs.use-devcontainer }}
         uses: hendrikmuhs/ccache-action@v1
         with:
           max-size: ${{ env.CCACHE_MAXSIZE }}
           verbose: 1
 
       - name: Install Verilator
-        if: runner.os == 'Linux'
+        if: runner.os == 'Linux' && !inputs.use-devcontainer
         uses: veryl-lang/setup-verilator@v1
         with:
           version: '5.040'
 
       - name: Install Boost
+        if: ${{ !inputs.use-devcontainer }}
         id: install_boost
         uses: MarkusJx/install-boost@v2
         with:
@@ -208,22 +234,22 @@ jobs:
           arch: ${{ inputs.boost-arch == 'auto' && (runner.os == 'macOS' && 'aarch64' || 'x86') || inputs.boost-arch }}
 
       - name: Install pandoc
-        if: ${{ inputs.install-pandoc }}
+        if: ${{ inputs.install-pandoc && !inputs.use-devcontainer }}
         uses: pandoc/actions/setup@v1
 
       - name: Install Rust toolchain
-        if: ${{ inputs.install-rust }}
+        if: ${{ inputs.install-rust && !inputs.use-devcontainer }}
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
           cache: true
 
       - name: Install svgbob_cli
-        if: ${{ inputs.install-svgbob }}
+        if: ${{ inputs.install-svgbob && !inputs.use-devcontainer }}
         run: cargo install svgbob_cli --version 0.7.6
 
       - name: Install RISC-V 64-bit GCC toolchain
-        if: ${{ inputs.install-riscv64-gcc }}
+        if: ${{ inputs.install-riscv64-gcc && !inputs.use-devcontainer }}
         shell: bash
         run: |
           set -euo pipefail
@@ -251,6 +277,7 @@ jobs:
           echo "RISCV64_GCC_DIR=$RISCV_DIR" >> "$GITHUB_ENV"
 
       - name: Capture tool paths
+        if: ${{ !inputs.use-devcontainer }}
         id: paths
         shell: bash
         run: |
@@ -308,6 +335,7 @@ jobs:
           echo "CMAKE_PREFIX_PATH=$BOOST_ROOT_OUT${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}" >> "$GITHUB_ENV"
 
       - name: Print tool versions/paths
+        if: ${{ !inputs.use-devcontainer }}
         shell: bash
         run: |
           ghc --version
@@ -322,10 +350,11 @@ jobs:
           echo "CMAKE_PREFIX_PATH=${{ env.CMAKE_PREFIX_PATH }}"
 
       - name: Setup MSVC Developer Command Prompt
-        if: runner.os == 'Windows'
+        if: runner.os == 'Windows' && !inputs.use-devcontainer
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Configure (CMake Generate)
+        if: ${{ !inputs.use-devcontainer }}
         shell: bash
         run: |
           cmake \
@@ -345,6 +374,7 @@ jobs:
             ${{ inputs.extra-cmake-args }}
 
       - name: Reset ccache stats
+        if: ${{ !inputs.use-devcontainer }}
         run: ccache -z || true
 
       - name: Disk usage (before build)
@@ -357,7 +387,59 @@ jobs:
 
       ## Unique workflow steps: Build targets passed as input ##
 
+      # ── Devcontainer path ────────────────────────────────────────────────────
+
+      - name: Set up Docker Buildx
+        if: ${{ inputs.use-devcontainer }}
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build devcontainer image
+        if: ${{ inputs.use-devcontainer }}
+        uses: docker/build-push-action@v6
+        with:
+          context: .devcontainer
+          load: true
+          tags: kanagawa-dev:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run build and tests in container
+        if: ${{ inputs.use-devcontainer }}
+        env:
+          BUILD_TARGETS: ${{ inputs.build-targets }}
+          TEST_TARGETS: ${{ inputs.test-targets }}
+          EXTRA_CMAKE_ARGS: ${{ inputs.extra-cmake-args }}
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/workspace:ro" \
+            -e BUILD_TARGETS \
+            -e TEST_TARGETS \
+            -e EXTRA_CMAKE_ARGS \
+            kanagawa-dev bash -c '
+              set -euo pipefail
+              # shellcheck disable=SC2086
+              cmake -S /workspace -B /tmp/build -G Ninja \
+                -DCMAKE_BUILD_TYPE="${{ inputs.cmake-build-type }}" \
+                -DKANAGAWA_HEAVY_PARALLEL_JOBS="${{ inputs.heavy-parallel-jobs }}" \
+                $EXTRA_CMAKE_ARGS
+              if [ -n "$BUILD_TARGETS" ]; then
+                for target in $BUILD_TARGETS; do
+                  echo "Building target: $target"
+                  ninja -C /tmp/build "$target"
+                done
+              fi
+              if [ -n "$TEST_TARGETS" ]; then
+                for target in $TEST_TARGETS; do
+                  echo "Running test target: $target"
+                  ninja -C /tmp/build "$target"
+                done
+              fi
+            '
+
+      # ── Native (non-containerized) path ──────────────────────────────────────
+
       - name: Build targets
+        if: ${{ !inputs.use-devcontainer }}
         shell: bash
         run: |
           # Build each target from the space-separated list
@@ -367,7 +449,7 @@ jobs:
           done
 
       - name: Run tests
-        if: ${{ inputs.test-targets != '' }}
+        if: ${{ inputs.test-targets != '' && !inputs.use-devcontainer }}
         shell: bash
         run: |
           # Run each test target from the space-separated list
@@ -377,7 +459,7 @@ jobs:
           done
 
       - name: Upload artifacts
-        if: ${{ inputs.artifact-name != '' }}
+        if: ${{ inputs.artifact-name != '' && !inputs.use-devcontainer }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact-name }}
@@ -387,6 +469,7 @@ jobs:
       ## End unique workflow steps ##
 
       - name: Log ccache stats
+        if: ${{ !inputs.use-devcontainer }}
         shell: bash
         run: |
           echo "==== ccache statistics ===="
@@ -394,7 +477,7 @@ jobs:
           echo "==========================="
 
       - name: Reset ccache stats
-        if: always()
+        if: always() && !inputs.use-devcontainer
         run: ccache -z || true
 
       - name: Disk usage (after build)
@@ -403,7 +486,7 @@ jobs:
         run: df -h || (wmic logicaldisk get size,freespace,caption 2>/dev/null || true)
 
       - name: Cleanup build dir & temp caches
-        if: always()
+        if: always() && !inputs.use-devcontainer
         shell: bash
         run: |
           rm -rf "${{ env.BUILD_DIR }}" || true
