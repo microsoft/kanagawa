@@ -204,27 +204,27 @@ class="link"><code>vendor</code></a></li>
 <h1>xilinx.config <a href="../index.html">&equiv;</a></h1>
 <hr />
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">vendor</span> = <span class="literal">&quot;Xilinx&quot;</span> <a class="anchor" href="#xilinx-config-vendor" id="xilinx-config-vendor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/xilinx/config.k#L17">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">vendor</span> = <span class="literal">&quot;Xilinx&quot;</span> <a class="anchor" href="#xilinx-config-vendor" id="xilinx-config-vendor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/xilinx/config.k#L17">source</a>
 </pre>
 <div class="docs">
 <p>Name of the vendor that manufactures the target device, for example
 ‘Intel’ or ‘Xilinx’</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a> <span class="identifier">memory_init_file_type</span> = <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a>::<a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType-Mem"><span class="identifier">Mem</span></a> <a class="anchor" href="#xilinx-config-memory_init_file_type" id="xilinx-config-memory_init_file_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/xilinx/config.k#L20">source</a>
+<span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a> <span class="identifier">memory_init_file_type</span> = <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a>::<a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType-Mem"><span class="identifier">Mem</span></a> <a class="anchor" href="#xilinx-config-memory_init_file_type" id="xilinx-config-memory_init_file_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/xilinx/config.k#L20">source</a>
 </pre>
 <div class="docs">
 <p>The format to use for memory initialization files</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_quad_port</span> = <span class="literal">false</span> <a class="anchor" href="#xilinx-config-block_ram_supports_quad_port" id="xilinx-config-block_ram_supports_quad_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/xilinx/config.k#L27">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_quad_port</span> = <span class="literal">false</span> <a class="anchor" href="#xilinx-config-block_ram_supports_quad_port" id="xilinx-config-block_ram_supports_quad_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/xilinx/config.k#L27">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports block RAMs in a simple quad-port
 configuration</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_mux_cost_factor</span> = <span class="literal">0.125</span> <a class="anchor" href="#xilinx-config-array_mux_cost_factor" id="xilinx-config-array_mux_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/xilinx/config.k#L31">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_mux_cost_factor</span> = <span class="literal">0.125</span> <a class="anchor" href="#xilinx-config-array_mux_cost_factor" id="xilinx-config-array_mux_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/xilinx/config.k#L31">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of muxes necessary to
@@ -232,7 +232,7 @@ implement an array when estimating. the relative cost of synthesizing a
 memory structure as an array (logic) versus using a RAM primitive.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_register_cost_factor</span> = <span class="literal">0.0</span> <a class="anchor" href="#xilinx-config-array_register_cost_factor" id="xilinx-config-array_register_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/xilinx/config.k#L35">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_register_cost_factor</span> = <span class="literal">0.0</span> <a class="anchor" href="#xilinx-config-array_register_cost_factor" id="xilinx-config-array_register_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/xilinx/config.k#L35">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of registers necessary to
@@ -240,7 +240,7 @@ implement an array when estimating. the relative cost of synthesizing a
 memory structure as an array (logic) versus using a RAM primitive.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_write_port_cost_factor</span> = <span class="literal">6.25e-2</span> <a class="anchor" href="#xilinx-config-array_write_port_cost_factor" id="xilinx-config-array_write_port_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/xilinx/config.k#L39">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_write_port_cost_factor</span> = <span class="literal">6.25e-2</span> <a class="anchor" href="#xilinx-config-array_write_port_cost_factor" id="xilinx-config-array_write_port_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/xilinx/config.k#L39">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of write ports necessary to

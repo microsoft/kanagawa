@@ -181,13 +181,13 @@ id="index-link" class="link"><code>tag_t</code></a></li>
 <h1>test.internal.assert <a href="../../index.html">&equiv;</a></h1>
 <hr />
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">tag_t</span> = <a class="link" href="../../type/newtype.html#type-newtype-newtype"><span class="identifier">newtype</span></a>&lt;<span class="keyword">uint32</span>&gt; <a class="anchor" href="#test-internal-assert-tag_t" id="test-internal-assert-tag_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/test/internal/assert.k#L11">source</a>
+<span class="keyword">using</span> <span class="identifier">tag_t</span> = <a class="link" href="../../type/newtype.html#type-newtype-newtype"><span class="identifier">newtype</span></a>&lt;<span class="keyword">uint32</span>&gt; <a class="anchor" href="#test-internal-assert-tag_t" id="test-internal-assert-tag_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/test/internal/assert.k#L11">source</a>
 </pre>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">print_failure</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>) <a class="anchor" href="#test-internal-assert-print_failure" id="test-internal-assert-print_failure">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/test/internal/assert.k#L13">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">print_failure</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>) <a class="anchor" href="#test-internal-assert-print_failure" id="test-internal-assert-print_failure">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/test/internal/assert.k#L13">source</a>
 </pre>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">assert</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>, <span class="builtin">bool</span> <span class="identifier">cond</span>) <a class="anchor" href="#test-internal-assert-assert" id="test-internal-assert-assert">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/test/internal/assert.k#L22">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">assert</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>, <span class="builtin">bool</span> <span class="identifier">cond</span>) <a class="anchor" href="#test-internal-assert-assert" id="test-internal-assert-assert">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/test/internal/assert.k#L22">source</a>
 </pre>
 <div class="docs">
 <p>Fail test with the specified tag when the condition is false. Test
@@ -195,7 +195,7 @@ failure triggers <code>sim_assert</code>, prints information about
 failing test, and sets global status to the test tag.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">assert_string</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>, <span class="builtin">bool</span> <span class="identifier">cond</span>, <span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">message</span>) <a class="anchor" href="#test-internal-assert-assert_string" id="test-internal-assert-assert_string">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/test/internal/assert.k#L34">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">assert_string</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>, <span class="builtin">bool</span> <span class="identifier">cond</span>, <span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">message</span>) <a class="anchor" href="#test-internal-assert-assert_string" id="test-internal-assert-assert_string">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/test/internal/assert.k#L34">source</a>
 </pre>
 <div class="docs">
 <p>Fail test with the specified tag when the condition is false. Test
@@ -205,7 +205,7 @@ test tag.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">assert_equal</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>, T <span class="identifier">expected</span>, T <span class="identifier">actual</span>) <a class="anchor" href="#test-internal-assert-assert_equal" id="test-internal-assert-assert_equal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/test/internal/assert.k#L49">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">assert_equal</span>(<a class="link" href="../../test/internal/assert.html#test-internal-assert-tag_t"><span class="identifier">tag_t</span></a> <span class="identifier">tag</span>, T <span class="identifier">expected</span>, T <span class="identifier">actual</span>) <a class="anchor" href="#test-internal-assert-assert_equal" id="test-internal-assert-assert_equal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/test/internal/assert.k#L49">source</a>
 </pre>
 <div class="docs">
 <p>Fail test with the specified tag when the arguments are not equal.

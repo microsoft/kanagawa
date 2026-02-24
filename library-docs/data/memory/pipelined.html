@@ -177,7 +177,7 @@ id="index-link" class="link"><code>pipelined_memory</code></a></li>
     <span class="keyword">auto</span> Banks,
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
     &gt;
-<span class="keyword">class</span> <span class="identifier">pipelined_memory</span> <a class="anchor" href="#data-memory-pipelined-pipelined_memory" id="data-memory-pipelined-pipelined_memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L25">source</a>
+<span class="keyword">class</span> <span class="identifier">pipelined_memory</span> <a class="anchor" href="#data-memory-pipelined-pipelined_memory" id="data-memory-pipelined-pipelined_memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L25">source</a>
 </pre>
 <div class="docs">
 <p>A memory that is physically accessed over multiple clock cycles.</p>
@@ -226,7 +226,7 @@ id="index-link" class="link"><code>pipelined_memory</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Depth&gt; <a class="anchor" href="#data-memory-pipelined-pipelined_memory-addr_t" id="data-memory-pipelined-pipelined_memory-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L31">source</a>
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Depth&gt; <a class="anchor" href="#data-memory-pipelined-pipelined_memory-addr_t" id="data-memory-pipelined-pipelined_memory-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L31">source</a>
 </pre>
 </li>
 </ul>
@@ -238,7 +238,7 @@ id="index-link" class="link"><code>pipelined_memory</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span>T <span class="identifier">read</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-read" id="data-memory-pipelined-pipelined_memory-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L63">source</a>
+<span class="modifier">inline </span>T <span class="identifier">read</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-read" id="data-memory-pipelined-pipelined_memory-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L63">source</a>
 </pre>
 <div class="docs">
 <p>Read one element from the memory.</p>
@@ -262,7 +262,7 @@ id="index-link" class="link"><code>pipelined_memory</code></a></li>
 <li>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
-<span class="modifier">inline </span>T[N] <span class="identifier">read_vec</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>[N] <span class="identifier">addresses</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-read_vec" id="data-memory-pipelined-pipelined_memory-read_vec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L86">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">read_vec</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>[N] <span class="identifier">addresses</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-read_vec" id="data-memory-pipelined-pipelined_memory-read_vec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L86">source</a>
 </pre>
 <div class="docs">
 <p>Read <code>N</code> elements from the memory.</p>
@@ -300,7 +300,7 @@ id="index-link" class="link"><code>pipelined_memory</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>, T <span class="identifier">data</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-write" id="data-memory-pipelined-pipelined_memory-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L139">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>, T <span class="identifier">data</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-write" id="data-memory-pipelined-pipelined_memory-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L139">source</a>
 </pre>
 <div class="docs">
 <p>Write one value into the memory. Must not be called concurrently with
@@ -334,7 +334,7 @@ T <span class="identifier">data</span>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N&gt;
 <span class="modifier">inline </span>
-<span class="keyword">void</span> <span class="identifier">write_vec</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>, T&gt;&gt;[N] <span class="identifier">writes</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-write_vec" id="data-memory-pipelined-pipelined_memory-write_vec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L164">source</a>
+<span class="keyword">void</span> <span class="identifier">write_vec</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>, T&gt;&gt;[N] <span class="identifier">writes</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-write_vec" id="data-memory-pipelined-pipelined_memory-write_vec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L164">source</a>
 </pre>
 <div class="docs">
 <p>Write up to <code>N</code> values into the memory. Must not be called
@@ -377,7 +377,7 @@ calling this method.</p>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> BankUpdateRate = <span class="literal">1</span>&gt;
 <span class="modifier">inline </span>
-<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt; <span class="identifier">atomically</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>, (T) -&gt; T <span class="identifier">modify</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-atomically" id="data-memory-pipelined-pipelined_memory-atomically">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L228">source</a>
+<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt; <span class="identifier">atomically</span>(<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>, (T) -&gt; T <span class="identifier">modify</span>) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-atomically" id="data-memory-pipelined-pipelined_memory-atomically">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L228">source</a>
 </pre>
 <div class="docs">
 <p>Atomically read and write the memory. Returns both the old and new
@@ -436,7 +436,7 @@ and returns a value to write into the memory at the same address.</p>
 <span class="identifier">atomically_vec</span>(
     <a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a>&gt;[N] <span class="identifier">addresses</span>,
     (T, <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt;) -&gt; T <span class="identifier">modify</span>
-    ) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-atomically_vec" id="data-memory-pipelined-pipelined_memory-atomically_vec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L267">source</a>
+    ) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-atomically_vec" id="data-memory-pipelined-pipelined_memory-atomically_vec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L267">source</a>
 </pre>
 <div class="docs">
 <p>Atomically read and write the memory up to <code>N</code> times.
@@ -504,7 +504,7 @@ Ctx
     <a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory"><span class="identifier">pipelined_memory</span></a>::<a class="link" href="../../data/memory/pipelined.html#data-memory-pipelined-pipelined_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
     Ctx <span class="identifier">initial</span>,
     (<a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, Ctx&gt;) -&gt; <a class="link" href="../../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, Ctx&gt; <span class="identifier">combine</span>
-    ) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-bankwise_fold" id="data-memory-pipelined-pipelined_memory-bankwise_fold">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/memory/pipelined.k#L337">source</a>
+    ) <a class="anchor" href="#data-memory-pipelined-pipelined_memory-bankwise_fold" id="data-memory-pipelined-pipelined_memory-bankwise_fold">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/memory/pipelined.k#L337">source</a>
 </pre>
 <div class="docs">
 <p>Combine and update the set of all elements with a given offset with a

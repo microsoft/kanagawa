@@ -180,7 +180,7 @@ class="link"><code>fifo_nb</code></a></li>
     <span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>,
     <span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">FIFO</span> <a class="anchor" href="#data-fifo-FIFO" id="data-fifo-FIFO">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L29">source</a>
+<span class="keyword">class</span> <span class="identifier">FIFO</span> <a class="anchor" href="#data-fifo-FIFO" id="data-fifo-FIFO">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L29">source</a>
 </pre>
 <div class="docs">
 <p>Basic FIFO.</p>
@@ -233,7 +233,7 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">count</span>() <a class="anchor" href="#data-fifo-FIFO-count" id="data-fifo-FIFO-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L52">source</a>
+<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">count</span>() <a class="anchor" href="#data-fifo-FIFO-count" id="data-fifo-FIFO-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L52">source</a>
 </pre>
 <div class="docs">
 <p>Return the number of elements that have been written and not read.
@@ -244,7 +244,7 @@ empty/full for non-blocking versions of the FIFO.</p>
 </li>
 <li>
 <pre class="signature">
-T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-FIFO-dequeue" id="data-fifo-FIFO-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L58">source</a>
+T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-FIFO-dequeue" id="data-fifo-FIFO-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L58">source</a>
 </pre>
 <div class="docs">
 <p>Read one entry from FIFO. Block if FIFO is empty and
@@ -253,7 +253,7 @@ T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-F
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-FIFO-enqueue" id="data-fifo-FIFO-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L76">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-FIFO-enqueue" id="data-fifo-FIFO-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L76">source</a>
 </pre>
 <div class="docs">
 <p>Write one entry to the FIFO. Block if FIFO is full and
@@ -281,7 +281,7 @@ T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-F
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Size, <span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>&gt;
-<span class="keyword">class</span> <span class="identifier">FIFO_store_and_forward</span> <a class="anchor" href="#data-fifo-FIFO_store_and_forward" id="data-fifo-FIFO_store_and_forward">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L100">source</a>
+<span class="keyword">class</span> <span class="identifier">FIFO_store_and_forward</span> <a class="anchor" href="#data-fifo-FIFO_store_and_forward" id="data-fifo-FIFO_store_and_forward">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L100">source</a>
 </pre>
 <div class="docs">
 <p>Store and forward FIFO.</p>
@@ -324,7 +324,7 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">count</span>() <a class="anchor" href="#data-fifo-FIFO_store_and_forward-count" id="data-fifo-FIFO_store_and_forward-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L127">source</a>
+<span class="modifier">inline </span><a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">count</span>() <a class="anchor" href="#data-fifo-FIFO_store_and_forward-count" id="data-fifo-FIFO_store_and_forward-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L127">source</a>
 </pre>
 <div class="docs">
 <p>Return the number of elements that have been written and not read.
@@ -335,7 +335,7 @@ empty/full for non-blocking versions of the FIFO.</p>
 </li>
 <li>
 <pre class="signature">
-T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-FIFO_store_and_forward-dequeue" id="data-fifo-FIFO_store_and_forward-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L133">source</a>
+T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-FIFO_store_and_forward-dequeue" id="data-fifo-FIFO_store_and_forward-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L133">source</a>
 </pre>
 <div class="docs">
 <p>Read one entry from FIFO. Block if FIFO is empty and
@@ -344,7 +344,7 @@ T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-F
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">enqueue</span>(T <span class="identifier">value</span>, <span class="builtin">bool</span> <span class="identifier">releaseDeferredDequeues</span>) <a class="anchor" href="#data-fifo-FIFO_store_and_forward-enqueue" id="data-fifo-FIFO_store_and_forward-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L152">source</a>
+<a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">enqueue</span>(T <span class="identifier">value</span>, <span class="builtin">bool</span> <span class="identifier">releaseDeferredDequeues</span>) <a class="anchor" href="#data-fifo-FIFO_store_and_forward-enqueue" id="data-fifo-FIFO_store_and_forward-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L152">source</a>
 </pre>
 <div class="docs">
 <p>Write one entry to the FIFO. Block if FIFO is full. Return the number
@@ -372,7 +372,7 @@ of dequeue calls that were released.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Size&gt;
-<span class="keyword">class</span> <span class="identifier">fifo_nb</span> <a class="anchor" href="#data-fifo-fifo_nb" id="data-fifo-fifo_nb">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L195">source</a>
+<span class="keyword">class</span> <span class="identifier">fifo_nb</span> <a class="anchor" href="#data-fifo-fifo_nb" id="data-fifo-fifo_nb">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L195">source</a>
 </pre>
 <div class="docs">
 <p>A FIFO that enables polling read/write operations and conditionally
@@ -406,7 +406,7 @@ reading an element based on the value of that element.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">full</span>() <a class="anchor" href="#data-fifo-fifo_nb-full" id="data-fifo-fifo_nb-full">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L220">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">full</span>() <a class="anchor" href="#data-fifo-fifo_nb-full" id="data-fifo-fifo_nb-full">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L220">source</a>
 </pre>
 <div class="docs">
 <p>Return true if no more entries can be enqueued. Typical usage is to
@@ -416,7 +416,7 @@ atomic block.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">reserve_enqueue</span>() <a class="anchor" href="#data-fifo-fifo_nb-reserve_enqueue" id="data-fifo-fifo_nb-reserve_enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L229">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">reserve_enqueue</span>() <a class="anchor" href="#data-fifo-fifo_nb-reserve_enqueue" id="data-fifo-fifo_nb-reserve_enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L229">source</a>
 </pre>
 <div class="docs">
 <p>Reserve one slot, so that data can be safely written into the FIFO at
@@ -429,7 +429,7 @@ in an atomic block with the call to <code>reserve_enqueue</code>.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">check_and_reserve</span>() <a class="anchor" href="#data-fifo-fifo_nb-check_and_reserve" id="data-fifo-fifo_nb-check_and_reserve">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L238">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">check_and_reserve</span>() <a class="anchor" href="#data-fifo-fifo_nb-check_and_reserve" id="data-fifo-fifo_nb-check_and_reserve">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L238">source</a>
 </pre>
 <div class="docs">
 <p>Helper function that checks fifo state and conditionally reserves a
@@ -439,7 +439,7 @@ true. Return false otherwise.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-fifo_nb-enqueue" id="data-fifo-fifo_nb-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L252">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-fifo_nb-enqueue" id="data-fifo-fifo_nb-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L252">source</a>
 </pre>
 <div class="docs">
 <p>Write one data item to the queue. <code>reserve_enqueue</code> must
@@ -448,7 +448,7 @@ have been called previously.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue_blocking</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-fifo_nb-enqueue_blocking" id="data-fifo-fifo_nb-enqueue_blocking">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L268">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue_blocking</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-fifo_nb-enqueue_blocking" id="data-fifo-fifo_nb-enqueue_blocking">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L268">source</a>
 </pre>
 <div class="docs">
 <p>Helper function that blocks the current thread until the output is
@@ -457,7 +457,7 @@ not full and then enqueues one item.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">empty</span>() <a class="anchor" href="#data-fifo-fifo_nb-empty" id="data-fifo-fifo_nb-empty">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L281">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">empty</span>() <a class="anchor" href="#data-fifo-fifo_nb-empty" id="data-fifo-fifo_nb-empty">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L281">source</a>
 </pre>
 <div class="docs">
 <p>Return true if there is no more data in the queue. Typical usage is
@@ -467,7 +467,7 @@ to call <code>empty</code> in the same atomic block as
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span>T <span class="identifier">front</span>() <a class="anchor" href="#data-fifo-fifo_nb-front" id="data-fifo-fifo_nb-front">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L288">source</a>
+<span class="modifier">inline </span>T <span class="identifier">front</span>() <a class="anchor" href="#data-fifo-fifo_nb-front" id="data-fifo-fifo_nb-front">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L288">source</a>
 </pre>
 <div class="docs">
 <p>Return the value at the head of the queue. Typical usage is to call
@@ -477,7 +477,7 @@ to call <code>empty</code> in the same atomic block as
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pop</span>() <a class="anchor" href="#data-fifo-fifo_nb-pop" id="data-fifo-fifo_nb-pop">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/fifo.k#L295">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">pop</span>() <a class="anchor" href="#data-fifo-fifo_nb-pop" id="data-fifo-fifo_nb-pop">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/fifo.k#L295">source</a>
 </pre>
 <div class="docs">
 <p>Remove 1 item from the queue. Typical usage is to call

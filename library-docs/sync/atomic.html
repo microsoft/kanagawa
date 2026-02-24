@@ -180,7 +180,7 @@ id="index-link" class="link"><code>atomically_one_of</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, T InitialValue = {}&gt;
-<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt; <span class="identifier">atomically</span>((T) -&gt; T <span class="identifier">modify</span>) <a class="anchor" href="#sync-atomic-atomically" id="sync-atomic-atomically">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/sync/atomic.k#L21">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt; <span class="identifier">atomically</span>((T) -&gt; T <span class="identifier">modify</span>) <a class="anchor" href="#sync-atomic-atomically" id="sync-atomic-atomically">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/sync/atomic.k#L21">source</a>
 </pre>
 <div class="docs">
 <p>Atomically apply user specified function to internal state of type
@@ -212,7 +212,7 @@ T InitialValue = {}
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N, <span class="keyword">typename</span> T, T InitialValue = {}&gt;
-<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt; <span class="identifier">atomically_one_of</span>(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">i</span>, (T) -&gt; T <span class="identifier">modify</span>) <a class="anchor" href="#sync-atomic-atomically_one_of" id="sync-atomic-atomically_one_of">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/sync/atomic.k#L44">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/tuple.html#data-tuple-pair"><span class="identifier">pair</span></a>&lt;T, T&gt; <span class="identifier">atomically_one_of</span>(<a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;N&gt; <span class="identifier">i</span>, (T) -&gt; T <span class="identifier">modify</span>) <a class="anchor" href="#sync-atomic-atomically_one_of" id="sync-atomic-atomically_one_of">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/sync/atomic.k#L44">source</a>
 </pre>
 <div class="docs">
 <p>Atomically interleave updates among multiple threads to internal

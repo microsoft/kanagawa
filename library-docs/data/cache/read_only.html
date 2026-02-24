@@ -177,7 +177,7 @@ id="index-link" class="link"><code>cache</code></a></li>
     <span class="keyword">auto</span> Depth,
     <span class="keyword">auto</span> Banks = <span class="literal">1</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">cache</span> <a class="anchor" href="#data-cache-read_only-cache" id="data-cache-read_only-cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/read_only.k#L22">source</a>
+<span class="keyword">class</span> <span class="identifier">cache</span> <a class="anchor" href="#data-cache-read_only-cache" id="data-cache-read_only-cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/read_only.k#L22">source</a>
 </pre>
 <div class="docs">
 <p>Read-only cache.</p>
@@ -248,7 +248,7 @@ values makes of large caches placement easier.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/read_only.html#data-cache-read_only-cache"><span class="identifier">cache</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-read_only-cache-set_index_t" id="data-cache-read_only-cache-set_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/read_only.k#L34">source</a>
+<span class="keyword">using</span> <span class="identifier">set_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../../data/cache/read_only.html#data-cache-read_only-cache"><span class="identifier">cache</span></a>::<span class="identifier">_setCount</span>&gt; <a class="anchor" href="#data-cache-read_only-cache-set_index_t" id="data-cache-read_only-cache-set_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/read_only.k#L34">source</a>
 </pre>
 </li>
 </ul>
@@ -260,7 +260,7 @@ values makes of large caches placement easier.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-(Key) -&gt; Value <span class="identifier">load</span> <a class="anchor" href="#data-cache-read_only-cache-load" id="data-cache-read_only-cache-load">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/read_only.k#L26">source</a>
+(Key) -&gt; Value <span class="identifier">load</span> <a class="anchor" href="#data-cache-read_only-cache-load" id="data-cache-read_only-cache-load">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/read_only.k#L26">source</a>
 </pre>
 <div class="docs">
 <p>The callback function to invoke when a <code>get</code> call causes a
@@ -276,7 +276,7 @@ cache miss.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-read_only-cache-initialize" id="data-cache-read_only-cache-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/read_only.k#L39">source</a>
+<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-read_only-cache-initialize" id="data-cache-read_only-cache-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/read_only.k#L39">source</a>
 </pre>
 <div class="docs">
 <p>Initialize or re-initialize a cache object. Re-initializing the cache
@@ -286,7 +286,7 @@ called concurrently with <code>get</code>.</p>
 </li>
 <li>
 <pre class="signature">
-Value <span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/read_only.html#data-cache-read_only-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/read_only.html#data-cache-read_only-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>) <a class="anchor" href="#data-cache-read_only-cache-get" id="data-cache-read_only-cache-get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/cache/read_only.k#L45">source</a>
+Value <span class="identifier">get</span>(Key <span class="identifier">key</span>, <a class="link" href="../../data/cache/read_only.html#data-cache-read_only-cache"><span class="identifier">cache</span></a>::<a class="link" href="../../data/cache/read_only.html#data-cache-read_only-cache-set_index_t"><span class="identifier">set_index_t</span></a> <span class="identifier">set_index</span>) <a class="anchor" href="#data-cache-read_only-cache-get" id="data-cache-read_only-cache-get">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/cache/read_only.k#L45">source</a>
 </pre>
 <div class="docs">
 <p>Get a value from the cache.</p>

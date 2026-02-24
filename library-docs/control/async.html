@@ -178,7 +178,7 @@ id="index-link" class="link"><code>fork_join</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async_then</span>(() -&gt; T <span class="identifier">task</span>, (T) -&gt; <span class="keyword">void</span> <span class="identifier">then</span>) <a class="anchor" href="#control-async-async_then" id="control-async-async_then">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L32">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async_then</span>(() -&gt; T <span class="identifier">task</span>, (T) -&gt; <span class="keyword">void</span> <span class="identifier">then</span>) <a class="anchor" href="#control-async-async_then" id="control-async-async_then">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L32">source</a>
 </pre>
 <div class="docs">
 <p>Execute <code>task</code> asynchronously and call <code>then</code>
@@ -197,14 +197,14 @@ with the result once the task completes.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async_then_void</span>(() -&gt; <span class="keyword">void</span> <span class="identifier">task</span>, () -&gt; <span class="keyword">void</span> <span class="identifier">then</span>) <a class="anchor" href="#control-async-async_then_void" id="control-async-async_then_void">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L53">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async_then_void</span>(() -&gt; <span class="keyword">void</span> <span class="identifier">task</span>, () -&gt; <span class="keyword">void</span> <span class="identifier">then</span>) <a class="anchor" href="#control-async-async_then_void" id="control-async-async_then_void">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L53">source</a>
 </pre>
 <div class="docs">
 <p>Like <code>async_then</code> but for tasks that don’t produce a
 result.</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async_exec</span>(() -&gt; <span class="keyword">void</span> <span class="identifier">task</span>) <a class="anchor" href="#control-async-async_exec" id="control-async-async_exec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L116">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async_exec</span>(() -&gt; <span class="keyword">void</span> <span class="identifier">task</span>) <a class="anchor" href="#control-async-async_exec" id="control-async-async_exec">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L116">source</a>
 </pre>
 <div class="docs">
 <p>Execute a task asynchronously.</p>
@@ -228,7 +228,7 @@ compiler can optimize away the entry FIFO.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> ReturnDepth, <span class="keyword">auto</span> WaitForDepth&gt;
-<span class="keyword">class</span> <span class="identifier">async_await</span> <a class="anchor" href="#control-async-async_await" id="control-async-async_await">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L139">source</a>
+<span class="keyword">class</span> <span class="identifier">async_await</span> <a class="anchor" href="#control-async-async_await" id="control-async-async_await">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L139">source</a>
 </pre>
 <div class="docs">
 <p>A class faciliating the async/await pattern. <code>async</code>
@@ -282,7 +282,7 @@ more than 32 cycles to return, this should be increased.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async</span>(() -&gt; T <span class="identifier">task</span>) <a class="anchor" href="#control-async-async_await-async" id="control-async-async_await-async">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L153">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">async</span>(() -&gt; T <span class="identifier">task</span>) <a class="anchor" href="#control-async-async_await-async" id="control-async-async_await-async">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L153">source</a>
 </pre>
 <div class="docs">
 <p>Spawn a new thread that calls the provided lambda. Out-of-order
@@ -292,7 +292,7 @@ same method on the same instance exists and is thus not recommended.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">check</span>() <a class="anchor" href="#control-async-async_await-check" id="control-async-async_await-check">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L167">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">check</span>() <a class="anchor" href="#control-async-async_await-check" id="control-async-async_await-check">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L167">source</a>
 </pre>
 <div class="docs">
 <p>Check to see if the async function has returned. It is exposed as a
@@ -303,7 +303,7 @@ public function to provide the option for a consumer to wait on multiple
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">decrement</span>(<span class="builtin">bool</span> <span class="identifier">value</span>) <a class="anchor" href="#control-async-async_await-decrement" id="control-async-async_await-decrement">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L174">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">decrement</span>(<span class="builtin">bool</span> <span class="identifier">value</span>) <a class="anchor" href="#control-async-async_await-decrement" id="control-async-async_await-decrement">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L174">source</a>
 </pre>
 <div class="docs">
 <p>Decrement the return counter if argument is true.</p>
@@ -311,7 +311,7 @@ public function to provide the option for a consumer to wait on multiple
 </li>
 <li>
 <pre class="signature">
-T <span class="identifier">await</span>() <a class="anchor" href="#control-async-async_await-await" id="control-async-async_await-await">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L181">source</a>
+T <span class="identifier">await</span>() <a class="anchor" href="#control-async-async_await-await" id="control-async-async_await-await">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L181">source</a>
 </pre>
 <div class="docs">
 <p>Wait for task started by <code>async</code> to complete and return
@@ -320,7 +320,7 @@ its result.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span>T <span class="identifier">dequeue</span>() <a class="anchor" href="#control-async-async_await-dequeue" id="control-async-async_await-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L197">source</a>
+<span class="modifier">inline </span>T <span class="identifier">dequeue</span>() <a class="anchor" href="#control-async-async_await-dequeue" id="control-async-async_await-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L197">source</a>
 </pre>
 <div class="docs">
 <p>Pop the value returned by the lambda function to <code>async</code>.
@@ -335,7 +335,7 @@ then <code>dequeue</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N, <span class="keyword">auto</span> ReturnDepth, <span class="keyword">auto</span> WaitForDepth&gt;
-<span class="keyword">class</span> <span class="identifier">fork_join</span> <a class="anchor" href="#control-async-fork_join" id="control-async-fork_join">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L218">source</a>
+<span class="keyword">class</span> <span class="identifier">fork_join</span> <a class="anchor" href="#control-async-fork_join" id="control-async-fork_join">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L218">source</a>
 </pre>
 <div class="docs">
 <p>A wrapper around an array of <code>async_await</code> objects. This
@@ -394,7 +394,7 @@ more than 32 cycles to return, this should be increased.</p>
 <li>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> i&gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">fork</span>(() -&gt; T <span class="identifier">task</span>) <a class="anchor" href="#control-async-fork_join-fork" id="control-async-fork_join-fork">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L244">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">fork</span>(() -&gt; T <span class="identifier">task</span>) <a class="anchor" href="#control-async-fork_join-fork" id="control-async-fork_join-fork">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L244">source</a>
 </pre>
 <div class="docs">
 <p>Create a single fork which runs the lambda function asynchronously.
@@ -405,7 +405,7 @@ same instance exist and is thus not recommended.</p>
 </li>
 <li>
 <pre class="signature">
-T[N] <span class="identifier">join</span>(<span class="builtin">bool</span>[N] <span class="identifier">which</span>) <a class="anchor" href="#control-async-fork_join-join" id="control-async-fork_join-join">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/control/async.k#L253">source</a>
+T[N] <span class="identifier">join</span>(<span class="builtin">bool</span>[N] <span class="identifier">which</span>) <a class="anchor" href="#control-async-fork_join-join" id="control-async-fork_join-join">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/control/async.k#L253">source</a>
 </pre>
 <div class="docs">
 <p>Block until all forks flagged in the argument have returned, and

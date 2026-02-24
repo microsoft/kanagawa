@@ -208,7 +208,7 @@ class="link"><code>trunc</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="keyword">struct</span> <span class="identifier">fixed</span> <a class="anchor" href="#numeric-fixed-fixed" id="numeric-fixed-fixed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L36">source</a>
+<span class="keyword">struct</span> <span class="identifier">fixed</span> <a class="anchor" href="#numeric-fixed-fixed" id="numeric-fixed-fixed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L36">source</a>
 </pre>
 <div class="docs">
 <p>Fixed-point representation.</p>
@@ -241,7 +241,7 @@ class="link"><code>trunc</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="builtin">int</span>&lt;(I + F)&gt; <span class="identifier">value</span> <a class="anchor" href="#numeric-fixed-$quasi0-value" id="numeric-fixed-$quasi0-value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L38">source</a>
+<span class="builtin">int</span>&lt;(I + F)&gt; <span class="identifier">value</span> <a class="anchor" href="#numeric-fixed-$quasi0-value" id="numeric-fixed-$quasi0-value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L38">source</a>
 </pre>
 </li>
 </ul>
@@ -250,7 +250,7 @@ class="link"><code>trunc</code></a></li>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">round</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-round" id="numeric-fixed-round">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L63">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">round</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-round" id="numeric-fixed-round">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L63">source</a>
 </pre>
 <div class="docs">
 <p>Round half up.</p>
@@ -265,46 +265,46 @@ class="link"><code>trunc</code></a></li>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">ceil</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-ceil" id="numeric-fixed-ceil">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L75">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">ceil</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-ceil" id="numeric-fixed-ceil">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L75">source</a>
 </pre>
 <div class="docs">
 <p>Ceiling.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">floor</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-floor" id="numeric-fixed-floor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L88">source</a>
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">floor</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-floor" id="numeric-fixed-floor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L88">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">trunc</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-trunc" id="numeric-fixed-trunc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L95">source</a>
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">trunc</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-trunc" id="numeric-fixed-trunc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L95">source</a>
 </pre>
 <div class="docs">
 <p>Truncate.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">abs</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-abs" id="numeric-fixed-abs">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L105">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">abs</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-abs" id="numeric-fixed-abs">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L105">source</a>
 </pre>
 <div class="docs">
 <p>Return the absolute value of x.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">min</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-min" id="numeric-fixed-min">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L116">source</a>
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">min</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-min" id="numeric-fixed-min">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L116">source</a>
 </pre>
 <div class="docs">
 <p>Return the smaller of x and y.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">max</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-max" id="numeric-fixed-max">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L123">source</a>
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">max</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-max" id="numeric-fixed-max">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L123">source</a>
 </pre>
 <div class="docs">
 <p>Return the larger of x and y.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">dim</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-dim" id="numeric-fixed-dim">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L130">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">dim</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">y</span>) <a class="anchor" href="#numeric-fixed-dim" id="numeric-fixed-dim">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L130">source</a>
 </pre>
 <div class="docs">
 <p>Return the positive difference between x and y,
@@ -312,61 +312,61 @@ i.e. <code>max(x - y, 0)</code>.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">reciprocal</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-reciprocal" id="numeric-fixed-reciprocal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L140">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">reciprocal</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-reciprocal" id="numeric-fixed-reciprocal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L140">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log2</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log2" id="numeric-fixed-log2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L273">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log2</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log2" id="numeric-fixed-log2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L273">source</a>
 </pre>
 <div class="docs">
 <p>Base-2 logarithm.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log10</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log10" id="numeric-fixed-log10">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L280">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log10</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log10" id="numeric-fixed-log10">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L280">source</a>
 </pre>
 <div class="docs">
 <p>Base-10 logarithm.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log" id="numeric-fixed-log">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L287">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">log</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-log" id="numeric-fixed-log">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L287">source</a>
 </pre>
 <div class="docs">
 <p>Base-e logarithm.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">sin</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-sin" id="numeric-fixed-sin">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L312">source</a>
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">sin</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-sin" id="numeric-fixed-sin">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L312">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">cos</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-cos" id="numeric-fixed-cos">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L322">source</a>
+<span class="modifier">inline </span><a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">cos</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-cos" id="numeric-fixed-cos">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L322">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">exp2</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-exp2" id="numeric-fixed-exp2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L401">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">exp2</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-exp2" id="numeric-fixed-exp2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L401">source</a>
 </pre>
 <div class="docs">
 <p>Base-2 exponent.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">exp</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-exp" id="numeric-fixed-exp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L416">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">exp</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-exp" id="numeric-fixed-exp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L416">source</a>
 </pre>
 <div class="docs">
 <p>Base-e exponent.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">invsqrt</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-invsqrt" id="numeric-fixed-invsqrt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L514">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">invsqrt</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-invsqrt" id="numeric-fixed-invsqrt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L514">source</a>
 </pre>
 <div class="docs">
 <p>Return the reciprocal of the square root of x.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">sqrt</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-sqrt" id="numeric-fixed-sqrt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L541">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">sqrt</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">x</span>) <a class="anchor" href="#numeric-fixed-sqrt" id="numeric-fixed-sqrt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L541">source</a>
 </pre>
 <div class="docs">
 <p>Return the square root of x. This function provides better accuracy
@@ -374,7 +374,7 @@ than calling <code>invsqrt</code> and then multiplying by x.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> I, <span class="keyword">auto</span> F&gt;
-<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">pow</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">base</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">expo</span>) <a class="anchor" href="#numeric-fixed-pow" id="numeric-fixed-pow">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/numeric/fixed.k#L755">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt;&gt; <span class="identifier">pow</span>(<a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">base</span>, <a class="link" href="../numeric/fixed.html#numeric-fixed-fixed"><span class="identifier">fixed</span></a>&lt;I, F&gt; <span class="identifier">expo</span>) <a class="anchor" href="#numeric-fixed-pow" id="numeric-fixed-pow">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/numeric/fixed.k#L755">source</a>
 </pre>
 <div class="docs">
 <p>Raise <code>base</code> to the power of <code>expo</code>.</p>

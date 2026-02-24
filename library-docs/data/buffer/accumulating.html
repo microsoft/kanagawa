@@ -183,7 +183,7 @@ class="link"><code>multi_accumulating_buffer</code></a></li>
     <span class="builtin">bool</span> ResetWithInitialValues = <span class="literal">false</span>,
     <span class="keyword">auto</span> FlitCount = <span class="literal">1</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">multi_accumulating_buffer</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer" id="data-buffer-accumulating-multi_accumulating_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L67">source</a>
+<span class="keyword">class</span> <span class="identifier">multi_accumulating_buffer</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer" id="data-buffer-accumulating-multi_accumulating_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L67">source</a>
 </pre>
 <div class="docs">
 <p>An array of buffers, each of which accumulates a given number of
@@ -262,12 +262,12 @@ elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">buffer_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;BufferCount&gt; <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t" id="data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L70">source</a>
+<span class="keyword">using</span> <span class="identifier">buffer_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;BufferCount&gt; <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t" id="data-buffer-accumulating-multi_accumulating_buffer-buffer_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L70">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">input_vec_t</span> = <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, InputSize&gt; <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-input_vec_t" id="data-buffer-accumulating-multi_accumulating_buffer-input_vec_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L73">source</a>
+<span class="keyword">using</span> <span class="identifier">input_vec_t</span> = <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, InputSize&gt; <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-input_vec_t" id="data-buffer-accumulating-multi_accumulating_buffer-input_vec_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L73">source</a>
 </pre>
 </li>
 </ul>
@@ -279,7 +279,7 @@ elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">output</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-output" id="data-buffer-accumulating-multi_accumulating_buffer-output">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L89">source</a>
+<span class="keyword">struct</span> <span class="identifier">output</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-output" id="data-buffer-accumulating-multi_accumulating_buffer-output">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L89">source</a>
 </pre>
 <div class="docs">
 <p>Return type for <code>enqueue</code>.</p>
@@ -289,7 +289,7 @@ elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">value_count</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-value_count" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-value_count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L92">source</a>
+<a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Size&gt; <span class="identifier">value_count</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-value_count" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-value_count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L92">source</a>
 </pre>
 <div class="docs">
 <p>The number of valid elements in the output.</p>
@@ -297,7 +297,7 @@ elements.</p>
 </li>
 <li>
 <pre class="signature">
-T[Size] <span class="identifier">values</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-values" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-values">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L95">source</a>
+T[Size] <span class="identifier">values</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-values" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-values">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L95">source</a>
 </pre>
 <div class="docs">
 <p>Output values.</p>
@@ -305,7 +305,7 @@ T[Size] <span class="identifier">values</span> <a class="anchor" href="#data-buf
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">empty</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-empty" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-empty">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L98">source</a>
+<span class="builtin">bool</span> <span class="identifier">empty</span> <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-$quasi0-empty" id="data-buffer-accumulating-multi_accumulating_buffer-$quasi0-empty">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L98">source</a>
 </pre>
 <div class="docs">
 <p>Flag to indicate whether accumulating_buffer is now empty.</p>
@@ -331,7 +331,7 @@ T[Size] <span class="identifier">values</span> <a class="anchor" href="#data-buf
     T[InputSize] <span class="identifier">values</span>,
     <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;InputSize&gt; <span class="identifier">value_count</span>,
     <span class="builtin">bool</span> <span class="identifier">flush</span>
-    ) <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-enqueue" id="data-buffer-accumulating-multi_accumulating_buffer-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L107">source</a>
+    ) <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-enqueue" id="data-buffer-accumulating-multi_accumulating_buffer-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L107">source</a>
 </pre>
 <div class="docs">
 <p>Write up to <code>InputSize</code> values to a buffer. If there is
@@ -390,7 +390,7 @@ full.</p>
     <span class="builtin">bool</span> <span class="identifier">flush</span>,
     ( <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, Size&gt;
     ) -&gt; <span class="keyword">void</span> <span class="identifier">output_callback</span>
-    ) <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-enqueue_with_callback" id="data-buffer-accumulating-multi_accumulating_buffer-enqueue_with_callback">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L202">source</a>
+    ) <a class="anchor" href="#data-buffer-accumulating-multi_accumulating_buffer-enqueue_with_callback" id="data-buffer-accumulating-multi_accumulating_buffer-enqueue_with_callback">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L202">source</a>
 </pre>
 <div class="docs">
 <p>Write up to <code>InputSize</code> values to a buffer. Once
@@ -464,7 +464,7 @@ elements.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Size, <span class="keyword">auto</span> InputSize = Size, <span class="keyword">auto</span> FlitCount = <span class="literal">1</span>&gt;
-<span class="keyword">class</span> <span class="identifier">accumulating_buffer</span> <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer" id="data-buffer-accumulating-accumulating_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L426">source</a>
+<span class="keyword">class</span> <span class="identifier">accumulating_buffer</span> <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer" id="data-buffer-accumulating-accumulating_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L426">source</a>
 </pre>
 <div class="docs">
 <p>A buffer that accumulates elements into flits (fixed-sized arrays of
@@ -516,7 +516,7 @@ called once for each <code>Size</code> elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">output</span> = <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"><span class="identifier">accumulating_buffer</span></a>::<span class="identifier">buffer_t</span>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-output"><span class="identifier">output</span></a> <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-output" id="data-buffer-accumulating-accumulating_buffer-output">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L438">source</a>
+<span class="keyword">using</span> <span class="identifier">output</span> = <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"><span class="identifier">accumulating_buffer</span></a>::<span class="identifier">buffer_t</span>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-multi_accumulating_buffer-output"><span class="identifier">output</span></a> <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-output" id="data-buffer-accumulating-accumulating_buffer-output">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L438">source</a>
 </pre>
 <div class="docs">
 <p>Return type for <code>enqueue</code>.</p>
@@ -524,7 +524,7 @@ called once for each <code>Size</code> elements.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">input_vec_t</span> = <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, InputSize&gt; <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-input_vec_t" id="data-buffer-accumulating-accumulating_buffer-input_vec_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L441">source</a>
+<span class="keyword">using</span> <span class="identifier">input_vec_t</span> = <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, InputSize&gt; <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-input_vec_t" id="data-buffer-accumulating-accumulating_buffer-input_vec_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L441">source</a>
 </pre>
 </li>
 </ul>
@@ -537,7 +537,7 @@ called once for each <code>Size</code> elements.</p>
 <li>
 <pre class="signature">
 <a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer"><span class="identifier">accumulating_buffer</span></a>::<a class="link" href="../../data/buffer/accumulating.html#data-buffer-accumulating-accumulating_buffer-output"><span class="identifier">output</span></a>
-<span class="identifier">enqueue</span>(T[InputSize] <span class="identifier">values</span>, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;InputSize&gt; <span class="identifier">value_count</span>, <span class="builtin">bool</span> <span class="identifier">flush</span>) <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-enqueue" id="data-buffer-accumulating-accumulating_buffer-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L448">source</a>
+<span class="identifier">enqueue</span>(T[InputSize] <span class="identifier">values</span>, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;InputSize&gt; <span class="identifier">value_count</span>, <span class="builtin">bool</span> <span class="identifier">flush</span>) <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-enqueue" id="data-buffer-accumulating-accumulating_buffer-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L448">source</a>
 </pre>
 <div class="docs">
 <p>Write up to <code>InputSize</code> values to the buffer. If there are
@@ -590,7 +590,7 @@ full.</p>
     <span class="builtin">bool</span> <span class="identifier">flush</span>,
     ( <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;FlitCount&gt;, <a class="link" href="../../data/vector.html#data-vector-vector"><span class="identifier">vector</span></a>&lt;T, Size&gt;
     ) -&gt; <span class="keyword">void</span> <span class="identifier">output_callback</span>
-    ) <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-enqueue_with_callback" id="data-buffer-accumulating-accumulating_buffer-enqueue_with_callback">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/accumulating.k#L460">source</a>
+    ) <a class="anchor" href="#data-buffer-accumulating-accumulating_buffer-enqueue_with_callback" id="data-buffer-accumulating-accumulating_buffer-enqueue_with_callback">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/accumulating.k#L460">source</a>
 </pre>
 <div class="docs">
 <p>Write up to <code>InputSize</code> values to the buffer. Once

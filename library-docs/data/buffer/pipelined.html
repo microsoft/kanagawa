@@ -176,7 +176,7 @@ class="link"><code>pipelined_variable_array</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="keyword">class</span> <span class="identifier">pipelined_variable</span> <a class="anchor" href="#data-buffer-pipelined-pipelined_variable" id="data-buffer-pipelined-pipelined_variable">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/pipelined.k#L14">source</a>
+<span class="keyword">class</span> <span class="identifier">pipelined_variable</span> <a class="anchor" href="#data-buffer-pipelined-pipelined_variable" id="data-buffer-pipelined-pipelined_variable">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/pipelined.k#L14">source</a>
 </pre>
 <div class="docs">
 <p>Pass a variable between consecutive threads X and X+1.</p>
@@ -201,7 +201,7 @@ class="link"><code>pipelined_variable_array</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span>T <span class="identifier">next</span>(T <span class="identifier">input</span>) <a class="anchor" href="#data-buffer-pipelined-pipelined_variable-next" id="data-buffer-pipelined-pipelined_variable-next">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/pipelined.k#L18">source</a>
+<span class="modifier">inline </span>T <span class="identifier">next</span>(T <span class="identifier">input</span>) <a class="anchor" href="#data-buffer-pipelined-pipelined_variable-next" id="data-buffer-pipelined-pipelined_variable-next">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/pipelined.k#L18">source</a>
 </pre>
 <div class="docs">
 <p>Feed in a new value and push the old value down. This should
@@ -214,7 +214,7 @@ typically be called exactly once per thread.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="keyword">class</span> <span class="identifier">pipelined_variable_array</span> <a class="anchor" href="#data-buffer-pipelined-pipelined_variable_array" id="data-buffer-pipelined-pipelined_variable_array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/pipelined.k#L26">source</a>
+<span class="keyword">class</span> <span class="identifier">pipelined_variable_array</span> <a class="anchor" href="#data-buffer-pipelined-pipelined_variable_array" id="data-buffer-pipelined-pipelined_variable_array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/pipelined.k#L26">source</a>
 </pre>
 <div class="docs">
 <p>Pass a variable between N consecutive threads X to X + N.</p>
@@ -247,7 +247,7 @@ typically be called exactly once per thread.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span>T[N] <span class="identifier">next</span>(T <span class="identifier">input</span>) <a class="anchor" href="#data-buffer-pipelined-pipelined_variable_array-next" id="data-buffer-pipelined-pipelined_variable_array-next">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/data/buffer/pipelined.k#L30">source</a>
+<span class="modifier">inline </span>T[N] <span class="identifier">next</span>(T <span class="identifier">input</span>) <a class="anchor" href="#data-buffer-pipelined-pipelined_variable_array-next" id="data-buffer-pipelined-pipelined_variable_array-next">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/data/buffer/pipelined.k#L30">source</a>
 </pre>
 <div class="docs">
 <p>Feed in a new value and push the old values down. This should

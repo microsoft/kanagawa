@@ -183,10 +183,10 @@ id="index-link" class="link"><code>schema_version</code></a></li>
 <p>Compiler data types for device configuration.</p>
 <hr />
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">schema_version</span> = <span class="literal">1</span> <a class="anchor" href="#compiler-device-schema-schema_version" id="compiler-device-schema-schema_version">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L11">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">schema_version</span> = <span class="literal">1</span> <a class="anchor" href="#compiler-device-schema-schema_version" id="compiler-device-schema-schema_version">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L11">source</a>
 </pre>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MemoryType</span> : <span class="keyword">uint3</span> <a class="anchor" href="#compiler-device-schema-MemoryType" id="compiler-device-schema-MemoryType">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L14">source</a>
+<span class="keyword">enum</span> <span class="identifier">MemoryType</span> : <span class="keyword">uint3</span> <a class="anchor" href="#compiler-device-schema-MemoryType" id="compiler-device-schema-MemoryType">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L14">source</a>
 </pre>
 <div class="docs">
 <p>Device memory types</p>
@@ -196,7 +196,7 @@ id="index-link" class="link"><code>schema_version</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">LUT</span> = <span class="literal">0</span> <a class="anchor" href="#compiler-device-schema-MemoryType-LUT" id="compiler-device-schema-MemoryType-LUT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L17">source</a>
+<span class="identifier">LUT</span> = <span class="literal">0</span> <a class="anchor" href="#compiler-device-schema-MemoryType-LUT" id="compiler-device-schema-MemoryType-LUT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L17">source</a>
 </pre>
 <div class="docs">
 <p>LUTram / MLAB RAM</p>
@@ -204,7 +204,7 @@ id="index-link" class="link"><code>schema_version</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Block</span> = <span class="literal">1</span> <a class="anchor" href="#compiler-device-schema-MemoryType-Block" id="compiler-device-schema-MemoryType-Block">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L20">source</a>
+<span class="identifier">Block</span> = <span class="literal">1</span> <a class="anchor" href="#compiler-device-schema-MemoryType-Block" id="compiler-device-schema-MemoryType-Block">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L20">source</a>
 </pre>
 <div class="docs">
 <p>Block RAMs, for example M20K on Intel FPGA</p>
@@ -212,7 +212,7 @@ id="index-link" class="link"><code>schema_version</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Deep</span> = <span class="literal">2</span> <a class="anchor" href="#compiler-device-schema-MemoryType-Deep" id="compiler-device-schema-MemoryType-Deep">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L23">source</a>
+<span class="identifier">Deep</span> = <span class="literal">2</span> <a class="anchor" href="#compiler-device-schema-MemoryType-Deep" id="compiler-device-schema-MemoryType-Deep">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L23">source</a>
 </pre>
 <div class="docs">
 <p>Deep RAMs, for example URAM on a Xilinx FPGA</p>
@@ -223,7 +223,7 @@ id="index-link" class="link"><code>schema_version</code></a></li>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">MemoryResource</span> <a class="anchor" href="#compiler-device-schema-MemoryResource" id="compiler-device-schema-MemoryResource">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L27">source</a>
+<span class="keyword">struct</span> <span class="identifier">MemoryResource</span> <a class="anchor" href="#compiler-device-schema-MemoryResource" id="compiler-device-schema-MemoryResource">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L27">source</a>
 </pre>
 <div class="docs">
 <p>Specifies the number of each type of RAM provide by a device</p>
@@ -233,7 +233,7 @@ id="index-link" class="link"><code>schema_version</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a> <span class="identifier">type_id</span> <a class="anchor" href="#compiler-device-schema-$quasi0-type_id" id="compiler-device-schema-$quasi0-type_id">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L30">source</a>
+<a class="link" href="../../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a> <span class="identifier">type_id</span> <a class="anchor" href="#compiler-device-schema-$quasi0-type_id" id="compiler-device-schema-$quasi0-type_id">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L30">source</a>
 </pre>
 <div class="docs">
 <p>Type of memory resource</p>
@@ -241,7 +241,7 @@ id="index-link" class="link"><code>schema_version</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint32</span> <span class="identifier">num_available</span> <a class="anchor" href="#compiler-device-schema-$quasi0-num_available" id="compiler-device-schema-$quasi0-num_available">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L33">source</a>
+<span class="keyword">uint32</span> <span class="identifier">num_available</span> <a class="anchor" href="#compiler-device-schema-$quasi0-num_available" id="compiler-device-schema-$quasi0-num_available">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L33">source</a>
 </pre>
 <div class="docs">
 <p>Number of the memory resources available. 0 here means compiler will
@@ -253,7 +253,7 @@ not enforce a limit.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">MemoryConfiguration</span> <a class="anchor" href="#compiler-device-schema-MemoryConfiguration" id="compiler-device-schema-MemoryConfiguration">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L37">source</a>
+<span class="keyword">struct</span> <span class="identifier">MemoryConfiguration</span> <a class="anchor" href="#compiler-device-schema-MemoryConfiguration" id="compiler-device-schema-MemoryConfiguration">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L37">source</a>
 </pre>
 <div class="docs">
 <p>RAM types and configurations supported by the device</p>
@@ -263,7 +263,7 @@ not enforce a limit.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a> <span class="identifier">type_id</span> <a class="anchor" href="#compiler-device-schema-$quasi1-type_id" id="compiler-device-schema-$quasi1-type_id">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L40">source</a>
+<a class="link" href="../../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a> <span class="identifier">type_id</span> <a class="anchor" href="#compiler-device-schema-$quasi1-type_id" id="compiler-device-schema-$quasi1-type_id">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L40">source</a>
 </pre>
 <div class="docs">
 <p>Type of memory resource</p>
@@ -271,7 +271,7 @@ not enforce a limit.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">float32</span> <span class="identifier">cost</span> <a class="anchor" href="#compiler-device-schema-$quasi1-cost" id="compiler-device-schema-$quasi1-cost">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L44">source</a>
+<span class="builtin">float32</span> <span class="identifier">cost</span> <a class="anchor" href="#compiler-device-schema-$quasi1-cost" id="compiler-device-schema-$quasi1-cost">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L44">source</a>
 </pre>
 <div class="docs">
 <p>Cost of the memory resource. Used in a comparison with array cost to
@@ -280,7 +280,7 @@ determine whether to use an array (soft logic) or a physical memory</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint16</span> <span class="identifier">width</span> <a class="anchor" href="#compiler-device-schema-$quasi1-width" id="compiler-device-schema-$quasi1-width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L47">source</a>
+<span class="keyword">uint16</span> <span class="identifier">width</span> <a class="anchor" href="#compiler-device-schema-$quasi1-width" id="compiler-device-schema-$quasi1-width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L47">source</a>
 </pre>
 <div class="docs">
 <p>Width of the memory resource</p>
@@ -288,7 +288,7 @@ determine whether to use an array (soft logic) or a physical memory</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">uint16</span> <span class="identifier">depth</span> <a class="anchor" href="#compiler-device-schema-$quasi1-depth" id="compiler-device-schema-$quasi1-depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L50">source</a>
+<span class="keyword">uint16</span> <span class="identifier">depth</span> <a class="anchor" href="#compiler-device-schema-$quasi1-depth" id="compiler-device-schema-$quasi1-depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L50">source</a>
 </pre>
 <div class="docs">
 <p>Depth of the memory resource</p>
@@ -299,7 +299,7 @@ determine whether to use an array (soft logic) or a physical memory</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MemoryInitFileType</span> : <span class="keyword">uint2</span> <a class="anchor" href="#compiler-device-schema-MemoryInitFileType" id="compiler-device-schema-MemoryInitFileType">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L54">source</a>
+<span class="keyword">enum</span> <span class="identifier">MemoryInitFileType</span> : <span class="keyword">uint2</span> <a class="anchor" href="#compiler-device-schema-MemoryInitFileType" id="compiler-device-schema-MemoryInitFileType">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L54">source</a>
 </pre>
 <div class="docs">
 <p>Formats for the memory initialization file</p>
@@ -309,7 +309,7 @@ determine whether to use an array (soft logic) or a physical memory</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Mif</span> = <span class="literal">0</span> <a class="anchor" href="#compiler-device-schema-MemoryInitFileType-Mif" id="compiler-device-schema-MemoryInitFileType-Mif">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L57">source</a>
+<span class="identifier">Mif</span> = <span class="literal">0</span> <a class="anchor" href="#compiler-device-schema-MemoryInitFileType-Mif" id="compiler-device-schema-MemoryInitFileType-Mif">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L57">source</a>
 </pre>
 <div class="docs">
 <p>Memory Initilization File format. Used with Intel/Altera FPGAs.</p>
@@ -317,7 +317,7 @@ determine whether to use an array (soft logic) or a physical memory</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Mem</span> = <span class="literal">1</span> <a class="anchor" href="#compiler-device-schema-MemoryInitFileType-Mem" id="compiler-device-schema-MemoryInitFileType-Mem">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/e41314736d50703cb9303af1fc3038c1c48b8ab4/library/compiler/device/schema.k#L60">source</a>
+<span class="identifier">Mem</span> = <span class="literal">1</span> <a class="anchor" href="#compiler-device-schema-MemoryInitFileType-Mem" id="compiler-device-schema-MemoryInitFileType-Mem">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/4d3dffc2632ade35932d23cf33d3f9e2466fc2f2/library/compiler/device/schema.k#L60">source</a>
 </pre>
 <div class="docs">
 <p>Memory Data File format. Used with Xilinx FPGAs.</p>
