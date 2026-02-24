@@ -65,7 +65,7 @@ jobs:
       - name: Run interface tests in container
         run: |
           docker run --rm \
-            -v "$GITHUB_WORKSPACE:/workspace" \
+            -v "$GITHUB_WORKSPACE:/workspace:ro" \
             kanagawa-dev bash -c '
               set -euo pipefail
               cmake -S /workspace -B /tmp/build -G Ninja \
