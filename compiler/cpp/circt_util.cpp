@@ -1616,31 +1616,32 @@ std::string ModuleDeclarationHelper::AssignPort(const std::string& portName)
     // To enable callers to write to subsets of the net
     if (_outputValues.end() == _outputValues.find(portName))
     {
-        const llvm::SmallVector<mlir::Value> substitutions; // Empty, there are no substitutions
-
-        const mlir::SmallVector<mlir::Attribute> attributes; // Empty, there are no attributes
-
-        // Add a verbatim op to the start of the container
-        // which declares a new net that other verbatim code will use
+        // Declare a logic net at the start of the container
+        mlir::Value logicOp;
         {
             circt::OpBuilder::InsertionGuard g(_opb);
-            const std::string declaration = GetSVTypeString(portInfo._hwPortInfo.type, "") + " " + newNetName + ";";
-
             _opb.setInsertionPointToStart(GetBodyBlock());
 
-            circt::sv::VerbatimOp::create(_opb, _location, StringToStringAttr(declaration), substitutions,
-                                               _opb.getArrayAttr(attributes));
+            logicOp = circt::sv::LogicOp::create(_opb, _location, portInfo._hwPortInfo.type,
+                                                 StringToStringAttr(newNetName));
         }
 
-        // Add a verbatim op which evaluates to the value of the new net
-        // Record that the output port should be assigned to it
-        circt::sv::VerbatimExprOp verbatimOp = circt::sv::VerbatimExprOp::create(_opb, 
-            _location, portInfo._hwPortInfo.type, StringToStringAttr(newNetName), substitutions, nullptr);
+        // Store the InOut value for callers that need to assign to it via sv::AssignOp
+        SafeInsert(_outputNetInOutValues, portName, logicOp);
 
-        SafeInsert(_outputValues, portName, verbatimOp.getResult());
+        // Read the logic net value for use as the output port value
+        mlir::Value readValue = circt::sv::ReadInOutOp::create(_opb, _location,
+                                                               portInfo._hwPortInfo.type, logicOp);
+
+        SafeInsert(_outputValues, portName, readValue);
     }
 
     return newNetName;
+}
+
+mlir::Value ModuleDeclarationHelper::GetOutputNetInOutValue(const std::string& portName) const
+{
+    return SafeLookup(_outputNetInOutValues, portName);
 }
 
 static const std::string InspectableValueName("InspectableValueT");
