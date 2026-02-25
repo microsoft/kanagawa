@@ -2862,7 +2862,7 @@ class VerilogCompiler
                         _coreModule->FlushVerbatimStrings();
                         circt::OpBuilder& structOpb = _coreModule->OpBuilder();
 
-                        // Create struct type: struct packed { logic inspection_success; logic [D:0] inspection_data; logic [A:0] inspection_addr; }
+                        // Create struct type: struct packed { logic [A:0] inspection_addr; logic [D:0] inspection_data; logic inspection_success; }
                         llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
                         fields.push_back(circt::hw::StructType::FieldInfo{
                             StringToStringAttr("inspection_addr"), GetIntegerType(addrWidth)});
@@ -2874,28 +2874,26 @@ class VerilogCompiler
                             circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
 
                         const std::string structName = "memory_data_" + std::to_string(i);
-                        mlir::Value structNet = circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
+                        circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
                             structType, StringToStringAttr(structName));
 
                         writeInputPort("inspection_addr_in", GetIntegerType(addrWidth),
                                        structName + ".inspection_addr");
 
-                        // Assign inspection_success and inspection_data fields
-                        mlir::Value successVal = readOutputPort("inspection_success_out", GetI1Type());
-                        mlir::Value dataVal = readOutputPort("inspection_data_out", GetIntegerType(dataWidth));
+                        // Assign inspection_success and inspection_data per-field via verbatim.
+                        // We cannot use a whole-struct sv::AssignOp here because inspection_addr
+                        // is driven externally (by the inspectable variable chain); assigning the
+                        // full struct would create multiple drivers on that field.
+                        _coreModule->AddVerbatimOp(
+                            GetUnknownLocation(),
+                            [&](VerbatimWriter& writer)
+                            {
+                                writer << "assign " << structName << ".inspection_success = "
+                                       << readOutputPort("inspection_success_out", GetI1Type()) << ";";
 
-                        // Read current struct, update fields via StructCreateOp, assign back
-                        mlir::Value currentStruct = circt::sv::ReadInOutOp::create(structOpb,
-                            GetUnknownLocation(), structType, structNet);
-                        mlir::Value addrField = circt::hw::StructExtractOp::create(structOpb,
-                            GetUnknownLocation(), currentStruct, "inspection_addr");
-                        mlir::SmallVector<mlir::Value> fieldValues;
-                        fieldValues.push_back(addrField);
-                        fieldValues.push_back(dataVal);
-                        fieldValues.push_back(successVal);
-                        mlir::Value newStruct = circt::hw::StructCreateOp::create(structOpb,
-                            GetUnknownLocation(), structType, fieldValues);
-                        circt::sv::AssignOp::create(structOpb, GetUnknownLocation(), structNet, newStruct);
+                                writer << "assign " << structName << ".inspection_data = "
+                                       << readOutputPort("inspection_data_out", GetIntegerType(dataWidth)) << ";";
+                            });
                     }
                 }
             }
@@ -2935,6 +2933,9 @@ class VerilogCompiler
         mlir::Value combinedResetNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
             GetI1Type(), StringToStringAttr("combined_reset"));
         // assign combined_reset = rst;
+        // VerbatimExprOp is used here because `rst` is an HW module input port
+        // whose SSA value is not yet threaded through the Kanagawa container port
+        // system. Threading clk/rst as SSA values is tracked as a separate task (D1).
         {
             const llvm::SmallVector<mlir::Value> subs;
             mlir::Value rstExpr = circt::sv::VerbatimExprOp::create(opb, GetUnknownLocation(),
@@ -2948,10 +2949,6 @@ class VerilogCompiler
 
         mlir::Value hasStartupCompletedRawNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
             GetI1Type(), StringToStringAttr("has_startup_completed_raw"));
-
-        // 1 after memory has been initialized
-        circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-            GetI1Type(), StringToStringAttr("has_mem_init_completed"));
 
         const mlir::Value hasStartupCompletedRaw = circt::sv::ReadInOutOp::create(opb,
             GetUnknownLocation(), GetI1Type(), hasStartupCompletedRawNet);
