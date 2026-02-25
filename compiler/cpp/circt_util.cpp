@@ -57,7 +57,7 @@ mlir::ModuleOp CreateMlirModuleAndDesign(const mlir::Location& loc, const std::s
     // Create it here
     circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(&mlirModule.getBodyRegion().front());
 
-    circt::kanagawa::DesignOp designOp = opb.create<circt::kanagawa::DesignOp>(loc, StringToStringAttr(designName));
+    circt::kanagawa::DesignOp designOp = circt::kanagawa::DesignOp::create(opb, loc, StringToStringAttr(designName));
 
     // add 1 block to the design op
     designOp.getBodyRegion().emplaceBlock();
@@ -200,13 +200,13 @@ mlir::Value PopCount(circt::OpBuilder& opb, const mlir::Location location, const
 
     for (const mlir::Value v : values)
     {
-        const mlir::Value widened = opb.create<circt::comb::ConcatOp>(location, upperBits, v);
+        const mlir::Value widened = circt::comb::ConcatOp::create(opb, location, upperBits, v);
 
         widenedInputs.push_back(widened);
     }
 
     // Add them up
-    return opb.create<circt::comb::AddOp>(location, sumType, widenedInputs, TwoState);
+    return circt::comb::AddOp::create(opb, location, sumType, widenedInputs, TwoState);
 }
 
 void addPipelineSrcs(circt::pipeline::ScheduledPipelineOp pipeline)
@@ -290,7 +290,7 @@ void addPipelineSrcs(circt::pipeline::ScheduledPipelineOp pipeline)
 
                     if (insert)
                     {
-                        auto srcOp = opb.create<circt::pipeline::SourceOp>(op->getLoc(), operand.getType(), operand);
+                        auto srcOp = circt::pipeline::SourceOp::create(opb, op->getLoc(), operand.getType(), operand);
                         op->setOperand(i, srcOp.getResult());
                         operandToSrcMap[operand] = srcOp.getResult();
                     }
@@ -407,7 +407,7 @@ mlir::Value GetPathOp(circt::OpBuilder& opb, const ObjectPath& srcPath, const Ob
                                                                             StringToStringAttr(dstContainerName))),
             lastStep.getChild());
 
-        return opb.create<circt::kanagawa::PathOp>(GetUnknownLocation(), opb.getArrayAttr(steps));
+        return circt::kanagawa::PathOp::create(opb, GetUnknownLocation(), opb.getArrayAttr(steps));
     }
 }
 
@@ -429,7 +429,7 @@ mlir::APInt LiteralToApInt(const Literal& l)
 
 mlir::Value LiteralToValue(const Literal& l, circt::OpBuilder& opb, const mlir::Location& location)
 {
-    return opb.create<circt::hw::ConstantOp>(location,
+    return circt::hw::ConstantOp::create(opb, location,
                                              opb.getIntegerAttr(opb.getIntegerType(l._width), LiteralToApInt(l)));
 }
 
@@ -456,7 +456,7 @@ mlir::Value GetTypedZeros(circt::OpBuilder& opb, const mlir::Location& location,
             fields.push_back(GetTypedZeros(opb, location, field.type));
         }
 
-        return opb.create<circt::hw::StructCreateOp>(location, typeIn, fields);
+        return circt::hw::StructCreateOp::create(opb, location, typeIn, fields);
     }
     else if (llvm::isa<circt::hw::ArrayType>(typeIn))
     {
@@ -465,18 +465,18 @@ mlir::Value GetTypedZeros(circt::OpBuilder& opb, const mlir::Location& location,
         const mlir::SmallVector<mlir::Value> elements(arrayType.getNumElements(),
                                                       GetTypedZeros(opb, location, arrayType.getElementType()));
 
-        return opb.create<circt::hw::ArrayCreateOp>(location, typeIn, elements);
+        return circt::hw::ArrayCreateOp::create(opb, location, typeIn, elements);
     }
     else if (llvm::isa<circt::hw::TypeAliasType>(typeIn))
     {
         const mlir::Value structValue =
             GetTypedZeros(opb, location, llvm::cast<circt::hw::TypeAliasType>(typeIn).getInnerType());
 
-        return opb.create<circt::hw::BitcastOp>(location, typeIn, structValue);
+        return circt::hw::BitcastOp::create(opb, location, typeIn, structValue);
     }
     else
     {
-        return opb.create<circt::hw::ConstantOp>(location, typeIn, 0);
+        return circt::hw::ConstantOp::create(opb, location, typeIn, 0);
     }
 }
 
@@ -603,14 +603,14 @@ mlir::Value ReadContainerPort(circt::OpBuilder& opb, const mlir::Location locati
                               const mlir::StringAttr portSymbol, const mlir::Type type, const mlir::Type dstType)
 {
     // circt::kanagawa::Direction::Output means that it is an output port of the container
-    const mlir::Value containerPort = opb.create<circt::kanagawa::GetPortOp>(location, containerPath, portSymbol, type,
+    const mlir::Value containerPort = circt::kanagawa::GetPortOp::create(opb, location, containerPath, portSymbol, type,
                                                                              circt::kanagawa::Direction::Output);
 
-    mlir::Value ret = opb.create<circt::kanagawa::PortReadOp>(location, containerPort);
+    mlir::Value ret = circt::kanagawa::PortReadOp::create(opb, location, containerPort);
     if (dstType && (dstType != type))
     {
         assert(circt::hw::getBitWidth(dstType) == circt::hw::getBitWidth(type));
-        ret = opb.create<circt::hw::BitcastOp>(location, dstType, ret);
+        ret = circt::hw::BitcastOp::create(opb, location, dstType, ret);
     }
     return ret;
 }
@@ -619,16 +619,16 @@ void WriteContainerPort(circt::OpBuilder& opb, const mlir::Location location, co
                         const mlir::StringAttr portSymbol, const mlir::Type type, const mlir::Value valueToWrite)
 {
     // circt::kanagawa::Direction::Input means that it is an input port of the container
-    const mlir::Value containerPort = opb.create<circt::kanagawa::GetPortOp>(location, containerPath, portSymbol, type,
+    const mlir::Value containerPort = circt::kanagawa::GetPortOp::create(opb, location, containerPath, portSymbol, type,
                                                                              circt::kanagawa::Direction::Input);
     mlir::Value value = valueToWrite;
     if (type != valueToWrite.getType())
     {
         assert(circt::hw::getBitWidth(type) == circt::hw::getBitWidth(valueToWrite.getType()));
-        value = opb.create<circt::hw::BitcastOp>(location, type, valueToWrite);
+        value = circt::hw::BitcastOp::create(opb, location, type, valueToWrite);
     }
 
-    opb.create<circt::kanagawa::PortWriteOp>(location, containerPort, value);
+    circt::kanagawa::PortWriteOp::create(opb, location, containerPort, value);
 }
 
 void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program& program,
@@ -672,7 +672,7 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
 
         const size_t dstWidth = op._dst[0].Width(program);
         const mlir::Value dstValue =
-            opb.create<circt::hw::ConstantOp>(opLocation, opb.getIntegerAttr(opb.getIntegerType(dstWidth), 0));
+            circt::hw::ConstantOp::create(opb, opLocation, opb.getIntegerAttr(opb.getIntegerType(dstWidth), 0));
 
         storeDst(op, 0, dstValue);
     }
@@ -701,19 +701,19 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
         switch (op._flags._binaryOpType)
         {
         case ParseTreeBinaryOpTypeAdd:
-            storeDst(op, 0, opb.create<circt::comb::AddOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+            storeDst(op, 0, circt::comb::AddOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             break;
 
         case ParseTreeBinaryOpTypeSub:
-            storeDst(op, 0, opb.create<circt::comb::SubOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+            storeDst(op, 0, circt::comb::SubOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             break;
 
         case ParseTreeBinaryOpTypeShl:
-            storeDst(op, 0, opb.create<circt::comb::ShlOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+            storeDst(op, 0, circt::comb::ShlOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             break;
 
         case ParseTreeBinaryOpTypeAnd:
-            storeDst(op, 0, opb.create<circt::comb::AndOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+            storeDst(op, 0, circt::comb::AndOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             break;
 
         case ParseTreeBinaryOpTypeLutMul:
@@ -722,55 +722,55 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
             break;
 
         case ParseTreeBinaryOpTypeOr:
-            storeDst(op, 0, opb.create<circt::comb::OrOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+            storeDst(op, 0, circt::comb::OrOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             break;
 
         case ParseTreeBinaryOpTypeXor:
-            storeDst(op, 0, opb.create<circt::comb::XorOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+            storeDst(op, 0, circt::comb::XorOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             break;
 
         case ParseTreeBinaryOpTypeShr:
             if (lhsSigned)
             {
-                storeDst(op, 0, opb.create<circt::comb::ShrSOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+                storeDst(op, 0, circt::comb::ShrSOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             }
             else
             {
-                storeDst(op, 0, opb.create<circt::comb::ShrUOp>(opLocation, srcValues[0], srcValues[1], TwoState));
+                storeDst(op, 0, circt::comb::ShrUOp::create(opb, opLocation, srcValues[0], srcValues[1], TwoState));
             }
             break;
 
         case ParseTreeBinaryOpTypeEQ:
             storeDst(op, 0,
-                     opb.create<circt::comb::ICmpOp>(opLocation, circt::comb::ICmpPredicate::eq, srcValues[0],
+                     circt::comb::ICmpOp::create(opb, opLocation, circt::comb::ICmpPredicate::eq, srcValues[0],
                                                      srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeNE:
             storeDst(op, 0,
-                     opb.create<circt::comb::ICmpOp>(opLocation, circt::comb::ICmpPredicate::ne, srcValues[0],
+                     circt::comb::ICmpOp::create(opb, opLocation, circt::comb::ICmpPredicate::ne, srcValues[0],
                                                      srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeGT:
             storeDst(op, 0,
-                     opb.create<circt::comb::ICmpOp>(
+                     circt::comb::ICmpOp::create(opb, 
                          opLocation, eitherSigned ? circt::comb::ICmpPredicate::sgt : circt::comb::ICmpPredicate::ugt,
                          srcValues[0], srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeGE:
             storeDst(op, 0,
-                     opb.create<circt::comb::ICmpOp>(
+                     circt::comb::ICmpOp::create(opb, 
                          opLocation, eitherSigned ? circt::comb::ICmpPredicate::sge : circt::comb::ICmpPredicate::uge,
                          srcValues[0], srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeLT:
             storeDst(op, 0,
-                     opb.create<circt::comb::ICmpOp>(
+                     circt::comb::ICmpOp::create(opb, 
                          opLocation, eitherSigned ? circt::comb::ICmpPredicate::slt : circt::comb::ICmpPredicate::ult,
                          srcValues[0], srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeLE:
             storeDst(op, 0,
-                     opb.create<circt::comb::ICmpOp>(
+                     circt::comb::ICmpOp::create(opb, 
                          opLocation, eitherSigned ? circt::comb::ICmpPredicate::sle : circt::comb::ICmpPredicate::ule,
                          srcValues[0], srcValues[1], TwoState));
             break;
@@ -796,11 +796,11 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
             // convert src operands to MLIR, then extract bit field
             const mlir::Value v = srcToValue(op, i, gatherEntry._sourceOffset + gatherEntry._numBits);
             const mlir::Value vSlice =
-                opb.create<circt::comb::ExtractOp>(opLocation, v, gatherEntry._sourceOffset, gatherEntry._numBits);
+                circt::comb::ExtractOp::create(opb, opLocation, v, gatherEntry._sourceOffset, gatherEntry._numBits);
             values.push_back(vSlice);
         }
         // Concatenate values to the result
-        mlir::Value concatValue = opb.create<circt::comb::ConcatOp>(opLocation, values);
+        mlir::Value concatValue = circt::comb::ConcatOp::create(opb, opLocation, values);
 
         // Update destination operand
         storeDst(op, 0, concatValue);
@@ -825,27 +825,27 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
             const LutEntry& lutEntry = lut._lutEntries[dstIndex];
             // build a LUT
             const size_t numChoices = lutEntry.TableSize();
-            mlir::SmallVector<mlir::Attribute> lutCirct;
+            llvm::SmallVector<bool> lutCirct;
             mlir::SmallVector<mlir::Value> lutIndex;
             for (size_t i = 0; i < numChoices; i++)
             {
                 const uint64_t bitVal = lutEntry.GetTableEntry(i);
-                lutCirct.push_back(opb.getIntegerAttr(opb.getI1Type(), bitVal));
+                lutCirct.push_back(static_cast<bool>(bitVal));
             }
             for (size_t invI = 0; invI < lutEntry._numSources; ++invI)
             {
                 const size_t i = lutEntry._numSources - invI - 1;
                 mlir::Value v =
                     srcToValue(op, lutEntry._sourceIndices[i], op._src[lutEntry._sourceIndices[i]].Width(program));
-                const mlir::Value vSlice = opb.create<circt::comb::ExtractOp>(opLocation, v, lutEntry._sourceBit[i], 1);
+                const mlir::Value vSlice = circt::comb::ExtractOp::create(opb, opLocation, v, lutEntry._sourceBit[i], 1);
                 lutIndex.push_back(vSlice);
             }
-            const mlir::Value lutSlice = opb.create<circt::comb::TruthTableOp>(opLocation, opb.getI1Type(), lutIndex,
-                                                                               opb.getArrayAttr(lutCirct));
+            const mlir::Value lutSlice = circt::comb::TruthTableOp::create(opb, opLocation, opb.getI1Type(), lutIndex,
+                                                                               lutCirct);
             lutSlices.push_back(lutSlice);
         }
         // Concatenate values to the result
-        mlir::Value concatValue = opb.create<circt::comb::ConcatOp>(opLocation, lutSlices);
+        mlir::Value concatValue = circt::comb::ConcatOp::create(opb, opLocation, lutSlices);
         // Update destination operand
         storeDst(op, 0, concatValue);
     }
@@ -911,7 +911,7 @@ mlir::Value MuxTree(const mlir::Value selectIndex, const std::vector<mlir::Value
 
     for (size_t bitIndex = 0; bitIndex < selectIndexWidth; bitIndex++)
     {
-        const mlir::Value indexBit = opb.create<circt::comb::ExtractOp>(location, selectIndex, bitIndex, 1);
+        const mlir::Value indexBit = circt::comb::ExtractOp::create(opb, location, selectIndex, bitIndex, 1);
 
         llvm::SmallVector<mlir::Value> newSrcValues;
 
@@ -919,7 +919,7 @@ mlir::Value MuxTree(const mlir::Value selectIndex, const std::vector<mlir::Value
 
         for (size_t i = 0; i < srcValues.size() / 2; i++)
         {
-            newSrcValues.push_back(opb.create<circt::comb::MuxOp>(location, indexBit, srcValues[i * 2 + 1],
+            newSrcValues.push_back(circt::comb::MuxOp::create(opb, location, indexBit, srcValues[i * 2 + 1],
                                                                   srcValues[i * 2 + 0], TwoState));
         }
 
@@ -953,15 +953,15 @@ mlir::Value AdjustValueWidth(const mlir::Value& srcValue, const size_t desiredWi
         else
         {
             mlir::Value upperBits =
-                opb.create<circt::hw::ConstantOp>(location, opb.getIntegerAttr(opb.getIntegerType(bitsToAdd), 0));
+                circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getIntegerType(bitsToAdd), 0));
 
-            result = opb.create<circt::comb::ConcatOp>(location, upperBits, srcValue);
+            result = circt::comb::ConcatOp::create(opb, location, upperBits, srcValue);
         }
     }
     else if (srcValueWidth > desiredWidth)
     {
         // truncate
-        result = opb.create<circt::comb::ExtractOp>(location, srcValue, 0, desiredWidth);
+        result = circt::comb::ExtractOp::create(opb, location, srcValue, 0, desiredWidth);
     }
 
     return result;
@@ -995,7 +995,7 @@ mlir::Value SparseConcat::Flush()
         if (qv.first > offset)
         {
             // pad with zeros
-            values.push_back(_opb.create<circt::hw::ConstantOp>(_location, GetIntegerType(qv.first - offset), 0));
+            values.push_back(circt::hw::ConstantOp::create(_opb, _location, GetIntegerType(qv.first - offset), 0));
 
             offset = qv.first;
         }
@@ -1010,13 +1010,13 @@ mlir::Value SparseConcat::Flush()
     if (offset < _width)
     {
         // pad with zeros
-        values.push_back(_opb.create<circt::hw::ConstantOp>(_location, GetIntegerType(_width - offset), 0));
+        values.push_back(circt::hw::ConstantOp::create(_opb, _location, GetIntegerType(_width - offset), 0));
     }
 
     // Reverse the elements in the array because ConcatOp expects MSB first
     std::reverse(values.begin(), values.end());
 
-    circt::comb::ConcatOp concatOp = _opb.create<circt::comb::ConcatOp>(_location, values);
+    circt::comb::ConcatOp concatOp = circt::comb::ConcatOp::create(_opb, _location, values);
 
     assert(GetMlirValueWidth(concatOp) == _width);
 
@@ -1041,7 +1041,7 @@ void BatchAssignments::Flush(circt::OpBuilder& opb, const mlir::Location& locati
         return;
     }
 
-    circt::sv::AlwaysCombOp alwaysComb = opb.create<circt::sv::AlwaysCombOp>(location);
+    circt::sv::AlwaysCombOp alwaysComb = circt::sv::AlwaysCombOp::create(opb, location);
 
     circt::OpBuilder::InsertionGuard g(opb);
 
@@ -1049,7 +1049,7 @@ void BatchAssignments::Flush(circt::OpBuilder& opb, const mlir::Location& locati
 
     for (const AssignRecord& ar : _assignments)
     {
-        opb.create<circt::sv::BPAssignOp>(ar._location, ar._dstValue, ar._srcValue);
+        circt::sv::BPAssignOp::create(opb, ar._location, ar._dstValue, ar._srcValue);
     }
 
     for (const VerbatimAssignRecord& ar : _verbatimAssignments)
@@ -1060,7 +1060,7 @@ void BatchAssignments::Flush(circt::OpBuilder& opb, const mlir::Location& locati
 
         mlir::SmallVector<mlir::Attribute> attributes;
 
-        opb.create<circt::sv::VerbatimOp>(ar._location, StringToStringAttr(str), substitutions,
+        circt::sv::VerbatimOp::create(opb, ar._location, StringToStringAttr(str), substitutions,
                                           opb.getArrayAttr(attributes));
     }
 
@@ -1277,7 +1277,7 @@ VerbatimWriter::~VerbatimWriter()
     {
         mlir::SmallVector<mlir::Attribute> attributes;
 
-        _opb.create<circt::sv::VerbatimOp>(_location, StringToStringAttr(str), _substitutions,
+        circt::sv::VerbatimOp::create(_opb, _location, StringToStringAttr(str), _substitutions,
                                            _opb.getArrayAttr(attributes));
     }
 }
@@ -1293,7 +1293,7 @@ mlir::Value VerbatimWriter::GetExpr(mlir::Type type)
     _str.str("");
     _str.clear();
 
-    return _opb.create<circt::sv::VerbatimExprOp>(_location, type, str, _substitutions);
+    return circt::sv::VerbatimExprOp::create(_opb, _location, type, str, _substitutions);
 }
 
 DisableDynamicAssertsAndTranslateOffCirct::DisableDynamicAssertsAndTranslateOffCirct(circt::OpBuilder& opb,
@@ -1406,7 +1406,7 @@ void ModuleDeclarationHelper::Finish()
                 outputValue = it->second;
             }
 
-            _opb.create<circt::kanagawa::PortWriteOp>(_location, SafeLookup(_outputPortOps, pi._hwPortInfo.name.str()),
+            circt::kanagawa::PortWriteOp::create(_opb, _location, SafeLookup(_outputPortOps, pi._hwPortInfo.name.str()),
                                                       outputValue);
         }
     }
@@ -1545,7 +1545,7 @@ void ModuleDeclarationHelper::FinishPorts()
     }
 
     // The container has TopLevel = true to avoid prepending the design name to the container name
-    _container = _opb.create<circt::kanagawa::ContainerOp>(
+    _container = circt::kanagawa::ContainerOp::create(_opb, 
         _location, circt::hw::InnerSymAttr::get(_opb.getStringAttr(_name)), true);
 
     _opb.setInsertionPointToStart(GetBodyBlock());
@@ -1556,7 +1556,7 @@ void ModuleDeclarationHelper::FinishPorts()
         if (pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Input)
         {
             SafeInsert(_inputPortOps, pi._hwPortInfo.name.str(),
-                       static_cast<mlir::Value>(_opb.create<circt::kanagawa::InputPortOp>(
+                       static_cast<mlir::Value>(circt::kanagawa::InputPortOp::create(_opb, 
                            _location, GetFullyQualifiedInnerSymAttr(ObjectPath(), pi._hwPortInfo.name.str()),
                            mlir::TypeAttr::get(pi._hwPortInfo.type), pi._hwPortInfo.name)));
         }
@@ -1565,7 +1565,7 @@ void ModuleDeclarationHelper::FinishPorts()
             assert(pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Output);
 
             SafeInsert(_outputPortOps, pi._hwPortInfo.name.str(),
-                       static_cast<mlir::Value>(_opb.create<circt::kanagawa::OutputPortOp>(
+                       static_cast<mlir::Value>(circt::kanagawa::OutputPortOp::create(_opb, 
                            _location, GetFullyQualifiedInnerSymAttr(ObjectPath(), pi._hwPortInfo.name.str()),
                            mlir::TypeAttr::get(pi._hwPortInfo.type), pi._hwPortInfo.name)));
         }
@@ -1628,13 +1628,13 @@ std::string ModuleDeclarationHelper::AssignPort(const std::string& portName)
 
             _opb.setInsertionPointToStart(GetBodyBlock());
 
-            _opb.create<circt::sv::VerbatimOp>(_location, StringToStringAttr(declaration), substitutions,
+            circt::sv::VerbatimOp::create(_opb, _location, StringToStringAttr(declaration), substitutions,
                                                _opb.getArrayAttr(attributes));
         }
 
         // Add a verbatim op which evaluates to the value of the new net
         // Record that the output port should be assigned to it
-        circt::sv::VerbatimExprOp verbatimOp = _opb.create<circt::sv::VerbatimExprOp>(
+        circt::sv::VerbatimExprOp verbatimOp = circt::sv::VerbatimExprOp::create(_opb, 
             _location, portInfo._hwPortInfo.type, StringToStringAttr(newNetName), substitutions, nullptr);
 
         SafeInsert(_outputValues, portName, verbatimOp.getResult());
@@ -1653,7 +1653,7 @@ void ModuleDeclarationHelper::AddTypedefs(const std::string& typeScopeName)
 
         _opb.setInsertionPointToStart(&_mlirModule.getBodyRegion().front());
 
-        _typeScopeOp = _opb.create<circt::hw::TypeScopeOp>(_location, StringToStringAttr(typeScopeName));
+        _typeScopeOp = circt::hw::TypeScopeOp::create(_opb, _location, StringToStringAttr(typeScopeName));
     }
 
     // Add the one and only block to the type container
@@ -1666,7 +1666,7 @@ void ModuleDeclarationHelper::AddTypedefs(const std::string& typeScopeName)
 
         if (GetCodeGenConfig()._inspection)
         {
-            _opb.create<circt::hw::TypedeclOp>(_location, StringToStringAttr(InspectableValueName),
+            circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(InspectableValueName),
                                             GetInspectableStructType(), StringToStringAttr(InspectableValueName));
         }
     }
@@ -1765,13 +1765,13 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
     { return circt::hw::InnerSymAttr::get(StringToStringAttr(portName)); };
 
     // Create a container
-    circt::kanagawa::ContainerOp wrapperContainer = _opb.create<circt::kanagawa::ContainerOp>(
+    circt::kanagawa::ContainerOp wrapperContainer = circt::kanagawa::ContainerOp::create(_opb, 
         _location, circt::hw::InnerSymAttr::get(StringToStringAttr(wrapperName)), true);
 
     _opb.setInsertionPointToStart(wrapperContainer.getBodyBlock());
 
     // Instantiate the inner container
-    _opb.create<circt::kanagawa::ContainerInstanceOp>(
+    circt::kanagawa::ContainerInstanceOp::create(_opb, 
         _location, circt::hw::InnerSymAttr::get(StringToStringAttr(innerContainerInstance)),
         circt::hw::InnerRefAttr::get(StringToStringAttr(circtDesignName), StringToStringAttr(_name)));
 
@@ -1783,7 +1783,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                                            circt::kanagawa::ScopeRefType::get(g_compiler->GetMlirContext()),
                                            mlir::FlatSymbolRefAttr::get(StringToStringAttr(innerContainerInstance))));
 
-    circt::kanagawa::PathOp pathToContainer = _opb.create<circt::kanagawa::PathOp>(_location, _opb.getArrayAttr(steps));
+    circt::kanagawa::PathOp pathToContainer = circt::kanagawa::PathOp::create(_opb, _location, _opb.getArrayAttr(steps));
 
     // Directly connect input and output ports which are not for function calls
     // and function calls which are not ESI compatible (fixed-latency, no backpressure)
@@ -1797,11 +1797,11 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
         {
             if (pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Input)
             {
-                circt::kanagawa::InputPortOp inputPort = _opb.create<circt::kanagawa::InputPortOp>(
+                circt::kanagawa::InputPortOp inputPort = circt::kanagawa::InputPortOp::create(_opb, 
                     _location, getPortSymbol(pi._hwPortInfo.name.str()), mlir::TypeAttr::get(pi._hwPortInfo.type),
                     pi._hwPortInfo.name);
 
-                mlir::Value inputValue = _opb.create<circt::kanagawa::PortReadOp>(_location, inputPort);
+                mlir::Value inputValue = circt::kanagawa::PortReadOp::create(_opb, _location, inputPort);
 
                 WriteContainerPort(_opb, _location, pathToContainer,
                                    GetFullyQualifiedStringAttr(ObjectPath(), pi._hwPortInfo.name.str()),
@@ -1811,7 +1811,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
             {
                 assert(pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Output);
 
-                circt::kanagawa::OutputPortOp outputPort = _opb.create<circt::kanagawa::OutputPortOp>(
+                circt::kanagawa::OutputPortOp outputPort = circt::kanagawa::OutputPortOp::create(_opb, 
                     _location, getPortSymbol(pi._hwPortInfo.name.str()), mlir::TypeAttr::get(pi._hwPortInfo.type),
                     pi._hwPortInfo.name);
 
@@ -1819,7 +1819,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                     _opb, _location, pathToContainer,
                     GetFullyQualifiedStringAttr(ObjectPath(), pi._hwPortInfo.name.str()), pi._hwPortInfo.type);
 
-                _opb.create<circt::kanagawa::PortWriteOp>(_location, outputPort, outputValue);
+                circt::kanagawa::PortWriteOp::create(_opb, _location, outputPort, outputValue);
             }
         }
     }
@@ -1957,11 +1957,11 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
             circt::esi::ChannelBundleType::get(g_compiler->GetMlirContext(), bundleChannelDesc, nullptr);
 
         // Declare a port on the container with bundle type
-        circt::kanagawa::InputPortOp inputBundlePort = _opb.create<circt::kanagawa::InputPortOp>(
+        circt::kanagawa::InputPortOp inputBundlePort = circt::kanagawa::InputPortOp::create(_opb, 
             _location, getPortSymbol(bundleName), mlir::TypeAttr::get(bundleType), StringToStringAttr(bundleName));
 
         // PortReadOp to get the bundle
-        mlir::Value inputBundle = _opb.create<circt::kanagawa::PortReadOp>(_location, inputBundlePort);
+        mlir::Value inputBundle = circt::kanagawa::PortReadOp::create(_opb, _location, inputBundlePort);
 
         // For each channel in the bundle
         // It is important to handle the FromGeneratedHw channel first
@@ -1978,7 +1978,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
             {
                 // Unpack the bundle to get the ToGeneratedHw channel
                 circt::esi::UnpackBundleOp unpackBundleOp =
-                    _opb.create<circt::esi::UnpackBundleOp>(_location, inputBundle, fromChannels);
+                    circt::esi::UnpackBundleOp::create(_opb, _location, inputBundle, fromChannels);
 
                 toChannels = unpackBundleOp.getToChannels();
             }
@@ -2051,7 +2051,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                     if (circt::esi::ChannelSignaling::ValidReady == signaling)
                     {
                         circt::esi::UnwrapValidReadyOp unwrapOp =
-                            _opb.create<circt::esi::UnwrapValidReadyOp>(_location, inputChannel, ready);
+                            circt::esi::UnwrapValidReadyOp::create(_opb, _location, inputChannel, ready);
 
                         const llvm::SmallVector<mlir::Type>& payloadTypes = directionToPayloadTypes[channelDirection];
                         const llvm::SmallVector<std::string>& payloadNames = directionToPayloadNames[channelDirection];
@@ -2072,7 +2072,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                                 assert(directionToChannelName[channelDirection] == EsiChannelName::Arguments);
 
                                 circt::hw::StructExplodeOp explodeOp =
-                                    _opb.create<circt::hw::StructExplodeOp>(_location, unwrapOp.getRawOutput());
+                                    circt::hw::StructExplodeOp::create(_opb, _location, unwrapOp.getRawOutput());
 
                                 assert(payloadNames.size() == payloadTypes.size());
 
@@ -2111,7 +2111,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                         {
                             // Channel payload is i0
                             // Lowering will remove the i0 ports
-                            wrapPayload = _opb.create<circt::hw::ConstantOp>(_location,
+                            wrapPayload = circt::hw::ConstantOp::create(_opb, _location,
                                                                              _opb.getIntegerAttr(GetIntegerType(0), 0));
                         }
                         else if (directionToChannelName[channelDirection] == EsiChannelName::Results)
@@ -2123,10 +2123,10 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                             assert(directionToChannelName[channelDirection] == EsiChannelName::Arguments);
 
                             wrapPayload =
-                                _opb.create<circt::hw::StructCreateOp>(_location, channelType.getInner(), payload);
+                                circt::hw::StructCreateOp::create(_opb, _location, channelType.getInner(), payload);
                         }
 
-                        circt::esi::WrapFIFOOp wrapOp = _opb.create<circt::esi::WrapFIFOOp>(
+                        circt::esi::WrapFIFOOp wrapOp = circt::esi::WrapFIFOOp::create(_opb, 
                             _location, channelType, GetI1Type(), wrapPayload, empty);
 
                         outputChannel = wrapOp.getChanOutput();
@@ -2232,9 +2232,9 @@ mlir::Value ModuleDeclarationHelper::GetPort(circt::OpBuilder& opb, const Object
                 circt::hw::InnerRefAttr::get(StringToStringAttr(circtDesignName), StringToStringAttr(finalTypeName))),
             lastStep.getChild());
 
-        circt::kanagawa::PathOp path = opb.create<circt::kanagawa::PathOp>(_location, opb.getArrayAttr(steps));
+        circt::kanagawa::PathOp path = circt::kanagawa::PathOp::create(opb, _location, opb.getArrayAttr(steps));
 
-        return opb.create<circt::kanagawa::GetPortOp>(_location, path, portSymbol, portType, portDirection);
+        return circt::kanagawa::GetPortOp::create(opb, _location, path, portSymbol, portType, portDirection);
     }
 }
 
@@ -2245,7 +2245,7 @@ void ModuleDeclarationHelper::WritePort(circt::OpBuilder& opb, const ObjectPath&
     mlir::Value port = GetPort(opb, srcPath, dstPath, portSymbol, circt::kanagawa::Direction::Input, value.getType(),
                                finalTypeName, circtDesignName);
 
-    opb.create<circt::kanagawa::PortWriteOp>(_location, port, value);
+    circt::kanagawa::PortWriteOp::create(opb, _location, port, value);
 }
 
 mlir::Value ModuleDeclarationHelper::ReadPort(circt::OpBuilder& opb, const ObjectPath& srcPath,
@@ -2256,7 +2256,7 @@ mlir::Value ModuleDeclarationHelper::ReadPort(circt::OpBuilder& opb, const Objec
     mlir::Value port = GetPort(opb, srcPath, dstPath, portSymbol, circt::kanagawa::Direction::Output, type,
                                finalTypeName, circtDesignName);
 
-    return opb.create<circt::kanagawa::PortReadOp>(_location, port);
+    return circt::kanagawa::PortReadOp::create(opb, _location, port);
 }
 
 TriggeredOpHelper::TriggeredOpHelper(circt::OpBuilder& opb, circt::pipeline::ScheduledPipelineOp& scheduledPipelineOp,
@@ -2317,7 +2317,7 @@ void TriggeredOpHelper::DoneAddingOps(const circt::hw::EventControl triggerCondi
             }
         }
 
-        _triggeredOp = _opb.create<circt::hw::TriggeredOp>(
+        _triggeredOp = circt::hw::TriggeredOp::create(_opb, 
             GetUnknownLocation(), circt::hw::EventControlAttr::get(g_compiler->GetMlirContext(), triggerCondition),
             clock, _signals);
 
@@ -2405,7 +2405,7 @@ LatencyOpHelper::LatencyOpHelper(const mlir::Location location, circt::OpBuilder
         }
 
         circt::pipeline::LatencyOp latencyOp =
-            opb.create<circt::pipeline::LatencyOp>(location, types, opb.getIntegerAttr(opb.getI32Type(), latency));
+            circt::pipeline::LatencyOp::create(opb, location, types, opb.getIntegerAttr(opb.getI32Type(), latency));
 
         latencyOp.getBody().emplaceBlock();
 
@@ -2414,7 +2414,7 @@ LatencyOpHelper::LatencyOpHelper(const mlir::Location location, circt::OpBuilder
 
             opb.setInsertionPointToStart(latencyOp.getBodyBlock());
 
-            opb.create<circt::pipeline::LatencyReturnOp>(location, values);
+            circt::pipeline::LatencyReturnOp::create(opb, location, values);
         }
 
         for (size_t i = 0; i < values.size(); i++)

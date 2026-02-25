@@ -138,11 +138,11 @@ mlir::Value Reduce(const llvm::SmallVector<mlir::Value>& inputs, const mlir::Int
 {
     if (inputs.empty())
     {
-        return opb.create<circt::hw::ConstantOp>(location, defaultValue);
+        return circt::hw::ConstantOp::create(opb, location, defaultValue);
     }
     else
     {
-        return opb.create<OpType>(location, inputs, TwoState);
+        return OpType::create(opb, location, inputs, TwoState);
     }
 }
 
