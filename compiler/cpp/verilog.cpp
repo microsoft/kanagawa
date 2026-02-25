@@ -9500,13 +9500,9 @@ class VerilogCompiler
             mlir::Value expressionValue = circt::comb::ConcatOp::create(opb, opLocation, values);
 
             // Replace with 'x on cycles when the stage enable bit is low
-            mlir::SmallVector<mlir::Value> substitutions;
-
-            substitutions.push_back(_compileContext.GetCurrentStageEnableSignal());
-            substitutions.push_back(expressionValue);
-
-            expressionValue = circt::sv::VerbatimExprOp::create(opb, opLocation, expressionValue.getType(),
-                                                                    "{{0}} ? {{1}} : 'x", substitutions);
+            mlir::Value constantX = circt::sv::ConstantXOp::create(opb, opLocation, expressionValue.getType());
+            expressionValue = circt::comb::MuxOp::create(opb, opLocation,
+                _compileContext.GetCurrentStageEnableSignal(), expressionValue, constantX, TwoState);
 
             instance.AddPort(std::string("_") + debugViewArgument._name, circt::hw::ModulePort::Direction::Input,
                              expressionValue);
