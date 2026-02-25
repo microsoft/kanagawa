@@ -1686,20 +1686,27 @@ class VerilogCompiler
                 {
                     // The variable is inspectable
                     // Declare a top-level struct with the value
-                    _coreModule->AddVerbatimOp(
-                        GetUnknownLocation(),
-                        [&](VerbatimWriter& writer)
-                        {
-                            std::ostringstream str;
-                            str << "struct packed {";
-                            str << "logic " << OptionalWidthDeclaration(regDesc._width) << " value; ";
-                            str << "} " << GetGlobalStructName(i) << ";";
+                    _coreModule->FlushVerbatimStrings();
+                    circt::OpBuilder& structOpb = _coreModule->OpBuilder();
 
-                            writer << str.str();
+                    // Create struct type: struct packed { logic [N:0] value; }
+                    llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
+                    fields.push_back(circt::hw::StructType::FieldInfo{
+                        StringToStringAttr("value"), GetIntegerType(regDesc._width)});
+                    circt::hw::StructType structType =
+                        circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
 
-                            writer << "assign " << GetGlobalStructName(i)
-                                   << ".value = " << readOutputPort("value_out", GetIntegerType(regDesc._width)) << ";";
-                        });
+                    // Declare a logic of the struct type
+                    mlir::Value structNet = circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
+                        structType, StringToStringAttr(GetGlobalStructName(i)));
+
+                    // Build the struct value and assign
+                    mlir::Value valueField = readOutputPort("value_out", GetIntegerType(regDesc._width));
+                    mlir::SmallVector<mlir::Value> fieldValues;
+                    fieldValues.push_back(valueField);
+                    mlir::Value structVal = circt::hw::StructCreateOp::create(structOpb,
+                        GetUnknownLocation(), structType, fieldValues);
+                    circt::sv::AssignOp::create(structOpb, GetUnknownLocation(), structNet, structVal);
                 }
             }
         }
@@ -2852,35 +2859,43 @@ class VerilogCompiler
                     if (isInspectable)
                     {
                         // Declare a top-level struct to hold inspection data
-                        _coreModule->AddVerbatimOp(GetUnknownLocation(),
-                                                   [&](VerbatimWriter& writer)
-                                                   {
-                                                       std::ostringstream str;
-                                                       str << "struct packed {";
-                                                       str << "logic " << OptionalWidthDeclaration(addrWidth)
-                                                           << " inspection_addr; ";
-                                                       str << "logic " << OptionalWidthDeclaration(dataWidth)
-                                                           << " inspection_data; ";
-                                                       str << "logic "
-                                                           << " inspection_success; ";
-                                                       str << "} memory_data_" << i << ";";
+                        _coreModule->FlushVerbatimStrings();
+                        circt::OpBuilder& structOpb = _coreModule->OpBuilder();
 
-                                                       writer << str.str();
-                                                   });
+                        // Create struct type: struct packed { logic inspection_success; logic [D:0] inspection_data; logic [A:0] inspection_addr; }
+                        llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
+                        fields.push_back(circt::hw::StructType::FieldInfo{
+                            StringToStringAttr("inspection_addr"), GetIntegerType(addrWidth)});
+                        fields.push_back(circt::hw::StructType::FieldInfo{
+                            StringToStringAttr("inspection_data"), GetIntegerType(dataWidth)});
+                        fields.push_back(circt::hw::StructType::FieldInfo{
+                            StringToStringAttr("inspection_success"), GetI1Type()});
+                        circt::hw::StructType structType =
+                            circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
+
+                        const std::string structName = "memory_data_" + std::to_string(i);
+                        mlir::Value structNet = circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
+                            structType, StringToStringAttr(structName));
 
                         writeInputPort("inspection_addr_in", GetIntegerType(addrWidth),
-                                       "memory_data_" + std::to_string(i) + ".inspection_addr");
+                                       structName + ".inspection_addr");
 
-                        _coreModule->AddVerbatimOp(
-                            GetUnknownLocation(),
-                            [&](VerbatimWriter& writer)
-                            {
-                                writer << "assign memory_data_" << i << ".inspection_success = "
-                                       << readOutputPort("inspection_success_out", GetI1Type()) << ";";
+                        // Assign inspection_success and inspection_data fields
+                        mlir::Value successVal = readOutputPort("inspection_success_out", GetI1Type());
+                        mlir::Value dataVal = readOutputPort("inspection_data_out", GetIntegerType(dataWidth));
 
-                                writer << "assign memory_data_" << i << ".inspection_data = "
-                                       << readOutputPort("inspection_data_out", GetIntegerType(dataWidth)) << ";";
-                            });
+                        // Read current struct, update fields via StructCreateOp, assign back
+                        mlir::Value currentStruct = circt::sv::ReadInOutOp::create(structOpb,
+                            GetUnknownLocation(), structType, structNet);
+                        mlir::Value addrField = circt::hw::StructExtractOp::create(structOpb,
+                            GetUnknownLocation(), currentStruct, "inspection_addr");
+                        mlir::SmallVector<mlir::Value> fieldValues;
+                        fieldValues.push_back(addrField);
+                        fieldValues.push_back(dataVal);
+                        fieldValues.push_back(successVal);
+                        mlir::Value newStruct = circt::hw::StructCreateOp::create(structOpb,
+                            GetUnknownLocation(), structType, fieldValues);
+                        circt::sv::AssignOp::create(structOpb, GetUnknownLocation(), structNet, newStruct);
                     }
                 }
             }
