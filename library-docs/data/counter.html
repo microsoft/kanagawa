@@ -170,7 +170,7 @@ class="link"><code>counter</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> Maximum, <span class="keyword">auto</span> Initial = <span class="literal">0</span>&gt;
-<span class="keyword">class</span> <span class="identifier">counter</span> <a class="anchor" href="#data-counter-counter" id="data-counter-counter">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L16">source</a>
+<span class="keyword">class</span> <span class="identifier">counter</span> <a class="anchor" href="#data-counter-counter" id="data-counter-counter">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L16">source</a>
 </pre>
 <div class="docs">
 <p>A thread-safe counter that can be incremented in one location and
@@ -204,7 +204,7 @@ decremented in another.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">ctr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Maximum&gt; <a class="anchor" href="#data-counter-counter-ctr_t" id="data-counter-counter-ctr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L19">source</a>
+<span class="keyword">using</span> <span class="identifier">ctr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;Maximum&gt; <a class="anchor" href="#data-counter-counter-ctr_t" id="data-counter-counter-ctr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L19">source</a>
 </pre>
 </li>
 </ul>
@@ -216,7 +216,7 @@ decremented in another.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-counter-counter-reset" id="data-counter-counter-reset">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L28">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-counter-counter-reset" id="data-counter-counter-reset">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L28">source</a>
 </pre>
 <div class="docs">
 <p>Reset the counter to the initial state.</p>
@@ -224,7 +224,7 @@ decremented in another.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../data/counter.html#data-counter-counter"><span class="identifier">counter</span></a>::<a class="link" href="../data/counter.html#data-counter-counter-ctr_t"><span class="identifier">ctr_t</span></a> <span class="identifier">count</span>() <a class="anchor" href="#data-counter-counter-count" id="data-counter-counter-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L38">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/counter.html#data-counter-counter"><span class="identifier">counter</span></a>::<a class="link" href="../data/counter.html#data-counter-counter-ctr_t"><span class="identifier">ctr_t</span></a> <span class="identifier">count</span>() <a class="anchor" href="#data-counter-counter-count" id="data-counter-counter-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L38">source</a>
 </pre>
 <div class="docs">
 <p>Return the current count.</p>
@@ -232,7 +232,7 @@ decremented in another.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">is_zero</span>() <a class="anchor" href="#data-counter-counter-is_zero" id="data-counter-counter-is_zero">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L52">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">is_zero</span>() <a class="anchor" href="#data-counter-counter-is_zero" id="data-counter-counter-is_zero">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L52">source</a>
 </pre>
 <div class="docs">
 <p>Returns <code>count() == 0</code>. Optimized to reduce the number of
@@ -241,7 +241,7 @@ resources required.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">increment</span>() <a class="anchor" href="#data-counter-counter-increment" id="data-counter-counter-increment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L65">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">increment</span>() <a class="anchor" href="#data-counter-counter-increment" id="data-counter-counter-increment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L65">source</a>
 </pre>
 <div class="docs">
 <p>Add one to the counter.</p>
@@ -249,7 +249,7 @@ resources required.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">add</span>(<a class="link" href="../data/counter.html#data-counter-counter"><span class="identifier">counter</span></a>::<a class="link" href="../data/counter.html#data-counter-counter-ctr_t"><span class="identifier">ctr_t</span></a> <span class="identifier">amount</span>) <a class="anchor" href="#data-counter-counter-add" id="data-counter-counter-add">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L71">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">add</span>(<a class="link" href="../data/counter.html#data-counter-counter"><span class="identifier">counter</span></a>::<a class="link" href="../data/counter.html#data-counter-counter-ctr_t"><span class="identifier">ctr_t</span></a> <span class="identifier">amount</span>) <a class="anchor" href="#data-counter-counter-add" id="data-counter-counter-add">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L71">source</a>
 </pre>
 <div class="docs">
 <p>Add amount to the counter.</p>
@@ -257,7 +257,7 @@ resources required.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">decrement</span>() <a class="anchor" href="#data-counter-counter-decrement" id="data-counter-counter-decrement">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L80">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">decrement</span>() <a class="anchor" href="#data-counter-counter-decrement" id="data-counter-counter-decrement">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L80">source</a>
 </pre>
 <div class="docs">
 <p>Subtract one from the counter.</p>
@@ -265,7 +265,7 @@ resources required.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">subtract</span>(<a class="link" href="../data/counter.html#data-counter-counter"><span class="identifier">counter</span></a>::<a class="link" href="../data/counter.html#data-counter-counter-ctr_t"><span class="identifier">ctr_t</span></a> <span class="identifier">amount</span>) <a class="anchor" href="#data-counter-counter-subtract" id="data-counter-counter-subtract">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/counter.k#L86">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">subtract</span>(<a class="link" href="../data/counter.html#data-counter-counter"><span class="identifier">counter</span></a>::<a class="link" href="../data/counter.html#data-counter-counter-ctr_t"><span class="identifier">ctr_t</span></a> <span class="identifier">amount</span>) <a class="anchor" href="#data-counter-counter-subtract" id="data-counter-counter-subtract">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/counter.k#L86">source</a>
 </pre>
 <div class="docs">
 <p>Subtract amount from the counter.</p>

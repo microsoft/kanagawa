@@ -172,7 +172,7 @@ id="index-link" class="link"><code>lfsr_random</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> Width&gt;
-<span class="modifier">inline </span><span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">lfsr</span>(<span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">seed</span>) <a class="anchor" href="#data-random-lfsr-lfsr" id="data-random-lfsr-lfsr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/random/lfsr.k#L24">source</a>
+<span class="modifier">inline </span><span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">lfsr</span>(<span class="builtin">uint</span>&lt;Width&gt; <span class="identifier">seed</span>) <a class="anchor" href="#data-random-lfsr-lfsr" id="data-random-lfsr-lfsr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/random/lfsr.k#L24">source</a>
 </pre>
 <div class="docs">
 <p>A Linear Feedback Shift Register, which is a simple type of
@@ -206,7 +206,7 @@ supported.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> SeedWidth&gt;
-<span class="keyword">class</span> <span class="identifier">lfsr_random</span> <a class="anchor" href="#data-random-lfsr-lfsr_random" id="data-random-lfsr-lfsr_random">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/random/lfsr.k#L179">source</a>
+<span class="keyword">class</span> <span class="identifier">lfsr_random</span> <a class="anchor" href="#data-random-lfsr-lfsr_random" id="data-random-lfsr-lfsr_random">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/random/lfsr.k#L179">source</a>
 </pre>
 <div class="docs">
 <p>A stateful pseudo-random number generator using a linear feedback
@@ -239,7 +239,7 @@ supported.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">value_t</span> = <span class="builtin">uint</span>&lt;SeedWidth&gt; <a class="anchor" href="#data-random-lfsr-lfsr_random-value_t" id="data-random-lfsr-lfsr_random-value_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/random/lfsr.k#L182">source</a>
+<span class="keyword">using</span> <span class="identifier">value_t</span> = <span class="builtin">uint</span>&lt;SeedWidth&gt; <a class="anchor" href="#data-random-lfsr-lfsr_random-value_t" id="data-random-lfsr-lfsr_random-value_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/random/lfsr.k#L182">source</a>
 </pre>
 </li>
 </ul>
@@ -251,7 +251,7 @@ supported.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../data/random/lfsr.html#data-random-lfsr-lfsr_random"><span class="identifier">lfsr_random</span></a>::<a class="link" href="../../data/random/lfsr.html#data-random-lfsr-lfsr_random-value_t"><span class="identifier">value_t</span></a> <span class="identifier">next</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">uint</span>&lt;SeedWidth&gt;&gt; <span class="identifier">seed</span>) <a class="anchor" href="#data-random-lfsr-lfsr_random-next" id="data-random-lfsr-lfsr_random-next">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/random/lfsr.k#L191">source</a>
+<a class="link" href="../../data/random/lfsr.html#data-random-lfsr-lfsr_random"><span class="identifier">lfsr_random</span></a>::<a class="link" href="../../data/random/lfsr.html#data-random-lfsr-lfsr_random-value_t"><span class="identifier">value_t</span></a> <span class="identifier">next</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;<span class="builtin">uint</span>&lt;SeedWidth&gt;&gt; <span class="identifier">seed</span>) <a class="anchor" href="#data-random-lfsr-lfsr_random-next" id="data-random-lfsr-lfsr_random-next">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/random/lfsr.k#L191">source</a>
 </pre>
 <div class="docs">
 <p>Get the next random number in the sequence, optionally seeding the

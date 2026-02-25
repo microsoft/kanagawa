@@ -182,7 +182,7 @@ class="link"><code>unaligned_read_unaligned_write_memory</code></a></li>
     <span class="keyword">auto</span> TotalSize,
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
     &gt;
-<span class="keyword">class</span> <span class="identifier">unaligned_read_unaligned_write_memory</span> <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory" id="data-memory-unaligned-unaligned_read_unaligned_write_memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L28">source</a>
+<span class="keyword">class</span> <span class="identifier">unaligned_read_unaligned_write_memory</span> <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory" id="data-memory-unaligned-unaligned_read_unaligned_write_memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L28">source</a>
 </pre>
 <div class="docs">
 <p>Memory supporting reads/writes of up to <code>WordSize</code>
@@ -235,17 +235,17 @@ deep.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;TotalSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L34">source</a>
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;TotalSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L34">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">element_count_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;WordSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L35">source</a>
+<span class="keyword">using</span> <span class="identifier">element_count_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;WordSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L35">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">word_t</span> = T[WordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L36">source</a>
+<span class="keyword">using</span> <span class="identifier">word_t</span> = T[WordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L36">source</a>
 </pre>
 </li>
 </ul>
@@ -259,7 +259,7 @@ deep.</p>
 <pre class="signature">
 <span class="modifier">inline </span>
 <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a>
-<span class="identifier">read_aligned</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-read_aligned" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-read_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L39">source</a>
+<span class="identifier">read_aligned</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-read_aligned" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-read_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L39">source</a>
 </pre>
 <div class="docs">
 <p>Read a word from a word aligned address</p>
@@ -270,7 +270,7 @@ deep.</p>
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> N = <span class="literal">1</span>&gt;
 <span class="modifier">inline </span>
 <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a>
-<span class="identifier">read</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-read" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L55">source</a>
+<span class="identifier">read</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-read" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L55">source</a>
 </pre>
 <div class="docs">
 <p>Read a word from an address aligned at <code>N</code> element
@@ -284,7 +284,7 @@ boundary</p>
 <span class="identifier">write_aligned</span>(
     <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>
-    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-write_aligned" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-write_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L77">source</a>
+    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-write_aligned" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-write_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L77">source</a>
 </pre>
 <div class="docs">
 <p>Write a word to a word aligned address</p>
@@ -299,7 +299,7 @@ boundary</p>
     <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>,
     <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory"><span class="identifier">unaligned_read_unaligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_unaligned_write_memory-element_count_t"><span class="identifier">element_count_t</span></a> <span class="identifier">size</span>
-    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-write" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L90">source</a>
+    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_unaligned_write_memory-write" id="data-memory-unaligned-unaligned_read_unaligned_write_memory-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L90">source</a>
 </pre>
 <div class="docs">
 <p>Write specified number of elements to an address aligned at
@@ -320,7 +320,7 @@ multiple of <code>N</code> and no greater than
     <span class="keyword">auto</span> TotalSize,
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
     &gt;
-<span class="keyword">class</span> <span class="identifier">unaligned_read_aligned_write_memory</span> <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory" id="data-memory-unaligned-unaligned_read_aligned_write_memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L136">source</a>
+<span class="keyword">class</span> <span class="identifier">unaligned_read_aligned_write_memory</span> <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory" id="data-memory-unaligned-unaligned_read_aligned_write_memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L136">source</a>
 </pre>
 <div class="docs">
 <p>Memory capable of aligned or unaligned reads of
@@ -382,22 +382,22 @@ fraction or integer multiple of <code>WordSize</code>.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;TotalSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L151">source</a>
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;TotalSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L151">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">element_count_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;WordSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-element_count_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-element_count_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L152">source</a>
+<span class="keyword">using</span> <span class="identifier">element_count_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;WordSize&gt; <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-element_count_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-element_count_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L152">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">word_t</span> = T[WordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L153">source</a>
+<span class="keyword">using</span> <span class="identifier">word_t</span> = T[WordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L153">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">read_word_t</span> = T[ReadWordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L154">source</a>
+<span class="keyword">using</span> <span class="identifier">read_word_t</span> = T[ReadWordSize] <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L154">source</a>
 </pre>
 </li>
 </ul>
@@ -411,7 +411,7 @@ fraction or integer multiple of <code>WordSize</code>.</p>
 <pre class="signature">
 <span class="modifier">inline </span>
 <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t"><span class="identifier">read_word_t</span></a>
-<span class="identifier">read_aligned</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read_aligned" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L157">source</a>
+<span class="identifier">read_aligned</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read_aligned" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L157">source</a>
 </pre>
 <div class="docs">
 <p>Read a word from a word aligned address.</p>
@@ -421,7 +421,7 @@ fraction or integer multiple of <code>WordSize</code>.</p>
 <pre class="signature">
 <span class="modifier">inline </span>
 <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t"><span class="identifier">read_word_t</span></a>
-<span class="identifier">read</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L175">source</a>
+<span class="identifier">read</span>(<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-read" id="data-memory-unaligned-unaligned_read_aligned_write_memory-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L175">source</a>
 </pre>
 <div class="docs">
 <p>Read a word from an unaligned address.</p>
@@ -434,7 +434,7 @@ fraction or integer multiple of <code>WordSize</code>.</p>
 <span class="identifier">write_aligned</span>(
     <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>,
     <a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory"><span class="identifier">unaligned_read_aligned_write_memory</span></a>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t"><span class="identifier">word_t</span></a> <span class="identifier">value</span>
-    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-write_aligned" id="data-memory-unaligned-unaligned_read_aligned_write_memory-write_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory/unaligned.k#L211">source</a>
+    ) <a class="anchor" href="#data-memory-unaligned-unaligned_read_aligned_write_memory-write_aligned" id="data-memory-unaligned-unaligned_read_aligned_write_memory-write_aligned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory/unaligned.k#L211">source</a>
 </pre>
 <div class="docs">
 <p>Write a word to a word aligned address.</p>

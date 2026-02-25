@@ -183,7 +183,7 @@ id="index-link" class="link"><code>print_trace</code></a></li>
 <p>Pretty printer for RISC-V disassembly.</p>
 <hr />
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Instruction</span> : <span class="keyword">uint6</span> <a class="anchor" href="#processor-risc_v-trace-Instruction" id="processor-risc_v-trace-Instruction">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L19">source</a>
+<span class="keyword">enum</span> <span class="identifier">Instruction</span> : <span class="keyword">uint6</span> <a class="anchor" href="#processor-risc_v-trace-Instruction" id="processor-risc_v-trace-Instruction">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L19">source</a>
 </pre>
 <div class="docs">
 <p>RV32i assembly instruction mnemonics (including pseudo
@@ -194,287 +194,287 @@ instructions)</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">unknown</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-unknown" id="processor-risc_v-trace-Instruction-unknown">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L21">source</a>
+<span class="identifier">unknown</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-unknown" id="processor-risc_v-trace-Instruction-unknown">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L21">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">lui</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lui" id="processor-risc_v-trace-Instruction-lui">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L22">source</a>
+<span class="identifier">lui</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lui" id="processor-risc_v-trace-Instruction-lui">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L22">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">auipc</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-auipc" id="processor-risc_v-trace-Instruction-auipc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L23">source</a>
+<span class="identifier">auipc</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-auipc" id="processor-risc_v-trace-Instruction-auipc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L23">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">jal</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jal" id="processor-risc_v-trace-Instruction-jal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L24">source</a>
+<span class="identifier">jal</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jal" id="processor-risc_v-trace-Instruction-jal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L24">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">jalr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jalr" id="processor-risc_v-trace-Instruction-jalr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L25">source</a>
+<span class="identifier">jalr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jalr" id="processor-risc_v-trace-Instruction-jalr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L25">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">beq</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-beq" id="processor-risc_v-trace-Instruction-beq">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L26">source</a>
+<span class="identifier">beq</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-beq" id="processor-risc_v-trace-Instruction-beq">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L26">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">bne</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bne" id="processor-risc_v-trace-Instruction-bne">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L27">source</a>
+<span class="identifier">bne</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bne" id="processor-risc_v-trace-Instruction-bne">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L27">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">blt</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-blt" id="processor-risc_v-trace-Instruction-blt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L28">source</a>
+<span class="identifier">blt</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-blt" id="processor-risc_v-trace-Instruction-blt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L28">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">bge</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bge" id="processor-risc_v-trace-Instruction-bge">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L29">source</a>
+<span class="identifier">bge</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bge" id="processor-risc_v-trace-Instruction-bge">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L29">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">bltu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bltu" id="processor-risc_v-trace-Instruction-bltu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L30">source</a>
+<span class="identifier">bltu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bltu" id="processor-risc_v-trace-Instruction-bltu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L30">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">bgeu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bgeu" id="processor-risc_v-trace-Instruction-bgeu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L31">source</a>
+<span class="identifier">bgeu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-bgeu" id="processor-risc_v-trace-Instruction-bgeu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L31">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">lb</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lb" id="processor-risc_v-trace-Instruction-lb">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L32">source</a>
+<span class="identifier">lb</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lb" id="processor-risc_v-trace-Instruction-lb">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L32">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">lh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lh" id="processor-risc_v-trace-Instruction-lh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L33">source</a>
+<span class="identifier">lh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lh" id="processor-risc_v-trace-Instruction-lh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L33">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">lw</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lw" id="processor-risc_v-trace-Instruction-lw">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L34">source</a>
+<span class="identifier">lw</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lw" id="processor-risc_v-trace-Instruction-lw">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L34">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">lbu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lbu" id="processor-risc_v-trace-Instruction-lbu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L35">source</a>
+<span class="identifier">lbu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lbu" id="processor-risc_v-trace-Instruction-lbu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L35">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">lhu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lhu" id="processor-risc_v-trace-Instruction-lhu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L36">source</a>
+<span class="identifier">lhu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-lhu" id="processor-risc_v-trace-Instruction-lhu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L36">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sb</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sb" id="processor-risc_v-trace-Instruction-sb">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L37">source</a>
+<span class="identifier">sb</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sb" id="processor-risc_v-trace-Instruction-sb">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L37">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sh" id="processor-risc_v-trace-Instruction-sh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L38">source</a>
+<span class="identifier">sh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sh" id="processor-risc_v-trace-Instruction-sh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L38">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sw</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sw" id="processor-risc_v-trace-Instruction-sw">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L39">source</a>
+<span class="identifier">sw</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sw" id="processor-risc_v-trace-Instruction-sw">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L39">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">addi</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-addi" id="processor-risc_v-trace-Instruction-addi">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L40">source</a>
+<span class="identifier">addi</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-addi" id="processor-risc_v-trace-Instruction-addi">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L40">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">slti</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slti" id="processor-risc_v-trace-Instruction-slti">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L41">source</a>
+<span class="identifier">slti</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slti" id="processor-risc_v-trace-Instruction-slti">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L41">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sltiu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sltiu" id="processor-risc_v-trace-Instruction-sltiu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L42">source</a>
+<span class="identifier">sltiu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sltiu" id="processor-risc_v-trace-Instruction-sltiu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L42">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">xori</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-xori" id="processor-risc_v-trace-Instruction-xori">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L43">source</a>
+<span class="identifier">xori</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-xori" id="processor-risc_v-trace-Instruction-xori">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L43">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">ori</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ori" id="processor-risc_v-trace-Instruction-ori">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L44">source</a>
+<span class="identifier">ori</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ori" id="processor-risc_v-trace-Instruction-ori">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L44">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">andi</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-andi" id="processor-risc_v-trace-Instruction-andi">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L45">source</a>
+<span class="identifier">andi</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-andi" id="processor-risc_v-trace-Instruction-andi">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L45">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">slli</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slli" id="processor-risc_v-trace-Instruction-slli">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L46">source</a>
+<span class="identifier">slli</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slli" id="processor-risc_v-trace-Instruction-slli">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L46">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">srli</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srli" id="processor-risc_v-trace-Instruction-srli">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L47">source</a>
+<span class="identifier">srli</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srli" id="processor-risc_v-trace-Instruction-srli">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L47">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">srai</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srai" id="processor-risc_v-trace-Instruction-srai">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L48">source</a>
+<span class="identifier">srai</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srai" id="processor-risc_v-trace-Instruction-srai">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L48">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">add</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-add" id="processor-risc_v-trace-Instruction-add">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L49">source</a>
+<span class="identifier">add</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-add" id="processor-risc_v-trace-Instruction-add">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L49">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sub</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sub" id="processor-risc_v-trace-Instruction-sub">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L50">source</a>
+<span class="identifier">sub</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sub" id="processor-risc_v-trace-Instruction-sub">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L50">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sll</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sll" id="processor-risc_v-trace-Instruction-sll">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L51">source</a>
+<span class="identifier">sll</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sll" id="processor-risc_v-trace-Instruction-sll">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L51">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">slt</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slt" id="processor-risc_v-trace-Instruction-slt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L52">source</a>
+<span class="identifier">slt</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-slt" id="processor-risc_v-trace-Instruction-slt">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L52">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sltu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sltu" id="processor-risc_v-trace-Instruction-sltu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L53">source</a>
+<span class="identifier">sltu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sltu" id="processor-risc_v-trace-Instruction-sltu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L53">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">xor</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-xor" id="processor-risc_v-trace-Instruction-xor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L54">source</a>
+<span class="identifier">xor</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-xor" id="processor-risc_v-trace-Instruction-xor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L54">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">srl</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srl" id="processor-risc_v-trace-Instruction-srl">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L55">source</a>
+<span class="identifier">srl</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-srl" id="processor-risc_v-trace-Instruction-srl">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L55">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">sra</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sra" id="processor-risc_v-trace-Instruction-sra">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L56">source</a>
+<span class="identifier">sra</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-sra" id="processor-risc_v-trace-Instruction-sra">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L56">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">or</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-or" id="processor-risc_v-trace-Instruction-or">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L57">source</a>
+<span class="identifier">or</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-or" id="processor-risc_v-trace-Instruction-or">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L57">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">and</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-and" id="processor-risc_v-trace-Instruction-and">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L58">source</a>
+<span class="identifier">and</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-and" id="processor-risc_v-trace-Instruction-and">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L58">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">fence</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-fence" id="processor-risc_v-trace-Instruction-fence">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L59">source</a>
+<span class="identifier">fence</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-fence" id="processor-risc_v-trace-Instruction-fence">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L59">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">ecall</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ecall" id="processor-risc_v-trace-Instruction-ecall">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L60">source</a>
+<span class="identifier">ecall</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ecall" id="processor-risc_v-trace-Instruction-ecall">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L60">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">ebreak</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ebreak" id="processor-risc_v-trace-Instruction-ebreak">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L61">source</a>
+<span class="identifier">ebreak</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ebreak" id="processor-risc_v-trace-Instruction-ebreak">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L61">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">mul</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mul" id="processor-risc_v-trace-Instruction-mul">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L62">source</a>
+<span class="identifier">mul</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mul" id="processor-risc_v-trace-Instruction-mul">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L62">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">mulh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulh" id="processor-risc_v-trace-Instruction-mulh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L63">source</a>
+<span class="identifier">mulh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulh" id="processor-risc_v-trace-Instruction-mulh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L63">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">mulhsu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulhsu" id="processor-risc_v-trace-Instruction-mulhsu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L64">source</a>
+<span class="identifier">mulhsu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulhsu" id="processor-risc_v-trace-Instruction-mulhsu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L64">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">mulhu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulhu" id="processor-risc_v-trace-Instruction-mulhu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L65">source</a>
+<span class="identifier">mulhu</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mulhu" id="processor-risc_v-trace-Instruction-mulhu">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L65">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">csrr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-csrr" id="processor-risc_v-trace-Instruction-csrr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L66">source</a>
+<span class="identifier">csrr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-csrr" id="processor-risc_v-trace-Instruction-csrr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L66">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">rdcycle</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdcycle" id="processor-risc_v-trace-Instruction-rdcycle">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L67">source</a>
+<span class="identifier">rdcycle</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdcycle" id="processor-risc_v-trace-Instruction-rdcycle">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L67">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">rdcycleh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdcycleh" id="processor-risc_v-trace-Instruction-rdcycleh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L68">source</a>
+<span class="identifier">rdcycleh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdcycleh" id="processor-risc_v-trace-Instruction-rdcycleh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L68">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">rdtime</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdtime" id="processor-risc_v-trace-Instruction-rdtime">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L69">source</a>
+<span class="identifier">rdtime</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdtime" id="processor-risc_v-trace-Instruction-rdtime">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L69">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">rdtimeh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdtimeh" id="processor-risc_v-trace-Instruction-rdtimeh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L70">source</a>
+<span class="identifier">rdtimeh</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdtimeh" id="processor-risc_v-trace-Instruction-rdtimeh">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L70">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">rdinstret</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdinstret" id="processor-risc_v-trace-Instruction-rdinstret">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L71">source</a>
+<span class="identifier">rdinstret</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-rdinstret" id="processor-risc_v-trace-Instruction-rdinstret">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L71">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">ret</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ret" id="processor-risc_v-trace-Instruction-ret">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L72">source</a>
+<span class="identifier">ret</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-ret" id="processor-risc_v-trace-Instruction-ret">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L72">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">j</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-j" id="processor-risc_v-trace-Instruction-j">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L73">source</a>
+<span class="identifier">j</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-j" id="processor-risc_v-trace-Instruction-j">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L73">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">jr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jr" id="processor-risc_v-trace-Instruction-jr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L74">source</a>
+<span class="identifier">jr</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-jr" id="processor-risc_v-trace-Instruction-jr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L74">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">li</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-li" id="processor-risc_v-trace-Instruction-li">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L75">source</a>
+<span class="identifier">li</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-li" id="processor-risc_v-trace-Instruction-li">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L75">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">nop</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-nop" id="processor-risc_v-trace-Instruction-nop">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L76">source</a>
+<span class="identifier">nop</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-nop" id="processor-risc_v-trace-Instruction-nop">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L76">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">mv</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mv" id="processor-risc_v-trace-Instruction-mv">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L77">source</a>
+<span class="identifier">mv</span> <a class="anchor" href="#processor-risc_v-trace-Instruction-mv" id="processor-risc_v-trace-Instruction-mv">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L77">source</a>
 </pre>
 </li>
 </ul>
@@ -482,13 +482,13 @@ instructions)</p>
 </details>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">disasm</span>(<span class="keyword">uint32</span> <span class="identifier">binary</span>, <a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-trace-disasm" id="processor-risc_v-trace-disasm">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L168">source</a>
+<span class="modifier">inline </span><span class="builtin">string</span> <span class="identifier">disasm</span>(<span class="keyword">uint32</span> <span class="identifier">binary</span>, <a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-trace-disasm" id="processor-risc_v-trace-disasm">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L168">source</a>
 </pre>
 <div class="docs">
 <p>Return string representation of disassembled instruction</p>
 </div>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../../processor/risc_v/trace.html#processor-risc_v-trace-Instruction"><span class="identifier">Instruction</span></a> <span class="identifier">disasm_instr</span>(<a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-trace-disasm_instr" id="processor-risc_v-trace-disasm_instr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L245">source</a>
+<span class="modifier">inline </span><a class="link" href="../../processor/risc_v/trace.html#processor-risc_v-trace-Instruction"><span class="identifier">Instruction</span></a> <span class="identifier">disasm_instr</span>(<a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>) <a class="anchor" href="#processor-risc_v-trace-disasm_instr" id="processor-risc_v-trace-disasm_instr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L245">source</a>
 </pre>
 <div class="docs">
 <p>Disassemble a decoded instruction</p>
@@ -517,7 +517,7 @@ instructions)</p>
     <span class="keyword">auto</span> <span class="identifier">instr</span>,
     <a class="link" href="../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decoded</span>,
     <a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;int32&gt; <span class="identifier">value</span>
-    ) <a class="anchor" href="#processor-risc_v-trace-print_trace" id="processor-risc_v-trace-print_trace">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L621">source</a>
+    ) <a class="anchor" href="#processor-risc_v-trace-print_trace" id="processor-risc_v-trace-print_trace">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L621">source</a>
 </pre>
 <div class="docs">
 <p>Print dynamic instruction trace. Can be used as <code>trace</code>
@@ -533,7 +533,7 @@ handler.</p>
     <span class="keyword">auto</span> MMIO_ORIGIN,
     <span class="keyword">auto</span> IMEM_TCM_SIZE_WORDS
     &gt;
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">print_memory_map</span>() <a class="anchor" href="#processor-risc_v-trace-print_memory_map" id="processor-risc_v-trace-print_memory_map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/trace.k#L737">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">print_memory_map</span>() <a class="anchor" href="#processor-risc_v-trace-print_memory_map" id="processor-risc_v-trace-print_memory_map">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/trace.k#L737">source</a>
 </pre>
 <div class="docs">
 <p>Print a diagram of memory map. Usually this function is called

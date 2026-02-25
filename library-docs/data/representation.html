@@ -176,7 +176,7 @@ id="index-link" class="link"><code>onehot_mux</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> OutputWidth, <span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span><span class="builtin">bool</span>[OutputWidth] <span class="identifier">binary_to_one_hot</span>(T <span class="identifier">index</span>) <a class="anchor" href="#data-representation-binary_to_one_hot" id="data-representation-binary_to_one_hot">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/representation.k#L18">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span>[OutputWidth] <span class="identifier">binary_to_one_hot</span>(T <span class="identifier">index</span>) <a class="anchor" href="#data-representation-binary_to_one_hot" id="data-representation-binary_to_one_hot">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/representation.k#L18">source</a>
 </pre>
 <div class="docs">
 <p>Generate a onehot of the specified width. A onehot is an array of
@@ -186,7 +186,7 @@ booleans with a single value set to true. Calling with
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Count&gt;
-<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">onehot_mux</span>(<span class="builtin">uint</span>&lt;Count&gt; <span class="identifier">onehot</span>, T[Count] <span class="identifier">data</span>) <a class="anchor" href="#data-representation-onehot_mux" id="data-representation-onehot_mux">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/representation.k#L47">source</a>
+<span class="modifier">inline </span><span class="keyword">auto</span> <span class="identifier">onehot_mux</span>(<span class="builtin">uint</span>&lt;Count&gt; <span class="identifier">onehot</span>, T[Count] <span class="identifier">data</span>) <a class="anchor" href="#data-representation-onehot_mux" id="data-representation-onehot_mux">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/representation.k#L47">source</a>
 </pre>
 <div class="docs">
 <p>Similar to <code>mux</code>, but takes a <code>onehot</code> rather
@@ -211,7 +211,7 @@ bit set. Like <code>mux</code>, <code>onehot_mux</code> requires that
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="modifier">inline </span>T <span class="identifier">endian_change</span>(T <span class="identifier">input</span>) <a class="anchor" href="#data-representation-endian_change" id="data-representation-endian_change">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/representation.k#L74">source</a>
+<span class="modifier">inline </span>T <span class="identifier">endian_change</span>(T <span class="identifier">input</span>) <a class="anchor" href="#data-representation-endian_change" id="data-representation-endian_change">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/representation.k#L74">source</a>
 </pre>
 <div class="docs">
 <p>Change a value from big endian to little endian, or vice versa. The

@@ -181,7 +181,7 @@ class="link"><code>unaligned_cyclic_buffer</code></a></li>
     <span class="keyword">auto</span> TotalSize,
     <span class="keyword">typename</span> AddrType = <span class="keyword">uint64</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">unaligned_cyclic_buffer</span> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer" id="data-buffer-cyclic-unaligned_cyclic_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L30">source</a>
+<span class="keyword">class</span> <span class="identifier">unaligned_cyclic_buffer</span> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer" id="data-buffer-cyclic-unaligned_cyclic_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L30">source</a>
 </pre>
 <div class="docs">
 <p>A cyclic buffer with the following functionality:</p>
@@ -247,18 +247,18 @@ used to access and free buffer elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">addr_t</span> = AddrType <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L37">source</a>
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = AddrType <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L37">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">word_t</span> = <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<span class="identifier">unaligned_memory_t</span>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t"><span class="identifier">word_t</span></a> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-word_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L48">source</a>
+<span class="keyword">using</span> <span class="identifier">word_t</span> = <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<span class="identifier">unaligned_memory_t</span>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-word_t"><span class="identifier">word_t</span></a> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-word_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L48">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
 <span class="keyword">using</span> <span class="identifier">read_word_t</span> =
-    <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<span class="identifier">unaligned_memory_t</span>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t"><span class="identifier">read_word_t</span></a> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L49">source</a>
+    <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<span class="identifier">unaligned_memory_t</span>::<a class="link" href="../../data/memory/unaligned.html#data-memory-unaligned-unaligned_read_aligned_write_memory-read_word_t"><span class="identifier">read_word_t</span></a> <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t" id="data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L49">source</a>
 </pre>
 </li>
 </ul>
@@ -270,7 +270,7 @@ used to access and free buffer elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-reset" id="data-buffer-cyclic-unaligned_cyclic_buffer-reset">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L53">source</a>
+<span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-reset" id="data-buffer-cyclic-unaligned_cyclic_buffer-reset">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L53">source</a>
 </pre>
 <div class="docs">
 <p>Reset cyclic buffer. This is not thread-safe and should not be called
@@ -279,7 +279,7 @@ while any other functions are running.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">write</span>(T[WordSize] <span class="identifier">word</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-write" id="data-buffer-cyclic-unaligned_cyclic_buffer-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L69">source</a>
+<span class="keyword">void</span> <span class="identifier">write</span>(T[WordSize] <span class="identifier">word</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-write" id="data-buffer-cyclic-unaligned_cyclic_buffer-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L69">source</a>
 </pre>
 <div class="docs">
 <p>Write one word. Maybe block until there is space in the buffer.</p>
@@ -287,7 +287,7 @@ while any other functions are running.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">free</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-free" id="data-buffer-cyclic-unaligned_cyclic_buffer-free">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L96">source</a>
+<span class="keyword">void</span> <span class="identifier">free</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-free" id="data-buffer-cyclic-unaligned_cyclic_buffer-free">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L96">source</a>
 </pre>
 <div class="docs">
 <p>Free words up to, but not including, the specified address. Caller
@@ -311,7 +311,7 @@ should ensure that this address is valid.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">wait</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-wait" id="data-buffer-cyclic-unaligned_cyclic_buffer-wait">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L116">source</a>
+<span class="keyword">void</span> <span class="identifier">wait</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-wait" id="data-buffer-cyclic-unaligned_cyclic_buffer-wait">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L116">source</a>
 </pre>
 <div class="docs">
 <p>Block until a fully valid word has been written to the passed
@@ -336,7 +336,7 @@ address.</p>
 <li>
 <pre class="signature">
 <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t"><span class="identifier">read_word_t</span></a>
-<span class="identifier">read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-read" id="data-buffer-cyclic-unaligned_cyclic_buffer-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L130">source</a>
+<span class="identifier">read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-read" id="data-buffer-cyclic-unaligned_cyclic_buffer-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L130">source</a>
 </pre>
 <div class="docs">
 <p>Wait for the entry at <code>addr</code> to be written and then read
@@ -363,7 +363,7 @@ entry.</p>
 <pre class="signature">
 <span class="modifier">inline </span>
 <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-read_word_t"><span class="identifier">read_word_t</span></a>
-<span class="identifier">nonblocking_read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-nonblocking_read" id="data-buffer-cyclic-unaligned_cyclic_buffer-nonblocking_read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L142">source</a>
+<span class="identifier">nonblocking_read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer"><span class="identifier">unaligned_cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-unaligned_cyclic_buffer-nonblocking_read" id="data-buffer-cyclic-unaligned_cyclic_buffer-nonblocking_read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L142">source</a>
 </pre>
 <div class="docs">
 <p>Read the value at the specified address. This version of read does
@@ -393,7 +393,7 @@ address is valid (written and not freed).</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> Size, <span class="keyword">typename</span> AddrType = <span class="keyword">uint64</span>&gt;
-<span class="keyword">class</span> <span class="identifier">cyclic_buffer</span> <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer" id="data-buffer-cyclic-cyclic_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L169">source</a>
+<span class="keyword">class</span> <span class="identifier">cyclic_buffer</span> <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer" id="data-buffer-cyclic-cyclic_buffer">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L169">source</a>
 </pre>
 <div class="docs">
 <p>This class is a wrapper around a <code>unaligned_cyclic_buffer</code>
@@ -437,7 +437,7 @@ used to access and free buffer elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<span class="identifier">unaligned_cyclic_buffer_t</span>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-addr_t" id="data-buffer-cyclic-cyclic_buffer-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L175">source</a>
+<span class="keyword">using</span> <span class="identifier">addr_t</span> = <a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<span class="identifier">unaligned_cyclic_buffer_t</span>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-unaligned_cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-addr_t" id="data-buffer-cyclic-cyclic_buffer-addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L175">source</a>
 </pre>
 </li>
 </ul>
@@ -449,7 +449,7 @@ used to access and free buffer elements.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-reset" id="data-buffer-cyclic-cyclic_buffer-reset">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L179">source</a>
+<span class="keyword">void</span> <span class="identifier">reset</span>() <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-reset" id="data-buffer-cyclic-cyclic_buffer-reset">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L179">source</a>
 </pre>
 <div class="docs">
 <p>Reset cyclic buffer. This is not thread-safe and should not be called
@@ -458,7 +458,7 @@ while any other functions are running.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">write</span>(T <span class="identifier">val</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-write" id="data-buffer-cyclic-cyclic_buffer-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L185">source</a>
+<span class="keyword">void</span> <span class="identifier">write</span>(T <span class="identifier">val</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-write" id="data-buffer-cyclic-cyclic_buffer-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L185">source</a>
 </pre>
 <div class="docs">
 <p>Wait for a free entry and write one entry.</p>
@@ -466,7 +466,7 @@ while any other functions are running.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">free</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-free" id="data-buffer-cyclic-cyclic_buffer-free">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L192">source</a>
+<span class="keyword">void</span> <span class="identifier">free</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-free" id="data-buffer-cyclic-cyclic_buffer-free">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L192">source</a>
 </pre>
 <div class="docs">
 <p>Free entries up to the specified address. Caller should ensure that
@@ -490,7 +490,7 @@ this address is valid.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">wait</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-wait" id="data-buffer-cyclic-cyclic_buffer-wait">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L198">source</a>
+<span class="keyword">void</span> <span class="identifier">wait</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-wait" id="data-buffer-cyclic-cyclic_buffer-wait">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L198">source</a>
 </pre>
 <div class="docs">
 <p>Block until the passed address has been written to.</p>
@@ -513,7 +513,7 @@ this address is valid.</p>
 </li>
 <li>
 <pre class="signature">
-T <span class="identifier">read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-read" id="data-buffer-cyclic-cyclic_buffer-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L205">source</a>
+T <span class="identifier">read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-read" id="data-buffer-cyclic-cyclic_buffer-read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L205">source</a>
 </pre>
 <div class="docs">
 <p>Wait for the entry at <code>addr</code> to be written and then read
@@ -538,7 +538,7 @@ entry.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span>T <span class="identifier">nonblocking_read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-nonblocking_read" id="data-buffer-cyclic-cyclic_buffer-nonblocking_read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/buffer/cyclic.k#L215">source</a>
+<span class="modifier">inline </span>T <span class="identifier">nonblocking_read</span>(<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer"><span class="identifier">cyclic_buffer</span></a>::<a class="link" href="../../data/buffer/cyclic.html#data-buffer-cyclic-cyclic_buffer-addr_t"><span class="identifier">addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-buffer-cyclic-cyclic_buffer-nonblocking_read" id="data-buffer-cyclic-cyclic_buffer-nonblocking_read">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/buffer/cyclic.k#L215">source</a>
 </pre>
 <div class="docs">
 <p>Read the value at the specified address. This version of read does

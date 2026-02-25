@@ -301,7 +301,7 @@ href="../../../index.html">&equiv;</a></h1>
 <p>Internal implementation of RISC-V decoder.</p>
 <hr />
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Option</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Option" id="processor-risc_v-internal-decoder-Option">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L33">source</a>
+<span class="keyword">enum</span> <span class="identifier">Option</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Option" id="processor-risc_v-internal-decoder-Option">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L33">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -310,7 +310,7 @@ href="../../../index.html">&equiv;</a></h1>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">HartsShareDMEM</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Option-HartsShareDMEM" id="processor-risc_v-internal-decoder-Option-HartsShareDMEM">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L44">source</a>
+<span class="identifier">HartsShareDMEM</span> = <span class="literal">2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Option-HartsShareDMEM" id="processor-risc_v-internal-decoder-Option-HartsShareDMEM">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L44">source</a>
 </pre>
 <div class="docs">
 <p>Data memory is implemented as internally instantiated tightly coupled
@@ -328,7 +328,7 @@ to be a power of 2.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">NoExceptionForCompressedEncoding</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Option-NoExceptionForCompressedEncoding" id="processor-risc_v-internal-decoder-Option-NoExceptionForCompressedEncoding">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L49">source</a>
+<span class="identifier">NoExceptionForCompressedEncoding</span> = <span class="literal">4</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Option-NoExceptionForCompressedEncoding" id="processor-risc_v-internal-decoder-Option-NoExceptionForCompressedEncoding">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L49">source</a>
 </pre>
 <div class="docs">
 <p>Disables checking of lower two bits of instruction word which are
@@ -341,7 +341,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">ControlOp</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlOp" id="processor-risc_v-internal-decoder-ControlOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L52">source</a>
+<span class="keyword">enum</span> <span class="identifier">ControlOp</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlOp" id="processor-risc_v-internal-decoder-ControlOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L52">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -350,12 +350,12 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">BRANCH</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlOp-BRANCH" id="processor-risc_v-internal-decoder-ControlOp-BRANCH">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L54">source</a>
+<span class="identifier">BRANCH</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlOp-BRANCH" id="processor-risc_v-internal-decoder-ControlOp-BRANCH">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L54">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">JUMP</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlOp-JUMP" id="processor-risc_v-internal-decoder-ControlOp-JUMP">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L55">source</a>
+<span class="identifier">JUMP</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlOp-JUMP" id="processor-risc_v-internal-decoder-ControlOp-JUMP">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L55">source</a>
 </pre>
 </li>
 </ul>
@@ -363,7 +363,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">Condition</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition" id="processor-risc_v-internal-decoder-Condition">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L58">source</a>
+<span class="keyword">enum</span> <span class="identifier">Condition</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition" id="processor-risc_v-internal-decoder-Condition">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L58">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -372,22 +372,22 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">EQ</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-EQ" id="processor-risc_v-internal-decoder-Condition-EQ">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L60">source</a>
+<span class="identifier">EQ</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-EQ" id="processor-risc_v-internal-decoder-Condition-EQ">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L60">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">NE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-NE" id="processor-risc_v-internal-decoder-Condition-NE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L61">source</a>
+<span class="identifier">NE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-NE" id="processor-risc_v-internal-decoder-Condition-NE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L61">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">LT</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-LT" id="processor-risc_v-internal-decoder-Condition-LT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L62">source</a>
+<span class="identifier">LT</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-LT" id="processor-risc_v-internal-decoder-Condition-LT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L62">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">GE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-GE" id="processor-risc_v-internal-decoder-Condition-GE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L63">source</a>
+<span class="identifier">GE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Condition-GE" id="processor-risc_v-internal-decoder-Condition-GE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L63">source</a>
 </pre>
 </li>
 </ul>
@@ -395,7 +395,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">ControlInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlInstr" id="processor-risc_v-internal-decoder-ControlInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L69">source</a>
+<span class="keyword">struct</span> <span class="identifier">ControlInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ControlInstr" id="processor-risc_v-internal-decoder-ControlInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L69">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -404,12 +404,12 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-ControlOp"><span class="identifier">ControlOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi0-op" id="processor-risc_v-internal-decoder-$quasi0-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L71">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-ControlOp"><span class="identifier">ControlOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi0-op" id="processor-risc_v-internal-decoder-$quasi0-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L71">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Condition"><span class="identifier">Condition</span></a> <span class="identifier">condition</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi0-condition" id="processor-risc_v-internal-decoder-$quasi0-condition">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L72">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Condition"><span class="identifier">Condition</span></a> <span class="identifier">condition</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi0-condition" id="processor-risc_v-internal-decoder-$quasi0-condition">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L72">source</a>
 </pre>
 </li>
 </ul>
@@ -417,7 +417,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">ComputeOp</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp" id="processor-risc_v-internal-decoder-ComputeOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L75">source</a>
+<span class="keyword">enum</span> <span class="identifier">ComputeOp</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp" id="processor-risc_v-internal-decoder-ComputeOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L75">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -426,42 +426,42 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">ADD</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-ADD" id="processor-risc_v-internal-decoder-ComputeOp-ADD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L77">source</a>
+<span class="identifier">ADD</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-ADD" id="processor-risc_v-internal-decoder-ComputeOp-ADD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L77">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SLL</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SLL" id="processor-risc_v-internal-decoder-ComputeOp-SLL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L78">source</a>
+<span class="identifier">SLL</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SLL" id="processor-risc_v-internal-decoder-ComputeOp-SLL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L78">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SLT</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SLT" id="processor-risc_v-internal-decoder-ComputeOp-SLT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L79">source</a>
+<span class="identifier">SLT</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SLT" id="processor-risc_v-internal-decoder-ComputeOp-SLT">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L79">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SLTU</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SLTU" id="processor-risc_v-internal-decoder-ComputeOp-SLTU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L80">source</a>
+<span class="identifier">SLTU</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SLTU" id="processor-risc_v-internal-decoder-ComputeOp-SLTU">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L80">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SUB</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SUB" id="processor-risc_v-internal-decoder-ComputeOp-SUB">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L81">source</a>
+<span class="identifier">SUB</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SUB" id="processor-risc_v-internal-decoder-ComputeOp-SUB">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L81">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">SR</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SR" id="processor-risc_v-internal-decoder-ComputeOp-SR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L82">source</a>
+<span class="identifier">SR</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-SR" id="processor-risc_v-internal-decoder-ComputeOp-SR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L82">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Custom</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-Custom" id="processor-risc_v-internal-decoder-ComputeOp-Custom">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L83">source</a>
+<span class="identifier">Custom</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-Custom" id="processor-risc_v-internal-decoder-ComputeOp-Custom">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L83">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Logical</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-Logical" id="processor-risc_v-internal-decoder-ComputeOp-Logical">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L84">source</a>
+<span class="identifier">Logical</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeOp-Logical" id="processor-risc_v-internal-decoder-ComputeOp-Logical">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L84">source</a>
 </pre>
 </li>
 </ul>
@@ -469,7 +469,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">LogicalOp</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp" id="processor-risc_v-internal-decoder-LogicalOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L93">source</a>
+<span class="keyword">enum</span> <span class="identifier">LogicalOp</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp" id="processor-risc_v-internal-decoder-LogicalOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L93">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -478,22 +478,22 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">XOR</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-XOR" id="processor-risc_v-internal-decoder-LogicalOp-XOR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L95">source</a>
+<span class="identifier">XOR</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-XOR" id="processor-risc_v-internal-decoder-LogicalOp-XOR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L95">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">LUI</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-LUI" id="processor-risc_v-internal-decoder-LogicalOp-LUI">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L96">source</a>
+<span class="identifier">LUI</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-LUI" id="processor-risc_v-internal-decoder-LogicalOp-LUI">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L96">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">OR</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-OR" id="processor-risc_v-internal-decoder-LogicalOp-OR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L97">source</a>
+<span class="identifier">OR</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-OR" id="processor-risc_v-internal-decoder-LogicalOp-OR">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L97">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">AND</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-AND" id="processor-risc_v-internal-decoder-LogicalOp-AND">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L98">source</a>
+<span class="identifier">AND</span> <a class="anchor" href="#processor-risc_v-internal-decoder-LogicalOp-AND" id="processor-risc_v-internal-decoder-LogicalOp-AND">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L98">source</a>
 </pre>
 </li>
 </ul>
@@ -501,7 +501,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">BaseInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-BaseInstr" id="processor-risc_v-internal-decoder-BaseInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L105">source</a>
+<span class="keyword">struct</span> <span class="identifier">BaseInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-BaseInstr" id="processor-risc_v-internal-decoder-BaseInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L105">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -510,17 +510,17 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-ComputeOp"><span class="identifier">ComputeOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi1-op" id="processor-risc_v-internal-decoder-$quasi1-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L107">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-ComputeOp"><span class="identifier">ComputeOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi1-op" id="processor-risc_v-internal-decoder-$quasi1-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L107">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-LogicalOp"><span class="identifier">LogicalOp</span></a> <span class="identifier">logical</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi1-logical" id="processor-risc_v-internal-decoder-$quasi1-logical">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L108">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-LogicalOp"><span class="identifier">LogicalOp</span></a> <span class="identifier">logical</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi1-logical" id="processor-risc_v-internal-decoder-$quasi1-logical">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L108">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">sra</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi1-sra" id="processor-risc_v-internal-decoder-$quasi1-sra">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L109">source</a>
+<span class="builtin">bool</span> <span class="identifier">sra</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi1-sra" id="processor-risc_v-internal-decoder-$quasi1-sra">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L109">source</a>
 </pre>
 </li>
 </ul>
@@ -528,7 +528,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MulIn</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulIn" id="processor-risc_v-internal-decoder-MulIn">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L112">source</a>
+<span class="keyword">enum</span> <span class="identifier">MulIn</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulIn" id="processor-risc_v-internal-decoder-MulIn">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L112">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -537,12 +537,12 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Signed</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulIn-Signed" id="processor-risc_v-internal-decoder-MulIn-Signed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L114">source</a>
+<span class="identifier">Signed</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulIn-Signed" id="processor-risc_v-internal-decoder-MulIn-Signed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L114">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Unsigned</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulIn-Unsigned" id="processor-risc_v-internal-decoder-MulIn-Unsigned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L115">source</a>
+<span class="identifier">Unsigned</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulIn-Unsigned" id="processor-risc_v-internal-decoder-MulIn-Unsigned">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L115">source</a>
 </pre>
 </li>
 </ul>
@@ -550,7 +550,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MulOut</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulOut" id="processor-risc_v-internal-decoder-MulOut">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L118">source</a>
+<span class="keyword">enum</span> <span class="identifier">MulOut</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulOut" id="processor-risc_v-internal-decoder-MulOut">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L118">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -559,12 +559,12 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Lower</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulOut-Lower" id="processor-risc_v-internal-decoder-MulOut-Lower">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L120">source</a>
+<span class="identifier">Lower</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulOut-Lower" id="processor-risc_v-internal-decoder-MulOut-Lower">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L120">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Upper</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulOut-Upper" id="processor-risc_v-internal-decoder-MulOut-Upper">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L121">source</a>
+<span class="identifier">Upper</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulOut-Upper" id="processor-risc_v-internal-decoder-MulOut-Upper">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L121">source</a>
 </pre>
 </li>
 </ul>
@@ -572,7 +572,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">MulInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulInstr" id="processor-risc_v-internal-decoder-MulInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L124">source</a>
+<span class="keyword">struct</span> <span class="identifier">MulInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MulInstr" id="processor-risc_v-internal-decoder-MulInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L124">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -581,17 +581,17 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulIn"><span class="identifier">MulIn</span></a> <span class="identifier">op1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi2-op1" id="processor-risc_v-internal-decoder-$quasi2-op1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L126">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulIn"><span class="identifier">MulIn</span></a> <span class="identifier">op1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi2-op1" id="processor-risc_v-internal-decoder-$quasi2-op1">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L126">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulIn"><span class="identifier">MulIn</span></a> <span class="identifier">op2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi2-op2" id="processor-risc_v-internal-decoder-$quasi2-op2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L127">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulIn"><span class="identifier">MulIn</span></a> <span class="identifier">op2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi2-op2" id="processor-risc_v-internal-decoder-$quasi2-op2">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L127">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulOut"><span class="identifier">MulOut</span></a> <span class="identifier">result</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi2-result" id="processor-risc_v-internal-decoder-$quasi2-result">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L128">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulOut"><span class="identifier">MulOut</span></a> <span class="identifier">result</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi2-result" id="processor-risc_v-internal-decoder-$quasi2-result">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L128">source</a>
 </pre>
 </li>
 </ul>
@@ -599,7 +599,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">union</span> <span class="identifier">ComputeInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeInstr" id="processor-risc_v-internal-decoder-ComputeInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L131">source</a>
+<span class="keyword">union</span> <span class="identifier">ComputeInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-ComputeInstr" id="processor-risc_v-internal-decoder-ComputeInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L131">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -608,12 +608,12 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-BaseInstr"><span class="identifier">BaseInstr</span></a> <span class="identifier">base</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi3-base" id="processor-risc_v-internal-decoder-$quasi3-base">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L133">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-BaseInstr"><span class="identifier">BaseInstr</span></a> <span class="identifier">base</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi3-base" id="processor-risc_v-internal-decoder-$quasi3-base">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L133">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulInstr"><span class="identifier">MulInstr</span></a> <span class="identifier">mul</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi3-mul" id="processor-risc_v-internal-decoder-$quasi3-mul">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L134">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MulInstr"><span class="identifier">MulInstr</span></a> <span class="identifier">mul</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi3-mul" id="processor-risc_v-internal-decoder-$quasi3-mul">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L134">source</a>
 </pre>
 </li>
 </ul>
@@ -621,7 +621,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MemoryOp</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryOp" id="processor-risc_v-internal-decoder-MemoryOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L137">source</a>
+<span class="keyword">enum</span> <span class="identifier">MemoryOp</span> : <span class="keyword">uint1</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryOp" id="processor-risc_v-internal-decoder-MemoryOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L137">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -630,12 +630,12 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">LOAD</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryOp-LOAD" id="processor-risc_v-internal-decoder-MemoryOp-LOAD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L139">source</a>
+<span class="identifier">LOAD</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryOp-LOAD" id="processor-risc_v-internal-decoder-MemoryOp-LOAD">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L139">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">STORE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryOp-STORE" id="processor-risc_v-internal-decoder-MemoryOp-STORE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L140">source</a>
+<span class="identifier">STORE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryOp-STORE" id="processor-risc_v-internal-decoder-MemoryOp-STORE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L140">source</a>
 </pre>
 </li>
 </ul>
@@ -643,7 +643,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">MemorySize</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize" id="processor-risc_v-internal-decoder-MemorySize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L144">source</a>
+<span class="keyword">enum</span> <span class="identifier">MemorySize</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize" id="processor-risc_v-internal-decoder-MemorySize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L144">source</a>
 </pre>
 <div class="docs">
 <p>Size of memory load/store</p>
@@ -653,7 +653,7 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">B</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize-B" id="processor-risc_v-internal-decoder-MemorySize-B">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L147">source</a>
+<span class="identifier">B</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize-B" id="processor-risc_v-internal-decoder-MemorySize-B">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L147">source</a>
 </pre>
 <div class="docs">
 <p>Byte</p>
@@ -661,7 +661,7 @@ RAM by synthesizing out these bits.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">H</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize-H" id="processor-risc_v-internal-decoder-MemorySize-H">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L149">source</a>
+<span class="identifier">H</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize-H" id="processor-risc_v-internal-decoder-MemorySize-H">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L149">source</a>
 </pre>
 <div class="docs">
 <p>Half-word</p>
@@ -669,7 +669,7 @@ RAM by synthesizing out these bits.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">W</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize-W" id="processor-risc_v-internal-decoder-MemorySize-W">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L151">source</a>
+<span class="identifier">W</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemorySize-W" id="processor-risc_v-internal-decoder-MemorySize-W">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L151">source</a>
 </pre>
 <div class="docs">
 <p>Word</p>
@@ -680,7 +680,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">MemoryInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryInstr" id="processor-risc_v-internal-decoder-MemoryInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L158">source</a>
+<span class="keyword">struct</span> <span class="identifier">MemoryInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-MemoryInstr" id="processor-risc_v-internal-decoder-MemoryInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L158">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -689,17 +689,17 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemoryOp"><span class="identifier">MemoryOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi4-op" id="processor-risc_v-internal-decoder-$quasi4-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L160">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemoryOp"><span class="identifier">MemoryOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi4-op" id="processor-risc_v-internal-decoder-$quasi4-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L160">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi4-size" id="processor-risc_v-internal-decoder-$quasi4-size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L161">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-MemorySize"><span class="identifier">MemorySize</span></a> <span class="identifier">size</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi4-size" id="processor-risc_v-internal-decoder-$quasi4-size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L161">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">sign_extend</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi4-sign_extend" id="processor-risc_v-internal-decoder-$quasi4-sign_extend">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L162">source</a>
+<span class="builtin">bool</span> <span class="identifier">sign_extend</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi4-sign_extend" id="processor-risc_v-internal-decoder-$quasi4-sign_extend">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L162">source</a>
 </pre>
 </li>
 </ul>
@@ -707,7 +707,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">SystemOp</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp" id="processor-risc_v-internal-decoder-SystemOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L165">source</a>
+<span class="keyword">enum</span> <span class="identifier">SystemOp</span> : <span class="keyword">uint3</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp" id="processor-risc_v-internal-decoder-SystemOp">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L165">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -716,32 +716,32 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">CSRRS_CYCLE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLE" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L167">source</a>
+<span class="identifier">CSRRS_CYCLE</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLE" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLE">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L167">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRS_INSTRET</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_INSTRET" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_INSTRET">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L168">source</a>
+<span class="identifier">CSRRS_INSTRET</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_INSTRET" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_INSTRET">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L168">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRS_CYCLEH</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLEH" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLEH">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L169">source</a>
+<span class="identifier">CSRRS_CYCLEH</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLEH" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_CYCLEH">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L169">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">CSRRS_MHARTID</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_MHARTID" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_MHARTID">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L170">source</a>
+<span class="identifier">CSRRS_MHARTID</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-CSRRS_MHARTID" id="processor-risc_v-internal-decoder-SystemOp-CSRRS_MHARTID">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L170">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">ECALL</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-ECALL" id="processor-risc_v-internal-decoder-SystemOp-ECALL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L171">source</a>
+<span class="identifier">ECALL</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-ECALL" id="processor-risc_v-internal-decoder-SystemOp-ECALL">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L171">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">EBREAK</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-EBREAK" id="processor-risc_v-internal-decoder-SystemOp-EBREAK">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L172">source</a>
+<span class="identifier">EBREAK</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemOp-EBREAK" id="processor-risc_v-internal-decoder-SystemOp-EBREAK">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L172">source</a>
 </pre>
 </li>
 </ul>
@@ -749,7 +749,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">SystemInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemInstr" id="processor-risc_v-internal-decoder-SystemInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L175">source</a>
+<span class="keyword">struct</span> <span class="identifier">SystemInstr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-SystemInstr" id="processor-risc_v-internal-decoder-SystemInstr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L175">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -758,7 +758,7 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-SystemOp"><span class="identifier">SystemOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi5-op" id="processor-risc_v-internal-decoder-$quasi5-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L177">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-SystemOp"><span class="identifier">SystemOp</span></a> <span class="identifier">op</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi5-op" id="processor-risc_v-internal-decoder-$quasi5-op">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L177">source</a>
 </pre>
 </li>
 </ul>
@@ -766,7 +766,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">enum</span> <span class="identifier">InstrKind</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind" id="processor-risc_v-internal-decoder-InstrKind">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L188">source</a>
+<span class="keyword">enum</span> <span class="identifier">InstrKind</span> : <span class="keyword">uint2</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind" id="processor-risc_v-internal-decoder-InstrKind">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L188">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -775,22 +775,22 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">Compute</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-Compute" id="processor-risc_v-internal-decoder-InstrKind-Compute">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L190">source</a>
+<span class="identifier">Compute</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-Compute" id="processor-risc_v-internal-decoder-InstrKind-Compute">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L190">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Control</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-Control" id="processor-risc_v-internal-decoder-InstrKind-Control">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L191">source</a>
+<span class="identifier">Control</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-Control" id="processor-risc_v-internal-decoder-InstrKind-Control">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L191">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">Memory</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-Memory" id="processor-risc_v-internal-decoder-InstrKind-Memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L192">source</a>
+<span class="identifier">Memory</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-Memory" id="processor-risc_v-internal-decoder-InstrKind-Memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L192">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="identifier">System</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-System" id="processor-risc_v-internal-decoder-InstrKind-System">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L193">source</a>
+<span class="identifier">System</span> <a class="anchor" href="#processor-risc_v-internal-decoder-InstrKind-System" id="processor-risc_v-internal-decoder-InstrKind-System">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L193">source</a>
 </pre>
 </li>
 </ul>
@@ -798,7 +798,7 @@ RAM by synthesizing out these bits.</p>
 </details>
 </div>
 <pre class="signature">
-<span class="keyword">struct</span> <span class="identifier">Decoded</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Decoded" id="processor-risc_v-internal-decoder-Decoded">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L196">source</a>
+<span class="keyword">struct</span> <span class="identifier">Decoded</span> <a class="anchor" href="#processor-risc_v-internal-decoder-Decoded" id="processor-risc_v-internal-decoder-Decoded">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L196">source</a>
 </pre>
 <div class="docs">
 <details>
@@ -807,62 +807,62 @@ RAM by synthesizing out these bits.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="identifier">DecodedInstr</span> <span class="identifier">instr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-instr" id="processor-risc_v-internal-decoder-$quasi7-instr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L198">source</a>
+<span class="identifier">DecodedInstr</span> <span class="identifier">instr</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-instr" id="processor-risc_v-internal-decoder-$quasi7-instr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L198">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-InstrKind"><span class="identifier">InstrKind</span></a> <span class="identifier">kind</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-kind" id="processor-risc_v-internal-decoder-$quasi7-kind">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L199">source</a>
+<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-InstrKind"><span class="identifier">InstrKind</span></a> <span class="identifier">kind</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-kind" id="processor-risc_v-internal-decoder-$quasi7-kind">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L199">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a>::<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Base-RV32I"><span class="identifier">RV32I</span></a>&gt;::<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">format</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-format" id="processor-risc_v-internal-decoder-$quasi7-format">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L200">source</a>
+<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Types"><span class="identifier">Types</span></a>&lt;<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Base"><span class="identifier">Base</span></a>::<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Base-RV32I"><span class="identifier">RV32I</span></a>&gt;::<a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">format</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-format" id="processor-risc_v-internal-decoder-$quasi7-format">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L200">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a> <span class="identifier">major_opcode</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-major_opcode" id="processor-risc_v-internal-decoder-$quasi7-major_opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L201">source</a>
+<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a> <span class="identifier">major_opcode</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-major_opcode" id="processor-risc_v-internal-decoder-$quasi7-major_opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L201">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">minor_opcode</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-minor_opcode" id="processor-risc_v-internal-decoder-$quasi7-minor_opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L202">source</a>
+<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Funct3"><span class="identifier">Funct3</span></a> <span class="identifier">minor_opcode</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-minor_opcode" id="processor-risc_v-internal-decoder-$quasi7-minor_opcode">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L202">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">store</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-store" id="processor-risc_v-internal-decoder-$quasi7-store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L203">source</a>
+<span class="builtin">bool</span> <span class="identifier">store</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-store" id="processor-risc_v-internal-decoder-$quasi7-store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L203">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">control</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-control" id="processor-risc_v-internal-decoder-$quasi7-control">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L204">source</a>
+<span class="builtin">bool</span> <span class="identifier">control</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-control" id="processor-risc_v-internal-decoder-$quasi7-control">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L204">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">trap</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-trap" id="processor-risc_v-internal-decoder-$quasi7-trap">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L205">source</a>
+<span class="builtin">bool</span> <span class="identifier">trap</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-trap" id="processor-risc_v-internal-decoder-$quasi7-trap">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L205">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">unsigned_comparison</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-unsigned_comparison" id="processor-risc_v-internal-decoder-$quasi7-unsigned_comparison">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L206">source</a>
+<span class="builtin">bool</span> <span class="identifier">unsigned_comparison</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-unsigned_comparison" id="processor-risc_v-internal-decoder-$quasi7-unsigned_comparison">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L206">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">pc_plus</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-pc_plus" id="processor-risc_v-internal-decoder-$quasi7-pc_plus">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L207">source</a>
+<span class="builtin">bool</span> <span class="identifier">pc_plus</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-pc_plus" id="processor-risc_v-internal-decoder-$quasi7-pc_plus">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L207">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">mul</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-mul" id="processor-risc_v-internal-decoder-$quasi7-mul">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L208">source</a>
+<span class="builtin">bool</span> <span class="identifier">mul</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-mul" id="processor-risc_v-internal-decoder-$quasi7-mul">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L208">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">illegal</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-illegal" id="processor-risc_v-internal-decoder-$quasi7-illegal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L209">source</a>
+<span class="builtin">bool</span> <span class="identifier">illegal</span> <a class="anchor" href="#processor-risc_v-internal-decoder-$quasi7-illegal" id="processor-risc_v-internal-decoder-$quasi7-illegal">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L209">source</a>
 </pre>
 </li>
 </ul>
@@ -871,7 +871,7 @@ RAM by synthesizing out these bits.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> EXTENSIONS, <span class="keyword">auto</span> CONFIG&gt;
-<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decode_instr</span>(<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Instr"><span class="identifier">Instr</span></a> <span class="identifier">instr</span>, (<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a>) -&gt; <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">custom_decode</span>) <a class="anchor" href="#processor-risc_v-internal-decoder-decode_instr" id="processor-risc_v-internal-decoder-decode_instr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/processor/risc_v/internal/decoder.k#L213">source</a>
+<span class="modifier">inline </span><a class="link" href="../../../processor/risc_v/internal/decoder.html#processor-risc_v-internal-decoder-Decoded"><span class="identifier">Decoded</span></a> <span class="identifier">decode_instr</span>(<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Instr"><span class="identifier">Instr</span></a> <span class="identifier">instr</span>, (<a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-RVG"><span class="identifier">RVG</span></a>) -&gt; <a class="link" href="../../../processor/risc_v/isa.html#processor-risc_v-isa-Format"><span class="identifier">Format</span></a> <span class="identifier">custom_decode</span>) <a class="anchor" href="#processor-risc_v-internal-decoder-decode_instr" id="processor-risc_v-internal-decoder-decode_instr">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/processor/risc_v/internal/decoder.k#L213">source</a>
 </pre>
 </section>
 </div>

@@ -170,7 +170,7 @@ id="index-link" class="link"><code>limits</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="keyword">class</span> <span class="identifier">limits</span> <a class="anchor" href="#numeric-int-limits-limits" id="numeric-int-limits-limits">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/numeric/int/limits.k#L10">source</a>
+<span class="keyword">class</span> <span class="identifier">limits</span> <a class="anchor" href="#numeric-int-limits-limits" id="numeric-int-limits-limits">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/int/limits.k#L10">source</a>
 </pre>
 <div class="docs">
 <p>Numeric limit constants for integer types</p>
@@ -180,7 +180,7 @@ id="index-link" class="link"><code>limits</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">is_signed</span> = (<span class="builtin">cast</span>&lt;T&gt;(<span class="builtin">-</span>(<span class="literal">1</span>)) &lt; <span class="literal">0</span>) <a class="anchor" href="#numeric-int-limits-limits-is_signed" id="numeric-int-limits-limits-is_signed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/numeric/int/limits.k#L14">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">is_signed</span> = (<span class="builtin">cast</span>&lt;T&gt;(<span class="builtin">-</span>(<span class="literal">1</span>)) &lt; <span class="literal">0</span>) <a class="anchor" href="#numeric-int-limits-limits-is_signed" id="numeric-int-limits-limits-is_signed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/int/limits.k#L14">source</a>
 </pre>
 <div class="docs">
 <p>Indicates whether the type is signed</p>
@@ -188,7 +188,7 @@ id="index-link" class="link"><code>limits</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">const</span> T <span class="identifier">min</span> = <a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits"><span class="identifier">limits</span></a>::<a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits-is_signed"><span class="identifier">is_signed</span></a> ? <span class="builtin">cast</span>&lt;T&gt;((<span class="literal">1</span> &lt;&lt; (<span class="builtin">bitsizeof</span>(T) - <span class="literal">1</span>))) : <span class="literal">0</span> <a class="anchor" href="#numeric-int-limits-limits-min" id="numeric-int-limits-limits-min">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/numeric/int/limits.k#L17">source</a>
+<span class="keyword">const</span> T <span class="identifier">min</span> = <a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits"><span class="identifier">limits</span></a>::<a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits-is_signed"><span class="identifier">is_signed</span></a> ? <span class="builtin">cast</span>&lt;T&gt;((<span class="literal">1</span> &lt;&lt; (<span class="builtin">bitsizeof</span>(T) - <span class="literal">1</span>))) : <span class="literal">0</span> <a class="anchor" href="#numeric-int-limits-limits-min" id="numeric-int-limits-limits-min">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/int/limits.k#L17">source</a>
 </pre>
 <div class="docs">
 <p>Smallest value of the type</p>
@@ -196,7 +196,7 @@ id="index-link" class="link"><code>limits</code></a></li>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">const</span> T <span class="identifier">max</span> = <span class="builtin">cast</span>&lt;T&gt;((<a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits"><span class="identifier">limits</span></a>::<a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits-min"><span class="identifier">min</span></a> - <span class="literal">1</span>)) <a class="anchor" href="#numeric-int-limits-limits-max" id="numeric-int-limits-limits-max">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/numeric/int/limits.k#L20">source</a>
+<span class="keyword">const</span> T <span class="identifier">max</span> = <span class="builtin">cast</span>&lt;T&gt;((<a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits"><span class="identifier">limits</span></a>::<a class="link" href="../../numeric/int/limits.html#numeric-int-limits-limits-min"><span class="identifier">min</span></a> - <span class="literal">1</span>)) <a class="anchor" href="#numeric-int-limits-limits-max" id="numeric-int-limits-limits-max">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/int/limits.k#L20">source</a>
 </pre>
 <div class="docs">
 <p>Largest value of the type</p>

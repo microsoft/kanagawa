@@ -173,7 +173,7 @@ class="link"><code>semaphore</code></a></li>
 <h1>sync.lock <a href="../index.html">&equiv;</a></h1>
 <hr />
 <pre class="signature">
-<span class="keyword">class</span> <span class="identifier">mutex</span> <a class="anchor" href="#sync-lock-mutex" id="sync-lock-mutex">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L18">source</a>
+<span class="keyword">class</span> <span class="identifier">mutex</span> <a class="anchor" href="#sync-lock-mutex" id="sync-lock-mutex">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L18">source</a>
 </pre>
 <div class="docs">
 <p>Mutex: mutually exclusive lock. Call <code>lock</code> to acquire the
@@ -190,7 +190,7 @@ encapsulate the read-modify-write.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">lock</span>() <a class="anchor" href="#sync-lock-mutex-lock" id="sync-lock-mutex-lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L38">source</a>
+<span class="keyword">void</span> <span class="identifier">lock</span>() <a class="anchor" href="#sync-lock-mutex-lock" id="sync-lock-mutex-lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L38">source</a>
 </pre>
 <div class="docs">
 <p>Atomically acquire the lock if it is not already acquired, or block
@@ -199,7 +199,7 @@ waiting on the lock to be released.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">unlock</span>() <a class="anchor" href="#sync-lock-mutex-unlock" id="sync-lock-mutex-unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L44">source</a>
+<span class="keyword">void</span> <span class="identifier">unlock</span>() <a class="anchor" href="#sync-lock-mutex-unlock" id="sync-lock-mutex-unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L44">source</a>
 </pre>
 <div class="docs">
 <p>Release the lock.</p>
@@ -211,7 +211,7 @@ waiting on the lock to be released.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> MaxThreads&gt;
-<span class="keyword">class</span> <span class="identifier">rwlock</span> <a class="anchor" href="#sync-lock-rwlock" id="sync-lock-rwlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L62">source</a>
+<span class="keyword">class</span> <span class="identifier">rwlock</span> <a class="anchor" href="#sync-lock-rwlock" id="sync-lock-rwlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L62">source</a>
 </pre>
 <div class="docs">
 <p>Reader-Writer lock is a synchronization primitive that allows
@@ -240,32 +240,32 @@ outstanding. Typically 512 is a reasonable value to use here.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">lock</span>(<span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-rwlock-lock" id="sync-lock-rwlock-lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L94">source</a>
+<span class="keyword">void</span> <span class="identifier">lock</span>(<span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-rwlock-lock" id="sync-lock-rwlock-lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L94">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">read_lock</span>() <a class="anchor" href="#sync-lock-rwlock-read_lock" id="sync-lock-rwlock-read_lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L99">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">read_lock</span>() <a class="anchor" href="#sync-lock-rwlock-read_lock" id="sync-lock-rwlock-read_lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L99">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_lock</span>() <a class="anchor" href="#sync-lock-rwlock-write_lock" id="sync-lock-rwlock-write_lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L104">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_lock</span>() <a class="anchor" href="#sync-lock-rwlock-write_lock" id="sync-lock-rwlock-write_lock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L104">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">unlock</span>(<span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-rwlock-unlock" id="sync-lock-rwlock-unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L109">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">unlock</span>(<span class="builtin">bool</span> <span class="identifier">is_reader</span>) <a class="anchor" href="#sync-lock-rwlock-unlock" id="sync-lock-rwlock-unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L109">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">read_unlock</span>() <a class="anchor" href="#sync-lock-rwlock-read_unlock" id="sync-lock-rwlock-read_unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L121">source</a>
+<span class="keyword">void</span> <span class="identifier">read_unlock</span>() <a class="anchor" href="#sync-lock-rwlock-read_unlock" id="sync-lock-rwlock-read_unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L121">source</a>
 </pre>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">write_unlock</span>() <a class="anchor" href="#sync-lock-rwlock-write_unlock" id="sync-lock-rwlock-write_unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L126">source</a>
+<span class="keyword">void</span> <span class="identifier">write_unlock</span>() <a class="anchor" href="#sync-lock-rwlock-write_unlock" id="sync-lock-rwlock-write_unlock">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L126">source</a>
 </pre>
 </li>
 </ul>
@@ -274,7 +274,7 @@ outstanding. Typically 512 is a reasonable value to use here.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> M, <span class="keyword">auto</span> I, <span class="keyword">auto</span> Blocking = <span class="literal">true</span>&gt;
-<span class="keyword">class</span> <span class="identifier">semaphore</span> <a class="anchor" href="#sync-lock-semaphore" id="sync-lock-semaphore">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L145">source</a>
+<span class="keyword">class</span> <span class="identifier">semaphore</span> <a class="anchor" href="#sync-lock-semaphore" id="sync-lock-semaphore">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L145">source</a>
 </pre>
 <div class="docs">
 <p><a
@@ -320,7 +320,7 @@ a <code>assert</code> is raised.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">sem_ctr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;M&gt; <a class="anchor" href="#sync-lock-semaphore-sem_ctr_t" id="sync-lock-semaphore-sem_ctr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L148">source</a>
+<span class="keyword">using</span> <span class="identifier">sem_ctr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-count_t"><span class="identifier">count_t</span></a>&lt;M&gt; <a class="anchor" href="#sync-lock-semaphore-sem_ctr_t" id="sync-lock-semaphore-sem_ctr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L148">source</a>
 </pre>
 </li>
 </ul>
@@ -332,7 +332,7 @@ a <code>assert</code> is raised.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">test_and_decrement</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>) <a class="anchor" href="#sync-lock-semaphore-test_and_decrement" id="sync-lock-semaphore-test_and_decrement">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L159">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">test_and_decrement</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>) <a class="anchor" href="#sync-lock-semaphore-test_and_decrement" id="sync-lock-semaphore-test_and_decrement">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L159">source</a>
 </pre>
 <div class="docs">
 <p>Decrement the counter if the current count is greater or equal than
@@ -342,7 +342,7 @@ called from inside an <code>atomic</code>.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">wait</span>() <a class="anchor" href="#sync-lock-semaphore-wait" id="sync-lock-semaphore-wait">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L171">source</a>
+<span class="keyword">void</span> <span class="identifier">wait</span>() <a class="anchor" href="#sync-lock-semaphore-wait" id="sync-lock-semaphore-wait">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L171">source</a>
 </pre>
 <div class="docs">
 <p>Decrement the semaphore count by 1 if it is nonzero otherwise
@@ -351,7 +351,7 @@ block.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">wait_multiple</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>) <a class="anchor" href="#sync-lock-semaphore-wait_multiple" id="sync-lock-semaphore-wait_multiple">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L177">source</a>
+<span class="keyword">void</span> <span class="identifier">wait_multiple</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">val</span>) <a class="anchor" href="#sync-lock-semaphore-wait_multiple" id="sync-lock-semaphore-wait_multiple">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L177">source</a>
 </pre>
 <div class="docs">
 <p>Decrement the semaphore count by <code>val</code> if it is nonzero
@@ -360,7 +360,7 @@ otherwise block.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">post</span>() <a class="anchor" href="#sync-lock-semaphore-post" id="sync-lock-semaphore-post">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L196">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">post</span>() <a class="anchor" href="#sync-lock-semaphore-post" id="sync-lock-semaphore-post">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L196">source</a>
 </pre>
 <div class="docs">
 <p>Increment the semaphore count by 1, potentially waking a thread.</p>
@@ -368,7 +368,7 @@ otherwise block.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">count</span>() <a class="anchor" href="#sync-lock-semaphore-count" id="sync-lock-semaphore-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L202">source</a>
+<span class="modifier">inline </span><a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">count</span>() <a class="anchor" href="#sync-lock-semaphore-count" id="sync-lock-semaphore-count">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L202">source</a>
 </pre>
 <div class="docs">
 <p>Return current value of semaphore. Provided primarily for
@@ -377,7 +377,7 @@ debug/diagnostic purposes.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">post_multiple</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">amount</span>) <a class="anchor" href="#sync-lock-semaphore-post_multiple" id="sync-lock-semaphore-post_multiple">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/sync/lock.k#L208">source</a>
+<span class="keyword">void</span> <span class="identifier">post_multiple</span>(<a class="link" href="../sync/lock.html#sync-lock-semaphore"><span class="identifier">semaphore</span></a>::<a class="link" href="../sync/lock.html#sync-lock-semaphore-sem_ctr_t"><span class="identifier">sem_ctr_t</span></a> <span class="identifier">amount</span>) <a class="anchor" href="#sync-lock-semaphore-post_multiple" id="sync-lock-semaphore-post_multiple">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/sync/lock.k#L208">source</a>
 </pre>
 <div class="docs">
 <p>Increment the semaphore count by the specified <code>amount</code>,

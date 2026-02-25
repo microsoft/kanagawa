@@ -184,19 +184,19 @@ id="index-link" class="link"><code>memory_norep</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="keyword">using</span> <span class="identifier">memory</span> = [[<span class="attribute">memory</span>]] T[N] <a class="anchor" href="#data-memory-memory" id="data-memory-memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L20">source</a>
+<span class="keyword">using</span> <span class="identifier">memory</span> = [[<span class="attribute">memory</span>]] T[N] <a class="anchor" href="#data-memory-memory" id="data-memory-memory">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L20">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="keyword">using</span> <span class="identifier">memory_norep</span> = [[<span class="attribute">memory</span>, <span class="attribute">non_replicated</span>]] T[N] <a class="anchor" href="#data-memory-memory_norep" id="data-memory-memory_norep">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L23">source</a>
+<span class="keyword">using</span> <span class="identifier">memory_norep</span> = [[<span class="attribute">memory</span>, <span class="attribute">non_replicated</span>]] T[N] <a class="anchor" href="#data-memory-memory_norep" id="data-memory-memory_norep">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L23">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="keyword">using</span> <span class="identifier">memory_init</span> = [[<span class="attribute">memory</span>, <span class="attribute">initialize</span>]] T[N] <a class="anchor" href="#data-memory-memory_init" id="data-memory-memory_init">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L26">source</a>
+<span class="keyword">using</span> <span class="identifier">memory_init</span> = [[<span class="attribute">memory</span>, <span class="attribute">initialize</span>]] T[N] <a class="anchor" href="#data-memory-memory_init" id="data-memory-memory_init">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L26">source</a>
 </pre>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<span class="keyword">struct</span> <span class="identifier">ecc</span> <a class="anchor" href="#data-memory-ecc" id="data-memory-ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L30">source</a>
+<span class="keyword">struct</span> <span class="identifier">ecc</span> <a class="anchor" href="#data-memory-ecc" id="data-memory-ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L30">source</a>
 </pre>
 <div class="docs">
 <p>Type returned by reads from <code>memory_ecc</code> of type
@@ -207,7 +207,7 @@ id="index-link" class="link"><code>memory_norep</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="builtin">bool</span> <span class="identifier">error</span> <a class="anchor" href="#data-memory-$quasi0-error" id="data-memory-$quasi0-error">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L34">source</a>
+<span class="builtin">bool</span> <span class="identifier">error</span> <a class="anchor" href="#data-memory-$quasi0-error" id="data-memory-$quasi0-error">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L34">source</a>
 </pre>
 <div class="docs">
 <p>True when an ECC error was detected, regardless of whether it was
@@ -216,7 +216,7 @@ corrected or not.</p>
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">data</span> <a class="anchor" href="#data-memory-$quasi0-data" id="data-memory-$quasi0-data">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L38">source</a>
+<a class="link" href="../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt; <span class="identifier">data</span> <a class="anchor" href="#data-memory-$quasi0-data" id="data-memory-$quasi0-data">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L38">source</a>
 </pre>
 <div class="docs">
 <p>Value read from the memory, valid if there was no ECC error, or an
@@ -229,7 +229,7 @@ error was corrected.</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
-<span class="keyword">using</span> <span class="identifier">memory_ecc</span> = [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_ecc</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc" id="data-memory-memory_ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L51">source</a>
+<span class="keyword">using</span> <span class="identifier">memory_ecc</span> = [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_ecc</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc" id="data-memory-memory_ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L51">source</a>
 </pre>
 <div class="docs">
 <p>Alias for error correction code (ECC) memory of type <code>T</code>
@@ -240,7 +240,7 @@ and depth of <code>N</code>. Reads from the memory return values of type
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
 <span class="keyword">using</span> <span class="identifier">memory_ecc_norep</span> =
-    [[<span class="attribute">memory</span>, <span class="attribute">non_replicated</span>, <span class="attribute">ecc</span>(<span class="identifier">make_ecc</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_norep" id="data-memory-memory_ecc_norep">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L57">source</a>
+    [[<span class="attribute">memory</span>, <span class="attribute">non_replicated</span>, <span class="attribute">ecc</span>(<span class="identifier">make_ecc</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_norep" id="data-memory-memory_ecc_norep">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L57">source</a>
 </pre>
 <div class="docs">
 <p>Alias for non-replicated, ECC memory of type <code>T</code> and depth
@@ -251,7 +251,7 @@ of <code>N</code>. Reads from the memory return values of type
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
 <span class="keyword">using</span> <span class="identifier">memory_ecc_strict</span> =
-    [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_optional_from_ecc_error</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_strict" id="data-memory-memory_ecc_strict">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L71">source</a>
+    [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_optional_from_ecc_error</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_strict" id="data-memory-memory_ecc_strict">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L71">source</a>
 </pre>
 <div class="docs">
 <p>Alias for ECC memory of type <code>T</code> and depth of
@@ -263,7 +263,7 @@ correctable one, was detected. Writes to the memory take values of type
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">auto</span> N&gt;
 <span class="keyword">using</span> <span class="identifier">memory_ecc_relaxed</span> =
-    [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_optional_from_ecc_valid</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_relaxed" id="data-memory-memory_ecc_relaxed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/fdb421fd0da0b462f025f247e357be623b6d4134/library/data/memory.k#L84">source</a>
+    [[<span class="attribute">memory</span>, <span class="attribute">ecc</span>(<span class="identifier">make_optional_from_ecc_valid</span>&lt;T&gt;)]] T[N] <a class="anchor" href="#data-memory-memory_ecc_relaxed" id="data-memory-memory_ecc_relaxed">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/memory.k#L84">source</a>
 </pre>
 <div class="docs">
 <p>Alias for ECC memory of type <code>T</code> and depth of
