@@ -858,8 +858,14 @@ class VerilogCompiler
 
     void AssignStallRatePorts(ModuleDeclarationHelper& coreModule)
     {
-        _writer.Str() << "assign " << coreModule.AssignPort("stall_rate_supported_out")
-                      << ((_program._numStallers > 0) ? " = 1'b1" : " = 1'b0") << ";";
+        coreModule.AssignPort("stall_rate_supported_out");
+        coreModule.FlushVerbatimStrings();
+
+        circt::OpBuilder& opb = coreModule.OpBuilder();
+        const mlir::Value netInOut = coreModule.GetOutputNetInOutValue("stall_rate_supported_out");
+        const mlir::Value constVal = circt::hw::ConstantOp::create(opb, GetUnknownLocation(),
+            opb.getIntegerAttr(GetI1Type(), (_program._numStallers > 0) ? 1 : 0));
+        circt::sv::AssignOp::create(opb, GetUnknownLocation(), netInOut, constVal);
     }
 
     struct BypassAndWriteDelay
@@ -1325,23 +1331,24 @@ class VerilogCompiler
             {
                 const std::string& codeCoverageVar = codeCoverageVars[i];
                 const size_t codeCoverageReg = codeCoverageRegs[i];
-                _writer.Str() << "logic " << codeCoverageVar << ";";
 
-                {
-                    circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(_coreModule->GetBodyBlock());
+                // Declare logic net and assign from container port
+                mod.FlushVerbatimStrings();
+                circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(_coreModule->GetBodyBlock());
 
-                    const mlir::Value pathToInstance =
-                        GetPathToGlobalContainer(mod, ObjectPath(), codeCoverageReg, globalsRequiringNext);
+                mlir::Value logicNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+                    GetIntegerType(1), StringToStringAttr(codeCoverageVar));
 
-                    const GlobalRegKey key = GetGlobalRegKey(codeCoverageReg, globalsRequiringNext);
+                const mlir::Value pathToInstance =
+                    GetPathToGlobalContainer(mod, ObjectPath(), codeCoverageReg, globalsRequiringNext);
 
-                    const mlir::Value value =
-                        ReadContainerPort(opb, GetUnknownLocation(), pathToInstance,
-                                          key.GetFieldSymbol("value_out").getSymName(), GetIntegerType(1));
+                const GlobalRegKey key = GetGlobalRegKey(codeCoverageReg, globalsRequiringNext);
 
-                    mod.AddVerbatimOp(GetUnknownLocation(), [&](VerbatimWriter& writer)
-                                      { writer << "assign " << codeCoverageVar << " = " << value << ";"; });
-                }
+                const mlir::Value value =
+                    ReadContainerPort(opb, GetUnknownLocation(), pathToInstance,
+                                      key.GetFieldSymbol("value_out").getSymName(), GetIntegerType(1));
+
+                circt::sv::AssignOp::create(opb, GetUnknownLocation(), logicNet, value);
             }
 
             const std::string coverGroupName = "codeCoverage" + CodeCoverageTypeToString(codeCoverageType);
@@ -2903,35 +2910,44 @@ class VerilogCompiler
     {
         circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(_coreModule->Container().getBodyBlock());
 
+        _coreModule->FlushVerbatimStrings();
+
         // route reset signal throughout the chip
-        _writer.Str() << "logic [" << resetReplicas - 1 << ":0] reg_rst_delayed;";
+        circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+            GetIntegerType(resetReplicas), StringToStringAttr("reg_rst_delayed"));
 
         // Give wrapper code access to the delayed reset signals
-        _writer.Str() << "logic combined_reset;";
-        _writer.Str() << "assign combined_reset = rst;";
+        mlir::Value combinedResetNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+            GetI1Type(), StringToStringAttr("combined_reset"));
+        // assign combined_reset = rst;
+        {
+            const llvm::SmallVector<mlir::Value> subs;
+            mlir::Value rstExpr = circt::sv::VerbatimExprOp::create(opb, GetUnknownLocation(),
+                GetI1Type(), StringToStringAttr("rst"), subs, nullptr);
+            circt::sv::AssignOp::create(opb, GetUnknownLocation(), combinedResetNet, rstExpr);
+        }
 
         // 1 on the cycle when the reset sequence is done
-        _writer.Str() << "logic reset_sequence_finished_this_cycle;";
+        circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+            GetI1Type(), StringToStringAttr("reset_sequence_finished_this_cycle"));
 
-        _writer.Str() << "logic has_startup_completed_raw;";
+        mlir::Value hasStartupCompletedRawNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+            GetI1Type(), StringToStringAttr("has_startup_completed_raw"));
 
         // 1 after memory has been initialized
-        _writer.Str() << "logic has_mem_init_completed;";
+        circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+            GetI1Type(), StringToStringAttr("has_mem_init_completed"));
 
-        _coreModule->FlushVerbatimStrings();
-        circt::sv::VerbatimExprOp verbatimOp =
-            circt::sv::VerbatimExprOp::create(opb, GetUnknownLocation(), GetI1Type(), "has_startup_completed_raw");
-
-        const mlir::Value hasStartupCompletedRaw = static_cast<mlir::Value>(verbatimOp);
+        const mlir::Value hasStartupCompletedRaw = circt::sv::ReadInOutOp::create(opb,
+            GetUnknownLocation(), GetI1Type(), hasStartupCompletedRawNet);
         const mlir::Value hasOthersCompleted =
             circt::comb::AndOp::create(opb, GetUnknownLocation(), hasStartupCompletedRaw, hasMemInitCompleted, TwoState);
 
         {
             // Source of has_others_complete_in of KanagawaResetControl
-            VerbatimWriter vw(opb, GetUnknownLocation());
-
-            vw << "logic has_others_completed;\n";
-            vw << "assign has_others_completed = " << hasOthersCompleted << ";";
+            mlir::Value hasOthersNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+                GetI1Type(), StringToStringAttr("has_others_completed"));
+            circt::sv::AssignOp::create(opb, GetUnknownLocation(), hasOthersNet, hasOthersCompleted);
         }
 
         // rst_and_startup_done_out is a top level port used to indicate either:
@@ -2942,7 +2958,9 @@ class VerilogCompiler
         //   (ii) calling any exported [[no_backpressure]] functions which are now
         //        ready to accept data
         {
-            _writer.Str() << "logic rst_and_startup_done_raw;";
+            _coreModule->FlushVerbatimStrings();
+            circt::sv::LogicOp::create(opb, GetUnknownLocation(),
+                GetI1Type(), StringToStringAttr("rst_and_startup_done_raw"));
 
             std::ostringstream str;
 
