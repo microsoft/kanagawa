@@ -178,7 +178,7 @@ id="index-link" class="link"><code>fifo</code></a></li>
     <span class="builtin">bool</span> EnqueueBlocking = <span class="literal">true</span>,
     <span class="builtin">bool</span> DequeueBlocking = <span class="literal">true</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">fifo</span> <a class="anchor" href="#data-fifo-wide_to_narrow-fifo" id="data-fifo-wide_to_narrow-fifo">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/wide_to_narrow.k#L27">source</a>
+<span class="keyword">class</span> <span class="identifier">fifo</span> <a class="anchor" href="#data-fifo-wide_to_narrow-fifo" id="data-fifo-wide_to_narrow-fifo">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/wide_to_narrow.k#L27">source</a>
 </pre>
 <div class="docs">
 <p>A FIFO that accepts arrays of inputs, and returns single values</p>
@@ -240,7 +240,7 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">array_t</span> = T[ArraySize] <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-array_t" id="data-fifo-wide_to_narrow-fifo-array_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/wide_to_narrow.k#L36">source</a>
+<span class="keyword">using</span> <span class="identifier">array_t</span> = T[ArraySize] <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-array_t" id="data-fifo-wide_to_narrow-fifo-array_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/wide_to_narrow.k#L36">source</a>
 </pre>
 </li>
 </ul>
@@ -252,7 +252,7 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">ScalarDepth</span> = (ArrayDepth * ArraySize) <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-ScalarDepth" id="data-fifo-wide_to_narrow-fifo-ScalarDepth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/wide_to_narrow.k#L40">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">ScalarDepth</span> = (ArrayDepth * ArraySize) <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-ScalarDepth" id="data-fifo-wide_to_narrow-fifo-ScalarDepth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/wide_to_narrow.k#L40">source</a>
 </pre>
 <div class="docs">
 <p>The number of scalar elements the FIFO can hold</p>
@@ -267,7 +267,7 @@ is not empty.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-T <span class="identifier">dequeue_and_discard</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_count</span>) <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-dequeue_and_discard" id="data-fifo-wide_to_narrow-fifo-dequeue_and_discard">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/wide_to_narrow.k#L57">source</a>
+T <span class="identifier">dequeue_and_discard</span>(<a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <span class="identifier">discard_count</span>) <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-dequeue_and_discard" id="data-fifo-wide_to_narrow-fifo-dequeue_and_discard">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/wide_to_narrow.k#L57">source</a>
 </pre>
 <div class="docs">
 <p>Read one entry from FIFO and discard <code>discard_count</code>
@@ -277,7 +277,7 @@ subsequent entries. Block if FIFO is empty and
 </li>
 <li>
 <pre class="signature">
-T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-dequeue" id="data-fifo-wide_to_narrow-fifo-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/wide_to_narrow.k#L92">source</a>
+T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-dequeue" id="data-fifo-wide_to_narrow-fifo-dequeue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/wide_to_narrow.k#L92">source</a>
 </pre>
 <div class="docs">
 <p>Read one entry from FIFO. Block if FIFO is empty and
@@ -286,7 +286,7 @@ T <span class="identifier">dequeue</span>() <a class="anchor" href="#data-fifo-w
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/wide_to_narrow.html#data-fifo-wide_to_narrow-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/wide_to_narrow.html#data-fifo-wide_to_narrow-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-enqueue" id="data-fifo-wide_to_narrow-fifo-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/wide_to_narrow.k#L98">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue</span>(<a class="link" href="../../data/fifo/wide_to_narrow.html#data-fifo-wide_to_narrow-fifo"><span class="identifier">fifo</span></a>::<a class="link" href="../../data/fifo/wide_to_narrow.html#data-fifo-wide_to_narrow-fifo-array_t"><span class="identifier">array_t</span></a> <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-wide_to_narrow-fifo-enqueue" id="data-fifo-wide_to_narrow-fifo-enqueue">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/wide_to_narrow.k#L98">source</a>
 </pre>
 <div class="docs">
 <p>Write one entry to the FIFO. Block if FIFO is full and

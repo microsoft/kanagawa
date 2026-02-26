@@ -174,7 +174,7 @@ id="index-link" class="link"><code>bitarray</code></a></li>
     <span class="keyword">auto</span> WordWidth,
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> Memory = <a class="link" href="../data/memory.html#data-memory-memory"><span class="identifier">memory</span></a>
     &gt;
-<span class="keyword">class</span> <span class="identifier">bitarray</span> <a class="anchor" href="#data-bitarray-bitarray" id="data-bitarray-bitarray">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L19">source</a>
+<span class="keyword">class</span> <span class="identifier">bitarray</span> <a class="anchor" href="#data-bitarray-bitarray" id="data-bitarray-bitarray">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L19">source</a>
 </pre>
 <div class="docs">
 <p>A fixed sized array of bits, stored internally as a memory of words.
@@ -216,7 +216,7 @@ Provides methods to read or write at bit and word granularity.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">bit_addr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-bitarray-bitarray-bit_addr_t" id="data-bitarray-bitarray-bit_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L29">source</a>
+<span class="keyword">using</span> <span class="identifier">bit_addr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;Size&gt; <a class="anchor" href="#data-bitarray-bitarray-bit_addr_t" id="data-bitarray-bitarray-bit_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L29">source</a>
 </pre>
 <div class="docs">
 <p>Represents the address of a single bit.</p>
@@ -224,7 +224,7 @@ Provides methods to read or write at bit and word granularity.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">word_addr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<span class="identifier">WordCount</span>&gt; <a class="anchor" href="#data-bitarray-bitarray-word_addr_t" id="data-bitarray-bitarray-word_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L32">source</a>
+<span class="keyword">using</span> <span class="identifier">word_addr_t</span> = <a class="link" href="../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<span class="identifier">WordCount</span>&gt; <a class="anchor" href="#data-bitarray-bitarray-word_addr_t" id="data-bitarray-bitarray-word_addr_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L32">source</a>
 </pre>
 <div class="docs">
 <p>Represents the address of a single word.</p>
@@ -232,7 +232,7 @@ Provides methods to read or write at bit and word granularity.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">word_t</span> = <span class="builtin">uint</span>&lt;WordWidth&gt; <a class="anchor" href="#data-bitarray-bitarray-word_t" id="data-bitarray-bitarray-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L35">source</a>
+<span class="keyword">using</span> <span class="identifier">word_t</span> = <span class="builtin">uint</span>&lt;WordWidth&gt; <a class="anchor" href="#data-bitarray-bitarray-word_t" id="data-bitarray-bitarray-word_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L35">source</a>
 </pre>
 <div class="docs">
 <p>A single word which can be read or written.</p>
@@ -247,7 +247,7 @@ Provides methods to read or write at bit and word granularity.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">read_bit</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-bitarray-bitarray-read_bit" id="data-bitarray-bitarray-read_bit">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L38">source</a>
+<span class="modifier">inline </span><span class="builtin">bool</span> <span class="identifier">read_bit</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-bitarray-bitarray-read_bit" id="data-bitarray-bitarray-read_bit">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L38">source</a>
 </pre>
 <div class="docs">
 <p>Get the value of a single bit from the bitarray.</p>
@@ -270,7 +270,7 @@ Provides methods to read or write at bit and word granularity.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_bit</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>, <span class="builtin">bool</span> <span class="identifier">val</span>) <a class="anchor" href="#data-bitarray-bitarray-write_bit" id="data-bitarray-bitarray-write_bit">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L57">source</a>
+<span class="modifier">inline </span><span class="keyword">void</span> <span class="identifier">write_bit</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-bit_addr_t"><span class="identifier">bit_addr_t</span></a> <span class="identifier">addr</span>, <span class="builtin">bool</span> <span class="identifier">val</span>) <a class="anchor" href="#data-bitarray-bitarray-write_bit" id="data-bitarray-bitarray-write_bit">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L57">source</a>
 </pre>
 <div class="docs">
 <p>Set the value of a single bit in the bitarray. Note that this is
@@ -306,7 +306,7 @@ and <code>read_word</code> add another replica.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="modifier">inline </span><a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">read_word</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-bitarray-bitarray-read_word" id="data-bitarray-bitarray-read_word">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L84">source</a>
+<span class="modifier">inline </span><a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">read_word</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>) <a class="anchor" href="#data-bitarray-bitarray-read_word" id="data-bitarray-bitarray-read_word">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L84">source</a>
 </pre>
 <div class="docs">
 <p>Get the value of a word.</p>
@@ -331,7 +331,7 @@ bits.</p>
 <li>
 <pre class="signature">
 <span class="modifier">inline </span>
-<span class="keyword">void</span> <span class="identifier">write_word</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>, <a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">word</span>) <a class="anchor" href="#data-bitarray-bitarray-write_word" id="data-bitarray-bitarray-write_word">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/bitarray.k#L94">source</a>
+<span class="keyword">void</span> <span class="identifier">write_word</span>(<a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_addr_t"><span class="identifier">word_addr_t</span></a> <span class="identifier">addr</span>, <a class="link" href="../data/bitarray.html#data-bitarray-bitarray"><span class="identifier">bitarray</span></a>::<a class="link" href="../data/bitarray.html#data-bitarray-bitarray-word_t"><span class="identifier">word_t</span></a> <span class="identifier">word</span>) <a class="anchor" href="#data-bitarray-bitarray-write_word" id="data-bitarray-bitarray-write_word">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/bitarray.k#L94">source</a>
 </pre>
 <div class="docs">
 <p>Set the value of a word.</p>

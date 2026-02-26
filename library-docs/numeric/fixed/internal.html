@@ -180,7 +180,7 @@ id="index-link" class="link"><code>sin_pirad</code></a></li>
 <hr />
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> F1, <span class="keyword">auto</span> F2&gt;
-<span class="modifier">inline </span><span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F2)&gt; <span class="identifier">rcp_lookup</span>(<span class="builtin">uint</span>&lt;F1&gt; <span class="identifier">fraction</span>) <a class="anchor" href="#numeric-fixed-internal-rcp_lookup" id="numeric-fixed-internal-rcp_lookup">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/fixed/internal.k#L24">source</a>
+<span class="modifier">inline </span><span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F2)&gt; <span class="identifier">rcp_lookup</span>(<span class="builtin">uint</span>&lt;F1&gt; <span class="identifier">fraction</span>) <a class="anchor" href="#numeric-fixed-internal-rcp_lookup" id="numeric-fixed-internal-rcp_lookup">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/numeric/fixed/internal.k#L24">source</a>
 </pre>
 <div class="docs">
 <p>Input a value in the range [1, 2) without the implicit leading one.
@@ -190,7 +190,7 @@ Output a value in the range ~(0.5, 1] with one integral bit.</p>
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> F1, <span class="keyword">auto</span> F2, <span class="keyword">auto</span> F3&gt;
 <span class="modifier">inline </span>
 <span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F3)&gt;
-<span class="identifier">rcp_refine</span>(<span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F1)&gt; <span class="identifier">significand</span>, <span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F2)&gt; <span class="identifier">approximation</span>) <a class="anchor" href="#numeric-fixed-internal-rcp_refine" id="numeric-fixed-internal-rcp_refine">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/fixed/internal.k#L44">source</a>
+<span class="identifier">rcp_refine</span>(<span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F1)&gt; <span class="identifier">significand</span>, <span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F2)&gt; <span class="identifier">approximation</span>) <a class="anchor" href="#numeric-fixed-internal-rcp_refine" id="numeric-fixed-internal-rcp_refine">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/numeric/fixed/internal.k#L44">source</a>
 </pre>
 <div class="docs">
 <p><a
@@ -200,7 +200,7 @@ in the range ~(0.5, 1]. Output a value in the range ~(0.5, 1].</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> F1, <span class="keyword">auto</span> F2&gt;
-<span class="modifier">inline </span><span class="builtin">int</span>&lt;(<span class="literal">2</span> + F2)&gt; <span class="identifier">sin_pirad</span>(<span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F1)&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-fixed-internal-sin_pirad" id="numeric-fixed-internal-sin_pirad">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/fixed/internal.k#L65">source</a>
+<span class="modifier">inline </span><span class="builtin">int</span>&lt;(<span class="literal">2</span> + F2)&gt; <span class="identifier">sin_pirad</span>(<span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F1)&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-fixed-internal-sin_pirad" id="numeric-fixed-internal-sin_pirad">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/numeric/fixed/internal.k#L65">source</a>
 </pre>
 <div class="docs">
 <p>Input a value in the range [0, 2) in multiple of pi radian. Output
@@ -208,7 +208,7 @@ the sine in the range [-1, 1].</p>
 </div>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<span class="keyword">auto</span> F1, <span class="keyword">auto</span> F2&gt;
-<span class="modifier">inline </span><span class="builtin">int</span>&lt;(<span class="literal">2</span> + F2)&gt; <span class="identifier">cos_pirad</span>(<span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F1)&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-fixed-internal-cos_pirad" id="numeric-fixed-internal-cos_pirad">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/numeric/fixed/internal.k#L94">source</a>
+<span class="modifier">inline </span><span class="builtin">int</span>&lt;(<span class="literal">2</span> + F2)&gt; <span class="identifier">cos_pirad</span>(<span class="builtin">uint</span>&lt;(<span class="literal">1</span> + F1)&gt; <span class="identifier">value</span>) <a class="anchor" href="#numeric-fixed-internal-cos_pirad" id="numeric-fixed-internal-cos_pirad">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/numeric/fixed/internal.k#L94">source</a>
 </pre>
 <div class="docs">
 <p>Input a value in the range [0, 2) in multiple of pi radian. Output

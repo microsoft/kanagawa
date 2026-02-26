@@ -176,7 +176,7 @@ id="index-link" class="link"><code>fifo_array</code></a></li>
     <span class="keyword">auto</span> ArraySize,
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">auto</span>&gt; <span class="keyword">typename</span> FifoType = <a class="link" href="../../data/fifo.html#data-fifo-FIFO"><span class="identifier">FIFO</span></a>
     &gt;
-<span class="keyword">class</span> <span class="identifier">fifo_array</span> <a class="anchor" href="#data-fifo-array-fifo_array" id="data-fifo-array-fifo_array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L22">source</a>
+<span class="keyword">class</span> <span class="identifier">fifo_array</span> <a class="anchor" href="#data-fifo-array-fifo_array" id="data-fifo-array-fifo_array">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L22">source</a>
 </pre>
 <div class="docs">
 <p>An array of FIFOs.</p>
@@ -225,7 +225,7 @@ id="index-link" class="link"><code>fifo_array</code></a></li>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">using</span> <span class="identifier">fifo_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <a class="anchor" href="#data-fifo-array-fifo_array-fifo_index_t" id="data-fifo-array-fifo_array-fifo_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L26">source</a>
+<span class="keyword">using</span> <span class="identifier">fifo_index_t</span> = <a class="link" href="../../type/stdtype.html#type-stdtype-index_t"><span class="identifier">index_t</span></a>&lt;ArraySize&gt; <a class="anchor" href="#data-fifo-array-fifo_array-fifo_index_t" id="data-fifo-array-fifo_array-fifo_index_t">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L26">source</a>
 </pre>
 <div class="docs">
 <p>Index that identifies one FIFO.</p>
@@ -241,7 +241,7 @@ id="index-link" class="link"><code>fifo_array</code></a></li>
 <li>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../../data/fifo/array.html#data-fifo-array-fifo_array"><span class="identifier">fifo_array</span></a>::<a class="link" href="../../data/fifo/array.html#data-fifo-array-fifo_array-fifo_index_t"><span class="identifier">fifo_index_t</span></a> FifoIndex&gt;
-<span class="keyword">void</span> <span class="identifier">enqueue_one</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-array-fifo_array-enqueue_one" id="data-fifo-array-fifo_array-enqueue_one">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L36">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue_one</span>(T <span class="identifier">value</span>) <a class="anchor" href="#data-fifo-array-fifo_array-enqueue_one" id="data-fifo-array-fifo_array-enqueue_one">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L36">source</a>
 </pre>
 <div class="docs">
 <p>Enqueue a value into specified FIFO.</p>
@@ -279,7 +279,7 @@ T <span class="identifier">value</span>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue_many</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[ArraySize] <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-array-fifo_array-enqueue_many" id="data-fifo-array-fifo_array-enqueue_many">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L47">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue_many</span>(<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[ArraySize] <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-array-fifo_array-enqueue_many" id="data-fifo-array-fifo_array-enqueue_many">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L47">source</a>
 </pre>
 <div class="docs">
 <p>Enqueue zero or one values into each FIFO.</p>
@@ -303,7 +303,7 @@ should be stored.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">enqueue_all</span>(T[ArraySize] <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-array-fifo_array-enqueue_all" id="data-fifo-array-fifo_array-enqueue_all">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L61">source</a>
+<span class="keyword">void</span> <span class="identifier">enqueue_all</span>(T[ArraySize] <span class="identifier">values</span>) <a class="anchor" href="#data-fifo-array-fifo_array-enqueue_all" id="data-fifo-array-fifo_array-enqueue_all">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L61">source</a>
 </pre>
 <div class="docs">
 <p>Enqueue one value into each FIFO.</p>
@@ -327,7 +327,7 @@ T[ArraySize] <span class="identifier">values</span>
 <li>
 <pre class="signature">
 <span class="keyword">template</span> &lt;<a class="link" href="../../data/fifo/array.html#data-fifo-array-fifo_array"><span class="identifier">fifo_array</span></a>::<a class="link" href="../../data/fifo/array.html#data-fifo-array-fifo_array-fifo_index_t"><span class="identifier">fifo_index_t</span></a> FifoIndex&gt;
-T <span class="identifier">dequeue_one</span>() <a class="anchor" href="#data-fifo-array-fifo_array-dequeue_one" id="data-fifo-array-fifo_array-dequeue_one">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L75">source</a>
+T <span class="identifier">dequeue_one</span>() <a class="anchor" href="#data-fifo-array-fifo_array-dequeue_one" id="data-fifo-array-fifo_array-dequeue_one">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L75">source</a>
 </pre>
 <div class="docs">
 <p>Dequeue a value from specified FIFO.</p>
@@ -350,7 +350,7 @@ T <span class="identifier">dequeue_one</span>() <a class="anchor" href="#data-fi
 </li>
 <li>
 <pre class="signature">
-<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[ArraySize] <span class="identifier">dequeue_many</span>(<span class="builtin">bool</span>[ArraySize] <span class="identifier">mask</span>) <a class="anchor" href="#data-fifo-array-fifo_array-dequeue_many" id="data-fifo-array-fifo_array-dequeue_many">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L84">source</a>
+<a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;T&gt;[ArraySize] <span class="identifier">dequeue_many</span>(<span class="builtin">bool</span>[ArraySize] <span class="identifier">mask</span>) <a class="anchor" href="#data-fifo-array-fifo_array-dequeue_many" id="data-fifo-array-fifo_array-dequeue_many">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L84">source</a>
 </pre>
 <div class="docs">
 <p>Dequeue zero or one values from each FIFO.</p>
@@ -377,7 +377,7 @@ result is undefined.</p>
 </li>
 <li>
 <pre class="signature">
-T[ArraySize] <span class="identifier">dequeue_all</span>() <a class="anchor" href="#data-fifo-array-fifo_array-dequeue_all" id="data-fifo-array-fifo_array-dequeue_all">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/fifo/array.k#L105">source</a>
+T[ArraySize] <span class="identifier">dequeue_all</span>() <a class="anchor" href="#data-fifo-array-fifo_array-dequeue_all" id="data-fifo-array-fifo_array-dequeue_all">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/fifo/array.k#L105">source</a>
 </pre>
 <div class="docs">
 <p>Dequeue one values from each FIFO.</p>

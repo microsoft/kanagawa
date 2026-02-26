@@ -276,27 +276,27 @@ that is used in simulation only. It does not correspond to any real
 hardware.</p>
 <hr />
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">version</span> = <span class="literal">1</span> <a class="anchor" href="#hardware-config-version" id="hardware-config-version">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L17">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">version</span> = <span class="literal">1</span> <a class="anchor" href="#hardware-config-version" id="hardware-config-version">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L17">source</a>
 </pre>
 <div class="docs">
 <p>Version of device configuration schema</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">vendor</span> = <span class="literal">&quot;Microsoft&quot;</span> <a class="anchor" href="#hardware-config-vendor" id="hardware-config-vendor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L20">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">vendor</span> = <span class="literal">&quot;Microsoft&quot;</span> <a class="anchor" href="#hardware-config-vendor" id="hardware-config-vendor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L20">source</a>
 </pre>
 <div class="docs">
 <p>Name of the vendor that manufactures the target device, for example
 ‘Intel’ or ‘Xilinx’</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_family</span> = <span class="literal">&quot;mock&quot;</span> <a class="anchor" href="#hardware-config-device_family" id="hardware-config-device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L23">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_family</span> = <span class="literal">&quot;mock&quot;</span> <a class="anchor" href="#hardware-config-device_family" id="hardware-config-device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L23">source</a>
 </pre>
 <div class="docs">
 <p>Device family that is passed to some vendor modules in their
 simulation libraries</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">hal_device_family</span> = <span class="literal">&quot;mock&quot;</span> <a class="anchor" href="#hardware-config-hal_device_family" id="hardware-config-hal_device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L28">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">hal_device_family</span> = <span class="literal">&quot;mock&quot;</span> <a class="anchor" href="#hardware-config-hal_device_family" id="hardware-config-hal_device_family">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L28">source</a>
 </pre>
 <div class="docs">
 <p>Name of the device family that is significant to the Vendor RTL (or
@@ -305,60 +305,60 @@ parameter, and in some cases passed down into the Vendor modules or used
 to enable or disable some conditional behavior.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_name</span> = <span class="literal">&quot;mock&quot;</span> <a class="anchor" href="#hardware-config-device_name" id="hardware-config-device_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L31">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">device_name</span> = <span class="literal">&quot;mock&quot;</span> <a class="anchor" href="#hardware-config-device_name" id="hardware-config-device_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L31">source</a>
 </pre>
 <div class="docs">
 <p>Unambiguous name of the target device</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">integer_mul_src_width</span> = <span class="literal">27</span> <a class="anchor" href="#hardware-config-integer_mul_src_width" id="hardware-config-integer_mul_src_width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L38">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">integer_mul_src_width</span> = <span class="literal">27</span> <a class="anchor" href="#hardware-config-integer_mul_src_width" id="hardware-config-integer_mul_src_width">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L38">source</a>
 </pre>
 <div class="docs">
 <p>Width of source operands for an unsigned integer multiplication using
 a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">unsigned_integer_mul_name</span> = <span class="literal">&quot;umul27&quot;</span> <a class="anchor" href="#hardware-config-unsigned_integer_mul_name" id="hardware-config-unsigned_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L41">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">unsigned_integer_mul_name</span> = <span class="literal">&quot;umul27&quot;</span> <a class="anchor" href="#hardware-config-unsigned_integer_mul_name" id="hardware-config-unsigned_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L41">source</a>
 </pre>
 <div class="docs">
 <p>Name of the intrinsic operation for 1 unsigned integer multiplication
 using a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">signed_integer_mul_name</span> = <span class="literal">&quot;imul27&quot;</span> <a class="anchor" href="#hardware-config-signed_integer_mul_name" id="hardware-config-signed_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L44">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">signed_integer_mul_name</span> = <span class="literal">&quot;imul27&quot;</span> <a class="anchor" href="#hardware-config-signed_integer_mul_name" id="hardware-config-signed_integer_mul_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L44">source</a>
 </pre>
 <div class="docs">
 <p>Name of the intrinsic operation for 1 signed integer multiplication
 using a device DSP</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#hardware-config-min_fifo_depth" id="hardware-config-min_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L52">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#hardware-config-min_fifo_depth" id="hardware-config-min_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L52">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth for a single clock fifo</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_dual_clock_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#hardware-config-min_dual_clock_fifo_depth" id="hardware-config-min_dual_clock_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L55">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_dual_clock_fifo_depth</span> = <span class="literal">32</span> <a class="anchor" href="#hardware-config-min_dual_clock_fifo_depth" id="hardware-config-min_dual_clock_fifo_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L55">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth for a dual clock fifo</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_almost_full_depth</span> = <span class="literal">4</span> <a class="anchor" href="#hardware-config-min_almost_full_depth" id="hardware-config-min_almost_full_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L59">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">min_almost_full_depth</span> = <span class="literal">4</span> <a class="anchor" href="#hardware-config-min_almost_full_depth" id="hardware-config-min_almost_full_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L59">source</a>
 </pre>
 <div class="docs">
 <p>Minimum almost_full value for a fifo. This is the minimum value
 needed to overcome fifo read-&gt;almost_full latency</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">almost_empty_depth</span> = <span class="literal">0</span> <a class="anchor" href="#hardware-config-almost_empty_depth" id="hardware-config-almost_empty_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L62">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">almost_empty_depth</span> = <span class="literal">0</span> <a class="anchor" href="#hardware-config-almost_empty_depth" id="hardware-config-almost_empty_depth">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L62">source</a>
 </pre>
 <div class="docs">
 <p>Minimum value for the almost empty threshold for a single-clock
 FIFO</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_width_alignment</span> = <span class="literal">8</span> <a class="anchor" href="#hardware-config-fifo_width_alignment" id="hardware-config-fifo_width_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L66">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_width_alignment</span> = <span class="literal">8</span> <a class="anchor" href="#hardware-config-fifo_width_alignment" id="hardware-config-fifo_width_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L66">source</a>
 </pre>
 <div class="docs">
 <p>Minimum width of LUTram based FIFO structures below which there are
@@ -366,7 +366,7 @@ no area savings. Used in calculations for the local data propagation
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_depth_alignment</span> = <span class="literal">32</span> <a class="anchor" href="#hardware-config-fifo_depth_alignment" id="hardware-config-fifo_depth_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L70">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_depth_alignment</span> = <span class="literal">32</span> <a class="anchor" href="#hardware-config-fifo_depth_alignment" id="hardware-config-fifo_depth_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L70">source</a>
 </pre>
 <div class="docs">
 <p>Minimum depth of LUTram based FIFO structures below which there are
@@ -374,7 +374,7 @@ no area savings. Used in calculations for the local data propagation
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_fixed_cost</span> = <span class="literal">128</span> <a class="anchor" href="#hardware-config-fifo_fixed_cost" id="hardware-config-fifo_fixed_cost">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L74">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_fixed_cost</span> = <span class="literal">128</span> <a class="anchor" href="#hardware-config-fifo_fixed_cost" id="hardware-config-fifo_fixed_cost">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L74">source</a>
 </pre>
 <div class="docs">
 <p>Fixed cost of a FIFO used in calculations for the local data
@@ -382,7 +382,7 @@ propagation optimization Used in calculations for the local data
 propagation optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_bits_per_register</span> = <span class="literal">16</span> <a class="anchor" href="#hardware-config-fifo_bits_per_register" id="hardware-config-fifo_bits_per_register">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L78">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">fifo_bits_per_register</span> = <span class="literal">16</span> <a class="anchor" href="#hardware-config-fifo_bits_per_register" id="hardware-config-fifo_bits_per_register">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L78">source</a>
 </pre>
 <div class="docs">
 <p>The number of bits in an implicit fifo that has the same area cost as
@@ -390,14 +390,14 @@ propagation optimization</p>
 optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_internal_buffer_fifo_optimization</span> = <span class="literal">false</span> <a class="anchor" href="#hardware-config-use_internal_buffer_fifo_optimization" id="hardware-config-use_internal_buffer_fifo_optimization">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L82">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_internal_buffer_fifo_optimization</span> = <span class="literal">false</span> <a class="anchor" href="#hardware-config-use_internal_buffer_fifo_optimization" id="hardware-config-use_internal_buffer_fifo_optimization">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L82">source</a>
 </pre>
 <div class="docs">
 <p><code>true</code> if it makes sense to use KanagawaInternalBufferFifo
 for basic blockswith start conditions as an Fmax optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_thread_rate_in_fifo_sizing</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-use_thread_rate_in_fifo_sizing" id="hardware-config-use_thread_rate_in_fifo_sizing">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L87">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">use_thread_rate_in_fifo_sizing</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-use_thread_rate_in_fifo_sizing" id="hardware-config-use_thread_rate_in_fifo_sizing">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L87">source</a>
 </pre>
 <div class="docs">
 <p>true if basic block thread rates should be used when computing fifo
@@ -406,66 +406,66 @@ This feature is used to work around an EDA tool bug for certain Intel
 devices.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">verilog_dont_merge_pragma_name</span> = <span class="literal">&quot;dont_touch&quot;</span> <a class="anchor" href="#hardware-config-verilog_dont_merge_pragma_name" id="hardware-config-verilog_dont_merge_pragma_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L94">source</a>
+<span class="keyword">const</span> <span class="builtin">string</span> <span class="identifier">verilog_dont_merge_pragma_name</span> = <span class="literal">&quot;dont_touch&quot;</span> <a class="anchor" href="#hardware-config-verilog_dont_merge_pragma_name" id="hardware-config-verilog_dont_merge_pragma_name">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L94">source</a>
 </pre>
 <div class="docs">
 <p>The Verilog pragma used to tell the synthesis tool not to merge a
 register with others</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">small_lut_size</span> = <span class="literal">4</span> <a class="anchor" href="#hardware-config-small_lut_size" id="hardware-config-small_lut_size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L97">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">small_lut_size</span> = <span class="literal">4</span> <a class="anchor" href="#hardware-config-small_lut_size" id="hardware-config-small_lut_size">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L97">source</a>
 </pre>
 <div class="docs">
 <p>//| Multiple LUTs of this size can fit into 1 resource (ALM, CLB)</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">lut_based_shift_register_available</span> = <span class="literal">false</span> <a class="anchor" href="#hardware-config-lut_based_shift_register_available" id="hardware-config-lut_based_shift_register_available">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L101">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">lut_based_shift_register_available</span> = <span class="literal">false</span> <a class="anchor" href="#hardware-config-lut_based_shift_register_available" id="hardware-config-lut_based_shift_register_available">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L101">source</a>
 </pre>
 <div class="docs">
 <p>true if the platform supports a RAM-based shift register. Used in
 calculations for the local data propagation optimization</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">registers_require_power_on_initial_value</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-registers_require_power_on_initial_value" id="hardware-config-registers_require_power_on_initial_value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L104">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">registers_require_power_on_initial_value</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-registers_require_power_on_initial_value" id="hardware-config-registers_require_power_on_initial_value">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L104">source</a>
 </pre>
 <div class="docs">
 <p>true if control signals should have power-on value specified</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_hardened_bypass</span> = <span class="literal">false</span> <a class="anchor" href="#hardware-config-block_ram_supports_hardened_bypass" id="hardware-config-block_ram_supports_hardened_bypass">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L111">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_hardened_bypass</span> = <span class="literal">false</span> <a class="anchor" href="#hardware-config-block_ram_supports_hardened_bypass" id="hardware-config-block_ram_supports_hardened_bypass">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L111">source</a>
 </pre>
 <div class="docs">
 <p>If the block RAMs in the device support pipeline bypass (aka memory
 forwarding) for at least 2 stages</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_ecc</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-block_ram_supports_ecc" id="hardware-config-block_ram_supports_ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L114">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_ecc</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-block_ram_supports_ecc" id="hardware-config-block_ram_supports_ecc">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L114">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports ECC for block RAMs</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_true_dual_port</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-block_ram_supports_true_dual_port" id="hardware-config-block_ram_supports_true_dual_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L117">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_true_dual_port</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-block_ram_supports_true_dual_port" id="hardware-config-block_ram_supports_true_dual_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L117">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports block RAMs in a true dual-port
 configuration (i.e. two independent read/write ports).</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_quad_port</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-block_ram_supports_quad_port" id="hardware-config-block_ram_supports_quad_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L120">source</a>
+<span class="keyword">const</span> <span class="builtin">bool</span> <span class="identifier">block_ram_supports_quad_port</span> = <span class="literal">true</span> <a class="anchor" href="#hardware-config-block_ram_supports_quad_port" id="hardware-config-block_ram_supports_quad_port">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L120">source</a>
 </pre>
 <div class="docs">
 <p>true if the device supports block RAMs in a simple quad-port
 configuration</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">global_data_propagation_ram_alignment</span> = <span class="literal">40</span> <a class="anchor" href="#hardware-config-global_data_propagation_ram_alignment" id="hardware-config-global_data_propagation_ram_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L123">source</a>
+<span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">global_data_propagation_ram_alignment</span> = <span class="literal">40</span> <a class="anchor" href="#hardware-config-global_data_propagation_ram_alignment" id="hardware-config-global_data_propagation_ram_alignment">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L123">source</a>
 </pre>
 <div class="docs">
 <p>For data propagation memories, the minimum width of 1 memory</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a> <span class="identifier">memory_init_file_type</span> = <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a>::<a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType-Mem"><span class="identifier">Mem</span></a> <a class="anchor" href="#hardware-config-memory_init_file_type" id="hardware-config-memory_init_file_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L126">source</a>
+<span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a> <span class="identifier">memory_init_file_type</span> = <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType"><span class="identifier">MemoryInitFileType</span></a>::<a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryInitFileType-Mem"><span class="identifier">Mem</span></a> <a class="anchor" href="#hardware-config-memory_init_file_type" id="hardware-config-memory_init_file_type">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L126">source</a>
 </pre>
 <div class="docs">
 <p>The format to use for memory initialization files</p>
@@ -478,7 +478,7 @@ configuration</p>
                                                      ,{.<span class="identifier">type_id</span> = <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a>::<a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryType-Block"><span class="identifier">Block</span></a>
                                                       ,.<span class="identifier">cost</span> = <span class="literal">320.0</span>
                                                       ,.<span class="identifier">width</span> = <span class="literal">40</span>
-                                                      ,.<span class="identifier">depth</span> = <span class="literal">512</span>}} <a class="anchor" href="#hardware-config-memory_configurations" id="hardware-config-memory_configurations">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L130">source</a>
+                                                      ,.<span class="identifier">depth</span> = <span class="literal">512</span>}} <a class="anchor" href="#hardware-config-memory_configurations" id="hardware-config-memory_configurations">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L130">source</a>
 </pre>
 <div class="docs">
 <p>Valid memory configurations | Valid memory configurations</p>
@@ -487,14 +487,14 @@ configuration</p>
 <span class="keyword">const</span> <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryResource"><span class="identifier">MemoryResource</span></a>[<span class="literal">2</span>] <span class="identifier">memory_resources</span> = {{.<span class="identifier">type_id</span> = <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a>::<a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryType-LUT"><span class="identifier">LUT</span></a>
                                             ,.<span class="identifier">num_available</span> = (<span class="literal">20774</span> / <span class="literal">5</span>)}
                                            ,{.<span class="identifier">type_id</span> = <a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryType"><span class="identifier">MemoryType</span></a>::<a class="link" href="../compiler/device/schema.html#compiler-device-schema-MemoryType-Block"><span class="identifier">Block</span></a>
-                                            ,.<span class="identifier">num_available</span> = <span class="literal">2713</span>}} <a class="anchor" href="#hardware-config-memory_resources" id="hardware-config-memory_resources">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L147">source</a>
+                                            ,.<span class="identifier">num_available</span> = <span class="literal">2713</span>}} <a class="anchor" href="#hardware-config-memory_resources" id="hardware-config-memory_resources">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L147">source</a>
 </pre>
 <div class="docs">
 <p>Specifies the number of each type of memory resource that is
 available on the device.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_mux_cost_factor</span> = <span class="literal">0.5</span> <a class="anchor" href="#hardware-config-array_mux_cost_factor" id="hardware-config-array_mux_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L161">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_mux_cost_factor</span> = <span class="literal">0.5</span> <a class="anchor" href="#hardware-config-array_mux_cost_factor" id="hardware-config-array_mux_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L161">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of muxes necessary to
@@ -502,7 +502,7 @@ implement an array when estimating. the relative cost of synthesizing a
 memory structure as an array (logic) versus using a RAM primitive.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_register_cost_factor</span> = <span class="literal">0.0</span> <a class="anchor" href="#hardware-config-array_register_cost_factor" id="hardware-config-array_register_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L165">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_register_cost_factor</span> = <span class="literal">0.0</span> <a class="anchor" href="#hardware-config-array_register_cost_factor" id="hardware-config-array_register_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L165">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of registers necessary to
@@ -510,7 +510,7 @@ implement an array when estimating. the relative cost of synthesizing a
 memory structure as an array (logic) versus using a RAM primitive.</p>
 </div>
 <pre class="signature">
-<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_write_port_cost_factor</span> = <span class="literal">0.25</span> <a class="anchor" href="#hardware-config-array_write_port_cost_factor" id="hardware-config-array_write_port_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/hardware/config.k#L169">source</a>
+<span class="keyword">const</span> <span class="builtin">float32</span> <span class="identifier">array_write_port_cost_factor</span> = <span class="literal">0.25</span> <a class="anchor" href="#hardware-config-array_write_port_cost_factor" id="hardware-config-array_write_port_cost_factor">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/hardware/config.k#L169">source</a>
 </pre>
 <div class="docs">
 <p>This value is multiplied by the number of write ports necessary to

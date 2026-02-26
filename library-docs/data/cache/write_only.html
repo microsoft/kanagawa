@@ -179,7 +179,7 @@ id="index-link" class="link"><code>cache</code></a></li>
     <span class="keyword">auto</span> Depth,
     <span class="keyword">auto</span> Banks = <span class="literal">1</span>
     &gt;
-<span class="keyword">class</span> <span class="identifier">cache</span> <a class="anchor" href="#data-cache-write_only-cache" id="data-cache-write_only-cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/cache/write_only.k#L25">source</a>
+<span class="keyword">class</span> <span class="identifier">cache</span> <a class="anchor" href="#data-cache-write_only-cache" id="data-cache-write_only-cache">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/cache/write_only.k#L25">source</a>
 </pre>
 <div class="docs">
 <p>A cache that only supports write operations with word-enable
@@ -258,7 +258,7 @@ most recently used values. Pass 1 to create a directly mapped cache.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-(Key <span class="identifier">key</span>, <a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Word&gt;[WordCount] <span class="identifier">data</span>) -&gt; <span class="keyword">void</span> <span class="identifier">store</span> <a class="anchor" href="#data-cache-write_only-cache-store" id="data-cache-write_only-cache-store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/cache/write_only.k#L29">source</a>
+(Key <span class="identifier">key</span>, <a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Word&gt;[WordCount] <span class="identifier">data</span>) -&gt; <span class="keyword">void</span> <span class="identifier">store</span> <a class="anchor" href="#data-cache-write_only-cache-store" id="data-cache-write_only-cache-store">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/cache/write_only.k#L29">source</a>
 </pre>
 <div class="docs">
 <p>Function used to write to the backing store.</p>
@@ -273,7 +273,7 @@ most recently used values. Pass 1 to create a directly mapped cache.</p>
 <ul class="subList">
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-write_only-cache-initialize" id="data-cache-write_only-cache-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/cache/write_only.k#L49">source</a>
+<span class="keyword">void</span> <span class="identifier">initialize</span>() <a class="anchor" href="#data-cache-write_only-cache-initialize" id="data-cache-write_only-cache-initialize">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/cache/write_only.k#L49">source</a>
 </pre>
 <div class="docs">
 <p>Initialize the cache. This must be called before using the cache. The
@@ -283,7 +283,7 @@ concurrently with other methods.</p>
 </li>
 <li>
 <pre class="signature">
-<span class="keyword">void</span> <span class="identifier">flush</span>() <a class="anchor" href="#data-cache-write_only-cache-flush" id="data-cache-write_only-cache-flush">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/cache/write_only.k#L56">source</a>
+<span class="keyword">void</span> <span class="identifier">flush</span>() <a class="anchor" href="#data-cache-write_only-cache-flush" id="data-cache-write_only-cache-flush">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/cache/write_only.k#L56">source</a>
 </pre>
 <div class="docs">
 <p>Write any unwritten data out of the cache. The caller must ensure
@@ -298,7 +298,7 @@ methods.</p>
     Key <span class="identifier">key</span>,
     <a class="link" href="../../data/cache/write_only.html#data-cache-write_only-cache"><span class="identifier">cache</span></a>::<span class="identifier">set_index_t</span> <span class="identifier">set_index</span>,
     <a class="link" href="../../data/optional.html#data-optional-optional"><span class="identifier">optional</span></a>&lt;Word&gt;[WordCount] <span class="identifier">words</span>
-    ) <a class="anchor" href="#data-cache-write_only-cache-write" id="data-cache-write_only-cache-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/132785178526033a5a5a4a5fa6c483030abd99d1/library/data/cache/write_only.k#L78">source</a>
+    ) <a class="anchor" href="#data-cache-write_only-cache-write" id="data-cache-write_only-cache-write">§</a><a class="source_link" href="https://github.com/microsoft/kanagawa/blob/b93544f4433a3175ac310e55a1b3244546365790/library/data/cache/write_only.k#L78">source</a>
 </pre>
 <div class="docs">
 <p>Write an array of words into the cache.</p>
