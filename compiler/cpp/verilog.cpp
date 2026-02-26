@@ -59,7 +59,7 @@ enum class CirctPipelineResultValues
 
 // Reduce N input values down to a single value
 template <typename T>
-std::string BitwiseReduce(const T& container, const std::string& operatorStr, const std::string& defaultValue)
+std::string BitwiseReduce(const T &container, const std::string &operatorStr, const std::string &defaultValue)
 {
     std::ostringstream result;
 
@@ -75,7 +75,7 @@ std::string BitwiseReduce(const T& container, const std::string& operatorStr, co
     return result.str();
 }
 
-bool MemoryRequiresReset(const RegisterDescription& regDesc)
+bool MemoryRequiresReset(const RegisterDescription &regDesc)
 {
     assert(RegisterType::Memory == regDesc._type);
 
@@ -97,8 +97,8 @@ bool MemoryRequiresReset(const RegisterDescription& regDesc)
     return result;
 }
 
-void GetSFormat(const Operation& op, const std::function<void(const std::string&)>& emitStr,
-                const std::function<void(size_t)>& emitSrcOp)
+void GetSFormat(const Operation &op, const std::function<void(const std::string &)> &emitStr,
+                const std::function<void(size_t)> &emitSrcOp)
 {
     assert(Opcode::FormatString == op._opcode);
     assert(0 == op._dst.size());
@@ -106,7 +106,7 @@ void GetSFormat(const Operation& op, const std::function<void(const std::string&
     // First compute the format string
     std::string formatString;
 
-    for (const FormatStringEntry& formatStringEntry : *(op._flags._formatString._entries))
+    for (const FormatStringEntry &formatStringEntry : *(op._flags._formatString._entries))
     {
         switch (formatStringEntry._type)
         {
@@ -139,7 +139,7 @@ void GetSFormat(const Operation& op, const std::function<void(const std::string&
         emitStr("$sformatf(\"" + formatString + "\"");
 
         // Now emit the format arguments
-        for (const FormatStringEntry& formatStringEntry : *(op._flags._formatString._entries))
+        for (const FormatStringEntry &formatStringEntry : *(op._flags._formatString._entries))
         {
             if ((FormatStringType::StringLiteral == formatStringEntry._type) &&
                 (op._src[formatStringEntry._operandIndex].GetStringLiteral().empty()))
@@ -307,7 +307,7 @@ std::string Slice(const size_t offset, const size_t width)
     return str.str();
 }
 
-std::string BuildNetSliceStr(const std::string& prefix, const std::string& suffix, const size_t offset,
+std::string BuildNetSliceStr(const std::string &prefix, const std::string &suffix, const size_t offset,
                              const size_t width)
 {
     assert(width > 0);
@@ -333,7 +333,7 @@ size_t GetConfiguredClockFrequency(size_t clockNum)
     return freq;
 }
 
-static const char* const c_atomicFunctionReturnName = "atomicFunctionReturnValue_out";
+static const char *const c_atomicFunctionReturnName = "atomicFunctionReturnValue_out";
 
 static size_t GetAlmostEmptyDepth()
 {
@@ -362,7 +362,7 @@ static std::string GetClockString(const size_t clockIndex)
     return str.str();
 }
 
-static std::string GetResetString(const size_t clockIndex, const std::string& resetReplica)
+static std::string GetResetString(const size_t clockIndex, const std::string &resetReplica)
 {
     std::ostringstream str;
 
@@ -380,7 +380,7 @@ static std::string GetResetString(const size_t clockIndex, const std::string& re
     return str.str();
 }
 
-static std::string GetBasicBlockControlStateName(const BasicBlock& basicBlock)
+static std::string GetBasicBlockControlStateName(const BasicBlock &basicBlock)
 {
     std::ostringstream str;
     str << GetBasicBlockName(basicBlock) << "_control_state";
@@ -416,7 +416,7 @@ size_t GetClampedRegisterWidth(const size_t logicalWidth)
     return std::max<size_t>(logicalWidth, 1);
 }
 
-static std::ostream& operator<<(std::ostream& str, const Literal& literalVal)
+static std::ostream &operator<<(std::ostream &str, const Literal &literalVal)
 {
     SaveIosFmt<std::ostream::char_type> saveIos(str);
 
@@ -434,11 +434,11 @@ static std::ostream& operator<<(std::ostream& str, const Literal& literalVal)
 
 // Returns the names of all parameters for a function, concatenated
 // Used for extern/export functions
-std::string GetConcatFunctionParams(const Function* const function)
+std::string GetConcatFunctionParams(const Function *const function)
 {
     std::ostringstream str;
 
-    const FunctionNode* const functionNode = function->_functionNode;
+    const FunctionNode *const functionNode = function->_functionNode;
 
     str << "{";
 
@@ -459,12 +459,12 @@ std::string GetConcatFunctionParams(const Function* const function)
     return str.str();
 }
 
-std::string GetExternalClassInstanceCombinedName(const ExternalClassInstance* externModule)
+std::string GetExternalClassInstanceCombinedName(const ExternalClassInstance *externModule)
 {
     return FixupString(FlattenScopeAndAppendName(externModule->_scope, externModule->_name));
 }
 
-std::string GetExternalClassInstanceSignalPrefix(const Function* const function)
+std::string GetExternalClassInstanceSignalPrefix(const Function *const function)
 {
     std::ostringstream str;
 
@@ -473,7 +473,7 @@ std::string GetExternalClassInstanceSignalPrefix(const Function* const function)
     return FixupString(str.str());
 }
 
-std::string GetRegisterBaseName(const Program& program, const size_t registerIndex)
+std::string GetRegisterBaseName(const Program &program, const size_t registerIndex)
 {
     const RegisterDescription regDesc = program._registerTable[registerIndex];
 
@@ -495,55 +495,55 @@ std::string GetRegisterBaseName(const Program& program, const size_t registerInd
     return prefix + std::to_string(registerIndex) + "_" + regDesc._name;
 }
 
-std::string GetBasicBlockInstanceName(const BasicBlock& basicBlock) { return GetBasicBlockName(basicBlock) + "Impl"; }
+std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) { return GetBasicBlockName(basicBlock) + "Impl"; }
 
 class VerilogCompiler;
 
 class ModuleInstanceHelper
 {
-  public:
-    ModuleInstanceHelper(VerilogCompiler& compiler, const mlir::Location& location);
+public:
+    ModuleInstanceHelper(VerilogCompiler &compiler, const mlir::Location &location);
 
-    void SetModuleName(const std::string& name);
+    void SetModuleName(const std::string &name);
 
-    void SetInstanceName(const std::string& name);
+    void SetInstanceName(const std::string &name);
 
-    void AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction, const mlir::Type& type,
-                 const std::string& value);
+    void AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction, const mlir::Type &type,
+                 const std::string &value);
 
-    void AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction, const mlir::Type& type,
-                 const mlir::Value& value);
+    void AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction, const mlir::Type &type,
+                 const mlir::Value &value);
 
-    void AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction, const mlir::Value& value);
+    void AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction, const mlir::Value &value);
 
-    void AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction, const mlir::Type& type,
-                 const mlir::Value& pathToContainer, const circt::hw::InnerSymAttr& containerPortSymbol);
+    void AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction, const mlir::Type &type,
+                 const mlir::Value &pathToContainer, const circt::hw::InnerSymAttr &containerPortSymbol);
 
-    void AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction, const mlir::Type& type);
+    void AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction, const mlir::Type &type);
 
-    void AddStringParameter(const std::string& name, const std::string& value);
+    void AddStringParameter(const std::string &name, const std::string &value);
 
-    void AddU64Parameter(const std::string& name, const uint64_t value);
+    void AddU64Parameter(const std::string &name, const uint64_t value);
 
-    void AddBoolParameter(const std::string& name, const bool value);
+    void AddBoolParameter(const std::string &name, const bool value);
 
-    mlir::Type GetParameterizedIntegerType(const std::string& parameterName);
+    mlir::Type GetParameterizedIntegerType(const std::string &parameterName);
 
-    void Generate(circt::OpBuilder* const opbIn = nullptr);
+    void Generate(circt::OpBuilder *const opbIn = nullptr);
 
-    mlir::Value GetPortValue(const std::string& name);
+    mlir::Value GetPortValue(const std::string &name);
 
     mlir::Type ConcreteType(const mlir::Type srcType);
 
     mlir::Attribute ConcreteAttr(const mlir::Attribute srcAttribute);
 
-  private:
-    void AddParameter(const std::string& name, const mlir::Type type, const mlir::Attribute value);
+private:
+    void AddParameter(const std::string &name, const mlir::Type type, const mlir::Attribute value);
 
     // .first is a PathOp
     using PathAndPortName = std::pair<mlir::Value, circt::hw::InnerSymAttr>;
 
-    VerilogCompiler& _verilogCompiler;
+    VerilogCompiler &_verilogCompiler;
     std::string _moduleName;
     std::string _instanceName;
     mlir::Location _location;
@@ -595,8 +595,8 @@ class VerilogCompiler
     // and adds assertions to generated RTL to ensure these bits are constant
     class ConstantSignalHelper
     {
-      public:
-        ConstantSignalHelper(VerilogCompiler& compiler, JsonValue& jsonArray, const std::string& resetName,
+    public:
+        ConstantSignalHelper(VerilogCompiler &compiler, JsonValue &jsonArray, const std::string &resetName,
                              const bool popSection)
             : _compiler(compiler), _resetName(resetName), _jsonArray(jsonArray), _popSection(popSection)
         {
@@ -607,14 +607,14 @@ class VerilogCompiler
         }
 
         // Called when the net is not a member of a struct
-        void AddConstantBit(const std::string& name, const size_t offset, const bool value)
+        void AddConstantBit(const std::string &name, const size_t offset, const bool value)
         {
             AddConstantBit("", name, offset, value);
         }
 
         // when container is non-empty, then field is a member of a struct
         // otherwise, field is just a net name
-        void AddConstantBit(const std::string& container, const std::string& field, const size_t offset,
+        void AddConstantBit(const std::string &container, const std::string &field, const size_t offset,
                             const bool value)
         {
             const size_t valueInt = value ? 1 : 0;
@@ -622,7 +622,7 @@ class VerilogCompiler
             {
                 JsonValue constantBit = JsonValue::CreateObject();
 
-                auto& rtlMap = _compiler._rtlMap;
+                auto &rtlMap = _compiler._rtlMap;
 
                 if (!container.empty())
                 {
@@ -656,20 +656,20 @@ class VerilogCompiler
         }
 
         // Called when the net is not a member of a struct
-        void AddFifoCodeLiterals(const std::string& name, const FifoCode& fifoCode)
+        void AddFifoCodeLiterals(const std::string &name, const FifoCode &fifoCode)
         {
             AddFifoCodeLiterals("", name, fifoCode);
         }
 
-        void AddFifoCodeLiterals(const std::string& container, const std::string& field, const FifoCode& fifoCode)
+        void AddFifoCodeLiterals(const std::string &container, const std::string &field, const FifoCode &fifoCode)
         {
             if (fifoCode._initialized)
             {
-                for (const FifoCodeOutputRange& range : fifoCode._outputRanges)
+                for (const FifoCodeOutputRange &range : fifoCode._outputRanges)
                 {
                     if (range._isLiteral)
                     {
-                        const mp_int& value = range._literal;
+                        const mp_int &value = range._literal;
 
                         for (size_t i = 0; i < range._width; i++)
                         {
@@ -680,12 +680,12 @@ class VerilogCompiler
             }
         }
 
-      private:
-        VerilogCompiler& _compiler;
+    private:
+        VerilogCompiler &_compiler;
 
         std::string _resetName;
 
-        JsonValue& _jsonArray;
+        JsonValue &_jsonArray;
 
         bool _popSection;
 
@@ -693,19 +693,19 @@ class VerilogCompiler
     };
 
     // Emit json and assertions for constant bits in global fifo structs
-    void EmitFifoTopLevelConstants(const size_t registerIndex, const std::string& container, const std::string& field)
+    void EmitFifoTopLevelConstants(const size_t registerIndex, const std::string &container, const std::string &field)
     {
-        const FifoCode& fifoCode = _program._registerTable[registerIndex].Fifo()._code;
+        const FifoCode &fifoCode = _program._registerTable[registerIndex].Fifo()._code;
 
         ConstantSignalHelper helper(*this, _jsonConstantSignals, "rst", false);
 
         helper.AddFifoCodeLiterals(container, field, fifoCode);
     }
 
-  public:
-    VerilogCompiler(const char* const svFileName, const char* const svPackageFileName, const char* const cppFileName,
-                    const char* const headerFileName, const char* const memFileBase, const char* const rtlMapFileName,
-                    const char* const circtAsmFileName, const Program& program)
+public:
+    VerilogCompiler(const char *const svFileName, const char *const svPackageFileName, const char *const cppFileName,
+                    const char *const headerFileName, const char *const memFileBase, const char *const rtlMapFileName,
+                    const char *const circtAsmFileName, const Program &program)
         : _writer(svFileName), _program(program), _cppFileName(cppFileName),
           _headerFileName(headerFileName), _memFileBase(memFileBase), _resetReplicaIndex(0), _inputValidReplicaIndex(0),
           _selectTableIndex(0), _threadCountNameIndex(0), _basicBlockHasStalls(false),
@@ -730,39 +730,39 @@ class VerilogCompiler
     // RAII class to emit // coverage {off,on}
     class DisableCodeCoverage
     {
-      public:
-        DisableCodeCoverage(VerilogCompiler& compiler) : _compiler(compiler)
+    public:
+        DisableCodeCoverage(VerilogCompiler &compiler) : _compiler(compiler)
         {
             _compiler._writer.Str() << "// coverage off";
         }
 
         ~DisableCodeCoverage() { _compiler._writer.Str() << "// coverage on"; }
 
-      private:
-        DisableCodeCoverage& operator=(const DisableCodeCoverage&) const;
+    private:
+        DisableCodeCoverage &operator=(const DisableCodeCoverage &) const;
 
-        VerilogCompiler& _compiler;
+        VerilogCompiler &_compiler;
     };
 
     // RAII class to wrap code that should not be excluded in code coverage builds
     class DisableDynamicAssert
     {
-      public:
-        DisableDynamicAssert(VerilogCompiler& compiler) : _compiler(compiler)
+    public:
+        DisableDynamicAssert(VerilogCompiler &compiler) : _compiler(compiler)
         {
             _compiler._writer.Str() << "`ifndef NO_DYNAMIC_ASSERTS";
         }
 
         ~DisableDynamicAssert() { _compiler._writer.Str() << "`endif"; }
 
-      private:
-        VerilogCompiler& _compiler;
+    private:
+        VerilogCompiler &_compiler;
     };
 
     // Merge modules used by context savers
     void DeclareContextSaverMergers()
     {
-        for (const ContextSaver& contextSaver : _program._contextSavers)
+        for (const ContextSaver &contextSaver : _program._contextSavers)
         {
             const RegisterDescription outputRegDesc = _program._registerTable[contextSaver._destinationFifo];
             const RegisterDescription calleeRegDesc = _program._registerTable[contextSaver._fromCalleeFifoIndex];
@@ -803,7 +803,7 @@ class VerilogCompiler
                 AutoSectionRAII moduleClose(_writer, true, ");", "endmodule");
                 {
                     AutoSectionRAII alwaysCombBlock(_writer, true, "always_comb begin", "end");
-                    for (const std::pair<size_t, size_t>& p : contextSaver._fromCalleeOutputMap)
+                    for (const std::pair<size_t, size_t> &p : contextSaver._fromCalleeOutputMap)
                     {
                         const size_t registerIndex = p.first;
                         const size_t offset = p.second;
@@ -830,7 +830,7 @@ class VerilogCompiler
                         }
                     }
 
-                    for (const std::pair<size_t, size_t>& p : contextSaver._fromCallerOutputMap)
+                    for (const std::pair<size_t, size_t> &p : contextSaver._fromCallerOutputMap)
                     {
                         const size_t registerIndex = p.first;
                         const size_t offset = p.second;
@@ -849,22 +849,22 @@ class VerilogCompiler
         }
     }
 
-    void WriteStallRatePorts(ModuleDeclarationHelper& coreModule)
+    void WriteStallRatePorts(ModuleDeclarationHelper &coreModule)
     {
         coreModule.AddPort("stall_rate_in", circt::hw::ModulePort::Direction::Input, 3);
         coreModule.AddPort("stall_rate_valid_in", circt::hw::ModulePort::Direction::Input, 1);
         coreModule.AddPort("stall_rate_supported_out", circt::hw::ModulePort::Direction::Output, 1);
     }
 
-    void AssignStallRatePorts(ModuleDeclarationHelper& coreModule)
+    void AssignStallRatePorts(ModuleDeclarationHelper &coreModule)
     {
         coreModule.AssignPort("stall_rate_supported_out");
         coreModule.FlushVerbatimStrings();
 
-        circt::OpBuilder& opb = coreModule.OpBuilder();
+        circt::OpBuilder &opb = coreModule.OpBuilder();
         const mlir::Value netInOut = coreModule.GetOutputNetInOutValue("stall_rate_supported_out");
         const mlir::Value constVal = circt::hw::ConstantOp::create(opb, GetUnknownLocation(),
-            opb.getIntegerAttr(GetI1Type(), (_program._numStallers > 0) ? 1 : 0));
+                                                                   opb.getIntegerAttr(GetI1Type(), (_program._numStallers > 0) ? 1 : 0));
         circt::sv::AssignOp::create(opb, GetUnknownLocation(), netInOut, constVal);
     }
 
@@ -876,7 +876,7 @@ class VerilogCompiler
     };
 
     BypassAndWriteDelay CalculateMemoryBypassAndWriteDelay(const bool requireBypass, const size_t readLatency,
-                                                           const RegisterDescription& regDesc)
+                                                           const RegisterDescription &regDesc)
     {
         const bool isQuadPort = regDesc.Memory()._quadPort;
         const bool ecc = regDesc.Memory()._ecc;
@@ -960,7 +960,7 @@ class VerilogCompiler
         return result;
     }
 
-    void InstantiateInspectables(ModuleDeclarationHelper& mod, const std::set<size_t>& globalsRequiringNext)
+    void InstantiateInspectables(ModuleDeclarationHelper &mod, const std::set<size_t> &globalsRequiringNext)
     {
         assert(GetCodeGenConfig()._inspection);
 
@@ -988,13 +988,13 @@ class VerilogCompiler
                     const size_t registerIndex = *it;
                     ++it;
 
-                    const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+                    const RegisterDescription &regDesc = _program._registerTable[registerIndex];
                     assert(RegisterTracksRaces(regDesc));
 
                     std::ostringstream str;
 
                     {
-                        circt::OpBuilder& opb = mod.OpBuilder();
+                        circt::OpBuilder &opb = mod.OpBuilder();
 
                         mlir::Value hasRaceOccured;
 
@@ -1031,7 +1031,7 @@ class VerilogCompiler
                         }
 
                         mod.AddVerbatimOp(
-                            GetUnknownLocation(), [&](VerbatimWriter& writer)
+                            GetUnknownLocation(), [&](VerbatimWriter &writer)
                             { writer << "assign race_bitvector[" << i << "] = " << hasRaceOccured << ";"; });
                     }
                 }
@@ -1082,7 +1082,7 @@ class VerilogCompiler
             auto nextIt = it;
             ++nextIt;
 
-            const InspectableVariable& inspectableVariable = *it;
+            const InspectableVariable &inspectableVariable = *it;
 
             const size_t inspectableIndex = inspectableVariable._inspectableIndex;
 
@@ -1107,7 +1107,7 @@ class VerilogCompiler
                 if (isMemory)
                 {
                     memoryIndex = inspectableVariable._registers[0];
-                    const RegisterDescription& memoryDesc = _program._registerTable[memoryIndex];
+                    const RegisterDescription &memoryDesc = _program._registerTable[memoryIndex];
                     memoryAddressWidth = memoryDesc.GetMemoryAddressWidth();
                     memoryElementCount = memoryDesc.Memory()._elementCount;
                 }
@@ -1247,7 +1247,7 @@ class VerilogCompiler
         {
             for (auto it = _program._inspectableVariables.begin(); it != _program._inspectableVariables.end(); ++it)
             {
-                const InspectableVariable& inspectableVariable = *it;
+                const InspectableVariable &inspectableVariable = *it;
 
                 const size_t inspectableIndex = inspectableVariable._inspectableIndex;
 
@@ -1289,7 +1289,7 @@ class VerilogCompiler
         }
     }
 
-    void InstantiateCoverpoints(ModuleDeclarationHelper& mod, const std::set<size_t>& globalsRequiringNext)
+    void InstantiateCoverpoints(ModuleDeclarationHelper &mod, const std::set<size_t> &globalsRequiringNext)
     {
         DisableTranslation disableTranslation(_writer);
 
@@ -1301,14 +1301,14 @@ class VerilogCompiler
             // Get code coverage registers and names for this coverage type
             std::vector<size_t> codeCoverageRegs;
             std::vector<std::string> codeCoverageVars;
-            for (const auto& inspectableVariable : _program._codeCoverageVariables)
+            for (const auto &inspectableVariable : _program._codeCoverageVariables)
             {
                 if (!inspectableVariable._removed)
                 {
                     assert(inspectableVariable._inspectionType == InspectableVariableType::CodeCoverage);
                     assert(inspectableVariable._registers.size() == 1);
 
-                    const CodeCoverage& codeCoverage = inspectableVariable._codeCoverage;
+                    const CodeCoverage &codeCoverage = inspectableVariable._codeCoverage;
 
                     if (codeCoverage._coverageType == codeCoverageType)
                     {
@@ -1329,7 +1329,7 @@ class VerilogCompiler
             // Generate assign statement to rename from global to user-readable code coverage name
             for (size_t i = 0; i < codeCoverageVars.size(); i++)
             {
-                const std::string& codeCoverageVar = codeCoverageVars[i];
+                const std::string &codeCoverageVar = codeCoverageVars[i];
                 const size_t codeCoverageReg = codeCoverageRegs[i];
 
                 // Declare logic net and assign from container port
@@ -1337,7 +1337,7 @@ class VerilogCompiler
                 circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(_coreModule->GetBodyBlock());
 
                 mlir::Value logicNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                    GetIntegerType(1), StringToStringAttr(codeCoverageVar));
+                                                                  GetIntegerType(1), StringToStringAttr(codeCoverageVar));
 
                 const mlir::Value pathToInstance =
                     GetPathToGlobalContainer(mod, ObjectPath(), codeCoverageReg, globalsRequiringNext);
@@ -1357,7 +1357,7 @@ class VerilogCompiler
             {
                 AutoSectionRAII coverGroup(_writer, true, "covergroup " + coverGroupName + " @(posedge clk);",
                                            "endgroup");
-                for (const std::string& codeCoverageVar : codeCoverageVars)
+                for (const std::string &codeCoverageVar : codeCoverageVars)
                 {
                     _writer.Str() << "coverpoint " << codeCoverageVar << "{ bins covered = {1}; }";
                 }
@@ -1371,7 +1371,7 @@ class VerilogCompiler
         }
     }
 
-    void AddNetToJson(const std::string& varName, const size_t varWidth, JsonValue& jsonNets)
+    void AddNetToJson(const std::string &varName, const size_t varWidth, JsonValue &jsonNets)
     {
         JsonValue jsonNet = JsonValue::CreateObject();
         jsonNet.AddMember("name", _rtlMap.SerializeString(varName));
@@ -1395,7 +1395,7 @@ class VerilogCompiler
 
             str << "reg_" << _width << "_w" << _writeCount;
 
-            for (const auto& p : _literalValues)
+            for (const auto &p : _literalValues)
             {
                 str << "_v_" << p.first << "_" << p.second._width << "_" << p.second._value;
             }
@@ -1423,7 +1423,7 @@ class VerilogCompiler
         // Note that this does not use containerInstancePath because
         // multiple instances (with different paths) can share the same
         // global register container
-        circt::hw::InnerSymAttr GetFieldSymbol(const std::string& fieldName) const
+        circt::hw::InnerSymAttr GetFieldSymbol(const std::string &fieldName) const
         {
             const ObjectPath objectPath(1, Name());
 
@@ -1431,11 +1431,11 @@ class VerilogCompiler
         }
     };
 
-    GlobalRegKey GetGlobalRegKey(const size_t registerIndex, const std::set<size_t>& globalsRequiringNext)
+    GlobalRegKey GetGlobalRegKey(const size_t registerIndex, const std::set<size_t> &globalsRequiringNext)
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
-        const RegisterDescription::GlobalDesc& globalDesc = regDesc.Global();
+        const RegisterDescription::GlobalDesc &globalDesc = regDesc.Global();
 
         const GlobalRegKey key = {regDesc._width,
                                   globalDesc._writeCount,
@@ -1448,7 +1448,7 @@ class VerilogCompiler
         return key;
     }
 
-    void DeclareAndInstantiateGlobalVariablesCIRCT(const std::set<size_t>& globalsRequiringNext)
+    void DeclareAndInstantiateGlobalVariablesCIRCT(const std::set<size_t> &globalsRequiringNext)
     {
         assert(_coreModule);
 
@@ -1456,7 +1456,7 @@ class VerilogCompiler
 
         if (GetCodeGenConfig()._inspection)
         {
-            for (const InspectableVariable& inspectableVariable : _program._inspectableVariables)
+            for (const InspectableVariable &inspectableVariable : _program._inspectableVariables)
             {
                 for (const size_t registerIndex : inspectableVariable._registers)
                 {
@@ -1478,11 +1478,11 @@ class VerilogCompiler
 
         for (size_t i = 0; i < _program._registerTable.size(); ++i)
         {
-            const RegisterDescription& regDesc = _program._registerTable[i];
+            const RegisterDescription &regDesc = _program._registerTable[i];
 
             if (regDesc._type == RegisterType::Global)
             {
-                const ObjectPath& containerInstancePath = regDesc.Global()._containerInstancePath;
+                const ObjectPath &containerInstancePath = regDesc.Global()._containerInstancePath;
 
                 // Container instance paths should be unique
                 // beacuse each leaf node is a single scalar register
@@ -1493,7 +1493,7 @@ class VerilogCompiler
                 // Otherwise port names between variables would conflict
                 SafeInsert(paths, containerInstancePath);
 
-                const RegisterDescription::GlobalDesc& globalDesc = regDesc.Global();
+                const RegisterDescription::GlobalDesc &globalDesc = regDesc.Global();
 
                 const GlobalRegKey key = GetGlobalRegKey(i, globalsRequiringNext);
 
@@ -1518,8 +1518,8 @@ class VerilogCompiler
 
                     // The container has TopLevel = false to prepend the design name to the container name
                     // to avoid collisions between RTL modules generated by different export classes
-                    circt::kanagawa::ContainerOp container = circt::kanagawa::ContainerOp::create(opb, 
-                        location, circt::hw::InnerSymAttr::get(leafContainerNameAttr), false);
+                    circt::kanagawa::ContainerOp container = circt::kanagawa::ContainerOp::create(opb,
+                                                                                                  location, circt::hw::InnerSymAttr::get(leafContainerNameAttr), false);
 
                     circt::OpBuilder::InsertionGuard g(opb);
 
@@ -1531,18 +1531,18 @@ class VerilogCompiler
                     circt::BackedgeBuilder beb(opb, location);
                     circt::Backedge valueBackedge = beb.get(valueType);
 
-                    const auto addInputPort = [&](const std::string& name, const mlir::Type& type)
+                    const auto addInputPort = [&](const std::string &name, const mlir::Type &type)
                     {
-                        const mlir::Value port = circt::kanagawa::InputPortOp::create(opb, 
-                            location, key.GetFieldSymbol(name), type, StringToStringAttr(name));
+                        const mlir::Value port = circt::kanagawa::InputPortOp::create(opb,
+                                                                                      location, key.GetFieldSymbol(name), type, StringToStringAttr(name));
 
                         return circt::kanagawa::PortReadOp::create(opb, location, port);
                     };
 
-                    const auto addOutputPort = [&](const std::string& name, const mlir::Value& value)
+                    const auto addOutputPort = [&](const std::string &name, const mlir::Value &value)
                     {
-                        const mlir::Value port = circt::kanagawa::OutputPortOp::create(opb, 
-                            location, key.GetFieldSymbol(name), value.getType(), StringToStringAttr(name));
+                        const mlir::Value port = circt::kanagawa::OutputPortOp::create(opb,
+                                                                                       location, key.GetFieldSymbol(name), value.getType(), StringToStringAttr(name));
 
                         circt::kanagawa::PortWriteOp::create(opb, location, port, value);
                     };
@@ -1559,8 +1559,8 @@ class VerilogCompiler
                         const mlir::Value rst = addInputPort("rst", GetI1Type());
 
                         valueReg = circt::seq::CompRegOp::create(opb, location, valueBackedge, clk, rst,
-                                                                     LiteralToValue(*key._initialValue, opb, location),
-                                                                     symbol);
+                                                                 LiteralToValue(*key._initialValue, opb, location),
+                                                                 symbol);
                     }
                     else
                     {
@@ -1612,8 +1612,8 @@ class VerilogCompiler
                         const mlir::Value one =
                             circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(sum.getType(), 1));
 
-                        const mlir::Value compareResult = circt::comb::ICmpOp::create(opb, 
-                            location, circt::comb::ICmpPredicate::ugt, sum, one, TwoState);
+                        const mlir::Value compareResult = circt::comb::ICmpOp::create(opb,
+                                                                                      location, circt::comb::ICmpPredicate::ugt, sum, one, TwoState);
 
                         addOutputPort("has_race_occured_out", compareResult);
                     }
@@ -1640,13 +1640,13 @@ class VerilogCompiler
 
                 const mlir::Location location = RegDescToLocation(regDesc);
 
-                circt::kanagawa::ContainerInstanceOp::create(opb, 
-                    location, circt::hw::InnerSymAttr::get(StringToStringAttr(containerInstancePath.back())),
-                    circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
+                circt::kanagawa::ContainerInstanceOp::create(opb,
+                                                             location, circt::hw::InnerSymAttr::get(StringToStringAttr(containerInstancePath.back())),
+                                                             circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
 
                 // Write clock and reset ports
                 const auto writeInputPort =
-                    [&](const std::string& name, const mlir::Type type, const std::string& verbatimValue)
+                    [&](const std::string &name, const mlir::Type type, const std::string &verbatimValue)
                 {
                     circt::OpBuilder::InsertionGuard g(opb);
 
@@ -1655,15 +1655,15 @@ class VerilogCompiler
                     // Add a port write to the core module container
                     const llvm::SmallVector<mlir::Value> substitutions; // Empty, there are no substitutions
 
-                    const mlir::Value value = circt::sv::VerbatimExprOp::create(opb, 
-                        location, type, StringToStringAttr(verbatimValue), substitutions, nullptr);
+                    const mlir::Value value = circt::sv::VerbatimExprOp::create(opb,
+                                                                                location, type, StringToStringAttr(verbatimValue), substitutions, nullptr);
 
                     _coreModule->WritePort(opb, ObjectPath(), regDesc.Global()._containerInstancePath,
                                            key.GetFieldSymbol(name).getSymName(), leafContainerName,
                                            GetCirctDesignName(), value);
                 };
 
-                const auto readOutputPort = [&](const std::string& name, const mlir::Type type)
+                const auto readOutputPort = [&](const std::string &name, const mlir::Type type)
                 {
                     circt::OpBuilder::InsertionGuard g(opb);
 
@@ -1687,7 +1687,7 @@ class VerilogCompiler
                     // The variable is inspectable
                     // Declare a top-level struct with the value
                     _coreModule->FlushVerbatimStrings();
-                    circt::OpBuilder& structOpb = _coreModule->OpBuilder();
+                    circt::OpBuilder &structOpb = _coreModule->OpBuilder();
 
                     // Create struct type: struct packed { logic [N:0] value; }
                     llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
@@ -1698,14 +1698,14 @@ class VerilogCompiler
 
                     // Declare a logic of the struct type
                     mlir::Value structNet = circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
-                        structType, StringToStringAttr(GetGlobalStructName(i)));
+                                                                       structType, StringToStringAttr(GetGlobalStructName(i)));
 
                     // Build the struct value and assign
                     mlir::Value valueField = readOutputPort("value_out", GetIntegerType(regDesc._width));
                     mlir::SmallVector<mlir::Value> fieldValues;
                     fieldValues.push_back(valueField);
                     mlir::Value structVal = circt::hw::StructCreateOp::create(structOpb,
-                        GetUnknownLocation(), structType, fieldValues);
+                                                                              GetUnknownLocation(), structType, fieldValues);
                     circt::sv::AssignOp::create(structOpb, GetUnknownLocation(), structNet, structVal);
                 }
             }
@@ -1729,7 +1729,7 @@ class VerilogCompiler
 
         if (GetCodeGenConfig()._inspection)
         {
-            for (const InspectableVariable& inspectableVariable : _program._inspectableVariables)
+            for (const InspectableVariable &inspectableVariable : _program._inspectableVariables)
             {
                 for (const size_t registerIndex : inspectableVariable._registers)
                 {
@@ -1745,11 +1745,11 @@ class VerilogCompiler
 
         for (size_t i = 0; i < _program._registerTable.size(); ++i)
         {
-            const RegisterDescription& regDesc = _program._registerTable[i];
+            const RegisterDescription &regDesc = _program._registerTable[i];
 
             if (regDesc._type == RegisterType::Memory)
             {
-                const ObjectPath& containerInstancePath = regDesc.Memory()._containerInstancePath;
+                const ObjectPath &containerInstancePath = regDesc.Memory()._containerInstancePath;
 
                 // Container instance paths should be unique
                 // beacuse each leaf node is a single scalar register
@@ -1760,7 +1760,7 @@ class VerilogCompiler
                 // Otherwise port names between variables would conflict
                 SafeInsert(paths, containerInstancePath);
 
-                const RegisterDescription::MemoryDesc& memoryDesc = regDesc.Memory();
+                const RegisterDescription::MemoryDesc &memoryDesc = regDesc.Memory();
 
                 // Each memory instance corresponds to a single container
                 // "__mem_container" suffix added to avoid symbol name conflicts with
@@ -1778,28 +1778,28 @@ class VerilogCompiler
 
                 // The container has TopLevel = = false to prepend the design name to the container name
                 // to avoid collisions between RTL modules generated by different export classes
-                circt::kanagawa::ContainerOp container = circt::kanagawa::ContainerOp::create(opb, 
-                    location, circt::hw::InnerSymAttr::get(leafContainerNameAttr), false);
+                circt::kanagawa::ContainerOp container = circt::kanagawa::ContainerOp::create(opb,
+                                                                                              location, circt::hw::InnerSymAttr::get(leafContainerNameAttr), false);
 
                 circt::OpBuilder::InsertionGuard g(opb);
 
                 // Add ports to the container
                 opb.setInsertionPointToEnd(container.getBodyBlock());
 
-                const auto addInputPort = [&](const std::string& name, const mlir::Type& type)
+                const auto addInputPort = [&](const std::string &name, const mlir::Type &type)
                 {
-                    const mlir::Value port = circt::kanagawa::InputPortOp::create(opb, 
-                        location, GetFullyQualifiedInnerSymAttr(containerInstancePath, name), type,
-                        StringToStringAttr(name));
+                    const mlir::Value port = circt::kanagawa::InputPortOp::create(opb,
+                                                                                  location, GetFullyQualifiedInnerSymAttr(containerInstancePath, name), type,
+                                                                                  StringToStringAttr(name));
 
                     return circt::kanagawa::PortReadOp::create(opb, location, port);
                 };
 
-                const auto addOutputPort = [&](const std::string& name, const mlir::Value& value)
+                const auto addOutputPort = [&](const std::string &name, const mlir::Value &value)
                 {
-                    const mlir::Value outputPortOp = circt::kanagawa::OutputPortOp::create(opb, 
-                        location, GetFullyQualifiedInnerSymAttr(containerInstancePath, name), value.getType(),
-                        StringToStringAttr(name));
+                    const mlir::Value outputPortOp = circt::kanagawa::OutputPortOp::create(opb,
+                                                                                           location, GetFullyQualifiedInnerSymAttr(containerInstancePath, name), value.getType(),
+                                                                                           StringToStringAttr(name));
 
                     circt::kanagawa::PortWriteOp::create(opb, location, outputPortOp, value);
                 };
@@ -2023,8 +2023,8 @@ class VerilogCompiler
                     // no KanagawaSyncRam will be instantiated, just set the read data to a dummy value
                     for (size_t port = 0; port < readPorts; ++port)
                     {
-                        memoryDataReadDataArray.push_back(circt::hw::ConstantOp::create(opb, 
-                            location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0)));
+                        memoryDataReadDataArray.push_back(circt::hw::ConstantOp::create(opb,
+                                                                                        location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0)));
                     }
 
                     // Also if no memory, set the inspectable inspection_success flag so the inspectable chain doesn't
@@ -2058,8 +2058,8 @@ class VerilogCompiler
                     mlir::SmallVector<mlir::Value> muxTree(writePorts);
                     for (size_t i = 0; i < writePorts; i++)
                     {
-                        const mlir::Value iValue = circt::hw::ConstantOp::create(opb, 
-                            location, opb.getIntegerAttr(opb.getIntegerType(writeIndexWidth), i));
+                        const mlir::Value iValue = circt::hw::ConstantOp::create(opb,
+                                                                                 location, opb.getIntegerAttr(opb.getIntegerType(writeIndexWidth), i));
 
                         if (i == 0)
                         {
@@ -2068,7 +2068,7 @@ class VerilogCompiler
                         else
                         {
                             muxTree[i] = circt::comb::MuxOp::create(opb, location, memoryDataWrenPorts[i], iValue,
-                                                                        muxTree[i - 1], TwoState);
+                                                                    muxTree[i - 1], TwoState);
                         }
                     }
                     memoryDataSelectedWriteIndex = muxTree[writePorts - 1];
@@ -2103,21 +2103,21 @@ class VerilogCompiler
                             }
                             else
                             {
-                                memoryDataFinalReadAddr[j] = circt::hw::ConstantOp::create(opb, 
-                                    location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
+                                memoryDataFinalReadAddr[j] = circt::hw::ConstantOp::create(opb,
+                                                                                           location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
                             }
 
                             for (size_t i = boundStart; i < boundEnd; i++)
                             {
-                                memoryDataFinalReadAddr[j] = circt::comb::MuxOp::create(opb, 
-                                    location, memoryDataRdenPorts[i], memoryDataReadAddrPorts[i],
-                                    memoryDataFinalReadAddr[j], TwoState);
+                                memoryDataFinalReadAddr[j] = circt::comb::MuxOp::create(opb,
+                                                                                        location, memoryDataRdenPorts[i], memoryDataReadAddrPorts[i],
+                                                                                        memoryDataFinalReadAddr[j], TwoState);
 
                                 // memoryDataInspectionSuccess is 0 if any rden is 1
-                                memoryDataInspectionSuccess = circt::comb::MuxOp::create(opb, 
-                                    location, memoryDataRdenPorts[i],
-                                    circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getI1Type(), 0)),
-                                    memoryDataInspectionSuccess, TwoState);
+                                memoryDataInspectionSuccess = circt::comb::MuxOp::create(opb,
+                                                                                         location, memoryDataRdenPorts[i],
+                                                                                         circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getI1Type(), 0)),
+                                                                                         memoryDataInspectionSuccess, TwoState);
                             }
 
                             if (isInspectable)
@@ -2155,7 +2155,7 @@ class VerilogCompiler
 
                     llvm::SmallVector<mlir::Value> writeEnables;
                     llvm::SmallVector<mlir::Value> readEnables;
-                    for (const auto& portDesc : portDescriptions)
+                    for (const auto &portDesc : portDescriptions)
                     {
                         if (!portDesc._enable)
                         {
@@ -2192,15 +2192,15 @@ class VerilogCompiler
                     const mlir::Value oneWren =
                         circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(sumWren.getType(), 1));
 
-                    const mlir::Value compareWren = circt::comb::ICmpOp::create(opb, 
-                        location, circt::comb::ICmpPredicate::ugt, sumWren, oneWren, TwoState);
+                    const mlir::Value compareWren = circt::comb::ICmpOp::create(opb,
+                                                                                location, circt::comb::ICmpPredicate::ugt, sumWren, oneWren, TwoState);
 
                     // Compare against 1
                     const mlir::Value oneRden =
                         circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(sumRden.getType(), 1));
 
-                    const mlir::Value compareRden = circt::comb::ICmpOp::create(opb, 
-                        location, circt::comb::ICmpPredicate::ugt, sumRden, oneRden, TwoState);
+                    const mlir::Value compareRden = circt::comb::ICmpOp::create(opb,
+                                                                                location, circt::comb::ICmpPredicate::ugt, sumRden, oneRden, TwoState);
                     // Set race flag when sumWren > 1 or sumRden > 1
                     memoryDataHasRaceOccured =
                         circt::comb::OrOp::create(opb, location, compareWren, compareRden, TwoState);
@@ -2248,8 +2248,8 @@ class VerilogCompiler
                     mlir::Value memoryDataModuleDualPortDataOut;
 
                     const size_t basePortWidth = (basePort > 1) ? Log2RoundUp(basePort) : 1;
-                    const mlir::Value basePortValue = circt::hw::ConstantOp::create(opb, 
-                        location, opb.getIntegerAttr(opb.getIntegerType(basePortWidth), basePort));
+                    const mlir::Value basePortValue = circt::hw::ConstantOp::create(opb,
+                                                                                    location, opb.getIntegerAttr(opb.getIntegerType(basePortWidth), basePort));
 
                     if (useLogicRam)
                     {
@@ -2306,8 +2306,8 @@ class VerilogCompiler
                             {
                                 memoryDataModuleDualPortRdenArray[port] =
                                     circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getI1Type(), 0));
-                                memoryDataModuleReadAddrArray[port] = circt::hw::ConstantOp::create(opb, 
-                                    location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
+                                memoryDataModuleReadAddrArray[port] = circt::hw::ConstantOp::create(opb,
+                                                                                                    location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
                             }
 
                             if (port < writePorts)
@@ -2318,12 +2318,12 @@ class VerilogCompiler
                             }
                             else
                             {
-                                memoryDataModuleWriteAddrArray[port] = circt::hw::ConstantOp::create(opb, 
-                                    location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
+                                memoryDataModuleWriteAddrArray[port] = circt::hw::ConstantOp::create(opb,
+                                                                                                     location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
                                 memoryDataModuleDualPortWrenArray[port] =
                                     circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getI1Type(), 0));
-                                memoryDataModuleDualPortDataInArray[port] = circt::hw::ConstantOp::create(opb, 
-                                    location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0));
+                                memoryDataModuleDualPortDataInArray[port] = circt::hw::ConstantOp::create(opb,
+                                                                                                          location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0));
                             }
                         }
                         std::reverse(memoryDataModuleWriteAddrArray.begin(), memoryDataModuleWriteAddrArray.end());
@@ -2374,12 +2374,12 @@ class VerilogCompiler
                             // Port on the logical memory
                             const size_t whichOuterPort = basePort + portOffset;
 
-                            const mlir::Value whichInnerPortValue = circt::hw::ConstantOp::create(opb, 
-                                location,
-                                opb.getIntegerAttr(opb.getIntegerType(portsForThisModuleWidth), whichInnerPort));
-                            const mlir::Value whichOuterPortValue = circt::hw::ConstantOp::create(opb, 
-                                location,
-                                opb.getIntegerAttr(opb.getIntegerType(portsForThisModuleWidth), whichOuterPort));
+                            const mlir::Value whichInnerPortValue = circt::hw::ConstantOp::create(opb,
+                                                                                                  location,
+                                                                                                  opb.getIntegerAttr(opb.getIntegerType(portsForThisModuleWidth), whichInnerPort));
+                            const mlir::Value whichOuterPortValue = circt::hw::ConstantOp::create(opb,
+                                                                                                  location,
+                                                                                                  opb.getIntegerAttr(opb.getIntegerType(portsForThisModuleWidth), whichOuterPort));
                             // for replicated memories (replica 0), use final_read_addr to enable inspection to sneak in
                             // on idle cycles
                             if (regDesc.Memory()._replicate && !(isInspectable && (moduleIndex == 0)))
@@ -2399,8 +2399,8 @@ class VerilogCompiler
                         // never write on port 1
                         memoryDataModuleDualPortWrenArray[1] =
                             circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getI1Type(), 0));
-                        memoryDataModuleDualPortDataInArray[1] = circt::hw::ConstantOp::create(opb, 
-                            location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0));
+                        memoryDataModuleDualPortDataInArray[1] = circt::hw::ConstantOp::create(opb,
+                                                                                               location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0));
 
                         if (writePorts > 0)
                         {
@@ -2422,9 +2422,9 @@ class VerilogCompiler
                                 std::reverse(memoryDataWriteDataPorts.begin(), memoryDataWriteDataPorts.end());
                                 std::reverse(memoryDataWriteAddrPorts.begin(), memoryDataWriteAddrPorts.end());
                                 writeDataStr = circt::hw::ArrayGetOp::create(opb, location, memoryDataWriteData,
-                                                                                 memoryDataSelectedWriteIndex);
+                                                                             memoryDataSelectedWriteIndex);
                                 writeAddrStr = circt::hw::ArrayGetOp::create(opb, location, memoryDataWriteAddr,
-                                                                                 memoryDataSelectedWriteIndex);
+                                                                             memoryDataSelectedWriteIndex);
                             }
                             else
                             {
@@ -2437,12 +2437,12 @@ class VerilogCompiler
                             {
                                 mlir::Value muxValue;
                                 muxValue = circt::comb::MuxOp::create(opb, location, memInitWrEn, memInitWrData,
-                                                                          writeDataStr, TwoState);
+                                                                      writeDataStr, TwoState);
 
                                 memoryDataModuleDualPortDataInArray[0] = muxValue;
 
                                 muxValue = circt::comb::MuxOp::create(opb, location, memInitWrEn, memInitWrAddr,
-                                                                          writeAddrStr, TwoState);
+                                                                      writeAddrStr, TwoState);
 
                                 memoryDataModuleDualPortAddrArray[0] = muxValue;
                             }
@@ -2484,8 +2484,8 @@ class VerilogCompiler
                                 }
                                 else
                                 {
-                                    memoryDataModuleDualPortAddrArray[0] = circt::hw::ConstantOp::create(opb, 
-                                        location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
+                                    memoryDataModuleDualPortAddrArray[0] = circt::hw::ConstantOp::create(opb,
+                                                                                                         location, opb.getIntegerAttr(opb.getIntegerType(addrWidth), 0));
                                 }
                             }
 
@@ -2499,8 +2499,8 @@ class VerilogCompiler
                             else
                             {
                                 // never write
-                                memoryDataModuleDualPortDataInArray[0] = circt::hw::ConstantOp::create(opb, 
-                                    location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0));
+                                memoryDataModuleDualPortDataInArray[0] = circt::hw::ConstantOp::create(opb,
+                                                                                                       location, opb.getIntegerAttr(opb.getIntegerType(dataWidth), 0));
                                 memoryDataModuleDualPortWrenArray[0] =
                                     circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getI1Type(), 0));
                             }
@@ -2694,8 +2694,8 @@ class VerilogCompiler
                         // Read ports
                         for (size_t portOffset = 0; portOffset < portsForThisModule; portOffset++)
                         {
-                            const mlir::Value portOffsetValue = circt::hw::ConstantOp::create(opb, 
-                                location, opb.getIntegerAttr(GetIntegerType(clog2NumReadPorts), portOffset));
+                            const mlir::Value portOffsetValue = circt::hw::ConstantOp::create(opb,
+                                                                                              location, opb.getIntegerAttr(GetIntegerType(clog2NumReadPorts), portOffset));
                             const mlir::Value readDataValue =
                                 circt::hw::ArrayGetOp::create(opb, location, lramDataModuleReadData, portOffsetValue);
                             memoryDataReadDataArray[portOffset] = readDataValue;
@@ -2714,8 +2714,8 @@ class VerilogCompiler
                                 circt::hw::ConstantOp::create(opb, location, opb.getIntegerAttr(opb.getI1Type(), port));
                             if (port < readPorts)
                             {
-                                const mlir::Value readDataValue = circt::hw::ArrayGetOp::create(opb, 
-                                    location, memoryDataModuleDualPortDataOut, portValue);
+                                const mlir::Value readDataValue = circt::hw::ArrayGetOp::create(opb,
+                                                                                                location, memoryDataModuleDualPortDataOut, portValue);
                                 memoryDataReadDataArray[port] = readDataValue;
                             }
                         }
@@ -2739,26 +2739,26 @@ class VerilogCompiler
                             // Port on the logical memory
                             const size_t whichOuterPort = basePort + portOffset;
 
-                            const mlir::Value whichInnerPortValue = circt::hw::ConstantOp::create(opb, 
-                                location, opb.getIntegerAttr(opb.getI1Type(), whichInnerPort));
-                            const mlir::Value whichOuterPortValue = circt::hw::ConstantOp::create(opb, 
-                                location, opb.getIntegerAttr(opb.getI1Type(), whichOuterPort));
+                            const mlir::Value whichInnerPortValue = circt::hw::ConstantOp::create(opb,
+                                                                                                  location, opb.getIntegerAttr(opb.getI1Type(), whichInnerPort));
+                            const mlir::Value whichOuterPortValue = circt::hw::ConstantOp::create(opb,
+                                                                                                  location, opb.getIntegerAttr(opb.getI1Type(), whichOuterPort));
                             // for replicated memories (replica 0), use final_read_addr to enable inspection to sneak in
                             // on idle cycles
                             if (regDesc.Memory()._replicate && !(isInspectable && (moduleIndex == 0)))
                             {
-                                const mlir::Value selectedReadData = circt::hw::ArrayGetOp::create(opb, 
-                                    location, memoryDataModuleDualPortDataOut, whichInnerPortValue);
+                                const mlir::Value selectedReadData = circt::hw::ArrayGetOp::create(opb,
+                                                                                                   location, memoryDataModuleDualPortDataOut, whichInnerPortValue);
                                 memoryDataReadDataArray[whichOuterPort] = selectedReadData;
                             }
                             else
                             {
                                 assert(portsForThisModule == 1);
 
-                                memoryDataReadDataArray[0] = circt::hw::ArrayGetOp::create(opb, 
-                                    location, memoryDataModuleDualPortDataOut,
-                                    circt::hw::ConstantOp::create(opb, location,
-                                                                      opb.getIntegerAttr(opb.getI1Type(), 1)));
+                                memoryDataReadDataArray[0] = circt::hw::ArrayGetOp::create(opb,
+                                                                                           location, memoryDataModuleDualPortDataOut,
+                                                                                           circt::hw::ConstantOp::create(opb, location,
+                                                                                                                         opb.getIntegerAttr(opb.getI1Type(), 1)));
                             }
                         }
                     }
@@ -2809,13 +2809,13 @@ class VerilogCompiler
                     // Add an instance
                     opb.setInsertionPointToEnd(parentContainer.getBodyBlock());
 
-                    circt::kanagawa::ContainerInstanceOp::create(opb, 
-                        location, circt::hw::InnerSymAttr::get(StringToStringAttr(containerInstancePath.back())),
-                        circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
+                    circt::kanagawa::ContainerInstanceOp::create(opb,
+                                                                 location, circt::hw::InnerSymAttr::get(StringToStringAttr(containerInstancePath.back())),
+                                                                 circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
 
                     // Write clock and reset ports
                     const auto writeInputPort =
-                        [&](const std::string& name, const mlir::Type type, const std::string& verbatimValue)
+                        [&](const std::string &name, const mlir::Type type, const std::string &verbatimValue)
                     {
                         circt::OpBuilder::InsertionGuard g(opb);
 
@@ -2824,8 +2824,8 @@ class VerilogCompiler
                         // Add a port write to the core module container
                         const llvm::SmallVector<mlir::Value> substitutions; // Empty, there are no substitutions
 
-                        const mlir::Value value = circt::sv::VerbatimExprOp::create(opb, 
-                            location, type, StringToStringAttr(verbatimValue), substitutions, nullptr);
+                        const mlir::Value value = circt::sv::VerbatimExprOp::create(opb,
+                                                                                    location, type, StringToStringAttr(verbatimValue), substitutions, nullptr);
 
                         _coreModule->WritePort(
                             opb, ObjectPath(), regDesc.Memory()._containerInstancePath,
@@ -2843,7 +2843,7 @@ class VerilogCompiler
                     }
 
                     // Read memory init status port
-                    const auto readOutputPort = [&](const std::string& name, const mlir::Type type)
+                    const auto readOutputPort = [&](const std::string &name, const mlir::Type type)
                     {
                         circt::OpBuilder::InsertionGuard g(opb);
 
@@ -2860,7 +2860,7 @@ class VerilogCompiler
                     {
                         // Declare a top-level struct to hold inspection data
                         _coreModule->FlushVerbatimStrings();
-                        circt::OpBuilder& structOpb = _coreModule->OpBuilder();
+                        circt::OpBuilder &structOpb = _coreModule->OpBuilder();
 
                         // Create struct type: struct packed { logic [A:0] inspection_addr; logic [D:0] inspection_data; logic inspection_success; }
                         llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
@@ -2875,7 +2875,7 @@ class VerilogCompiler
 
                         const std::string structName = "memory_data_" + std::to_string(i);
                         circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
-                            structType, StringToStringAttr(structName));
+                                                   structType, StringToStringAttr(structName));
 
                         writeInputPort("inspection_addr_in", GetIntegerType(addrWidth),
                                        structName + ".inspection_addr");
@@ -2886,7 +2886,7 @@ class VerilogCompiler
                         // full struct would create multiple drivers on that field.
                         _coreModule->AddVerbatimOp(
                             GetUnknownLocation(),
-                            [&](VerbatimWriter& writer)
+                            [&](VerbatimWriter &writer)
                             {
                                 writer << "assign " << structName << ".inspection_success = "
                                        << readOutputPort("inspection_success_out", GetI1Type()) << ";";
@@ -2918,7 +2918,7 @@ class VerilogCompiler
         return allMemoryInitialized;
     }
 
-    void InstantiateResetControlCIRCT(ModuleDeclarationHelper& mod, const size_t resetReplicas,
+    void InstantiateResetControlCIRCT(ModuleDeclarationHelper &mod, const size_t resetReplicas,
                                       mlir::Value hasMemInitCompleted)
     {
         circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(_coreModule->Container().getBodyBlock());
@@ -2927,11 +2927,11 @@ class VerilogCompiler
 
         // route reset signal throughout the chip
         circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-            GetIntegerType(resetReplicas), StringToStringAttr("reg_rst_delayed"));
+                                   GetIntegerType(resetReplicas), StringToStringAttr("reg_rst_delayed"));
 
         // Give wrapper code access to the delayed reset signals
         mlir::Value combinedResetNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-            GetI1Type(), StringToStringAttr("combined_reset"));
+                                                                  GetI1Type(), StringToStringAttr("combined_reset"));
         // assign combined_reset = rst;
         // VerbatimExprOp is used here because `rst` is an HW module input port
         // whose SSA value is not yet threaded through the Kanagawa container port
@@ -2939,26 +2939,26 @@ class VerilogCompiler
         {
             const llvm::SmallVector<mlir::Value> subs;
             mlir::Value rstExpr = circt::sv::VerbatimExprOp::create(opb, GetUnknownLocation(),
-                GetI1Type(), StringToStringAttr("rst"), subs, nullptr);
+                                                                    GetI1Type(), StringToStringAttr("rst"), subs, nullptr);
             circt::sv::AssignOp::create(opb, GetUnknownLocation(), combinedResetNet, rstExpr);
         }
 
         // 1 on the cycle when the reset sequence is done
         circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-            GetI1Type(), StringToStringAttr("reset_sequence_finished_this_cycle"));
+                                   GetI1Type(), StringToStringAttr("reset_sequence_finished_this_cycle"));
 
         mlir::Value hasStartupCompletedRawNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-            GetI1Type(), StringToStringAttr("has_startup_completed_raw"));
+                                                                           GetI1Type(), StringToStringAttr("has_startup_completed_raw"));
 
         const mlir::Value hasStartupCompletedRaw = circt::sv::ReadInOutOp::create(opb,
-            GetUnknownLocation(), GetI1Type(), hasStartupCompletedRawNet);
+                                                                                  GetUnknownLocation(), GetI1Type(), hasStartupCompletedRawNet);
         const mlir::Value hasOthersCompleted =
             circt::comb::AndOp::create(opb, GetUnknownLocation(), hasStartupCompletedRaw, hasMemInitCompleted, TwoState);
 
         {
             // Source of has_others_complete_in of KanagawaResetControl
             mlir::Value hasOthersNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                GetI1Type(), StringToStringAttr("has_others_completed"));
+                                                                  GetI1Type(), StringToStringAttr("has_others_completed"));
             circt::sv::AssignOp::create(opb, GetUnknownLocation(), hasOthersNet, hasOthersCompleted);
         }
 
@@ -2972,22 +2972,22 @@ class VerilogCompiler
         {
             _coreModule->FlushVerbatimStrings();
             circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                GetI1Type(), StringToStringAttr("rst_and_startup_done_raw"));
+                                       GetI1Type(), StringToStringAttr("rst_and_startup_done_raw"));
 
             std::ostringstream str;
 
-            std::list<const Function*> externFunctionList;
-            for (const Function* const function : _program._externFunctions)
+            std::list<const Function *> externFunctionList;
+            for (const Function *const function : _program._externFunctions)
             {
                 externFunctionList.push_back(function);
             }
 
-            for (const Function* const function : _program._unreferencedExternFunctions)
+            for (const Function *const function : _program._unreferencedExternFunctions)
             {
                 externFunctionList.push_back(function);
             }
 
-            for (const ExternalClassInstance& externClassInstance : _program._externClassInstances)
+            for (const ExternalClassInstance &externClassInstance : _program._externClassInstances)
             {
                 if (externClassInstance._isExportClass)
                 {
@@ -3044,11 +3044,11 @@ class VerilogCompiler
     // Generate a file with the initial contents of a memory
     std::string WriteMemoryContentFile(const size_t registerIndex)
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
         const MemoryInitFileType fileType = GetCodeGenDeviceConfig()._memoryInitFileType;
 
-        const char* const extension = (fileType == MemoryInitFileType::Mif)   ? "mif"
+        const char *const extension = (fileType == MemoryInitFileType::Mif)   ? "mif"
                                       : (fileType == MemoryInitFileType::Mem) ? "mem"
                                                                               : "sv";
 
@@ -3112,7 +3112,7 @@ class VerilogCompiler
     }
 
     // Returns the name of the internal fifo that holds call indices for return routing
-    std::string GetExternReturnRouterRootName(const Function* const function)
+    std::string GetExternReturnRouterRootName(const Function *const function)
     {
         std::ostringstream str;
 
@@ -3121,7 +3121,7 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::pair<std::string, std::string> GetExternalClassInstanceName(const ExternalClassInstance& externClassInstance)
+    std::pair<std::string, std::string> GetExternalClassInstanceName(const ExternalClassInstance &externClassInstance)
     {
         const std::string moduleName = FixupString(FlattenScopeAndAppendName(
             externClassInstance._isExportClass ? Scope() : externClassInstance._scope, externClassInstance._name));
@@ -3141,7 +3141,7 @@ class VerilogCompiler
     {
         for (size_t i = 0; i < _program._registerTable.size(); ++i)
         {
-            const RegisterDescription& regDesc = _program._registerTable[i];
+            const RegisterDescription &regDesc = _program._registerTable[i];
 
             if ((regDesc._type == RegisterType::Memory) && !regDesc.Memory()._initialValues.empty())
             {
@@ -3184,7 +3184,7 @@ class VerilogCompiler
     {
         std::vector<std::string> resultFifos;
 
-        for (const Function& function : _program._functions)
+        for (const Function &function : _program._functions)
         {
             if (function.CallOnReset())
             {
@@ -3203,16 +3203,16 @@ class VerilogCompiler
         _writer.Str() << "assign has_startup_completed_raw = " << BitwiseReduce(resultFifos, "&", "1'b1") << ";";
     }
 
-    void InstantiateExternalClassInstances(ModuleDeclarationHelper& mod)
+    void InstantiateExternalClassInstances(ModuleDeclarationHelper &mod)
     {
-        std::list<const Function*> externFunctionList;
+        std::list<const Function *> externFunctionList;
 
-        for (const Function* const function : _program._externFunctions)
+        for (const Function *const function : _program._externFunctions)
         {
             externFunctionList.push_back(function);
         }
 
-        for (const Function* const function : _program._unreferencedExternFunctions)
+        for (const Function *const function : _program._unreferencedExternFunctions)
         {
             externFunctionList.push_back(function);
         }
@@ -3220,12 +3220,12 @@ class VerilogCompiler
         // (module name) -> set<method name>
         std::map<std::string, std::set<std::string>> referencedMethodNames;
 
-        const auto methodIsReferenced = [&](const std::string& objectName, const std::string& methodName)
+        const auto methodIsReferenced = [&](const std::string &objectName, const std::string &methodName)
         {
             const auto it1 = referencedMethodNames.find(objectName);
             if (it1 != referencedMethodNames.end())
             {
-                const std::set<std::string>& referencedMethods = it1->second;
+                const std::set<std::string> &referencedMethods = it1->second;
 
                 return referencedMethods.end() != referencedMethods.find(methodName);
             }
@@ -3233,7 +3233,7 @@ class VerilogCompiler
             return false;
         };
 
-        for (const ExternalClassInstance& externClassInstance : _program._externClassInstances)
+        for (const ExternalClassInstance &externClassInstance : _program._externClassInstances)
         {
             // 1) Export class instances use:
             // valid/rdy (push) for parameters
@@ -3249,25 +3249,25 @@ class VerilogCompiler
             {
                 ExternalClassInstancePort() {}
 
-                ExternalClassInstancePort(const size_t w, const Function* const function, const std::string& portName,
-                                          const std::string& externClassPortName, const bool isInput)
+                ExternalClassInstancePort(const size_t w, const Function *const function, const std::string &portName,
+                                          const std::string &externClassPortName, const bool isInput)
                     : _width(w), _shortFunctionName(FixupString(function->_name)),
                       _longFunctionName(function->GetBackendName()), _portName(FixupString(portName)),
                       _externClassPortName(FixupString(externClassPortName)), _isInput(isInput)
                 {
                 }
 
-                ExternalClassInstancePort(const size_t w, const std::string& callbackName,
-                                          const Function* const calledFunction, const std::string& portName,
-                                          const std::string& externClassPortName, const bool isInput)
+                ExternalClassInstancePort(const size_t w, const std::string &callbackName,
+                                          const Function *const calledFunction, const std::string &portName,
+                                          const std::string &externClassPortName, const bool isInput)
                     : _width(w), _shortFunctionName(callbackName), _longFunctionName(calledFunction->GetBackendName()),
                       _portName(FixupString(portName)), _externClassPortName(FixupString(externClassPortName)),
                       _isInput(isInput)
                 {
                 }
 
-                ExternalClassInstancePort(const size_t w, const ExternalClassInstance& externClassInstance,
-                                          const std::string& methodName, const std::string& portName,
+                ExternalClassInstancePort(const size_t w, const ExternalClassInstance &externClassInstance,
+                                          const std::string &methodName, const std::string &portName,
                                           const bool isInput)
                     : _width(w), _shortFunctionName(FixupString(methodName)),
                       _longFunctionName(FixupString(
@@ -3319,7 +3319,7 @@ class VerilogCompiler
 
                 bool UniqueExportClassPortName() const { return _portName != _externClassPortName; }
 
-              private:
+            private:
                 size_t _width;
                 std::string _shortFunctionName;
                 std::string _longFunctionName;
@@ -3332,12 +3332,12 @@ class VerilogCompiler
             std::list<ExternalClassInstancePort> ports;
 
             // Extern module calling Kanagawa code
-            for (const ExternalClassInstanceCallback& callback : externClassInstance._callbacks)
+            for (const ExternalClassInstanceCallback &callback : externClassInstance._callbacks)
             {
                 {
-                    const FunctionNode* const functionNode = callback._calleeNode;
+                    const FunctionNode *const functionNode = callback._calleeNode;
 
-                    const Function* const function = callback.GetCalledFunction();
+                    const Function *const function = callback.GetCalledFunction();
 
                     if (!function->IsNoBackpressure())
                     {
@@ -3430,11 +3430,11 @@ class VerilogCompiler
             // Used to track the set of interface methods which were never called
             std::map<std::string, FunctionDesc> unreferencedInterfaceMethods = externClassInstance._interfaceMethods;
 
-            for (const Function* const function : externFunctionList)
+            for (const Function *const function : externFunctionList)
             {
                 if (function->_externClassInstance == &externClassInstance)
                 {
-                    const FunctionNode* const functionNode = function->_functionNode;
+                    const FunctionNode *const functionNode = function->_functionNode;
 
                     referencedMethodNames[externClassInstance._objectName].insert(function->_name);
 
@@ -3482,10 +3482,10 @@ class VerilogCompiler
             }
 
             // Fixed latency methods
-            for (const auto& p : externClassInstance._fixedLatencyMethods)
+            for (const auto &p : externClassInstance._fixedLatencyMethods)
             {
-                const std::string& name = p.first;
-                const FunctionDesc& methodDesc = p.second;
+                const std::string &name = p.first;
+                const FunctionDesc &methodDesc = p.second;
 
                 // Input valid
                 ports.push_back(ExternalClassInstancePort(1, externClassInstance, name, "valid", true));
@@ -3513,7 +3513,7 @@ class VerilogCompiler
 
             const std::string resetReplica = GetResetReplica();
 
-            for (const ExternalClassInstancePort& port : ports)
+            for (const ExternalClassInstancePort &port : ports)
             {
                 _writer.Str() << "logic " << OptionalWidthDeclaration(port.GetWidth()) << port.GetFullName() << ";";
 
@@ -3531,7 +3531,7 @@ class VerilogCompiler
             if (externClassInstance._isExportClass)
             {
                 const auto inspectableIt = _externClassInstanceInspectableIndices.find(&externClassInstance);
-                const bool hasInspectable =  GetCodeGenConfig()._inspection && inspectableIt != _externClassInstanceInspectableIndices.end();
+                const bool hasInspectable = GetCodeGenConfig()._inspection && inspectableIt != _externClassInstanceInspectableIndices.end();
 
                 const size_t inspectableChainDelay =
                     (GetCodeGenConfig()._inspection && (GetCodeGenConfig()._autoPipelineCrossRegion > 0))
@@ -3565,11 +3565,11 @@ class VerilogCompiler
                     instance.AddPort("clk", circt::hw::ModulePort::Direction::Input, GetI1Type(),
                                      GetClockString(clockIndex));
                     instance.AddPort("inspection_value_in", circt::hw::ModulePort::Direction::Input,
-                                    GetInspectableStructType(),
-                                    "inspectable_" + std::to_string(inspectableIndex) + "_value_in");
+                                     GetInspectableStructType(),
+                                     "inspectable_" + std::to_string(inspectableIndex) + "_value_in");
                     instance.AddPort("inspection_value_out", circt::hw::ModulePort::Direction::Output,
-                                    GetInspectableStructType(),
-                                    "inspectable_" + std::to_string(inspectableIndex) + "_input_chain_out");
+                                     GetInspectableStructType(),
+                                     "inspectable_" + std::to_string(inspectableIndex) + "_input_chain_out");
                     instance.Generate();
                     // KanagawaCrossRegionInspectableChain that sits on the output side of the inspectable chain
                     ModuleInstanceHelper instance0(*this, GetUnknownLocation());
@@ -3622,15 +3622,15 @@ class VerilogCompiler
                     ConnectStallRateVariables();
 
                     // Connect ports for interface methods which are never called
-                    for (const auto& p : unreferencedInterfaceMethods)
+                    for (const auto &p : unreferencedInterfaceMethods)
                     {
-                        const std::string& methodName = p.first;
-                        const FunctionDesc& functionDesc = p.second;
+                        const std::string &methodName = p.first;
+                        const FunctionDesc &functionDesc = p.second;
 
                         _writer.Str() << "." << methodName << "_rdy_out(),";
                         _writer.Str() << "." << methodName << "_valid_in(1'b0),";
 
-                        for (const std::string& parameterName : functionDesc._parameterNames)
+                        for (const std::string &parameterName : functionDesc._parameterNames)
                         {
                             _writer.Str() << "." << methodName << "_" << parameterName << "_in('0),";
                         }
@@ -3650,7 +3650,7 @@ class VerilogCompiler
 
                     for (auto it = ports.begin(); it != ports.end(); ++it)
                     {
-                        const ExternalClassInstancePort& port = *it;
+                        const ExternalClassInstancePort &port = *it;
 
                         auto nextIt = it;
                         ++nextIt;
@@ -3668,7 +3668,7 @@ class VerilogCompiler
 
                 // Convert between the protocol used by the export class
                 // and the protocols used by the extern return router
-                for (const ExternalClassInstancePort& port : ports)
+                for (const ExternalClassInstancePort &port : ports)
                 {
                     if (port.UniqueExportClassPortName())
                     {
@@ -3716,7 +3716,7 @@ class VerilogCompiler
                 {
                     CommaSeparatedOutputHelper csvHelper;
 
-                    for (const auto& arg : externClassInstance._templateArguments)
+                    for (const auto &arg : externClassInstance._templateArguments)
                     {
                         csvHelper.Append("." + arg._name + "(" + arg._literalValue + ")");
                     }
@@ -3738,15 +3738,15 @@ class VerilogCompiler
 
                     _writer.Str() << ".rst(" << GetResetString(clockIndex, resetReplica) << "),";
 
-                    for (const auto& p : unreferencedInterfaceMethods)
+                    for (const auto &p : unreferencedInterfaceMethods)
                     {
-                        const std::string& methodName = p.first;
-                        const FunctionDesc& functionDesc = p.second;
+                        const std::string &methodName = p.first;
+                        const FunctionDesc &functionDesc = p.second;
 
                         _writer.Str() << "." << methodName << "_rden_out(),";
                         _writer.Str() << "." << methodName << "_empty_in(1'b0),";
 
-                        for (const std::string& parameterName : functionDesc._parameterNames)
+                        for (const std::string &parameterName : functionDesc._parameterNames)
                         {
                             _writer.Str() << "." << methodName << "_" << parameterName << "_in('0),";
                         }
@@ -3766,7 +3766,7 @@ class VerilogCompiler
 
                     for (auto it = ports.begin(); it != ports.end(); ++it)
                     {
-                        const ExternalClassInstancePort& port = *it;
+                        const ExternalClassInstancePort &port = *it;
 
                         auto nextIt = it;
                         ++nextIt;
@@ -3785,7 +3785,7 @@ class VerilogCompiler
         }
     }
 
-    void InstantiateFifos(ModuleDeclarationHelper& mod)
+    void InstantiateFifos(ModuleDeclarationHelper &mod)
     {
         // has_others_completed is connected to the reset pin of all FIFOs that accept inputs from the outside
         // to prevent the outside from sending inputs before startup and memory initialization have completed
@@ -3798,7 +3798,7 @@ class VerilogCompiler
 
         std::set<size_t> interfaceFifos;
 
-        const auto getFifos = [&](const Function* const function)
+        const auto getFifos = [&](const Function *const function)
         {
             // Reset functions have no FIFOs
             if ((function->_start->_inputFifoCount == 0) &&
@@ -3838,15 +3838,15 @@ class VerilogCompiler
             }
         };
 
-        for (const EntryPoint& entryPoint : _program._entryPoints)
+        for (const EntryPoint &entryPoint : _program._entryPoints)
         {
-            for (Function* const function : entryPoint._instances)
+            for (Function *const function : entryPoint._instances)
             {
                 getFifos(function);
             }
         }
 
-        for (const Function* const function : _program._externFunctions)
+        for (const Function *const function : _program._externFunctions)
         {
             getFifos(function);
         }
@@ -3885,7 +3885,7 @@ class VerilogCompiler
 
         for (size_t i = 0; i < _program._registerTable.size(); ++i)
         {
-            const RegisterDescription& regDesc = _program._registerTable[i];
+            const RegisterDescription &regDesc = _program._registerTable[i];
 
             if (regDesc._type == RegisterType::Fifo)
             {
@@ -4010,11 +4010,11 @@ class VerilogCompiler
                     if (FifoSupportsEncoding(regDesc))
                     {
                         // Emit encoding and decoding logic
-                        const FifoCode& fifoCode = regDesc.Fifo()._code;
+                        const FifoCode &fifoCode = regDesc.Fifo()._code;
 
                         assert(fifoCode._encodedWidth == physicalFifoWidth);
 
-                        for (const FifoCodeInputRange& inputRange : fifoCode._inputRanges)
+                        for (const FifoCodeInputRange &inputRange : fifoCode._inputRanges)
                         {
                             _writer.Str()
                                 << "assign fifo_data_" << iNorm << ".encoded_data_in"
@@ -4022,7 +4022,7 @@ class VerilogCompiler
                                 << ".data_in" << Slice(inputRange._decodedOffset, inputRange._width) << ";";
                         }
 
-                        for (const FifoCodeOutputRange& outputRange : fifoCode._outputRanges)
+                        for (const FifoCodeOutputRange &outputRange : fifoCode._outputRanges)
                         {
                             std::ostringstream str;
 
@@ -4156,9 +4156,9 @@ class VerilogCompiler
                         // Translate transaction offset to encoded bit
                         if (isTransactional && FifoSupportsEncoding(regDesc))
                         {
-                            const FifoCode& fifoCode = regDesc.Fifo()._code;
+                            const FifoCode &fifoCode = regDesc.Fifo()._code;
 
-                            for (const FifoCodeOutputRange& outputRange : fifoCode._outputRanges)
+                            for (const FifoCodeOutputRange &outputRange : fifoCode._outputRanges)
                             {
                                 // Start and end of this encoding
                                 const size_t rangeStart = outputRange._decodedOffset;
@@ -4325,9 +4325,9 @@ class VerilogCompiler
                                                    resetReplica);
                         }
 
-                        const auto addPortAndNetToJson = [&](const std::string& name,
+                        const auto addPortAndNetToJson = [&](const std::string &name,
                                                              const circt::hw::ModulePort::Direction direction,
-                                                             const mlir::Type& type, const std::string& value)
+                                                             const mlir::Type &type, const std::string &value)
                         {
                             moduleInstance.AddPort(name, direction, type, value);
                             AddNetToJson(value, GetMlirTypeWidth(moduleInstance.ConcreteType(type)), jsonTopLevelNets);
@@ -4431,7 +4431,7 @@ class VerilogCompiler
                     // Write information describing ranges of bits in the fifo
                     JsonValue jsonRanges = JsonValue::CreateArray();
 
-                    for (const RegisterDescription::FifoDesc::NamedRange& range : regDesc.Fifo()._namedRanges)
+                    for (const RegisterDescription::FifoDesc::NamedRange &range : regDesc.Fifo()._namedRanges)
                     {
                         JsonValue jsonRange = JsonValue::CreateObject();
 
@@ -4584,7 +4584,7 @@ class VerilogCompiler
                     }
                 }
 
-                for (const auto& signalName : topLevelSignalNames)
+                for (const auto &signalName : topLevelSignalNames)
                 {
                     EmitFifoTopLevelConstants(i, signalName.first, signalName.second);
                 }
@@ -4595,7 +4595,7 @@ class VerilogCompiler
 
         const size_t autoPipelineCrossRegionStages = GetCodeGenConfig()._autoPipelineCrossRegion;
 
-        for (const Function* const function : _program._externFunctions)
+        for (const Function *const function : _program._externFunctions)
         {
             if (!function->IsAsync())
             {
@@ -4603,7 +4603,7 @@ class VerilogCompiler
                 const size_t inputFifoIndex = function->_start->_inputFifoIndices[0];
                 const size_t inputFifoIndexNorm = _fifoNamer.GetNormFifoIndex(inputFifoIndex);
 
-                const RegisterDescription& inputRegDesc = _program._registerTable[inputFifoIndex];
+                const RegisterDescription &inputRegDesc = _program._registerTable[inputFifoIndex];
                 assert(RegisterType::Fifo == inputRegDesc._type);
 
                 // Internal fifo that holds call index to route return values
@@ -4617,7 +4617,7 @@ class VerilogCompiler
                 const size_t numOutputPorts = function->_syncExtern._returnDesc.size();
                 // Get the data width of the output ports, which should match the width of the input data
                 const size_t dataInputFifoIndex = function->_syncExtern._returnDesc[0]._fifoIndex;
-                const RegisterDescription& dataInputRegDesc = _program._registerTable[dataInputFifoIndex];
+                const RegisterDescription &dataInputRegDesc = _program._registerTable[dataInputFifoIndex];
                 const size_t dataOutputFifoWidth = GetClampedRegisterWidth(dataInputRegDesc._width);
                 // Get the name of the return value fifo
                 const bool inExternalClassInstance = (function->_externClassInstance != nullptr);
@@ -4633,7 +4633,7 @@ class VerilogCompiler
 
                 const std::string resetReplica = GetResetReplica();
 
-                const FunctionNode* const functionNode = function->_functionNode;
+                const FunctionNode *const functionNode = function->_functionNode;
                 const size_t dataReturnWidth = functionNode->GetReturnType()->GetBitWidth();
 
                 // Declare Verilog interfaces to the external return router
@@ -4671,7 +4671,7 @@ class VerilogCompiler
                     size_t writeDelay = 0;
                     size_t minWriteDelay = 0;
 
-                    const CodeGenConfig& codeGenConfig = GetCodeGenConfig();
+                    const CodeGenConfig &codeGenConfig = GetCodeGenConfig();
 
                     ComputeFifoSize(
                         GetCodeGenDeviceConfig()._minFifoDepth, GetCodeGenDeviceConfig()._minDualClockFifoDepth,
@@ -4871,7 +4871,7 @@ class VerilogCompiler
 
     void InstantiateFifoMergers()
     {
-        for (const FIFOMerger& fifoMerger : _program._fifoMergers)
+        for (const FIFOMerger &fifoMerger : _program._fifoMergers)
         {
             assert(fifoMerger._sources.size() > 1);
 
@@ -4879,7 +4879,7 @@ class VerilogCompiler
 
             const size_t dstFifoIdNorm = _fifoNamer.GetNormFifoIndex(dstFifoId);
 
-            const RegisterDescription& outputDesc = _program._registerTable[dstFifoId];
+            const RegisterDescription &outputDesc = _program._registerTable[dstFifoId];
             assert(outputDesc._type == RegisterType::Fifo);
 
             const size_t fanIn = fifoMerger._sources.size();
@@ -5123,7 +5123,7 @@ class VerilogCompiler
         // Create the loop generator index map
         std::set<size_t> loopGeneratorIndexSet;
         std::map<size_t, size_t> loopGeneratorMap;
-        for (const LoopGenerator& loopGenerator : _program._loopGenerators)
+        for (const LoopGenerator &loopGenerator : _program._loopGenerators)
         {
             assert(1 == loopGenerator._function->_start->_inputFifoCount);
             const size_t fifoIndex = loopGenerator._function->_start->_inputFifoIndices[0];
@@ -5131,7 +5131,7 @@ class VerilogCompiler
         }
         loopGeneratorMap = SetToIndexedMap(loopGeneratorIndexSet);
 
-        for (const LoopGenerator& loopGenerator : _program._loopGenerators)
+        for (const LoopGenerator &loopGenerator : _program._loopGenerators)
         {
             assert(1 == loopGenerator._function->_start->_inputFifoCount);
             const size_t fifoIndex = loopGenerator._function->_start->_inputFifoIndices[0];
@@ -5241,7 +5241,7 @@ class VerilogCompiler
 
     void InstantiateContextSavers()
     {
-        for (const ContextSaver& contextSaver : _program._contextSavers)
+        for (const ContextSaver &contextSaver : _program._contextSavers)
         {
             const RegisterDescription outputRegDesc = _program._registerTable[contextSaver._destinationFifo];
             const RegisterDescription calleeRegDesc = _program._registerTable[contextSaver._fromCalleeFifoIndex];
@@ -5348,7 +5348,7 @@ class VerilogCompiler
                                          ? false
                                          : (contextSaver._callee->GetModifiers() & ParseTreeFunctionModifierPipelined);
 
-            const char* const pipelineString = isPipelined ? "1" : "0";
+            const char *const pipelineString = isPipelined ? "1" : "0";
 
             // If the callee is unreachable, then there will be no assignment
             // to the from-callee-fifo wren.  Tie it to 0.
@@ -5441,7 +5441,7 @@ class VerilogCompiler
                 instance.AddPort("callee_rden_out", circt::hw::ModulePort::Direction::Output, GetI1Type(),
                                  "fifo_data_" + std::to_string(calleeFifoMappedIndex) + ".rden");
 
-                const RegisterDescription& dstFifoDesc = _program._registerTable[contextSaver._destinationFifo];
+                const RegisterDescription &dstFifoDesc = _program._registerTable[contextSaver._destinationFifo];
                 assert(RegisterType::Fifo == dstFifoDesc._type);
 
                 if (FifoType::Default == dstFifoDesc.Fifo()._type)
@@ -5504,7 +5504,7 @@ class VerilogCompiler
                 instance.AddPort("callee_rden_out", circt::hw::ModulePort::Direction::Output, GetI1Type(),
                                  "fifo_data_" + std::to_string(calleeFifoMappedIndex) + ".rden");
 
-                const RegisterDescription& dstFifoDesc = _program._registerTable[contextSaver._destinationFifo];
+                const RegisterDescription &dstFifoDesc = _program._registerTable[contextSaver._destinationFifo];
                 assert(RegisterType::Fifo == dstFifoDesc._type);
 
                 instance.AddPort("output_almost_full_in", circt::hw::ModulePort::Direction::Input, GetI1Type(),
@@ -5524,7 +5524,7 @@ class VerilogCompiler
 
     std::string GetGlobalOutName(const size_t registerIndex, const size_t writeIndex) const
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
         assert(RegisterType::Global == regDesc._type);
         assert(writeIndex < regDesc.Global()._writeCount);
@@ -5547,7 +5547,7 @@ class VerilogCompiler
 
     std::string GetGlobalInName(const size_t registerIndex) const
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
         assert(RegisterType::Global == regDesc._type);
 
@@ -5560,7 +5560,7 @@ class VerilogCompiler
 
     std::string GetGlobalInNextName(const size_t registerIndex) const
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
         assert(RegisterType::Global == regDesc._type);
 
@@ -5574,7 +5574,7 @@ class VerilogCompiler
     // Returns the name of the variable that holds a global view value
     std::string GetGlobalViewName(const size_t registerIndex) const
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
         assert(RegisterType::GlobalView == regDesc._type);
 
@@ -5591,17 +5591,17 @@ class VerilogCompiler
         return GetGlobalViewName(registerIndex) + "_in";
     }
 
-    void InstantiateBasicBlocks(ModuleDeclarationHelper& mod, const std::set<size_t>& globalsRequiringNext,
-                                const mlir::Value hasMemInitCompleted, const std::map<size_t, size_t>& loopGeneratorMap)
+    void InstantiateBasicBlocks(ModuleDeclarationHelper &mod, const std::set<size_t> &globalsRequiringNext,
+                                const mlir::Value hasMemInitCompleted, const std::map<size_t, size_t> &loopGeneratorMap)
     {
-        for (const Function& function : _program._functions)
+        for (const Function &function : _program._functions)
         {
             if (function.IsExtern())
             {
             }
             else
             {
-                for (const BasicBlock& basicBlock : function._basicBlocks)
+                for (const BasicBlock &basicBlock : function._basicBlocks)
                 {
                     const std::set<size_t> readGlobals =
                         GetGlobalsReadWithoutNext(_program, basicBlock, globalsRequiringNext);
@@ -5635,7 +5635,7 @@ class VerilogCompiler
                     if (basicBlock.IsResetBlock())
                     {
                         instance.AddPort("allow_initial_call_in", circt::hw::ModulePort::Direction::Input,
-                                            hasMemInitCompleted);
+                                         hasMemInitCompleted);
                     }
 
                     for (const size_t semaphoreIndex : acquiredSemaphores)
@@ -5662,7 +5662,7 @@ class VerilogCompiler
 
                         for (const size_t i : readGlobals)
                         {
-                            const RegisterDescription& regDesc = _program._registerTable[i];
+                            const RegisterDescription &regDesc = _program._registerTable[i];
 
                             const mlir::Location location = RegDescToLocation(regDesc);
 
@@ -5685,9 +5685,9 @@ class VerilogCompiler
                         {
                             // When reading from a global, the typical case is to read .value
                             // When the result is passed to a hardened pipelined register, the value_next is read
-                            const RegisterDescription& regDesc = _program._registerTable[i];
+                            const RegisterDescription &regDesc = _program._registerTable[i];
 
-                            const RegisterDescription::GlobalDesc& globalDesc = regDesc.Global();
+                            const RegisterDescription::GlobalDesc &globalDesc = regDesc.Global();
 
                             const mlir::Location location = RegDescToLocation(regDesc);
 
@@ -5705,14 +5705,14 @@ class VerilogCompiler
                                              key.GetFieldSymbol("value_next_out"));
                         }
 
-                        for (const std::pair<size_t, size_t>& p : writtenGlobals)
+                        for (const std::pair<size_t, size_t> &p : writtenGlobals)
                         {
                             const size_t regIndex = p.first;
                             const size_t writeIndex = p.second;
 
-                            const RegisterDescription& regDesc = _program._registerTable[regIndex];
+                            const RegisterDescription &regDesc = _program._registerTable[regIndex];
 
-                            const RegisterDescription::GlobalDesc& globalDesc = regDesc.Global();
+                            const RegisterDescription::GlobalDesc &globalDesc = regDesc.Global();
 
                             const GlobalRegKey key = GetGlobalRegKey(regIndex, globalsRequiringNext);
 
@@ -5732,14 +5732,14 @@ class VerilogCompiler
                             }
                         }
 
-                        for (const MemoryAccessRecord& record : readMemories)
+                        for (const MemoryAccessRecord &record : readMemories)
                         {
                             const size_t registerIndex = record._memoryIndex;
                             const size_t port = record._portIndex;
 
-                            const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+                            const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
-                            const RegisterDescription::MemoryDesc& memDesc = regDesc.Memory();
+                            const RegisterDescription::MemoryDesc &memDesc = regDesc.Memory();
 
                             const size_t dataWidth = regDesc.Memory()._elementWidth;
 
@@ -5782,14 +5782,14 @@ class VerilogCompiler
                             }
                         }
 
-                        for (const MemoryAccessRecord& record : writtenMemories)
+                        for (const MemoryAccessRecord &record : writtenMemories)
                         {
                             const size_t registerIndex = record._memoryIndex;
                             const size_t port = record._portIndex;
 
-                            const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+                            const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
-                            const RegisterDescription::MemoryDesc& memDesc = regDesc.Memory();
+                            const RegisterDescription::MemoryDesc &memDesc = regDesc.Memory();
 
                             const size_t dataWidth = regDesc.Memory()._elementWidth;
 
@@ -5827,7 +5827,7 @@ class VerilogCompiler
 
                     for (size_t externalModuleIndex : externalModuleCalls)
                     {
-                        const ExternalModuleCall& externModuleCall = _program._externalModuleCalls[externalModuleIndex];
+                        const ExternalModuleCall &externModuleCall = _program._externalModuleCalls[externalModuleIndex];
 
                         struct Port
                         {
@@ -5840,11 +5840,11 @@ class VerilogCompiler
 
                         ports.push_back(Port{"valid", circt::hw::ModulePort::Direction::Output, GetI1Type()});
 
-                        const FunctionDesc& functionDesc = externModuleCall._functionDesc;
+                        const FunctionDesc &functionDesc = externModuleCall._functionDesc;
 
                         for (size_t i = 0; i < functionDesc._parameterTypes.size(); i++)
                         {
-                            const std::string& name = functionDesc._parameterNames[i];
+                            const std::string &name = functionDesc._parameterNames[i];
 
                             const size_t width = functionDesc._parameterTypes[i]->GetBitWidth();
 
@@ -5858,7 +5858,7 @@ class VerilogCompiler
                                                  GetIntegerType(functionDesc._returnType->GetBitWidth())});
                         }
 
-                        for (const Port& port : ports)
+                        for (const Port &port : ports)
                         {
                             std::ostringstream nameWithPrefix;
 
@@ -5889,7 +5889,7 @@ class VerilogCompiler
 
                     for (const size_t i : writtenFifos)
                     {
-                        const RegisterDescription& regDesc = _program._registerTable[i];
+                        const RegisterDescription &regDesc = _program._registerTable[i];
                         assert(RegisterType::Fifo == regDesc._type);
 
                         const size_t portIndex = SafeLookup(writtenFifoMap, i);
@@ -5975,7 +5975,7 @@ class VerilogCompiler
 
                     for (const size_t i : backpressureFifos)
                     {
-                        const RegisterDescription& regDesc = _program._registerTable[i];
+                        const RegisterDescription &regDesc = _program._registerTable[i];
                         assert(RegisterType::Fifo == regDesc._type);
 
                         const size_t portIndex = SafeLookup(writtenFifoMap, i);
@@ -6015,14 +6015,14 @@ class VerilogCompiler
                         const size_t inputFifoIndex = basicBlock._inputFifoIndices[i];
                         const size_t inputFifoIndexNorm = _fifoNamer.GetNormFifoIndex(inputFifoIndex);
 
-                        const RegisterDescription& inputFifoDesc = _program._registerTable[inputFifoIndex];
+                        const RegisterDescription &inputFifoDesc = _program._registerTable[inputFifoIndex];
                         assert(inputFifoDesc._type == RegisterType::Fifo);
 
                         const bool isLast = (i + 1) == basicBlock._inputFifoCount;
 
                         if (inputFifoDesc.Fifo()._type == FifoType::Passthrough)
                         {
-                            const char* inputStructName = "passthrough_data_";
+                            const char *inputStructName = "passthrough_data_";
 
                             if (inputFifoDesc._width > 0)
                             {
@@ -6046,7 +6046,7 @@ class VerilogCompiler
                         }
                         else if (inputFifoDesc.Fifo()._type == FifoType::PassthroughRegistered)
                         {
-                            const char* inputStructName = "passthrough_data_";
+                            const char *inputStructName = "passthrough_data_";
 
                             if (inputFifoDesc._width > 0)
                             {
@@ -6065,7 +6065,7 @@ class VerilogCompiler
                         }
                         else if (inputFifoDesc.Fifo()._type == FifoType::PassthroughUnregistered)
                         {
-                            const char* inputStructName = "passthrough_data_";
+                            const char *inputStructName = "passthrough_data_";
 
                             if (inputFifoDesc._width > 0)
                             {
@@ -6084,7 +6084,7 @@ class VerilogCompiler
                         }
                         else
                         {
-                            const char* inputStructName =
+                            const char *inputStructName =
                                 basicBlock._inputFifoIsLoopGenerator ? "loop_data_" : "fifo_data_";
                             const size_t selectedInputFifoIndex = _fifoNamer.GetNormFifoIndex(inputFifoIndex);
 
@@ -6139,12 +6139,12 @@ class VerilogCompiler
         }
     }
 
-    const size_t GetFunctionSemaphoreWidth(const Function& function)
+    const size_t GetFunctionSemaphoreWidth(const Function &function)
     {
         return Log2RoundUp(function._maxThreadCountInsideFunction) + 1;
     }
 
-    std::string GetSemaphoreName(const Function& function, const size_t index)
+    std::string GetSemaphoreName(const Function &function, const size_t index)
     {
         std::ostringstream str;
 
@@ -6156,11 +6156,11 @@ class VerilogCompiler
 
     void InstantiateFunctionThreadCounts()
     {
-        for (const Function& function : _program._functions)
+        for (const Function &function : _program._functions)
         {
             std::set<size_t> releasedSemaphores;
 
-            for (const BasicBlock& bb : function._basicBlocks)
+            for (const BasicBlock &bb : function._basicBlocks)
             {
                 Union(releasedSemaphores, GetReleasedSemaphores(bb));
             }
@@ -6228,7 +6228,7 @@ class VerilogCompiler
         if (GetCodeGenConfig()._resetFanout)
         {
             // fifo mergers
-            for (const FIFOMerger& fifoMerger : _program._fifoMergers)
+            for (const FIFOMerger &fifoMerger : _program._fifoMergers)
             {
                 assert(fifoMerger._sources.size() > 1);
 
@@ -6249,7 +6249,7 @@ class VerilogCompiler
             result += _program._contextSavers.size();
 
             // Functions
-            for (const Function& function : _program._functions)
+            for (const Function &function : _program._functions)
             {
                 if (!function.IsExtern())
                 {
@@ -6257,16 +6257,16 @@ class VerilogCompiler
                     result += function._semaphores.size();
 
                     // Basic blocks
-                    for (const BasicBlock& basicBlock : function._basicBlocks)
+                    for (const BasicBlock &basicBlock : function._basicBlocks)
                     {
                         result++;
                     }
                 }
             }
 
-            for (const Function* const function : _program._externFunctions)
+            for (const Function *const function : _program._externFunctions)
             {
-                const FunctionNode* const functionNode = function->_functionNode;
+                const FunctionNode *const functionNode = function->_functionNode;
 
                 // Synchronous extern functions require // Internal fifo that holds call index
                 if (!(functionNode->GetModifiers() & ParseTreeFunctionModifierAsync))
@@ -6277,7 +6277,7 @@ class VerilogCompiler
 
             for (size_t i = 0; i < _program._registerTable.size(); ++i)
             {
-                const RegisterDescription& regDesc = _program._registerTable[i];
+                const RegisterDescription &regDesc = _program._registerTable[i];
 
                 if (regDesc._type == RegisterType::Global)
                 {
@@ -6377,9 +6377,9 @@ class VerilogCompiler
         result = std::max<size_t>(result, 1);
 
         // basic blocks
-        for (const Function& function : _program._functions)
+        for (const Function &function : _program._functions)
         {
-            for (const BasicBlock& basicBlock : function._basicBlocks)
+            for (const BasicBlock &basicBlock : function._basicBlocks)
             {
                 size_t numStages = basicBlock._stages.back()._atomicSequence;
                 result = std::max<size_t>(result, numStages);
@@ -6395,13 +6395,13 @@ class VerilogCompiler
     }
 
     // Returns all export functions that have ports in the core object
-    std::vector<const Function*> GetCoreInterfaceExportFunctions()
+    std::vector<const Function *> GetCoreInterfaceExportFunctions()
     {
-        std::vector<const Function*> result;
+        std::vector<const Function *> result;
 
-        for (const EntryPoint& entryPoint : _program._entryPoints)
+        for (const EntryPoint &entryPoint : _program._entryPoints)
         {
-            for (Function* const function : entryPoint._instances)
+            for (Function *const function : entryPoint._instances)
             {
                 if (function->_externClassInstance)
                 {
@@ -6421,7 +6421,7 @@ class VerilogCompiler
         std::string _name;
         size_t _width;
         bool _input;
-        const Type* _type;
+        const Type *_type;
         EsiPortSemantics _portSemantics;
         EsiChannelSemantics _channelSemantics;
         EsiChannelName _channelName;
@@ -6429,8 +6429,8 @@ class VerilogCompiler
 
         ExportPortDesc() {}
 
-        ExportPortDesc(const std::string& prefix, const std::string& name, const size_t width, const bool input,
-                       const Type* type, const EsiPortSemantics portSemantics,
+        ExportPortDesc(const std::string &prefix, const std::string &name, const size_t width, const bool input,
+                       const Type *type, const EsiPortSemantics portSemantics,
                        const EsiChannelSemantics channelSemantics, const EsiChannelName channelName)
             : _width(width), _input(input), _type(type), _portSemantics(portSemantics),
               _channelSemantics(channelSemantics), _channelName(channelName)
@@ -6461,9 +6461,9 @@ class VerilogCompiler
     {
         std::vector<ExportInterface> result;
 
-        const std::vector<const Function*> functions = GetCoreInterfaceExportFunctions();
+        const std::vector<const Function *> functions = GetCoreInterfaceExportFunctions();
 
-        for (const Function* const function : functions)
+        for (const Function *const function : functions)
         {
             // Get unique name (for exported members)
             const std::string combinedFunctionName = GetFunctionCombinedName(function);
@@ -6471,7 +6471,7 @@ class VerilogCompiler
             ExportInterface exportInterface = {};
             exportInterface._name = combinedFunctionName;
 
-            const FunctionNode* const functionNode = function->_functionNode;
+            const FunctionNode *const functionNode = function->_functionNode;
 
             const bool hasBackpressure = !functionNode->NoBackpressure();
 
@@ -6505,7 +6505,7 @@ class VerilogCompiler
 
             if (function->_returnFifoRegisterIndex != c_invalidAccessedRegisterIndex)
             {
-                const RegisterDescription& outputRegDesc = _program._registerTable[function->_returnFifoRegisterIndex];
+                const RegisterDescription &outputRegDesc = _program._registerTable[function->_returnFifoRegisterIndex];
                 assert(RegisterType::Fifo == outputRegDesc._type);
 
                 if (hasBackpressure)
@@ -6538,7 +6538,7 @@ class VerilogCompiler
         return result;
     }
 
-    void DeclareCorePorts(ModuleDeclarationHelper& coreModule, const size_t resetReplicas)
+    void DeclareCorePorts(ModuleDeclarationHelper &coreModule, const size_t resetReplicas)
     {
         for (size_t i = 0; i < MaxClockCount; i++)
         {
@@ -6553,26 +6553,26 @@ class VerilogCompiler
         // For each exported function
         const std::vector<ExportInterface> exportInterfaces = GetExportInterfaces();
 
-        for (const ExportInterface& exportInterface : exportInterfaces)
+        for (const ExportInterface &exportInterface : exportInterfaces)
         {
             PushPopEsiBundle pushPopEsiBundle(coreModule, exportInterface._esiBundleName);
 
-            for (const ExportPortDesc& port : exportInterface._ports)
+            for (const ExportPortDesc &port : exportInterface._ports)
             {
                 coreModule.AddPort(port._name,
-                                    port._input ? circt::hw::ModulePort::Direction::Input
-                                                : circt::hw::ModulePort::Direction::Output,
-                                    ToMlirType(port._type), port._type, port._portSemantics, port._channelSemantics,
-                                    port._channelName, port._fieldName);
+                                   port._input ? circt::hw::ModulePort::Direction::Input
+                                               : circt::hw::ModulePort::Direction::Output,
+                                   ToMlirType(port._type), port._type, port._portSemantics, port._channelSemantics,
+                                   port._channelName, port._fieldName);
             }
         }
 
         // For each external function (referenced and not)
         // It is important to include unreferenced externs in the interface
         // to allow for a consistent interface to RTL
-        std::list<const Function*> externsForInterface;
+        std::list<const Function *> externsForInterface;
 
-        for (const Function* const function : _program._externFunctions)
+        for (const Function *const function : _program._externFunctions)
         {
             // Extern modules are instantiated inside the core
             if (!function->_externClassInstance)
@@ -6581,7 +6581,7 @@ class VerilogCompiler
             }
         }
 
-        for (const Function* const function : _program._unreferencedExternFunctions)
+        for (const Function *const function : _program._unreferencedExternFunctions)
         {
             if (!function->_externClassInstance)
             {
@@ -6589,11 +6589,11 @@ class VerilogCompiler
             }
         }
 
-        for (const Function* const function : externsForInterface)
+        for (const Function *const function : externsForInterface)
         {
             assert(!function->_externClassInstance);
 
-            const FunctionNode* const functionNode = function->_functionNode;
+            const FunctionNode *const functionNode = function->_functionNode;
             const auto prefix = GetFunctionCombinedName(function);
 
             const bool isAsync = functionNode->GetModifiers() & ParseTreeFunctionModifierAsync;
@@ -6626,11 +6626,11 @@ class VerilogCompiler
 
             for (size_t i = 0; i < functionNode->GetParameterCount(); i++)
             {
-                const Type* type = functionNode->GetParameterType(i);
+                const Type *type = functionNode->GetParameterType(i);
                 coreModule.AddPort(prefix + "_" + functionNode->GetParameterName(i) + "_out",
-                                    circt::hw::ModulePort::Direction::Output, ToMlirType(type), type,
-                                    EsiPortSemantics::Payload, EsiChannelSemantics::FromGeneratedHw,
-                                    EsiChannelName::Arguments, functionNode->GetParameterName(i));
+                                   circt::hw::ModulePort::Direction::Output, ToMlirType(type), type,
+                                   EsiPortSemantics::Payload, EsiChannelSemantics::FromGeneratedHw,
+                                   EsiChannelName::Arguments, functionNode->GetParameterName(i));
             }
 
             if (!isNoBackpressure)
@@ -6650,10 +6650,10 @@ class VerilogCompiler
 
                 if (returnWidth > 0)
                 {
-                    const Type* type = functionNode->GetReturnType();
+                    const Type *type = functionNode->GetReturnType();
                     coreModule.AddPort(prefix + "_result_in", circt::hw::ModulePort::Direction::Input,
-                                        ToMlirType(type), type, EsiPortSemantics::Payload,
-                                        EsiChannelSemantics::ToGeneratedHw, EsiChannelName::Results);
+                                       ToMlirType(type), type, EsiPortSemantics::Payload,
+                                       EsiChannelSemantics::ToGeneratedHw, EsiChannelName::Results);
                 }
 
                 if (!isNoBackpressure)
@@ -6666,12 +6666,13 @@ class VerilogCompiler
         }
 
         // Add fixed-latency external functions instantiated outside of kanagawa
-        for (const ExternalModuleCall& externModuleCall : _program._externalModuleCalls)
+        for (const ExternalModuleCall &externModuleCall : _program._externalModuleCalls)
         {
             if (externModuleCall._type == ExternalModuleCallType::ExternallyInstantiated)
             {
-                const auto callback = [&](const std::string& name, const circt::hw::ModulePort::Direction direction,
-                                          const size_t width) { coreModule.AddPort(name, direction, width); };
+                const auto callback = [&](const std::string &name, const circt::hw::ModulePort::Direction direction,
+                                          const size_t width)
+                { coreModule.AddPort(name, direction, width); };
 
                 WriteExternalModuleCallPorts(callback, externModuleCall);
             }
@@ -6680,15 +6681,15 @@ class VerilogCompiler
         if (GetCodeGenConfig()._inspection)
         {
             coreModule.AddPort("inspection_value_in", circt::hw::ModulePort::Direction::Input,
-                            coreModule.GetInspectableTypeAlias());
+                               coreModule.GetInspectableTypeAlias());
             coreModule.AddPort("inspection_value_out", circt::hw::ModulePort::Direction::Output,
-                            coreModule.GetInspectableTypeAlias());
+                               coreModule.GetInspectableTypeAlias());
         }
 
         WriteStallRatePorts(coreModule);
     }
 
-    void ConnectOneExportFunction(ModuleDeclarationHelper& mod, const Function* const function)
+    void ConnectOneExportFunction(ModuleDeclarationHelper &mod, const Function *const function)
     {
         const bool isExternalClassCallbackCallee = (function->_externClassInstance != nullptr);
 
@@ -6702,7 +6703,7 @@ class VerilogCompiler
 
         const std::string outString(isExternalClassCallbackCallee ? "" : "_out");
 
-        const FunctionNode* const functionNode = function->_functionNode;
+        const FunctionNode *const functionNode = function->_functionNode;
 
         // Reset functions have no FIFOs
         if ((function->_start->_inputFifoCount == 0) &&
@@ -6722,7 +6723,7 @@ class VerilogCompiler
 
         if (inputFifoIndex != c_invalidAccessedRegisterIndex)
         {
-            const RegisterDescription& inputRegDesc = _program._registerTable[inputFifoIndex];
+            const RegisterDescription &inputRegDesc = _program._registerTable[inputFifoIndex];
             assert(RegisterType::Fifo == inputRegDesc._type);
 
             const bool isPassthroughFifo = (inputRegDesc.Fifo()._type == FifoType::Passthrough);
@@ -6805,7 +6806,7 @@ class VerilogCompiler
 
         if (returnFifoIndex != c_invalidAccessedRegisterIndex)
         {
-            const RegisterDescription& outputRegDesc = _program._registerTable[returnFifoIndex];
+            const RegisterDescription &outputRegDesc = _program._registerTable[returnFifoIndex];
             assert(RegisterType::Fifo == outputRegDesc._type);
 
             const size_t returnFifoIndexNorm = _fifoNamer.GetNormFifoIndex(returnFifoIndex);
@@ -6899,7 +6900,7 @@ class VerilogCompiler
         bool has_memory_init = false;
         for (size_t i = 0; i < _program._registerTable.size(); ++i)
         {
-            const RegisterDescription& regDesc = _program._registerTable[i];
+            const RegisterDescription &regDesc = _program._registerTable[i];
 
             if ((regDesc._type == RegisterType::Memory) && !regDesc.Memory()._initialValues.empty())
             {
@@ -6914,21 +6915,21 @@ class VerilogCompiler
         return has_memory_init;
     }
 
-    void ConnectExportFifos(ModuleDeclarationHelper& mod)
+    void ConnectExportFifos(ModuleDeclarationHelper &mod)
     {
         // For each exported function
         const bool memoryInitFound = HasMemoryInitialization();
 
-        for (const EntryPoint& entryPoint : _program._entryPoints)
+        for (const EntryPoint &entryPoint : _program._entryPoints)
         {
-            for (Function* const function : entryPoint._instances)
+            for (Function *const function : entryPoint._instances)
             {
                 ConnectOneExportFunction(mod, function);
             }
         }
 
         // For each external function
-        for (const Function* const function : _program._externFunctions)
+        for (const Function *const function : _program._externFunctions)
         {
             const bool inExternalClassInstance = (function->_externClassInstance != nullptr);
 
@@ -6944,7 +6945,7 @@ class VerilogCompiler
 
             const std::string outString(inExternalClassInstance ? "" : "_out");
 
-            const FunctionNode* const functionNode = function->_functionNode;
+            const FunctionNode *const functionNode = function->_functionNode;
 
             const bool isAsync = functionNode->GetModifiers() & ParseTreeFunctionModifierAsync;
 
@@ -7030,9 +7031,9 @@ class VerilogCompiler
                         //  KanagawaExternReturnRouter above in InstantiateFifos().  It is important that they match so
                         //  that the correct _callSiteIndex mapping will be used above.
                         size_t stPortNum = 0;
-                        for (const ExternReturnDesc& externReturnDesc : function->_syncExtern._returnDesc)
+                        for (const ExternReturnDesc &externReturnDesc : function->_syncExtern._returnDesc)
                         {
-                            const RegisterDescription& returnFifoDesc =
+                            const RegisterDescription &returnFifoDesc =
                                 _program._registerTable[externReturnDesc._fifoIndex];
                             assert(RegisterType::Fifo == returnFifoDesc._type);
 
@@ -7063,9 +7064,9 @@ class VerilogCompiler
         }
 
         // Hook up signals for unreferenced external functions
-        for (const Function* const function : _program._unreferencedExternFunctions)
+        for (const Function *const function : _program._unreferencedExternFunctions)
         {
-            const FunctionNode* const functionNode = function->_functionNode;
+            const FunctionNode *const functionNode = function->_functionNode;
 
             const bool inExternalClassInstance = (function->_externClassInstance != nullptr);
 
@@ -7089,8 +7090,8 @@ class VerilogCompiler
         }
     }
 
-    void DeclareCore(const size_t resetReplicas, const std::set<size_t>& globalsRequiringNext,
-                     mlir::ModuleOp* const mlirModule)
+    void DeclareCore(const size_t resetReplicas, const std::set<size_t> &globalsRequiringNext,
+                     mlir::ModuleOp *const mlirModule)
     {
         std::string moduleStr = GetModuleName();
 
@@ -7100,7 +7101,8 @@ class VerilogCompiler
 
         _coreModule = &coreModule;
 
-        ExitScope nullCoreModule([this]() { _coreModule = nullptr; });
+        ExitScope nullCoreModule([this]()
+                                 { _coreModule = nullptr; });
 
         // Emit typedefs for structs referenced by ports on this module
         // The same symbol is used for all export classes
@@ -7214,15 +7216,15 @@ class VerilogCompiler
         _writer.Str() << "KanagawaStringTable string_table(.clk(clk));";
     }
 
-    void GetFunctionDesc(const Function* const function, std::set<const Type*>& types)
+    void GetFunctionDesc(const Function *const function, std::set<const Type *> &types)
     {
-        const FunctionNode* const functionNode = function->_functionNode;
+        const FunctionNode *const functionNode = function->_functionNode;
 
         types.insert(functionNode->GetReturnType());
 
         for (size_t i = 0; i < functionNode->GetParameterCount(); i++)
         {
-            const DeclareNode* const parameterDeclareNode = functionNode->GetParameterDeclareNode(i);
+            const DeclareNode *const parameterDeclareNode = functionNode->GetParameterDeclareNode(i);
 
             types.insert(parameterDeclareNode->GetDeclaredType());
         }
@@ -7237,15 +7239,15 @@ class VerilogCompiler
         return str.str();
     }
 
-    void WritePackage(SourceWriter& writer)
+    void WritePackage(SourceWriter &writer)
     {
-        const CodeGenConfig& codeGenConfig = GetCodeGenConfig();
+        const CodeGenConfig &codeGenConfig = GetCodeGenConfig();
 
         // Constants
         AutoSectionRAII packageBlock(writer, false, "package " + GetPackageName() + ";", "endpackage");
 
         // Write SystemVerilog versions of all exported types - in order
-        for (const Type* const type : _program._exportedTypes)
+        for (const Type *const type : _program._exportedTypes)
         {
             type->ExportVerilog(writer);
         }
@@ -7256,7 +7258,7 @@ class VerilogCompiler
         }
     }
 
-    std::string GetDebugViewModuleName(const Operation& op)
+    std::string GetDebugViewModuleName(const Operation &op)
     {
         assert(Opcode::DebugView == op._opcode);
 
@@ -7269,13 +7271,13 @@ class VerilogCompiler
 
     void DeclareDebugViewModules()
     {
-        for (const Function& function : _program._functions)
+        for (const Function &function : _program._functions)
         {
-            for (const BasicBlock& basicBlock : function._basicBlocks)
+            for (const BasicBlock &basicBlock : function._basicBlocks)
             {
-                for (const Stage& stage : basicBlock._stages)
+                for (const Stage &stage : basicBlock._stages)
                 {
-                    for (const Operation& op : stage._operations)
+                    for (const Operation &op : stage._operations)
                     {
                         if (Opcode::DebugView == op._opcode)
                         {
@@ -7292,7 +7294,7 @@ class VerilogCompiler
 
                                 for (size_t i = 0; i < op._flags._debugView->_arguments.size(); i++)
                                 {
-                                    const DebugViewArgument& debugViewArgument = op._flags._debugView->_arguments[i];
+                                    const DebugViewArgument &debugViewArgument = op._flags._debugView->_arguments[i];
 
                                     // When using circts, ports are declared as fixed-with wires, not with types from
                                     // packages to avoid simulation errors related to casting
@@ -7325,7 +7327,7 @@ class VerilogCompiler
 
                                     for (size_t i = 0; i < op._flags._debugView->_arguments.size(); i++)
                                     {
-                                        const DebugViewArgument& debugViewArgument =
+                                        const DebugViewArgument &debugViewArgument =
                                             op._flags._debugView->_arguments[i];
 
                                         formatStr << " " << debugViewArgument._name << ": %p";
@@ -7375,7 +7377,8 @@ class VerilogCompiler
             _mlirModule = mlirModule->Module();
         }
 
-        ExitScope nullMlirModule([this]() { _mlirModule = nullptr; });
+        ExitScope nullMlirModule([this]()
+                                 { _mlirModule = nullptr; });
 
         // Declare a module for each debug view
         if (!GetCodeGenConfig()._suppressDebugView)
@@ -7394,14 +7397,14 @@ class VerilogCompiler
         JsonValue jsonBasicBlocks = JsonValue::CreateArray();
 
         // Declare a module for each basic block
-        for (const Function& function : _program._functions)
+        for (const Function &function : _program._functions)
         {
             if (function.IsExtern())
             {
             }
             else
             {
-                for (const BasicBlock& basicBlock : function._basicBlocks)
+                for (const BasicBlock &basicBlock : function._basicBlocks)
                 {
                     CompileBasicBlock(basicBlock, globalsRequiringNext, jsonBasicBlocks);
                 }
@@ -7466,26 +7469,26 @@ class VerilogCompiler
         assert(_resetReplicaIndex == rawResetReplicas);
     }
 
-  private:
+private:
     // Returns the path from sourcePath to a particular global register container
-    mlir::Value GetPathToGlobalContainer(ModuleDeclarationHelper& mod, const ObjectPath& sourcePath,
-                                         const size_t registerIndex, const std::set<size_t>& globalsRequiringNext)
+    mlir::Value GetPathToGlobalContainer(ModuleDeclarationHelper &mod, const ObjectPath &sourcePath,
+                                         const size_t registerIndex, const std::set<size_t> &globalsRequiringNext)
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
-        circt::OpBuilder& opb = mod.OpBuilder();
+        circt::OpBuilder &opb = mod.OpBuilder();
 
         return GetPathOp(opb, sourcePath, regDesc.Global()._containerInstancePath,
                          GetGlobalRegKey(registerIndex, globalsRequiringNext).Name(), GetCirctDesignName());
     }
 
     // Returns the path from sourcePath to a particular memory container
-    mlir::Value GetPathToMemoryContainer(ModuleDeclarationHelper& mod, const ObjectPath& sourcePath,
+    mlir::Value GetPathToMemoryContainer(ModuleDeclarationHelper &mod, const ObjectPath &sourcePath,
                                          const size_t registerIndex)
     {
-        const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
-        circt::OpBuilder& opb = mod.OpBuilder();
+        circt::OpBuilder &opb = mod.OpBuilder();
 
         return GetPathOp(opb, sourcePath, regDesc.Memory()._containerInstancePath, regDesc._name, GetCirctDesignName());
     }
@@ -7497,8 +7500,8 @@ class VerilogCompiler
     std::string GetModuleName() { return _program._moduleName; }
 
     void WriteExternalModuleCallPorts(
-        const std::function<void(const std::string&, const circt::hw::ModulePort::Direction, const size_t)>& callback,
-        const ExternalModuleCall& externalModuleCall)
+        const std::function<void(const std::string &, const circt::hw::ModulePort::Direction, const size_t)> &callback,
+        const ExternalModuleCall &externalModuleCall)
     {
         assert(externalModuleCall._type != ExternalModuleCallType::InstantiateInBasicBlock);
 
@@ -7508,14 +7511,14 @@ class VerilogCompiler
 
         callback(prefix + "_valid_out", circt::hw::ModulePort::Direction::Output, 1);
 
-        const FunctionDesc& functionDesc = externalModuleCall._functionDesc;
+        const FunctionDesc &functionDesc = externalModuleCall._functionDesc;
 
         assert(functionDesc._parameterTypes.size() == functionDesc._parameterNames.size());
 
         for (size_t i = 0; i < functionDesc._parameterTypes.size(); i++)
         {
-            const Type* const type = functionDesc._parameterTypes[i];
-            const std::string& name = functionDesc._parameterNames[i];
+            const Type *const type = functionDesc._parameterTypes[i];
+            const std::string &name = functionDesc._parameterNames[i];
 
             callback(prefix + "_" + name + "_out", circt::hw::ModulePort::Direction::Output, type->GetBitWidth());
         }
@@ -7540,13 +7543,13 @@ class VerilogCompiler
         return str.str();
     }
 
-    bool OperationRequiresInputValidReplica(const Operation& op) { return (Opcode::Enqueue == op._opcode); }
+    bool OperationRequiresInputValidReplica(const Operation &op) { return (Opcode::Enqueue == op._opcode); }
 
     // Adds assertions to the code to ensure that the maximum thread count
     // of a function is not exceeded.
     // This is useful to verify that the compiler optimization that removes unnecessary semaphores
     // is does not remove a necessary semaphore
-    void CompileFunctionThreadCountCheck(const Function& function)
+    void CompileFunctionThreadCountCheck(const Function &function)
     {
         // Nothing to do for empty functions
         if (function._basicBlocks.empty())
@@ -7564,7 +7567,7 @@ class VerilogCompiler
         }
     }
 
-    inline std::string StallLfsrEnableForThreadRate(const BasicBlock& basicBlock) const
+    inline std::string StallLfsrEnableForThreadRate(const BasicBlock &basicBlock) const
     {
         std::ostringstream ostr;
 
@@ -7594,8 +7597,8 @@ class VerilogCompiler
         Add_Pipeline,
     };
 
-    void WritePortAndAddToJson(const circt::hw::ModulePort::Direction direction, const std::string& str,
-                               const size_t width, const bool isLast, JsonValue& jsonPorts,
+    void WritePortAndAddToJson(const circt::hw::ModulePort::Direction direction, const std::string &str,
+                               const size_t width, const bool isLast, JsonValue &jsonPorts,
                                const bool isOptionalWidth,
                                const WritePortCirctBehavior circtBehavior = WritePortCirctBehavior::Ignore)
     {
@@ -7617,8 +7620,8 @@ class VerilogCompiler
         }
     }
 
-    void CompileBasicBlock(const BasicBlock& basicBlock, const std::set<size_t>& globalsRequiringNext,
-                           JsonValue& jsonBasicBlocks)
+    void CompileBasicBlock(const BasicBlock &basicBlock, const std::set<size_t> &globalsRequiringNext,
+                           JsonValue &jsonBasicBlocks)
     {
         const std::set<size_t> readGlobals = GetGlobalsReadWithoutNext(_program, basicBlock, globalsRequiringNext);
         const std::set<size_t> readGlobalsWithNext = GetGlobalsReadWithNext(_program, basicBlock, globalsRequiringNext);
@@ -7697,9 +7700,9 @@ class VerilogCompiler
         // Also get the auto pipeline scale for each stage, and a mapping of pipeline stage number to Stage*
         std::set<size_t> stageNumbersWithoutFirst;
         std::set<size_t> stageNumbersIncludingFirst;
-        std::map<size_t, const Stage*> stageNumToStageMap;
+        std::map<size_t, const Stage *> stageNumToStageMap;
 
-        for (const Stage& stage : basicBlock._stages)
+        for (const Stage &stage : basicBlock._stages)
         {
             // There is no flip-flop for stage 0 valid bits
             if (stage._atomicSequence != 0)
@@ -7720,14 +7723,14 @@ class VerilogCompiler
             inputValidReplicaCountMap[stage] = 0;
         }
 
-        for (const Stage& stage : basicBlock._stages)
+        for (const Stage &stage : basicBlock._stages)
         {
             // Input-valid bit is not replicated for stage 0
             if (stage._atomicSequence != 0)
             {
                 size_t replicaCount = 0;
 
-                for (const Operation& op : stage._operations)
+                for (const Operation &op : stage._operations)
                 {
                     if (OperationRequiresInputValidReplica(op))
                     {
@@ -7772,7 +7775,7 @@ class VerilogCompiler
             // Input ports for global variables that are read
             for (const size_t i : readGlobals)
             {
-                const RegisterDescription& globalRegDesc = _program._registerTable[i];
+                const RegisterDescription &globalRegDesc = _program._registerTable[i];
                 WritePortAndAddToJson(circt::hw::ModulePort::Direction::Input, GetGlobalInName(i), globalRegDesc._width,
                                       false, jsonPorts, false, WritePortCirctBehavior::Add_NoPipeline);
             }
@@ -7786,7 +7789,7 @@ class VerilogCompiler
             // Input ports for global variables that are read
             for (const size_t i : readGlobalsWithNextIncGlobalViewInputs)
             {
-                const RegisterDescription& globalRegDesc = _program._registerTable[i];
+                const RegisterDescription &globalRegDesc = _program._registerTable[i];
 
                 WritePortAndAddToJson(circt::hw::ModulePort::Direction::Input, GetGlobalInName(i), globalRegDesc._width,
                                       false, jsonPorts, false, WritePortCirctBehavior::Add_NoPipeline);
@@ -7796,13 +7799,13 @@ class VerilogCompiler
             }
 
             // Output ports for global variables that are written
-            for (const std::pair<size_t, size_t>& p : writtenGlobals)
+            for (const std::pair<size_t, size_t> &p : writtenGlobals)
             {
                 const size_t registerIndex = p.first;
                 const size_t writeIndex = p.second;
 
-                const RegisterDescription& globalRegDesc = _program._registerTable[registerIndex];
-                const RegisterDescription::GlobalDesc& globalDesc = globalRegDesc.Global();
+                const RegisterDescription &globalRegDesc = _program._registerTable[registerIndex];
+                const RegisterDescription::GlobalDesc &globalDesc = globalRegDesc.Global();
 
                 WritePortAndAddToJson(circt::hw::ModulePort::Direction::Output,
                                       GetGlobalValidOutName(registerIndex, writeIndex), 1, false, jsonPorts, true,
@@ -7817,13 +7820,13 @@ class VerilogCompiler
             }
 
             // Ports for memories that are accessed
-            for (const MemoryAccessRecord& record : writtenMemories)
+            for (const MemoryAccessRecord &record : writtenMemories)
             {
                 // Combine register index and port index
                 std::ostringstream str;
                 str << record._memoryIndex << "_" << record._portIndex;
 
-                const RegisterDescription& memoryDesc = _program._registerTable[record._memoryIndex];
+                const RegisterDescription &memoryDesc = _program._registerTable[record._memoryIndex];
 
                 const size_t addrWidth = memoryDesc.GetMemoryAddressWidth();
                 const std::string s = "memory_write_data_out_" + str.str();
@@ -7837,12 +7840,12 @@ class VerilogCompiler
                                       WritePortCirctBehavior::Add_NoPipeline);
             }
 
-            for (const MemoryAccessRecord& MemoryAccessRecord : readMemories)
+            for (const MemoryAccessRecord &MemoryAccessRecord : readMemories)
             {
                 const size_t registerIndex = MemoryAccessRecord._memoryIndex;
                 const size_t port = MemoryAccessRecord._portIndex;
 
-                const RegisterDescription& memoryDesc = _program._registerTable[registerIndex];
+                const RegisterDescription &memoryDesc = _program._registerTable[registerIndex];
 
                 const size_t addrWidth = memoryDesc.GetMemoryAddressWidth();
 
@@ -7877,10 +7880,10 @@ class VerilogCompiler
 
             for (const size_t callIndex : externalModuleCalls)
             {
-                const ExternalModuleCall& externalModuleCall = _program._externalModuleCalls[callIndex];
+                const ExternalModuleCall &externalModuleCall = _program._externalModuleCalls[callIndex];
 
                 const auto callback =
-                    [&](const std::string& name, const circt::hw::ModulePort::Direction direction, const size_t width)
+                    [&](const std::string &name, const circt::hw::ModulePort::Direction direction, const size_t width)
                 {
                     WritePortAndAddToJson(direction, name, width, false, jsonPorts, true,
                                           WritePortCirctBehavior::Add_NoPipeline);
@@ -7892,7 +7895,7 @@ class VerilogCompiler
             // ports for FIFOs that are written
             for (const size_t i : writtenFifos)
             {
-                const RegisterDescription& fifoDesc = _program._registerTable[i];
+                const RegisterDescription &fifoDesc = _program._registerTable[i];
                 assert(RegisterType::Fifo == fifoDesc._type);
 
                 const size_t portIndex = SafeLookup(_compileContext._writtenFifoMap, i);
@@ -7964,7 +7967,7 @@ class VerilogCompiler
                     assert(false);
                 }
 
-                const FifoCode& fifoCode = fifoDesc.Fifo()._code;
+                const FifoCode &fifoCode = fifoDesc.Fifo()._code;
 
                 // FifoSupportsEncoding is not used here
                 // because some fifos (like context savers) have constant bit information
@@ -7975,7 +7978,7 @@ class VerilogCompiler
 
             for (const size_t i : backpressureFifos)
             {
-                const RegisterDescription& fifoDesc = _program._registerTable[i];
+                const RegisterDescription &fifoDesc = _program._registerTable[i];
                 assert(RegisterType::Fifo == fifoDesc._type);
                 std::string s = "";
 
@@ -8094,12 +8097,12 @@ class VerilogCompiler
             // Per-stage operations
             for (auto it = basicBlock._stages.begin(); it != basicBlock._stages.end(); ++it)
             {
-                const Stage& stage = *it;
+                const Stage &stage = *it;
 
                 auto nextIt = it;
                 ++nextIt;
 
-                const Stage* const nextStage = nextIt == basicBlock._stages.end() ? nullptr : &(*nextIt);
+                const Stage *const nextStage = nextIt == basicBlock._stages.end() ? nullptr : &(*nextIt);
 
                 CompileOperationsCirct(basicBlock, stage, nextStage, preStartCondition);
             }
@@ -8113,11 +8116,11 @@ class VerilogCompiler
 
                 _compileContext.SetCurrentStage(&(_compileContext._basicBlock->_stages.back()));
 
-                circt::sv::AssignOp::create(_compileContext.OpBuilder(), 
-                    LocationToCirctLocation(basicBlock._location),
-                    _compileContext.PortNameToValue("decr_semaphore_thread_count_" +
-                                                    std::to_string(releasedSemaphoreIndex) + "_out"),
-                    _compileContext.GetCurrentStageEnableSignal());
+                circt::sv::AssignOp::create(_compileContext.OpBuilder(),
+                                            LocationToCirctLocation(basicBlock._location),
+                                            _compileContext.PortNameToValue("decr_semaphore_thread_count_" +
+                                                                            std::to_string(releasedSemaphoreIndex) + "_out"),
+                                            _compileContext.GetCurrentStageEnableSignal());
             }
 
             // Finialize CIRCT objects for the basic block
@@ -8136,16 +8139,16 @@ class VerilogCompiler
         _compileContext = CompileContext{};
     }
 
-    std::set<size_t> GetReadGlobalsWithNextIncGlobalViewInputs(const std::set<size_t>& readGlobalsWithNext,
-                                                               const std::set<size_t>& readGlobalViews)
+    std::set<size_t> GetReadGlobalsWithNextIncGlobalViewInputs(const std::set<size_t> &readGlobalsWithNext,
+                                                               const std::set<size_t> &readGlobalViews)
     {
         std::set<size_t> readGlobalsWithNextIncGlobalViewInputs = readGlobalsWithNext;
 
         for (const size_t i : readGlobalViews)
         {
-            const RegisterDescription& regDesc = _program._registerTable[i];
+            const RegisterDescription &regDesc = _program._registerTable[i];
 
-            const OperationList& operations =
+            const OperationList &operations =
                 SafeLookup(_program._globalViewFunctions, regDesc.GlobalView()._globalViewFunctionIndex);
 
             const std::set<size_t> globalRegisterInputs = GetGlobalRegisterSources(_program, operations);
@@ -8161,14 +8164,14 @@ class VerilogCompiler
 
     // If the underlying device requires control registers to have initial values
     // then this returns "'0".  Otherwise, this returns an empty string.
-    const char* GetPowerOnString() const
+    const char *GetPowerOnString() const
     {
         const bool requirePowerOnReset = GetCodeGenDeviceConfig()._requirePowerOnReset;
 
         return requirePowerOnReset ? " = '0" : "";
     }
 
-    void DeclarePropagationFifos(const BasicBlock& basicBlock)
+    void DeclarePropagationFifos(const BasicBlock &basicBlock)
     {
         const std::set<size_t> propagationFifos = GetPropagationFifos(_program, basicBlock);
 
@@ -8204,15 +8207,15 @@ class VerilogCompiler
                 // Names are added to disable the wire read/writes from being canconicalized away
                 circt::OpBuilder opb = circt::OpBuilder::atBlockBegin(_compileContext._hwModule.getBodyBlock());
 
-                const std::map<size_t, size_t>& offsetToWidth = SafeLookup(propagationFifoSlices, regIndex);
+                const std::map<size_t, size_t> &offsetToWidth = SafeLookup(propagationFifoSlices, regIndex);
 
                 // Used to combine values from all wires together
                 SparseConcat sparseConcat(opb, mlirBbLocation, width);
 
-                std::map<size_t, mlir::Value>& offsetToInputWire = _compileContext._dataPropIn[regIndex];
+                std::map<size_t, mlir::Value> &offsetToInputWire = _compileContext._dataPropIn[regIndex];
                 assert(offsetToInputWire.empty());
 
-                for (const auto& p : offsetToWidth)
+                for (const auto &p : offsetToWidth)
                 {
                     const size_t sliceOffset = p.first;
                     const size_t sliceWidth = p.second;
@@ -8222,9 +8225,9 @@ class VerilogCompiler
                     const std::string inputWireName =
                         std::string("data_prop_in_") + std::to_string(regIndexNorm) + "_" + std::to_string(sliceOffset);
 
-                    mlir::Value inputSliceWire = circt::sv::LogicOp::create(opb, 
-                        mlirBbLocation, sliceType, StringToStringAttr(inputWireName),
-                        GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), inputWireName));
+                    mlir::Value inputSliceWire = circt::sv::LogicOp::create(opb,
+                                                                            mlirBbLocation, sliceType, StringToStringAttr(inputWireName),
+                                                                            GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), inputWireName));
 
                     SafeInsert(offsetToInputWire, sliceOffset, inputSliceWire);
 
@@ -8245,25 +8248,25 @@ class VerilogCompiler
                 // Slice the output into words
                 // This is important because mlir CSE will combine multiple sv::ReadInOutOp in different pipeline stages
                 // which read from the same wire
-                std::map<size_t, mlir::Value>& offsetToOutputWire = _compileContext._dataPropOut[regIndex];
+                std::map<size_t, mlir::Value> &offsetToOutputWire = _compileContext._dataPropOut[regIndex];
                 assert(offsetToOutputWire.empty());
 
-                for (const auto& p : offsetToWidth)
+                for (const auto &p : offsetToWidth)
                 {
                     const size_t sliceOffset = p.first;
                     const size_t sliceWidth = p.second;
 
-                    const mlir::Value slice = circt::comb::ExtractOp::create(opb, 
-                        mlirBbLocation, instance.GetPortValue("data_out"), sliceOffset, sliceWidth);
+                    const mlir::Value slice = circt::comb::ExtractOp::create(opb,
+                                                                             mlirBbLocation, instance.GetPortValue("data_out"), sliceOffset, sliceWidth);
 
                     const mlir::Type sliceType = GetIntegerType(sliceWidth);
 
                     const std::string outputWireName = std::string("data_prop_out_") + std::to_string(regIndexNorm) +
                                                        "_" + std::to_string(sliceOffset);
 
-                    mlir::Value outputSliceWire = circt::sv::WireOp::create(opb, 
-                        mlirBbLocation, sliceType, StringToStringAttr(outputWireName),
-                        GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), outputWireName));
+                    mlir::Value outputSliceWire = circt::sv::WireOp::create(opb,
+                                                                            mlirBbLocation, sliceType, StringToStringAttr(outputWireName),
+                                                                            GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), outputWireName));
 
                     SafeInsert(offsetToOutputWire, sliceOffset, outputSliceWire);
 
@@ -8273,14 +8276,14 @@ class VerilogCompiler
         }
     }
 
-    bool GlobalHasResetPort(const RegisterDescription& regDesc)
+    bool GlobalHasResetPort(const RegisterDescription &regDesc)
     {
         assert(RegisterType::Global == regDesc._type);
 
         return regDesc.Global()._hasInitialValue;
     }
 
-    size_t GetFiberIndexWidth(const BasicBlock& basicBlock) const
+    size_t GetFiberIndexWidth(const BasicBlock &basicBlock) const
     {
         const size_t limit = basicBlock.GetThreadRate();
 
@@ -8290,10 +8293,10 @@ class VerilogCompiler
     }
 
     // generate the delayed signal for inverted almost_full/overflow
-    mlir::Value GenerateDelayedInvFifoStatus(circt::OpBuilder& opb, const std::string& portName,
-                                             const std::string& instName, const size_t fifoIndex)
+    mlir::Value GenerateDelayedInvFifoStatus(circt::OpBuilder &opb, const std::string &portName,
+                                             const std::string &instName, const size_t fifoIndex)
     {
-        const BasicBlock& basicBlock = *_compileContext._basicBlock;
+        const BasicBlock &basicBlock = *_compileContext._basicBlock;
         const mlir::Location bbLocation = LocationToCirctLocation(basicBlock._location);
         const std::string portNameIndex = portName + "_" + std::to_string(fifoIndex);
         const std::string instNameIndex = instName + "_" + std::to_string(fifoIndex);
@@ -8336,9 +8339,9 @@ class VerilogCompiler
         mlir::Value _fiberIndexRegMatch;
     };
 
-    StartNewThreadResult CompileStartNewThreadCirct(circt::OpBuilder& opb)
+    StartNewThreadResult CompileStartNewThreadCirct(circt::OpBuilder &opb)
     {
-        const BasicBlock& basicBlock = *_compileContext._basicBlock;
+        const BasicBlock &basicBlock = *_compileContext._basicBlock;
 
         const mlir::Location bbLocation = LocationToCirctLocation(basicBlock._location);
 
@@ -8396,7 +8399,7 @@ class VerilogCompiler
 
             for (const size_t fifoIndex : backpressureFifos)
             {
-                const RegisterDescription& regDesc = _program._registerTable[fifoIndex];
+                const RegisterDescription &regDesc = _program._registerTable[fifoIndex];
                 assert(RegisterType::Fifo == regDesc._type);
 
                 switch (regDesc.Fifo()._type)
@@ -8454,39 +8457,39 @@ class VerilogCompiler
                 circt::BackedgeBuilder beb(opb, bbLocation);
                 circt::Backedge backedge = beb.get(opb.getIntegerType(GetFiberIndexWidth(basicBlock)));
 
-                fiberIndexRegMatch = circt::comb::ICmpOp::create(opb, 
-                    bbLocation, circt::comb::ICmpPredicate::eq, backedge,
-                    circt::hw::ConstantOp::create(opb, 
-                        bbLocation,
-                        opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), adjustedThreadRate - 1)),
-                    TwoState);
+                fiberIndexRegMatch = circt::comb::ICmpOp::create(opb,
+                                                                 bbLocation, circt::comb::ICmpPredicate::eq, backedge,
+                                                                 circt::hw::ConstantOp::create(opb,
+                                                                                               bbLocation,
+                                                                                               opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), adjustedThreadRate - 1)),
+                                                                 TwoState);
 
-                const mlir::Value fiberIndexRegInc = circt::comb::AddOp::create(opb, 
-                    bbLocation, backedge,
-                    circt::hw::ConstantOp::create(opb, 
-                        bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 1)),
-                    TwoState);
+                const mlir::Value fiberIndexRegInc = circt::comb::AddOp::create(opb,
+                                                                                bbLocation, backedge,
+                                                                                circt::hw::ConstantOp::create(opb,
+                                                                                                              bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 1)),
+                                                                                TwoState);
 
-                const mlir::Value fiberIndexRegMux = circt::comb::MuxOp::create(opb, 
-                    bbLocation, fiberIndexRegMatch,
-                    circt::hw::ConstantOp::create(opb, 
-                        bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 0)),
-                    fiberIndexRegInc, TwoState);
+                const mlir::Value fiberIndexRegMux = circt::comb::MuxOp::create(opb,
+                                                                                bbLocation, fiberIndexRegMatch,
+                                                                                circt::hw::ConstantOp::create(opb,
+                                                                                                              bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 0)),
+                                                                                fiberIndexRegInc, TwoState);
 
-                circt::seq::CompRegOp fiberIndexReg = circt::seq::CompRegOp::create(opb, 
-                    bbLocation, fiberIndexRegMux, _compileContext.PortNameToValue("clk"),
-                    _compileContext.PortNameToValue("rst"),
-                    circt::hw::ConstantOp::create(opb, 
-                        bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 0)),
-                    GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "fiber_index_0_ff"));
+                circt::seq::CompRegOp fiberIndexReg = circt::seq::CompRegOp::create(opb,
+                                                                                    bbLocation, fiberIndexRegMux, _compileContext.PortNameToValue("clk"),
+                                                                                    _compileContext.PortNameToValue("rst"),
+                                                                                    circt::hw::ConstantOp::create(opb,
+                                                                                                                  bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 0)),
+                                                                                    GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "fiber_index_0_ff"));
 
                 result._fiberIndexRegMatch = static_cast<mlir::Value>(fiberIndexRegMatch);
 
-                circt::seq::CompRegOp fiberIndexEqZeroReg = circt::seq::CompRegOp::create(opb, 
-                    bbLocation, fiberIndexRegMatch, _compileContext.PortNameToValue("clk"),
-                    _compileContext.PortNameToValue("rst"),
-                    circt::hw::ConstantOp::create(opb, bbLocation, opb.getIntegerAttr(opb.getI1Type(), 1)),
-                    GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "fiber_index_eq_0_ff"));
+                circt::seq::CompRegOp fiberIndexEqZeroReg = circt::seq::CompRegOp::create(opb,
+                                                                                          bbLocation, fiberIndexRegMatch, _compileContext.PortNameToValue("clk"),
+                                                                                          _compileContext.PortNameToValue("rst"),
+                                                                                          circt::hw::ConstantOp::create(opb, bbLocation, opb.getIntegerAttr(opb.getI1Type(), 1)),
+                                                                                          GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "fiber_index_eq_0_ff"));
                 backedge.setValue(fiberIndexReg);
 
                 if (GetCodeGenConfig()._releaseAssert)
@@ -8514,8 +8517,8 @@ class VerilogCompiler
                 const mlir::Value thresholdValue =
                     circt::hw::ConstantOp::create(opb, bbLocation, opb.getIntegerAttr(opb.getI64Type(), threshold));
 
-                const mlir::Value oneValue = circt::hw::ConstantOp::create(opb, 
-                    bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 1));
+                const mlir::Value oneValue = circt::hw::ConstantOp::create(opb,
+                                                                           bbLocation, opb.getIntegerAttr(opb.getIntegerType(GetFiberIndexWidth(basicBlock)), 1));
                 const mlir::Value stallEnableForThreadRate =
                     (basicBlock.GetThreadRate() != 1) ? fiberIndexRegMatch : oneValue;
 
@@ -8532,7 +8535,7 @@ class VerilogCompiler
 
                 const mlir::Value stallFromLfsr =
                     circt::comb::ICmpOp::create(opb, bbLocation, circt::comb::ICmpPredicate::ule,
-                                                    instance.GetPortValue("lfsr_out"), thresholdValue, TwoState);
+                                                instance.GetPortValue("lfsr_out"), thresholdValue, TwoState);
 
                 batchAssignments.Append(bbLocation, instance.GetPortValue("en"), stallEnableForThreadRate);
 
@@ -8563,7 +8566,7 @@ class VerilogCompiler
                 if (!checkControlFifo0Only)
                 {
                     // Check predicates before allowing a new thread to enter the basic block
-                    for (const mlir::Value& predicate : allowThreadPredicates)
+                    for (const mlir::Value &predicate : allowThreadPredicates)
                     {
                         allowThreadTerms.push_back(predicate);
                     }
@@ -8579,7 +8582,7 @@ class VerilogCompiler
                 // The IR to generate that start condition has not been emitted yet
                 // It will write to result._startConditionWire
                 allowNewThread = circt::comb::AndOp::create(opb, bbLocation, allowNewThreadPreStartCondition,
-                                                                startConditionValue, TwoState);
+                                                            startConditionValue, TwoState);
 
                 controlStateRecords[ControlStateBit::WaitForConditionNotMet].push_back(startConditionValue);
             }
@@ -8602,13 +8605,13 @@ class VerilogCompiler
                 anyInputFifoNotEmptyPreStartCondition =
                     circt::hw::ConstantOp::create(opb, bbLocation, opb.getIntegerAttr(opb.getI1Type(), 0));
 
-                result._selectedFifoIndex = circt::hw::ConstantOp::create(opb, 
-                    bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), 0));
+                result._selectedFifoIndex = circt::hw::ConstantOp::create(opb,
+                                                                          bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), 0));
 
                 for (size_t i = 0; i < basicBlock._inputFifoCount; i++)
                 {
                     const size_t inputFifoIndex = basicBlock._inputFifoIndices[i];
-                    const RegisterDescription& inputFifoDesc = _program._registerTable[inputFifoIndex];
+                    const RegisterDescription &inputFifoDesc = _program._registerTable[inputFifoIndex];
                     assert(inputFifoDesc._type == RegisterType::Fifo);
 
                     mlir::SmallVector<mlir::Value> writeConditions;
@@ -8645,7 +8648,7 @@ class VerilogCompiler
                             // Check predicates before dequeuing from fifo 0
                             assert(2 == basicBlock._inputFifoCount);
 
-                            for (const mlir::Value& predicate : allowThreadPredicates)
+                            for (const mlir::Value &predicate : allowThreadPredicates)
                             {
                                 writeConditions.push_back(predicate);
                             }
@@ -8658,17 +8661,17 @@ class VerilogCompiler
                         circt::comb::AndOp::create(opb, bbLocation, writeConditions, TwoState);
 
                     anyInputFifoNotEmpty = circt::comb::MuxOp::create(opb, bbLocation, writeCondition, allowNewThread,
-                                                                          anyInputFifoNotEmpty, TwoState);
+                                                                      anyInputFifoNotEmpty, TwoState);
 
                     anyInputFifoNotEmptyPreStartCondition =
                         circt::comb::MuxOp::create(opb, bbLocation, writeCondition, allowNewThreadPreStartCondition,
-                                                       anyInputFifoNotEmptyPreStartCondition, TwoState);
+                                                   anyInputFifoNotEmptyPreStartCondition, TwoState);
 
-                    result._selectedFifoIndex = circt::comb::MuxOp::create(opb, 
-                        bbLocation, writeCondition,
-                        circt::hw::ConstantOp::create(opb, 
-                            bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), i)),
-                        result._selectedFifoIndex, TwoState);
+                    result._selectedFifoIndex = circt::comb::MuxOp::create(opb,
+                                                                           bbLocation, writeCondition,
+                                                                           circt::hw::ConstantOp::create(opb,
+                                                                                                         bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), i)),
+                                                                           result._selectedFifoIndex, TwoState);
                 }
 
                 result._startNewThread = anyInputFifoNotEmpty;
@@ -8678,20 +8681,20 @@ class VerilogCompiler
                 for (size_t i = 0; i < basicBlock._inputFifoCount; i++)
                 {
                     const size_t inputFifoIndex = basicBlock._inputFifoIndices[i];
-                    const RegisterDescription& inputFifoDesc = _program._registerTable[inputFifoIndex];
+                    const RegisterDescription &inputFifoDesc = _program._registerTable[inputFifoIndex];
                     assert(inputFifoDesc._type == RegisterType::Fifo);
 
                     // PassthroughRegistered have no read enable, data must be accepted when available
                     if (inputFifoDesc.Fifo()._type != FifoType::PassthroughRegistered)
                     {
-                        const mlir::Value fifoIndexMatch = circt::comb::ICmpOp::create(opb, 
-                            bbLocation, circt::comb::ICmpPredicate::eq, result._selectedFifoIndex,
-                            circt::hw::ConstantOp::create(opb, 
-                                bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), i)),
-                            TwoState);
+                        const mlir::Value fifoIndexMatch = circt::comb::ICmpOp::create(opb,
+                                                                                       bbLocation, circt::comb::ICmpPredicate::eq, result._selectedFifoIndex,
+                                                                                       circt::hw::ConstantOp::create(opb,
+                                                                                                                     bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), i)),
+                                                                                       TwoState);
 
-                        const mlir::Value readInputFifo = circt::comb::AndOp::create(opb, 
-                            bbLocation, result._startNewThread, fifoIndexMatch, TwoState);
+                        const mlir::Value readInputFifo = circt::comb::AndOp::create(opb,
+                                                                                     bbLocation, result._startNewThread, fifoIndexMatch, TwoState);
 
                         batchAssignments.Append(bbLocation,
                                                 _compileContext.PortNameToValue("input_fifo_rden_" + std::to_string(i)),
@@ -8713,14 +8716,14 @@ class VerilogCompiler
                     {
                         bool startCondition = false;
 
-                        for (const Stage& stage : basicBlock._stages)
+                        for (const Stage &stage : basicBlock._stages)
                         {
                             if (stage._atomicSequence > 0)
                             {
                                 break;
                             }
 
-                            for (const Operation& op : stage._operations)
+                            for (const Operation &op : stage._operations)
                             {
                                 assert(op._opcode != Opcode::WriteGlobal);
                                 if (op._opcode == Opcode::StartCondition)
@@ -8753,19 +8756,19 @@ class VerilogCompiler
                     initialCallMadeThisCycleInputs.push_back(allowNewThread);
                     initialCallMadeThisCycleInputs.push_back(_compileContext.PortNameToValue("allow_initial_call_in"));
 
-                    const mlir::Value initialCallMadeThisCycle = circt::comb::AndOp::create(opb, 
-                        bbLocation, opb.getI1Type(), initialCallMadeThisCycleInputs, TwoState);
+                    const mlir::Value initialCallMadeThisCycle = circt::comb::AndOp::create(opb,
+                                                                                            bbLocation, opb.getI1Type(), initialCallMadeThisCycleInputs, TwoState);
 
                     // initial_call_made_ff || initial_call_this_cycle
-                    const mlir::Value initialCallMadeRegInput = circt::comb::OrOp::create(opb, 
-                        bbLocation, initialCallMadeRegBackedge, initialCallMadeThisCycle, TwoState);
+                    const mlir::Value initialCallMadeRegInput = circt::comb::OrOp::create(opb,
+                                                                                          bbLocation, initialCallMadeRegBackedge, initialCallMadeThisCycle, TwoState);
 
-                    circt::seq::CompRegOp initialCallMadeReg = circt::seq::CompRegOp::create(opb, 
-                        bbLocation, initialCallMadeRegInput, _compileContext.PortNameToValue("clk"),
-                        _compileContext.PortNameToValue("rst"),
-                        circt::hw::ConstantOp::create(opb, bbLocation,
-                                                          opb.getIntegerAttr(opb.getI1Type(), 0)), // reset value
-                        GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "initial_call_made_ff"));
+                    circt::seq::CompRegOp initialCallMadeReg = circt::seq::CompRegOp::create(opb,
+                                                                                             bbLocation, initialCallMadeRegInput, _compileContext.PortNameToValue("clk"),
+                                                                                             _compileContext.PortNameToValue("rst"),
+                                                                                             circt::hw::ConstantOp::create(opb, bbLocation,
+                                                                                                                           opb.getIntegerAttr(opb.getI1Type(), 0)), // reset value
+                                                                                             GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "initial_call_made_ff"));
 
                     initialCallMadeRegBackedge.setValue(initialCallMadeReg);
 
@@ -8780,8 +8783,8 @@ class VerilogCompiler
                         const mlir::Value fifoNotEmptyAllowNewThread =
                             circt::comb::AndOp::create(opb, bbLocation, inputFifoNotEmpty, allowNewThread, TwoState);
 
-                        const mlir::Value stageValid0 = circt::comb::OrOp::create(opb, 
-                            bbLocation, fifoNotEmptyAllowNewThread, initialCallMadeThisCycle, TwoState);
+                        const mlir::Value stageValid0 = circt::comb::OrOp::create(opb,
+                                                                                  bbLocation, fifoNotEmptyAllowNewThread, initialCallMadeThisCycle, TwoState);
 
                         const mlir::Value initCallNotThisCycle =
                             circt::comb::createOrFoldNot(bbLocation, initialCallMadeThisCycle, opb, TwoState);
@@ -8808,7 +8811,7 @@ class VerilogCompiler
 
                     const size_t inputFifoIndex = basicBlock._inputFifoIndices[0];
 
-                    const RegisterDescription& inputFifoDesc = _program._registerTable[inputFifoIndex];
+                    const RegisterDescription &inputFifoDesc = _program._registerTable[inputFifoIndex];
                     assert(inputFifoDesc._type == RegisterType::Fifo);
 
                     if (inputFifoDesc.Fifo()._type == FifoType::Passthrough)
@@ -8820,8 +8823,8 @@ class VerilogCompiler
 
                         result._startNewThread =
                             circt::comb::AndOp::create(opb, bbLocation, allowNewThread, inputValid0, TwoState);
-                        result._startNewThreadPreStartCondition = circt::comb::AndOp::create(opb, 
-                            bbLocation, allowNewThreadPreStartCondition, inputValid0, TwoState);
+                        result._startNewThreadPreStartCondition = circt::comb::AndOp::create(opb,
+                                                                                             bbLocation, allowNewThreadPreStartCondition, inputValid0, TwoState);
 
                         controlStateRecords[ControlStateBit::InputFifoEmpty].push_back(inputValid0);
                     }
@@ -8832,8 +8835,8 @@ class VerilogCompiler
 
                         result._startNewThread =
                             circt::comb::AndOp::create(opb, bbLocation, allowNewThread, inputValid0, TwoState);
-                        result._startNewThreadPreStartCondition = circt::comb::AndOp::create(opb, 
-                            bbLocation, allowNewThreadPreStartCondition, inputValid0, TwoState);
+                        result._startNewThreadPreStartCondition = circt::comb::AndOp::create(opb,
+                                                                                             bbLocation, allowNewThreadPreStartCondition, inputValid0, TwoState);
 
                         controlStateRecords[ControlStateBit::InputFifoEmpty].push_back(inputValid0);
                     }
@@ -8844,8 +8847,8 @@ class VerilogCompiler
 
                         result._startNewThread =
                             circt::comb::AndOp::create(opb, bbLocation, allowNewThread, inputFifoNotEmpty, TwoState);
-                        result._startNewThreadPreStartCondition = circt::comb::AndOp::create(opb, 
-                            bbLocation, allowNewThreadPreStartCondition, inputFifoNotEmpty, TwoState);
+                        result._startNewThreadPreStartCondition = circt::comb::AndOp::create(opb,
+                                                                                             bbLocation, allowNewThreadPreStartCondition, inputFifoNotEmpty, TwoState);
 
                         batchAssignments.Append(bbLocation, _compileContext.PortNameToValue("input_fifo_rden_0"),
                                                 result._startNewThread);
@@ -8884,11 +8887,11 @@ class VerilogCompiler
                         circt::hw::ConstantOp::create(opb, bbLocation, opb.getIntegerAttr(opb.getI1Type(), 0)));
                 }
 
-                for (const auto& p : controlStateRecords)
+                for (const auto &p : controlStateRecords)
                 {
                     const size_t bitIndex = static_cast<size_t>(p.first);
 
-                    const std::vector<mlir::Value>& expressions = p.second;
+                    const std::vector<mlir::Value> &expressions = p.second;
 
                     const mlir::Value reduced = circt::comb::AndOp::create(opb, bbLocation, expressions, TwoState);
 
@@ -8899,8 +8902,8 @@ class VerilogCompiler
                 // Reverse control state bits because concat op expects most significant bit first
                 std::reverse(controlStateBits.begin(), controlStateBits.end());
 
-                const mlir::Value combined = circt::comb::ConcatOp::create(opb, 
-                    bbLocation, opb.getIntegerType(c_basicBlockControlWidth), controlStateBits);
+                const mlir::Value combined = circt::comb::ConcatOp::create(opb,
+                                                                           bbLocation, opb.getIntegerType(c_basicBlockControlWidth), controlStateBits);
 
                 batchAssignments.Append(bbLocation, _compileContext.PortNameToValue("control_state_out"), combined);
             }
@@ -8919,14 +8922,14 @@ class VerilogCompiler
                     writer << static_cast<mlir::Value>(
                                   _compileContext.PortNameToValue("input_valid_" + std::to_string(i)))
                            << ") |-> (";
-                    const mlir::Value selectedFifoIndexMatch = circt::comb::ICmpOp::create(opb, 
-                        bbLocation, circt::comb::ICmpPredicate::eq, result._selectedFifoIndex,
-                        circt::hw::ConstantOp::create(opb, 
-                            bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), i)),
-                        TwoState);
+                    const mlir::Value selectedFifoIndexMatch = circt::comb::ICmpOp::create(opb,
+                                                                                           bbLocation, circt::comb::ICmpPredicate::eq, result._selectedFifoIndex,
+                                                                                           circt::hw::ConstantOp::create(opb,
+                                                                                                                         bbLocation, opb.getIntegerAttr(opb.getIntegerType(selectedInputFifoWidth), i)),
+                                                                                           TwoState);
 
-                    const mlir::Value notEmpyAndFifoIndexMatch = circt::comb::AndOp::create(opb, 
-                        bbLocation, anyInputFifoNotEmpty, selectedFifoIndexMatch, TwoState);
+                    const mlir::Value notEmpyAndFifoIndexMatch = circt::comb::AndOp::create(opb,
+                                                                                            bbLocation, anyInputFifoNotEmpty, selectedFifoIndexMatch, TwoState);
                     writer << static_cast<mlir::Value>(notEmpyAndFifoIndexMatch) << "));\n";
                 }
                 writer << "//synopsys translate_on\n";
@@ -8955,18 +8958,18 @@ class VerilogCompiler
         return str.str();
     }
 
-    bool IsClockGatingEnabledForBasicBlock(const BasicBlock& basicBlock) const
+    bool IsClockGatingEnabledForBasicBlock(const BasicBlock &basicBlock) const
     {
         return GetCodeGenConfig().PipelineClockGatingEnabled();
     }
 
-    std::string GetStallPredicateForPipelineStage(const BasicBlock& basicBlock, const size_t atomicSequence) const
+    std::string GetStallPredicateForPipelineStage(const BasicBlock &basicBlock, const size_t atomicSequence) const
     {
         std::ostringstream str;
 
         if (_basicBlockHasStalls)
         {
-            const auto& stallable = SafeLookup(basicBlock._pipelineStageStallableMap, atomicSequence);
+            const auto &stallable = SafeLookup(basicBlock._pipelineStageStallableMap, atomicSequence);
 
             if (basicBlock._isStallable && stallable._isStallable)
             {
@@ -8986,7 +8989,7 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::string GetFiberIndexPreviousStage(const BasicBlock& basicBlock, const Stage& stage)
+    std::string GetFiberIndexPreviousStage(const BasicBlock &basicBlock, const Stage &stage)
     {
         std::ostringstream str;
 
@@ -9002,12 +9005,12 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::string GetFiberIndex(const Stage& stage)
+    std::string GetFiberIndex(const Stage &stage)
     {
         return std::string("fiber_index_") + std::to_string(stage._atomicSequence) + "_ff";
     }
 
-    std::string GetIsFiber(const BasicBlock& basicBlock, const Stage& stage, const size_t fiberIndex)
+    std::string GetIsFiber(const BasicBlock &basicBlock, const Stage &stage, const size_t fiberIndex)
     {
         const size_t fiberIndexWidth = GetFiberIndexWidth(basicBlock);
 
@@ -9017,11 +9020,11 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::string GetInputValid(const BasicBlock& basicBlock, const Stage& stageIn,
+    std::string GetInputValid(const BasicBlock &basicBlock, const Stage &stageIn,
                               const bool preStartCondition = false) const
     {
         // Find the first stage in the basic block with a matching atomic sequence number
-        for (const Stage& stage : basicBlock._stages)
+        for (const Stage &stage : basicBlock._stages)
         {
             if (stage._atomicSequence == stageIn._atomicSequence)
             {
@@ -9062,7 +9065,7 @@ class VerilogCompiler
         return std::string("Cannot locate stage");
     }
 
-    std::string GetInputValidPreviousStage(const BasicBlock& basicBlock, const Stage& stage)
+    std::string GetInputValidPreviousStage(const BasicBlock &basicBlock, const Stage &stage)
     {
         // Find the first stage in the basic block with a matching atomic sequence number
         std::ostringstream str;
@@ -9090,10 +9093,10 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::string GetInputValidReplica(const BasicBlock& basicBlock, const Stage& stageIn)
+    std::string GetInputValidReplica(const BasicBlock &basicBlock, const Stage &stageIn)
     {
         // Find the first stage in the basic block with a matching atomic sequence number
-        for (const Stage& stage : basicBlock._stages)
+        for (const Stage &stage : basicBlock._stages)
         {
             if (stage._atomicSequence == stageIn._atomicSequence)
             {
@@ -9129,20 +9132,20 @@ class VerilogCompiler
         return std::string("Cannot locate stage");
     }
 
-    const BasicBlock& GetCurrentBasicBlock() const
+    const BasicBlock &GetCurrentBasicBlock() const
     {
         assert(_compileContext._basicBlock);
         return *_compileContext._basicBlock;
     }
 
-    const Stage& GetCurrentStage() const
+    const Stage &GetCurrentStage() const
     {
         assert(_compileContext._stage);
         return *_compileContext._stage;
     }
 
-    void CompileOperationsCirct(const BasicBlock& basicBlock, const Stage& stage, const Stage* const nextStage,
-                                bool& preStartCondition)
+    void CompileOperationsCirct(const BasicBlock &basicBlock, const Stage &stage, const Stage *const nextStage,
+                                bool &preStartCondition)
     {
         assert(!_compileContext._stage);
         assert(_compileContext._batchAssignments.Empty());
@@ -9158,7 +9161,7 @@ class VerilogCompiler
         // correct ordering between them
         // Operations that access the string table
         // must run in clock-triggered block (once per clock cycle)
-        const auto useTriggeredOp = [](const Operation& op)
+        const auto useTriggeredOp = [](const Operation &op)
         {
             switch (op._opcode)
             {
@@ -9176,7 +9179,7 @@ class VerilogCompiler
             }
         };
 
-        for (const Operation& op : stage._operations)
+        for (const Operation &op : stage._operations)
         {
             if (op._opcode == Opcode::StartCondition)
             {
@@ -9202,7 +9205,7 @@ class VerilogCompiler
             }
         }
 
-        const auto compileTriggeredOps = [&](const bool preStartCondition, TriggeredOpHelper& triggeredOpHelper)
+        const auto compileTriggeredOps = [&](const bool preStartCondition, TriggeredOpHelper &triggeredOpHelper)
         {
             bool valid;
             if (preStartCondition)
@@ -9215,7 +9218,7 @@ class VerilogCompiler
                 valid = !hasPreStartConditionTriggeredOps;
             }
 
-            for (const Operation& op : stage._operations)
+            for (const Operation &op : stage._operations)
             {
                 if (op._opcode == Opcode::StartCondition)
                 {
@@ -9241,7 +9244,7 @@ class VerilogCompiler
 
             _compileContext._triggeredOpHelper = &triggeredOpHelper;
 
-            for (const Operation& op : stage._operations)
+            for (const Operation &op : stage._operations)
             {
                 if (useTriggeredOp(op))
                 {
@@ -9282,7 +9285,7 @@ class VerilogCompiler
         return g_compiler->GetSourceFileNameWithoutLeadingPath(fileIndex) + ":" + std::to_string(lineNumber);
     }
 
-    std::string StackFrameToString(const StackFrame& stackFrame)
+    std::string StackFrameToString(const StackFrame &stackFrame)
     {
         return stackFrame._unmangledFunctionName + " in " +
                FileAndLineNumberToString(stackFrame._fileIndex, stackFrame._lineNumber);
@@ -9291,11 +9294,11 @@ class VerilogCompiler
     // Generate CIRCT IR for the operations defining a global view
     mlir::Value CompileGlobalViewCirct(const size_t globalViewRegisterIndex)
     {
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
-        const RegisterDescription& regDesc = _program._registerTable[globalViewRegisterIndex];
+        const RegisterDescription &regDesc = _program._registerTable[globalViewRegisterIndex];
 
-        const OperationList& operations =
+        const OperationList &operations =
             SafeLookup(_program._globalViewFunctions, regDesc.GlobalView()._globalViewFunctionIndex);
 
         // Save _compileContext._regToValue, clear it
@@ -9306,7 +9309,8 @@ class VerilogCompiler
 
         std::swap(prevRegToValue, _compileContext._regToValue);
 
-        ExitScope exitScope([&]() { _compileContext._regToValue = prevRegToValue; });
+        ExitScope exitScope([&]()
+                            { _compileContext._regToValue = prevRegToValue; });
 
         _compileContext._regToValue.clear();
 
@@ -9314,9 +9318,9 @@ class VerilogCompiler
         // to ensure the value of a global view reflects updates to input global variables
         // which occured on the same cycle.
         SourceOperandToMlirValueCb sourceOperandToMlirValue =
-            [this](const Operation& op, const size_t srcOperandIndex, const size_t desiredWidth)
+            [this](const Operation &op, const size_t srcOperandIndex, const size_t desiredWidth)
         {
-            const SourceOperand& srcOp = op._src.at(srcOperandIndex);
+            const SourceOperand &srcOp = op._src.at(srcOperandIndex);
 
             SourceOpToStringMode srcOpToStrMode = SourceOpToStringMode::Default;
 
@@ -9333,14 +9337,14 @@ class VerilogCompiler
             return SourceOperandToMlirValue(op, srcOperandIndex, desiredWidth, srcOpToStrMode);
         };
 
-        for (const Operation& op : operations)
+        for (const Operation &op : operations)
         {
             ConvertOpToCirct(op, opb, _program, sourceOperandToMlirValue, GetStoreMlirValueInDestOperand());
         }
 
         // The final operation writes the result
         assert(!operations.empty());
-        const Operation& resultOp = operations.back();
+        const Operation &resultOp = operations.back();
         assert(resultOp._dst.size() == 1);
 
         return SafeLookup(_compileContext._regToValue, resultOp._dst[0].GetAccessedRegister()._registerIndex);
@@ -9349,26 +9353,26 @@ class VerilogCompiler
     // Returns lambda of type SourceOperandToMlirValueCb
     SourceOperandToMlirValueCb GetSourceOperandToMlirValue()
     {
-        return [this](const Operation& op, const size_t srcOperandIndex, const size_t desiredWidth)
+        return [this](const Operation &op, const size_t srcOperandIndex, const size_t desiredWidth)
         { return SourceOperandToMlirValue(op, srcOperandIndex, desiredWidth); };
     }
 
     // Returns lambda of type StoreMlirValueInDestOperandCb
     StoreMlirValueInDestOperandCb GetStoreMlirValueInDestOperand()
     {
-        return [this](const Operation& op, const size_t dstOperandIndex, const mlir::Value& value)
+        return [this](const Operation &op, const size_t dstOperandIndex, const mlir::Value &value)
         { StoreValueIntoDestOperand(op, dstOperandIndex, value); };
     }
 
     // Callback used by ConvertOpToCirct
-    mlir::Value SourceOperandToMlirValue(const Operation& op, const size_t srcOperandIndex, const size_t desiredWidth,
+    mlir::Value SourceOperandToMlirValue(const Operation &op, const size_t srcOperandIndex, const size_t desiredWidth,
                                          const SourceOpToStringMode srcOpToStrMode = SourceOpToStringMode::Default)
     {
-        const SourceOperand& srcOp = op._src.at(srcOperandIndex);
+        const SourceOperand &srcOp = op._src.at(srcOperandIndex);
 
         mlir::Value result;
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location location = OperationToCirctLocation(op, _program);
 
@@ -9408,7 +9412,7 @@ class VerilogCompiler
 
         case SourceOperandType::Fifo:
         {
-            const FifoSubset& fs = srcOp.GetFifoSubset();
+            const FifoSubset &fs = srcOp.GetFifoSubset();
 
             const std::string portName = "data_in_" + std::to_string(_fifoNamer.GetNormFifoIndex(fs._registerIndex));
 
@@ -9428,11 +9432,11 @@ class VerilogCompiler
     }
 
     // Callback used by ConvertOpToCirct
-    void StoreValueIntoDestOperand(const Operation& op, const size_t dstOperandIndex, const mlir::Value& valueIn)
+    void StoreValueIntoDestOperand(const Operation &op, const size_t dstOperandIndex, const mlir::Value &valueIn)
     {
-        const DestinationOperand& dstOp = op._dst.at(dstOperandIndex);
+        const DestinationOperand &dstOp = op._dst.at(dstOperandIndex);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location location = OperationToCirctLocation(op, _program);
 
@@ -9480,7 +9484,7 @@ class VerilogCompiler
 
         case DestinationOperandType::Fifo:
         {
-            const FifoSubset& fs = dstOp.GetFifoSubset();
+            const FifoSubset &fs = dstOp.GetFifoSubset();
 
             _compileContext._fifoWrites.Accumulate(fs._registerIndex, value, fs._offset, fs._width);
         }
@@ -9491,14 +9495,14 @@ class VerilogCompiler
         }
     }
 
-    void CompileDebugViewCIRCT(const Operation& op)
+    void CompileDebugViewCIRCT(const Operation &op)
     {
         assert(Opcode::DebugView == op._opcode);
         assert(0 == op._dst.size());
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         ModuleInstanceHelper instance(*this, opLocation);
 
@@ -9510,7 +9514,7 @@ class VerilogCompiler
 
         for (size_t i = 0; i < op._flags._debugView->_arguments.size(); i++)
         {
-            const DebugViewArgument& debugViewArgument = op._flags._debugView->_arguments[i];
+            const DebugViewArgument &debugViewArgument = op._flags._debugView->_arguments[i];
 
             // Concat all components of this argument
             mlir::SmallVector<mlir::Value> values;
@@ -9529,10 +9533,11 @@ class VerilogCompiler
 
             mlir::Value expressionValue = circt::comb::ConcatOp::create(opb, opLocation, values);
 
-            // Replace with 'x on cycles when the stage enable bit is low
+            // Replace with 'x on cycles when the stage enable bit is low.
+            // FourState (not TwoState) because the false-branch is intentionally 'x.
             mlir::Value constantX = circt::sv::ConstantXOp::create(opb, opLocation, expressionValue.getType());
             expressionValue = circt::comb::MuxOp::create(opb, opLocation,
-                _compileContext.GetCurrentStageEnableSignal(), expressionValue, constantX, TwoState);
+                                                         _compileContext.GetCurrentStageEnableSignal(), expressionValue, constantX, false);
 
             instance.AddPort(std::string("_") + debugViewArgument._name, circt::hw::ModulePort::Direction::Input,
                              expressionValue);
@@ -9546,17 +9551,17 @@ class VerilogCompiler
         instance.Generate();
     }
 
-    void CompileEnqueueCirct(const Operation& op)
+    void CompileEnqueueCirct(const Operation &op)
     {
         assert(Opcode::Enqueue == op._opcode);
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
-        const Enqueue& enqueue = op._flags._enqueue;
+        const Enqueue &enqueue = op._flags._enqueue;
 
-        const RegisterDescription& regDesc = _program._registerTable[enqueue._successorFifo];
+        const RegisterDescription &regDesc = _program._registerTable[enqueue._successorFifo];
         assert(RegisterType::Fifo == regDesc._type);
 
         std::string dataPortName;
@@ -9642,25 +9647,25 @@ class VerilogCompiler
         }
     }
 
-    void CompileEnqueueRegistersCirct(const Operation& op)
+    void CompileEnqueueRegistersCirct(const Operation &op)
     {
         assert(Opcode::EnqueueRegisters == op._opcode);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
         const size_t fifoIndex = op._flags._queueRegisters._fifoIndex;
 
-        const RegisterDescription& regDesc = _program._registerTable[fifoIndex];
+        const RegisterDescription &regDesc = _program._registerTable[fifoIndex];
         assert(RegisterType::Fifo == regDesc._type);
         assert(FifoType::FixedDelay == regDesc.Fifo()._type);
 
-        const std::map<size_t, mlir::Value>& offsetToWire = SafeLookup(_compileContext._dataPropIn, fifoIndex);
+        const std::map<size_t, mlir::Value> &offsetToWire = SafeLookup(_compileContext._dataPropIn, fifoIndex);
 
         for (size_t i = 0; i < op._src.size(); i++)
         {
-            const SourceOperand& srcOp = op._src[i];
+            const SourceOperand &srcOp = op._src[i];
 
             const size_t offset = op._flags._queueRegisters._offsets->at(i);
 
@@ -9668,7 +9673,7 @@ class VerilogCompiler
 
             const mlir::Value value = SourceOperandToMlirValue(op, i, width);
 
-            const mlir::Value& wire = SafeLookup(offsetToWire, offset);
+            const mlir::Value &wire = SafeLookup(offsetToWire, offset);
 
             assert(width == GetMlirTypeWidth(mlir::cast<circt::hw::InOutType>(wire.getType()).getElementType()));
 
@@ -9676,34 +9681,34 @@ class VerilogCompiler
         }
     }
 
-    void CompileDequeueRegistersCirct(const Operation& op)
+    void CompileDequeueRegistersCirct(const Operation &op)
     {
         assert(Opcode::DequeueRegisters == op._opcode);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
         const size_t fifoIndex = op._flags._queueRegisters._fifoIndex;
 
-        const RegisterDescription& regDesc = _program._registerTable[fifoIndex];
+        const RegisterDescription &regDesc = _program._registerTable[fifoIndex];
 
         assert(RegisterType::Fifo == regDesc._type);
         assert(FifoType::FixedDelay == regDesc.Fifo()._type);
 
         // Read fixed-delay fifo output
-        const std::map<size_t, mlir::Value>& offsetToWire = SafeLookup(_compileContext._dataPropOut, fifoIndex);
+        const std::map<size_t, mlir::Value> &offsetToWire = SafeLookup(_compileContext._dataPropOut, fifoIndex);
 
         // Extract subsets of the fifo values
         for (size_t i = 0; i < op._dst.size(); i++)
         {
-            const DestinationOperand& dstOp = op._dst[i];
+            const DestinationOperand &dstOp = op._dst[i];
 
             const size_t offset = op._flags._queueRegisters._offsets->at(i);
 
             const size_t dstOpWidth = dstOp.Width(_program);
 
-            const mlir::Value& srcWire = SafeLookup(offsetToWire, offset);
+            const mlir::Value &srcWire = SafeLookup(offsetToWire, offset);
 
             const size_t wireWidth =
                 GetMlirTypeWidth(mlir::cast<circt::hw::InOutType>(srcWire.getType()).getElementType());
@@ -9720,7 +9725,7 @@ class VerilogCompiler
         }
     }
 
-    void CompileAssertCirct(const Operation& op, const bool preStartCondition)
+    void CompileAssertCirct(const Operation &op, const bool preStartCondition)
     {
         assert(Opcode::Assert == op._opcode);
         assert(op._src.size() > 1);
@@ -9728,9 +9733,9 @@ class VerilogCompiler
         assert(0 == op._dst.size());
         assert(_compileContext._triggeredOpHelper);
 
-        TriggeredOpHelper& triggeredOpHelper = *_compileContext._triggeredOpHelper;
+        TriggeredOpHelper &triggeredOpHelper = *_compileContext._triggeredOpHelper;
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
@@ -9772,15 +9777,15 @@ class VerilogCompiler
         }
     }
 
-    void CompilePrintCirct(const Operation& op)
+    void CompilePrintCirct(const Operation &op)
     {
         assert(Opcode::Print == op._opcode);
         assert(0 == op._dst.size());
         assert(_compileContext._triggeredOpHelper);
 
-        TriggeredOpHelper& triggeredOpHelper = *_compileContext._triggeredOpHelper;
+        TriggeredOpHelper &triggeredOpHelper = *_compileContext._triggeredOpHelper;
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
@@ -9793,7 +9798,7 @@ class VerilogCompiler
 
             bool first = true;
 
-            for (const PrintEntry& printEntry : *(op._flags._print._entries))
+            for (const PrintEntry &printEntry : *(op._flags._print._entries))
             {
                 if (!first)
                 {
@@ -9825,7 +9830,7 @@ class VerilogCompiler
 
             writer << "\"";
 
-            for (const PrintEntry& printEntry : *(op._flags._print._entries))
+            for (const PrintEntry &printEntry : *(op._flags._print._entries))
             {
                 switch (printEntry._type)
                 {
@@ -9849,15 +9854,15 @@ class VerilogCompiler
         }
     }
 
-    void CompileFormatStringCirct(const Operation& op)
+    void CompileFormatStringCirct(const Operation &op)
     {
         assert(Opcode::FormatString == op._opcode);
         assert(0 == op._dst.size());
         assert(_compileContext._triggeredOpHelper);
 
-        TriggeredOpHelper& triggeredOpHelper = *_compileContext._triggeredOpHelper;
+        TriggeredOpHelper &triggeredOpHelper = *_compileContext._triggeredOpHelper;
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
@@ -9865,13 +9870,14 @@ class VerilogCompiler
 
         const mlir::Value condition =
             circt::comb::AndOp::create(opb, GetUnknownLocation(), triggeredOpHelper.GetEnableSignal(),
-                                           triggeredOpHelper.GetSourceOperand(op, 1, 1), TwoState);
+                                       triggeredOpHelper.GetSourceOperand(op, 1, 1), TwoState);
 
         writer << "if (" << condition << ") ";
 
         writer << "string_table.allocate(";
 
-        const auto emitString = [&](const std::string& literal) { writer << literal; };
+        const auto emitString = [&](const std::string &literal)
+        { writer << literal; };
 
         const auto emitSrcOp = [&](size_t operandIdx)
         { writer << triggeredOpHelper.GetSourceOperand(op, operandIdx, op._src.at(operandIdx).Width(_program)); };
@@ -9881,16 +9887,16 @@ class VerilogCompiler
         writer << ", " << triggeredOpHelper.GetSourceOperand(op, 0, c_stringHandleWidth) << ");";
     }
 
-    void CompileFormatEnumCirct(const Operation& op)
+    void CompileFormatEnumCirct(const Operation &op)
     {
         assert(Opcode::FormatEnum == op._opcode);
         assert(0 == op._dst.size());
         assert(3 == op._src.size());
         assert(_compileContext._triggeredOpHelper);
 
-        TriggeredOpHelper& triggeredOpHelper = *_compileContext._triggeredOpHelper;
+        TriggeredOpHelper &triggeredOpHelper = *_compileContext._triggeredOpHelper;
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
@@ -9898,7 +9904,7 @@ class VerilogCompiler
 
         const mlir::Value condition =
             circt::comb::AndOp::create(opb, GetUnknownLocation(), triggeredOpHelper.GetEnableSignal(),
-                                           triggeredOpHelper.GetSourceOperand(op, 1, 1), TwoState);
+                                       triggeredOpHelper.GetSourceOperand(op, 1, 1), TwoState);
 
         writer << "if (" << condition << ") begin ";
 
@@ -9906,7 +9912,7 @@ class VerilogCompiler
 
         writer << "case (" << triggeredOpHelper.GetSourceOperand(op, 2, op._src[2].Width(_program)) << ")";
 
-        for (const FormatEnumEntry& entry : *op._flags._formatEnum._entries)
+        for (const FormatEnumEntry &entry : *op._flags._formatEnum._entries)
         {
             writer << entry.second << " : __enumString = \"" << entry.first << "\";";
         }
@@ -9925,7 +9931,7 @@ class VerilogCompiler
         writer << " end";
     }
 
-    void CompileReferenceStringCirct(const Operation& op)
+    void CompileReferenceStringCirct(const Operation &op)
     {
         assert(Opcode::ReferenceString == op._opcode);
         assert(3 == op._src.size());
@@ -9933,23 +9939,23 @@ class VerilogCompiler
 
         assert(_compileContext._triggeredOpHelper);
 
-        TriggeredOpHelper& triggeredOpHelper = *_compileContext._triggeredOpHelper;
+        TriggeredOpHelper &triggeredOpHelper = *_compileContext._triggeredOpHelper;
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
         VerbatimWriter writer(opb, opLocation);
 
-        const mlir::Value enableAndPredicate = circt::comb::AndOp::create(opb, 
-            opLocation, triggeredOpHelper.GetEnableSignal(), triggeredOpHelper.GetSourceOperand(op, 0, 1), TwoState);
+        const mlir::Value enableAndPredicate = circt::comb::AndOp::create(opb,
+                                                                          opLocation, triggeredOpHelper.GetEnableSignal(), triggeredOpHelper.GetSourceOperand(op, 0, 1), TwoState);
 
         writer << "string_table.reference_string(" << triggeredOpHelper.GetSourceOperand(op, 1, c_stringHandleWidth)
                << ", " << triggeredOpHelper.GetSourceOperand(op, 2, c_stringReferenceBits) << ", " << enableAndPredicate
                << ");";
     }
 
-    void CompileAssertStringEqualCirct(const Operation& op)
+    void CompileAssertStringEqualCirct(const Operation &op)
     {
         assert(Opcode::AssertStringEqual == op._opcode);
         assert(3 == op._src.size());
@@ -9957,23 +9963,23 @@ class VerilogCompiler
 
         assert(_compileContext._triggeredOpHelper);
 
-        TriggeredOpHelper& triggeredOpHelper = *_compileContext._triggeredOpHelper;
+        TriggeredOpHelper &triggeredOpHelper = *_compileContext._triggeredOpHelper;
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
         VerbatimWriter writer(opb, opLocation);
 
-        const mlir::Value enableAndPredicate = circt::comb::AndOp::create(opb, 
-            opLocation, triggeredOpHelper.GetEnableSignal(), triggeredOpHelper.GetSourceOperand(op, 0, 1), TwoState);
+        const mlir::Value enableAndPredicate = circt::comb::AndOp::create(opb,
+                                                                          opLocation, triggeredOpHelper.GetEnableSignal(), triggeredOpHelper.GetSourceOperand(op, 0, 1), TwoState);
 
         writer << "string_table.assert_strings_equal(" << triggeredOpHelper.GetSourceOperand(op, 1, c_stringHandleWidth)
                << ", " << triggeredOpHelper.GetSourceOperand(op, 2, c_stringHandleWidth) << ", " << enableAndPredicate
                << ", \"" << EscapeSpecialChars(op._flags._assertion._message) << "\");";
     }
 
-    void CompileStringCountCirct(const Operation& op)
+    void CompileStringCountCirct(const Operation &op)
     {
         assert(Opcode::StringCount == op._opcode);
         assert(0 == op._src.size());
@@ -9981,25 +9987,25 @@ class VerilogCompiler
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         // Counting the number of strings
         // in the string table is not supported, just return 0
         StoreValueIntoDestOperand(op, 0, GetTypedZeros(opb, opLocation, GetIntegerType(op._dst[0].Width(_program))));
     }
 
-    void CompileWriteGlobalCirct(const Operation& op, const bool preStartCondition)
+    void CompileWriteGlobalCirct(const Operation &op, const bool preStartCondition)
     {
         assert(Opcode::WriteGlobal == op._opcode);
         assert(1 == op._dst.size());
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const size_t dstReg = op._dst[0].GetAccessedRegister()._registerIndex;
 
-        const RegisterDescription::GlobalDesc& globalDesc = _program._registerTable[dstReg].Global();
+        const RegisterDescription::GlobalDesc &globalDesc = _program._registerTable[dstReg].Global();
 
         const size_t writeIndex = op._dst[0].GetWriteIndex();
 
@@ -10019,13 +10025,13 @@ class VerilogCompiler
                                      preStartCondition));
     }
 
-    void CompileLoadMemoryCirct(const Operation& op)
+    void CompileLoadMemoryCirct(const Operation &op)
     {
         assert(Opcode::LoadMemory == op._opcode);
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const size_t loadStage = _compileContext._stage->_atomicSequence;
 
@@ -10042,9 +10048,9 @@ class VerilogCompiler
 
         const bool useInputRegister = op._flags._loadMemory._readLatency > 0;
 
-        const AccessedRegister& src0 = op._src[0].GetAccessedRegister();
+        const AccessedRegister &src0 = op._src[0].GetAccessedRegister();
 
-        const RegisterDescription& memoryDesc = _program._registerTable[src0._registerIndex];
+        const RegisterDescription &memoryDesc = _program._registerTable[src0._registerIndex];
         assert(memoryDesc._type == RegisterType::Memory);
 
         const bool ecc = memoryDesc.Memory()._ecc;
@@ -10129,7 +10135,7 @@ class VerilogCompiler
             {
                 const size_t dstOpIndex = i + numDataElements;
 
-                const DestinationOperand& dstOp = op._dst[dstOpIndex];
+                const DestinationOperand &dstOp = op._dst[dstOpIndex];
 
                 // Handles the cases where ECC data is not read
                 if (RegisterType::BitBucket !=
@@ -10143,14 +10149,14 @@ class VerilogCompiler
         }
     }
 
-    void CompileStoreMemoryCirct(const Operation& op)
+    void CompileStoreMemoryCirct(const Operation &op)
     {
         assert(Opcode::StoreMemory == op._opcode);
         assert(1 == op._dst.size());
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         // Address, data, write-enable are computed in the previous pipeline stage
         // ensure that the current stage will be CompileContext
@@ -10158,9 +10164,9 @@ class VerilogCompiler
 
         _compileContext.SetCurrentStage(_compileContext.GetLastStage(_compileContext._stage->_atomicSequence - 1));
 
-        const AccessedRegister& dst = op._dst[0].GetAccessedRegister();
+        const AccessedRegister &dst = op._dst[0].GetAccessedRegister();
 
-        const RegisterDescription& dstDesc = _program._registerTable[dst._registerIndex];
+        const RegisterDescription &dstDesc = _program._registerTable[dst._registerIndex];
         assert(dstDesc._type == RegisterType::Memory);
 
         const bool isPredicated = op._flags._storeMemory._isPredicated;
@@ -10202,17 +10208,17 @@ class VerilogCompiler
             combinedWriteData);
     }
 
-    void CompileCycleCounterCirct(const Operation& op)
+    void CompileCycleCounterCirct(const Operation &op)
     {
         assert(Opcode::CycleCounter == op._opcode);
         assert(0 == op._src.size());
         assert(1 == op._dst.size());
 
-        const BasicBlock& basicBlock = *_compileContext._basicBlock;
+        const BasicBlock &basicBlock = *_compileContext._basicBlock;
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         // Create a wire outside of the pipeline
         // and assign it to the cycle counter
@@ -10231,9 +10237,9 @@ class VerilogCompiler
             const std::string wireName =
                 std::string("cycle_count_wire") + std::to_string(_compileContext._stage->_atomicSequence);
 
-            cycleCountWire = circt::sv::WireOp::create(opb, 
-                opLocation, _compileContext._cycleCountReg.getType(), StringToStringAttr(wireName),
-                GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), wireName));
+            cycleCountWire = circt::sv::WireOp::create(opb,
+                                                       opLocation, _compileContext._cycleCountReg.getType(), StringToStringAttr(wireName),
+                                                       GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), wireName));
 
             circt::sv::AssignOp::create(opb, opLocation, cycleCountWire, _compileContext._cycleCountReg);
 
@@ -10251,7 +10257,7 @@ class VerilogCompiler
         StoreValueIntoDestOperand(op, 0, cycleCount);
     }
 
-    void CompileReadSelectedFifoCirct(const Operation& op)
+    void CompileReadSelectedFifoCirct(const Operation &op)
     {
         assert(Opcode::ReadSelectedFifo == op._opcode);
         assert(GetCurrentBasicBlock()._inputFifoCount == op._src.size());
@@ -10265,7 +10271,7 @@ class VerilogCompiler
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Value selectIndex =
             AdjustValueWidth(_compileContext._selectedFifoIndex, selectIndexWidth, false, opb, opLocation);
@@ -10282,7 +10288,7 @@ class VerilogCompiler
         StoreValueIntoDestOperand(op, 0, result);
     }
 
-    void CompileStartConditionCirct(const Operation& op)
+    void CompileStartConditionCirct(const Operation &op)
     {
         assert(Opcode::StartCondition == op._opcode);
         assert(1 == op._src.size());
@@ -10290,23 +10296,23 @@ class VerilogCompiler
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Value condition = SourceOperandToMlirValue(op, 0, 1);
 
         circt::sv::AssignOp::create(opb, opLocation, _compileContext._startConditionWire, condition);
     }
 
-    void CompileStallCheckCirct(const Operation& op)
+    void CompileStallCheckCirct(const Operation &op)
     {
         assert(GetCodeGenConfig()._stall > 0);
         assert(Opcode::StallCheck == op._opcode);
         assert(1 == op._src.size());
 
-        const BasicBlock& basicBlock = *_compileContext._basicBlock;
+        const BasicBlock &basicBlock = *_compileContext._basicBlock;
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const std::vector<size_t> threshold = _stallRateThresholdGenerator2.Next();
         assert(threshold.size() == 5);
@@ -10317,8 +10323,8 @@ class VerilogCompiler
         {
             if (i < threshold.size())
             {
-                iVal = circt::hw::ConstantOp::create(opb, 
-                    opLocation, opb.getIntegerAttr(opb.getIntegerType(LfsrWidth), threshold[i]));
+                iVal = circt::hw::ConstantOp::create(opb,
+                                                     opLocation, opb.getIntegerAttr(opb.getIntegerType(LfsrWidth), threshold[i]));
             }
             else
             {
@@ -10348,42 +10354,42 @@ class VerilogCompiler
         const mlir::Value lfsrValue = instance.GetPortValue("lfsr_out");
 
         // compare with LFSR output and register the result
-        const mlir::Value lfsrGeThresholdFinal = circt::comb::ICmpOp::create(opb, 
-            opLocation, circt::comb::ICmpPredicate::uge, lfsrValue, thresholdFinal, TwoState);
+        const mlir::Value lfsrGeThresholdFinal = circt::comb::ICmpOp::create(opb,
+                                                                             opLocation, circt::comb::ICmpPredicate::uge, lfsrValue, thresholdFinal, TwoState);
 
-        circt::seq::CompRegOp stallCompareReg = circt::seq::CompRegOp::create(opb, 
-            opLocation, lfsrGeThresholdFinal, _compileContext.PortNameToValue("clk"),
-            _compileContext.PortNameToValue("rst"),
-            circt::hw::ConstantOp::create(opb, opLocation, opb.getIntegerAttr(opb.getI1Type(), 0)),
-            GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "stall_compare_ff"));
+        circt::seq::CompRegOp stallCompareReg = circt::seq::CompRegOp::create(opb,
+                                                                              opLocation, lfsrGeThresholdFinal, _compileContext.PortNameToValue("clk"),
+                                                                              _compileContext.PortNameToValue("rst"),
+                                                                              circt::hw::ConstantOp::create(opb, opLocation, opb.getIntegerAttr(opb.getI1Type(), 0)),
+                                                                              GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "stall_compare_ff"));
         // write back to destination operand
         StoreValueIntoDestOperand(op, 0, stallCompareReg);
     }
 
-    void CompileBypassMemoryCirct(const Operation& op)
+    void CompileBypassMemoryCirct(const Operation &op)
     {
         assert(Opcode::BypassMemory == op._opcode);
         assert(op._src.size() == (op._dst.size() + 1));
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
         const size_t numOperands = op._dst.size();
 
-        const BypassStoreGroupRecord& bsgr =
+        const BypassStoreGroupRecord &bsgr =
             SafeLookup(_compileContext._bypassStoreMap, op._flags._bypassMemory._bypassGroupIndex);
 
         const size_t writePort = bsgr._writePort;
 
-        const Operation& loadMemoryOp = *(SafeLookup(bsgr._loadMemoryMap, op._flags._bypassMemory._loadMemoryKey));
+        const Operation &loadMemoryOp = *(SafeLookup(bsgr._loadMemoryMap, op._flags._bypassMemory._loadMemoryKey));
         assert(Opcode::LoadMemory == loadMemoryOp._opcode);
 
         // Time from the cycle where the address is presented, until where bypass occurs
         assert(bsgr._bypassStage >= bsgr._loadStage);
         const size_t readLatencyForBypass = (bsgr._bypassStage - bsgr._loadStage) + 1;
 
-        const RegisterDescription& memoryDesc = _program._registerTable[bsgr._memoryIndex];
+        const RegisterDescription &memoryDesc = _program._registerTable[bsgr._memoryIndex];
 
         const BypassAndWriteDelay bawd = CalculateMemoryBypassAndWriteDelay(true, readLatencyForBypass, memoryDesc);
 
@@ -10459,7 +10465,8 @@ class VerilogCompiler
             return inputValue;
         };
 
-        const auto generateInputAddress = [&]() { return SourceOperandToMlirValue(op, 0, addressWidth); };
+        const auto generateInputAddress = [&]()
+        { return SourceOperandToMlirValue(op, 0, addressWidth); };
 
         const mlir::Value inputValue =
             GenerateNonPipelinedValueAtStage(opLocation, readDataEarly ? 1 : 0, generateInputValue);
@@ -10509,17 +10516,17 @@ class VerilogCompiler
         }
     }
 
-    void CompileInlineExternalModuleCirct(const Operation& op)
+    void CompileInlineExternalModuleCirct(const Operation &op)
     {
         assert(Opcode::InlineExternalModule == op._opcode);
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const size_t externalModuleIndex = op._flags._callInlineExternalModule._externalModuleIndex;
 
-        const ExternalModuleCall& externModuleCall = _program._externalModuleCalls[externalModuleIndex];
+        const ExternalModuleCall &externModuleCall = _program._externalModuleCalls[externalModuleIndex];
 
         assert(externModuleCall._srcOperandWidths.size() == op._src.size());
 
@@ -10666,7 +10673,7 @@ class VerilogCompiler
 
             for (size_t i = 0; i < op._dst.size(); i++)
             {
-                const DestinationOperand& dstOp = op._dst[i];
+                const DestinationOperand &dstOp = op._dst[i];
 
                 const size_t dstReg = dstOp.GetAccessedRegister()._registerIndex;
 
@@ -10694,7 +10701,7 @@ class VerilogCompiler
         }
     }
 
-    void CompileOperationCirct(const Operation& op, const bool preStartCondition)
+    void CompileOperationCirct(const Operation &op, const bool preStartCondition)
     {
         switch (op._opcode)
         {
@@ -10847,9 +10854,9 @@ class VerilogCompiler
         }
     }
 
-    std::string ToString(const AccessedRegister& reg, const RegisterAccessType accessType) const
+    std::string ToString(const AccessedRegister &reg, const RegisterAccessType accessType) const
     {
-        const RegisterDescription& regDesc = _program._registerTable[reg._registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[reg._registerIndex];
 
         std::ostringstream str;
 
@@ -10945,9 +10952,9 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::string ToString(const FifoSubset& fifo, const RegisterAccessType accessType) const
+    std::string ToString(const FifoSubset &fifo, const RegisterAccessType accessType) const
     {
-        const RegisterDescription& regDesc = _program._registerTable[fifo._registerIndex];
+        const RegisterDescription &regDesc = _program._registerTable[fifo._registerIndex];
 
         std::ostringstream str;
 
@@ -10986,7 +10993,7 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::string ToString(const DestinationOperand& destOp, SourceWriter& writer,
+    std::string ToString(const DestinationOperand &destOp, SourceWriter &writer,
                          const DestOpToStringMode mode = DestOpToStringMode::Default)
     {
         switch (destOp.Type())
@@ -10995,7 +11002,7 @@ class VerilogCompiler
         {
             const size_t registerIndex = destOp.GetAccessedRegister()._registerIndex;
 
-            const RegisterDescription& regDesc = _program._registerTable[registerIndex];
+            const RegisterDescription &regDesc = _program._registerTable[registerIndex];
 
             if (RegisterType::Global == regDesc._type)
             {
@@ -11044,13 +11051,13 @@ class VerilogCompiler
         }
     }
 
-    std::string SourceOpToString(const Operation& op, const size_t operandIndex, const size_t desiredWidth,
+    std::string SourceOpToString(const Operation &op, const size_t operandIndex, const size_t desiredWidth,
                                  const SourceOpToStringMode modeIn = SourceOpToStringMode::Default,
-                                 const bool promoteToSigned = false, bool* madeSigned = nullptr) const
+                                 const bool promoteToSigned = false, bool *madeSigned = nullptr) const
     {
         std::ostringstream str;
 
-        const SourceOperand& sourceOperand = op._src[operandIndex];
+        const SourceOperand &sourceOperand = op._src[operandIndex];
 
         const bool signExtend = op._signExtendSourceMask & (1ull << operandIndex);
 
@@ -11195,13 +11202,13 @@ class VerilogCompiler
     }
 
     // Returns bits [0,n] of a source operand
-    std::string SourceOpSubsetToString(const Operation& op, const size_t operandIndex, const size_t desiredWidth) const
+    std::string SourceOpSubsetToString(const Operation &op, const size_t operandIndex, const size_t desiredWidth) const
     {
         assert(desiredWidth > 0);
 
         std::ostringstream str;
 
-        const SourceOperand& sourceOperand = op._src[operandIndex];
+        const SourceOperand &sourceOperand = op._src[operandIndex];
 
         switch (sourceOperand.Type())
         {
@@ -11235,13 +11242,13 @@ class VerilogCompiler
     }
 
     // Returns true if a given source operand was computed on an earlier pipeline stage
-    bool IsPipelineRegisterNextValueAvailableCirct(const Operation& op, const size_t operandIndex) const
+    bool IsPipelineRegisterNextValueAvailableCirct(const Operation &op, const size_t operandIndex) const
     {
         bool result = false;
 
         assert(operandIndex < op._src.size());
 
-        const SourceOperand& srcOp = op._src[operandIndex];
+        const SourceOperand &srcOp = op._src[operandIndex];
 
         if (SourceOperandType::Register == srcOp.Type())
         {
@@ -11252,10 +11259,10 @@ class VerilogCompiler
                 // Get the operation that produced the operand
                 const mlir::Value operandValue = SafeLookup(_compileContext._regToValue, registerIndex);
 
-                mlir::Operation* const defOp = operandValue.getDefiningOp();
+                mlir::Operation *const defOp = operandValue.getDefiningOp();
                 assert(defOp);
 
-                mlir::Block* const block = defOp->getBlock();
+                mlir::Block *const block = defOp->getBlock();
 
                 const auto it = _compileContext._blockToStageIndex.find(block);
                 if (it != _compileContext._blockToStageIndex.end())
@@ -11292,7 +11299,7 @@ class VerilogCompiler
     {
         std::ostringstream str;
 
-        const RegisterDescription& regDesc = _program._registerTable[index];
+        const RegisterDescription &regDesc = _program._registerTable[index];
 
         str << GetModuleNamePrefix() << "global_var_";
 
@@ -11312,9 +11319,9 @@ class VerilogCompiler
     // generateStageOffset = 0 means to generate the value at the current pipeline stage
     // generateStageOffset = 1 means to generate the value at the previous pipeline stage
     mlir::Value GenerateNonPipelinedValueAtStage(const mlir::Location location, const size_t generateStageOffset,
-                                                 const std::function<mlir::Value(void)>& callback)
+                                                 const std::function<mlir::Value(void)> &callback)
     {
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const size_t currStageIndex = _compileContext._stage->_atomicSequence;
 
@@ -11329,7 +11336,7 @@ class VerilogCompiler
             // Restore current pipeline stage at the end of this scope
             RestoreContextStage restoreStage(_compileContext);
 
-            const Stage* const targetStage = _compileContext.GetLastStage(generateStageIndex);
+            const Stage *const targetStage = _compileContext.GetLastStage(generateStageIndex);
 
             _compileContext.SetCurrentStage(targetStage);
 
@@ -11343,8 +11350,8 @@ class VerilogCompiler
             resultTypes.push_back(resultInPrevStage.getType());
             resultValues.push_back(resultInPrevStage);
 
-            circt::pipeline::LatencyOp latencyOp = circt::pipeline::LatencyOp::create(opb, 
-                location, resultTypes, opb.getIntegerAttr(opb.getI32Type(), generateStageOffset));
+            circt::pipeline::LatencyOp latencyOp = circt::pipeline::LatencyOp::create(opb,
+                                                                                      location, resultTypes, opb.getIntegerAttr(opb.getI32Type(), generateStageOffset));
 
             latencyOp.getBody().emplaceBlock();
 
@@ -11367,7 +11374,7 @@ class VerilogCompiler
         return result;
     }
 
-    void AddGlobalDebugSignal(const std::string& container, const std::string& signal)
+    void AddGlobalDebugSignal(const std::string &container, const std::string &signal)
     {
         JsonValue debugSignal = JsonValue::CreateObject();
 
@@ -11377,7 +11384,7 @@ class VerilogCompiler
         _jsonDebugSignals.PushBack(debugSignal);
     }
 
-    void AddBasicBlockDebugSignal(const std::string& name)
+    void AddBasicBlockDebugSignal(const std::string &name)
     {
         assert(_compileContext._basicBlockDebugSignals);
 
@@ -11388,7 +11395,7 @@ class VerilogCompiler
         _compileContext._basicBlockDebugSignals->PushBack(debugSignal);
     }
 
-    void AddBasicBlockDebugInstance(const std::string& name)
+    void AddBasicBlockDebugInstance(const std::string &name)
     {
         assert(_compileContext._basicBlockDebugInstances);
 
@@ -11401,7 +11408,7 @@ class VerilogCompiler
 
     void OpenCirctBasicBlock()
     {
-        const BasicBlock& basicBlock = *_compileContext._basicBlock;
+        const BasicBlock &basicBlock = *_compileContext._basicBlock;
 
         mlir::Location mlirBbLocation = LocationToCirctLocation(basicBlock._location);
 
@@ -11414,7 +11421,7 @@ class VerilogCompiler
 
         llvm::SmallVector<circt::hw::PortInfo> basicBlockPorts;
 
-        for (const BasicBlockPortInfo& pi : _compileContext._basicBlockPorts)
+        for (const BasicBlockPortInfo &pi : _compileContext._basicBlockPorts)
         {
             basicBlockPorts.push_back(pi._portInfo);
         }
@@ -11426,7 +11433,7 @@ class VerilogCompiler
 
         SafeInsert(_nameToHwModule, moduleName, _compileContext._hwModule);
 
-        mlir::Block* const hwModuleBodyBlock = _compileContext._hwModule.getBodyBlock();
+        mlir::Block *const hwModuleBodyBlock = _compileContext._hwModule.getBodyBlock();
 
         // Remove the default terminator in the module
         // It will be replaced with an OutputOp
@@ -11457,15 +11464,15 @@ class VerilogCompiler
             circt::Backedge backedge = beb.get(opb.getI64Type());
 
             // Add 1 each clock cycle
-            const mlir::Value plusOne = circt::comb::AddOp::create(opb, 
-                mlirBbLocation, backedge, circt::hw::ConstantOp::create(opb, mlirBbLocation, opb.getI64IntegerAttr(1)),
-                TwoState);
+            const mlir::Value plusOne = circt::comb::AddOp::create(opb,
+                                                                   mlirBbLocation, backedge, circt::hw::ConstantOp::create(opb, mlirBbLocation, opb.getI64IntegerAttr(1)),
+                                                                   TwoState);
 
-            const mlir::Value cycleCountReg = circt::seq::CompRegOp::create(opb, 
-                mlirBbLocation, plusOne, hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Clock)),
-                hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Reset)),
-                circt::hw::ConstantOp::create(opb, mlirBbLocation, opb.getI64IntegerAttr(0)), // reset value
-                GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "cycle_count_ff"));
+            const mlir::Value cycleCountReg = circt::seq::CompRegOp::create(opb,
+                                                                            mlirBbLocation, plusOne, hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Clock)),
+                                                                            hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Reset)),
+                                                                            circt::hw::ConstantOp::create(opb, mlirBbLocation, opb.getI64IntegerAttr(0)), // reset value
+                                                                            GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "cycle_count_ff"));
 
             backedge.setValue(cycleCountReg);
 
@@ -11474,16 +11481,16 @@ class VerilogCompiler
 
         size_t inputPortIndex = 0;
 
-        for (const BasicBlockPortInfo& pi : _compileContext._basicBlockPorts)
+        for (const BasicBlockPortInfo &pi : _compileContext._basicBlockPorts)
         {
             SafeInsert(_compileContext._portNameToInfo, pi._portInfo.name.str(), pi._portInfo);
 
             if (pi._portInfo.dir == circt::hw::ModulePort::Direction::Output)
             {
                 // Create a logicop that the will be connected to the output port
-                const mlir::Value logicOp = circt::sv::LogicOp::create(opb, 
-                    mlirBbLocation, pi._portInfo.type, pi._portInfo.name,
-                    GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), pi._portInfo.name.str()));
+                const mlir::Value logicOp = circt::sv::LogicOp::create(opb,
+                                                                       mlirBbLocation, pi._portInfo.type, pi._portInfo.name,
+                                                                       GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), pi._portInfo.name.str()));
 
                 SafeInsert(_compileContext._moduleOutputWireMap, pi._portInfo.name.str(), logicOp);
             }
@@ -11532,17 +11539,17 @@ class VerilogCompiler
             circt::Backedge backedge = beb.get(opb.getIntegerType(3));
 
             // register threshold_sel_in when threshold_sel_valid_in is 1'b1
-            const mlir::Value thresholdSelMux = circt::comb::MuxOp::create(opb, 
-                mlirBbLocation, _compileContext.PortNameToValue("threshold_sel_valid_in"),
-                _compileContext.PortNameToValue("threshold_sel_in"), backedge, TwoState);
+            const mlir::Value thresholdSelMux = circt::comb::MuxOp::create(opb,
+                                                                           mlirBbLocation, _compileContext.PortNameToValue("threshold_sel_valid_in"),
+                                                                           _compileContext.PortNameToValue("threshold_sel_in"), backedge, TwoState);
 
             const size_t defaultRateSelector = GetCodeGenConfig()._stall;
-            circt::seq::CompRegOp thresholdSelReg = circt::seq::CompRegOp::create(opb, 
-                mlirBbLocation, thresholdSelMux, _compileContext.PortNameToValue("clk"),
-                _compileContext.PortNameToValue("rst"),
-                circt::hw::ConstantOp::create(opb, mlirBbLocation,
-                                                  opb.getIntegerAttr(opb.getIntegerType(3), defaultRateSelector)),
-                GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "threshold_sel_ff"));
+            circt::seq::CompRegOp thresholdSelReg = circt::seq::CompRegOp::create(opb,
+                                                                                  mlirBbLocation, thresholdSelMux, _compileContext.PortNameToValue("clk"),
+                                                                                  _compileContext.PortNameToValue("rst"),
+                                                                                  circt::hw::ConstantOp::create(opb, mlirBbLocation,
+                                                                                                                opb.getIntegerAttr(opb.getIntegerType(3), defaultRateSelector)),
+                                                                                  GetFullyQualifiedStringAttr(basicBlock.GetObjectPath(), "threshold_sel_ff"));
 
             backedge.setValue(thresholdSelReg);
 
@@ -11550,7 +11557,7 @@ class VerilogCompiler
 
             _compileContext._thresholdSelWire =
                 circt::sv::WireOp::create(opb, mlirBbLocation, thresholdSelReg.getType(), StringToStringAttr(wireName),
-                                              GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), wireName));
+                                          GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), wireName));
 
             circt::sv::AssignOp::create(opb, mlirBbLocation, _compileContext._thresholdSelWire, thresholdSelReg);
         }
@@ -11560,15 +11567,15 @@ class VerilogCompiler
 
         // Setting the "name" field of ScheduledPipelineOp's build method to an empty string to remove the p0_* prefix
         // on the pipeline register.
-        _compileContext._circtPipeline = circt::pipeline::ScheduledPipelineOp::create(opb, 
-            mlirBbLocation, pipelineResultTypes, pipelineInputValues, opb.getArrayAttr(inputNames),
-            opb.getArrayAttr(outputNames), hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Clock)),
-            startNewThreadResult._startNewThread,
-            hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Reset)));
+        _compileContext._circtPipeline = circt::pipeline::ScheduledPipelineOp::create(opb,
+                                                                                      mlirBbLocation, pipelineResultTypes, pipelineInputValues, opb.getArrayAttr(inputNames),
+                                                                                      opb.getArrayAttr(outputNames), hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Clock)),
+                                                                                      startNewThreadResult._startNewThread,
+                                                                                      hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Reset)));
 
         // Pipeline stages
         // The first pipeline stage is created with the pipeline
-        mlir::Block* const firstStage = _compileContext._circtPipeline.getEntryStage();
+        mlir::Block *const firstStage = _compileContext._circtPipeline.getEntryStage();
 
         _compileContext._blockToStageIndex[firstStage] = 0;
 
@@ -11576,29 +11583,29 @@ class VerilogCompiler
 
         while (_compileContext._circtPipeline.getStages().size() <= basicBlock._stages.back()._atomicSequence)
         {
-            mlir::Block* const newStage = _compileContext._circtPipeline.addStage();
+            mlir::Block *const newStage = _compileContext._circtPipeline.addStage();
 
             _compileContext._blockToStageIndex[newStage] = _compileContext._circtPipeline.getStages().size() - 1;
 
             _compileContext._lastPipelineStage = newStage;
         }
 
-        _compileContext._clock = circt::seq::FromClockOp::create(opb, 
-            mlirBbLocation, hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Clock)));
+        _compileContext._clock = circt::seq::FromClockOp::create(opb,
+                                                                 mlirBbLocation, hwModuleBodyBlock->getArgument(static_cast<size_t>(CirctModulePort::Clock)));
     }
 
     void CloseCirctBasicBlock()
     {
-        const BasicBlock& basicBlock = *_compileContext._basicBlock;
+        const BasicBlock &basicBlock = *_compileContext._basicBlock;
 
         const mlir::Location mlirBbLocation = LocationToCirctLocation(basicBlock._location);
 
         circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(_compileContext._hwModule.getBodyBlock());
 
         // Terminate all stages with StageOp or ReturnOp
-        mlir::Block* prevStage = nullptr;
+        mlir::Block *prevStage = nullptr;
 
-        for (mlir::Block& stage : _compileContext._circtPipeline.getStages())
+        for (mlir::Block &stage : _compileContext._circtPipeline.getStages())
         {
             circt::OpBuilder::InsertionGuard g(opb);
 
@@ -11606,9 +11613,9 @@ class VerilogCompiler
             {
                 opb.setInsertionPointToEnd(prevStage);
 
-                circt::pipeline::StageOp stageOp = circt::pipeline::StageOp::create(opb, 
-                    mlirBbLocation, &stage, llvm::ArrayRef<mlir::Value>({}), // registers
-                    llvm::ArrayRef<mlir::Value>({}));                        // passthroughs
+                circt::pipeline::StageOp stageOp = circt::pipeline::StageOp::create(opb,
+                                                                                    mlirBbLocation, &stage, llvm::ArrayRef<mlir::Value>({}), // registers
+                                                                                    llvm::ArrayRef<mlir::Value>({}));                        // passthroughs
             }
 
             if (&stage == _compileContext._lastPipelineStage)
@@ -11616,9 +11623,9 @@ class VerilogCompiler
                 opb.setInsertionPointToEnd(&stage);
 
                 // Return the stage valid bit, to ensure the entire pipeline is not optimized away
-                circt::pipeline::ReturnOp rop = circt::pipeline::ReturnOp::create(opb, 
-                    mlirBbLocation,
-                    llvm::ArrayRef<mlir::Value>({_compileContext._circtPipeline.getStageEnableSignal(&stage)}));
+                circt::pipeline::ReturnOp rop = circt::pipeline::ReturnOp::create(opb,
+                                                                                  mlirBbLocation,
+                                                                                  llvm::ArrayRef<mlir::Value>({_compileContext._circtPipeline.getStageEnableSignal(&stage)}));
             }
 
             prevStage = &stage;
@@ -11627,7 +11634,7 @@ class VerilogCompiler
         // HW module output operation
         mlir::SmallVector<mlir::Value> outputs;
 
-        for (const BasicBlockPortInfo& port : _compileContext._basicBlockPorts)
+        for (const BasicBlockPortInfo &port : _compileContext._basicBlockPorts)
         {
             if (circt::hw::ModulePort::Direction::Output == port._portInfo.dir)
             {
@@ -11649,7 +11656,7 @@ class VerilogCompiler
         // Verify there are no seq.from_clock operations inside of the pipeline
         // as this causes the pipeline to register the clock signal
         _compileContext._circtPipeline.walk(
-            [](mlir::Operation* op, const mlir::WalkStage&)
+            [](mlir::Operation *op, const mlir::WalkStage &)
             {
                 if (mlir::isa<circt::seq::FromClockOp>(op))
                 {
@@ -11660,7 +11667,7 @@ class VerilogCompiler
 
     FileSourceWriter _writer;
     const std::string _svPackageFileName;
-    const Program& _program;
+    const Program &_program;
     FifoNamer _fifoNamer;
 
     const std::string _cppFileName;
@@ -11681,7 +11688,7 @@ class VerilogCompiler
 
     std::map<size_t, std::string> _localRegisterNameMap;
 
-    std::map<const ExternalClassInstance*, size_t> _externClassInstanceInspectableIndices;
+    std::map<const ExternalClassInstance *, size_t> _externClassInstanceInspectableIndices;
 
     // Old stall threshold generator providing 1 threshold value(pipeline stall still uses it)
     RandomStallRateThresholdGenerator _stallRateThresholdGenerator;
@@ -11689,7 +11696,7 @@ class VerilogCompiler
     RandomStallRateMultiThresholdGenerator _stallRateThresholdGenerator2;
 
     // Non-null when core module is being built
-    ModuleDeclarationHelper* _coreModule;
+    ModuleDeclarationHelper *_coreModule;
 
     // Maps HwModule name to the module
     std::map<std::string, circt::hw::HWModuleOp> _nameToHwModule;
@@ -11715,13 +11722,13 @@ class VerilogCompiler
 
     struct CompileContext
     {
-        const BasicBlock* _basicBlock;
-        const Stage* _stage;
-        TriggeredOpHelper* _triggeredOpHelper;
-        JsonValue* _basicBlockDebugSignals;
-        JsonValue* _basicBlockDebugInstances;
-        JsonValue* _basicBlockConstantSignals;
-        JsonValue* _basicBlockUnusedSignals;
+        const BasicBlock *_basicBlock;
+        const Stage *_stage;
+        TriggeredOpHelper *_triggeredOpHelper;
+        JsonValue *_basicBlockDebugSignals;
+        JsonValue *_basicBlockDebugInstances;
+        JsonValue *_basicBlockConstantSignals;
+        JsonValue *_basicBlockUnusedSignals;
 
         // Assignments associated with the current pipeline stage
         // can be placed into here.  They are batched into 1 always_comb per stage.
@@ -11741,10 +11748,10 @@ class VerilogCompiler
         mlir::SmallVector<BasicBlockPortInfo> _basicBlockPorts;
 
         circt::pipeline::ScheduledPipelineOp _circtPipeline;
-        mlir::Block* _lastPipelineStage;
+        mlir::Block *_lastPipelineStage;
 
         // Maps block to pipeline stage index
-        std::map<mlir::Block*, size_t> _blockToStageIndex;
+        std::map<mlir::Block *, size_t> _blockToStageIndex;
 
         // Appends to the current pipeline stage
         std::unique_ptr<circt::OpBuilder> _opBuilder;
@@ -11804,9 +11811,9 @@ class VerilogCompiler
         // Convert a port string name to an mlir value corresponding to that name
         // For inputs, this mlir value can be used as a regular operand
         // For outputs, only use sv.assign
-        mlir::Value PortNameToValue(const std::string& name)
+        mlir::Value PortNameToValue(const std::string &name)
         {
-            const circt::hw::PortInfo& portInfo = SafeLookup(_portNameToInfo, name);
+            const circt::hw::PortInfo &portInfo = SafeLookup(_portNameToInfo, name);
 
             if (portInfo.dir == circt::hw::ModulePort::Direction::Output)
             {
@@ -11846,16 +11853,16 @@ class VerilogCompiler
                     {
                         const mlir::Location mlirBbLocation = LocationToCirctLocation(_basicBlock->_location);
 
-                        circt::OpBuilder& opb = OpBuilder();
+                        circt::OpBuilder &opb = OpBuilder();
 
                         const std::string innerSymName =
                             portInfo.name.str() + "_" + std::to_string(_stage->_atomicSequence);
 
                         const size_t inputPortIndex = SafeLookup(_moduleInputPortMap, portInfo.name.str());
 
-                        mlir::Value wireOp = circt::hw::WireOp::create(opb, 
-                            mlirBbLocation, _hwModule.getBodyBlock()->getArgument(inputPortIndex), portInfo.name,
-                            GetFullyQualifiedInnerSymAttr(_basicBlock->GetObjectPath(), innerSymName));
+                        mlir::Value wireOp = circt::hw::WireOp::create(opb,
+                                                                       mlirBbLocation, _hwModule.getBodyBlock()->getArgument(inputPortIndex), portInfo.name,
+                                                                       GetFullyQualifiedInnerSymAttr(_basicBlock->GetObjectPath(), innerSymName));
 
                         SafeInsert(_inputReadWireMap, key, wireOp);
 
@@ -11878,9 +11885,9 @@ class VerilogCompiler
             return _circtPipeline.getStageEnableSignal(_stage->_atomicSequence);
         }
 
-        circt::OpBuilder& OpBuilder() { return *(_opBuilder.get()); }
+        circt::OpBuilder &OpBuilder() { return *(_opBuilder.get()); }
 
-        void SetCurrentStage(const Stage* const stage)
+        void SetCurrentStage(const Stage *const stage)
         {
             // Flush any assignments to ensure those assignments occur in the correct stage
             assert(_basicBlock);
@@ -11896,18 +11903,18 @@ class VerilogCompiler
             if (stage)
             {
                 // Create an OpBuilder pointing to the end of the new pipeline stage
-                mlir::Block* const circtStage = _circtPipeline.getStage(stage->_atomicSequence);
+                mlir::Block *const circtStage = _circtPipeline.getStage(stage->_atomicSequence);
 
                 _opBuilder->setInsertionPointToEnd(circtStage);
             }
         }
 
         // Get the last Stage with a given sequence number
-        const Stage* GetLastStage(const size_t atomicSequence)
+        const Stage *GetLastStage(const size_t atomicSequence)
         {
             for (auto it = _basicBlock->_stages.rbegin(); it != _basicBlock->_stages.rend(); ++it)
             {
-                const Stage& stage = *it;
+                const Stage &stage = *it;
 
                 if (stage._atomicSequence == atomicSequence)
                 {
@@ -11922,14 +11929,14 @@ class VerilogCompiler
     // RAII class to restore the current pipeline stage in CompileContext
     class RestoreContextStage
     {
-      public:
-        RestoreContextStage(CompileContext& context) : _context(context), _stage(context._stage) {}
+    public:
+        RestoreContextStage(CompileContext &context) : _context(context), _stage(context._stage) {}
 
         ~RestoreContextStage() { _context.SetCurrentStage(_stage); }
 
-      private:
-        CompileContext& _context;
-        const Stage* _stage;
+    private:
+        CompileContext &_context;
+        const Stage *_stage;
     };
 
     CompileContext _compileContext;
@@ -11953,7 +11960,7 @@ class VerilogCompiler
     // into a single always_comb block
     BatchAssignments _globalBatchAssignments;
 
-    circt::kanagawa::ContainerOp PathToContainer(const ObjectPath& path)
+    circt::kanagawa::ContainerOp PathToContainer(const ObjectPath &path)
     {
         assert(_coreModule);
 
@@ -11982,8 +11989,8 @@ class VerilogCompiler
 
             // The container has TopLevel = = false to prepend the design name to the container name
             // to avoid collisions between RTL modules generated by different export classes
-            circt::kanagawa::ContainerOp container = circt::kanagawa::ContainerOp::create(opb, 
-                GetUnknownLocation(), circt::hw::InnerSymAttr::get(containerNameAttr), false);
+            circt::kanagawa::ContainerOp container = circt::kanagawa::ContainerOp::create(opb,
+                                                                                          GetUnknownLocation(), circt::hw::InnerSymAttr::get(containerNameAttr), false);
 
             // Verification requires all containers to contain a `this` operation
             opb.setInsertionPointToEnd(container.getBodyBlock());
@@ -11991,9 +11998,9 @@ class VerilogCompiler
             // Add an instance of the new container to the parent
             opb.setInsertionPointToEnd(parentContainer.getBodyBlock());
 
-            circt::kanagawa::ContainerInstanceOp instance = circt::kanagawa::ContainerInstanceOp::create(opb, 
-                GetUnknownLocation(), circt::hw::InnerSymAttr::get(StringToStringAttr(path.back())),
-                circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), containerNameAttr));
+            circt::kanagawa::ContainerInstanceOp instance = circt::kanagawa::ContainerInstanceOp::create(opb,
+                                                                                                         GetUnknownLocation(), circt::hw::InnerSymAttr::get(StringToStringAttr(path.back())),
+                                                                                                         circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), containerNameAttr));
 
             SafeInsert(_pathToContainerInstance, path, ContainerAndInstance(container, instance));
         }
@@ -12002,12 +12009,12 @@ class VerilogCompiler
     }
 
     // Returns the stage enable bit, optionally ANDed with a predicate bit from the operation
-    mlir::Value GetPredicatedStageEnable(const Operation& op, const size_t predicateOperandIndex,
+    mlir::Value GetPredicatedStageEnable(const Operation &op, const size_t predicateOperandIndex,
                                          const bool isPredicated, const bool reversePredicateMeaning = false,
                                          const SourceOpToStringMode srcOpToStrMode = SourceOpToStringMode::Default,
                                          const bool preStartCondition = false)
     {
-        circt::OpBuilder& opb = _compileContext.OpBuilder();
+        circt::OpBuilder &opb = _compileContext.OpBuilder();
 
         const mlir::Location opLocation = OperationToCirctLocation(op, _program);
 
@@ -12040,7 +12047,7 @@ class VerilogCompiler
     // If any new string is a duplicate, then throws an exception
     // Used to ensure that conflicting names in the generated code
     // Uniqueness is ensured by preprending containing object names to shared variables
-    std::string ValidateUniqueName(const std::string& nameIn)
+    std::string ValidateUniqueName(const std::string &nameIn)
     {
         const auto insertResult = _uniqueNames.insert(nameIn);
 
@@ -12061,7 +12068,7 @@ class VerilogCompiler
     // so that they can be referenced by test benches
     std::string UniqueRegisterName(const size_t registerIndex)
     {
-        const RegisterDescription& regDesc = _program._registerTable.at(registerIndex);
+        const RegisterDescription &regDesc = _program._registerTable.at(registerIndex);
 
         // Only globals/memories can have stable names
         assert((RegisterType::Global == regDesc._type) || (RegisterType::Memory == regDesc._type));
@@ -12081,16 +12088,16 @@ class VerilogCompiler
         return str.str();
     }
 
-    std::string GenericContainerName(const ObjectPath& path)
+    std::string GenericContainerName(const ObjectPath &path)
     {
         return path.empty() ? _coreModule->Name() : FixupString(SerializePath(path));
     }
 };
 
-void CompileVerilog(const char* const svFileName, const char* const svPackageFileName, const char* const cppFileName,
-                    const char* const headerFileName, const char* const tclFileName,
-                    const char* const hwConfigMkFileName, const char* const memFileBase,
-                    const char* const rtlMapFileName, const char* const circtAsmFileName, const Program& program)
+void CompileVerilog(const char *const svFileName, const char *const svPackageFileName, const char *const cppFileName,
+                    const char *const headerFileName, const char *const tclFileName,
+                    const char *const hwConfigMkFileName, const char *const memFileBase,
+                    const char *const rtlMapFileName, const char *const circtAsmFileName, const Program &program)
 {
     VerilogCompiler compiler(svFileName, svPackageFileName, cppFileName, headerFileName, memFileBase, rtlMapFileName,
                              circtAsmFileName, program);
@@ -12098,17 +12105,17 @@ void CompileVerilog(const char* const svFileName, const char* const svPackageFil
     compiler.Compile();
 }
 
-ModuleInstanceHelper::ModuleInstanceHelper(VerilogCompiler& compiler, const mlir::Location& location)
+ModuleInstanceHelper::ModuleInstanceHelper(VerilogCompiler &compiler, const mlir::Location &location)
     : _verilogCompiler(compiler), _location(location)
 {
 }
 
-void ModuleInstanceHelper::SetModuleName(const std::string& name) { _moduleName = name; }
+void ModuleInstanceHelper::SetModuleName(const std::string &name) { _moduleName = name; }
 
-void ModuleInstanceHelper::SetInstanceName(const std::string& name) { _instanceName = name; }
+void ModuleInstanceHelper::SetInstanceName(const std::string &name) { _instanceName = name; }
 
-void ModuleInstanceHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
-                                   const mlir::Type& type, const std::string& value)
+void ModuleInstanceHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
+                                   const mlir::Type &type, const std::string &value)
 {
     AddPort(name, direction, type);
 
@@ -12119,31 +12126,31 @@ void ModuleInstanceHelper::AddPort(const std::string& name, const circt::hw::Mod
     }
 }
 
-void ModuleInstanceHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
-                                   const mlir::Type& type, const mlir::Value& value)
+void ModuleInstanceHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
+                                   const mlir::Type &type, const mlir::Value &value)
 {
     AddPort(name, direction, type);
 
     SafeInsert(_portNameToMlirValue, name, value);
 }
 
-void ModuleInstanceHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
-                                   const mlir::Type& type, const mlir::Value& pathToContainer,
-                                   const circt::hw::InnerSymAttr& containerPortSymbol)
+void ModuleInstanceHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
+                                   const mlir::Type &type, const mlir::Value &pathToContainer,
+                                   const circt::hw::InnerSymAttr &containerPortSymbol)
 {
     AddPort(name, direction, type);
 
     SafeInsert(_portNameToPathAndPort, name, PathAndPortName{pathToContainer, containerPortSymbol});
 }
 
-void ModuleInstanceHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
-                                   const mlir::Value& value)
+void ModuleInstanceHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
+                                   const mlir::Value &value)
 {
     AddPort(name, direction, value.getType(), value);
 }
 
-void ModuleInstanceHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
-                                   const mlir::Type& type)
+void ModuleInstanceHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
+                                   const mlir::Type &type)
 {
     SafeInsert(_portNameToIndex, name, _ports.size());
 
@@ -12154,12 +12161,12 @@ void ModuleInstanceHelper::AddPort(const std::string& name, const circt::hw::Mod
     SafeInsert(_portNameToType, name, type);
 }
 
-void ModuleInstanceHelper::AddStringParameter(const std::string& name, const std::string& value)
+void ModuleInstanceHelper::AddStringParameter(const std::string &name, const std::string &value)
 {
     AddParameter(name, mlir::NoneType::get(g_compiler->GetMlirContext()), StringToStringAttr(value));
 }
 
-void ModuleInstanceHelper::AddU64Parameter(const std::string& name, const uint64_t value)
+void ModuleInstanceHelper::AddU64Parameter(const std::string &name, const uint64_t value)
 {
     // CIRCT requires ports with parameterized widths to
     // be associated with a parameter with width exactly equal to 32
@@ -12174,7 +12181,7 @@ void ModuleInstanceHelper::AddU64Parameter(const std::string& name, const uint64
     SafeInsert(_parameterNameToU64Value, name, static_cast<size_t>(value));
 }
 
-void ModuleInstanceHelper::AddParameter(const std::string& name, const mlir::Type type, const mlir::Attribute value)
+void ModuleInstanceHelper::AddParameter(const std::string &name, const mlir::Type type, const mlir::Attribute value)
 {
     _parameterDeclarations.push_back(circt::hw::ParamDeclAttr::get(name, type));
 
@@ -12186,13 +12193,13 @@ void ModuleInstanceHelper::AddParameter(const std::string& name, const mlir::Typ
     SafeInsert(_parameterNameToType, name, type);
 }
 
-void ModuleInstanceHelper::AddBoolParameter(const std::string& name, const bool value)
+void ModuleInstanceHelper::AddBoolParameter(const std::string &name, const bool value)
 {
     AddU64Parameter(name, value ? 1 : 0);
 }
 
 // When adding ports with a parameterized width, use this type
-mlir::Type ModuleInstanceHelper::GetParameterizedIntegerType(const std::string& parameterName)
+mlir::Type ModuleInstanceHelper::GetParameterizedIntegerType(const std::string &parameterName)
 {
     return circt::hw::IntType::get(circt::hw::ParamDeclRefAttr::get(StringToStringAttr(parameterName),
                                                                     SafeLookup(_parameterNameToType, parameterName)));
@@ -12253,7 +12260,7 @@ mlir::Type ModuleInstanceHelper::ConcreteType(const mlir::Type srcType)
     }
 }
 
-void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
+void ModuleInstanceHelper::Generate(circt::OpBuilder *const opbIn)
 {
     assert(!_moduleName.empty());
     assert(!_instanceName.empty());
@@ -12271,7 +12278,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
     {
         // Choose between a new op builder pointing to HwModuleOp for the core
         // or the op builder for the current pipeline stage
-        circt::OpBuilder* opbPtr = nullptr;
+        circt::OpBuilder *opbPtr = nullptr;
 
         circt::OpBuilder coreOpb(g_compiler->GetMlirContext());
 
@@ -12283,7 +12290,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
             coreOpb = circt::OpBuilder::atBlockEnd(_verilogCompiler._coreModule->GetBodyBlock());
         }
 
-        circt::OpBuilder& opb =
+        circt::OpBuilder &opb =
             opbIn ? *opbIn
                   : (_verilogCompiler._compileContext._stage ? _verilogCompiler._compileContext.OpBuilder() : coreOpb);
 
@@ -12305,7 +12312,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
                 opb.setInsertionPointToStart(&_verilogCompiler._mlirModule.getBodyRegion().front());
 
                 circt::hw::HWModuleExternOp::create(opb, _location, StringToStringAttr(_moduleName), _ports,
-                                                        mlir::StringRef{}, opb.getArrayAttr(_parameterDeclarations));
+                                                    mlir::StringRef{}, opb.getArrayAttr(_parameterDeclarations));
 
                 SafeInsert(_verilogCompiler._circtExternalModules, _moduleName, _portNameToType);
             }
@@ -12333,7 +12340,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
 
                 assert(portIndex < _ports.size());
 
-                const circt::hw::PortInfo& port = _ports[portIndex];
+                const circt::hw::PortInfo &port = _ports[portIndex];
 
                 assert(port.name.str() == expectedName);
 
@@ -12354,7 +12361,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
 
         size_t inputPortIndex = 0;
 
-        for (const circt::hw::PortInfo& port : _ports)
+        for (const circt::hw::PortInfo &port : _ports)
         {
             if (circt::hw::ModulePort::Direction::Input == port.dir)
             {
@@ -12369,7 +12376,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
                 }
                 else if (it2 != _portNameToPathAndPort.end())
                 {
-                    const PathAndPortName& papn = it2->second;
+                    const PathAndPortName &papn = it2->second;
 
                     // Value comes from a container port
                     // Locate the port
@@ -12381,7 +12388,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
                 else
                 {
                     // Construct mlir value from verbatim string
-                    const std::string& value = SafeLookup(_portNameToStringValue, port.name.str());
+                    const std::string &value = SafeLookup(_portNameToStringValue, port.name.str());
 
                     const mlir::Type portType = ConcreteType(port.type);
 
@@ -12403,7 +12410,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
 
                     const mlir::Value input =
                         isClockType ? circt::seq::ToClockOp::create(opb, _location, GetClockType(),
-                                                                        static_cast<mlir::Value>(verbatimOp))
+                                                                    static_cast<mlir::Value>(verbatimOp))
                                     : static_cast<mlir::Value>(verbatimOp);
 
                     inputs.push_back(input);
@@ -12419,10 +12426,10 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
             }
         }
 
-        circt::hw::InstanceOp instanceOp = circt::hw::InstanceOp::create(opb, 
-            _location, resultTypes, mlir::StringRef(_instanceName), mlir::StringRef(_moduleName), inputs,
-            opb.getArrayAttr(argNames), opb.getArrayAttr(resultNames), opb.getArrayAttr(_parameterDefinitions),
-            circt::hw::InnerSymAttr());
+        circt::hw::InstanceOp instanceOp = circt::hw::InstanceOp::create(opb,
+                                                                         _location, resultTypes, mlir::StringRef(_instanceName), mlir::StringRef(_moduleName), inputs,
+                                                                         opb.getArrayAttr(argNames), opb.getArrayAttr(resultNames), opb.getArrayAttr(_parameterDefinitions),
+                                                                         circt::hw::InnerSymAttr());
 
         // Connect module outputs via verbatim ops
         auto results = instanceOp->getResults();
@@ -12430,7 +12437,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
         size_t resultIndex = 0;
 
         // Place all assignments in a single always_comb block
-        for (const circt::hw::PortInfo& port : _ports)
+        for (const circt::hw::PortInfo &port : _ports)
         {
             if (circt::hw::ModulePort::Direction::Output == port.dir)
             {
@@ -12448,7 +12455,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
                 }
                 else if (it2 != _portNameToPathAndPort.end())
                 {
-                    const PathAndPortName& papn = it2->second;
+                    const PathAndPortName &papn = it2->second;
 
                     // Value should be written to a container port
                     // Locate the port
@@ -12466,7 +12473,7 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder* const opbIn)
     }
 }
 
-mlir::Value ModuleInstanceHelper::GetPortValue(const std::string& name)
+mlir::Value ModuleInstanceHelper::GetPortValue(const std::string &name)
 {
     return SafeLookup(_portNameToMlirValue, name);
 }
