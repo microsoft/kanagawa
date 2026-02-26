@@ -41,14 +41,14 @@
 // Don't require optimizations to respect semantics related to unknown values
 static const bool TwoState = true;
 
-void LoadDialects(mlir::MLIRContext& context)
+void LoadDialects(mlir::MLIRContext &context)
 {
     context.loadDialect<circt::comb::CombDialect, circt::hw::HWDialect, circt::hwarith::HWArithDialect,
                         circt::kanagawa::KanagawaDialect, circt::pipeline::PipelineDialect, circt::seq::SeqDialect,
                         circt::sv::SVDialect, circt::esi::ESIDialect>();
 }
 
-mlir::ModuleOp CreateMlirModuleAndDesign(const mlir::Location& loc, const std::string& designName)
+mlir::ModuleOp CreateMlirModuleAndDesign(const mlir::Location &loc, const std::string &designName)
 {
     mlir::ModuleOp mlirModule = mlir::ModuleOp::create(loc);
 
@@ -77,14 +77,14 @@ circt::kanagawa::DesignOp GetDesignOp(mlir::ModuleOp mlirModule)
     return *(designOps.begin());
 }
 
-mlir::Location LocationToCirctLocation(const Location& locationIn)
+mlir::Location LocationToCirctLocation(const Location &locationIn)
 {
     return mlir::FileLineColLoc::get(g_compiler->GetMlirContext(),
                                      g_compiler->GetSourceFileNameWithoutLeadingPath(locationIn._fileIndex),
                                      locationIn._beginLine, locationIn._beginColumn);
 }
 
-mlir::Location CallStackToCirctLocation(const Program& program, const size_t callStackIndex,
+mlir::Location CallStackToCirctLocation(const Program &program, const size_t callStackIndex,
                                         const mlir::Location leafLocation)
 {
     mlir::Location result = leafLocation;
@@ -101,7 +101,7 @@ mlir::Location CallStackToCirctLocation(const Program& program, const size_t cal
         // function)
         if (skippedOneFrame)
         {
-            const StackFrame& stackFrame = callStack.top();
+            const StackFrame &stackFrame = callStack.top();
 
             const mlir::NameLoc frame = mlir::NameLoc::get(
                 StringToStringAttr(stackFrame._unmangledFunctionName),
@@ -120,7 +120,7 @@ mlir::Location CallStackToCirctLocation(const Program& program, const size_t cal
     return result;
 }
 
-mlir::Location FileAndLineNumberToCirctLocation(const Program& program, const FileAndLineNumber& faln)
+mlir::Location FileAndLineNumberToCirctLocation(const Program &program, const FileAndLineNumber &faln)
 {
     mlir::Location result = mlir::FileLineColLoc::get(g_compiler->GetMlirContext(),
                                                       g_compiler->GetSourceFileNameWithoutLeadingPath(faln._fileIndex),
@@ -134,14 +134,14 @@ mlir::Location FileAndLineNumberToCirctLocation(const Program& program, const Fi
     return result;
 }
 
-mlir::Location OperationToCirctLocation(const Operation& op, const Program& program)
+mlir::Location OperationToCirctLocation(const Operation &op, const Program &program)
 {
     // If multiple operations are combined together during optimization
     // Then the union of there locations is preserved.  op._locations has one entry
     // for each unoptimized location.  Each of these locations can optionally have an associated call stack.
     llvm::SmallVector<mlir::Location> locationArray;
 
-    for (const FileAndLineNumber& loc : op._locations)
+    for (const FileAndLineNumber &loc : op._locations)
     {
         locationArray.push_back(FileAndLineNumberToCirctLocation(program, loc));
     }
@@ -158,7 +158,7 @@ mlir::Location OperationToCirctLocation(const Operation& op, const Program& prog
 
 mlir::Location GetUnknownLocation() { return mlir::UnknownLoc::get(g_compiler->GetMlirContext()); }
 
-mlir::Location RegDescToLocation(const RegisterDescription& regDesc)
+mlir::Location RegDescToLocation(const RegisterDescription &regDesc)
 {
     // Not all registers in the IR have an associated source variable
     if (regDesc._sourceVariable._name.empty())
@@ -173,7 +173,7 @@ mlir::Location RegDescToLocation(const RegisterDescription& regDesc)
 }
 
 // Count the number of bits which are set
-mlir::Value PopCount(circt::OpBuilder& opb, const mlir::Location location, const mlir::ValueRange values,
+mlir::Value PopCount(circt::OpBuilder &opb, const mlir::Location location, const mlir::ValueRange values,
                      const mlir::Value outputWhenEmpty)
 {
     // return outputWhenEmpty when values is empty
@@ -212,11 +212,11 @@ mlir::Value PopCount(circt::OpBuilder& opb, const mlir::Location location, const
 void addPipelineSrcs(circt::pipeline::ScheduledPipelineOp pipeline)
 {
     // Find the stage block which contains an op.
-    auto findStage = [&](mlir::Block* block) -> mlir::Block*
+    auto findStage = [&](mlir::Block *block) -> mlir::Block *
     {
         while (block)
         {
-            mlir::Operation* parentOp = block->getParentOp();
+            mlir::Operation *parentOp = block->getParentOp();
             if (mlir::isa<circt::pipeline::ScheduledPipelineOp>(parentOp))
             {
                 // This is the pipeline operation
@@ -230,7 +230,7 @@ void addPipelineSrcs(circt::pipeline::ScheduledPipelineOp pipeline)
     // Find all operations in the pipeline which have operands in a previous
     // stage and fix said operand by inserting a 'pipeline.src' between the
     // operand and consuming operation.
-    for (mlir::Block& stage : pipeline->getRegions().front().getBlocks())
+    for (mlir::Block &stage : pipeline->getRegions().front().getBlocks())
     {
         // Use the same `pipeline.src` value for the same values in the same
         // stage. For values which don't require a `pipeline.src`, cache the
@@ -239,7 +239,7 @@ void addPipelineSrcs(circt::pipeline::ScheduledPipelineOp pipeline)
         mlir::OpBuilder opb(&stage, stage.begin());
 
         stage.walk(
-            [&](mlir::Operation* op)
+            [&](mlir::Operation *op)
             {
                 if (mlir::isa<circt::pipeline::SourceOp>(op))
                 {
@@ -264,14 +264,14 @@ void addPipelineSrcs(circt::pipeline::ScheduledPipelineOp pipeline)
                     // they're in different blocks insert a 'pipeline.src'.
                     if (operand.getDefiningOp())
                     {
-                        mlir::Block* operandStageBlock = findStage(operand.getDefiningOp()->getBlock());
+                        mlir::Block *operandStageBlock = findStage(operand.getDefiningOp()->getBlock());
                         insert = (operandStageBlock != &stage);
                     }
                     else if (auto blockArg = mlir::dyn_cast<mlir::BlockArgument>(operand))
                     {
                         // If the operation which defines the block argument lies between the consuming operation
                         // and the pipeline, there is no need to insert a 'pipeline.src'.
-                        mlir::Operation* currentOp = blockArg.getOwner()->getParentOp();
+                        mlir::Operation *currentOp = blockArg.getOwner()->getParentOp();
                         insert = true;
                         while (currentOp)
                         {
@@ -311,18 +311,19 @@ void addPipelineSrcs(circt::pipeline::ScheduledPipelineOp pipeline)
 }
 void addPipelineSrcs(mlir::ModuleOp module)
 {
-    module.walk([&](circt::pipeline::ScheduledPipelineOp pipeline) { addPipelineSrcs(pipeline); });
+    module.walk([&](circt::pipeline::ScheduledPipelineOp pipeline)
+                { addPipelineSrcs(pipeline); });
 }
 
 // This generates a valid MLIR identifier
-std::string FixupStringCirct(const std::string& src)
+std::string FixupStringCirct(const std::string &src)
 {
     std::string result = src;
 
     for (size_t i = 0; i < result.size(); i++)
     {
         bool validCharacter = true;
-        char& c = result.at(i);
+        char &c = result.at(i);
 
         validCharacter = std::isalnum(c);
         // Note that if c == '_' then validCharacter = false
@@ -338,8 +339,8 @@ std::string FixupStringCirct(const std::string& src)
 
 // Returns a path operation that represents the shortest path from src to dst
 // If src==dst, then emptyPathValue is returned
-mlir::Value GetPathOp(circt::OpBuilder& opb, const ObjectPath& srcPath, const ObjectPath& dstPath,
-                      const std::string& dstContainerName, const std::string& circtDesignName)
+mlir::Value GetPathOp(circt::OpBuilder &opb, const ObjectPath &srcPath, const ObjectPath &dstPath,
+                      const std::string &dstContainerName, const std::string &circtDesignName)
 {
     // Find the common root between the 2 paths
     ObjectPath commonRoot;
@@ -411,7 +412,7 @@ mlir::Value GetPathOp(circt::OpBuilder& opb, const ObjectPath& srcPath, const Ob
     }
 }
 
-mlir::APInt LiteralToApInt(const Literal& l)
+mlir::APInt LiteralToApInt(const Literal &l)
 {
     llvm::SmallVector<uint64_t> words;
 
@@ -427,13 +428,13 @@ mlir::APInt LiteralToApInt(const Literal& l)
     return mlir::APInt(l._width, words);
 }
 
-mlir::Value LiteralToValue(const Literal& l, circt::OpBuilder& opb, const mlir::Location& location)
+mlir::Value LiteralToValue(const Literal &l, circt::OpBuilder &opb, const mlir::Location &location)
 {
     return circt::hw::ConstantOp::create(opb, location,
-                                             opb.getIntegerAttr(opb.getIntegerType(l._width), LiteralToApInt(l)));
+                                         opb.getIntegerAttr(opb.getIntegerType(l._width), LiteralToApInt(l)));
 }
 
-mlir::StringAttr StringToStringAttr(const std::string& str)
+mlir::StringAttr StringToStringAttr(const std::string &str)
 {
     return mlir::StringAttr::get(g_compiler->GetMlirContext(), str);
 }
@@ -443,7 +444,7 @@ mlir::IntegerType GetIntegerType(const size_t width, mlir::IntegerType::Signedne
     return mlir::IntegerType::get(g_compiler->GetMlirContext(), width, signedness);
 }
 
-mlir::Value GetTypedZeros(circt::OpBuilder& opb, const mlir::Location& location, const mlir::Type& typeIn)
+mlir::Value GetTypedZeros(circt::OpBuilder &opb, const mlir::Location &location, const mlir::Type &typeIn)
 {
     if (llvm::isa<circt::hw::StructType>(typeIn))
     {
@@ -451,7 +452,7 @@ mlir::Value GetTypedZeros(circt::OpBuilder& opb, const mlir::Location& location,
 
         mlir::SmallVector<mlir::Value> fields;
 
-        for (const circt::hw::StructType::FieldInfo& field : structType.getElements())
+        for (const circt::hw::StructType::FieldInfo &field : structType.getElements())
         {
             fields.push_back(GetTypedZeros(opb, location, field.type));
         }
@@ -482,12 +483,12 @@ mlir::Value GetTypedZeros(circt::OpBuilder& opb, const mlir::Location& location,
 
 mlir::IntegerType GetI1Type() { return GetIntegerType(1); }
 
-circt::hw::ArrayType GetPackedArrayType(const mlir::Type& elementType, const size_t elementCount)
+circt::hw::ArrayType GetPackedArrayType(const mlir::Type &elementType, const size_t elementCount)
 {
     return circt::hw::ArrayType::get(elementType, elementCount);
 }
 
-circt::hw::ArrayType GetPackedArrayTypeParameterizedSize(const mlir::Type& elementType, const std::string& paramName)
+circt::hw::ArrayType GetPackedArrayTypeParameterizedSize(const mlir::Type &elementType, const std::string &paramName)
 {
     return circt::hw::ArrayType::get(
         g_compiler->GetMlirContext(), elementType,
@@ -496,13 +497,13 @@ circt::hw::ArrayType GetPackedArrayTypeParameterizedSize(const mlir::Type& eleme
 
 circt::seq::ClockType GetClockType() { return circt::seq::ClockType::get(g_compiler->GetMlirContext()); }
 
-mlir::Type ToMlirType(const Type* typeIn, bool signedness)
+mlir::Type ToMlirType(const Type *typeIn, bool signedness)
 {
-    const BoolType* boolType = dynamic_cast<const BoolType*>(typeIn);
-    const ArrayType* arrayType = dynamic_cast<const ArrayType*>(typeIn);
-    const FloatType* floatType = dynamic_cast<const FloatType*>(typeIn);
-    const StructUnionType* structUnionType = dynamic_cast<const StructUnionType*>(typeIn);
-    const LeafType* leafType = dynamic_cast<const LeafType*>(typeIn);
+    const BoolType *boolType = dynamic_cast<const BoolType *>(typeIn);
+    const ArrayType *arrayType = dynamic_cast<const ArrayType *>(typeIn);
+    const FloatType *floatType = dynamic_cast<const FloatType *>(typeIn);
+    const StructUnionType *structUnionType = dynamic_cast<const StructUnionType *>(typeIn);
+    const LeafType *leafType = dynamic_cast<const LeafType *>(typeIn);
 
     if (boolType)
     {
@@ -522,15 +523,15 @@ mlir::Type ToMlirType(const Type* typeIn, bool signedness)
         {
             llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
 
-            const auto addField = [&](const std::string& name, const Type* const type)
+            const auto addField = [&](const std::string &name, const Type *const type)
             {
                 fields.push_back(
                     circt::hw::StructType::FieldInfo{StringToStringAttr(name), ToMlirType(type, signedness)});
             };
 
-            for (const StructUnionType::EntryType& member : structUnionType->_members)
+            for (const StructUnionType::EntryType &member : structUnionType->_members)
             {
-                const Type* const memberType = member.second->GetDeclaredType();
+                const Type *const memberType = member.second->GetDeclaredType();
                 const std::string memberName = member.first;
                 addField(memberName, memberType);
             }
@@ -542,15 +543,15 @@ mlir::Type ToMlirType(const Type* typeIn, bool signedness)
         {
             llvm::SmallVector<circt::hw::UnionType::FieldInfo> fields;
 
-            const auto addField = [&](const std::string& name, const Type* const type)
+            const auto addField = [&](const std::string &name, const Type *const type)
             {
                 fields.push_back(
                     circt::hw::UnionType::FieldInfo{StringToStringAttr(name), ToMlirType(type, signedness)});
             };
 
-            for (const StructUnionType::EntryType& member : structUnionType->_members)
+            for (const StructUnionType::EntryType &member : structUnionType->_members)
             {
-                const Type* const memberType = member.second->GetDeclaredType();
+                const Type *const memberType = member.second->GetDeclaredType();
                 const std::string memberName = member.first;
                 addField(memberName, memberType);
             }
@@ -581,7 +582,7 @@ mlir::Type ToMlirType(const Type* typeIn, bool signedness)
 // Used to avoid symbol name conflicts for elements like container ports
 // returns a symbol name which will be unique provided
 // that flattened container paths are unique
-mlir::StringAttr GetFullyQualifiedStringAttr(const ObjectPath& containerPath, const std::string& fieldName)
+mlir::StringAttr GetFullyQualifiedStringAttr(const ObjectPath &containerPath, const std::string &fieldName)
 {
     ObjectPath pathWithField = containerPath;
     pathWithField.push_back("__field__" + fieldName);
@@ -589,7 +590,7 @@ mlir::StringAttr GetFullyQualifiedStringAttr(const ObjectPath& containerPath, co
     return StringToStringAttr(FixupStringCirct(SerializePath(pathWithField, '_')));
 }
 
-circt::hw::InnerSymAttr GetFullyQualifiedInnerSymAttr(const ObjectPath& containerPath, const std::string& fieldName)
+circt::hw::InnerSymAttr GetFullyQualifiedInnerSymAttr(const ObjectPath &containerPath, const std::string &fieldName)
 {
     return circt::hw::InnerSymAttr::get(GetFullyQualifiedStringAttr(containerPath, fieldName));
 }
@@ -597,14 +598,14 @@ circt::hw::InnerSymAttr GetFullyQualifiedInnerSymAttr(const ObjectPath& containe
 // Returns a string that can be used as a unique symbol for
 // memory container names.
 // The suffix-free version is reserved for container instances
-std::string GetMemoryContainerName(const std::string& registerName) { return registerName + "__mem_container"; }
+std::string GetMemoryContainerName(const std::string &registerName) { return registerName + "__mem_container"; }
 
-mlir::Value ReadContainerPort(circt::OpBuilder& opb, const mlir::Location location, const mlir::Value containerPath,
+mlir::Value ReadContainerPort(circt::OpBuilder &opb, const mlir::Location location, const mlir::Value containerPath,
                               const mlir::StringAttr portSymbol, const mlir::Type type, const mlir::Type dstType)
 {
     // circt::kanagawa::Direction::Output means that it is an output port of the container
     const mlir::Value containerPort = circt::kanagawa::GetPortOp::create(opb, location, containerPath, portSymbol, type,
-                                                                             circt::kanagawa::Direction::Output);
+                                                                         circt::kanagawa::Direction::Output);
 
     mlir::Value ret = circt::kanagawa::PortReadOp::create(opb, location, containerPort);
     if (dstType && (dstType != type))
@@ -615,12 +616,12 @@ mlir::Value ReadContainerPort(circt::OpBuilder& opb, const mlir::Location locati
     return ret;
 }
 
-void WriteContainerPort(circt::OpBuilder& opb, const mlir::Location location, const mlir::Value containerPath,
+void WriteContainerPort(circt::OpBuilder &opb, const mlir::Location location, const mlir::Value containerPath,
                         const mlir::StringAttr portSymbol, const mlir::Type type, const mlir::Value valueToWrite)
 {
     // circt::kanagawa::Direction::Input means that it is an input port of the container
     const mlir::Value containerPort = circt::kanagawa::GetPortOp::create(opb, location, containerPath, portSymbol, type,
-                                                                             circt::kanagawa::Direction::Input);
+                                                                         circt::kanagawa::Direction::Input);
     mlir::Value value = valueToWrite;
     if (type != valueToWrite.getType())
     {
@@ -631,8 +632,8 @@ void WriteContainerPort(circt::OpBuilder& opb, const mlir::Location location, co
     circt::kanagawa::PortWriteOp::create(opb, location, containerPort, value);
 }
 
-void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program& program,
-                      const SourceOperandToMlirValueCb& srcToValue, const StoreMlirValueInDestOperandCb& storeDst)
+void ConvertOpToCirct(const Operation &op, circt::OpBuilder &opb, const Program &program,
+                      const SourceOperandToMlirValueCb &srcToValue, const StoreMlirValueInDestOperandCb &storeDst)
 {
     const mlir::Location opLocation = OperationToCirctLocation(op, program);
 
@@ -743,36 +744,36 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
         case ParseTreeBinaryOpTypeEQ:
             storeDst(op, 0,
                      circt::comb::ICmpOp::create(opb, opLocation, circt::comb::ICmpPredicate::eq, srcValues[0],
-                                                     srcValues[1], TwoState));
+                                                 srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeNE:
             storeDst(op, 0,
                      circt::comb::ICmpOp::create(opb, opLocation, circt::comb::ICmpPredicate::ne, srcValues[0],
-                                                     srcValues[1], TwoState));
+                                                 srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeGT:
             storeDst(op, 0,
-                     circt::comb::ICmpOp::create(opb, 
-                         opLocation, eitherSigned ? circt::comb::ICmpPredicate::sgt : circt::comb::ICmpPredicate::ugt,
-                         srcValues[0], srcValues[1], TwoState));
+                     circt::comb::ICmpOp::create(opb,
+                                                 opLocation, eitherSigned ? circt::comb::ICmpPredicate::sgt : circt::comb::ICmpPredicate::ugt,
+                                                 srcValues[0], srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeGE:
             storeDst(op, 0,
-                     circt::comb::ICmpOp::create(opb, 
-                         opLocation, eitherSigned ? circt::comb::ICmpPredicate::sge : circt::comb::ICmpPredicate::uge,
-                         srcValues[0], srcValues[1], TwoState));
+                     circt::comb::ICmpOp::create(opb,
+                                                 opLocation, eitherSigned ? circt::comb::ICmpPredicate::sge : circt::comb::ICmpPredicate::uge,
+                                                 srcValues[0], srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeLT:
             storeDst(op, 0,
-                     circt::comb::ICmpOp::create(opb, 
-                         opLocation, eitherSigned ? circt::comb::ICmpPredicate::slt : circt::comb::ICmpPredicate::ult,
-                         srcValues[0], srcValues[1], TwoState));
+                     circt::comb::ICmpOp::create(opb,
+                                                 opLocation, eitherSigned ? circt::comb::ICmpPredicate::slt : circt::comb::ICmpPredicate::ult,
+                                                 srcValues[0], srcValues[1], TwoState));
             break;
         case ParseTreeBinaryOpTypeLE:
             storeDst(op, 0,
-                     circt::comb::ICmpOp::create(opb, 
-                         opLocation, eitherSigned ? circt::comb::ICmpPredicate::sle : circt::comb::ICmpPredicate::ule,
-                         srcValues[0], srcValues[1], TwoState));
+                     circt::comb::ICmpOp::create(opb,
+                                                 opLocation, eitherSigned ? circt::comb::ICmpPredicate::sle : circt::comb::ICmpPredicate::ule,
+                                                 srcValues[0], srcValues[1], TwoState));
             break;
 
         default:
@@ -783,7 +784,7 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
 
     case Opcode::Gather:
     {
-        const std::vector<GatherEntry>& gatherEntries = *op._flags._gather._entries;
+        const std::vector<GatherEntry> &gatherEntries = *op._flags._gather._entries;
         assert(gatherEntries.size() == op._src.size());
         mlir::SmallVector<mlir::Value> values;
 
@@ -791,7 +792,7 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
         for (size_t reverseIndex = 0; reverseIndex < op._src.size(); ++reverseIndex)
         {
             const size_t i = op._src.size() - reverseIndex - 1;
-            const GatherEntry& gatherEntry = gatherEntries[i];
+            const GatherEntry &gatherEntry = gatherEntries[i];
 
             // convert src operands to MLIR, then extract bit field
             const mlir::Value v = srcToValue(op, i, gatherEntry._sourceOffset + gatherEntry._numBits);
@@ -813,7 +814,7 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
         assert(1 == op._dst.size());
         assert(GetCodeGenDeviceConfig()._supportsLuts);
         const size_t dstWidth = op._dst[0].Width(program);
-        const Lut& lut = op._flags._lut;
+        const Lut &lut = op._flags._lut;
         // The destination may be smaller if the consumers of the destination do not need all of the bits
         assert(lut._numDestinationBits >= dstWidth);
         mlir::SmallVector<mlir::Value> lutSlices;
@@ -822,7 +823,7 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
         for (size_t invDstIndex = 0; invDstIndex < dstWidth; ++invDstIndex)
         {
             const size_t dstIndex = dstWidth - invDstIndex - 1;
-            const LutEntry& lutEntry = lut._lutEntries[dstIndex];
+            const LutEntry &lutEntry = lut._lutEntries[dstIndex];
             // build a LUT
             const size_t numChoices = lutEntry.TableSize();
             llvm::SmallVector<bool> lutCirct;
@@ -841,7 +842,7 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
                 lutIndex.push_back(vSlice);
             }
             const mlir::Value lutSlice = circt::comb::TruthTableOp::create(opb, opLocation, opb.getI1Type(), lutIndex,
-                                                                               lutCirct);
+                                                                           lutCirct);
             lutSlices.push_back(lutSlice);
         }
         // Concatenate values to the result
@@ -882,15 +883,15 @@ void ConvertOpToCirct(const Operation& op, circt::OpBuilder& opb, const Program&
     }
 }
 
-mlir::Value MuxTree(const mlir::Value selectIndex, const std::vector<mlir::Value>& choices, circt::OpBuilder& opb,
-                    const mlir::Location& location)
+mlir::Value MuxTree(const mlir::Value selectIndex, const std::vector<mlir::Value> &choices, circt::OpBuilder &opb,
+                    const mlir::Location &location)
 {
     // All operands should have the same type
     assert(!choices.empty());
 
     const mlir::Type dstType = choices[0].getType();
 
-    for (const mlir::Value& v : choices)
+    for (const mlir::Value &v : choices)
     {
         assert(dstType == v.getType());
     }
@@ -904,7 +905,7 @@ mlir::Value MuxTree(const mlir::Value selectIndex, const std::vector<mlir::Value
 
     llvm::SmallVector<mlir::Value> srcValues;
 
-    for (const mlir::Value& v : choices)
+    for (const mlir::Value &v : choices)
     {
         srcValues.push_back(v);
     }
@@ -920,7 +921,7 @@ mlir::Value MuxTree(const mlir::Value selectIndex, const std::vector<mlir::Value
         for (size_t i = 0; i < srcValues.size() / 2; i++)
         {
             newSrcValues.push_back(circt::comb::MuxOp::create(opb, location, indexBit, srcValues[i * 2 + 1],
-                                                                  srcValues[i * 2 + 0], TwoState));
+                                                              srcValues[i * 2 + 0], TwoState));
         }
 
         srcValues = newSrcValues;
@@ -932,8 +933,8 @@ mlir::Value MuxTree(const mlir::Value selectIndex, const std::vector<mlir::Value
 }
 
 // Extend or truncate the width of a value
-mlir::Value AdjustValueWidth(const mlir::Value& srcValue, const size_t desiredWidth, const bool signExtend,
-                             circt::OpBuilder& opb, const mlir::Location& location)
+mlir::Value AdjustValueWidth(const mlir::Value &srcValue, const size_t desiredWidth, const bool signExtend,
+                             circt::OpBuilder &opb, const mlir::Location &location)
 {
     const size_t srcValueWidth = GetMlirValueWidth(srcValue);
 
@@ -967,7 +968,7 @@ mlir::Value AdjustValueWidth(const mlir::Value& srcValue, const size_t desiredWi
     return result;
 }
 
-SparseConcat::SparseConcat(circt::OpBuilder& opb, const mlir::Location& location, const size_t width)
+SparseConcat::SparseConcat(circt::OpBuilder &opb, const mlir::Location &location, const size_t width)
     : _opb(opb), _location(location), _width(width)
 {
 }
@@ -980,7 +981,8 @@ void SparseConcat::Insert(const size_t offset, const mlir::Value value)
 mlir::Value SparseConcat::Flush()
 {
     // Sort values by offset
-    _values.sort([](const QueuedValue& lhs, const QueuedValue& rhs) { return lhs.first < rhs.first; });
+    _values.sort([](const QueuedValue &lhs, const QueuedValue &rhs)
+                 { return lhs.first < rhs.first; });
 
     // Generate an array of MLIR values to be concatenated
     // Fill in zeros for any gaps
@@ -988,7 +990,7 @@ mlir::Value SparseConcat::Flush()
 
     size_t offset = 0;
 
-    for (const QueuedValue& qv : _values)
+    for (const QueuedValue &qv : _values)
     {
         assert(qv.first >= offset);
 
@@ -1023,18 +1025,18 @@ mlir::Value SparseConcat::Flush()
     return concatOp;
 }
 
-void BatchAssignments::Append(const mlir::Location& location, const mlir::Value& dstValue, const mlir::Value& srcValue)
+void BatchAssignments::Append(const mlir::Location &location, const mlir::Value &dstValue, const mlir::Value &srcValue)
 {
     _assignments.push_back({location, dstValue, srcValue});
 }
 
-void BatchAssignments::AppendVerbatimDst(const mlir::Location& location, const std::string& dstString,
-                                         const mlir::Value& srcValue)
+void BatchAssignments::AppendVerbatimDst(const mlir::Location &location, const std::string &dstString,
+                                         const mlir::Value &srcValue)
 {
     _verbatimAssignments.push_back({location, dstString, srcValue});
 }
 
-void BatchAssignments::Flush(circt::OpBuilder& opb, const mlir::Location& location)
+void BatchAssignments::Flush(circt::OpBuilder &opb, const mlir::Location &location)
 {
     if (Empty())
     {
@@ -1047,12 +1049,12 @@ void BatchAssignments::Flush(circt::OpBuilder& opb, const mlir::Location& locati
 
     opb.setInsertionPointToStart(alwaysComb.getBodyBlock());
 
-    for (const AssignRecord& ar : _assignments)
+    for (const AssignRecord &ar : _assignments)
     {
         circt::sv::BPAssignOp::create(opb, ar._location, ar._dstValue, ar._srcValue);
     }
 
-    for (const VerbatimAssignRecord& ar : _verbatimAssignments)
+    for (const VerbatimAssignRecord &ar : _verbatimAssignments)
     {
         mlir::SmallVector<mlir::Value> substitutions(1, ar._srcValue);
 
@@ -1061,7 +1063,7 @@ void BatchAssignments::Flush(circt::OpBuilder& opb, const mlir::Location& locati
         mlir::SmallVector<mlir::Attribute> attributes;
 
         circt::sv::VerbatimOp::create(opb, ar._location, StringToStringAttr(str), substitutions,
-                                          opb.getArrayAttr(attributes));
+                                      opb.getArrayAttr(attributes));
     }
 
     _assignments.clear();
@@ -1070,7 +1072,7 @@ void BatchAssignments::Flush(circt::OpBuilder& opb, const mlir::Location& locati
 
 bool BatchAssignments::Empty() const { return _assignments.empty() && _verbatimAssignments.empty(); }
 
-void AccumulateOutputPortUpdates::Accumulate(const size_t outputRegisterIndex, const mlir::Value& valueToWrite,
+void AccumulateOutputPortUpdates::Accumulate(const size_t outputRegisterIndex, const mlir::Value &valueToWrite,
                                              const size_t offset, const size_t width)
 {
     const size_t valueWidth = GetMlirValueWidth(valueToWrite);
@@ -1081,9 +1083,9 @@ void AccumulateOutputPortUpdates::Accumulate(const size_t outputRegisterIndex, c
     _updates[outputRegisterIndex].push_back(ar);
 }
 
-void AccumulateOutputPortUpdates::Flush(circt::OpBuilder& opb, const mlir::Location& location,
+void AccumulateOutputPortUpdates::Flush(circt::OpBuilder &opb, const mlir::Location &location,
                                         const size_t outputRegisterIndex, const mlir::Value portSsaValue,
-                                        BatchAssignments& batchAssignments)
+                                        BatchAssignments &batchAssignments)
 {
     const auto it = _updates.find(outputRegisterIndex);
     if (it == _updates.end())
@@ -1099,7 +1101,7 @@ void AccumulateOutputPortUpdates::Flush(circt::OpBuilder& opb, const mlir::Locat
 
     SparseConcat sparseConcat(opb, location, portWidth);
 
-    for (const AccumulateRecord& ar : v)
+    for (const AccumulateRecord &ar : v)
     {
         sparseConcat.Insert(ar._offset, ar._value);
     }
@@ -1113,7 +1115,7 @@ void AccumulateOutputPortUpdates::Flush(circt::OpBuilder& opb, const mlir::Locat
     _updates.erase(it);
 }
 
-size_t GetMlirTypeWidth(const mlir::Type& type)
+size_t GetMlirTypeWidth(const mlir::Type &type)
 {
     size_t result = 0;
 
@@ -1121,7 +1123,7 @@ size_t GetMlirTypeWidth(const mlir::Type& type)
     {
         const circt::hw::StructType structType = llvm::cast<circt::hw::StructType>(type);
 
-        for (const circt::hw::StructType::FieldInfo& field : structType.getElements())
+        for (const circt::hw::StructType::FieldInfo &field : structType.getElements())
         {
             result += GetMlirTypeWidth(field.type);
         }
@@ -1144,9 +1146,9 @@ size_t GetMlirTypeWidth(const mlir::Type& type)
     return result;
 }
 
-size_t GetMlirValueWidth(const mlir::Value& v) { return GetMlirTypeWidth(v.getType()); }
+size_t GetMlirValueWidth(const mlir::Value &v) { return GetMlirTypeWidth(v.getType()); }
 
-void SetLoweringOperations(mlir::ModuleOp& moduleOp)
+void SetLoweringOperations(mlir::ModuleOp &moduleOp)
 {
     circt::LoweringOptions loweringOptions;
 
@@ -1168,7 +1170,7 @@ circt::hw::StructType GetInspectableStructType()
 {
     llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
 
-    const auto addField = [&](const std::string& name, const size_t width)
+    const auto addField = [&](const std::string &name, const size_t width)
     {
         fields.push_back(circt::hw::StructType::FieldInfo{StringToStringAttr(name),
                                                           mlir::IntegerType::get(g_compiler->GetMlirContext(), width)});
@@ -1186,7 +1188,7 @@ circt::hw::StructType GetInspectableStructType()
     return circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
 }
 
-std::string GetSVTypeString(mlir::Type type, const std::string& arrayDims)
+std::string GetSVTypeString(mlir::Type type, const std::string &arrayDims)
 {
     if (llvm::isa<circt::hw::ArrayType>(type))
     {
@@ -1265,7 +1267,7 @@ std::string GetSVTypeString(mlir::Type type, const std::string& arrayDims)
     }
 }
 
-VerbatimWriter::VerbatimWriter(circt::OpBuilder& opb, const mlir::Location& location) : _opb(opb), _location(location)
+VerbatimWriter::VerbatimWriter(circt::OpBuilder &opb, const mlir::Location &location) : _opb(opb), _location(location)
 {
 }
 
@@ -1278,7 +1280,7 @@ VerbatimWriter::~VerbatimWriter()
         mlir::SmallVector<mlir::Attribute> attributes;
 
         circt::sv::VerbatimOp::create(_opb, _location, StringToStringAttr(str), _substitutions,
-                                           _opb.getArrayAttr(attributes));
+                                      _opb.getArrayAttr(attributes));
     }
 }
 
@@ -1296,7 +1298,7 @@ mlir::Value VerbatimWriter::GetExpr(mlir::Type type)
     return circt::sv::VerbatimExprOp::create(_opb, _location, type, str, _substitutions);
 }
 
-DisableDynamicAssertsAndTranslateOffCirct::DisableDynamicAssertsAndTranslateOffCirct(circt::OpBuilder& opb,
+DisableDynamicAssertsAndTranslateOffCirct::DisableDynamicAssertsAndTranslateOffCirct(circt::OpBuilder &opb,
                                                                                      mlir::Location opLocation)
     : _opb(opb), _location(opLocation)
 {
@@ -1314,9 +1316,9 @@ DisableDynamicAssertsAndTranslateOffCirct::~DisableDynamicAssertsAndTranslateOff
     writer << "`endif\n";
 }
 
-ModuleDeclarationHelper::ModuleDeclarationHelper(RedirectableSourceWriter& writer, const std::string& name,
-                                                 const mlir::Location& location, const std::string& circtDesignName,
-                                                 mlir::ModuleOp* const mlirModule)
+ModuleDeclarationHelper::ModuleDeclarationHelper(RedirectableSourceWriter &writer, const std::string &name,
+                                                 const mlir::Location &location, const std::string &circtDesignName,
+                                                 mlir::ModuleOp *const mlirModule)
     : _name(name), _location(location), _circtDesignName(circtDesignName), _opb(g_compiler->GetMlirContext()),
       _originalWriter(writer), _finished(false), _exportVerilog(mlirModule == nullptr), _bundleStartPortIndex(0)
 {
@@ -1343,7 +1345,7 @@ ModuleDeclarationHelper::~ModuleDeclarationHelper()
     assert(!_bundleName);
 }
 
-void ModuleDeclarationHelper::BeginEsiBundle(const std::string& name)
+void ModuleDeclarationHelper::BeginEsiBundle(const std::string &name)
 {
     assert(!_bundleName);
 
@@ -1361,7 +1363,7 @@ void ModuleDeclarationHelper::EndEsiBundle()
     _bundleName.reset();
 }
 
-mlir::Block* ModuleDeclarationHelper::GetBodyBlock()
+mlir::Block *ModuleDeclarationHelper::GetBodyBlock()
 {
     // Can only be called after FinishPorts
     assert(_container);
@@ -1383,7 +1385,7 @@ void ModuleDeclarationHelper::Finish()
     FlushVerbatimStrings();
 
     // Write output ports
-    for (const PortInfo& pi : _ports)
+    for (const PortInfo &pi : _ports)
     {
         if (circt::hw::ModulePort::Direction::Output == pi._hwPortInfo.dir)
         {
@@ -1407,7 +1409,7 @@ void ModuleDeclarationHelper::Finish()
             }
 
             circt::kanagawa::PortWriteOp::create(_opb, _location, SafeLookup(_outputPortOps, pi._hwPortInfo.name.str()),
-                                                      outputValue);
+                                                 outputValue);
         }
     }
 
@@ -1459,7 +1461,7 @@ void ModuleDeclarationHelper::FlushVerbatimStrings()
     _verbatimBuffer.Reset();
 }
 
-void ModuleDeclarationHelper::AddVerbatimOp(const mlir::Location& location, const VerbatimCallback& callback)
+void ModuleDeclarationHelper::AddVerbatimOp(const mlir::Location &location, const VerbatimCallback &callback)
 {
     // Flush any strings in _verbatimBuffer
     FlushVerbatimStrings();
@@ -1471,7 +1473,7 @@ void ModuleDeclarationHelper::AddVerbatimOp(const mlir::Location& location, cons
 
 std::string ModuleDeclarationHelper::Name() const { return _name; }
 
-void ModuleDeclarationHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
+void ModuleDeclarationHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
                                       const size_t width, const EsiPortSemantics portSemantics,
                                       const EsiChannelSemantics channelSemantics, const EsiChannelName channelName,
                                       const std::string fieldName)
@@ -1480,7 +1482,7 @@ void ModuleDeclarationHelper::AddPort(const std::string& name, const circt::hw::
             fieldName);
 }
 
-void ModuleDeclarationHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
+void ModuleDeclarationHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
                                       const size_t outerWidth, const size_t innerWidth)
 {
     AddPort(name, direction,
@@ -1488,7 +1490,7 @@ void ModuleDeclarationHelper::AddPort(const std::string& name, const circt::hw::
                                       _opb.getIntegerAttr(_opb.getIntegerType(64), outerWidth)));
 }
 
-void ModuleDeclarationHelper::AddPortOptionalArray(const std::string& name,
+void ModuleDeclarationHelper::AddPortOptionalArray(const std::string &name,
                                                    const circt::hw::ModulePort::Direction direction,
                                                    const size_t outerWidth, const size_t innerWidth)
 {
@@ -1504,8 +1506,8 @@ void ModuleDeclarationHelper::AddPortOptionalArray(const std::string& name,
     }
 }
 
-void ModuleDeclarationHelper::AddPort(const std::string& name, const circt::hw::ModulePort::Direction direction,
-                                      const mlir::Type type, const Type* origType, const EsiPortSemantics portSemantics,
+void ModuleDeclarationHelper::AddPort(const std::string &name, const circt::hw::ModulePort::Direction direction,
+                                      const mlir::Type type, const Type *origType, const EsiPortSemantics portSemantics,
                                       const EsiChannelSemantics channelSemantics, const EsiChannelName channelName,
                                       const std::string fieldName)
 {
@@ -1539,41 +1541,41 @@ void ModuleDeclarationHelper::FinishPorts()
 
     for (size_t i = 0; i < _ports.size(); i++)
     {
-        const PortInfo& pi = _ports[i];
+        const PortInfo &pi = _ports[i];
 
         SafeInsert(_portNameToIndex, pi._hwPortInfo.name.str(), i);
     }
 
     // The container has TopLevel = true to avoid prepending the design name to the container name
-    _container = circt::kanagawa::ContainerOp::create(_opb, 
-        _location, circt::hw::InnerSymAttr::get(_opb.getStringAttr(_name)), true);
+    _container = circt::kanagawa::ContainerOp::create(_opb,
+                                                      _location, circt::hw::InnerSymAttr::get(_opb.getStringAttr(_name)), true);
 
     _opb.setInsertionPointToStart(GetBodyBlock());
 
     // Add ports to the container
-    for (const PortInfo& pi : _ports)
+    for (const PortInfo &pi : _ports)
     {
         if (pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Input)
         {
             SafeInsert(_inputPortOps, pi._hwPortInfo.name.str(),
-                       static_cast<mlir::Value>(circt::kanagawa::InputPortOp::create(_opb, 
-                           _location, GetFullyQualifiedInnerSymAttr(ObjectPath(), pi._hwPortInfo.name.str()),
-                           mlir::TypeAttr::get(pi._hwPortInfo.type), pi._hwPortInfo.name)));
+                       static_cast<mlir::Value>(circt::kanagawa::InputPortOp::create(_opb,
+                                                                                     _location, GetFullyQualifiedInnerSymAttr(ObjectPath(), pi._hwPortInfo.name.str()),
+                                                                                     mlir::TypeAttr::get(pi._hwPortInfo.type), pi._hwPortInfo.name)));
         }
         else
         {
             assert(pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Output);
 
             SafeInsert(_outputPortOps, pi._hwPortInfo.name.str(),
-                       static_cast<mlir::Value>(circt::kanagawa::OutputPortOp::create(_opb, 
-                           _location, GetFullyQualifiedInnerSymAttr(ObjectPath(), pi._hwPortInfo.name.str()),
-                           mlir::TypeAttr::get(pi._hwPortInfo.type), pi._hwPortInfo.name)));
+                       static_cast<mlir::Value>(circt::kanagawa::OutputPortOp::create(_opb,
+                                                                                      _location, GetFullyQualifiedInnerSymAttr(ObjectPath(), pi._hwPortInfo.name.str()),
+                                                                                      mlir::TypeAttr::get(pi._hwPortInfo.type), pi._hwPortInfo.name)));
         }
     }
 }
 
 // Like AssignPort, but can be safely called even if portName does not represent an output port name
-std::string ModuleDeclarationHelper::AssignPortOptional(const std::string& portName)
+std::string ModuleDeclarationHelper::AssignPortOptional(const std::string &portName)
 {
     const auto it = _portNameToIndex.find(portName);
 
@@ -1601,11 +1603,11 @@ std::string ModuleDeclarationHelper::AssignPortOptional(const std::string& portN
 
 // Set the value of an output port to a verbatim string
 // Returns the name of a new net that the verbatim code should assign to
-std::string ModuleDeclarationHelper::AssignPort(const std::string& portName)
+std::string ModuleDeclarationHelper::AssignPort(const std::string &portName)
 {
     const size_t portIndex = SafeLookup(_portNameToIndex, portName);
 
-    const PortInfo& portInfo = _ports[portIndex];
+    const PortInfo &portInfo = _ports[portIndex];
 
     assert(portInfo._hwPortInfo.dir == circt::hw::ModulePort::Direction::Output);
 
@@ -1616,36 +1618,37 @@ std::string ModuleDeclarationHelper::AssignPort(const std::string& portName)
     // To enable callers to write to subsets of the net
     if (_outputValues.end() == _outputValues.find(portName))
     {
-        const llvm::SmallVector<mlir::Value> substitutions; // Empty, there are no substitutions
-
-        const mlir::SmallVector<mlir::Attribute> attributes; // Empty, there are no attributes
-
-        // Add a verbatim op to the start of the container
-        // which declares a new net that other verbatim code will use
+        // Declare a logic net at the start of the container
+        mlir::Value logicOp;
         {
             circt::OpBuilder::InsertionGuard g(_opb);
-            const std::string declaration = GetSVTypeString(portInfo._hwPortInfo.type, "") + " " + newNetName + ";";
-
             _opb.setInsertionPointToStart(GetBodyBlock());
 
-            circt::sv::VerbatimOp::create(_opb, _location, StringToStringAttr(declaration), substitutions,
-                                               _opb.getArrayAttr(attributes));
+            logicOp = circt::sv::LogicOp::create(_opb, _location, portInfo._hwPortInfo.type,
+                                                 StringToStringAttr(newNetName));
         }
 
-        // Add a verbatim op which evaluates to the value of the new net
-        // Record that the output port should be assigned to it
-        circt::sv::VerbatimExprOp verbatimOp = circt::sv::VerbatimExprOp::create(_opb, 
-            _location, portInfo._hwPortInfo.type, StringToStringAttr(newNetName), substitutions, nullptr);
+        // Store the InOut value for callers that need to assign to it via sv::AssignOp
+        SafeInsert(_outputNetInOutValues, portName, logicOp);
 
-        SafeInsert(_outputValues, portName, verbatimOp.getResult());
+        // Read the logic net value for use as the output port value
+        mlir::Value readValue = circt::sv::ReadInOutOp::create(_opb, _location,
+                                                               portInfo._hwPortInfo.type, logicOp);
+
+        SafeInsert(_outputValues, portName, readValue);
     }
 
     return newNetName;
 }
 
+mlir::Value ModuleDeclarationHelper::GetOutputNetInOutValue(const std::string &portName) const
+{
+    return SafeLookup(_outputNetInOutValues, portName);
+}
+
 static const std::string InspectableValueName("InspectableValueT");
 
-void ModuleDeclarationHelper::AddTypedefs(const std::string& typeScopeName)
+void ModuleDeclarationHelper::AddTypedefs(const std::string &typeScopeName)
 {
     {
         // Add a type container to the mlir module
@@ -1667,7 +1670,7 @@ void ModuleDeclarationHelper::AddTypedefs(const std::string& typeScopeName)
         if (GetCodeGenConfig()._inspection)
         {
             circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(InspectableValueName),
-                                            GetInspectableStructType(), StringToStringAttr(InspectableValueName));
+                                          GetInspectableStructType(), StringToStringAttr(InspectableValueName));
         }
     }
 
@@ -1679,7 +1682,7 @@ void ModuleDeclarationHelper::AddTypedefs(const std::string& typeScopeName)
 
 // Emit assertions to check that a struct defined in the CIRCT IR
 // matches a struct from hand-written RTL
-void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type& circtTypeAlias, const std::string& otherStructName)
+void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type &circtTypeAlias, const std::string &otherStructName)
 {
     assert(llvm::isa<circt::hw::TypeAliasType>(circtTypeAlias));
 
@@ -1701,7 +1704,7 @@ void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type& circtTypeAlia
         _verbatimBuffer.Str() << circtTypeAliasName << " a;";
         _verbatimBuffer.Str() << otherStructName << " b;";
 
-        for (const circt::hw::StructType::FieldInfo& field : circtType.getElements())
+        for (const circt::hw::StructType::FieldInfo &field : circtType.getElements())
         {
             const std::string fieldName = field.name.str();
 
@@ -1717,7 +1720,7 @@ void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type& circtTypeAlia
     _verbatimBuffer.Str() << "end";
 }
 
-mlir::Type ModuleDeclarationHelper::GetTypeAlias(const std::string& name, const mlir::Type& referencedType)
+mlir::Type ModuleDeclarationHelper::GetTypeAlias(const std::string &name, const mlir::Type &referencedType)
 {
     // AddTypedefs must be called first
     assert(_typeScopeOp);
@@ -1736,7 +1739,7 @@ mlir::Type ModuleDeclarationHelper::GetInspectableTypeAlias()
 
 mlir::ModuleOp ModuleDeclarationHelper::MlirModule() { return _mlirModule; }
 
-circt::OpBuilder& ModuleDeclarationHelper::OpBuilder() { return _opb; }
+circt::OpBuilder &ModuleDeclarationHelper::OpBuilder() { return _opb; }
 
 circt::kanagawa::ContainerOp ModuleDeclarationHelper::Container()
 {
@@ -1746,7 +1749,7 @@ circt::kanagawa::ContainerOp ModuleDeclarationHelper::Container()
 
 // Emit a container that wraps the one created by this object
 // and uses ESI channels and bundles to model function calls
-void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
+void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 {
     // point _obp at the design op
     circt::OpBuilder::InsertionGuard g(_opb);
@@ -1761,19 +1764,19 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
 
     const std::string innerContainerSymbol = "EsiWrappedSymbol";
 
-    const auto getPortSymbol = [](const std::string& portName)
+    const auto getPortSymbol = [](const std::string &portName)
     { return circt::hw::InnerSymAttr::get(StringToStringAttr(portName)); };
 
     // Create a container
-    circt::kanagawa::ContainerOp wrapperContainer = circt::kanagawa::ContainerOp::create(_opb, 
-        _location, circt::hw::InnerSymAttr::get(StringToStringAttr(wrapperName)), true);
+    circt::kanagawa::ContainerOp wrapperContainer = circt::kanagawa::ContainerOp::create(_opb,
+                                                                                         _location, circt::hw::InnerSymAttr::get(StringToStringAttr(wrapperName)), true);
 
     _opb.setInsertionPointToStart(wrapperContainer.getBodyBlock());
 
     // Instantiate the inner container
-    circt::kanagawa::ContainerInstanceOp::create(_opb, 
-        _location, circt::hw::InnerSymAttr::get(StringToStringAttr(innerContainerInstance)),
-        circt::hw::InnerRefAttr::get(StringToStringAttr(circtDesignName), StringToStringAttr(_name)));
+    circt::kanagawa::ContainerInstanceOp::create(_opb,
+                                                 _location, circt::hw::InnerSymAttr::get(StringToStringAttr(innerContainerInstance)),
+                                                 circt::hw::InnerRefAttr::get(StringToStringAttr(circtDesignName), StringToStringAttr(_name)));
 
     // Get path from the wrapper container to the inner container
     llvm::SmallVector<mlir::Attribute> steps;
@@ -1787,7 +1790,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
 
     // Directly connect input and output ports which are not for function calls
     // and function calls which are not ESI compatible (fixed-latency, no backpressure)
-    for (const PortInfo& pi : _ports)
+    for (const PortInfo &pi : _ports)
     {
         // Port and channel semantics should agree about if they are for an ESI interface or not
         assert((pi._esiChannelSemantics == EsiChannelSemantics::NonEsi) ==
@@ -1797,9 +1800,9 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
         {
             if (pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Input)
             {
-                circt::kanagawa::InputPortOp inputPort = circt::kanagawa::InputPortOp::create(_opb, 
-                    _location, getPortSymbol(pi._hwPortInfo.name.str()), mlir::TypeAttr::get(pi._hwPortInfo.type),
-                    pi._hwPortInfo.name);
+                circt::kanagawa::InputPortOp inputPort = circt::kanagawa::InputPortOp::create(_opb,
+                                                                                              _location, getPortSymbol(pi._hwPortInfo.name.str()), mlir::TypeAttr::get(pi._hwPortInfo.type),
+                                                                                              pi._hwPortInfo.name);
 
                 mlir::Value inputValue = circt::kanagawa::PortReadOp::create(_opb, _location, inputPort);
 
@@ -1811,9 +1814,9 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
             {
                 assert(pi._hwPortInfo.dir == circt::hw::ModulePort::Direction::Output);
 
-                circt::kanagawa::OutputPortOp outputPort = circt::kanagawa::OutputPortOp::create(_opb, 
-                    _location, getPortSymbol(pi._hwPortInfo.name.str()), mlir::TypeAttr::get(pi._hwPortInfo.type),
-                    pi._hwPortInfo.name);
+                circt::kanagawa::OutputPortOp outputPort = circt::kanagawa::OutputPortOp::create(_opb,
+                                                                                                 _location, getPortSymbol(pi._hwPortInfo.name.str()), mlir::TypeAttr::get(pi._hwPortInfo.type),
+                                                                                                 pi._hwPortInfo.name);
 
                 mlir::Value outputValue = ReadContainerPort(
                     _opb, _location, pathToContainer,
@@ -1825,7 +1828,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
     }
 
     // Handle wrapper ports which are for function calls
-    for (const auto& bundleInfo : _bundleNameToPortRange)
+    for (const auto &bundleInfo : _bundleNameToPortRange)
     {
         const std::string bundleName = bundleInfo.first;
 
@@ -1858,7 +1861,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
 
             for (size_t portIndex = startPortIndex; portIndex < endPortIndex; portIndex++)
             {
-                const PortInfo& portInfo = _ports[portIndex];
+                const PortInfo &portInfo = _ports[portIndex];
 
                 assert(portInfo._esiChannelSemantics != EsiChannelSemantics::NonEsi);
 
@@ -1957,8 +1960,8 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
             circt::esi::ChannelBundleType::get(g_compiler->GetMlirContext(), bundleChannelDesc, nullptr);
 
         // Declare a port on the container with bundle type
-        circt::kanagawa::InputPortOp inputBundlePort = circt::kanagawa::InputPortOp::create(_opb, 
-            _location, getPortSymbol(bundleName), mlir::TypeAttr::get(bundleType), StringToStringAttr(bundleName));
+        circt::kanagawa::InputPortOp inputBundlePort = circt::kanagawa::InputPortOp::create(_opb,
+                                                                                            _location, getPortSymbol(bundleName), mlir::TypeAttr::get(bundleType), StringToStringAttr(bundleName));
 
         // PortReadOp to get the bundle
         mlir::Value inputBundle = circt::kanagawa::PortReadOp::create(_opb, _location, inputBundlePort);
@@ -1996,7 +1999,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
 
                 for (size_t portIndex = startPortIndex; portIndex < endPortIndex; portIndex++)
                 {
-                    const PortInfo& portInfo = _ports[portIndex];
+                    const PortInfo &portInfo = _ports[portIndex];
 
                     assert(portInfo._esiChannelSemantics != EsiChannelSemantics::NonEsi);
 
@@ -2053,8 +2056,8 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                         circt::esi::UnwrapValidReadyOp unwrapOp =
                             circt::esi::UnwrapValidReadyOp::create(_opb, _location, inputChannel, ready);
 
-                        const llvm::SmallVector<mlir::Type>& payloadTypes = directionToPayloadTypes[channelDirection];
-                        const llvm::SmallVector<std::string>& payloadNames = directionToPayloadNames[channelDirection];
+                        const llvm::SmallVector<mlir::Type> &payloadTypes = directionToPayloadTypes[channelDirection];
+                        const llvm::SmallVector<std::string> &payloadNames = directionToPayloadNames[channelDirection];
 
                         // Write data (if it exists) and valid on the wrapped container
                         if (payloadTypes.size() > 0)
@@ -2112,7 +2115,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                             // Channel payload is i0
                             // Lowering will remove the i0 ports
                             wrapPayload = circt::hw::ConstantOp::create(_opb, _location,
-                                                                             _opb.getIntegerAttr(GetIntegerType(0), 0));
+                                                                        _opb.getIntegerAttr(GetIntegerType(0), 0));
                         }
                         else if (directionToChannelName[channelDirection] == EsiChannelName::Results)
                         {
@@ -2126,8 +2129,8 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
                                 circt::hw::StructCreateOp::create(_opb, _location, channelType.getInner(), payload);
                         }
 
-                        circt::esi::WrapFIFOOp wrapOp = circt::esi::WrapFIFOOp::create(_opb, 
-                            _location, channelType, GetI1Type(), wrapPayload, empty);
+                        circt::esi::WrapFIFOOp wrapOp = circt::esi::WrapFIFOOp::create(_opb,
+                                                                                       _location, channelType, GetI1Type(), wrapPayload, empty);
 
                         outputChannel = wrapOp.getChanOutput();
 
@@ -2148,10 +2151,10 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string& circtDesignName)
     }
 }
 
-mlir::Value ModuleDeclarationHelper::GetPort(circt::OpBuilder& opb, const ObjectPath& srcPath,
-                                             const ObjectPath& dstPath, const mlir::StringAttr portSymbol,
+mlir::Value ModuleDeclarationHelper::GetPort(circt::OpBuilder &opb, const ObjectPath &srcPath,
+                                             const ObjectPath &dstPath, const mlir::StringAttr portSymbol,
                                              const circt::kanagawa::Direction portDirection, const mlir::Type portType,
-                                             const std::string& finalTypeName, const std::string& circtDesignName)
+                                             const std::string &finalTypeName, const std::string &circtDesignName)
 {
     // Find the common root between the 2 paths
     ObjectPath commonRoot;
@@ -2238,9 +2241,9 @@ mlir::Value ModuleDeclarationHelper::GetPort(circt::OpBuilder& opb, const Object
     }
 }
 
-void ModuleDeclarationHelper::WritePort(circt::OpBuilder& opb, const ObjectPath& srcPath, const ObjectPath& dstPath,
-                                        const mlir::StringAttr portSymbol, const std::string& finalTypeName,
-                                        const std::string& circtDesignName, mlir::Value value)
+void ModuleDeclarationHelper::WritePort(circt::OpBuilder &opb, const ObjectPath &srcPath, const ObjectPath &dstPath,
+                                        const mlir::StringAttr portSymbol, const std::string &finalTypeName,
+                                        const std::string &circtDesignName, mlir::Value value)
 {
     mlir::Value port = GetPort(opb, srcPath, dstPath, portSymbol, circt::kanagawa::Direction::Input, value.getType(),
                                finalTypeName, circtDesignName);
@@ -2248,9 +2251,9 @@ void ModuleDeclarationHelper::WritePort(circt::OpBuilder& opb, const ObjectPath&
     circt::kanagawa::PortWriteOp::create(opb, _location, port, value);
 }
 
-mlir::Value ModuleDeclarationHelper::ReadPort(circt::OpBuilder& opb, const ObjectPath& srcPath,
-                                              const ObjectPath& dstPath, const mlir::StringAttr portSymbol,
-                                              const std::string& finalTypeName, const std::string& circtDesignName,
+mlir::Value ModuleDeclarationHelper::ReadPort(circt::OpBuilder &opb, const ObjectPath &srcPath,
+                                              const ObjectPath &dstPath, const mlir::StringAttr portSymbol,
+                                              const std::string &finalTypeName, const std::string &circtDesignName,
                                               const mlir::Type type)
 {
     mlir::Value port = GetPort(opb, srcPath, dstPath, portSymbol, circt::kanagawa::Direction::Output, type,
@@ -2259,8 +2262,8 @@ mlir::Value ModuleDeclarationHelper::ReadPort(circt::OpBuilder& opb, const Objec
     return circt::kanagawa::PortReadOp::create(opb, _location, port);
 }
 
-TriggeredOpHelper::TriggeredOpHelper(circt::OpBuilder& opb, circt::pipeline::ScheduledPipelineOp& scheduledPipelineOp,
-                                     const SourceOperandToMlirValueCb& sourceOperandToMlirValue, const Program& program,
+TriggeredOpHelper::TriggeredOpHelper(circt::OpBuilder &opb, circt::pipeline::ScheduledPipelineOp &scheduledPipelineOp,
+                                     const SourceOperandToMlirValueCb &sourceOperandToMlirValue, const Program &program,
                                      const mlir::Value enableSignal)
     : _opb(opb), _scheduledPipelineOp(scheduledPipelineOp), _sourceOperandToMlirValue(sourceOperandToMlirValue),
       _program(program), _doneAddingOps(false)
@@ -2271,11 +2274,11 @@ TriggeredOpHelper::TriggeredOpHelper(circt::OpBuilder& opb, circt::pipeline::Sch
 
 TriggeredOpHelper::~TriggeredOpHelper() { _opb.restoreInsertionPoint(_insertionPoint); }
 
-void TriggeredOpHelper::AddOp(const Operation& op) { _ops.push_back(&op); }
+void TriggeredOpHelper::AddOp(const Operation &op) { _ops.push_back(&op); }
 
 // Add a value which can be read from within the triggered op
 // Returns an index which can be passed to GetSignal
-size_t TriggeredOpHelper::AddSignal(const mlir::Value& value)
+size_t TriggeredOpHelper::AddSignal(const mlir::Value &value)
 {
     assert(!_doneAddingOps);
 
@@ -2297,7 +2300,7 @@ void TriggeredOpHelper::DoneAddingOps(const circt::hw::EventControl triggerCondi
     if (!_ops.empty())
     {
         // Make all source operands visible
-        for (const Operation* const op : _ops)
+        for (const Operation *const op : _ops)
         {
             SafeInsert(_opToStartIndex, op, _signals.size());
 
@@ -2317,9 +2320,9 @@ void TriggeredOpHelper::DoneAddingOps(const circt::hw::EventControl triggerCondi
             }
         }
 
-        _triggeredOp = circt::hw::TriggeredOp::create(_opb, 
-            GetUnknownLocation(), circt::hw::EventControlAttr::get(g_compiler->GetMlirContext(), triggerCondition),
-            clock, _signals);
+        _triggeredOp = circt::hw::TriggeredOp::create(_opb,
+                                                      GetUnknownLocation(), circt::hw::EventControlAttr::get(g_compiler->GetMlirContext(), triggerCondition),
+                                                      clock, _signals);
 
         _insertionPoint = _opb.saveInsertionPoint();
 
@@ -2331,7 +2334,7 @@ void TriggeredOpHelper::DoneAddingOps(const circt::hw::EventControl triggerCondi
 
 // Returns a value which can be used inside of the triggered region
 // corresponding to a source operand of the operation
-mlir::Value TriggeredOpHelper::GetSourceOperand(const Operation& op, const size_t operandIndex)
+mlir::Value TriggeredOpHelper::GetSourceOperand(const Operation &op, const size_t operandIndex)
 {
     assert(_doneAddingOps);
 
@@ -2340,14 +2343,14 @@ mlir::Value TriggeredOpHelper::GetSourceOperand(const Operation& op, const size_
     return _triggeredOp.getBodyBlock()->getArgument(startIndex + operandIndex);
 }
 
-mlir::Value TriggeredOpHelper::GetSourceOperand(const Operation& op, const size_t operandIndex,
+mlir::Value TriggeredOpHelper::GetSourceOperand(const Operation &op, const size_t operandIndex,
                                                 const size_t desiredWidth)
 {
     return AdjustValueWidth(GetSourceOperand(op, operandIndex), desiredWidth, op.ShouldSignExtend(operandIndex), _opb,
                             OperationToCirctLocation(op, _program));
 }
 
-void DumpMlirOperation(mlir::Operation* const op)
+void DumpMlirOperation(mlir::Operation *const op)
 {
     // Flush any buffered data in std::cout
     // before calling CIRCT to print to stdout
@@ -2364,17 +2367,17 @@ void DumpMlirOperation(mlir::Operation* const op)
 
 // Sets the sv.namehint attribute on the operation which defines a given value
 // to match the name of a register
-void AttachNameHintToValue(const mlir::Value value, const AccessedRegister accessedRegister, const Program& program)
+void AttachNameHintToValue(const mlir::Value value, const AccessedRegister accessedRegister, const Program &program)
 {
     // Only proceed if the defining operation can be located
     // and it does not already have a name hint
-    mlir::Operation* const definingOp = value.getDefiningOp();
+    mlir::Operation *const definingOp = value.getDefiningOp();
 
     const std::string attributeName("sv.namehint");
 
     if (definingOp && !definingOp->hasAttr(attributeName))
     {
-        const RegisterDescription& regDesc = program._registerTable[accessedRegister._registerIndex];
+        const RegisterDescription &regDesc = program._registerTable[accessedRegister._registerIndex];
 
         assert(!regDesc._name.empty());
 
@@ -2392,8 +2395,8 @@ void AttachNameHintToValue(const mlir::Value value, const AccessedRegister acces
     }
 }
 
-LatencyOpHelper::LatencyOpHelper(const mlir::Location location, circt::OpBuilder& opb,
-                                 const llvm::SmallVector<mlir::Value>& values, const size_t latency)
+LatencyOpHelper::LatencyOpHelper(const mlir::Location location, circt::OpBuilder &opb,
+                                 const llvm::SmallVector<mlir::Value> &values, const size_t latency)
 {
     if (latency > 0)
     {
@@ -2437,9 +2440,9 @@ mlir::Value LatencyOpHelper::GetResult(const size_t index) { return _results[ind
 // have TwoState=true.
 // This is helpful because many operation builders have a default value of TwoState=false
 // so it easy miss the fact that TwoState should be specified.
-void AssertTwoState(mlir::ModuleOp& moduleOp)
+void AssertTwoState(mlir::ModuleOp &moduleOp)
 {
-    const auto callback = [&](mlir::Operation* op, const mlir::WalkStage&)
+    const auto callback = [&](mlir::Operation *op, const mlir::WalkStage &)
     {
         if (mlir::isa<circt::comb::AddOp>(op) || mlir::isa<circt::comb::AndOp>(op) ||
             mlir::isa<circt::comb::DivSOp>(op) || mlir::isa<circt::comb::DivUOp>(op) ||
@@ -2450,6 +2453,17 @@ void AssertTwoState(mlir::ModuleOp& moduleOp)
             mlir::isa<circt::comb::ShrSOp>(op) || mlir::isa<circt::comb::ShrUOp>(op) ||
             mlir::isa<circt::comb::SubOp>(op) || mlir::isa<circt::comb::XorOp>(op))
         {
+            // Allow FourState MuxOps that have a ConstantXOp operand — these
+            // intentionally produce 'x for simulation debug views.
+            if (auto muxOp = mlir::dyn_cast<circt::comb::MuxOp>(op))
+            {
+                if (muxOp.getTrueValue().getDefiningOp<circt::sv::ConstantXOp>() ||
+                    muxOp.getFalseValue().getDefiningOp<circt::sv::ConstantXOp>())
+                {
+                    return;
+                }
+            }
+
             const std::string name = "twoState";
 
             // The twoState attribute is a UnitAttr
@@ -2469,12 +2483,12 @@ void AssertTwoState(mlir::ModuleOp& moduleOp)
     moduleOp.walk(callback);
 }
 
-MlirModule::MlirModule(const std::string& circtDesignName)
+MlirModule::MlirModule(const std::string &circtDesignName)
 {
     _mlirModule = CreateMlirModuleAndDesign(GetUnknownLocation(), circtDesignName);
 }
 
-mlir::ModuleOp& MlirModule::Module() { return _mlirModule; }
+mlir::ModuleOp &MlirModule::Module() { return _mlirModule; }
 
 // Serialize IR to a string and then deserialize
 // Just to verify that this is possible
@@ -2491,8 +2505,8 @@ void MlirModule::VerifyRoundTrip()
     mlir::FallbackAsmResourceMap resourceMap;
     mlir::ParserConfig parseConfig(&context, true, &resourceMap);
 
-    mlir::OwningOpRef<mlir::Operation*> parsedModule =
-        mlir::parseSourceString<mlir::Operation*>(str.str(), parseConfig);
+    mlir::OwningOpRef<mlir::Operation *> parsedModule =
+        mlir::parseSourceString<mlir::Operation *>(str.str(), parseConfig);
 
     if (!parsedModule)
     {
