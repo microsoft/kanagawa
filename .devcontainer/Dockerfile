@@ -8,7 +8,7 @@
 #   - A VS Code / GitHub Codespaces devcontainer (via devcontainer.json)
 #   - A GitHub Copilot coding agent build environment
 
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
