@@ -4,10 +4,10 @@ This document is a source-backed design reference for the open-source Kanagawa c
 
 The emphasis here is on verified structure:
 
-1. what stages exist in the shipped compiler,
-2. which concrete data structures carry information between those stages,
-3. which subsystems own each transformation,
-4. where the corresponding code lives.
+1. what stages exist in the shipped compiler — the actual pipeline implemented today,
+2. which concrete data structures carry information between those stages — the real AST and IR objects,
+3. which subsystems own each transformation — the Haskell, C++, and backend boundaries,
+4. where the corresponding code lives — the files and entry points to start from.
 
 Each section ends with direct source anchors to the relevant files and entry points.
 
@@ -17,7 +17,7 @@ The compiler is split across three major implementation layers.
 
 | Layer | Primary location | Responsibility |
 | --- | --- | --- |
-| Frontend parsing and desugaring | [compiler/hs](../compiler/hs) | Parse source files, merge modules, run frontend/desugaring/type-inference passes, and translate the typed Haskell AST into the C++ ParseTree API. |
+| Frontend parsing and de-sugaring | [compiler/hs](../compiler/hs) | Parse source files, merge modules, run frontend/de-sugaring/type-inference passes, and translate the typed Haskell AST into the C++ ParseTree API. |
 | Middle end and scheduling | [compiler/cpp](../compiler/cpp) | Own the ParseTree, type checking, object/function-instance enumeration, IR generation, optimization, scheduling, pipelining, and report generation. |
 | Hardware backend | [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp), [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h), [runtime/rtl](../runtime/rtl) | Lower the compiler IR into CIRCT/MLIR-backed SystemVerilog plus runtime support modules and wrappers. |
 
@@ -58,21 +58,21 @@ The authoritative frontend pass list is `desugarPasses` in `Language.Kanagawa.Fr
 
 The current pass sequence includes, among other steps:
 
-- program validation and desugaring,
-- interpolated-string lowering,
-- `auto` deduction,
-- post-desugar cleanup,
-- template removal and unresolved-template handling,
-- extern/export validation,
-- undefined-symbol detection,
-- template instantiation,
-- extern-class trimming,
-- type inference,
-- intrinsic lowering,
-- template argument deduction,
-- enum reification and `this` capture,
-- higher-order-function lowering,
-- final validation of typed literals, interpolated strings, non-inline functions, local member functions, and redundant name scope.
+- program validation and desugaring — reject malformed constructs and normalize the parsed tree,
+- interpolated-string lowering — rewrite string interpolation into explicit compiler forms,
+- `auto` deduction — resolve inferred declarations before later typing work,
+- post-desugar cleanup — simplify and normalize after the earlier rewrites,
+- template removal and unresolved-template handling — separate instantiated code from still-symbolic template cases,
+- extern/export validation — enforce frontend rules on externally visible functions and classes,
+- undefined-symbol detection — surface missing names before deeper lowering,
+- template instantiation — materialize concrete template uses into ordinary AST forms,
+- extern-class trimming — remove extern-class portions that should not survive into later stages,
+- type inference — compute remaining types required by the typed frontend AST,
+- intrinsic lowering — convert intrinsic syntax into compiler-recognized operations,
+- template argument deduction — infer omitted template arguments where allowed,
+- enum reification and `this` capture — make enum values and lambda captures explicit,
+- higher-order-function lowering — rewrite higher-order constructs into forms the backend can represent,
+- final validation of typed literals, interpolated strings, non-inline functions, local member functions, and redundant name scope — catch late frontend inconsistencies before ParseTree emission.
 
 The key design point is that the Haskell frontend is responsible for producing a typed, lowered AST before any ParseTree nodes are created on the C++ side.
 
@@ -95,11 +95,11 @@ Source anchors: [compiler/hs/app/ParseTree.hs](../compiler/hs/app/ParseTree.hs) 
 
 The C ABI exposed by the C++ side is declared in [compiler/cpp/parse_tree.h](../compiler/cpp/parse_tree.h). It defines:
 
-- the cross-language `Location` struct,
-- enums for operators, loop modes, memory kinds, attributes, and function modifiers,
-- the large family of `Parse*` construction routines used by the Haskell translator,
-- metadata hooks such as `SetLocation`, `SetLocation2`, `SetNodeType`, and `UnknownLocation`,
-- compiler entry points such as `InitCompiler` and `Codegen`.
+- the cross-language `Location` struct — the source-span record shared across the FFI boundary,
+- enums for operators, loop modes, memory kinds, attributes, and function modifiers — the frontend/backend vocabulary for ParseTree construction,
+- the large family of `Parse*` construction routines used by the Haskell translator — the node-construction surface for building the C++ ParseTree,
+- metadata hooks such as `SetLocation`, `SetLocation2`, `SetNodeType`, and `UnknownLocation` — APIs for attaching source and type metadata to nodes,
+- compiler entry points such as `InitCompiler` and `Codegen` — the calls that initialize the backend and launch compilation.
 
 The C++ `Compiler` does not expose a single arena object in the public API. Instead it owns two cleanup lists: `_permanentParseTreeCleanupList` for frontend-created nodes reused across compiled modules, and `_temporaryParseTreeCleanupList` for middle-end nodes rebuilt per module. `Reset` clears temporary parse-tree state between compiled-module passes.
 
@@ -142,10 +142,10 @@ Kanagawa can emit more than one backend module from one source program. That beh
 
 `EnumerateCompiledModules` always creates a default pass first. It then scans `_parseTreeNodes` for export classes and, when appropriate, appends a non-default `CompiledModule` for each export class. The export-class pass carries:
 
-- `_classNodeToCompile`,
-- `_moduleName`,
-- `_baseFileName`,
-- `_placeholderObjectName`.
+- `_classNodeToCompile` — the export-class AST node selected for this pass,
+- `_moduleName` — the emitted module name for this compiled variant,
+- `_baseFileName` — the filename stem used for generated artifacts,
+- `_placeholderObjectName` — the synthetic top-level object name used during export-class compilation.
 
 `Reset` then reconfigures ParseTree state for the selected module. For non-default passes it:
 
@@ -162,9 +162,9 @@ Source anchors: [compiler/cpp/compiler.h](../compiler/cpp/compiler.h) (`Compiled
 
 The main C++ semantic pass is `Compiler::TypeCheck`. It explicitly runs three passes over the same ParseTree and the same `TypeCheckContext`:
 
-1. `TypeCheckPass::Functions`,
-2. `TypeCheckPass::Globals`,
-3. `TypeCheckPass::Default`.
+1. `TypeCheckPass::Functions` — register functions early so calls can resolve before definitions appear,
+2. `TypeCheckPass::Globals` — register non-static globals so later declarations can reference them,
+3. `TypeCheckPass::Default` — perform the full semantic/type-checking pass once the symbol space is populated.
 
 The code comments state the reason directly: functions must be callable before definition, globals must be referenceable before declaration, and global declarations may reference functions such as callbacks.
 
@@ -196,15 +196,15 @@ Kanagawa’s main compiler IR is defined in [compiler/cpp/ir.h](../compiler/cpp/
 
 `Program` is the top-level IR container. It owns:
 
-- the generated module name and compiled-module mode flags,
-- the global register table (`_registerTable`),
-- entry points, callable entry points, and extern entry points,
-- the list of non-inline `Function` objects,
-- FIFO mergers, loop generators, context savers, and external module calls,
-- exported types/typedefs,
-- inspectable/code-coverage variables,
-- extern class instances,
-- placement/debug bookkeeping.
+- the generated module name and compiled-module mode flags — identity and pass-selection state for this IR instance,
+- the global register table (`_registerTable`) — the storage catalog referenced by operations throughout the program,
+- entry points, callable entry points, and extern entry points — the externally visible execution surface,
+- the list of non-inline `Function` objects — the main executable bodies in the middle-end IR,
+- FIFO mergers, loop generators, context savers, and external module calls — cross-block and interface support structures,
+- exported types/typedefs — the types that must survive into software or RTL-facing outputs,
+- inspectable/code-coverage variables — debug and coverage metadata carried into backend emission,
+- extern class instances — instantiated external-module/interface objects,
+- placement/debug bookkeeping — maps and metadata used by reporting, layout, and debug symbol generation.
 
 Source anchors: [compiler/cpp/ir.h](../compiler/cpp/ir.h) (`Program`).
 
@@ -286,31 +286,31 @@ Source anchors: [compiler/cpp/lower.cpp](../compiler/cpp/lower.cpp) (`OptimizeSc
 
 Verified global optimizations are:
 
-- `SubstituteLiterals`,
-- `MemToArray` when compiling to Verilog and optimization is enabled,
-- `RemoveUnusedGlobals`.
+- `SubstituteLiterals` — replace register or expression uses with literal values when they are known globally,
+- `MemToArray` when compiling to Verilog and optimization is enabled — rewrite eligible memories into array-like forms that better suit later lowering,
+- `RemoveUnusedGlobals` — drop global state that no remaining code observes.
 
 Verified function-level optimizations include, among others:
 
-- `KillMoves`,
-- constant propagation,
-- select-index propagation,
-- dead-jump removal,
-- assert removal when configured,
-- gather-to-move and add-to-or rewrites,
-- string cleanup,
-- LUT canonicalization and packing,
-- common subexpression elimination,
-- constant select-bit folding,
-- literal narrowing,
-- predicate simplification,
-- conditional-ignore propagation,
-- clock-gating computation,
-- wide-op decomposition,
-- algebraic identities,
-- bit-level constant propagation,
-- IR validation,
-- dead-operation removal.
+- `KillMoves` — remove redundant move operations and collapse trivial register forwarding,
+- constant propagation — push known values through operations to simplify later logic,
+- select-index propagation — carry known index information through select-like operations,
+- dead-jump removal — eliminate control-flow edges that can no longer execute,
+- assert removal when configured — strip assertions in builds where they should not remain,
+- gather-to-move and add-to-or rewrites — normalize certain instruction shapes into forms that optimize better,
+- string cleanup — remove or simplify unused string-related IR state,
+- LUT canonicalization and packing — normalize LUT form and combine operations into LUTs when profitable,
+- common subexpression elimination — reuse previously computed equivalent expressions,
+- constant select-bit folding — simplify bit-extract operations with constant indices,
+- literal narrowing — reduce literal widths to the minimum required representation,
+- predicate simplification — collapse always-true/always-false predicate cases,
+- conditional-ignore propagation — propagate the effects of conditional-ignore operations into later uses,
+- clock-gating computation — derive gating opportunities from the current operation graph,
+- wide-op decomposition — break very wide operations into smaller pieces in later optimization phases,
+- algebraic identities — replace expressions with cheaper equivalent forms,
+- bit-level constant propagation — track constant information at bit granularity,
+- IR validation — check that transformations have left the function in a legal state,
+- dead-operation removal — delete operations whose results or effects are no longer needed.
 
 `EarlyOptimization` is a separate low-complexity, thread-pooled pass intended to reduce later optimization work before the heavier serial passes run.
 
@@ -324,10 +324,10 @@ Scheduling is implemented in [compiler/cpp/schedule.cpp](../compiler/cpp/schedul
 
 `ConstraintScheduler` models each schedulable item as a node with:
 
-- a minimum legal pipeline stage,
-- a current allowed stage range,
-- a list of outgoing constraints,
-- a pointer back to the underlying `Operation`.
+- a minimum legal pipeline stage — the earliest stage the node may occupy,
+- a current allowed stage range — the mutable interval remaining after constraints are applied,
+- a list of outgoing constraints — the dependency rules this node imposes on later nodes,
+- a pointer back to the underlying `Operation` — the IR operation that scheduling decisions will ultimately place.
 
 The scheduler processes ready nodes whose incoming constraints have been satisfied, selects a pipeline stage within the current allowed range, and then tightens the allowable ranges of dependent nodes.
 
@@ -337,13 +337,13 @@ Source anchors: [compiler/cpp/schedule.cpp](../compiler/cpp/schedule.cpp) (`Cons
 
 The scheduler has an explicit fallback strategy for atomic blocks, encoded by `AtomicBlockSchedulingPass`:
 
-1. `Default`,
-2. `IgnorePathLengthExceeded`,
-3. `IgnoreRegisterRatio`,
-4. `RemovePredication`,
-5. `ReadLatencyOne`.
+1. `Default` — start with the normal constraint set while allowing the atomic block's register ratio to increase up to the configured maximum before moving on to the next relaxation.
+2. `IgnorePathLengthExceeded` — retry with the path-length limit relaxed for the affected atomic block; the enum comment describes this as using the maximum register ratio while allowing overpacking of the last pipeline stage.
+3. `IgnoreRegisterRatio` — retry while ignoring the register-ratio bound when deciding whether an operation can stay in the same stage.
+4. `RemovePredication` — retry after removing predication from certain predicated memory loads and certain pure predicated inline external-module calls when that predication is what makes the block unschedulable.
+5. `ReadLatencyOne` — retry after forcing source `LoadMemory` operations in the affected atomic block to use read latency 1 by disabling the memory output register.
 
-When constraints become impossible to satisfy, the scheduler walks failing atomic blocks from inner to outer, first increasing per-atomic-block register ratio up to the configured maximum, then advancing through the fallback modes above. If all strategies are exhausted, it reports `BasicBlockNotSchedulable`.
+When constraints become impossible to satisfy, the scheduler walks failing atomic blocks from inner to outer. For the first failing block it can still relax, it first increases that block's per-atomic-block register ratio up to the configured maximum. Once the ratio is already at the maximum, it advances through the fallback passes above one step at a time. `ReadLatencyOne` is the last named relaxation. If the block still fails after that retry state has been reached, the scheduler reports `BasicBlockNotSchedulable`.
 
 Source anchors: [compiler/cpp/schedule.cpp](../compiler/cpp/schedule.cpp) (`AtomicBlockSchedulingPass`, `ConstraintScheduler::Schedule`).
 
@@ -351,13 +351,13 @@ Source anchors: [compiler/cpp/schedule.cpp](../compiler/cpp/schedule.cpp) (`Atom
 
 The scheduler’s data-hazard constraint logic explicitly accounts for:
 
-- path-length/register-ratio limits,
-- registered outputs and registered inputs,
-- global RAW/WAW hazards,
-- BeginAtomic placement rules,
-- routing slack for hardened blocks,
-- special handling of predicated memory loads and predicated pure extern calls,
-- hardened-register-to-hardened-register cases that require an extra pipeline stage.
+- path-length/register-ratio limits — the stage-local packing bounds used to control combinational depth,
+- registered outputs and registered inputs — cases where producer or consumer timing forces a stage boundary,
+- global RAW/WAW hazards — ordering constraints for stateful global accesses,
+- BeginAtomic placement rules — restrictions that keep atomic regions structurally valid,
+- routing slack for hardened blocks — extra timing allowance checks for routed hardened resources,
+- special handling of predicated memory loads and predicated pure extern calls — selective relaxation paths for predicate-driven scheduling failures,
+- hardened-register-to-hardened-register cases that require an extra pipeline stage — situations where internal hard-block registers cannot be directly chained.
 
 Those are not just heuristics for a pretty schedule; they directly control where pipeline registers will be required in generated hardware.
 
@@ -369,30 +369,30 @@ The Verilog backend entry point is `CompileVerilog`, which constructs a `Verilog
 
 Verified backend behavior from `VerilogCompiler::Compile` and the surrounding helpers:
 
-- write the SystemVerilog package for exported types,
-- create an MLIR/CIRCT module and design object,
-- optionally declare debug-view modules,
-- compile every non-extern basic block into backend modules,
-- declare context-saver merger modules and ASIC memory-init LUT modules,
-- declare the top-level core module and ports,
-- instantiate reset control, memories, globals, inspectables, coverpoints, extern class instances, FIFOs, FIFO mergers, loop generators, context savers, and basic blocks,
-- connect export and extern interfaces,
-- optionally serialize CIRCT IR,
-- round-trip verify the MLIR module,
-- generate final SystemVerilog text from MLIR.
+- write the SystemVerilog package for exported types — emit the shared type/package surface used by generated RTL,
+- create an MLIR/CIRCT module and design object — establish the backend IR container used during lowering,
+- optionally declare debug-view modules — materialize debug-view helpers when that feature is enabled,
+- compile every non-extern basic block into backend modules — lower scheduled IR blocks into backend module implementations,
+- declare context-saver merger modules and ASIC memory-init LUT modules — emit support modules required by calls and memory initialization,
+- declare the top-level core module and ports — build the externally visible wrapper/interface surface,
+- instantiate reset control, memories, globals, inspectables, coverpoints, extern class instances, FIFOs, FIFO mergers, loop generators, context savers, and basic blocks — assemble the generated hardware from its major building blocks,
+- connect export and extern interfaces — wire the generated core to exported functions and external modules,
+- optionally serialize CIRCT IR — dump backend IR for inspection when requested,
+- round-trip verify the MLIR module — check that the CIRCT/MLIR form remains serializable and valid,
+- generate final SystemVerilog text from MLIR — emit the backend's final RTL output.
 
 At the `Codegen` layer, emitted files include at least:
 
-- `.sv`,
-- `_types.sv`,
-- `.cpp`,
-- `.h`,
-- `.tcl`,
-- `HwConfig.mk`,
-- symbol/debug-symbol CSVs,
-- clock-gating and path-length reports,
-- RTL map JSON,
-- optional `.mlir` CIRCT assembly.
+- `.sv` — the main generated SystemVerilog module implementation,
+- `_types.sv` — the exported package/type definitions used by the generated RTL,
+- `.cpp` — generated C++ interop support for the emitted module,
+- `.h` — generated header declarations for that interop surface,
+- `.tcl` — tool-side scripting output used by downstream flows,
+- `HwConfig.mk` — generated make-style hardware configuration data,
+- symbol/debug-symbol CSVs — symbol tables and debug mappings for generated hardware artifacts,
+- clock-gating and path-length reports — analysis outputs from optimization and scheduling,
+- RTL map JSON — a machine-readable map of generated RTL structures and signals,
+- optional `.mlir` CIRCT assembly — a serialized dump of the CIRCT/MLIR backend IR when requested.
 
 The CIRCT utility layer in [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h) defines the shared helpers for locations, type conversion, container-port access, lowering hooks, and dialect loading.
 
