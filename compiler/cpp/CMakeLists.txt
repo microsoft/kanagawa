@@ -71,7 +71,9 @@ set_target_properties(kanagawa_lib PROPERTIES
     OUTPUT_NAME ${KANAGAWA_SHARED_LIBRARY_NAME}
 )
 
-# target_compile_definitions(kanagawa_lib PRIVATE KANAGAWA_SKIP_CONSISTENCY_CHECKS=1)
+if(BUILD_CHANNEL STREQUAL "release" OR BUILD_CHANNEL STREQUAL "nightly")
+    target_compile_definitions(kanagawa_lib PRIVATE KANAGAWA_SKIP_CONSISTENCY_CHECKS=1)
+endif()
 
 target_include_directories(kanagawa_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
