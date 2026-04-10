@@ -19,7 +19,7 @@ The compiler is split across three major implementation layers.
 | --- | --- | --- |
 | Frontend parsing and de-sugaring | [compiler/hs](../compiler/hs) | Parse source files, merge modules, run frontend/de-sugaring/type-inference passes, and translate the typed Haskell AST into the C++ ParseTree API. |
 | Middle end and scheduling | [compiler/cpp](../compiler/cpp) | Own the ParseTree, type checking, object/function-instance enumeration, IR generation, optimization, scheduling, pipelining, and report generation. |
-| Hardware backend | [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp), [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h), [runtime/rtl](../runtime/rtl) | Lower the compiler IR into CIRCT/MLIR-backed SystemVerilog plus runtime support modules and wrappers. |
+| Hardware backend | [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp), [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h), [compiler/cpp/circt_util.cpp](../compiler/cpp/circt_util.cpp), [runtime/rtl](../runtime/rtl) | Lower the compiler IR into CIRCT/MLIR-backed SystemVerilog plus runtime support modules and wrappers. |
 
 The frontend and middle end are not separated by a serialized file format. The Haskell executable calls into the C++ backend through the ParseTree FFI and then invokes the C++ `Codegen` entry point directly.
 
@@ -31,14 +31,14 @@ At a high level, the shipped compiler performs the following steps:
 
 1. The Haskell executable parses the requested source files with `parseProgram`.
 2. The parsed modules are merged and passed through the Haskell frontend pipeline via `frontend`.
-3. The typed Haskell AST is recursively translated into C++ ParseTree nodes by `ParseTree.compile`.
+3. The typed Haskell AST is recursively translated into C++ ParseTree nodes by the Haskell `compile` function in the `ParseTree` module.
 4. `InitCompiler` creates and configures the C++ compiler state.
 5. `Codegen` performs C++ type checking, declaration reordering, device configuration extraction, device-capability validation, and compiled-module enumeration.
 6. For each `CompiledModule`, the compiler resets per-module state, externalizes classes, registers objects, enumerates reachable function instances, and builds a `Program` IR.
 7. The generated IR is optimized, scheduled, pipelined, validated, and prepared for backend emission.
-8. Non-default compiled modules are emitted as SystemVerilog, package files, headers, reports, symbol/debug maps, and optional CIRCT IR dumps.
+8. Compiled modules with `_isDefaultPass == false` are emitted as SystemVerilog, package files, headers, reports, symbol/debug maps, and optional CIRCT IR dumps.
 
-One important detail is that `Codegen` always creates a leading “default” compiled module. That pass compiles shared/global extern/export state but intentionally skips output emission; output files are generated only for non-default compiled modules.
+One important detail is that `Codegen` always creates a leading `CompiledModule` entry with `_isDefaultPass = true`. That pass compiles shared/global extern/export state but intentionally skips output emission; output files are generated only for compiled modules where `_isDefaultPass` is false.
 
 Source anchors: [compiler/hs/app/Main.hs](../compiler/hs/app/Main.hs) (`handle`), [compiler/hs/lib/Language/Kanagawa/Frontend.hs](../compiler/hs/lib/Language/Kanagawa/Frontend.hs) (`frontend`, `desugarPasses`), [compiler/hs/app/ParseTree.hs](../compiler/hs/app/ParseTree.hs) (`compile`, `parseWithLoc`), [compiler/cpp/kanagawa.cpp](../compiler/cpp/kanagawa.cpp) (`Codegen`), [compiler/cpp/compiler.cpp](../compiler/cpp/compiler.cpp) (`EnumerateCompiledModules`, `Reset`), [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp) (`CompileVerilog`, `VerilogCompiler::Compile`).
 
@@ -80,7 +80,7 @@ Source anchors: [compiler/hs/lib/Language/Kanagawa/Frontend.hs](../compiler/hs/l
 
 ### 3.3 ParseTree translation boundary
 
-`ParseTree.compile` is the bridge from the typed Haskell AST into the C++ compiler. It does four important things:
+The Haskell `compile` function in [compiler/hs/app/ParseTree.hs](../compiler/hs/app/ParseTree.hs) is the bridge from the typed Haskell AST into the C++ compiler. It does four important things:
 
 1. marshals CLI/backend options into the FFI layer with `withOptions` and `initCompiler`,
 2. walks the typed AST recursively with `cataM parseWithLoc`,
@@ -140,14 +140,14 @@ Source anchors: [compiler/cpp/kanagawa.cpp](../compiler/cpp/kanagawa.cpp) (`Code
 
 Kanagawa can emit more than one backend module from one source program. That behavior is controlled by `CompiledModule` and `Compiler::EnumerateCompiledModules`.
 
-`EnumerateCompiledModules` always creates a default pass first. It then scans `_parseTreeNodes` for export classes and, when appropriate, appends a non-default `CompiledModule` for each export class. The export-class pass carries:
+`EnumerateCompiledModules` always creates a leading `CompiledModule` with `_isDefaultPass = true`. It then scans `_parseTreeNodes` for export classes and, when appropriate, appends additional `CompiledModule` entries with `_isDefaultPass = false` for export-class compilation. The export-class-specific entries carry:
 
 - `_classNodeToCompile` — the export-class AST node selected for this pass,
 - `_moduleName` — the emitted module name for this compiled variant,
 - `_baseFileName` — the filename stem used for generated artifacts,
 - `_placeholderObjectName` — the synthetic top-level object name used during export-class compilation.
 
-`Reset` then reconfigures ParseTree state for the selected module. For non-default passes it:
+`Reset` then reconfigures ParseTree state for the selected module. For entries where `_isDefaultPass` is false it:
 
 - removes export/external modifiers from ordinary non-external functions,
 - marks the selected export class’s interface methods as exportable,
@@ -176,9 +176,9 @@ Source anchors: [compiler/cpp/compiler.cpp](../compiler/cpp/compiler.cpp) (`Type
 
 The ParseTree still contains source-level functions and objects. Before IR generation, the compiler enumerates concrete function instances.
 
-The relevant logic lives in [compiler/cpp/enumerate_function_instances.cpp](../compiler/cpp/enumerate_function_instances.cpp). Verified points from that implementation:
+The relevant logic lives across [compiler/cpp/parse_tree.h](../compiler/cpp/parse_tree.h) and [compiler/cpp/enumerate_function_instances.cpp](../compiler/cpp/enumerate_function_instances.cpp). Verified points from that implementation:
 
-- `FunctionInstance` is keyed by function node, object name, and instance index.
+- `FunctionInstance` ordering/keying is by function sequence number, then instance index, then object name.
 - `TraverseParseTree` walks the ParseTree, captures per-function symbol-table context, and records which methods belong to each class type.
 - `RegisterObject` seeds the work list for methods that are always reachable, currently functions carrying `ParseTreeFunctionModifierExport` or `ParseTreeFunctionModifierReset`.
 - `RegisterObject` also seeds methods callable from external classes and validates allowed callback modifiers.
@@ -186,7 +186,7 @@ The relevant logic lives in [compiler/cpp/enumerate_function_instances.cpp](../c
 
 The rest of the compiler depends on this enumeration for reachability, call/return linking, and later removal of unreachable functions.
 
-Source anchors: [compiler/cpp/enumerate_function_instances.cpp](../compiler/cpp/enumerate_function_instances.cpp) (`FunctionInstance`, `FunctionInstanceEnumerator`, `TraverseParseTree`, `RegisterObject`, `GetOrAllocateInstanceIndex`), [compiler/cpp/kanagawa.cpp](../compiler/cpp/kanagawa.cpp) (`Codegen` loop around `EnumerateFunctionInstances`).
+Source anchors: [compiler/cpp/parse_tree.h](../compiler/cpp/parse_tree.h) (`FunctionInstance`), [compiler/cpp/enumerate_function_instances.cpp](../compiler/cpp/enumerate_function_instances.cpp) (`FunctionInstanceEnumerator`, `TraverseParseTree`, `RegisterObject`, `GetOrAllocateInstanceIndex`), [compiler/cpp/kanagawa.cpp](../compiler/cpp/kanagawa.cpp) (`Codegen` loop around `EnumerateFunctionInstances`).
 
 ## 9. Middle-End IR Data Structures
 
@@ -394,9 +394,9 @@ At the `Codegen` layer, emitted files include at least:
 - RTL map JSON — a machine-readable map of generated RTL structures and signals,
 - optional `.mlir` CIRCT assembly — a serialized dump of the CIRCT/MLIR backend IR when requested.
 
-The CIRCT utility layer in [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h) defines the shared helpers for locations, type conversion, container-port access, lowering hooks, and dialect loading.
+The CIRCT utility layer in [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h) and [compiler/cpp/circt_util.cpp](../compiler/cpp/circt_util.cpp) defines and implements the shared helpers for locations, type conversion, container-port access, lowering hooks, and dialect loading.
 
-Source anchors: [compiler/cpp/verilog.h](../compiler/cpp/verilog.h) (`CompileVerilog`), [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp) (`CompileVerilog`, `VerilogCompiler::Compile`, `DeclareCore`, `DeclareCorePorts`, `InstantiateMemoriesCIRCT`, `InstantiateFifos`, `ConnectExportFifos`, `InstantiateBasicBlocks`), [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h).
+Source anchors: [compiler/cpp/verilog.h](../compiler/cpp/verilog.h) (`CompileVerilog`), [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp) (`CompileVerilog`, `VerilogCompiler::Compile`, `DeclareCore`, `DeclareCorePorts`, `InstantiateMemoriesCIRCT`, `InstantiateFifos`, `ConnectExportFifos`, `InstantiateBasicBlocks`), [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h), [compiler/cpp/circt_util.cpp](../compiler/cpp/circt_util.cpp).
 
 ## 14. Test and Validation Infrastructure
 
@@ -434,7 +434,7 @@ When changing compiler behavior, the most reliable subsystem boundaries are:
 - Reachability and call-graph shape: start in [compiler/cpp/enumerate_function_instances.cpp](../compiler/cpp/enumerate_function_instances.cpp).
 - IR shape and data transport: start in [compiler/cpp/ir.h](../compiler/cpp/ir.h).
 - Optimization/scheduling/pipelining: start in [compiler/cpp/optimize.cpp](../compiler/cpp/optimize.cpp), [compiler/cpp/optimize.h](../compiler/cpp/optimize.h), [compiler/cpp/lower.cpp](../compiler/cpp/lower.cpp), and [compiler/cpp/schedule.cpp](../compiler/cpp/schedule.cpp).
-- Verilog/CIRCT/backend issues: start in [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp), [compiler/cpp/verilog.h](../compiler/cpp/verilog.h), and [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h).
+- Verilog/CIRCT/backend issues: start in [compiler/cpp/verilog.cpp](../compiler/cpp/verilog.cpp), [compiler/cpp/verilog.h](../compiler/cpp/verilog.h), [compiler/cpp/circt_util.h](../compiler/cpp/circt_util.h), and [compiler/cpp/circt_util.cpp](../compiler/cpp/circt_util.cpp).
 - End-to-end test wiring: start in [build/cmake/test_helper.cmake](../build/cmake/test_helper.cmake).
 
 That division reflects the current shipped code, not an aspirational architecture. In particular, many important transformations still happen in the C++ middle end after ParseTree construction, and backend emission remains tightly coupled to the `Program`/register-table model.
