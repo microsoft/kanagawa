@@ -6562,7 +6562,7 @@ public:
                 coreModule.AddPort(port._name,
                                    port._input ? circt::hw::ModulePort::Direction::Input
                                                : circt::hw::ModulePort::Direction::Output,
-                                   ToMlirTypeAliased(port._type, false, coreModule), port._type,
+                                   ToMlirType(port._type), port._type,
                                    port._portSemantics, port._channelSemantics, port._channelName,
                                    port._fieldName);
             }
@@ -6630,7 +6630,7 @@ public:
                 const Type *type = functionNode->GetParameterType(i);
                 coreModule.AddPort(prefix + "_" + functionNode->GetParameterName(i) + "_out",
                                    circt::hw::ModulePort::Direction::Output,
-                                   ToMlirTypeAliased(type, false, coreModule), type,
+                                   ToMlirType(type), type,
                                    EsiPortSemantics::Payload, EsiChannelSemantics::FromGeneratedHw,
                                    EsiChannelName::Arguments, functionNode->GetParameterName(i));
             }
@@ -6654,7 +6654,7 @@ public:
                 {
                     const Type *type = functionNode->GetReturnType();
                     coreModule.AddPort(prefix + "_result_in", circt::hw::ModulePort::Direction::Input,
-                                       ToMlirTypeAliased(type, false, coreModule), type,
+                                       ToMlirType(type), type,
                                        EsiPortSemantics::Payload, EsiChannelSemantics::ToGeneratedHw,
                                        EsiChannelName::Results);
                 }
