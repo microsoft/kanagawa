@@ -1767,8 +1767,16 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
         typeName = enumType->GetName();
     }
 
-    // Only register types with a non-empty name
+    // Only register types with a non-empty name that is a valid identifier
+    // (no special characters from template instantiations, etc.)
     if (typeName.empty())
+    {
+        return;
+    }
+
+    const bool isValidIdentifier = std::all_of(typeName.begin(), typeName.end(),
+                                               [](char c) { return std::isalnum(c) || c == '_'; });
+    if (!isValidIdentifier)
     {
         return;
     }
@@ -1790,13 +1798,28 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
         return;
     }
 
-    // Recursively register member types first (for structs/unions)
+    // Note: we do NOT recursively register member types here.
+    // The caller (DeclareCore) iterates _exportedTypes which is already
+    // topologically sorted by SortExportedTypes(), so member types are
+    // registered before their containing structs. Recursing here would
+    // crash on non-hardware member types (ClassType, ReferenceType, etc.)
+    // that can't be converted to MLIR.
+
+    // Verify the type can be converted to MLIR before attempting registration.
+    // Some exported types (e.g., structs containing callback function members)
+    // have members that ToMlirType cannot handle. Skip those silently.
     if (structUnionType)
     {
         for (const StructUnionType::EntryType &member : structUnionType->_members)
         {
             const Type *memberType = member.second->GetDeclaredType();
-            RegisterNamedType(memberType);
+            if (!dynamic_cast<const BoolType *>(memberType) && !dynamic_cast<const LeafType *>(memberType) &&
+                !dynamic_cast<const ArrayType *>(memberType) && !dynamic_cast<const FloatType *>(memberType) &&
+                !dynamic_cast<const StructUnionType *>(memberType))
+            {
+                // Member type is not MLIR-convertible — skip this type
+                return;
+            }
         }
     }
 
