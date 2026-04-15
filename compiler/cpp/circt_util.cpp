@@ -497,7 +497,13 @@ circt::hw::ArrayType GetPackedArrayTypeParameterizedSize(const mlir::Type &eleme
 
 circt::seq::ClockType GetClockType() { return circt::seq::ClockType::get(g_compiler->GetMlirContext()); }
 
-mlir::Type ToMlirType(const Type *typeIn, bool signedness)
+// Internal helper: converts a Kanagawa Type to an MLIR type, using the provided
+// 'recurse' callback for recursive member/element type conversion.
+// This avoids duplicating struct/union/array lowering logic between
+// ToMlirType and ToMlirTypeAliased.
+using TypeRecurseFn = std::function<mlir::Type(const Type *, bool)>;
+
+static mlir::Type ToMlirTypeImpl(const Type *typeIn, bool signedness, const TypeRecurseFn &recurse)
 {
     const BoolType *boolType = dynamic_cast<const BoolType *>(typeIn);
     const ArrayType *arrayType = dynamic_cast<const ArrayType *>(typeIn);
@@ -511,7 +517,7 @@ mlir::Type ToMlirType(const Type *typeIn, bool signedness)
     }
     else if (arrayType)
     {
-        return GetPackedArrayType(ToMlirType(arrayType->_elementType, signedness), arrayType->_arraySize);
+        return GetPackedArrayType(recurse(arrayType->_elementType, signedness), arrayType->_arraySize);
     }
     else if (floatType)
     {
@@ -523,17 +529,11 @@ mlir::Type ToMlirType(const Type *typeIn, bool signedness)
         {
             llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
 
-            const auto addField = [&](const std::string &name, const Type *const type)
-            {
-                fields.push_back(
-                    circt::hw::StructType::FieldInfo{StringToStringAttr(name), ToMlirType(type, signedness)});
-            };
-
             for (const StructUnionType::EntryType &member : structUnionType->_members)
             {
                 const Type *const memberType = member.second->GetDeclaredType();
-                const std::string memberName = member.first;
-                addField(memberName, memberType);
+                fields.push_back(
+                    circt::hw::StructType::FieldInfo{StringToStringAttr(member.first), recurse(memberType, signedness)});
             }
 
             std::reverse(fields.begin(), fields.end());
@@ -543,17 +543,11 @@ mlir::Type ToMlirType(const Type *typeIn, bool signedness)
         {
             llvm::SmallVector<circt::hw::UnionType::FieldInfo> fields;
 
-            const auto addField = [&](const std::string &name, const Type *const type)
-            {
-                fields.push_back(
-                    circt::hw::UnionType::FieldInfo{StringToStringAttr(name), ToMlirType(type, signedness)});
-            };
-
             for (const StructUnionType::EntryType &member : structUnionType->_members)
             {
                 const Type *const memberType = member.second->GetDeclaredType();
-                const std::string memberName = member.first;
-                addField(memberName, memberType);
+                fields.push_back(
+                    circt::hw::UnionType::FieldInfo{StringToStringAttr(member.first), recurse(memberType, signedness)});
             }
 
             std::reverse(fields.begin(), fields.end());
@@ -579,55 +573,29 @@ mlir::Type ToMlirType(const Type *typeIn, bool signedness)
     }
 }
 
+mlir::Type ToMlirType(const Type *typeIn, bool signedness)
+{
+    return ToMlirTypeImpl(typeIn, signedness, [](const Type *t, bool s) { return ToMlirType(t, s); });
+}
+
 mlir::Type ToMlirTypeAliased(const Type *typeIn, bool signedness, ModuleDeclarationHelper &helper)
 {
-    // Check if this type has a registered alias
-    auto alias = helper.GetTypeAlias(typeIn);
-    if (alias)
+    // Check if this type has a registered alias.
+    // Only substitute when signedness matches the alias registration (signedness=false),
+    // because aliases are created with default unsigned lowering and substituting them
+    // for a signed request would silently change the emitted MLIR type.
+    if (!signedness)
     {
-        return *alias;
-    }
-
-    // For struct types, recursively use aliased versions for member types
-    const StructUnionType *structUnionType = dynamic_cast<const StructUnionType *>(typeIn);
-    if (structUnionType)
-    {
-        if (structUnionType->_type == ContainerType::Struct)
+        auto alias = helper.GetTypeAlias(typeIn);
+        if (alias)
         {
-            llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
-            for (const StructUnionType::EntryType &member : structUnionType->_members)
-            {
-                const Type *const memberType = member.second->GetDeclaredType();
-                fields.push_back(circt::hw::StructType::FieldInfo{StringToStringAttr(member.first),
-                                                                   ToMlirTypeAliased(memberType, signedness, helper)});
-            }
-            std::reverse(fields.begin(), fields.end());
-            return circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
-        }
-        else
-        {
-            llvm::SmallVector<circt::hw::UnionType::FieldInfo> fields;
-            for (const StructUnionType::EntryType &member : structUnionType->_members)
-            {
-                const Type *const memberType = member.second->GetDeclaredType();
-                fields.push_back(circt::hw::UnionType::FieldInfo{StringToStringAttr(member.first),
-                                                                  ToMlirTypeAliased(memberType, signedness, helper)});
-            }
-            std::reverse(fields.begin(), fields.end());
-            return circt::hw::UnionType::get(g_compiler->GetMlirContext(), fields);
+            return *alias;
         }
     }
 
-    // For array types, recursively use aliased versions for element type
-    const ArrayType *arrayType = dynamic_cast<const ArrayType *>(typeIn);
-    if (arrayType)
-    {
-        return GetPackedArrayType(ToMlirTypeAliased(arrayType->_elementType, signedness, helper),
-                                 arrayType->_arraySize);
-    }
-
-    // For all other types, fall back to the non-aliased version
-    return ToMlirType(typeIn, signedness);
+    // Delegate to the shared implementation with alias-aware recursion
+    return ToMlirTypeImpl(typeIn, signedness,
+                          [&helper](const Type *t, bool s) { return ToMlirTypeAliased(t, s, helper); });
 }
 
 // Used to avoid symbol name conflicts for elements like container ports
@@ -1812,10 +1780,18 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
     }
 
     // Check if a different Type* with the same name was already registered.
-    // Reuse the existing alias to prevent duplicate hw.typedecl symbols.
+    // Reuse the existing alias to prevent duplicate hw.typedecl symbols,
+    // but verify the underlying layout matches to catch conflicting definitions.
     auto nameIt = _typeAliasByName.find(typeName);
     if (nameIt != _typeAliasByName.end())
     {
+        circt::hw::TypeAliasType existingAlias = llvm::cast<circt::hw::TypeAliasType>(nameIt->second);
+        mlir::Type newMlirType = ToMlirTypeAliased(kanagawaType, false, *this);
+        if (existingAlias.getInnerType() != newMlirType)
+        {
+            throw std::runtime_error("Conflicting named type definitions for '" + typeName +
+                                     "': existing alias has a different underlying layout");
+        }
         _typeAliasCache[kanagawaType] = nameIt->second;
         return;
     }
