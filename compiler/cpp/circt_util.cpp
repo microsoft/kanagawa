@@ -580,17 +580,11 @@ mlir::Type ToMlirType(const Type *typeIn, bool signedness)
 
 mlir::Type ToMlirTypeAliased(const Type *typeIn, bool signedness, ModuleDeclarationHelper &helper)
 {
-    // Check if this type has a registered alias.
-    // Only substitute when signedness matches the alias registration (signedness=false),
-    // because aliases are created with default unsigned lowering and substituting them
-    // for a signed request would silently change the emitted MLIR type.
-    if (!signedness)
+    // Check if this type has a registered alias
+    auto alias = helper.GetTypeAlias(typeIn);
+    if (alias)
     {
-        auto alias = helper.GetTypeAlias(typeIn);
-        if (alias)
-        {
-            return *alias;
-        }
+        return *alias;
     }
 
     // Delegate to the shared implementation with alias-aware recursion
@@ -1786,7 +1780,7 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
     if (nameIt != _typeAliasByName.end())
     {
         circt::hw::TypeAliasType existingAlias = llvm::cast<circt::hw::TypeAliasType>(nameIt->second);
-        mlir::Type newMlirType = ToMlirTypeAliased(kanagawaType, false, *this);
+        mlir::Type newMlirType = ToMlirTypeAliased(kanagawaType, true, *this);
         if (existingAlias.getInnerType() != newMlirType)
         {
             throw std::runtime_error("Conflicting named type definitions for '" + typeName +
@@ -1806,8 +1800,10 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
         }
     }
 
-    // Build the MLIR type using the alias-aware conversion so inner named types use aliases
-    mlir::Type mlirType = ToMlirTypeAliased(kanagawaType, false, *this);
+    // Build the MLIR type using the alias-aware conversion so inner named types use aliases.
+    // Use signedness=true to match the ESI wrapper consumer (the only caller of ToMlirTypeAliased),
+    // which passes signedness=true to produce signed/unsigned integer types.
+    mlir::Type mlirType = ToMlirTypeAliased(kanagawaType, true, *this);
 
     // Create the TypedeclOp in the TypeScope block
     {

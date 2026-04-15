@@ -2533,8 +2533,7 @@ void TypeAliasTest()
         ModuleDeclarationHelper helper(writer, "TestModule", GetUnknownLocation(), "TestDesign", &mlirModule);
         helper.AddTypedefs("TestTypeScope");
 
-        // Before registration, ToMlirTypeAliased should return the same as ToMlirType
-        mlir::Type plainType = ToMlirType(&testEnum);
+        // Before registration, ToMlirTypeAliased should not return an alias
         mlir::Type aliasedBefore = ToMlirTypeAliased(&testEnum, false, helper);
         TestAssert(!llvm::isa<circt::hw::TypeAliasType>(aliasedBefore));
 
@@ -2546,14 +2545,26 @@ void TypeAliasTest()
         TestAssert(alias.has_value());
         TestAssert(llvm::isa<circt::hw::TypeAliasType>(*alias));
 
-        // The alias should wrap the same inner type
+        // The alias should have the correct name
         circt::hw::TypeAliasType aliasType = llvm::cast<circt::hw::TypeAliasType>(*alias);
-        TestAssert(aliasType.getInnerType() == plainType);
         TestAssertEqual(std::string("TestColor"), aliasType.getRef().getLeafReference().str());
 
-        // ToMlirTypeAliased should now return the alias
-        mlir::Type aliasedAfter = ToMlirTypeAliased(&testEnum, false, helper);
-        TestAssert(llvm::isa<circt::hw::TypeAliasType>(aliasedAfter));
+        // The alias inner type should use signed integer types (signedness=true),
+        // matching the ESI wrapper which is the consumer of type aliases
+        mlir::Type expectedInnerType = ToMlirType(&testEnum, true);
+        TestAssert(aliasType.getInnerType() == expectedInnerType);
+
+        // ToMlirTypeAliased should return the alias for BOTH signedness values.
+        // This is critical: EmitEsiWrapper calls with signedness=true,
+        // so aliases must be returned regardless of the signedness flag.
+        mlir::Type aliasedSignedFalse = ToMlirTypeAliased(&testEnum, false, helper);
+        TestAssert(llvm::isa<circt::hw::TypeAliasType>(aliasedSignedFalse));
+
+        mlir::Type aliasedSignedTrue = ToMlirTypeAliased(&testEnum, true, helper);
+        TestAssert(llvm::isa<circt::hw::TypeAliasType>(aliasedSignedTrue));
+
+        // Both should return the same alias
+        TestAssert(aliasedSignedFalse == aliasedSignedTrue);
 
         // Registering the same type twice should be a no-op
         helper.RegisterNamedType(&testEnum);
@@ -2566,7 +2577,7 @@ void TypeAliasTest()
         auto noAlias = helper.GetTypeAlias(u16Type);
         TestAssert(!noAlias.has_value());
 
-        // Verify the MLIR module can be printed (basic sanity)
+        // Verify the MLIR module contains the typedecl
         std::string mlirStr;
         llvm::raw_string_ostream os(mlirStr);
         mlirModule.print(os);
