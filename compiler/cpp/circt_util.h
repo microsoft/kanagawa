@@ -86,6 +86,9 @@ circt::seq::ClockType GetClockType();
 
 mlir::Type ToMlirType(const Type* typeIn, bool signedness = false);
 
+class ModuleDeclarationHelper;
+mlir::Type ToMlirTypeAliased(const Type* typeIn, bool signedness, ModuleDeclarationHelper& helper);
+
 mlir::Value GetTypedZeros(circt::OpBuilder& opb, const mlir::Location& location, const mlir::Type& typeIn);
 
 mlir::Value PopCount(circt::OpBuilder& opb, const mlir::Location location, const mlir::ValueRange values,
@@ -316,6 +319,10 @@ class ModuleDeclarationHelper
 
     void AddTypedefs(const std::string& typeScopeName);
 
+    void RegisterNamedType(const Type* kanagawaType);
+
+    std::optional<mlir::Type> GetTypeAlias(const Type* kanagawaType) const;
+
     mlir::Type GetInspectableTypeAlias();
 
     mlir::ModuleOp MlirModule();
@@ -350,7 +357,7 @@ class ModuleDeclarationHelper
                          const std::string& circtDesignName, const mlir::Type type);
 
   private:
-    mlir::Type GetTypeAlias(const std::string& name, const mlir::Type& referencedType);
+    mlir::Type CreateTypeAlias(const std::string& name, const mlir::Type& referencedType);
 
   private:
     void AssertStructsMatch(const mlir::Type& circtTypeAlias, const std::string& otherStructName);
@@ -394,6 +401,9 @@ class ModuleDeclarationHelper
     std::map<std::string, mlir::Value> _outputPortOps;
 
     circt::hw::TypeScopeOp _typeScopeOp;
+
+    // Maps Kanagawa Type* to hw::TypeAliasType for named types
+    std::map<const Type*, mlir::Type> _typeAliasCache;
 
     bool _finished;
 

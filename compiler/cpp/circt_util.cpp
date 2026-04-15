@@ -579,6 +579,57 @@ mlir::Type ToMlirType(const Type *typeIn, bool signedness)
     }
 }
 
+mlir::Type ToMlirTypeAliased(const Type *typeIn, bool signedness, ModuleDeclarationHelper &helper)
+{
+    // Check if this type has a registered alias
+    auto alias = helper.GetTypeAlias(typeIn);
+    if (alias)
+    {
+        return *alias;
+    }
+
+    // For struct types, recursively use aliased versions for member types
+    const StructUnionType *structUnionType = dynamic_cast<const StructUnionType *>(typeIn);
+    if (structUnionType)
+    {
+        if (structUnionType->_type == ContainerType::Struct)
+        {
+            llvm::SmallVector<circt::hw::StructType::FieldInfo> fields;
+            for (const StructUnionType::EntryType &member : structUnionType->_members)
+            {
+                const Type *const memberType = member.second->GetDeclaredType();
+                fields.push_back(circt::hw::StructType::FieldInfo{StringToStringAttr(member.first),
+                                                                   ToMlirTypeAliased(memberType, signedness, helper)});
+            }
+            std::reverse(fields.begin(), fields.end());
+            return circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
+        }
+        else
+        {
+            llvm::SmallVector<circt::hw::UnionType::FieldInfo> fields;
+            for (const StructUnionType::EntryType &member : structUnionType->_members)
+            {
+                const Type *const memberType = member.second->GetDeclaredType();
+                fields.push_back(circt::hw::UnionType::FieldInfo{StringToStringAttr(member.first),
+                                                                  ToMlirTypeAliased(memberType, signedness, helper)});
+            }
+            std::reverse(fields.begin(), fields.end());
+            return circt::hw::UnionType::get(g_compiler->GetMlirContext(), fields);
+        }
+    }
+
+    // For array types, recursively use aliased versions for element type
+    const ArrayType *arrayType = dynamic_cast<const ArrayType *>(typeIn);
+    if (arrayType)
+    {
+        return GetPackedArrayType(ToMlirTypeAliased(arrayType->_elementType, signedness, helper),
+                                 arrayType->_arraySize);
+    }
+
+    // For all other types, fall back to the non-aliased version
+    return ToMlirType(typeIn, signedness);
+}
+
 // Used to avoid symbol name conflicts for elements like container ports
 // returns a symbol name which will be unique provided
 // that flattened container paths are unique
@@ -1720,7 +1771,7 @@ void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type &circtTypeAlia
     _verbatimBuffer.Str() << "end";
 }
 
-mlir::Type ModuleDeclarationHelper::GetTypeAlias(const std::string &name, const mlir::Type &referencedType)
+mlir::Type ModuleDeclarationHelper::CreateTypeAlias(const std::string &name, const mlir::Type &referencedType)
 {
     // AddTypedefs must be called first
     assert(_typeScopeOp);
@@ -1731,10 +1782,75 @@ mlir::Type ModuleDeclarationHelper::GetTypeAlias(const std::string &name, const 
     return circt::hw::TypeAliasType::get(symbolRefAttr, referencedType);
 }
 
+void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
+{
+    assert(_typeScopeOp);
+
+    // Skip if already registered
+    if (_typeAliasCache.count(kanagawaType))
+    {
+        return;
+    }
+
+    const StructUnionType *structUnionType = dynamic_cast<const StructUnionType *>(kanagawaType);
+    const EnumType *enumType = dynamic_cast<const EnumType *>(kanagawaType);
+
+    std::string typeName;
+    if (structUnionType)
+    {
+        typeName = structUnionType->GetName();
+    }
+    else if (enumType)
+    {
+        typeName = enumType->GetName();
+    }
+
+    // Only register types with a non-empty name
+    if (typeName.empty())
+    {
+        return;
+    }
+
+    // Recursively register member types first (for structs/unions)
+    if (structUnionType)
+    {
+        for (const StructUnionType::EntryType &member : structUnionType->_members)
+        {
+            const Type *memberType = member.second->GetDeclaredType();
+            RegisterNamedType(memberType);
+        }
+    }
+
+    // Build the MLIR type using the alias-aware conversion so inner named types use aliases
+    mlir::Type mlirType = ToMlirTypeAliased(kanagawaType, false, *this);
+
+    // Create the TypedeclOp in the TypeScope block
+    {
+        circt::OpBuilder::InsertionGuard g(_opb);
+        _opb.setInsertionPointToEnd(_typeScopeOp.getBodyBlock());
+        circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(typeName), mlirType,
+                                      StringToStringAttr(typeName));
+    }
+
+    // Create and cache the type alias
+    mlir::Type aliasType = CreateTypeAlias(typeName, mlirType);
+    _typeAliasCache[kanagawaType] = aliasType;
+}
+
+std::optional<mlir::Type> ModuleDeclarationHelper::GetTypeAlias(const Type *kanagawaType) const
+{
+    auto it = _typeAliasCache.find(kanagawaType);
+    if (it != _typeAliasCache.end())
+    {
+        return it->second;
+    }
+    return std::nullopt;
+}
+
 mlir::Type ModuleDeclarationHelper::GetInspectableTypeAlias()
 {
     assert(GetCodeGenConfig()._inspection);
-    return GetTypeAlias(InspectableValueName, GetInspectableStructType());
+    return CreateTypeAlias(InspectableValueName, GetInspectableStructType());
 }
 
 mlir::ModuleOp ModuleDeclarationHelper::MlirModule() { return _mlirModule; }
@@ -1884,7 +2000,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                         break;
 
                     case EsiPortSemantics::Payload:
-                        bundlePayloadTypes.push_back(ToMlirType(portInfo._origType, true));
+                        bundlePayloadTypes.push_back(ToMlirTypeAliased(portInfo._origType, true, *this));
                         payloadTypes.push_back(portInfo._hwPortInfo.type);
                         payloadNames.push_back(portInfo._hwPortInfo.name.str());
                         payloadFieldNames.push_back(portInfo._fieldName);
@@ -2035,7 +2151,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                                 payload.push_back(ReadContainerPort(
                                     _opb, _location, pathToContainer,
                                     GetFullyQualifiedStringAttr(ObjectPath(), portInfo._hwPortInfo.name.str()),
-                                    portInfo._hwPortInfo.type, ToMlirType(portInfo._origType, true)));
+                                    portInfo._hwPortInfo.type, ToMlirTypeAliased(portInfo._origType, true, *this)));
                             }
                             break;
 
