@@ -1811,6 +1811,15 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
         return;
     }
 
+    // Check if a different Type* with the same name was already registered.
+    // Reuse the existing alias to prevent duplicate hw.typedecl symbols.
+    auto nameIt = _typeAliasByName.find(typeName);
+    if (nameIt != _typeAliasByName.end())
+    {
+        _typeAliasCache[kanagawaType] = nameIt->second;
+        return;
+    }
+
     // Recursively register member types first (for structs/unions)
     if (structUnionType)
     {
@@ -1835,6 +1844,7 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
     // Create and cache the type alias
     mlir::Type aliasType = CreateTypeAlias(typeName, mlirType);
     _typeAliasCache[kanagawaType] = aliasType;
+    _typeAliasByName[typeName] = aliasType;
 }
 
 std::optional<mlir::Type> ModuleDeclarationHelper::GetTypeAlias(const Type *kanagawaType) const

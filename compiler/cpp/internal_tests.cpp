@@ -2527,50 +2527,54 @@ void TypeAliasTest()
     // Create an MLIR module and ModuleDeclarationHelper
     TestSourceWriter writer;
     mlir::ModuleOp mlirModule = CreateMlirModuleAndDesign(GetUnknownLocation(), "TestDesign");
-    ModuleDeclarationHelper helper(writer, "TestModule", GetUnknownLocation(), "TestDesign", &mlirModule);
-    helper.AddTypedefs("TestTypeScope");
 
-    // Before registration, ToMlirTypeAliased should return the same as ToMlirType
-    mlir::Type plainType = ToMlirType(&testEnum);
-    mlir::Type aliasedBefore = ToMlirTypeAliased(&testEnum, false, helper);
-    TestAssert(!llvm::isa<circt::hw::TypeAliasType>(aliasedBefore));
+    // Scope the helper so it is destroyed before we erase the module
+    {
+        ModuleDeclarationHelper helper(writer, "TestModule", GetUnknownLocation(), "TestDesign", &mlirModule);
+        helper.AddTypedefs("TestTypeScope");
 
-    // Register the enum type
-    helper.RegisterNamedType(&testEnum);
+        // Before registration, ToMlirTypeAliased should return the same as ToMlirType
+        mlir::Type plainType = ToMlirType(&testEnum);
+        mlir::Type aliasedBefore = ToMlirTypeAliased(&testEnum, false, helper);
+        TestAssert(!llvm::isa<circt::hw::TypeAliasType>(aliasedBefore));
 
-    // After registration, GetTypeAlias should return a TypeAliasType
-    auto alias = helper.GetTypeAlias(&testEnum);
-    TestAssert(alias.has_value());
-    TestAssert(llvm::isa<circt::hw::TypeAliasType>(*alias));
+        // Register the enum type
+        helper.RegisterNamedType(&testEnum);
 
-    // The alias should wrap the same inner type
-    circt::hw::TypeAliasType aliasType = llvm::cast<circt::hw::TypeAliasType>(*alias);
-    TestAssert(aliasType.getInnerType() == plainType);
-    TestAssertEqual(std::string("TestColor"), aliasType.getRef().getLeafReference().str());
+        // After registration, GetTypeAlias should return a TypeAliasType
+        auto alias = helper.GetTypeAlias(&testEnum);
+        TestAssert(alias.has_value());
+        TestAssert(llvm::isa<circt::hw::TypeAliasType>(*alias));
 
-    // ToMlirTypeAliased should now return the alias
-    mlir::Type aliasedAfter = ToMlirTypeAliased(&testEnum, false, helper);
-    TestAssert(llvm::isa<circt::hw::TypeAliasType>(aliasedAfter));
+        // The alias should wrap the same inner type
+        circt::hw::TypeAliasType aliasType = llvm::cast<circt::hw::TypeAliasType>(*alias);
+        TestAssert(aliasType.getInnerType() == plainType);
+        TestAssertEqual(std::string("TestColor"), aliasType.getRef().getLeafReference().str());
 
-    // Registering the same type twice should be a no-op
-    helper.RegisterNamedType(&testEnum);
-    auto alias2 = helper.GetTypeAlias(&testEnum);
-    TestAssert(alias2.has_value());
-    TestAssert(*alias == *alias2);
+        // ToMlirTypeAliased should now return the alias
+        mlir::Type aliasedAfter = ToMlirTypeAliased(&testEnum, false, helper);
+        TestAssert(llvm::isa<circt::hw::TypeAliasType>(aliasedAfter));
 
-    // A plain LeafType (not named) should not get an alias
-    helper.RegisterNamedType(u16Type);
-    auto noAlias = helper.GetTypeAlias(u16Type);
-    TestAssert(!noAlias.has_value());
+        // Registering the same type twice should be a no-op
+        helper.RegisterNamedType(&testEnum);
+        auto alias2 = helper.GetTypeAlias(&testEnum);
+        TestAssert(alias2.has_value());
+        TestAssert(*alias == *alias2);
 
-    // Verify the MLIR module can be printed (basic sanity)
-    std::string mlirStr;
-    llvm::raw_string_ostream os(mlirStr);
-    mlirModule.print(os);
-    TestAssert(mlirStr.find("hw.typedecl @TestColor") != std::string::npos);
-    TestAssert(mlirStr.find("TestTypeScope") != std::string::npos);
+        // A plain LeafType (not named) should not get an alias
+        helper.RegisterNamedType(u16Type);
+        auto noAlias = helper.GetTypeAlias(u16Type);
+        TestAssert(!noAlias.has_value());
 
-    // Clean up - erase the module to avoid leaks
+        // Verify the MLIR module can be printed (basic sanity)
+        std::string mlirStr;
+        llvm::raw_string_ostream os(mlirStr);
+        mlirModule.print(os);
+        TestAssert(mlirStr.find("hw.typedecl @TestColor") != std::string::npos);
+        TestAssert(mlirStr.find("TestTypeScope") != std::string::npos);
+    }
+
+    // Clean up - helper is out of scope, safe to erase the module
     mlirModule->erase();
 }
 

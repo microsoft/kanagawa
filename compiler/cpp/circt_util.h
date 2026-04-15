@@ -405,6 +405,10 @@ class ModuleDeclarationHelper
     // Maps Kanagawa Type* to hw::TypeAliasType for named types
     std::map<const Type*, mlir::Type> _typeAliasCache;
 
+    // Maps type name to TypeAliasType to prevent duplicate TypedeclOps
+    // when distinct Type* pointers share the same name
+    std::map<std::string, mlir::Type> _typeAliasByName;
+
     bool _finished;
 
     bool _exportVerilog;

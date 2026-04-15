@@ -49,15 +49,22 @@ add_kanagawa(typealias_test_hls
     SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/typealias_test.k"
     OPTIONS --backend=sv --write-circt-ir --import-dir=${CMAKE_SOURCE_DIR}/library
     OUTPUT_DIR "${_typealias_outdir}"
+    CLEAN_OUTPUT_DIR
 )
 
 # CMake script that checks the generated MLIR file for expected patterns
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/check_typealias.cmake" [=[
 # Find the .mlir file in the output directory
 file(GLOB MLIR_FILES "${OUTDIR}/*.mlir")
+list(SORT MLIR_FILES)
 list(LENGTH MLIR_FILES NUM_MLIR)
 if(NUM_MLIR EQUAL 0)
     message(FATAL_ERROR "No .mlir file found in ${OUTDIR}")
+endif()
+if(NOT NUM_MLIR EQUAL 1)
+    string(JOIN "\n  " MLIR_FILE_LIST ${MLIR_FILES})
+    message(FATAL_ERROR
+        "Expected exactly one .mlir file in ${OUTDIR}, found ${NUM_MLIR}:\n  ${MLIR_FILE_LIST}")
 endif()
 list(GET MLIR_FILES 0 MLIR_FILE)
 file(READ "${MLIR_FILE}" MLIR_CONTENT)
@@ -90,7 +97,6 @@ add_test(
 )
 # The .k must be compiled before the test can run
 set_tests_properties(compiler.typealias PROPERTIES
-    DEPENDS typealias_test_hls
     FIXTURES_REQUIRED typealias_test_hls_fixture
 )
 # Register the HLS compilation as a fixture-setup test
