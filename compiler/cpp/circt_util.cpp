@@ -439,6 +439,11 @@ mlir::StringAttr StringToStringAttr(const std::string &str)
     return mlir::StringAttr::get(g_compiler->GetMlirContext(), str);
 }
 
+mlir::StringAttr ClampedSymAttr(const std::string &str)
+{
+    return StringToStringAttr(g_compiler->ClampStringLength(str));
+}
+
 mlir::IntegerType GetIntegerType(const size_t width, mlir::IntegerType::SignednessSemantics signedness)
 {
     return mlir::IntegerType::get(g_compiler->GetMlirContext(), width, signedness);
