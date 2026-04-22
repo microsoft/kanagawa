@@ -496,7 +496,7 @@ std::string GetRegisterBaseName(const Program &program, const size_t registerInd
 }
 
 std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) { 
-    return g_compiler->ClampStringLength((basicBlock) + "Impl"); 
+    return g_compiler->ClampStringLength(GetBasicBlockName(basicBlock) + "Impl"); 
 }
 
 class VerilogCompiler;
@@ -8232,7 +8232,7 @@ private:
                     mlir::Value inputSliceWire = circt::sv::LogicOp::create(opb,
                                                                             mlirBbLocation, sliceType, StringToStringAttr(inputWireName),
                                                                             GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), inputWireName));
-                                                                            
+
                     SafeInsert(offsetToInputWire, sliceOffset, inputSliceWire);
 
                     sparseConcat.Insert(sliceOffset,
@@ -12095,7 +12095,7 @@ private:
 
     std::string GenericContainerName(const ObjectPath &path)
     {
-        return path.empty() ? _coreModule->Name() : g_compiler->ClampStringLength((SerializePath(path)));
+        return path.empty() ? _coreModule->Name() : g_compiler->ClampStringLength(FixupString(SerializePath(path)));
     }
 };
 
