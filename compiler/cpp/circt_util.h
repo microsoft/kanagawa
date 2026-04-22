@@ -69,6 +69,8 @@ mlir::Value LiteralToValue(const Literal& l, circt::OpBuilder& opb, const mlir::
 
 mlir::StringAttr StringToStringAttr(const std::string& str);
 
+mlir::StringAttr ClampedSymAttr(const std::string& str);
+
 size_t GetMlirTypeWidth(const mlir::Type& type);
 
 size_t GetMlirValueWidth(const mlir::Value& v);
