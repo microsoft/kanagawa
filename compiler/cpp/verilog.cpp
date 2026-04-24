@@ -1645,7 +1645,9 @@ public:
                 circt::kanagawa::ContainerInstanceOp::create(opb,
                                                              location, 
                                                              circt::hw::InnerSymAttr::get(ClampedSymAttr(containerInstancePath.back())),
-                                                             circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
+                                                             circt::hw::InnerRefAttr::get(
+                                                                StringToStringAttr(g_compiler->ClampStringLength(GetCirctDesignName())),
+                                                                StringToStringAttr(g_compiler->ClampStringLength(leafContainerNameAttr.getValue().str()))));
 
                 // Write clock and reset ports
                 const auto writeInputPort =
@@ -2815,7 +2817,9 @@ public:
                     circt::kanagawa::ContainerInstanceOp::create(opb,
                                                                  location, 
                                                                  circt::hw::InnerSymAttr::get(ClampedSymAttr(containerInstancePath.back())),
-                                                                 circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
+                                                                 circt::hw::InnerRefAttr::get(
+                                                                     StringToStringAttr(g_compiler->ClampStringLength(GetCirctDesignName())),
+                                                                     StringToStringAttr(g_compiler->ClampStringLength(leafContainerNameAttr.getValue().str()))));
 
                     // Write clock and reset ports
                     const auto writeInputPort =
@@ -12005,7 +12009,9 @@ private:
             circt::kanagawa::ContainerInstanceOp instance = circt::kanagawa::ContainerInstanceOp::create(opb,
                                                                                                          GetUnknownLocation(),
                                                                                                          circt::hw::InnerSymAttr::get(ClampedSymAttr(path.back())),
-                                                                                                         circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), containerNameAttr));
+                                                                                                         circt::hw::InnerRefAttr::get(
+                                                                                                             StringToStringAttr(g_compiler->ClampStringLength(GetCirctDesignName())),
+                                                                                                             StringToStringAttr(g_compiler->ClampStringLength(containerNameAttr.getValue().str()))));
 
             SafeInsert(_pathToContainerInstance, path, ContainerAndInstance(container, instance));
         }
