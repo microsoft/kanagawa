@@ -1896,11 +1896,21 @@ void Compiler::ReorderDeclarations()
 
 std::string Compiler::ClampStringLength(const std::string& stringIn)
 {
-    std::string result = stringIn;
-
     const size_t limit = GetCodeGenConfig()._maxStringLength;
 
-    if (result.size() > limit)
+    if ((limit == 0) || (stringIn.size() <= limit))
+    {
+        return stringIn;
+    }
+
+    // Same input should always produce same output across passes (i.e. clamping from independent call sites)
+    if (const auto cached = _clampInputToOutput.find(stringIn); cached != _clampInputToOutput.end())
+    {
+        return cached->second;
+    }
+
+    std::string result = stringIn;
+
     {
         // If input already clamped, return a no-op. Avoids generating different strings for the same input on different passes
         if (const size_t underscore = stringIn.rfind('_'); underscore != std::string::npos)
@@ -1958,6 +1968,7 @@ std::string Compiler::ClampStringLength(const std::string& stringIn)
         result = str.str();
     }
 
+    _clampInputToOutput.emplace(stringIn, result);
     return result;
 }
 
