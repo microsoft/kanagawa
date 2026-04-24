@@ -1896,12 +1896,49 @@ void Compiler::ReorderDeclarations()
 
 std::string Compiler::ClampStringLength(const std::string& stringIn)
 {
-    std::string result = stringIn;
-
     const size_t limit = GetCodeGenConfig()._maxStringLength;
 
-    if (result.size() > limit)
+    if ((limit == 0) || (stringIn.size() <= limit))
     {
+        return stringIn;
+    }
+
+    // Same input should always produce same output across passes (i.e. clamping from independent call sites)
+    if (const auto cached = _clampInputToOutput.find(stringIn); cached != _clampInputToOutput.end())
+    {
+        return cached->second;
+    }
+
+    std::string result = stringIn;
+
+    {
+        // If input already clamped, return a no-op. Avoids generating different strings for the same input on different passes
+        if (const size_t underscore = stringIn.rfind('_'); underscore != std::string::npos)
+        {
+            const std::string suffix = stringIn.substr(underscore + 1);
+            if (!suffix.empty() && std::all_of(suffix.begin(), suffix.end(), [](char c) { return std::isdigit(static_cast<unsigned char>(c)); }))
+            {
+                try
+                {
+                    const size_t parsedHash = std::stoull(suffix);
+                    const auto existing = _clampStringMap.find(parsedHash);
+                    if (existing != _clampStringMap.end())
+                    {
+                        std::ostringstream expected;
+                        expected << existing->second.substr(0, limit) << "_" << parsedHash;
+                        if (expected.str() == stringIn)
+                        {
+                            return stringIn;
+                        }
+                    }
+                }
+                catch (const std::exception&)
+                {
+                    // not a hash suffix; fall through
+                }
+            }
+        }
+        
         // Compute a hash code of the full string
         std::hash<std::string> hasher;
 
@@ -1931,6 +1968,7 @@ std::string Compiler::ClampStringLength(const std::string& stringIn)
         result = str.str();
     }
 
+    _clampInputToOutput.emplace(stringIn, result);
     return result;
 }
 

@@ -298,6 +298,7 @@ class Compiler
 
     // Maps hash to long string
     std::map<size_t, std::string> _clampStringMap;
+    std::unordered_map<std::string, std::string> _clampInputToOutput;
 
     std::map<std::string, ObjectPath> _nameToPath;
 

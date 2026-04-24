@@ -439,6 +439,11 @@ mlir::StringAttr StringToStringAttr(const std::string &str)
     return mlir::StringAttr::get(g_compiler->GetMlirContext(), str);
 }
 
+mlir::StringAttr ClampedSymAttr(const std::string &str)
+{
+    return StringToStringAttr(g_compiler->ClampStringLength(str));
+}
+
 mlir::IntegerType GetIntegerType(const size_t width, mlir::IntegerType::SignednessSemantics signedness)
 {
     return mlir::IntegerType::get(g_compiler->GetMlirContext(), width, signedness);
@@ -587,7 +592,7 @@ mlir::StringAttr GetFullyQualifiedStringAttr(const ObjectPath &containerPath, co
     ObjectPath pathWithField = containerPath;
     pathWithField.push_back("__field__" + fieldName);
 
-    return StringToStringAttr(FixupStringCirct(SerializePath(pathWithField, '_')));
+    return StringToStringAttr(g_compiler->ClampStringLength(FixupStringCirct(SerializePath(pathWithField, '_'))));
 }
 
 circt::hw::InnerSymAttr GetFullyQualifiedInnerSymAttr(const ObjectPath &containerPath, const std::string &fieldName)
