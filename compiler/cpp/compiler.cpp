@@ -1902,6 +1902,33 @@ std::string Compiler::ClampStringLength(const std::string& stringIn)
 
     if (result.size() > limit)
     {
+        // If input already clamped, return a no-op. Avoids generating different strings for the same input on different passes
+        if (const size_t underscore = stringIn.rfind('_'); underscore != std::string::npos)
+        {
+            const std::string suffix = stringIn.substr(underscore + 1);
+            if (!suffix.empty() && std::all_of(suffix.begin(), suffix.end(), [](char c) { return std::isdigit(static_cast<unsigned char>(c)); }))
+            {
+                try
+                {
+                    const size_t parsedHash = std::stoull(suffix);
+                    const auto existing = _clampStringMap.find(parsedHash);
+                    if (existing != _clampStringMap.end())
+                    {
+                        std::ostringstream expected;
+                        expected << existing->second.substr(0, limit) << "_" << parsedHash;
+                        if (expected.str() == stringIn)
+                        {
+                            return stringIn;
+                        }
+                    }
+                }
+                catch (const std::exception&)
+                {
+                    // not a hash suffix; fall through
+                }
+            }
+        }
+        
         // Compute a hash code of the full string
         std::hash<std::string> hasher;
 

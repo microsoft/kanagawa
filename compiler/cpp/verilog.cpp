@@ -495,7 +495,9 @@ std::string GetRegisterBaseName(const Program &program, const size_t registerInd
     return prefix + std::to_string(registerIndex) + "_" + regDesc._name;
 }
 
-std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) { return GetBasicBlockName(basicBlock) + "Impl"; }
+std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) { 
+    return g_compiler->ClampStringLength(GetBasicBlockName(basicBlock) + "Impl"); 
+}
 
 class VerilogCompiler;
 
@@ -1641,7 +1643,8 @@ public:
                 const mlir::Location location = RegDescToLocation(regDesc);
 
                 circt::kanagawa::ContainerInstanceOp::create(opb,
-                                                             location, circt::hw::InnerSymAttr::get(StringToStringAttr(containerInstancePath.back())),
+                                                             location, 
+                                                             circt::hw::InnerSymAttr::get(ClampedSymAttr(containerInstancePath.back())),
                                                              circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
 
                 // Write clock and reset ports
@@ -2810,7 +2813,8 @@ public:
                     opb.setInsertionPointToEnd(parentContainer.getBodyBlock());
 
                     circt::kanagawa::ContainerInstanceOp::create(opb,
-                                                                 location, circt::hw::InnerSymAttr::get(StringToStringAttr(containerInstancePath.back())),
+                                                                 location, 
+                                                                 circt::hw::InnerSymAttr::get(ClampedSymAttr(containerInstancePath.back())),
                                                                  circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
 
                     // Write clock and reset ports
@@ -5621,7 +5625,7 @@ public:
 
                     ModuleInstanceHelper instance(*this, LocationToCirctLocation(basicBlock._location));
 
-                    instance.SetModuleName(GetModuleNamePrefix() + GetBasicBlockName(basicBlock));
+                    instance.SetModuleName(g_compiler->ClampStringLength(GetModuleNamePrefix() + GetBasicBlockName(basicBlock)));
                     instance.SetInstanceName(GetBasicBlockInstanceName(basicBlock));
 
                     instance.AddPort("clk", circt::hw::ModulePort::Direction::Input, GetClockType(), "clk");
@@ -7635,7 +7639,7 @@ private:
         const std::set<size_t> acquiredSemaphores = GetAcquiredSemaphores(basicBlock);
         const std::set<size_t> releasedSemaphores = GetReleasedSemaphores(basicBlock);
 
-        const std::string fullModuleName = GetModuleNamePrefix() + GetBasicBlockName(basicBlock);
+        const std::string fullModuleName = g_compiler->ClampStringLength(GetModuleNamePrefix() + GetBasicBlockName(basicBlock));
 
         JsonValue jsonBasicBlock = JsonValue::CreateObject();
         JsonValue jsonPorts = JsonValue::CreateArray();
@@ -11426,7 +11430,7 @@ private:
             basicBlockPorts.push_back(pi._portInfo);
         }
 
-        const std::string moduleName = GetModuleNamePrefix() + GetBasicBlockName(basicBlock);
+        const std::string moduleName = g_compiler->ClampStringLength(GetModuleNamePrefix() + GetBasicBlockName(basicBlock));
 
         _compileContext._hwModule =
             circt::hw::HWModuleOp::create(opb, mlirBbLocation, opb.getStringAttr(moduleName), basicBlockPorts);
@@ -11999,7 +12003,8 @@ private:
             opb.setInsertionPointToEnd(parentContainer.getBodyBlock());
 
             circt::kanagawa::ContainerInstanceOp instance = circt::kanagawa::ContainerInstanceOp::create(opb,
-                                                                                                         GetUnknownLocation(), circt::hw::InnerSymAttr::get(StringToStringAttr(path.back())),
+                                                                                                         GetUnknownLocation(),
+                                                                                                         circt::hw::InnerSymAttr::get(ClampedSymAttr(path.back())),
                                                                                                          circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), containerNameAttr));
 
             SafeInsert(_pathToContainerInstance, path, ContainerAndInstance(container, instance));
@@ -12090,7 +12095,7 @@ private:
 
     std::string GenericContainerName(const ObjectPath &path)
     {
-        return path.empty() ? _coreModule->Name() : FixupString(SerializePath(path));
+        return path.empty() ? _coreModule->Name() : g_compiler->ClampStringLength(FixupString(SerializePath(path)));
     }
 };
 
