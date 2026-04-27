@@ -6562,8 +6562,9 @@ public:
                 coreModule.AddPort(port._name,
                                    port._input ? circt::hw::ModulePort::Direction::Input
                                                : circt::hw::ModulePort::Direction::Output,
-                                   ToMlirType(port._type), port._type, port._portSemantics, port._channelSemantics,
-                                   port._channelName, port._fieldName);
+                                   ToMlirType(port._type), port._type,
+                                   port._portSemantics, port._channelSemantics, port._channelName,
+                                   port._fieldName);
             }
         }
 
@@ -6628,7 +6629,8 @@ public:
             {
                 const Type *type = functionNode->GetParameterType(i);
                 coreModule.AddPort(prefix + "_" + functionNode->GetParameterName(i) + "_out",
-                                   circt::hw::ModulePort::Direction::Output, ToMlirType(type), type,
+                                   circt::hw::ModulePort::Direction::Output,
+                                   ToMlirType(type), type,
                                    EsiPortSemantics::Payload, EsiChannelSemantics::FromGeneratedHw,
                                    EsiChannelName::Arguments, functionNode->GetParameterName(i));
             }
@@ -6652,8 +6654,9 @@ public:
                 {
                     const Type *type = functionNode->GetReturnType();
                     coreModule.AddPort(prefix + "_result_in", circt::hw::ModulePort::Direction::Input,
-                                       ToMlirType(type), type, EsiPortSemantics::Payload,
-                                       EsiChannelSemantics::ToGeneratedHw, EsiChannelName::Results);
+                                       ToMlirType(type), type,
+                                       EsiPortSemantics::Payload, EsiChannelSemantics::ToGeneratedHw,
+                                       EsiChannelName::Results);
                 }
 
                 if (!isNoBackpressure)
@@ -7108,6 +7111,19 @@ public:
         // The same symbol is used for all export classes
         // to ensure that the generate `ifndef _TYPESCOPE_* macros all agree
         coreModule.AddTypedefs("CoreModuleTypeScope");
+
+        // Register named types as type aliases in the CIRCT IR type scope
+        // so that port types and ESI channel payloads use named type aliases
+        // _exportedTypes is already topologically sorted by SortExportedTypes()
+        for (const Type *const type : _program._exportedTypes)
+        {
+            coreModule.RegisterNamedType(type);
+        }
+
+        for (const auto &t : _program._exportedTypedefs)
+        {
+            coreModule.RegisterNamedType(t.second);
+        }
 
         // Input and outputs of the KanagawaCore module
         DeclareCorePorts(coreModule, resetReplicas);
