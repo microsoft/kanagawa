@@ -1767,19 +1767,15 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
         typeName = enumType->GetName();
     }
 
-    // Only register types with a non-empty name that is a valid identifier
-    // (no special characters from template instantiations, etc.)
+    // Only register types with a non-empty name.
     if (typeName.empty())
     {
         return;
     }
 
-    const bool isValidIdentifier = std::all_of(typeName.begin(), typeName.end(),
-                                               [](char c) { return std::isalnum(c) || c == '_'; });
-    if (!isValidIdentifier)
-    {
-        return;
-    }
+    // Kanagawa type names typically contain '.' from namespacing.
+    // Normalize identifier the same way the SV backend does.
+    typeName = FixupString(typeName);
 
     // Check if a different Type* with the same name was already registered.
     // Reuse the existing alias to prevent duplicate hw.typedecl symbols,
