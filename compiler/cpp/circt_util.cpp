@@ -592,7 +592,7 @@ mlir::StringAttr GetFullyQualifiedStringAttr(const ObjectPath &containerPath, co
     ObjectPath pathWithField = containerPath;
     pathWithField.push_back("__field__" + fieldName);
 
-    return StringToStringAttr(FixupStringCirct(SerializePath(pathWithField, '_')));
+    return ClampedSymAttr(FixupStringCirct(SerializePath(pathWithField, '_')));
 }
 
 circt::hw::InnerSymAttr GetFullyQualifiedInnerSymAttr(const ObjectPath &containerPath, const std::string &fieldName)
