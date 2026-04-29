@@ -12095,7 +12095,7 @@ private:
 
     std::string GenericContainerName(const ObjectPath &path)
     {
-        return path.empty() ? _coreModule->Name() : g_compiler->ClampStringLength(FixupString(SerializePath(path)));
+        return path.empty() ? _coreModule->Name() : FixupString(SerializePath(path));
     }
 };
 
