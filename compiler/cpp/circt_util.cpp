@@ -366,7 +366,7 @@ mlir::Value GetPathOp(circt::OpBuilder &opb, const ObjectPath &srcPath, const Ob
 
     while (currPath != commonRoot)
     {
-        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(StringToStringAttr(currPath.back()));
+        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(ClampedSymAttr(currPath.back()));
 
         const mlir::Attribute step = circt::kanagawa::PathStepAttr::get(
             g_compiler->GetMlirContext(), circt::kanagawa::PathDirection::Parent,
@@ -384,7 +384,7 @@ mlir::Value GetPathOp(circt::OpBuilder &opb, const ObjectPath &srcPath, const Ob
 
         const std::string stepName = dstPath[currPath.size()];
 
-        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(StringToStringAttr(stepName));
+        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(ClampedSymAttr(stepName));
 
         const mlir::Attribute step = circt::kanagawa::PathStepAttr::get(
             g_compiler->GetMlirContext(), circt::kanagawa::PathDirection::Child,
@@ -437,6 +437,11 @@ mlir::Value LiteralToValue(const Literal &l, circt::OpBuilder &opb, const mlir::
 mlir::StringAttr StringToStringAttr(const std::string &str)
 {
     return mlir::StringAttr::get(g_compiler->GetMlirContext(), str);
+}
+
+mlir::StringAttr ClampedSymAttr(const std::string &str)
+{
+    return StringToStringAttr(g_compiler->ClampStringLength(str));
 }
 
 mlir::IntegerType GetIntegerType(const size_t width, mlir::IntegerType::SignednessSemantics signedness)
@@ -587,7 +592,7 @@ mlir::StringAttr GetFullyQualifiedStringAttr(const ObjectPath &containerPath, co
     ObjectPath pathWithField = containerPath;
     pathWithField.push_back("__field__" + fieldName);
 
-    return StringToStringAttr(FixupStringCirct(SerializePath(pathWithField, '_')));
+    return ClampedSymAttr(FixupStringCirct(SerializePath(pathWithField, '_')));
 }
 
 circt::hw::InnerSymAttr GetFullyQualifiedInnerSymAttr(const ObjectPath &containerPath, const std::string &fieldName)
@@ -2180,7 +2185,7 @@ mlir::Value ModuleDeclarationHelper::GetPort(circt::OpBuilder &opb, const Object
 
     while (currPath != commonRoot)
     {
-        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(StringToStringAttr(currPath.back()));
+        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(ClampedSymAttr(currPath.back()));
 
         const mlir::Attribute step = circt::kanagawa::PathStepAttr::get(
             g_compiler->GetMlirContext(), circt::kanagawa::PathDirection::Parent,
@@ -2198,7 +2203,7 @@ mlir::Value ModuleDeclarationHelper::GetPort(circt::OpBuilder &opb, const Object
 
         const std::string stepName = dstPath[currPath.size()];
 
-        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(StringToStringAttr(stepName));
+        const mlir::FlatSymbolRefAttr symbolRef = mlir::FlatSymbolRefAttr::get(ClampedSymAttr(stepName));
 
         const mlir::Attribute step = circt::kanagawa::PathStepAttr::get(
             g_compiler->GetMlirContext(), circt::kanagawa::PathDirection::Child,
