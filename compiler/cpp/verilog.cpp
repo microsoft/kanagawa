@@ -495,8 +495,8 @@ std::string GetRegisterBaseName(const Program &program, const size_t registerInd
     return prefix + std::to_string(registerIndex) + "_" + regDesc._name;
 }
 
-std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) { 
-    return g_compiler->ClampStringLength(GetBasicBlockName(basicBlock) + "Impl"); 
+std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) {
+    return g_compiler->ClampStringLength(GetBasicBlockName(basicBlock) + "Impl");
 }
 
 class VerilogCompiler;
@@ -1643,7 +1643,7 @@ public:
                 const mlir::Location location = RegDescToLocation(regDesc);
 
                 circt::kanagawa::ContainerInstanceOp::create(opb,
-                                                             location, 
+                                                             location,
                                                              circt::hw::InnerSymAttr::get(ClampedSymAttr(containerInstancePath.back())),
                                                              circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
 
@@ -2813,7 +2813,7 @@ public:
                     opb.setInsertionPointToEnd(parentContainer.getBodyBlock());
 
                     circt::kanagawa::ContainerInstanceOp::create(opb,
-                                                                 location, 
+                                                                 location,
                                                                  circt::hw::InnerSymAttr::get(ClampedSymAttr(containerInstancePath.back())),
                                                                  circt::hw::InnerRefAttr::get(StringToStringAttr(GetCirctDesignName()), leafContainerNameAttr));
 
@@ -5537,7 +5537,7 @@ public:
 
         str << "global_out_" << regDesc._name << "_" << registerIndex << "_" << writeIndex;
 
-        return str.str();
+        return g_compiler->ClampStringLength(str.str());
     }
 
     std::string GetGlobalValidOutName(const size_t registerIndex, const size_t writeIndex) const
@@ -5546,7 +5546,7 @@ public:
 
         result += "_valid";
 
-        return result;
+        return g_compiler->ClampStringLength(result);
     }
 
     std::string GetGlobalInName(const size_t registerIndex) const
@@ -5559,7 +5559,7 @@ public:
 
         str << "global_in_" << regDesc._name << "_" << registerIndex;
 
-        return str.str();
+        return g_compiler->ClampStringLength(str.str());
     }
 
     std::string GetGlobalInNextName(const size_t registerIndex) const
@@ -5572,7 +5572,7 @@ public:
 
         str << "global_in_" << regDesc._name << "_" << registerIndex << "_next";
 
-        return str.str();
+        return g_compiler->ClampStringLength(str.str());
     }
 
     // Returns the name of the variable that holds a global view value
@@ -12411,7 +12411,8 @@ void ModuleInstanceHelper::Generate(circt::OpBuilder *const opbIn)
                     // Use a name hint to ensure the wire generated from this verbatim op
                     // doesn't conflict with a name of a variable declared in another verbatim op
                     verbatimOp->setAttr("sv.namehint",
-                                        StringToStringAttr(_instanceName + "_" + port.name.str() + "__circt"));
+                                        StringToStringAttr(g_compiler->ClampStringLength(
+                                            _instanceName + "_" + port.name.str() + "__circt")));
 
                     const mlir::Value input =
                         isClockType ? circt::seq::ToClockOp::create(opb, _location, GetClockType(),
