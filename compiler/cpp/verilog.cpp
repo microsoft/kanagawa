@@ -7442,7 +7442,10 @@ public:
             addPipelineSrcs(mlirModule->Module());
 
             // Write out the CIRCT IR.
-            if (GetCodeGenConfig()._serializeCIRCTIR)
+            // When --skip-circt-lowering is requested the CIRCT MLIR file is always emitted,
+            // since it is the primary output in that mode (other artifacts such as RtlMap.json
+            // and *_types.sv may still be written separately).
+            if (GetCodeGenConfig()._serializeCIRCTIR || GetCodeGenConfig()._skipCirctLowering)
             {
                 std::error_code ec;
                 llvm::raw_fd_ostream circtIRFile(_circtAsmFileName, ec);
@@ -7463,8 +7466,11 @@ public:
             mlirModule->VerifyRoundTrip();
 #endif // KANAGAWA_SKIP_CONSISTENCY_CHECKS
 
-            // Convert MLIR to a SystemVerilog string
-            _writer.Str() << mlirModule->Generate();
+            if (!GetCodeGenConfig()._skipCirctLowering)
+            {
+                // Convert MLIR to a SystemVerilog string
+                _writer.Str() << mlirModule->Generate();
+            }
         }
 
         assert(_globalBatchAssignments.Empty());

@@ -71,6 +71,7 @@ compile = Compile
     , resource_usage        = def                         &= groupname "Output"          &= help "Output resource utilization statistics" &= typFile
     , file_list             = def                         &= groupname "Output"          &= help "Update specified file whenever list compiled files (including imported files) changes" &= typFile
     , identifier_length     = 100                         &= groupname "Output"          &= help "Maximum length of identifiers in generated code"
+    , skip_circt_lowering   = def                         &= groupname "Output"          &= help "Skip CIRCT lowering passes; do not emit CIRCT-lowered SystemVerilog module bodies (other outputs such as RtlMap.json and *_types.sv may still be written). Implies --write-circt-ir"
     , backend               = None                        &= groupname "Code generation" &= help "Code generation backend: sv (SystemVerilog) or not specified (produce metadata only)" &= name "target" &= name "backend"
     , debug                 = def                         &= groupname "Code generation" &= help "Debug mode"
     , dump_memory_metadata  = def                         &= groupname "Code generation" &= help "Output metadata files for memories and fifos"
