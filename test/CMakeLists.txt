@@ -3,7 +3,6 @@
 
 add_subdirectory(syntax)
 add_subdirectory(compiler)
-add_subdirectory(cli)
 
 if (VERILATOR_EXE)
     add_subdirectory(interface)
