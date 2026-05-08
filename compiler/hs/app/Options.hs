@@ -127,6 +127,7 @@ data Options
         , work_list_size :: Int
         , write_circt_ir :: Bool
         , write_ir_post_opt :: Bool
+        , skip_circt_lowering :: Bool
         }
     | LangServer
         { verbose :: Bool

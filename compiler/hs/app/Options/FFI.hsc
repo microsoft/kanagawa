@@ -94,6 +94,7 @@ instance Storable Options where
         #{poke CodeGenOptions, _dumpOpt                             } ptrCodegen dump_opt
         #{poke CodeGenOptions, _serializeIRPostOpt                  } ptrCodegen write_ir_post_opt
         #{poke CodeGenOptions, _serializeCIRCTIR                    } ptrCodegen write_circt_ir
+        #{poke CodeGenOptions, _skipCirctLowering                   } ptrCodegen skip_circt_lowering
         #{poke CodeGenOptions, _fifoWriteDelay                      } ptrCodegen fifo_write_delay
         #{poke CodeGenOptions, _fifoMergeDistance                   } ptrCodegen fifo_merge_distance
         #{poke CodeGenOptions, _noVerilogHeader                     } ptrCodegen no_verilog_header
