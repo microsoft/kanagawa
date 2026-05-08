@@ -7,6 +7,7 @@ Licensed under the MIT License.
 
 module Options
     ( Layout(..)
+    , ListDepsFormat(..)
     , Options(..)
     , Backend(..)
     ) where
@@ -16,6 +17,9 @@ import Language.Kanagawa.Parser.Options
 import Language.Kanagawa.Warning
 
 data Layout = Smart | Pretty
+      deriving (Show, Data, Typeable)
+
+data ListDepsFormat = Plain | Make
       deriving (Show, Data, Typeable)
 
 data Options
@@ -128,6 +132,19 @@ data Options
         , write_circt_ir :: Bool
         , write_ir_post_opt :: Bool
         , skip_circt_lowering :: Bool
+        }
+    | ListDeps
+        { base_library :: FilePath
+        , define :: [String]
+        , file_list :: FilePath
+        , files :: [FilePath]
+        , import_dir :: [FilePath]
+        , list_deps_format :: ListDepsFormat
+        , make_target :: String
+        , no_implicit_base :: Bool
+        , parse_docs :: Bool
+        , target_device :: String
+        , using :: [String]
         }
     | LangServer
         { verbose :: Bool

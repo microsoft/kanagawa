@@ -2,6 +2,13 @@
 All NOTABLE changes to this project will be documented in this file.
 Check the release summary for a detailed history based on commits.
 
+## [Unreleased]
+### Added
+- `list-deps` sub-command that enumerates the transitive `.k` source files needed to compile a program by running parse + import resolution only (no frontend, no codegen). Suitable for fast dependency tracking from build systems (e.g. CMake configure-time staleness checks). Supports plain (one path per line) and Makefile-style (`gcc -M`) output formats; writes to `--file-list <path>` or stdout.
+
+### Changed
+- `compile --file-list` now refreshes the dependency manifest immediately after parsing succeeds (instead of after codegen). Failed compiles (frontend or backend errors) still update the manifest, so build systems can pick up newly added imports without requiring a successful build.
+
 ## [1.2.0] - 2025-11-09
 ### Added
 - MacOS (ARM64) support

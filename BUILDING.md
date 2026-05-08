@@ -222,20 +222,124 @@ cmake \
 ## Building on Windows
 
 At this time, the unit tests are only supported on Linux. However, you can build and run the compiler and
-related tools on Windows. Here are the dependencies that you must install:
+related tools on Windows. The following step-by-step guide assumes a PowerShell session and Visual
+Studio 2022 (any edition with the "Desktop development with C++" workload, including Community).
+Adjust paths as appropriate for your environment.
 
-- C/C++ compiler. CMake should auto-detect it. Visual Studio 2022 Community Edition is a good option.
-- CMake version 3.30 or later (see https://cmake.org/)
-- Ninja. It's not required to use Ninja; you can use any build tool supported by CMake, but we recommend Ninja for its speed and simplicity (see https://ninja-build.org/)
-- [ghcup](https://www.haskell.org/ghcup/). After installation, close and re-open your Powershell session and then run `ghcup tui` to launch the interactive version of ghcup. Install Haskell 9.6.7 and cabal 3.12.1.0. Run `cabal update` after installation.
-- Boost C++ library version 1.88.0 or later (see https://www.boost.org/). After extracting the archive, you will need to change into the extracted directory and run `.\bootstrap.bat` and then `.\b2.exe install --prefix=target_directory` (substitute `target_directory` with where you want Boost installed). The proper value to pass as Boost_DIR to CMake will be something like `...\boost_1_88_0\stage\lib\cmake\Boost-1.88.0`.
-To tell CMake about Boost so that the `find_package` command can find it, add `<boost-install-dir>\lib\cmake` to `CMAKE_PREFIX_PATH`. For example: `-DCMAKE_PREFIX_PATH=D:\boost.1.88.0\lib\cmake`
+### 1. Install Visual Studio 2022
 
-Run cmake generate to initialize the build system. Here's an example command line - replace the paths with values appropriate for your set-up:
+Install Visual Studio 2022 with the "Desktop development with C++" workload. This provides the MSVC
+compiler, CMake, and Ninja.
 
+To make `cl.exe`, `cmake`, and `ninja` available in your PowerShell session, enter the
+"Developer PowerShell for VS 2022" environment. 
+
+Verify the tools are on your `PATH`:
+
+```powershell
+cmake --version
+ninja --version
 ```
-cmake -S kanagawa -B kanagawa-build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_PREFIX_PATH=D:\boost.1.88.0\lib\cmake -DGHCUP_DIR=D:/ghcup
+
+### 2. Install GHC and cabal via ghcup
+
+Run the official ghcup bootstrap script in a non-interactive form so it can be scripted. The
+arguments below skip the interactive prompts and install ghcup but not GHC, cabal, stack, or HLS
+(we install specific versions of GHC and cabal in the next step):
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol =
+    [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+Invoke-Command -ScriptBlock ([ScriptBlock]::Create(
+    (Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) `
+    -ArgumentList $false,$true,$true,$false,$false,$false,$false,"","","",""
 ```
+
+This installs ghcup at `C:\ghcup`. Add it to `PATH` for the current session, then install the
+required versions of GHC and cabal, set them as the default, and update the Hackage index:
+
+```powershell
+$env:Path = "C:\ghcup\bin;" + $env:Path
+ghcup install ghc 9.6.7
+ghcup install cabal 3.12.1.0
+ghcup set ghc 9.6.7
+ghcup set cabal 3.12.1.0
+cabal update
+```
+
+Optionally, redirect the cabal package store to a different drive (useful if your system drive is
+small):
+
+```powershell
+cabal user-config update -a "store-dir: E:\cache\cabal"
+```
+
+### 3. Install Boost 1.88.0
+
+Download and extract the Boost source archive. The extraction step takes a few minutes because
+Boost contains tens of thousands of files:
+
+```powershell
+New-Item -ItemType Directory -Path E:\cache\boost -Force | Out-Null
+Invoke-WebRequest `
+    -Uri "https://archives.boost.io/release/1.88.0/source/boost_1_88_0.zip" `
+    -OutFile "E:\cache\boost_1_88_0.zip" -UseBasicParsing
+Expand-Archive -Path "E:\cache\boost_1_88_0.zip" -DestinationPath "E:\cache\boost" -Force
+```
+
+Bootstrap and install Boost. Kanagawa only needs the Boost headers, so a headers-only install is
+sufficient. The recommended approach is to use `b2` to generate the CMake config files, then use
+`robocopy` to copy the headers in bulk (much faster than `b2`'s file-by-file install on Windows):
+
+```powershell
+cd E:\cache\boost\boost_1_88_0
+.\bootstrap.bat
+# Start the install to generate the CMake config files in the install prefix.
+# You can cancel (Ctrl+C) once you see headers being copied -- the CMake config
+# files are written early.
+.\b2.exe install --prefix=E:\cache\boost\install --with-headers
+# Bulk-copy all headers to the install prefix using robocopy
+robocopy "E:\cache\boost\boost_1_88_0\boost" `
+         "E:\cache\boost\install\include\boost-1_88\boost" /E /NFL /NDL /NJH /NP
+```
+
+Alternatively, you can let `b2 install` run to completion (slower, but simpler).
+
+### 4. Configure the build with CMake
+
+From the repository root, run CMake generate. The example below uses
+`E:\cache\boost\install` for Boost and `C:\ghcup\bin` for ghcup; adjust paths as needed:
+
+```powershell
+cmake -S E:\git\kanagawa -B E:\git\kanagawa-build -G Ninja `
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+    -DBoost_DIR=E:\cache\boost\install\lib\cmake\Boost-1.88.0 `
+    -DGHCUP_DIR=C:\ghcup\bin
+```
+
+The configure step takes a couple of minutes (CMake configures the bundled LLVM/CIRCT submodule
+in addition to Kanagawa itself). When it finishes, you should see `Build files have been written
+to: E:/git/kanagawa-build`.
+
+### 5. Build the compiler
+
+Build the `kanagawa_runtime` target. This compiles LLVM, MLIR, CIRCT, and the Kanagawa compiler,
+and is a long-running build (tens of minutes to over an hour depending on your machine):
+
+```powershell
+ninja -C E:\git\kanagawa-build kanagawa_runtime
+```
+
+The resulting `kanagawa.exe` and `kanagawa-backend.dll` are staged in
+`E:\git\kanagawa-build\dist\bin`.
+
+### Notes
+
+- Verilator and the RISC-V GCC cross-compiler are not available on Windows out of the box, so
+  the corresponding tests are disabled automatically.
+- If you re-open your PowerShell session, you must re-enter the VS dev environment and re-add ghcup to `PATH` (`$env:Path = "C:\ghcup\bin;" + $env:Path`)
+  before running `cmake` or `ninja`.
 
 ## Preparing a release
 
