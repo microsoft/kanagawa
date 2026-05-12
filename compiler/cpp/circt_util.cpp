@@ -664,7 +664,7 @@ void ConvertOpToCirct(const Operation &op, circt::OpBuilder &opb, const Program 
         const size_t srcWidth = op._src[0].Width(program);
 
         mlir::Value srcValue = srcToValue(op, 0, op._dst[0].Width(program));
-        mlir::Value v = circt::comb::createOrFoldNot(opLocation, srcValue, opb, TwoState);
+        mlir::Value v = circt::comb::createOrFoldNot(opb, opLocation, srcValue, TwoState);
 
         storeDst(op, 0, v);
     }
@@ -954,7 +954,7 @@ mlir::Value AdjustValueWidth(const mlir::Value &srcValue, const size_t desiredWi
         {
             assert(srcValueWidth > 0);
 
-            result = circt::comb::createOrFoldSExt(location, srcValue, opb.getIntegerType(desiredWidth), opb);
+            result = circt::comb::createOrFoldSExt(opb, location, srcValue, opb.getIntegerType(desiredWidth));
         }
         else
         {
@@ -2554,12 +2554,12 @@ std::string MlirModule::Generate()
     circt::LowerSeqToSVOptions lowerSeqToSVOptions = {};
     lowerSeqToSVOptions.lowerToAlwaysFF = !GetCodeGenDeviceConfig()._requirePowerOnReset;
     pm.addPass(circt::createLowerSeqToSVPass(lowerSeqToSVOptions));
-    pm.nest<circt::hw::HWModuleOp>().addPass(circt::sv::createHWCleanupPass()); // this merges always blocks
+    pm.nest<circt::hw::HWModuleOp>().addPass(circt::sv::createHWCleanup()); // this merges always blocks
     pm.addPass(mlir::createCSEPass());
     pm.addPass(circt::createSimpleCanonicalizerPass());
     pm.nest<circt::hw::HWModuleOp>().addPass(circt::createLowerHWToSVPass());
-    pm.nest<circt::hw::HWModuleOp>().addPass(circt::sv::createHWLegalizeModulesPass());
-    pm.nest<circt::hw::HWModuleOp>().addPass(circt::sv::createPrettifyVerilogPass());
+    pm.nest<circt::hw::HWModuleOp>().addPass(circt::sv::createHWLegalizeModules());
+    pm.nest<circt::hw::HWModuleOp>().addPass(circt::sv::createPrettifyVerilog());
 
     std::string generatedModule;
     llvm::raw_string_ostream generatedModuleStr(generatedModule);
