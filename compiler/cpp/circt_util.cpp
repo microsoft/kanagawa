@@ -1859,7 +1859,15 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 
             bool channelExists = false;
 
-            circt::esi::ChannelSignaling signaling = circt::esi::ChannelSignaling::ValidReady;
+            // Track which control signals are present so we can pick a
+            // signaling protocol after the per-port loop:
+            //   * Ready                     -> ValidReady
+            //   * ReadEnable / Empty        -> FIFO
+            //   * Valid only (no others)    -> ValidOnly
+            bool hasValid = false;
+            bool hasReady = false;
+            bool hasReadEnable = false;
+            bool hasEmpty = false;
 
             EsiChannelName channelName = EsiChannelName::Undefined;
 
@@ -1883,13 +1891,19 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                     switch (portInfo._esiPortSemantics)
                     {
                     case EsiPortSemantics::Valid:
+                        hasValid = true;
+                        break;
+
                     case EsiPortSemantics::Ready:
-                        signaling = circt::esi::ChannelSignaling::ValidReady;
+                        hasReady = true;
                         break;
 
                     case EsiPortSemantics::ReadEnable:
+                        hasReadEnable = true;
+                        break;
+
                     case EsiPortSemantics::Empty:
-                        signaling = circt::esi::ChannelSignaling::FIFO;
+                        hasEmpty = true;
                         break;
 
                     case EsiPortSemantics::Payload:
@@ -1909,6 +1923,21 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 
             if (channelExists)
             {
+                circt::esi::ChannelSignaling signaling;
+                if (hasReady)
+                {
+                    signaling = circt::esi::ChannelSignaling::ValidReady;
+                }
+                else if (hasReadEnable || hasEmpty)
+                {
+                    signaling = circt::esi::ChannelSignaling::FIFO;
+                }
+                else
+                {
+                    assert(hasValid && "ESI channel must have at least a valid signal");
+                    signaling = circt::esi::ChannelSignaling::ValidOnly;
+                }
+
                 mlir::Type channelPayloadType;
 
                 if (payloadTypes.empty())
@@ -2086,6 +2115,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                 std::string rdenName;
                 mlir::Value ready;
                 mlir::Value empty;
+                mlir::Value valid;
                 std::vector<mlir::Value> payload;
 
                 for (size_t portIndex = startPortIndex; portIndex < endPortIndex; portIndex++)
@@ -2100,6 +2130,15 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                         {
                         case EsiPortSemantics::Valid:
                             validName = portInfo._hwPortInfo.name.str();
+                            // For FromGeneratedHw + ValidOnly we also need the valid value
+                            // to feed into wrap.vo, so read it from the inner container.
+                            if (channelSemantics == EsiChannelSemantics::FromGeneratedHw)
+                            {
+                                valid = ReadContainerPort(
+                                    _opb, _location, pathToContainer,
+                                    GetFullyQualifiedStringAttr(ObjectPath(), portInfo._hwPortInfo.name.str()),
+                                    portInfo._hwPortInfo.type);
+                            }
                             break;
 
                         case EsiPortSemantics::Ready:
@@ -2183,6 +2222,46 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                                            GetFullyQualifiedStringAttr(ObjectPath(), validName), GetI1Type(),
                                            unwrapOp.getValid());
                     }
+                    else if (circt::esi::ChannelSignaling::ValidOnly == signaling)
+                    {
+                        circt::esi::UnwrapValidOnlyOp unwrapOp =
+                            circt::esi::UnwrapValidOnlyOp::create(_opb, _location, inputChannel);
+
+                        const llvm::SmallVector<mlir::Type> &payloadTypes = directionToPayloadTypes[channelDirection];
+                        const llvm::SmallVector<std::string> &payloadNames = directionToPayloadNames[channelDirection];
+
+                        if (payloadTypes.size() > 0)
+                        {
+                            if (directionToChannelName[channelDirection] == EsiChannelName::Results)
+                            {
+                                assert(payloadTypes.size() == 1);
+
+                                WriteContainerPort(_opb, _location, pathToContainer,
+                                                   GetFullyQualifiedStringAttr(ObjectPath(), payloadNames[0]),
+                                                   payloadTypes[0], unwrapOp.getRawOutput());
+                            }
+                            else
+                            {
+                                assert(directionToChannelName[channelDirection] == EsiChannelName::Arguments);
+
+                                circt::hw::StructExplodeOp explodeOp =
+                                    circt::hw::StructExplodeOp::create(_opb, _location, unwrapOp.getRawOutput());
+
+                                assert(payloadNames.size() == payloadTypes.size());
+
+                                for (size_t i = 0; i < payloadTypes.size(); i++)
+                                {
+                                    WriteContainerPort(_opb, _location, pathToContainer,
+                                                       GetFullyQualifiedStringAttr(ObjectPath(), payloadNames[i]),
+                                                       payloadTypes[i], explodeOp.getResult()[i]);
+                                }
+                            }
+                        }
+
+                        WriteContainerPort(_opb, _location, pathToContainer,
+                                           GetFullyQualifiedStringAttr(ObjectPath(), validName), GetI1Type(),
+                                           unwrapOp.getValid());
+                    }
                     else
                     {
                         assert(false);
@@ -2229,6 +2308,33 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                         WriteContainerPort(_opb, _location, pathToContainer,
                                            GetFullyQualifiedStringAttr(ObjectPath(), rdenName), GetI1Type(),
                                            wrapOp.getRden());
+                    }
+                    else if (circt::esi::ChannelSignaling::ValidOnly == signaling)
+                    {
+                        circt::esi::ChannelType channelType = directionToChannelType[channelDirection];
+
+                        mlir::Value wrapPayload;
+
+                        if (payload.empty())
+                        {
+                            wrapPayload = circt::hw::ConstantOp::create(_opb, _location,
+                                                                        _opb.getIntegerAttr(GetIntegerType(0), 0));
+                        }
+                        else if (directionToChannelName[channelDirection] == EsiChannelName::Results)
+                        {
+                            wrapPayload = payload[0];
+                        }
+                        else
+                        {
+                            assert(directionToChannelName[channelDirection] == EsiChannelName::Arguments);
+
+                            wrapPayload =
+                                circt::hw::StructCreateOp::create(_opb, _location, channelType.getInner(), payload);
+                        }
+
+                        circt::esi::WrapValidOnlyOp wrapOp =
+                            circt::esi::WrapValidOnlyOp::create(_opb, _location, channelType, wrapPayload, valid);
+                        outputChannel = wrapOp.getChanOutput();
                     }
                     else
                     {

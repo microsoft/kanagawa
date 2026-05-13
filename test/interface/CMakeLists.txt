@@ -187,3 +187,5 @@ add_interface_test(ecc_mem ecc_mem.k
   TESTBENCH
     ecc_mem.sv
 )
+
+add_subdirectory(circt)
