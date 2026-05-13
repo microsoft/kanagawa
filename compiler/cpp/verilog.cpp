@@ -6611,7 +6611,7 @@ public:
                 esiBundleName = prefix;
             }
 
-            PushPopEsiBundle pushPopEsiBundle(coreModule, esiBundleName);
+            PushPopEsiBundle pushPopEsiBundle(coreModule, esiBundleName, /*isOutputBundle=*/true);
 
             if (isNoBackpressure)
             {

@@ -1350,11 +1350,12 @@ ModuleDeclarationHelper::~ModuleDeclarationHelper()
     assert(!_bundleName);
 }
 
-void ModuleDeclarationHelper::BeginEsiBundle(const std::string &name)
+void ModuleDeclarationHelper::BeginEsiBundle(const std::string &name, bool isOutputBundle)
 {
     assert(!_bundleName);
 
     _bundleName = name;
+    _bundleIsOutput = isOutputBundle;
 
     _bundleStartPortIndex = _ports.size();
 }
@@ -1363,9 +1364,11 @@ void ModuleDeclarationHelper::EndEsiBundle()
 {
     assert(_bundleName);
 
-    SafeInsert(_bundleNameToPortRange, *_bundleName, std::pair<size_t, size_t>(_bundleStartPortIndex, _ports.size()));
+    SafeInsert(_bundleNameToPortRange, *_bundleName,
+               EsiBundleInfo{_bundleStartPortIndex, _ports.size(), _bundleIsOutput});
 
     _bundleName.reset();
+    _bundleIsOutput = false;
 }
 
 mlir::Block *ModuleDeclarationHelper::GetBodyBlock()
@@ -1837,8 +1840,9 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
     {
         const std::string bundleName = bundleInfo.first;
 
-        const size_t startPortIndex = bundleInfo.second.first;
-        const size_t endPortIndex = bundleInfo.second.second;
+        const size_t startPortIndex = bundleInfo.second.startPortIndex;
+        const size_t endPortIndex = bundleInfo.second.endPortIndex;
+        const bool isOutputBundle = bundleInfo.second.isOutputBundle;
 
         // Determine channel and bundle types
         std::array<circt::esi::ChannelType, 2> directionToChannelType = {};
@@ -1950,9 +1954,21 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                 circt::esi::BundledChannel bc = {};
                 bc.name = (channelName == EsiChannelName::Arguments) ? StringToStringAttr("arg")
                                                                      : StringToStringAttr("result");
-                bc.direction = (channelSemantics == EsiChannelSemantics::FromGeneratedHw)
-                                   ? circt::esi::ChannelDirection::from
-                                   : circt::esi::ChannelDirection::to;
+                // For an input bundle, FromGeneratedHw channels are 'from' (output channels of
+                // the wrapper) and ToGeneratedHw channels are 'to' (input channels). For an
+                // output bundle, the wrapper produces the bundle itself, so the channel
+                // direction tags flip to keep the underlying data flow direction unchanged.
+                const bool wrapperProducesChannel = (channelSemantics == EsiChannelSemantics::FromGeneratedHw);
+                if (isOutputBundle)
+                {
+                    bc.direction = wrapperProducesChannel ? circt::esi::ChannelDirection::to
+                                                          : circt::esi::ChannelDirection::from;
+                }
+                else
+                {
+                    bc.direction = wrapperProducesChannel ? circt::esi::ChannelDirection::from
+                                                          : circt::esi::ChannelDirection::to;
+                }
                 bc.type = channelType;
 
                 bundleChannelDesc.push_back(bc);
@@ -1964,16 +1980,18 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
         circt::esi::ChannelBundleType bundleType =
             circt::esi::ChannelBundleType::get(g_compiler->GetMlirContext(), bundleChannelDesc, nullptr);
 
-        // Declare a port on the container with bundle type
-        circt::kanagawa::InputPortOp inputBundlePort = circt::kanagawa::InputPortOp::create(_opb,
-                                                                                            _location, getPortSymbol(bundleName), mlir::TypeAttr::get(bundleType), StringToStringAttr(bundleName));
-
-        // PortReadOp to get the bundle
-        mlir::Value inputBundle = circt::kanagawa::PortReadOp::create(_opb, _location, inputBundlePort);
-
-        // For each channel in the bundle
-        // It is important to handle the FromGeneratedHw channel first
-        // UnpackBundleOp takes that channel as input
+        // For each channel in the bundle.
+        // FromGeneratedHw channels are produced by the wrapper (via wrap.fifo) and
+        // are handled in the first iteration. ToGeneratedHw channels are consumed
+        // by the wrapper (via unwrap.vr) and are handled in the second iteration.
+        //
+        // Between the two iterations we either:
+        //  * Input bundle: declare an input port, read the bundle, and unpack the
+        //    FromGeneratedHw channels into the bundle to obtain the ToGeneratedHw
+        //    channels.
+        //  * Output bundle: pack the FromGeneratedHw channels into a new bundle,
+        //    obtain the ToGeneratedHw channels as pack's `fromChannels` result,
+        //    declare an output port, and write the bundle to it.
         llvm::SmallVector<mlir::Value> fromChannels;
         llvm::SmallVector<mlir::Value> toChannels;
 
@@ -1984,11 +2002,41 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 
             if (channelDirection == 1)
             {
-                // Unpack the bundle to get the ToGeneratedHw channel
-                circt::esi::UnpackBundleOp unpackBundleOp =
-                    circt::esi::UnpackBundleOp::create(_opb, _location, inputBundle, fromChannels);
+                if (isOutputBundle)
+                {
+                    // Pack the FromGeneratedHw channels (mapped to bundle-relative `to`
+                    // direction for output bundles) into the bundle. The op's
+                    // `fromChannels` results correspond to the ToGeneratedHw channels
+                    // that the wrapper consumes.
+                    circt::esi::PackBundleOp packBundleOp =
+                        circt::esi::PackBundleOp::create(_opb, _location, bundleType, fromChannels);
 
-                toChannels = unpackBundleOp.getToChannels();
+                    circt::kanagawa::OutputPortOp outputBundlePort =
+                        circt::kanagawa::OutputPortOp::create(_opb, _location, getPortSymbol(bundleName),
+                                                              mlir::TypeAttr::get(bundleType),
+                                                              StringToStringAttr(bundleName));
+
+                    circt::kanagawa::PortWriteOp::create(_opb, _location, outputBundlePort, packBundleOp.getBundle());
+
+                    toChannels = packBundleOp.getFromChannels();
+                }
+                else
+                {
+                    // Declare a port on the container with bundle type.
+                    circt::kanagawa::InputPortOp inputBundlePort = circt::kanagawa::InputPortOp::create(
+                        _opb, _location, getPortSymbol(bundleName), mlir::TypeAttr::get(bundleType),
+                        StringToStringAttr(bundleName));
+
+                    // PortReadOp to get the bundle.
+                    mlir::Value inputBundle =
+                        circt::kanagawa::PortReadOp::create(_opb, _location, inputBundlePort);
+
+                    // Unpack the bundle to get the ToGeneratedHw channels.
+                    circt::esi::UnpackBundleOp unpackBundleOp =
+                        circt::esi::UnpackBundleOp::create(_opb, _location, inputBundle, fromChannels);
+
+                    toChannels = unpackBundleOp.getToChannels();
+                }
             }
 
             // Collect information about the channel
