@@ -3,8 +3,7 @@
 
 # Tests that compile a Kanagawa source through the front-/middle-end with
 # --skip-circt-lowering and run a python script to inspect the produced
-# CIRCT MLIR. Useful for asserting on the shape of the EsiWrapper interface
-# without simulating it.
+# CIRCT MLIR. Useful for asserting on the shape of the EsiWrapper interface.
 function(add_circt_mlir_test test_name)
   set(_one OUTPUT_PREFIX)
   set(_multi SOURCES OPTIONS TEST)

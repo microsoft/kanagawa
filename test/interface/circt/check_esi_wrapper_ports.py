@@ -14,6 +14,11 @@ import re
 import sys
 from pathlib import Path
 
+
+# TODO: this really should use the Python CIRCT API to parse the IR and check
+# the port types, but that would require having the Python API available which
+# we don't currently do. Would adding this feature be worth it?
+
 # (port name, list of substrings that must all appear on the port's
 # declaration line in the EsiWrapper container).
 EXPECTED_PORTS = [
@@ -64,9 +69,7 @@ EXPECTED_PORTS = [
 
 # Forbid the no-longer-emitted shapes so silent regressions don't slip past.
 FORBIDDEN_LINES = [
-    # Pre-Phase-1 callback bundles were `kanagawa.port.input` for any *_cb.
     re.compile(r'kanagawa\.port\.input\s+"\w*_cb"'),
-    # Pre-Phase-2 single-channel async ports were single-element bundles.
     re.compile(r'"AsyncExport"[^\n]*!esi\.bundle<'),
     re.compile(r'"async_cb"[^\n]*!esi\.bundle<'),
     re.compile(r'"nbp_cb"[^\n]*!esi\.bundle<'),

@@ -495,7 +495,8 @@ std::string GetRegisterBaseName(const Program &program, const size_t registerInd
     return prefix + std::to_string(registerIndex) + "_" + regDesc._name;
 }
 
-std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) {
+std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock)
+{
     return g_compiler->ClampStringLength(GetBasicBlockName(basicBlock) + "Impl");
 }
 

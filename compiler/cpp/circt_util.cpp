@@ -1844,6 +1844,12 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
         const size_t endPortIndex = bundleInfo.second.endPortIndex;
         const bool isOutputBundle = bundleInfo.second.isOutputBundle;
 
+        // Per-direction storage indexed by channelDirection: 0 == FromGeneratedHw,
+        // 1 == ToGeneratedHw. (Independent of EsiChannelSemantics' underlying enum
+        // values.)
+        constexpr size_t kFromGeneratedHwIdx = 0;
+        constexpr size_t kToGeneratedHwIdx = 1;
+
         // Determine channel and bundle types
         std::array<circt::esi::ChannelType, 2> directionToChannelType = {};
         std::array<bool, 2> directionToChannelExists = {};
@@ -2046,7 +2052,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                     // The single channel is either FromGeneratedHw (bundle was
                     // marked as output) or ToGeneratedHw (bundle was input).
                     const circt::esi::ChannelType channelType =
-                        directionToChannelType[isOutputBundle ? 0 : 1];
+                        directionToChannelType[isOutputBundle ? kFromGeneratedHwIdx : kToGeneratedHwIdx];
 
                     if (isOutputBundle)
                     {
@@ -2332,6 +2338,10 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                                 circt::hw::StructCreateOp::create(_opb, _location, channelType.getInner(), payload);
                         }
 
+                        // ValidOnly is only selected when the port group has a Valid
+                        // signal, and the per-port loop above always reads it for
+                        // FromGeneratedHw, so `valid` must be set here.
+                        assert(valid);
                         circt::esi::WrapValidOnlyOp wrapOp =
                             circt::esi::WrapValidOnlyOp::create(_opb, _location, channelType, wrapPayload, valid);
                         outputChannel = wrapOp.getChanOutput();
