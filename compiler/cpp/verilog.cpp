@@ -495,7 +495,8 @@ std::string GetRegisterBaseName(const Program &program, const size_t registerInd
     return prefix + std::to_string(registerIndex) + "_" + regDesc._name;
 }
 
-std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) {
+std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock)
+{
     return g_compiler->ClampStringLength(GetBasicBlockName(basicBlock) + "Impl");
 }
 
@@ -6481,7 +6482,11 @@ public:
 
             const bool fixedLatency = functionNode->IsFixedLatency();
 
-            if (hasBackpressure)
+            // Bundle when ESI signaling can describe both directions:
+            //  * hasBackpressure   -> ValidReady (args) + FIFO (results)
+            //  * !fixedLatency     -> ValidOnly on either direction
+            // Fixed-latency results have no Valid signal at all and stay raw.
+            if (hasBackpressure || !fixedLatency)
             {
                 exportInterface._esiBundleName = combinedFunctionName;
             }
@@ -6604,14 +6609,9 @@ public:
 
             const bool isNoBackpressure = functionNode->GetModifiers() & ParseTreeFunctionModifierNoBackPressure;
 
-            std::optional<std::string> esiBundleName;
+            std::optional<std::string> esiBundleName = prefix;
 
-            if (!isNoBackpressure)
-            {
-                esiBundleName = prefix;
-            }
-
-            PushPopEsiBundle pushPopEsiBundle(coreModule, esiBundleName);
+            PushPopEsiBundle pushPopEsiBundle(coreModule, esiBundleName, /*isOutputBundle=*/true);
 
             if (isNoBackpressure)
             {

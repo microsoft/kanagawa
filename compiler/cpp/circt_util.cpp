@@ -1350,11 +1350,12 @@ ModuleDeclarationHelper::~ModuleDeclarationHelper()
     assert(!_bundleName);
 }
 
-void ModuleDeclarationHelper::BeginEsiBundle(const std::string &name)
+void ModuleDeclarationHelper::BeginEsiBundle(const std::string &name, const bool isOutputBundle)
 {
     assert(!_bundleName);
 
     _bundleName = name;
+    _bundleIsOutput = isOutputBundle;
 
     _bundleStartPortIndex = _ports.size();
 }
@@ -1363,9 +1364,11 @@ void ModuleDeclarationHelper::EndEsiBundle()
 {
     assert(_bundleName);
 
-    SafeInsert(_bundleNameToPortRange, *_bundleName, std::pair<size_t, size_t>(_bundleStartPortIndex, _ports.size()));
+    SafeInsert(_bundleNameToPortRange, *_bundleName,
+               EsiBundleInfo{_bundleStartPortIndex, _ports.size(), _bundleIsOutput});
 
     _bundleName.reset();
+    _bundleIsOutput = false;
 }
 
 mlir::Block *ModuleDeclarationHelper::GetBodyBlock()
@@ -1837,8 +1840,15 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
     {
         const std::string bundleName = bundleInfo.first;
 
-        const size_t startPortIndex = bundleInfo.second.first;
-        const size_t endPortIndex = bundleInfo.second.second;
+        const size_t startPortIndex = bundleInfo.second.startPortIndex;
+        const size_t endPortIndex = bundleInfo.second.endPortIndex;
+        const bool isOutputBundle = bundleInfo.second.isOutputBundle;
+
+        // Per-direction storage indexed by channelDirection: 0 == FromGeneratedHw,
+        // 1 == ToGeneratedHw. (Independent of EsiChannelSemantics' underlying enum
+        // values.)
+        constexpr size_t kFromGeneratedHwIdx = 0;
+        constexpr size_t kToGeneratedHwIdx = 1;
 
         // Determine channel and bundle types
         std::array<circt::esi::ChannelType, 2> directionToChannelType = {};
@@ -1855,7 +1865,15 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 
             bool channelExists = false;
 
-            circt::esi::ChannelSignaling signaling = circt::esi::ChannelSignaling::ValidReady;
+            // Track which control signals are present so we can pick a
+            // signaling protocol after the per-port loop:
+            //   * Ready                     -> ValidReady
+            //   * ReadEnable / Empty        -> FIFO
+            //   * Valid only (no others)    -> ValidOnly
+            bool hasValid = false;
+            bool hasReady = false;
+            bool hasReadEnable = false;
+            bool hasEmpty = false;
 
             EsiChannelName channelName = EsiChannelName::Undefined;
 
@@ -1879,13 +1897,19 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                     switch (portInfo._esiPortSemantics)
                     {
                     case EsiPortSemantics::Valid:
+                        hasValid = true;
+                        break;
+
                     case EsiPortSemantics::Ready:
-                        signaling = circt::esi::ChannelSignaling::ValidReady;
+                        hasReady = true;
                         break;
 
                     case EsiPortSemantics::ReadEnable:
+                        hasReadEnable = true;
+                        break;
+
                     case EsiPortSemantics::Empty:
-                        signaling = circt::esi::ChannelSignaling::FIFO;
+                        hasEmpty = true;
                         break;
 
                     case EsiPortSemantics::Payload:
@@ -1905,6 +1929,21 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 
             if (channelExists)
             {
+                circt::esi::ChannelSignaling signaling;
+                if (hasReady)
+                {
+                    signaling = circt::esi::ChannelSignaling::ValidReady;
+                }
+                else if (hasReadEnable || hasEmpty)
+                {
+                    signaling = circt::esi::ChannelSignaling::FIFO;
+                }
+                else
+                {
+                    assert(hasValid && "ESI channel must have at least a valid signal");
+                    signaling = circt::esi::ChannelSignaling::ValidOnly;
+                }
+
                 mlir::Type channelPayloadType;
 
                 if (payloadTypes.empty())
@@ -1950,9 +1989,21 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                 circt::esi::BundledChannel bc = {};
                 bc.name = (channelName == EsiChannelName::Arguments) ? StringToStringAttr("arg")
                                                                      : StringToStringAttr("result");
-                bc.direction = (channelSemantics == EsiChannelSemantics::FromGeneratedHw)
-                                   ? circt::esi::ChannelDirection::from
-                                   : circt::esi::ChannelDirection::to;
+                // For an input bundle, FromGeneratedHw channels are 'from' (output channels of
+                // the wrapper) and ToGeneratedHw channels are 'to' (input channels). For an
+                // output bundle, the wrapper produces the bundle itself, so the channel
+                // direction tags flip to keep the underlying data flow direction unchanged.
+                const bool wrapperProducesChannel = (channelSemantics == EsiChannelSemantics::FromGeneratedHw);
+                if (isOutputBundle)
+                {
+                    bc.direction = wrapperProducesChannel ? circt::esi::ChannelDirection::to
+                                                          : circt::esi::ChannelDirection::from;
+                }
+                else
+                {
+                    bc.direction = wrapperProducesChannel ? circt::esi::ChannelDirection::from
+                                                          : circt::esi::ChannelDirection::to;
+                }
                 bc.type = channelType;
 
                 bundleChannelDesc.push_back(bc);
@@ -1961,19 +2012,31 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 
         assert(!bundleChannelDesc.empty());
 
-        circt::esi::ChannelBundleType bundleType =
-            circt::esi::ChannelBundleType::get(g_compiler->GetMlirContext(), bundleChannelDesc, nullptr);
+        // If a bundle has a single channel (the case for [[async]] functions and
+        // callbacks, whose argument channel is the only channel), expose it as a
+        // bare ESI channel port instead of wrapping it in a single-element bundle.
+        const bool bareChannelPort = (bundleChannelDesc.size() == 1);
 
-        // Declare a port on the container with bundle type
-        circt::kanagawa::InputPortOp inputBundlePort = circt::kanagawa::InputPortOp::create(_opb,
-                                                                                            _location, getPortSymbol(bundleName), mlir::TypeAttr::get(bundleType), StringToStringAttr(bundleName));
+        circt::esi::ChannelBundleType bundleType;
+        if (!bareChannelPort)
+        {
+            bundleType = circt::esi::ChannelBundleType::get(g_compiler->GetMlirContext(), bundleChannelDesc, nullptr);
+        }
 
-        // PortReadOp to get the bundle
-        mlir::Value inputBundle = circt::kanagawa::PortReadOp::create(_opb, _location, inputBundlePort);
-
-        // For each channel in the bundle
-        // It is important to handle the FromGeneratedHw channel first
-        // UnpackBundleOp takes that channel as input
+        // For each channel in the bundle.
+        // FromGeneratedHw channels are produced by the wrapper (via wrap.fifo) and
+        // are handled in the first iteration. ToGeneratedHw channels are consumed
+        // by the wrapper (via unwrap.vr) and are handled in the second iteration.
+        //
+        // Between the two iterations we either:
+        //  * Input bundle: declare an input port, read the bundle, and unpack the
+        //    FromGeneratedHw channels into the bundle to obtain the ToGeneratedHw
+        //    channels.
+        //  * Output bundle: pack the FromGeneratedHw channels into a new bundle,
+        //    obtain the ToGeneratedHw channels as pack's `fromChannels` result,
+        //    declare an output port, and write the bundle to it.
+        //  * Bare channel port (single-channel async case): skip pack/unpack and
+        //    declare a port of channel type directly.
         llvm::SmallVector<mlir::Value> fromChannels;
         llvm::SmallVector<mlir::Value> toChannels;
 
@@ -1984,11 +2047,69 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
 
             if (channelDirection == 1)
             {
-                // Unpack the bundle to get the ToGeneratedHw channel
-                circt::esi::UnpackBundleOp unpackBundleOp =
-                    circt::esi::UnpackBundleOp::create(_opb, _location, inputBundle, fromChannels);
+                if (bareChannelPort)
+                {
+                    // The single channel is either FromGeneratedHw (bundle was
+                    // marked as output) or ToGeneratedHw (bundle was input).
+                    const circt::esi::ChannelType channelType =
+                        directionToChannelType[isOutputBundle ? kFromGeneratedHwIdx : kToGeneratedHwIdx];
 
-                toChannels = unpackBundleOp.getToChannels();
+                    if (isOutputBundle)
+                    {
+                        // wrap.fifo from iteration 0 produced the channel; write it
+                        // directly to an output port of channel type.
+                        assert(fromChannels.size() == 1);
+                        circt::kanagawa::OutputPortOp outputChannelPort =
+                            circt::kanagawa::OutputPortOp::create(_opb, _location, getPortSymbol(bundleName),
+                                                                  mlir::TypeAttr::get(channelType),
+                                                                  StringToStringAttr(bundleName));
+                        circt::kanagawa::PortWriteOp::create(_opb, _location, outputChannelPort, fromChannels[0]);
+                    }
+                    else
+                    {
+                        // Read the channel from an input port of channel type.
+                        circt::kanagawa::InputPortOp inputChannelPort = circt::kanagawa::InputPortOp::create(
+                            _opb, _location, getPortSymbol(bundleName), mlir::TypeAttr::get(channelType),
+                            StringToStringAttr(bundleName));
+                        toChannels.push_back(
+                            circt::kanagawa::PortReadOp::create(_opb, _location, inputChannelPort));
+                    }
+                }
+                else if (isOutputBundle)
+                {
+                    // Pack the FromGeneratedHw channels (mapped to bundle-relative `to`
+                    // direction for output bundles) into the bundle. The op's
+                    // `fromChannels` results correspond to the ToGeneratedHw channels
+                    // that the wrapper consumes.
+                    circt::esi::PackBundleOp packBundleOp =
+                        circt::esi::PackBundleOp::create(_opb, _location, bundleType, fromChannels);
+
+                    circt::kanagawa::OutputPortOp outputBundlePort =
+                        circt::kanagawa::OutputPortOp::create(_opb, _location, getPortSymbol(bundleName),
+                                                              mlir::TypeAttr::get(bundleType),
+                                                              StringToStringAttr(bundleName));
+
+                    circt::kanagawa::PortWriteOp::create(_opb, _location, outputBundlePort, packBundleOp.getBundle());
+
+                    toChannels = packBundleOp.getFromChannels();
+                }
+                else
+                {
+                    // Declare a port on the container with bundle type.
+                    circt::kanagawa::InputPortOp inputBundlePort = circt::kanagawa::InputPortOp::create(
+                        _opb, _location, getPortSymbol(bundleName), mlir::TypeAttr::get(bundleType),
+                        StringToStringAttr(bundleName));
+
+                    // PortReadOp to get the bundle.
+                    mlir::Value inputBundle =
+                        circt::kanagawa::PortReadOp::create(_opb, _location, inputBundlePort);
+
+                    // Unpack the bundle to get the ToGeneratedHw channels.
+                    circt::esi::UnpackBundleOp unpackBundleOp =
+                        circt::esi::UnpackBundleOp::create(_opb, _location, inputBundle, fromChannels);
+
+                    toChannels = unpackBundleOp.getToChannels();
+                }
             }
 
             // Collect information about the channel
@@ -2000,6 +2121,7 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                 std::string rdenName;
                 mlir::Value ready;
                 mlir::Value empty;
+                mlir::Value valid;
                 std::vector<mlir::Value> payload;
 
                 for (size_t portIndex = startPortIndex; portIndex < endPortIndex; portIndex++)
@@ -2014,6 +2136,15 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                         {
                         case EsiPortSemantics::Valid:
                             validName = portInfo._hwPortInfo.name.str();
+                            // For FromGeneratedHw + ValidOnly we also need the valid value
+                            // to feed into wrap.vo, so read it from the inner container.
+                            if (channelSemantics == EsiChannelSemantics::FromGeneratedHw)
+                            {
+                                valid = ReadContainerPort(
+                                    _opb, _location, pathToContainer,
+                                    GetFullyQualifiedStringAttr(ObjectPath(), portInfo._hwPortInfo.name.str()),
+                                    portInfo._hwPortInfo.type);
+                            }
                             break;
 
                         case EsiPortSemantics::Ready:
@@ -2097,6 +2228,46 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                                            GetFullyQualifiedStringAttr(ObjectPath(), validName), GetI1Type(),
                                            unwrapOp.getValid());
                     }
+                    else if (circt::esi::ChannelSignaling::ValidOnly == signaling)
+                    {
+                        circt::esi::UnwrapValidOnlyOp unwrapOp =
+                            circt::esi::UnwrapValidOnlyOp::create(_opb, _location, inputChannel);
+
+                        const llvm::SmallVector<mlir::Type> &payloadTypes = directionToPayloadTypes[channelDirection];
+                        const llvm::SmallVector<std::string> &payloadNames = directionToPayloadNames[channelDirection];
+
+                        if (payloadTypes.size() > 0)
+                        {
+                            if (directionToChannelName[channelDirection] == EsiChannelName::Results)
+                            {
+                                assert(payloadTypes.size() == 1);
+
+                                WriteContainerPort(_opb, _location, pathToContainer,
+                                                   GetFullyQualifiedStringAttr(ObjectPath(), payloadNames[0]),
+                                                   payloadTypes[0], unwrapOp.getRawOutput());
+                            }
+                            else
+                            {
+                                assert(directionToChannelName[channelDirection] == EsiChannelName::Arguments);
+
+                                circt::hw::StructExplodeOp explodeOp =
+                                    circt::hw::StructExplodeOp::create(_opb, _location, unwrapOp.getRawOutput());
+
+                                assert(payloadNames.size() == payloadTypes.size());
+
+                                for (size_t i = 0; i < payloadTypes.size(); i++)
+                                {
+                                    WriteContainerPort(_opb, _location, pathToContainer,
+                                                       GetFullyQualifiedStringAttr(ObjectPath(), payloadNames[i]),
+                                                       payloadTypes[i], explodeOp.getResult()[i]);
+                                }
+                            }
+                        }
+
+                        WriteContainerPort(_opb, _location, pathToContainer,
+                                           GetFullyQualifiedStringAttr(ObjectPath(), validName), GetI1Type(),
+                                           unwrapOp.getValid());
+                    }
                     else
                     {
                         assert(false);
@@ -2143,6 +2314,37 @@ void ModuleDeclarationHelper::EmitEsiWrapper(const std::string &circtDesignName)
                         WriteContainerPort(_opb, _location, pathToContainer,
                                            GetFullyQualifiedStringAttr(ObjectPath(), rdenName), GetI1Type(),
                                            wrapOp.getRden());
+                    }
+                    else if (circt::esi::ChannelSignaling::ValidOnly == signaling)
+                    {
+                        circt::esi::ChannelType channelType = directionToChannelType[channelDirection];
+
+                        mlir::Value wrapPayload;
+
+                        if (payload.empty())
+                        {
+                            wrapPayload = circt::hw::ConstantOp::create(_opb, _location,
+                                                                        _opb.getIntegerAttr(GetIntegerType(0), 0));
+                        }
+                        else if (directionToChannelName[channelDirection] == EsiChannelName::Results)
+                        {
+                            wrapPayload = payload[0];
+                        }
+                        else
+                        {
+                            assert(directionToChannelName[channelDirection] == EsiChannelName::Arguments);
+
+                            wrapPayload =
+                                circt::hw::StructCreateOp::create(_opb, _location, channelType.getInner(), payload);
+                        }
+
+                        // ValidOnly is only selected when the port group has a Valid
+                        // signal, and the per-port loop above always reads it for
+                        // FromGeneratedHw, so `valid` must be set here.
+                        assert(valid);
+                        circt::esi::WrapValidOnlyOp wrapOp =
+                            circt::esi::WrapValidOnlyOp::create(_opb, _location, channelType, wrapPayload, valid);
+                        outputChannel = wrapOp.getChanOutput();
                     }
                     else
                     {
