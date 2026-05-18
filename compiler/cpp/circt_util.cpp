@@ -1350,7 +1350,7 @@ ModuleDeclarationHelper::~ModuleDeclarationHelper()
     assert(!_bundleName);
 }
 
-void ModuleDeclarationHelper::BeginEsiBundle(const std::string &name, bool isOutputBundle)
+void ModuleDeclarationHelper::BeginEsiBundle(const std::string &name, const bool isOutputBundle)
 {
     assert(!_bundleName);
 
