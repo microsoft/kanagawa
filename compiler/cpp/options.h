@@ -68,6 +68,10 @@ extern "C"
         // True to dump IR to json after all optimizations
         BOOL _serializeCIRCTIR;
 
+        // True to skip CIRCT lowering passes; CIRCT-lowered SystemVerilog module bodies are not emitted,
+        // but other outputs (RtlMap.json, *_types.sv, etc.) may still be written. The CIRCT MLIR file is always emitted in this mode.
+        BOOL _skipCirctLowering;
+
         // true to generate hardware to detect race conditions
         BOOL _detectRaces;
 

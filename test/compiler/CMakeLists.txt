@@ -1,6 +1,8 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+add_subdirectory(cli)
+
 # Default / common MSVC settings
 include(${CMAKE_SOURCE_DIR}/build/cmake/msvc.cmake)
 
