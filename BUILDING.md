@@ -232,11 +232,10 @@ Install Visual Studio 2022 with the "Desktop development with C++" workload. Thi
 compiler, CMake, and Ninja.
 
 To make `cl.exe`, `cmake`, and `ninja` available in your PowerShell session, enter the
-"Developer PowerShell for VS 2022" environment. 
-
-Verify the tools are on your `PATH`:
-
+"Developer PowerShell for VS 2022" environment with a command like
 ```powershell
+& "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1" -Arch amd64 -HostArch amd64
+# Verify the tools are on your `PATH`:
 cmake --version
 ninja --version
 ```
@@ -277,62 +276,54 @@ cabal user-config update -a "store-dir: E:\cache\cabal"
 
 ### 3. Install Boost 1.88.0
 
-Download and extract the Boost source archive. The extraction step takes a few minutes because
-Boost contains tens of thousands of files:
+Download and extract the Boost C++ library version 1.88.0 or greater. 
 
 ```powershell
-New-Item -ItemType Directory -Path E:\cache\boost -Force | Out-Null
+New-Item -ItemType Directory -Path C:\cache\boost -Force | Out-Null
 Invoke-WebRequest `
     -Uri "https://archives.boost.io/release/1.88.0/source/boost_1_88_0.zip" `
-    -OutFile "E:\cache\boost_1_88_0.zip" -UseBasicParsing
-Expand-Archive -Path "E:\cache\boost_1_88_0.zip" -DestinationPath "E:\cache\boost" -Force
+    -OutFile "C:\cache\boost_1_88_0.zip" -UseBasicParsing
+Expand-Archive -Path "C:\cache\boost_1_88_0.zip" -DestinationPath "C:\cache\boost" -Force
 ```
 
 Bootstrap and install Boost. Kanagawa only needs the Boost headers, so a headers-only install is
-sufficient. The recommended approach is to use `b2` to generate the CMake config files, then use
-`robocopy` to copy the headers in bulk (much faster than `b2`'s file-by-file install on Windows):
+sufficient. If you are impatient use `b2` to generate the CMake config files, then use
+`robocopy` to copy the headers in bulk:
 
 ```powershell
-cd E:\cache\boost\boost_1_88_0
+cd C:\cache\boost\boost_1_88_0
 .\bootstrap.bat
 # Start the install to generate the CMake config files in the install prefix.
 # You can cancel (Ctrl+C) once you see headers being copied -- the CMake config
 # files are written early.
-.\b2.exe install --prefix=E:\cache\boost\install --with-headers
+.\b2.exe install --prefix=C:\cache\boost\install --with-headers
 # Bulk-copy all headers to the install prefix using robocopy
-robocopy "E:\cache\boost\boost_1_88_0\boost" `
-         "E:\cache\boost\install\include\boost-1_88\boost" /E /NFL /NDL /NJH /NP
+robocopy "C:\cache\boost\boost_1_88_0\boost" `
+         "C:\cache\boost\install\include\boost-1_88\boost" /E /NFL /NDL /NJH /NP
 ```
-
-Alternatively, you can let `b2 install` run to completion (slower, but simpler).
 
 ### 4. Configure the build with CMake
 
 From the repository root, run CMake generate. The example below uses
-`E:\cache\boost\install` for Boost and `C:\ghcup\bin` for ghcup; adjust paths as needed:
+`C:\cache\boost\install` for Boost and `C:\ghcup\bin` for ghcup; adjust paths as needed:
 
 ```powershell
-cmake -S E:\git\kanagawa -B E:\git\kanagawa-build -G Ninja `
+cmake -S kanagawa -B kanagawa-build -G Ninja `
     -DCMAKE_BUILD_TYPE=RelWithDebInfo `
-    -DBoost_DIR=E:\cache\boost\install\lib\cmake\Boost-1.88.0 `
+    -DBoost_DIR=C:\cache\boost\install\lib\cmake\Boost-1.88.0 `
     -DGHCUP_DIR=C:\ghcup\bin
 ```
 
-The configure step takes a couple of minutes (CMake configures the bundled LLVM/CIRCT submodule
-in addition to Kanagawa itself). When it finishes, you should see `Build files have been written
-to: E:/git/kanagawa-build`.
-
 ### 5. Build the compiler
 
-Build the `kanagawa_runtime` target. This compiles LLVM, MLIR, CIRCT, and the Kanagawa compiler,
-and is a long-running build (tens of minutes to over an hour depending on your machine):
+Build the `kanagawa_runtime` target. This compiles LLVM, MLIR, CIRCT, and the Kanagawa compiler:
 
 ```powershell
-ninja -C E:\git\kanagawa-build kanagawa_runtime
+ninja -C kanagawa-build kanagawa_runtime
 ```
 
 The resulting `kanagawa.exe` and `kanagawa-backend.dll` are staged in
-`E:\git\kanagawa-build\dist\bin`.
+`kanagawa-build\dist\bin`.
 
 ### Notes
 
