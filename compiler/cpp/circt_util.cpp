@@ -1749,6 +1749,39 @@ mlir::Type ModuleDeclarationHelper::CreateTypeAlias(const std::string &name, con
     return circt::hw::TypeAliasType::get(symbolRefAttr, referencedType);
 }
 
+// Returns true if 'kanagawaType' (and all of its transitively contained
+// element/member types) can be lowered to MLIR by ToMlirTypeImpl.
+// Non-hardware types (StringType, ClassType, ReferenceType, callback function
+// members, etc.) are not lowerable and would trigger an assert(false) if
+// reached during type lowering.
+static bool IsMlirLowerable(const Type *kanagawaType)
+{
+    if (dynamic_cast<const BoolType *>(kanagawaType) || dynamic_cast<const LeafType *>(kanagawaType) ||
+        dynamic_cast<const FloatType *>(kanagawaType))
+    {
+        return true;
+    }
+
+    if (const ArrayType *arrayType = dynamic_cast<const ArrayType *>(kanagawaType))
+    {
+        return IsMlirLowerable(arrayType->_elementType);
+    }
+
+    if (const StructUnionType *structUnionType = dynamic_cast<const StructUnionType *>(kanagawaType))
+    {
+        for (const StructUnionType::EntryType &member : structUnionType->_members)
+        {
+            if (!IsMlirLowerable(member.second->GetDeclaredType()))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    return false;
+}
+
 void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
 {
     assert(_typeScopeOp);
@@ -1802,26 +1835,21 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
     // Note: we do NOT recursively register member types here.
     // The caller (DeclareCore) iterates _exportedTypes which is already
     // topologically sorted by SortExportedTypes(), so member types are
-    // registered before their containing structs. Recursing here would
-    // crash on non-hardware member types (ClassType, ReferenceType, etc.)
-    // that can't be converted to MLIR.
+    // registered before their containing structs. That ordering is what
+    // lets ToMlirTypeAliased below pick up aliases for inner named types.
+    // If a member was skipped due to not being MLIR-lowerable, the containing type
+    // will also be skipped.
 
     // Verify the type can be converted to MLIR before attempting registration.
-    // Some exported types (e.g., structs containing callback function members)
-    // have members that ToMlirType cannot handle. Skip those silently.
-    if (structUnionType)
+    // Some exported types (e.g., structs containing callback function members,
+    // or structs containing strings) have members that ToMlirType cannot handle.
+    // The check must be transitive: if any nested member/element is not
+    // MLIR-lowerable, skip registration. Otherwise we'd register an outer
+    // struct whose inner struct was skipped, and ToMlirTypeAliased would
+    // recurse into the inner struct's non-hardware members and assert.
+    if (!IsMlirLowerable(kanagawaType))
     {
-        for (const StructUnionType::EntryType &member : structUnionType->_members)
-        {
-            const Type *memberType = member.second->GetDeclaredType();
-            if (!dynamic_cast<const BoolType *>(memberType) && !dynamic_cast<const LeafType *>(memberType) &&
-                !dynamic_cast<const ArrayType *>(memberType) && !dynamic_cast<const FloatType *>(memberType) &&
-                !dynamic_cast<const StructUnionType *>(memberType))
-            {
-                // Member type is not MLIR-convertible — skip this type
-                return;
-            }
-        }
+        return;
     }
 
     // Build the MLIR type using the alias-aware conversion so inner named types use aliases.
