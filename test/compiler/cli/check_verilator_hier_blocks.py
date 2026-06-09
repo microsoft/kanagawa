@@ -20,10 +20,14 @@ Checks:
 Exits non-zero on failure.
 """
 import argparse
+import re
 import sys
 from pathlib import Path
 
 HIER_BLOCK = '/*verilator hier_block*/'
+
+# Matches a SystemVerilog module declaration, e.g. `module Foo (`.
+MODULE_DECL = re.compile(r'(?:^|\s)module\s+\w+', re.MULTILINE)
 
 
 def main():
@@ -47,8 +51,8 @@ def main():
         if idx == -1:
             continue
         # The metacomment must be inside a module body, so a `module`
-        # keyword must precede it in the same file.
-        if 'module' not in text[:idx]:
+        # declaration must precede it in the same file.
+        if not MODULE_DECL.search(text[:idx]):
             print(
                 f"{sv.name} contains {HIER_BLOCK!r} but not after a module declaration."
             )
