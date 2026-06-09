@@ -7118,6 +7118,14 @@ public:
 
         coreModule.FinishPorts();
 
+        // Optionally mark this module as a Verilator hierarchical block to enable
+        // hierarchical Verilation. The /*verilator hier_block*/ metacomment must
+        // appear inside the module body, after the port list.
+        if (GetCodeGenConfig()._emitVerilatorHierBlocks)
+        {
+            _writer.Str() << "/*verilator hier_block*/";
+        }
+
         DeclareDebugVariables();
 
         DeclareStringTable();
