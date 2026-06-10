@@ -30,19 +30,27 @@ from pathlib import Path
 
 HIER_BLOCK = '/*verilator hier_block*/'
 
-# Matches a SystemVerilog module body, capturing the module name. Modules do
-# not nest, so a non-greedy match up to the first `endmodule` is sufficient.
-MODULE_BODY = re.compile(
-    r'(?:^|\s)module\s+(\w+).*?\bendmodule\b', re.DOTALL)
+# Matches a SystemVerilog module declaration, e.g. `module Foo (`, capturing
+# the module name.
+MODULE_DECL = re.compile(r'(?:^|\s)module\s+(\w+)', re.MULTILINE)
 
 
 def collect_modules(sv_files):
-    """Return a list of (sv_name, module_name, body) for every module."""
+    """Return a list of (sv_name, module_name, body) for every module.
+
+    Modules do not nest in SystemVerilog, so each module body is the text
+    spanning from its `module name` declaration up to the next module
+    declaration (or end of file). Slicing on declaration boundaries avoids
+    relying on an `endmodule` token, which could otherwise appear inside a
+    comment or string and truncate the body prematurely.
+    """
     modules = []
     for sv in sv_files:
         text = sv.read_text()
-        for match in MODULE_BODY.finditer(text):
-            modules.append((sv.name, match.group(1), match.group(0)))
+        decls = list(MODULE_DECL.finditer(text))
+        for i, decl in enumerate(decls):
+            end = decls[i + 1].start() if i + 1 < len(decls) else len(text)
+            modules.append((sv.name, decl.group(1), text[decl.start():end]))
     return modules
 
 
@@ -63,17 +71,19 @@ def main():
 
     modules = collect_modules(sv_files)
     if not modules:
-        print(f"No SystemVerilog modules found in {[s.name for s in sv_files]}.")
+        names = ', '.join(s.name for s in sv_files)
+        print(f"No SystemVerilog modules found in {names}.")
         return 1
 
     with_meta = [m for m in modules if HIER_BLOCK in m[2]]
     without_meta = [m for m in modules if HIER_BLOCK not in m[2]]
+    module_names = ', '.join(m[1] for m in modules)
 
     # Check 2: the metacomment must appear inside at least one module body.
     if not with_meta:
         print(
             f"--verilator-hier-blocks must emit {HIER_BLOCK!r} into a generated "
-            f"module, but none of {[m[1] for m in modules]} contain it."
+            f"module, but none of these modules contain it: {module_names}."
         )
         return 1
 
@@ -83,8 +93,8 @@ def main():
     if not without_meta:
         print(
             f"--verilator-hier-blocks should only annotate the exported design "
-            f"module, but every generated module "
-            f"{[m[1] for m in modules]} contains {HIER_BLOCK!r}."
+            f"module, but every generated module contains {HIER_BLOCK!r}: "
+            f"{module_names}."
         )
         return 1
 
