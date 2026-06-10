@@ -81,7 +81,7 @@ compile = Compile
     , no_fifo_stutter       = def                         &= groupname "Code generation" &= help "Disable fifos stutter"
     , no_debug_view         = def                         &= groupname "Code generation" &= help "Disables debug views"
     , no_verilog_header     = def                         &= groupname "Code generation" &= help "Don't output the informational header on top of generated Verilog files"
-    , verilator_hier_blocks = def                         &= groupname "Code generation" &= help "Emit a /*verilator hier_block*/ metacomment in each generated module to enable hierarchical Verilation" &= name "verilator-hier-blocks" &= explicit
+    , verilator_hier_blocks = def                         &= groupname "Code generation" &= help "Emit a /*verilator hier_block*/ metacomment in the exported core design module to enable hierarchical Verilation" &= name "verilator-hier-blocks" &= explicit
     , code_coverage         = def                         &= groupname "Code generation" &= help "Enable generation of code coverage using SystemVerilog coverpoints"
     , code_coverage_mux_threshold = 0                     &= groupname "Code generation" &= help "Only generate code coverage code for muxes with this number of cases; the default value of 0 means to generate for all muxes"
     , optimize              = 2                           &= groupname "Code generation" &= help "Optimize generated code" &= typ "LEVEL" &= name "O"

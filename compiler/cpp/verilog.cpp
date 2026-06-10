@@ -7123,7 +7123,10 @@ public:
         // appear inside the module body, after the port list.
         if (GetCodeGenConfig()._emitVerilatorHierBlocks)
         {
-            _writer.Str() << "/*verilator hier_block*/";
+            coreModule.AddVerbatimOp(GetUnknownLocation(), [&](VerbatimWriter &writer)
+            {
+                writer << "/*verilator hier_block*/";
+            });
         }
 
         DeclareDebugVariables();

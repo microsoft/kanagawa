@@ -54,6 +54,14 @@ def collect_modules(sv_files):
     return modules
 
 
+def has_hier_block_after_port_list(module_body):
+    """Return True if HIER_BLOCK appears after the declaration port list."""
+    port_list_end = module_body.find(');')
+    if port_list_end == -1:
+        return False
+    return module_body.find(HIER_BLOCK, port_list_end + 2) != -1
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('output_dir', help='Directory containing compiler outputs')
@@ -76,6 +84,7 @@ def main():
         return 1
 
     with_meta = [m for m in modules if HIER_BLOCK in m[2]]
+    with_meta_after_ports = [m for m in modules if has_hier_block_after_port_list(m[2])]
     without_meta = [m for m in modules if HIER_BLOCK not in m[2]]
     module_names = ', '.join(m[1] for m in modules)
 
@@ -84,6 +93,14 @@ def main():
         print(
             f"--verilator-hier-blocks must emit {HIER_BLOCK!r} into a generated "
             f"module, but none of these modules contain it: {module_names}."
+        )
+        return 1
+
+    if not with_meta_after_ports:
+        print(
+            f"--verilator-hier-blocks must emit {HIER_BLOCK!r} after a generated "
+            "module's port list (after `);`), but no module matches this placement "
+            f"requirement: {module_names}."
         )
         return 1
 
