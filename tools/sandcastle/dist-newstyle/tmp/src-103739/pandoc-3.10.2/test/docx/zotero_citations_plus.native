@@ -1,0 +1,440 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "references"
+            , MetaList
+                [ MetaMap
+                    (fromList
+                       [ ( "DOI" , MetaString "10.1002/2016GL069961" )
+                       , ( "author"
+                         , MetaList
+                             [ MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Bellomo"
+                                      )
+                                    , ( "given" , MetaString "K." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Clement"
+                                      )
+                                    , ( "given" , MetaString "A.C." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Murphy" )
+                                    , ( "given" , MetaString "L.N." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Polvani"
+                                      )
+                                    , ( "given" , MetaString "L.M." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Cane" )
+                                    , ( "given" , MetaString "M.A." )
+                                    ])
+                             ]
+                         )
+                       , ( "container-title"
+                         , MetaInlines
+                             [ Str "Geophys."
+                             , Space
+                             , Str "Res."
+                             , Space
+                             , Str "Lett."
+                             ]
+                         )
+                       , ( "id" , MetaString "10" )
+                       , ( "issue" , MetaInlines [ Str "18" ] )
+                       , ( "issued" , MetaString "2016" )
+                       , ( "language" , MetaInlines [ Str "en" ] )
+                       , ( "page"
+                         , MetaInlines [ Str "9852\8211\&9859" ]
+                         )
+                       , ( "title"
+                         , MetaInlines
+                             [ Str "New"
+                             , Space
+                             , Str "observational"
+                             , Space
+                             , Str "evidence"
+                             , Space
+                             , Str "for"
+                             , Space
+                             , Str "a"
+                             , Space
+                             , Str "positive"
+                             , Space
+                             , Str "cloud"
+                             , Space
+                             , Str "feedback"
+                             , Space
+                             , Str "that"
+                             , Space
+                             , Str "amplifies"
+                             , Space
+                             , Str "the"
+                             , Space
+                             , Str "Atlantic"
+                             , Space
+                             , Str "Multidecadal"
+                             , Space
+                             , Str "Oscillation"
+                             ]
+                         )
+                       , ( "type" , MetaString "article-journal" )
+                       , ( "volume" , MetaInlines [ Str "43" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "DOI"
+                         , MetaString "10.1007/s00382-013-1683-2"
+                         )
+                       , ( "ISSN" , MetaString "0930-7575, 1432-0894" )
+                       , ( "author"
+                         , MetaList
+                             [ MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Smith" )
+                                    , ( "given" , MetaString "Doug M." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Eade" )
+                                    , ( "given" , MetaString "Rosie" )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Pohlmann"
+                                      )
+                                    , ( "given" , MetaString "Holger" )
+                                    ])
+                             ]
+                         )
+                       , ( "container-title"
+                         , MetaInlines
+                             [ Str "Climate" , Space , Str "Dynamics" ]
+                         )
+                       , ( "id" , MetaString "109" )
+                       , ( "issue" , MetaInlines [ Str "11-12" ] )
+                       , ( "issued" , MetaString "2013-12" )
+                       , ( "language" , MetaInlines [ Str "en" ] )
+                       , ( "page"
+                         , MetaInlines [ Str "3325\8211\&3338" ]
+                         )
+                       , ( "title"
+                         , MetaInlines
+                             [ Str "A"
+                             , Space
+                             , Str "comparison"
+                             , Space
+                             , Str "of"
+                             , Space
+                             , Str "full-field"
+                             , Space
+                             , Str "and"
+                             , Space
+                             , Str "anomaly"
+                             , Space
+                             , Str "initialization"
+                             , Space
+                             , Str "for"
+                             , Space
+                             , Str "seasonal"
+                             , Space
+                             , Str "to"
+                             , Space
+                             , Str "decadal"
+                             , Space
+                             , Str "climate"
+                             , Space
+                             , Str "prediction"
+                             ]
+                         )
+                       , ( "type" , MetaString "article-journal" )
+                       , ( "volume" , MetaInlines [ Str "41" ] )
+                       ])
+                , MetaMap
+                    (fromList
+                       [ ( "DOI"
+                         , MetaString "10.5194/gmd-9-3751-2016"
+                         )
+                       , ( "author"
+                         , MetaList
+                             [ MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Boer" )
+                                    , ( "given" , MetaString "G.J." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Smith" )
+                                    , ( "given" , MetaString "D.M." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Cassou" )
+                                    , ( "given" , MetaString "C." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Doblas-Reyes"
+                                      )
+                                    , ( "given" , MetaString "F." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Danabasoglu"
+                                      )
+                                    , ( "given" , MetaString "G." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Kirtman"
+                                      )
+                                    , ( "given" , MetaString "B." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Kushnir"
+                                      )
+                                    , ( "given" , MetaString "Y." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Kimoto" )
+                                    , ( "given" , MetaString "M." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Meehl" )
+                                    , ( "given" , MetaString "G.A." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Msadek" )
+                                    , ( "given" , MetaString "R." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "M\252ller"
+                                      )
+                                    , ( "given" , MetaString "W.A." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Taylor" )
+                                    , ( "given" , MetaString "K.E." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Zwiers" )
+                                    , ( "given" , MetaString "F." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Rixen" )
+                                    , ( "given" , MetaString "M." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family"
+                                      , MetaString "Ruprich-Robert"
+                                      )
+                                    , ( "given" , MetaString "Y." )
+                                    ])
+                             , MetaMap
+                                 (fromList
+                                    [ ( "family" , MetaString "Eade" )
+                                    , ( "given" , MetaString "R." )
+                                    ])
+                             ]
+                         )
+                       , ( "container-title"
+                         , MetaInlines
+                             [ Str "Geoscientific"
+                             , Space
+                             , Str "Model"
+                             , Space
+                             , Str "Development"
+                             ]
+                         )
+                       , ( "id" , MetaString "6" )
+                       , ( "issued" , MetaString "2016" )
+                       , ( "language" , MetaInlines [ Str "en" ] )
+                       , ( "page"
+                         , MetaInlines [ Str "3751\8211\&3777" ]
+                         )
+                       , ( "title"
+                         , MetaInlines
+                             [ Str "The"
+                             , Space
+                             , Str "Decadal"
+                             , Space
+                             , Str "Climate"
+                             , Space
+                             , Str "Prediction"
+                             , Space
+                             , Str "Project"
+                             , Space
+                             , Str "(DCPP)"
+                             ]
+                         )
+                       , ( "type" , MetaString "article-journal" )
+                       , ( "volume" , MetaInlines [ Str "9" ] )
+                       ])
+                ]
+            )
+          ]
+    }
+  [ Para
+      [ Str "This"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "citation"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "109"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 0
+              , citationHash = 0
+              }
+          ]
+          [ Str "(Smith"
+          , Space
+          , Str "et"
+          , Space
+          , Str "al.,"
+          , Space
+          , Str "2013)"
+          ]
+      ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "citation"
+      , Space
+      , Str "with"
+      , Space
+      , Str "two"
+      , Space
+      , Str "sources"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "6"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 0
+              , citationHash = 0
+              }
+          , Citation
+              { citationId = "109"
+              , citationPrefix = []
+              , citationSuffix = []
+              , citationMode = NormalCitation
+              , citationNoteNum = 0
+              , citationHash = 0
+              }
+          ]
+          [ Str "(Boer"
+          , Space
+          , Str "et"
+          , Space
+          , Str "al.,"
+          , Space
+          , Str "2016;"
+          , Space
+          , Str "Smith"
+          , Space
+          , Str "et"
+          , Space
+          , Str "al.,"
+          , Space
+          , Str "2013)"
+          ]
+      , Str "."
+      ]
+  , Para
+      [ Str "This"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "citation"
+      , Space
+      , Str "with"
+      , Space
+      , Str "additional"
+      , Space
+      , Str "prefix,"
+      , Space
+      , Str "suffix"
+      , Space
+      , Str "and"
+      , Space
+      , Str "a"
+      , Space
+      , Str "page"
+      , Space
+      , Str "number"
+      , Space
+      , Cite
+          [ Citation
+              { citationId = "10"
+              , citationPrefix = [ Str "prefix" ]
+              , citationSuffix =
+                  [ Str "," , Space , Str "2" , Space , Str "suffix" ]
+              , citationMode = NormalCitation
+              , citationNoteNum = 0
+              , citationHash = 0
+              }
+          ]
+          [ Str "(prefix"
+          , Space
+          , Str "Bellomo"
+          , Space
+          , Str "et"
+          , Space
+          , Str "al.,"
+          , Space
+          , Str "2016,"
+          , Space
+          , Str "p."
+          , Space
+          , Str "2"
+          , Space
+          , Str "suffix)"
+          ]
+      , Str "."
+      ]
+  , Header
+      1
+      ( "reference-list" , [] , [] )
+      [ Str "Reference" , Space , Str "list" ]
+  ]

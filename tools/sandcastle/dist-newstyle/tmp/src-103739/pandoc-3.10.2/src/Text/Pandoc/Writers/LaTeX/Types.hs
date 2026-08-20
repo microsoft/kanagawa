@@ -1,0 +1,108 @@
+module Text.Pandoc.Writers.LaTeX.Types
+  ( LW
+  , WriterState (..)
+  , startingState
+  , PdfStandard (..)
+  ) where
+
+import Control.Monad.State.Strict (StateT)
+import Data.Text (Text)
+import Text.DocLayout (Doc)
+import Text.Pandoc.Options
+  ( WriterOptions (writerIncremental, writerTopLevelDivision)
+  , TopLevelDivision (..)
+  )
+import Citeproc.Types (Lang)
+
+-- | LaTeX writer type. The type constructor @m@ will typically be an
+-- instance of PandocMonad.
+type LW m = StateT WriterState m
+
+data WriterState =
+  WriterState
+  { stInNote        :: Bool          -- ^ true if we're in a note
+  , stInQuote       :: Bool          -- ^ true if in a blockquote
+  , stExternalNotes :: Bool          -- ^ true if in context where
+                                     --   we need to store footnotes
+  , stInMinipage    :: Bool          -- ^ true if in minipage
+  , stInHeading     :: Bool          -- ^ true if in a section heading
+  , stInItem        :: Bool          -- ^ true if in \item[..]
+  , stInFigure      :: Bool          -- ^ true if in figure environment
+  , stInCite        :: Bool          -- ^ true if in a Cite
+  , stNotes         :: [Doc Text]    -- ^ notes in a minipage
+  , stOLLevel       :: Int           -- ^ level of ordered list nesting
+  , stOptions       :: WriterOptions -- ^ writer options, so they don't have to
+                                     --   be parameter
+  , stVerbInNote    :: Bool          -- ^ true if document has verbatim text in note
+  , stTable         :: Bool          -- ^ true if document has a table
+  , stSubfigure     :: Bool          -- ^ true if document has subfigures
+  , stMultiRow      :: Bool          -- ^ true if document has multirow cells
+  , stStrikeout     :: Bool          -- ^ true if document has strikeout
+  , stUrl           :: Bool          -- ^ true if document has visible URL link
+  , stGraphics      :: Bool          -- ^ true if document contains images
+  , stSVG           :: Bool          -- ^ true if document contains SVGs
+  , stLHS           :: Bool          -- ^ true if document has literate haskell code
+  , stHasChapters   :: Bool          -- ^ true if document has chapters
+  , stCsquotes      :: Bool          -- ^ true if document uses csquotes
+  , stHighlighting  :: Bool          -- ^ true if document has highlighted code
+  , stIncremental   :: Bool          -- ^ true if beamer lists should be
+  , stZwnj          :: Bool          -- ^ true if document has a ZWNJ character
+  , stInternalLinks :: [Text]        -- ^ list of internal link targets
+  , stBeamer        :: Bool          -- ^ produce beamer
+  , stEmptyLine     :: Bool          -- ^ true if no content on line
+  , stHasCslRefs    :: Bool          -- ^ has a Div with class refs
+  , stIsFirstInDefinition :: Bool    -- ^ first block in a defn list
+  , stLang          :: Maybe Lang    -- ^ lang specified in metadata
+  , stInSoulCommand :: Bool          -- ^ in a soul command like ul
+  , stCancel        :: Bool          -- ^ true if document uses \cancel
+  , stInCaption     :: Bool          -- ^ true if in a caption
+  }
+
+-- | PDF standard settings for DocumentMetadata
+data PdfStandard = PdfStandard
+  { pdfStandards :: [Text]     -- ^ list of standards (e.g., ["a-2b", "ua-1"])
+  , pdfVersion   :: Maybe Text -- ^ PDF version (e.g., "1.7", "2.0")
+  , pdfTagging   :: Bool       -- ^ whether tagging is required
+  }
+
+startingState :: WriterOptions -> WriterState
+startingState options =
+  WriterState
+  { stInNote = False
+  , stInQuote = False
+  , stExternalNotes = False
+  , stInHeading = False
+  , stInMinipage = False
+  , stInItem = False
+  , stInFigure = False
+  , stInCite = False
+  , stNotes = []
+  , stOLLevel = 1
+  , stOptions = options
+  , stVerbInNote = False
+  , stTable = False
+  , stSubfigure = False
+  , stMultiRow = False
+  , stStrikeout = False
+  , stUrl = False
+  , stGraphics = False
+  , stSVG = False
+  , stLHS = False
+  , stHasChapters = case writerTopLevelDivision options of
+                      TopLevelPart    -> True
+                      TopLevelChapter -> True
+                      _               -> False
+  , stCsquotes = False
+  , stHighlighting = False
+  , stIncremental = writerIncremental options
+  , stZwnj = False
+  , stInternalLinks = []
+  , stBeamer = False
+  , stEmptyLine = True
+  , stHasCslRefs = False
+  , stIsFirstInDefinition = False
+  , stLang = Nothing
+  , stInSoulCommand = False
+  , stCancel = False
+  , stInCaption = False
+  }

@@ -1,0 +1,977 @@
+% Enable hyperlinks
+\setupinteraction
+  [state=start,
+  title={Pandoc Test Suite},
+  author={John MacFarlane; Anonymous},
+  style=,
+  color=,
+  contrastcolor=]
+\setupurl[style=]
+
+% make chapter, section bookmarks visible when opening document
+\placebookmarks[chapter, section, subsection, subsubsection, subsubsubsection, subsubsubsubsection][chapter, section]
+\setupinteractionscreen[option={bookmark,title}]
+
+\setuppagenumbering[location={footer,middle}]
+\setupstructure[state=start,method=auto]
+
+% use microtypography
+\definefontfeature[default][default][script=latn, protrusion=quality, expansion=quality, itlc=yes, textitalics=yes, onum=yes, pnum=yes]
+\definefontfeature[default:tnum][default][tnum=yes, pnum=no]
+\definefontfeature[smallcaps][script=latn, protrusion=quality, expansion=quality, smcp=yes, onum=yes, pnum=yes]
+\setupalign[hz,hanging]
+\setupitaliccorrection[global, always]
+
+\setupbodyfontenvironment[default][em=italic] % use italic as em, not slanted
+
+\definefallbackfamily[mainface][rm][CMU Serif][preset=range:greek, force=yes]
+\definefontfamily[mainface][rm][Latin Modern Roman]
+\definefontfamily[mainface][mm][Latin Modern Math]
+\definefontfamily[mainface][ss][Latin Modern Sans]
+\definefontfamily[mainface][tt][Latin Modern Typewriter][features=none]
+\setupbodyfont[mainface]
+
+\setupwhitespace[medium]
+
+\setuphead[chapter]            [style=\tfd\setupinterlinespace,header=empty]
+\setuphead[section]            [style=\tfc\setupinterlinespace]
+\setuphead[subsection]         [style=\tfb\setupinterlinespace]
+\setuphead[subsubsection]      [style=\bf]
+\setuphead[subsubsubsection]   [style=\sc]
+\setuphead[subsubsubsubsection][style=\it]
+
+\definesectionlevels
+   [default]
+   [section, subsection, subsubsection, subsubsubsection, subsubsubsubsection]
+
+\setuphead[chapter, section, subsection, subsubsection, subsubsubsection, subsubsubsubsection][number=no]
+
+\definedescription
+  [description]
+  [headstyle=bold, style=normal, location=hanging, width=broad, margin=1cm, alternative=hanging]
+
+\setupitemize[autointro]    % prevent orphan list intro
+\setupitemize[indentnext=no]
+
+\defineitemgroup[enumerate]
+\setupenumerate[each][fit][itemalign=left,distance=.5em,style={\feature[+][default:tnum]}]
+
+\setupfloat[figure][default={here,nonumber}]
+\setupfloat[table][default={here,nonumber}]
+
+\setupxtable[frame=off]
+\setupxtable[head][topframe=on]
+\setupxtable[body][]
+\setupxtable[foot][]
+\setupxtable[lastrow][bottomframe=on]
+
+
+\starttext
+\startalignment[middle]
+  {\tfd\setupinterlinespace Pandoc Test Suite}
+  \smallskip
+  {\tfa\setupinterlinespace John MacFarlane\crlf Anonymous}
+  \smallskip
+  {\tfa\setupinterlinespace July 17, 2006}
+  \bigskip
+\stopalignment
+
+This is a set of tests for pandoc. Most of them are adapted from John Gruber's
+markdown test suite.
+
+\thinrule
+
+\startsectionlevel[title={Headers},reference={headers}]
+
+\startsectionlevel[title={Level 2 with an \goto{embedded
+link}[url(/url)]},reference={level-2-with-an-embedded-link}]
+
+\startsectionlevel[title={Level 3 with {\em
+emphasis}},reference={level-3-with-emphasis}]
+
+\startsectionlevel[title={Level 4},reference={level-4}]
+
+\startsectionlevel[title={Level 5},reference={level-5}]
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\startsectionlevel[title={Level 1},reference={level-1}]
+
+\startsectionlevel[title={Level 2 with {\em
+emphasis}},reference={level-2-with-emphasis}]
+
+\startsectionlevel[title={Level 3},reference={level-3}]
+
+with no blank line
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\startsectionlevel[title={Level 2},reference={level-2}]
+
+with no blank line
+
+\thinrule
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\startsectionlevel[title={Paragraphs},reference={paragraphs}]
+
+Here's a regular paragraph.
+
+In Markdown 1.0.0 and earlier. Version 8. This line turns into a list item.
+Because a hard-wrapped line in the middle of a paragraph looked like a list
+item.
+
+Here's one with a bullet. * criminey.
+
+There should be a hard line break\crlf
+here.
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Block Quotes},reference={block-quotes}]
+
+E-mail style:
+
+\startblockquote
+This is a block quote. It is pretty short.
+\stopblockquote
+
+\startblockquote
+Code in a block quote:
+
+\starttyping
+sub status {
+    print "working";
+}
+\stoptyping
+
+A list:
+
+\startenumerate[n,packed][stopper=.]
+\item
+  item one
+\item
+  item two
+\stopenumerate
+
+Nested block quotes:
+
+\startblockquote
+nested
+\stopblockquote
+
+\startblockquote
+nested
+\stopblockquote
+\stopblockquote
+
+This should not be a block quote: 2 > 1.
+
+And a following paragraph.
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Code Blocks},reference={code-blocks}]
+
+Code:
+
+\starttyping
+---- (should be four hyphens)
+
+sub status {
+    print "working";
+}
+
+this code block is indented by one tab
+\stoptyping
+
+And:
+
+\starttyping
+    this code block is indented by two tabs
+
+These should not be escaped:  \$ \\ \> \[ \{
+\stoptyping
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Lists},reference={lists}]
+
+\startsectionlevel[title={Unordered},reference={unordered}]
+
+Asterisks tight:
+
+\startitemize[packed]
+\item
+  asterisk 1
+\item
+  asterisk 2
+\item
+  asterisk 3
+\stopitemize
+
+Asterisks loose:
+
+\startitemize
+\item
+  asterisk 1
+\item
+  asterisk 2
+\item
+  asterisk 3
+\stopitemize
+
+Pluses tight:
+
+\startitemize[packed]
+\item
+  Plus 1
+\item
+  Plus 2
+\item
+  Plus 3
+\stopitemize
+
+Pluses loose:
+
+\startitemize
+\item
+  Plus 1
+\item
+  Plus 2
+\item
+  Plus 3
+\stopitemize
+
+Minuses tight:
+
+\startitemize[packed]
+\item
+  Minus 1
+\item
+  Minus 2
+\item
+  Minus 3
+\stopitemize
+
+Minuses loose:
+
+\startitemize
+\item
+  Minus 1
+\item
+  Minus 2
+\item
+  Minus 3
+\stopitemize
+
+\stopsectionlevel
+
+\startsectionlevel[title={Ordered},reference={ordered}]
+
+Tight:
+
+\startenumerate[n,packed][stopper=.]
+\item
+  First
+\item
+  Second
+\item
+  Third
+\stopenumerate
+
+and:
+
+\startenumerate[n,packed][stopper=.]
+\item
+  One
+\item
+  Two
+\item
+  Three
+\stopenumerate
+
+Loose using tabs:
+
+\startenumerate[n][stopper=.]
+\item
+  First
+\item
+  Second
+\item
+  Third
+\stopenumerate
+
+and using spaces:
+
+\startenumerate[n][stopper=.]
+\item
+  One
+\item
+  Two
+\item
+  Three
+\stopenumerate
+
+Multiple paragraphs:
+
+\startenumerate[n][stopper=.]
+\item
+  Item 1, graf one.
+
+  Item 1. graf two. The quick brown fox jumped over the lazy dog's back.
+\item
+  Item 2.
+\item
+  Item 3.
+\stopenumerate
+
+\stopsectionlevel
+
+\startsectionlevel[title={Nested},reference={nested}]
+
+\startitemize[packed]
+\item
+  Tab
+  \startitemize[packed]
+  \item
+    Tab
+    \startitemize[packed]
+    \item
+      Tab
+    \stopitemize
+  \stopitemize
+\stopitemize
+
+Here's another:
+
+\startenumerate[n,packed][stopper=.]
+\item
+  First
+\item
+  Second:
+  \startitemize[packed]
+  \item
+    Fee
+  \item
+    Fie
+  \item
+    Foe
+  \stopitemize
+\item
+  Third
+\stopenumerate
+
+Same thing but with paragraphs:
+
+\startenumerate[n][stopper=.]
+\item
+  First
+\item
+  Second:
+
+  \startitemize[packed]
+  \item
+    Fee
+  \item
+    Fie
+  \item
+    Foe
+  \stopitemize
+\item
+  Third
+\stopenumerate
+
+\stopsectionlevel
+
+\startsectionlevel[title={Tabs and spaces},reference={tabs-and-spaces}]
+
+\startitemize
+\item
+  this is a list item indented with tabs
+\item
+  this is a list item indented with spaces
+
+  \startitemize
+  \item
+    this is an example list item indented with tabs
+  \item
+    this is an example list item indented with spaces
+  \stopitemize
+\stopitemize
+
+\stopsectionlevel
+
+\startsectionlevel[title={Fancy list markers},reference={fancy-list-markers}]
+
+\startenumerate[n][start=2,left=(,stopper=)]
+\item
+  begins with 2
+\item
+  and now 3
+
+  with a continuation
+
+  \startenumerate[r,packed][stopper=.]
+  \item
+    sublist with roman numerals starting with i.
+  \item
+    more items
+    \startenumerate[A,packed][left=(,stopper=)]
+    \item
+      a subsublist
+    \item
+      a subsublist
+    \stopenumerate
+  \stopenumerate
+\stopenumerate
+
+Nesting:
+
+\startenumerate[A,packed][start=4,stopper=.]
+\item
+  Upper Alpha
+  \startenumerate[R,packed][stopper=.]
+  \item
+    Upper Roman.
+    \startenumerate[n,packed][left=(,stopper=)]
+    \item
+      Decimal start with 1
+      \startenumerate[a,packed][stopper=)]
+      \item
+        Lower alpha with paren
+      \stopenumerate
+    \stopenumerate
+  \stopenumerate
+\stopenumerate
+
+Autonumbering:
+
+\startenumerate[n,packed]
+\item
+  Autonumber.
+\item
+  More.
+  \startenumerate[a,packed]
+  \item
+    Nested.
+  \stopenumerate
+\stopenumerate
+
+Should not be a list item:
+
+M.A.~2007
+
+B. Williams
+
+\thinrule
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\startsectionlevel[title={Definition Lists},reference={definition-lists}]
+
+Tight using spaces:
+
+\startdescription{apple}
+  red fruit
+\stopdescription
+
+\startdescription{orange}
+  orange fruit
+\stopdescription
+
+\startdescription{banana}
+  yellow fruit
+\stopdescription
+
+Tight using tabs:
+
+\startdescription{apple}
+  red fruit
+\stopdescription
+
+\startdescription{orange}
+  orange fruit
+\stopdescription
+
+\startdescription{banana}
+  yellow fruit
+\stopdescription
+
+Loose:
+
+\startdescription{apple}
+  red fruit
+\stopdescription
+
+\startdescription{orange}
+  orange fruit
+\stopdescription
+
+\startdescription{banana}
+  yellow fruit
+\stopdescription
+
+Multiple blocks with italics:
+
+\startdescription{{\em apple}}
+  red fruit
+
+  contains seeds, crisp, pleasant to taste
+\stopdescription
+
+\startdescription{{\em orange}}
+  orange fruit
+
+\starttyping
+{ orange code block }
+\stoptyping
+
+  \startblockquote
+  orange block quote
+  \stopblockquote
+\stopdescription
+
+Multiple definitions, tight:
+
+\startdescription{apple}
+  red fruit
+
+  computer
+\stopdescription
+
+\startdescription{orange}
+  orange fruit
+
+  bank
+\stopdescription
+
+Multiple definitions, loose:
+
+\startdescription{apple}
+  red fruit
+
+  computer
+\stopdescription
+
+\startdescription{orange}
+  orange fruit
+
+  bank
+\stopdescription
+
+Blank line after term, indented marker, alternate markers:
+
+\startdescription{apple}
+  red fruit
+
+  computer
+\stopdescription
+
+\startdescription{orange}
+  orange fruit
+
+  \startenumerate[n,packed][stopper=.]
+  \item
+    sublist
+  \item
+    sublist
+  \stopenumerate
+\stopdescription
+
+\stopsectionlevel
+
+\startsectionlevel[title={HTML Blocks},reference={html-blocks}]
+
+Simple block on one line:
+
+foo
+
+And nested without indentation:
+
+foo
+
+bar
+
+Interpreted markdown in a table:
+
+This is {\em emphasized}
+And this is {\bf strong}
+Here's a simple block:
+
+foo
+
+This should be a code block, though:
+
+\starttyping
+<div>
+    foo
+</div>
+\stoptyping
+
+As should this:
+
+\starttyping
+<div>foo</div>
+\stoptyping
+
+Now, nested:
+
+foo
+
+This should just be an HTML comment:
+
+Multiline:
+
+Code block:
+
+\starttyping
+<!-- Comment -->
+\stoptyping
+
+Just plain comment, with trailing spaces on the line:
+
+Code:
+
+\starttyping
+<hr />
+\stoptyping
+
+Hr's:
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Inline Markup},reference={inline-markup}]
+
+This is {\em emphasized}, and so {\em is this}.
+
+This is {\bf strong}, and so {\bf is this}.
+
+An {\em \goto{emphasized link}[url(/url)]}.
+
+{\bf {\em This is strong and em.}}
+
+So is {\bf {\em this}} word.
+
+{\bf {\em This is strong and em.}}
+
+So is {\bf {\em this}} word.
+
+This is code: \type{>}, \type{$}, \type{\}, \type{\$}, \type{<html>}.
+
+\overstrikes{This is {\em strikeout}.}
+
+Superscripts: a\high{bc}d a\high{{\em hello}} a\high{hello~there}.
+
+Subscripts: H\low{2}O, H\low{23}O, H\low{many~of~them}O.
+
+These should not be superscripts or subscripts, because of the unescaped spaces:
+a^b c^d, a\lettertilde{}b c\lettertilde{}d.
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Smart quotes, ellipses,
+dashes},reference={smart-quotes-ellipses-dashes}]
+
+\quotation{Hello,} said the spider. \quotation{\quote{Shelob} is my name.}
+
+\quote{A}, \quote{B}, and \quote{C} are letters.
+
+\quote{Oak,} \quote{elm,} and \quote{beech} are names of trees. So is
+\quote{pine.}
+
+\quote{He said, \quotation{I want to go.}} Were you alive in the 70's?
+
+Here is some quoted \quote{\type{code}} and a \quotation{\goto{quoted
+link}[url(http://example.com/?foo=1&bar=2)]}.
+
+Some dashes: one---two --- three---four --- five.
+
+Dashes between numbers: 5--7, 255--66, 1987--1999.
+
+Ellipses\ldots{}and\ldots{}and\ldots{}.
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={LaTeX},reference={latex}]
+
+\startitemize[packed]
+\item
+  \cite[22-23]{smith.1899}
+\item
+  $2+2=4$
+\item
+  $x \in y$
+\item
+  $\alpha \wedge \omega$
+\item
+  $223$
+\item
+  $p$-Tree
+\item
+  Here's some display math:
+  \startformula \frac{d}{dx}f(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h} \stopformula
+\item
+  Here's one that has a line break in it: $\alpha + \omega \times x^2$.
+\stopitemize
+
+These shouldn't be math:
+
+\startitemize[packed]
+\item
+  To get the famous equation, write \type{$e = mc^2$}.
+\item
+  \$22,000 is a {\em lot} of money. So is \$34,000. (It worked if
+  \quotation{lot} is emphasized.)
+\item
+  Shoes (\$20) and socks (\$5).
+\item
+  Escaped \type{$}: \$73 {\em this should be emphasized} 23\$.
+\stopitemize
+
+Here's a LaTeX table:
+
+\begin{tabular}{|l|l|}\hline
+Animal & Number \\ \hline
+Dog    & 2      \\
+Cat    & 1      \\ \hline
+\end{tabular}
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Special Characters},reference={special-characters}]
+
+Here is some unicode:
+
+\startitemize[packed]
+\item
+  I hat: Î
+\item
+  o umlaut: ö
+\item
+  section: §
+\item
+  set membership: ∈
+\item
+  copyright: ©
+\stopitemize
+
+AT&T has an ampersand in their name.
+
+AT&T is another way to write it.
+
+This & that.
+
+4 < 5.
+
+6 > 5.
+
+Backslash: \letterbackslash{}
+
+Backtick: `
+
+Asterisk: *
+
+Underscore: _
+
+Left brace: \{
+
+Right brace: \}
+
+Left bracket: {[}
+
+Right bracket: {]}
+
+Left paren: (
+
+Right paren: )
+
+Greater-than: >
+
+Hash: \#
+
+Period: .
+
+Bang: !
+
+Plus: +
+
+Minus: -
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Links},reference={links}]
+
+\startsectionlevel[title={Explicit},reference={explicit}]
+
+Just a \goto{URL}[url(/url/)].
+
+\goto{URL and title}[url(/url/)].
+
+\goto{URL and title}[url(/url/)].
+
+\goto{URL and title}[url(/url/)].
+
+\goto{URL and title}[url(/url/)]
+
+\goto{URL and title}[url(/url/)]
+
+\goto{with_underscore}[url(/url/with_underscore)]
+
+\goto{Email link}[url(mailto:nobody@nowhere.net)]
+
+\goto{Empty}[url()].
+
+\stopsectionlevel
+
+\startsectionlevel[title={Reference},reference={reference}]
+
+Foo \goto{bar}[url(/url/)].
+
+With \goto{embedded {[}brackets{]}}[url(/url/)].
+
+\goto{b}[url(/url/)] by itself should be a link.
+
+Indented \goto{once}[url(/url)].
+
+Indented \goto{twice}[url(/url)].
+
+Indented \goto{thrice}[url(/url)].
+
+This should {[}not{]}{[}{]} be a link.
+
+\starttyping
+[not]: /url
+\stoptyping
+
+Foo \goto{bar}[url(/url/)].
+
+Foo \goto{biz}[url(/url/)].
+
+\stopsectionlevel
+
+\startsectionlevel[title={With ampersands},reference={with-ampersands}]
+
+Here's a \goto{link with an ampersand in the
+URL}[url(http://example.com/?foo=1&bar=2)].
+
+Here's a link with an amersand in the link text:
+\goto{AT&T}[url(http://att.com/)].
+
+Here's an \goto{inline link}[url(/script?foo=1&bar=2)].
+
+Here's an \goto{inline link in pointy braces}[url(/script?foo=1&bar=2)].
+
+\stopsectionlevel
+
+\startsectionlevel[title={Autolinks},reference={autolinks}]
+
+With an ampersand: \useURL[url1][http://example.com/?foo=1&bar=2]\from[url1]
+
+\startitemize[packed]
+\item
+  In a list?
+\item
+  \useURL[url2][http://example.com/]\from[url2]
+\item
+  It should.
+\stopitemize
+
+An e-mail address: \goto{nobody@nowhere.net}[url(mailto:nobody@nowhere.net)]
+
+\startblockquote
+Blockquoted: \useURL[url3][http://example.com/]\from[url3]
+\stopblockquote
+
+Auto-links should not occur here: \type{<http://example.com/>}
+
+\starttyping
+or here: <http://example.com/>
+\stoptyping
+
+\thinrule
+
+\stopsectionlevel
+
+\stopsectionlevel
+
+\startsectionlevel[title={Images},reference={images}]
+
+From \quotation{Voyage dans la Lune} by Georges Melies (1902):
+
+\startplacefigure[title={lalune}]
+{\externalfigure[lalune.jpg]}
+\stopplacefigure
+
+Here is a movie {\externalfigure[movie.jpg]} icon.
+
+\thinrule
+
+\stopsectionlevel
+
+\startsectionlevel[title={Footnotes},reference={footnotes}]
+
+Here is a footnote reference,\footnote{Here is the footnote. It can go anywhere
+  after the footnote reference. It need not be placed at the end of the
+  document.} and another.\startbuffer Here's the long note. This one contains
+  multiple blocks.
+
+  Subsequent blocks are indented to show that they belong to the footnote (as
+  with list items).
+
+\starttyping
+  { <code> }
+\stoptyping
+
+  If you want, you can indent every line, but you can also be lazy and just
+  indent the first line of each block.\stopbuffer\footnote{\getbuffer} This
+should {\em not} be a footnote reference, because it contains a space.{[}^my
+note{]} Here is an inline note.\footnote{This is {\em easier} to type. Inline
+  notes may contain \goto{links}[url(http://google.com)] and \type{]} verbatim
+  characters, as well as {[}bracketed text{]}.}
+
+\startblockquote
+Notes can go in quotes.\footnote{In quote.}
+\stopblockquote
+
+\startenumerate[n,packed][stopper=.]
+\item
+  And in list items.\footnote{In list.}
+\stopenumerate
+
+This paragraph should not be part of the note, as it is not indented.
+
+\stopsectionlevel
+
+\stoptext

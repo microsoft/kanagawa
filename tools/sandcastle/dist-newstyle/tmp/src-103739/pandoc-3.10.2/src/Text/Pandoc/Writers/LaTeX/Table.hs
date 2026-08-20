@@ -1,0 +1,494 @@
+{-# LANGUAGE LambdaCase        #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FlexibleContexts #-}
+{- |
+   Module      : Text.Pandoc.Writers.LaTeX.Table
+   Copyright   : Copyright (C) 2006-2024 John MacFarlane
+   License     : GNU GPL, version 2 or above
+
+   Maintainer  : John MacFarlane <jgm@berkeley.edu>
+   Stability   : alpha
+   Portability : portable
+
+Output LaTeX formatted tables.
+-}
+module Text.Pandoc.Writers.LaTeX.Table
+  ( tableToLaTeX
+  ) where
+import Control.Monad.State.Strict ( gets, modify )
+import Control.Monad (when)
+import Data.List (intersperse)
+import qualified Data.List.NonEmpty as NonEmpty
+import Data.List.NonEmpty (NonEmpty ((:|)))
+import Data.Text (Text)
+import qualified Data.Text as T
+import Text.Pandoc.Class.PandocMonad (PandocMonad)
+import Text.Pandoc.Definition
+import Text.DocLayout
+  ( Doc, braces, brackets, cr, empty, hcat, hsep, isEmpty, literal, nest
+  , text, vcat, ($$))
+import Text.Pandoc.Shared (splitBy, tshow)
+import Text.Pandoc.Walk (walk, query)
+import Data.Monoid (Any(..))
+import Text.Pandoc.Writers.LaTeX.Caption (getCaption)
+import Text.Pandoc.Writers.LaTeX.Types
+  ( LW, WriterState (stBeamer, stInMinipage, stMultiRow
+                    , stTable, stOptions) )
+import Text.Pandoc.Writers.LaTeX.Util (labelFor, withExternalNotes,
+                                       getAccumulatedNotes)
+import Text.Printf (printf)
+import qualified Text.Pandoc.Builder as B
+import qualified Text.Pandoc.Writers.AnnotatedTable as Ann
+import Text.Pandoc.Options (CaptionPosition(..), WriterOptions(..))
+
+tableToLaTeX :: PandocMonad m
+             => ([Inline] -> LW m (Doc Text))
+             -> ([Block]  -> LW m (Doc Text))
+             -> Ann.Table
+             -> LW m (Doc Text)
+tableToLaTeX inlnsToLaTeX blksToLaTeX tbl = do
+  let (Ann.Table (ident, classes, kvs) caption specs thead tbodies tfoot) = tbl
+  let placement = brackets $ maybe mempty (text . T.unpack)
+                           $ lookup "latex-placement" kvs
+  -- if the float class is included in table attributes, we generate a floating
+  -- table environment; otherwise we use longtable
+  beamer <- gets stBeamer
+  let float = "float" `elem` classes
+  let renderTable = do
+       let unnumbered = "unnumbered" `elem` classes
+       capt <- case caption of
+                 Caption Nothing []
+                   | unnumbered || T.null ident -> pure mempty
+                 _ -> captionToLaTeX inlnsToLaTeX caption ident
+       let isSimpleTable =
+             all ((== ColWidthDefault) . snd) specs &&
+             all (all isSimpleCell)
+               (mconcat [ headRows thead
+                        , concatMap bodyRows tbodies
+                        , footRows tfoot
+                        ])
+       let colDesc' = colDescriptors isSimpleTable tbl
+       let colDesc = braces ("@{}" <> colDesc' <> "@{}")
+                     -- the @{} removes extra space at beginning and end
+       let colCount = ColumnCount $ length specs
+       let mkHead = headToLaTeX blksToLaTeX isSimpleTable colCount
+       let mkRow = rowToLaTeX blksToLaTeX isSimpleTable colCount BodyCell
+       let makeUnnumbered x =
+             "{\\def\\LTcaptype{none} % do not increment counter" $$ x $$ "}"
+       let makeTable = if float
+                          then tableToLaTeXTable placement
+                          else tableToLaTeXLongtable
+       (if unnumbered || isEmpty capt
+          then makeUnnumbered
+          else id) <$>
+          makeTable colDesc mkHead mkRow capt thead tbodies tfoot
+  -- See #5367 -- footnotehyper/footnote don't work in beamer,
+  -- so we need to produce the notes outside the table...
+  if float || beamer
+     then ($$) <$> withExternalNotes renderTable <*> getAccumulatedNotes
+     else renderTable
+
+tableToLaTeXTable :: PandocMonad m
+                  => Doc Text
+                  -> Doc Text
+                  -> (Ann.TableHead -> LW m (Doc Text))
+                  -> ([Ann.Cell] -> LW m (Doc Text))
+                  -> Doc Text
+                  -> Ann.TableHead
+                  -> [Ann.TableBody]
+                  -> Ann.TableFoot
+                  -> LW m (Doc Text)
+tableToLaTeXTable placement colDesc mkHead mkRow capt thead tbodies tfoot = do
+  opts <- gets stOptions
+  let hasTopCaption = not (isEmpty capt) &&
+                        writerTableCaptionPosition opts == CaptionAbove
+  let hasBottomCaption = not (isEmpty capt) &&
+                          writerTableCaptionPosition opts == CaptionBelow
+  head' <- if isEmptyHead thead
+               then return "\\toprule\\noalign{}"
+               else mkHead thead
+  rows' <- mapM mkRow $ mconcat (map bodyRows tbodies)
+  lastfoot <- mapM mkRow $ footRows tfoot
+  let foot' = (if isEmptyFoot tfoot
+                  then mempty
+                  else "\\midrule\\noalign{}" $$ vcat lastfoot)
+              $$ "\\bottomrule\\noalign{}"
+  modify $ \s -> s{ stTable = True }
+  return $
+       "\\begin{table}" <> placement
+    $$ "\\centering"
+    $$ (if hasTopCaption
+           then capt <> "\\tabularnewline"
+           else mempty)
+    $$ "\\begin{tabular}" <> colDesc
+    $$ head'
+    $$ vcat rows'
+    $$ foot'
+    $$ "\\end{tabular}"
+    $$ (if hasBottomCaption
+           then capt <> "\\tabularnewline"
+           else mempty)
+    $$ "\\end{table}"
+
+
+tableToLaTeXLongtable :: PandocMonad m
+                      => Doc Text
+                      -> (Ann.TableHead -> LW m (Doc Text))
+                      -> ([Ann.Cell] -> LW m (Doc Text))
+                      -> Doc Text
+                      -> Ann.TableHead
+                      -> [Ann.TableBody]
+                      -> Ann.TableFoot
+                      -> LW m (Doc Text)
+tableToLaTeXLongtable colDesc mkHead mkRow capt thead tbodies tfoot = do
+  opts <- gets stOptions
+  let hasTopCaption = not (isEmpty capt) &&
+                        writerTableCaptionPosition opts == CaptionAbove
+  let hasBottomCaption = not (isEmpty capt) &&
+                          writerTableCaptionPosition opts == CaptionBelow
+  -- The first head is not repeated on the following pages. If we were to just
+  -- use a single head, without a separate first head, then the caption would be
+  -- repeated on all pages that contain a part of the table. We avoid this by
+  -- making the caption part of the first head. The downside is that we must
+  -- duplicate the header rows for this.
+  head' <- do
+    case (hasTopCaption, isEmptyHead thead) of
+      (False, True) -> return "\\toprule\\noalign{}"
+      (False, False)  -> mkHead thead
+      (True, True)  -> return (capt <> "\\tabularnewline"
+                                $$ "\\toprule\\noalign{}"
+                                $$ "\\endfirsthead")
+      (True, False)   -> do
+        -- avoid duplicate notes in head and firsthead:
+        firsthead <- mkHead thead
+        let removeNote (Note _) = Span ("", [], []) []
+            removeNote x        = x
+        repeated  <- mkHead (walk removeNote thead)
+        return $ capt <> "\\tabularnewline"
+                 $$ firsthead
+                 $$ "\\endfirsthead"
+                 $$ repeated
+  rows' <- mapM mkRow $ mconcat (map bodyRows tbodies)
+  lastfoot <- mapM mkRow $ footRows tfoot
+  let foot' = (if isEmptyFoot tfoot
+                  then mempty
+                  else "\\midrule\\noalign{}" $$ vcat lastfoot)
+              $$ "\\bottomrule\\noalign{}"
+              $$ (if hasBottomCaption
+                     then "\\tabularnewline" $$ capt
+                     else mempty)
+  modify $ \s -> s{ stTable = True }
+  beamer <- gets stBeamer
+  return $
+       "\\begin{longtable}[]" <> colDesc
+    $$ head'
+    $$ "\\endhead"
+    $$ vcat
+       -- Longtable is not able to detect pagebreaks in Beamer; this
+       -- causes problems with the placement of the footer, so make
+       -- footer and bottom rule part of the body when targeting Beamer.
+       -- See issue #8638.
+       (if beamer
+             then [ vcat rows'
+                  , foot'
+                  ]
+             else [ foot'
+                  , "\\endlastfoot"
+                  ,  vcat rows'
+                  ])
+    $$ "\\end{longtable}"
+
+isSimpleCell :: Ann.Cell -> Bool
+isSimpleCell (Ann.Cell _ _ (Cell _attr _align _rowspan _colspan blocks)) =
+  case blocks of
+    [Para _]  -> not (hasLineBreak blocks)
+    [Plain _] -> not (hasLineBreak blocks)
+    []        -> True
+    _         -> False
+  where
+    hasLineBreak = getAny . query isLineBreak
+    isLineBreak LineBreak = Any True
+    isLineBreak _         = Any False
+
+-- | Total number of columns in a table.
+newtype ColumnCount = ColumnCount Int
+
+-- | Creates column descriptors for the table.
+colDescriptors :: Bool -> Ann.Table -> Doc Text
+colDescriptors isSimpleTable
+               (Ann.Table _attr _caption specs _thead _tbodies _tfoot) =
+  let (aligns, widths) = unzip specs
+
+      defaultWidthsOnly = all (== ColWidthDefault) widths
+
+      relativeWidths = if defaultWidthsOnly
+                       then replicate (length specs)
+                            (1 / fromIntegral (length specs))
+                       else map toRelWidth widths
+  in if null aligns
+        then "l"  -- #9350, table needs at least one column spec
+        else if defaultWidthsOnly && isSimpleTable
+                then hcat $ map (literal . colAlign) aligns
+                else (cr <>) . nest 2 . vcat . map literal $
+                     zipWith (toColDescriptor (length specs))
+                             aligns
+                             relativeWidths
+  where
+    toColDescriptor :: Int -> Alignment -> Double -> Text
+    toColDescriptor numcols align width =
+      T.pack $ printf
+      ">{%s\\arraybackslash}p{(\\linewidth - %d\\tabcolsep) * \\real{%0.4f}}"
+      (T.unpack (alignCommand align))
+      ((numcols - 1) * 2)
+      width
+
+    toRelWidth ColWidthDefault = 0
+    toRelWidth (ColWidth w)    = w
+
+alignCommand :: Alignment -> Text
+alignCommand = \case
+  AlignLeft    -> "\\raggedright"
+  AlignRight   -> "\\raggedleft"
+  AlignCenter  -> "\\centering"
+  AlignDefault -> "\\raggedright"
+
+colAlign :: Alignment -> Text
+colAlign = \case
+  AlignLeft    -> "l"
+  AlignRight   -> "r"
+  AlignCenter  -> "c"
+  AlignDefault -> "l"
+
+captionToLaTeX :: PandocMonad m
+               => ([Inline] -> LW m (Doc Text))
+               -> Caption
+               -> Text     -- ^ table identifier (label)
+               -> LW m (Doc Text)
+captionToLaTeX inlnsToLaTeX caption ident = do
+  (captionText, captForLot) <- getCaption inlnsToLaTeX caption
+  label <- labelFor ident
+  return $ if isEmpty captionText && isEmpty label
+              then empty
+              else "\\caption" <> captForLot <>
+                     braces captionText <> label
+
+type BlocksWriter m = [Block] -> LW m (Doc Text)
+
+headToLaTeX :: PandocMonad m
+            => BlocksWriter m
+            -> Bool
+            -> ColumnCount
+            -> Ann.TableHead
+            -> LW m (Doc Text)
+headToLaTeX blocksWriter isSimpleTable
+            colCount (Ann.TableHead _attr headerRows) = do
+  rowsContents <-
+    mapM (rowToLaTeX blocksWriter isSimpleTable
+           colCount HeaderCell . headerRowCells)
+         headerRows
+  return ("\\toprule\\noalign{}" $$ vcat rowsContents $$ "\\midrule\\noalign{}")
+
+-- | Converts a row of table cells into a LaTeX row.
+rowToLaTeX :: PandocMonad m
+           => BlocksWriter m
+           -> Bool
+           -> ColumnCount
+           -> CellType
+           -> [Ann.Cell]
+           -> LW m (Doc Text)
+rowToLaTeX blocksWriter isSimpleTable colCount celltype row = do
+  cellsDocs <- mapM (cellToLaTeX blocksWriter isSimpleTable
+                      colCount celltype) (fillRow row)
+  return $ hsep (intersperse "&" cellsDocs) <> " \\\\"
+
+-- | Pads row with empty cells to adjust for rowspans above this row.
+fillRow :: [Ann.Cell] -> [Ann.Cell]
+fillRow = go 0
+  where
+    go _ [] = []
+    go n (acell@(Ann.Cell _spec (Ann.ColNumber colnum) cell):cells) =
+      let (Cell _ _ _ (ColSpan colspan) _) = cell
+      in map mkEmptyCell [n .. colnum - 1] ++
+         acell : go (colnum + colspan) cells
+
+    mkEmptyCell :: Int -> Ann.Cell
+    mkEmptyCell colnum =
+      Ann.Cell ((AlignDefault, ColWidthDefault):|[])
+               (Ann.ColNumber colnum)
+               B.emptyCell
+
+isEmptyHead :: Ann.TableHead -> Bool
+isEmptyHead (Ann.TableHead _attr []) = True
+isEmptyHead (Ann.TableHead _attr rows) = all (null . headerRowCells) rows
+
+isEmptyFoot :: Ann.TableFoot -> Bool
+isEmptyFoot (Ann.TableFoot _attr []) = True
+isEmptyFoot (Ann.TableFoot _attr rows) = all (null . headerRowCells) rows
+
+-- | Gets all cells in a header row.
+headerRowCells :: Ann.HeaderRow -> [Ann.Cell]
+headerRowCells (Ann.HeaderRow _attr _rownum cells) = cells
+
+-- | Gets all cells in a body row.
+bodyRowCells :: Ann.BodyRow -> [Ann.Cell]
+bodyRowCells (Ann.BodyRow _attr _rownum rowhead cells) = rowhead <> cells
+
+-- | Gets a list of rows of the table body, where a row is a simple
+-- list of cells.
+bodyRows :: Ann.TableBody -> [[Ann.Cell]]
+bodyRows (Ann.TableBody _attr _rowheads headerRows rows) =
+  map headerRowCells headerRows <> map bodyRowCells rows
+
+-- | Gets a list of rows of the table head, where a row is a simple
+-- list of cells.
+headRows :: Ann.TableHead -> [[Ann.Cell]]
+headRows (Ann.TableHead _attr rows) = map headerRowCells rows
+
+-- | Gets a list of rows from the foot, where a row is a simple list
+-- of cells.
+footRows :: Ann.TableFoot -> [[Ann.Cell]]
+footRows (Ann.TableFoot _attr rows) = map headerRowCells rows
+
+-- For simple latex tables (without minipages or parboxes),
+-- we need to go to some lengths to get line breaks working:
+-- as LineBreak bs = \vtop{\hbox{\strut as}\hbox{\strut bs}}.
+fixLineBreaks :: Block -> Block
+fixLineBreaks = walk fixLineBreaks'
+
+fixLineBreaks' :: [Inline] -> [Inline]
+fixLineBreaks' ils = case splitBy (== LineBreak) ils of
+                       []     -> []
+                       [xs]   -> xs
+                       chunks -> RawInline "tex" "\\vtop{" :
+                                 concatMap tohbox chunks <>
+                                 [RawInline "tex" "}"]
+  where tohbox ys = RawInline "tex" "\\hbox{\\strut " : ys <>
+                    [RawInline "tex" "}"]
+
+-- We also change display math to inline math, since display
+-- math breaks in simple tables.
+displayMathToInline :: Inline -> Inline
+displayMathToInline (Math DisplayMath x) = Math InlineMath x
+displayMathToInline x                    = x
+
+cellToLaTeX :: PandocMonad m
+            => BlocksWriter m
+            -> Bool
+            -> ColumnCount
+            -> CellType
+            -> Ann.Cell
+            -> LW m (Doc Text)
+cellToLaTeX blockListToLaTeX isSimpleTable colCount celltype annotatedCell = do
+  let (Ann.Cell specs colnum cell) = annotatedCell
+  let colWidths = NonEmpty.map snd specs
+  let hasWidths = NonEmpty.head colWidths /= ColWidthDefault
+  let specAlign = fst (NonEmpty.head specs)
+  let (Cell _attr align' rowspan colspan blocks) = cell
+  let align = case align' of
+                AlignDefault -> specAlign
+                _            -> align'
+  let isPlainOrPara = \case
+        Para{}  -> True
+        Plain{} -> True
+        _       -> False
+  let hasLineBreak LineBreak = Any True
+      hasLineBreak _ = Any False
+  let hasLineBreaks = getAny $ query hasLineBreak blocks
+  result <-
+    if not hasWidths || (celltype /= HeaderCell
+                           && all isPlainOrPara blocks
+                           && not hasLineBreaks)
+       then
+         blockListToLaTeX $ walk fixLineBreaks $ walk displayMathToInline blocks
+       else do
+         cellContents <- inMinipage $ blockListToLaTeX blocks
+         let valign = text $ case celltype of
+                               HeaderCell -> "[b]"
+                               BodyCell   -> "[t]"
+         let halign = literal $ alignCommand align
+         return $ "\\begin{minipage}" <> valign <>
+                  braces "\\linewidth" <> halign <> cr <>
+                  cellContents <>
+                  (if hasLineBreaks then "\\strut" else mempty)
+                  <> cr <>
+                  "\\end{minipage}"
+  when (rowspan /= RowSpan 1) $
+    modify (\st -> st{ stMultiRow = True })
+  let inMultiColumn x = case colspan of
+                          (ColSpan 1) -> x
+                          (ColSpan n) ->
+                            let colDescr = multicolumnDescriptor isSimpleTable
+                                                                 align
+                                                                 colWidths
+                                                                 colCount
+                                                                 colnum
+                            in "\\multicolumn"
+                               <> braces (literal (tshow n))
+                               <> braces (literal colDescr)
+                               <> braces ("%\n" <> x)
+                                  -- linebreak for readability
+  let hasColWidths = not (all (== ColWidthDefault) colWidths)
+  let aligncmd = case specAlign of
+                   AlignCenter -> "\\centering\\arraybackslash "
+                   AlignRight -> "\\raggedright\\arraybackslash "
+                   _ -> mempty
+  let inMultiRow x = case rowspan of
+                       (RowSpan 1) -> x
+                       (RowSpan n) -> let nrows = literal (tshow n)
+                                      in "\\multirow" <> braces nrows
+                                         <> braces -- width of column
+                                             (if hasColWidths
+                                                 then "=" -- max width
+                                                 else "*") -- natural width
+                                         <> braces (aligncmd <> x)
+  return . inMultiColumn . inMultiRow $ result
+
+-- | Returns the width of a cell spanning @n@ columns.
+multicolumnDescriptor :: Bool
+                      -> Alignment
+                      -> NonEmpty ColWidth
+                      -> ColumnCount
+                      -> Ann.ColNumber
+                      -> Text
+multicolumnDescriptor isSimpleTable
+  align
+  colWidths
+  (ColumnCount numcols)
+  (Ann.ColNumber colnum) =
+  let toWidth = \case
+        ColWidthDefault -> (1 / fromIntegral numcols)
+        ColWidth x      -> x
+      colspan = length colWidths
+      width = sum $ NonEmpty.map toWidth colWidths
+
+      -- no column separators at beginning of first and end of last column.
+      skipColSep = "@{}" :: String
+  in T.pack $
+     if isSimpleTable
+        then printf "%s%s%s"
+              (if colnum == 0 then skipColSep else "")
+              (T.unpack (colAlign align))
+              (if colnum + colspan >= numcols then skipColSep else "")
+
+        else printf "%s>{%s\\arraybackslash}p{(\\linewidth - %d\\tabcolsep) * \\real{%0.4f} + %d\\tabcolsep}%s"
+              (if colnum == 0 then skipColSep else "")
+              (T.unpack (alignCommand align))
+              (2 * (numcols - 1))
+              width
+              (2 * (colspan - 1))
+              (if colnum + colspan >= numcols then skipColSep else "")
+
+-- | Perform a conversion, assuming that the context is a minipage.
+inMinipage :: Monad m => LW m a -> LW m a
+inMinipage action = do
+  isInMinipage <- gets stInMinipage
+  modify $ \st -> st{ stInMinipage = True }
+  result <- action
+  modify $ \st -> st{ stInMinipage = isInMinipage }
+  return result
+
+data CellType
+  = HeaderCell
+  | BodyCell
+  deriving Eq
