@@ -1,4 +1,0 @@
-defaults:
-  - command/defaults4
-  - command/defaults5
-to: markdown

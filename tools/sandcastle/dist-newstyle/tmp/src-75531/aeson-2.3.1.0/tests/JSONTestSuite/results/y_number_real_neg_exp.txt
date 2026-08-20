@@ -1,1 +1,0 @@
-Right (Array [Number 1.0e-2])

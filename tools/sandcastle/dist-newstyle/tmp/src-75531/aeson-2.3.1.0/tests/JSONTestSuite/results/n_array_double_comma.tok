@@ -1,5 +1,0 @@
-TkArrayOpen
-TkItem
-TkNumber NumInteger 1
-TkItem
-TkErr "Unexpected \",2]\", expecting JSON value"

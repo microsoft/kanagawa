@@ -1,5 +1,0 @@
-* Subsection
-
-Included text
-
-Lorem ipsum.

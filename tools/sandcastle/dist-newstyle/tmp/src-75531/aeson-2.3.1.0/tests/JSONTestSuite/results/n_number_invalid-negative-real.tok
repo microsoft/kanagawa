@@ -1,4 +1,0 @@
-TkArrayOpen
-TkItem
-TkNumber NumDecimal (-123.123)
-TkArrayErr "Unexpected \"foo]\", expecting , or ]"

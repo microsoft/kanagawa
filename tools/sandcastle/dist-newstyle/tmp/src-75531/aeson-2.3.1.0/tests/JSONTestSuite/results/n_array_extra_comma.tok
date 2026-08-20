@@ -1,5 +1,0 @@
-TkArrayOpen
-TkItem
-TkText ""
-TkItem
-TkErr "Unexpected \"]\", expecting JSON value"

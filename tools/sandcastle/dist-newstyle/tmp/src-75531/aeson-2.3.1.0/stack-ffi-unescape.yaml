@@ -1,9 +1,0 @@
-resolver: nightly-2019-09-21
-packages:
-- '.'
-flags:
-  aeson:
-    fast: true
-    cffi: true
-extra-deps:
-- Diff-0.4.0

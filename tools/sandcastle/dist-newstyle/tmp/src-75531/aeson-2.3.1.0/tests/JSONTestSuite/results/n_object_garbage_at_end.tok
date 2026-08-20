@@ -1,4 +1,0 @@
-TkRecordOpen
-TkPair "a"
-TkText "a"
-TkRecordErr "Unexpected \"123}\", expecting , or }"

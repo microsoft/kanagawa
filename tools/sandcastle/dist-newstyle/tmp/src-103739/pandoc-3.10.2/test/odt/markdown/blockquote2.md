@@ -1,3 +1,0 @@
-Paragraph
-
-> A blockquote.

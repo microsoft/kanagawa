@@ -1,1 +1,0 @@
-Right (Array [Null,Number 1.0,String "1",Object (fromList [])])

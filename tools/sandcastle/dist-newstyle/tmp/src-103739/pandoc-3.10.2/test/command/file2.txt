@@ -1,5 +1,0 @@
-## Zed
-
-[foo]: baz
-
-[foo]

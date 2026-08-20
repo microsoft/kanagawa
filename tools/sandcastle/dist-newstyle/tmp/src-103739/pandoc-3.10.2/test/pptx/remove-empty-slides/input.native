@@ -1,5 +1,0 @@
-[Para [Str "Content"]
-,Para [Image ("",[],[]) [] ("lalune.jpg",""),Space,RawInline (Format "html") "<!--  -->"]
-,HorizontalRule
-,HorizontalRule
-,Para [Str "More",Space,Str "content"]]

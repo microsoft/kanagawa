@@ -1,4 +1,0 @@
-TkArrayOpen
-TkItem
-TkNumber NumInteger 3
-TkArrayErr "Unexpected \"[4]]\", expecting , or ]"

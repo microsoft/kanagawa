@@ -1,3 +1,0 @@
-TkArrayOpen
-TkItem
-TkErr "Cannot decode input: Data.Text.Internal.Encoding.decodeUtf8: Invalid UTF-8 stream"

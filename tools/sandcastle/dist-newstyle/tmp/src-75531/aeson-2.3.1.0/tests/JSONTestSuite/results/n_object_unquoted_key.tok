@@ -1,2 +1,0 @@
-TkRecordOpen
-TkRecordErr "Unexpected \"a: \\\"b\\\"}\", expecting record key literal or }"

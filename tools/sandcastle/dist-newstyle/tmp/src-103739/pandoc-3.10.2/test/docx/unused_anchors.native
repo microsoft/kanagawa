@@ -1,3 +1,0 @@
-[Header 1 ("my-section",[],[]) [Str "My",Space,Str "Section"]
-,Para [Link ("",[],[]) [Str "Here",Space,Str "is",Space,Str "a",Space,Str "link."] ("#Foo","")]
-,Para [Span ("Foo",["anchor"],[]) [],Str "Here",Space,Str "is",Space,Str "the",Space,Str "target."]]

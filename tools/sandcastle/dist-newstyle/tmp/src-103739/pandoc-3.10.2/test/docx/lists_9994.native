@@ -1,8 +1,0 @@
-[ OrderedList
-    ( 1 , Decimal , Period )
-    [ [ Plain [ Str "one" ]
-      , BulletList [ [ Plain [ Str "bul" ] ] ]
-      ]
-    , [ Plain [ Str "two" ] ]
-    ]
-]
