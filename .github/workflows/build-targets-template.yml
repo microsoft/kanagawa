@@ -97,7 +97,7 @@ jobs:
           echo "CCACHE_DIR=$RUNNER_TEMP/.ccache" >> "$GITHUB_ENV"
 
       - name: Checkout
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: ${{ inputs.fetch-depth }}
           submodules: false
@@ -153,7 +153,7 @@ jobs:
 
       # Restore ccache across runs. Cache key includes compiler id+version, CIRCT sha, CMake build type, and build/cmake/circt.cmake hash.
       - name: Restore ccache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
           key: >
@@ -173,7 +173,7 @@ jobs:
           enable-stack: false
 
       - name: Cache ghcup & cabal store
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             ~/.ghcup
@@ -186,14 +186,14 @@ jobs:
         run: cabal update
 
       - name: Init ccache
-        uses: hendrikmuhs/ccache-action@5ebbd400eff9e74630f759d94ddd7b6c26299639 # v1.2.20
+        uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 # v1.2.23
         with:
           max-size: ${{ env.CCACHE_MAXSIZE }}
           verbose: 1
 
       - name: Install Verilator
         if: runner.os == 'Linux'
-        uses: veryl-lang/setup-verilator@b155747595eb4b817473a83045ba1da581c4084b # v1.0.3
+        uses: veryl-lang/setup-verilator@7464f6aacf42efab9a92b9138e9ce16ff1135f69 # v2.0.0
         with:
           version: '5.040'
 
@@ -378,7 +378,7 @@ jobs:
 
       - name: Upload artifacts
         if: ${{ inputs.artifact-name != '' }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ${{ inputs.artifact-name }}
           path: ${{ inputs.artifact-path }}
