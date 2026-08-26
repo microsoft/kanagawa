@@ -1,0 +1,9 @@
+@KANAGAWA_SOURCE_DIR@/library/compiler/config.k
+@KANAGAWA_SOURCE_DIR@/library/compiler/device/config.k
+@KANAGAWA_SOURCE_DIR@/library/compiler/device/schema.k
+@KANAGAWA_SOURCE_DIR@/library/data/closure.k
+@KANAGAWA_SOURCE_DIR@/library/data/closure/core.k
+@KANAGAWA_SOURCE_DIR@/library/debug/print.k
+@KANAGAWA_SOURCE_DIR@/library/device/mock/hardware/config.k
+@KANAGAWA_SOURCE_DIR@/library/mini-base.k
+@KANAGAWA_SOURCE_DIR@/test/compiler/cli/list_deps.k

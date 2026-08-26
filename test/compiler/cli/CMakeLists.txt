@@ -106,42 +106,13 @@ add_cli_test(skip_circt_lowering
 )
 
 # `list-deps` resolves imports without running the frontend or codegen, so it
-# does not fit add_cli_test's compile-and-inspect shape. Run it directly and
-# diff the manifest against a golden. The compiler emits canonical native
-# paths, so build the golden from the symlink-resolved source dir.
-set(_list_deps_golden
-  library/compiler/config.k
-  library/compiler/device/config.k
-  library/compiler/device/schema.k
-  library/data/closure.k
-  library/data/closure/core.k
-  library/debug/print.k
-  library/device/mock/hardware/config.k
-  library/mini-base.k
-  test/compiler/cli/list_deps.k
-)
-get_filename_component(_repo_root "${CMAKE_SOURCE_DIR}" REALPATH)
-set(_golden_text "")
-foreach(_rel IN LISTS _list_deps_golden)
-  file(TO_NATIVE_PATH "${_repo_root}/${_rel}" _abs)
-  string(APPEND _golden_text "${_abs}\n")
-endforeach()
-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/list_deps.golden "${_golden_text}")
-
-add_test(
-  NAME cli.list_deps.run
+# does not fit add_cli_test's compile-and-inspect shape.
+add_golden_test(cli.list_deps
   COMMAND $<TARGET_FILE:kanagawa::exe> list-deps
             --base-library=${CMAKE_SOURCE_DIR}/library/mini-base.k
             --import-dir=${CMAKE_SOURCE_DIR}/library
             --file-list=${CMAKE_CURRENT_BINARY_DIR}/list_deps.txt
             ${CMAKE_CURRENT_SOURCE_DIR}/list_deps.k
+  ACTUAL ${CMAKE_CURRENT_BINARY_DIR}/list_deps.txt
+  GOLDEN list_deps.golden.in
 )
-set_tests_properties(cli.list_deps.run PROPERTIES FIXTURES_SETUP cli_list_deps)
-
-add_test(
-  NAME cli.list_deps.golden
-  COMMAND ${CMAKE_COMMAND} -E compare_files --ignore-eol
-            ${CMAKE_CURRENT_BINARY_DIR}/list_deps.txt
-            ${CMAKE_CURRENT_BINARY_DIR}/list_deps.golden
-)
-set_tests_properties(cli.list_deps.golden PROPERTIES FIXTURES_REQUIRED cli_list_deps)
