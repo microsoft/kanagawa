@@ -261,6 +261,10 @@ extern "C"
         // Don't output the informational header on top of generated Verilog files
         BOOL _noVerilogHeader;
 
+        // Emit a /*verilator hier_block*/ metacomment in the exported core
+        // design module to enable hierarchical Verilation
+        BOOL _emitVerilatorHierBlocks;
+
         // True to enable warnings about missing [[transaction_size]]
         BOOL _enableTransactionSizeWarning;
 

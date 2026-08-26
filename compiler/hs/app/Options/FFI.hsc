@@ -98,6 +98,7 @@ instance Storable Options where
         #{poke CodeGenOptions, _fifoWriteDelay                      } ptrCodegen fifo_write_delay
         #{poke CodeGenOptions, _fifoMergeDistance                   } ptrCodegen fifo_merge_distance
         #{poke CodeGenOptions, _noVerilogHeader                     } ptrCodegen no_verilog_header
+        #{poke CodeGenOptions, _emitVerilatorHierBlocks             } ptrCodegen verilator_hier_blocks
         #{poke CodeGenOptions, _optimize                            } ptrCodegen optimize
         #{poke CodeGenOptions, _logicRegisterRatio                  } ptrCodegen register_ratio
         #{poke CodeGenOptions, _maxLogicRegisterRatio               } ptrCodegen max_register_ratio

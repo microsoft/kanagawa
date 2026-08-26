@@ -104,3 +104,15 @@ add_cli_test(skip_circt_lowering
   TEST
     "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_skip_circt_lowering.py ${CMAKE_CURRENT_BINARY_DIR}/skip_circt_lowering"
 )
+
+add_cli_test(verilator_hier_blocks
+  SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/verilator_hier_blocks.k
+  OPTIONS
+    --backend=sv
+    --verilator-hier-blocks
+    --base-library=${CMAKE_SOURCE_DIR}/library/mini-base.k
+    --import-dir=${CMAKE_SOURCE_DIR}/library
+    --place-iterations=1
+  TEST
+    "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_verilator_hier_blocks.py ${CMAKE_CURRENT_BINARY_DIR}/verilator_hier_blocks"
+)
