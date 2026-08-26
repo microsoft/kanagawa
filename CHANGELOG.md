@@ -4,7 +4,7 @@ Check the release summary for a detailed history based on commits.
 
 ## [Unreleased]
 ### Added
-- `list-deps` sub-command that enumerates the transitive source files by running parse + import resolution only. Suitable for fast dependency tracking from build systems (e.g. CMake configure-time staleness checks). Supports plain (one path per line) and Makefile-style (`gcc -M`) output formats; writes to `--file-list <path>` or stdout.
+- `list-deps` sub-command that enumerates the transitive source files by running parse + import resolution only. Suitable for fast dependency tracking from build systems (e.g. CMake configure-time staleness checks). Writes a plain list (one path per line) to `--file-list <path>` or stdout.
 
 ### Changed
 - `compile --file-list` now refreshes the dependency manifest immediately after parsing succeeds (instead of after codegen). Failed compiles (frontend or backend errors) still update the manifest, so build systems can pick up newly added imports without requiring a successful build.

@@ -19,8 +19,6 @@ given input(s) and never invoke the frontend or codegen. Specifically:
   4. No codegen artifacts (.sv / .mlir / metadata) were produced in the
      test output directory; presence of any such file would indicate the
      sub-command did not short-circuit before codegen.
-  5. The Make-format manifest, when supplied, starts with `<target>:` and
-     uses the `\\<newline>    <path>` continuation convention.
 
 Exits non-zero on failure.
 """
@@ -112,37 +110,6 @@ def _check_no_codegen(out_dir: Path):
     return ok
 
 
-def _check_make(manifest: Path, target: str):
-    ok = True
-    if not manifest.is_file():
-        print(f"make manifest does not exist: {manifest}")
-        return False
-
-    text = manifest.read_text()
-    if not text.startswith(f"{target}:"):
-        print(
-            f"make manifest must start with '{target}:'; got: "
-            f"{text[: len(target) + 16]!r}"
-        )
-        ok = False
-
-    if not text.endswith("\n"):
-        print("make manifest does not end with a newline.")
-        ok = False
-
-    # A non-empty deps list uses ' \<newline>    <path>' between deps.
-    # Multi-line continuation must use a backslash at end of line.
-    body = text[len(target) + 1 :]
-    if "\\\n" not in body and body.strip():
-        print(
-            "make manifest body has no '\\<newline>' continuation; "
-            "expected gcc -M-style output."
-        )
-        ok = False
-
-    return ok
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -155,15 +122,6 @@ def main():
         help="Path to the plain-format manifest produced by list-deps.",
     )
     parser.add_argument(
-        "--make",
-        help="Path to the Makefile-style manifest produced by list-deps.",
-    )
-    parser.add_argument(
-        "--make-target",
-        default="",
-        help="Expected target name in the Makefile-style manifest.",
-    )
-    parser.add_argument(
         "--no-codegen-dir",
         help="Directory that must contain no codegen artifacts.",
     )
@@ -174,13 +132,6 @@ def main():
 
     if args.plain:
         ok &= _check_plain(Path(args.plain), source)
-
-    if args.make:
-        if not args.make_target:
-            print("--make-target is required when --make is provided")
-            ok = False
-        else:
-            ok &= _check_make(Path(args.make), args.make_target)
 
     if args.no_codegen_dir:
         ok &= _check_no_codegen(Path(args.no_codegen_dir))

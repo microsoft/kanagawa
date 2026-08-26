@@ -157,16 +157,3 @@ add_cli_test(list_deps_plain
     "${_cli_python} ${CMAKE_CURRENT_SOURCE_DIR}/check_list_deps.py --source ${CMAKE_CURRENT_SOURCE_DIR}/list_deps.k --plain @OUTDIR@/deps.txt --no-codegen-dir @OUTDIR@"
 )
 
-add_cli_test(list_deps_make
-  SUBCOMMAND list-deps
-  NO_AUTO_OUTPUT
-  SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/list_deps.k
-  OPTIONS
-    --base-library=${CMAKE_SOURCE_DIR}/library/mini-base.k
-    --import-dir=${CMAKE_SOURCE_DIR}/library
-    --file-list=@OUTDIR@/deps.mk
-    --format=make
-    --target=list_deps.o
-  TEST
-    "${_cli_python} ${CMAKE_CURRENT_SOURCE_DIR}/check_list_deps.py --source ${CMAKE_CURRENT_SOURCE_DIR}/list_deps.k --make @OUTDIR@/deps.mk --make-target list_deps.o --no-codegen-dir @OUTDIR@"
-)

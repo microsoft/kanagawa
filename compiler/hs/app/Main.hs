@@ -20,14 +20,13 @@ import Language.Kanagawa.Parser.Syntax
 import Language.Kanagawa.PrettyPrint
 import Language.Kanagawa.Type
 import Language.Kanagawa.Warning
-import Options (Layout(Pretty, Smart), ListDepsFormat(Make, Plain), Options(Compile, ListDeps, PrettyPrint))
+import Options (Layout(Pretty, Smart), Options(Compile, ListDeps, PrettyPrint))
 import Options.CmdArgs
 import qualified Options as O
 import ParseTree
 import System.Directory
 import System.Environment (getArgs, withArgs, getProgName)
 import System.Exit
-import System.FilePath (takeFileName)
 import System.IO
 import Text.Megaparsec.Error
 
@@ -76,10 +75,8 @@ handle opt@Compile{..} cmdArgs = do
     let (fileNames, results) = unzip parsedFiles
         parseErrors = lefts results
         exprs = map fst $ rights results
-    -- Refresh the dependency manifest immediately after parsing succeeds.
-    -- Doing this here (rather than after codegen) means the manifest is
-    -- updated even when frontend or codegen fails, so build systems can
-    -- pick up new imports without requiring a successful build.
+    -- Refresh the dependency manifest immediately after parsing succeeds
+    -- so the manifest is updated even when frontend or codegen fails
     when (not (null file_list) && not (null fileNames) && null parseErrors) $
         writeFileListPlain file_list $ filterAndSortFiles fileNames
     if not $ null parseErrors
@@ -124,10 +121,7 @@ handle opt@ListDeps{..} _ = do
     if not $ null parseErrors
         then exitErrors parseErrors
         else do
-            let paths = filterAndSortFiles fileNames
-                rendered = case list_deps_format of
-                    Plain -> renderFileListPlain paths
-                    Make  -> renderFileListMake (defaultMakeTarget make_target files) paths
+            let rendered = renderFileListPlain $ filterAndSortFiles fileNames
             if null file_list
                 then putStr rendered
                 else writeIfChanged file_list rendered
@@ -143,32 +137,6 @@ handle opt _ = print opt
 -- one absolute path per line, terminated with a newline.
 renderFileListPlain :: [FilePath] -> String
 renderFileListPlain = unlines
-
--- | Render a sorted list of dependency paths as a Makefile rule:
---
---   <target>: \
---       <dep1> \
---       <dep2>
---
--- Spaces in paths are escaped with a backslash, matching the convention used
--- by gcc/clang's @-M@ output. The @<target>@ argument is used verbatim.
-renderFileListMake :: String -> [FilePath] -> String
-renderFileListMake target [] = target ++ ":\n"
-renderFileListMake target paths =
-    target ++ ":" ++ concatMap (" \\\n    " ++) (map escape paths) ++ "\n"
-  where
-    escape = concatMap escapeChar
-    escapeChar ' '  = "\\ "
-    escapeChar '\t' = "\\\t"
-    escapeChar c    = [c]
-
--- | Pick a default Make target name when @--target@ was not supplied: use the
--- file name (no directory) of the first input source.
-defaultMakeTarget :: String -> [FilePath] -> String
-defaultMakeTarget explicit srcs
-    | not (null explicit) = explicit
-    | (s:_) <- srcs       = takeFileName s
-    | otherwise           = "deps"
 
 -- | Convenience wrapper used by the @compile@ path: write the plain-format
 -- file list to disk only if the contents differ from what is already on
