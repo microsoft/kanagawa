@@ -495,7 +495,8 @@ std::string GetRegisterBaseName(const Program &program, const size_t registerInd
     return prefix + std::to_string(registerIndex) + "_" + regDesc._name;
 }
 
-std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock) {
+std::string GetBasicBlockInstanceName(const BasicBlock &basicBlock)
+{
     return g_compiler->ClampStringLength(GetBasicBlockName(basicBlock) + "Impl");
 }
 
@@ -6481,7 +6482,11 @@ public:
 
             const bool fixedLatency = functionNode->IsFixedLatency();
 
-            if (hasBackpressure)
+            // Bundle when ESI signaling can describe both directions:
+            //  * hasBackpressure   -> ValidReady (args) + FIFO (results)
+            //  * !fixedLatency     -> ValidOnly on either direction
+            // Fixed-latency results have no Valid signal at all and stay raw.
+            if (hasBackpressure || !fixedLatency)
             {
                 exportInterface._esiBundleName = combinedFunctionName;
             }
@@ -6605,14 +6610,9 @@ public:
 
             const bool isNoBackpressure = functionNode->GetModifiers() & ParseTreeFunctionModifierNoBackPressure;
 
-            std::optional<std::string> esiBundleName;
+            std::optional<std::string> esiBundleName = prefix;
 
-            if (!isNoBackpressure)
-            {
-                esiBundleName = prefix;
-            }
-
-            PushPopEsiBundle pushPopEsiBundle(coreModule, esiBundleName);
+            PushPopEsiBundle pushPopEsiBundle(coreModule, esiBundleName, /*isOutputBundle=*/true);
 
             if (isNoBackpressure)
             {
@@ -8328,7 +8328,7 @@ private:
         const std::string instNameIndex = instName + "_" + std::to_string(fifoIndex);
 
         const mlir::Value invFifoStatus =
-            circt::comb::createOrFoldNot(bbLocation, _compileContext.PortNameToValue(portNameIndex), opb, TwoState);
+            circt::comb::createOrFoldNot(opb, bbLocation, _compileContext.PortNameToValue(portNameIndex), TwoState);
 
         mlir::Value invFifoStatusSelected;
 
@@ -8466,8 +8466,8 @@ private:
                 std::ostringstream str;
 
                 mlir::Value notSemaphoreFull = circt::comb::createOrFoldNot(
-                    bbLocation,
-                    _compileContext.PortNameToValue("semaphore_full_" + std::to_string(semaphoreIndex) + "_in"), opb,
+                    opb, bbLocation,
+                    _compileContext.PortNameToValue("semaphore_full_" + std::to_string(semaphoreIndex) + "_in"),
                     TwoState);
 
                 allowThreadPredicates.push_back(notSemaphoreFull);
@@ -8587,7 +8587,7 @@ private:
 
                 // Don't trust fifo control signals during the reset sequence
                 allowThreadTerms.push_back(
-                    circt::comb::createOrFoldNot(bbLocation, _compileContext.PortNameToValue("rst"), opb, TwoState));
+                    circt::comb::createOrFoldNot(opb, bbLocation, _compileContext.PortNameToValue("rst"), TwoState));
 
                 if (!checkControlFifo0Only)
                 {
@@ -8666,7 +8666,7 @@ private:
                         std::ostringstream str;
 
                         writeConditions.push_back(circt::comb::createOrFoldNot(
-                            bbLocation, _compileContext.PortNameToValue("input_fifo_empty_" + std::to_string(i)), opb,
+                            opb, bbLocation, _compileContext.PortNameToValue("input_fifo_empty_" + std::to_string(i)),
                             TwoState));
 
                         if ((i == 0) && checkControlFifo0Only)
@@ -8778,7 +8778,7 @@ private:
                     mlir::SmallVector<mlir::Value> initialCallMadeThisCycleInputs;
 
                     initialCallMadeThisCycleInputs.push_back(
-                        circt::comb::createOrFoldNot(bbLocation, initialCallMadeRegBackedge, opb, TwoState));
+                        circt::comb::createOrFoldNot(opb, bbLocation, initialCallMadeRegBackedge, TwoState));
                     initialCallMadeThisCycleInputs.push_back(allowNewThread);
                     initialCallMadeThisCycleInputs.push_back(_compileContext.PortNameToValue("allow_initial_call_in"));
 
@@ -8804,7 +8804,7 @@ private:
                     if (basicBlock._inputFifoCount > 0)
                     {
                         const mlir::Value inputFifoNotEmpty = circt::comb::createOrFoldNot(
-                            bbLocation, _compileContext.PortNameToValue("input_fifo_empty_0"), opb, TwoState);
+                            opb, bbLocation, _compileContext.PortNameToValue("input_fifo_empty_0"), TwoState);
 
                         const mlir::Value fifoNotEmptyAllowNewThread =
                             circt::comb::AndOp::create(opb, bbLocation, inputFifoNotEmpty, allowNewThread, TwoState);
@@ -8813,7 +8813,7 @@ private:
                                                                                   bbLocation, fifoNotEmptyAllowNewThread, initialCallMadeThisCycle, TwoState);
 
                         const mlir::Value initCallNotThisCycle =
-                            circt::comb::createOrFoldNot(bbLocation, initialCallMadeThisCycle, opb, TwoState);
+                            circt::comb::createOrFoldNot(opb, bbLocation, initialCallMadeThisCycle, TwoState);
 
                         const mlir::Value inputFifoRden0 =
                             circt::comb::AndOp::create(opb, bbLocation, stageValid0, initCallNotThisCycle, TwoState);
@@ -8869,7 +8869,7 @@ private:
                     else
                     {
                         const mlir::Value inputFifoNotEmpty = circt::comb::createOrFoldNot(
-                            bbLocation, _compileContext.PortNameToValue("input_fifo_empty_0"), opb, TwoState);
+                            opb, bbLocation, _compileContext.PortNameToValue("input_fifo_empty_0"), TwoState);
 
                         result._startNewThread =
                             circt::comb::AndOp::create(opb, bbLocation, allowNewThread, inputFifoNotEmpty, TwoState);
@@ -8888,7 +8888,7 @@ private:
             {
                 // Inverted because a value of "0" in controlStateRecords means that everything is OK
                 const mlir::Value noUnderflow = circt::comb::createOrFoldNot(
-                    bbLocation, _compileContext.PortNameToValue("input_fifo_underflow_" + std::to_string(i)), opb,
+                    opb, bbLocation, _compileContext.PortNameToValue("input_fifo_underflow_" + std::to_string(i)),
                     TwoState);
 
                 controlStateRecords[ControlStateBit::InputFifoUnderflow].push_back(noUnderflow);
@@ -8922,7 +8922,7 @@ private:
                     const mlir::Value reduced = circt::comb::AndOp::create(opb, bbLocation, expressions, TwoState);
 
                     // Flip bits so that 0 means everything is OK, 1 means something is causing a slow down
-                    controlStateBits[bitIndex] = circt::comb::createOrFoldNot(bbLocation, reduced, opb, TwoState);
+                    controlStateBits[bitIndex] = circt::comb::createOrFoldNot(opb, bbLocation, reduced, TwoState);
                 }
 
                 // Reverse control state bits because concat op expects most significant bit first
@@ -12057,7 +12057,7 @@ private:
 
             if (reversePredicateMeaning)
             {
-                predicate = circt::comb::createOrFoldNot(opLocation, predicate, opb, TwoState);
+                predicate = circt::comb::createOrFoldNot(opb, opLocation, predicate, TwoState);
             }
 
             result = circt::comb::AndOp::create(opb, opLocation, enable, predicate, TwoState);

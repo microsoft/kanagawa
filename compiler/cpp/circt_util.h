@@ -289,7 +289,7 @@ class ModuleDeclarationHelper
 
     mlir::Block* GetBodyBlock();
 
-    void BeginEsiBundle(const std::string& name);
+    void BeginEsiBundle(const std::string& name, bool isOutputBundle = false);
 
     void EndEsiBundle();
 
@@ -387,10 +387,18 @@ class ModuleDeclarationHelper
     StringSourceWriter _verbatimBuffer;
 
     std::optional<std::string> _bundleName;
+    bool _bundleIsOutput = false;
     size_t _bundleStartPortIndex;
 
+    struct EsiBundleInfo
+    {
+        size_t startPortIndex;
+        size_t endPortIndex;
+        bool isOutputBundle;
+    };
+
     // Maps bundle name to range of relevant ports
-    std::map<std::string, std::pair<size_t, size_t>> _bundleNameToPortRange;
+    std::map<std::string, EsiBundleInfo> _bundleNameToPortRange;
 
     std::map<std::string, size_t> _portNameToIndex;
     std::map<std::string, mlir::Value> _outputValues;
@@ -420,13 +428,15 @@ class ModuleDeclarationHelper
 class PushPopEsiBundle
 {
   public:
-    PushPopEsiBundle(ModuleDeclarationHelper& helper, const std::optional<std::string>& name) : _helper(helper)
+    PushPopEsiBundle(ModuleDeclarationHelper& helper, const std::optional<std::string>& name,
+                     bool isOutputBundle = false)
+        : _helper(helper)
     {
         if (name)
         {
             _pushedName = true;
 
-            helper.BeginEsiBundle(*name);
+            helper.BeginEsiBundle(*name, isOutputBundle);
         }
         else
         {

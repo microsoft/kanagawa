@@ -88,6 +88,7 @@ writePandoc fmt pdoc = case lookup (formatPandoc fmt) writers of
              & enableExtension Ext_pipe_tables
              & enableExtension Ext_markdown_in_html_blocks
              & enableExtension Ext_backtick_code_blocks
+             & enableExtension Ext_fenced_code_attributes
 
 formatPandoc :: Format -> Text
 formatPandoc = \case

@@ -97,7 +97,7 @@ jobs:
           echo "CCACHE_DIR=$RUNNER_TEMP/.ccache" >> "$GITHUB_ENV"
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: ${{ inputs.fetch-depth }}
           submodules: false
@@ -112,7 +112,7 @@ jobs:
       # Free up some disk space - this is a major constraint on GitHub-hosted runners
       - name: Free disk space
         if: runner.os == 'Linux'
-        uses: jlumbroso/free-disk-space@v1.3.1
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
         with:
           android: true
           dotnet: true
@@ -153,7 +153,7 @@ jobs:
 
       # Restore ccache across runs. Cache key includes compiler id+version, CIRCT sha, CMake build type, and build/cmake/circt.cmake hash.
       - name: Restore ccache
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
           key: >
@@ -166,14 +166,14 @@ jobs:
 
       - name: Install Haskell
         id: haskell
-        uses: haskell-actions/setup@v2
+        uses: haskell-actions/setup@6037f33647c3f17758a2356c80fc4a53d7e0685d # v2.12.0
         with:
           ghc-version: '9.6.7'
           cabal-version: '3.12.1.0'
           enable-stack: false
 
       - name: Cache ghcup & cabal store
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             ~/.ghcup
@@ -186,20 +186,20 @@ jobs:
         run: cabal update
 
       - name: Init ccache
-        uses: hendrikmuhs/ccache-action@v1
+        uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 # v1.2.23
         with:
           max-size: ${{ env.CCACHE_MAXSIZE }}
           verbose: 1
 
       - name: Install Verilator
         if: runner.os == 'Linux'
-        uses: veryl-lang/setup-verilator@v1
+        uses: veryl-lang/setup-verilator@7464f6aacf42efab9a92b9138e9ce16ff1135f69 # v2.0.0
         with:
           version: '5.040'
 
       - name: Install Boost
         id: install_boost
-        uses: MarkusJx/install-boost@v2
+        uses: MarkusJx/install-boost@f9d34f6fe427b8f2ae424d7bf2a3ebccb0dae5a3 # v2.6.0
         with:
           boost_version: ${{ env.BOOST_VERSION }}   # e.g. "1.88.0"
           platform_version: ${{ inputs.boost-platform-version }}
@@ -209,11 +209,11 @@ jobs:
 
       - name: Install pandoc
         if: ${{ inputs.install-pandoc }}
-        uses: pandoc/actions/setup@v1
+        uses: pandoc/actions/setup@86321b6dd4675f5014c611e05088e10d4939e09e # v1.1.1
 
       - name: Install Rust toolchain
         if: ${{ inputs.install-rust }}
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@166cdcfd11aee3cb47222f9ddb555ce30ddb9659 # v1.17.0
         with:
           toolchain: stable
           cache: true
@@ -323,7 +323,7 @@ jobs:
 
       - name: Setup MSVC Developer Command Prompt
         if: runner.os == 'Windows'
-        uses: ilammy/msvc-dev-cmd@v1
+        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
 
       - name: Configure (CMake Generate)
         shell: bash
@@ -378,7 +378,7 @@ jobs:
 
       - name: Upload artifacts
         if: ${{ inputs.artifact-name != '' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ${{ inputs.artifact-name }}
           path: ${{ inputs.artifact-path }}
