@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-// Minimal program used by the `list-deps` CLI test. The explicit import
-// of `data.closure` proves the dependency walker reaches transitively
-// imported modules (closure pulls in `data.closure.core`), and the
-// implicitly imported mini-base library should also appear in the
-// emitted file list.
+// Importing `data.closure` (which itself imports `data.closure.core`) makes
+// the golden manifest cover transitively imported modules.
 import data.closure
 
 class Main

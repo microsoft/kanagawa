@@ -39,11 +39,6 @@ main = do
         then exitError "Missing source filename(s)"
         else handle options $ unwords $ prog : args
 
--- Filter out internal synthetic modules (those whose names start with '.',
--- e.g. .cmdargs.k, .options.k) and sort the remaining canonical paths.
-filterAndSortFiles :: [FilePath] -> [FilePath]
-filterAndSortFiles = filter (('.' /=) . head) . sort
-
 handle :: Options -> String -> IO ()
 
 -- Pretty print files specified via command line options
@@ -75,13 +70,13 @@ handle opt@Compile{..} cmdArgs = do
     let (fileNames, results) = unzip parsedFiles
         parseErrors = lefts results
         exprs = map fst $ rights results
-    -- Refresh the dependency manifest immediately after parsing succeeds
-    -- so the manifest is updated even when frontend or codegen fails
-    when (not (null file_list) && not (null fileNames) && null parseErrors) $
-        writeFileListPlain file_list $ filterAndSortFiles fileNames
     if not $ null parseErrors
         then exitErrors parseErrors
         else do
+            -- Refresh the dependency manifest as soon as parsing succeeds, so
+            -- that it is up to date even when the frontend or codegen fails.
+            when (not (null file_list) && not (null fileNames)) $
+                writeIfChanged file_list $ renderDeps fileNames
             let desugared = foldr1 append $ frontend passes template_passes template_iterations exprs
             when dump_parse $
                 forM_ exprs $ print . prettyExp
@@ -111,9 +106,8 @@ handle opt@Compile{..} cmdArgs = do
     append (NotedExp _ (SeqF x)) (NotedExp n (SeqF y)) = NotedExp n (SeqF (x ++ y))
     append _ _ = undefined
 
--- Enumerate the transitive set of source files needed to compile the program
--- by running parse + import resolution only. Skips frontend and codegen, so
--- this is suitable as a fast dependency-list generator for build systems.
+-- Enumerate the transitive set of source files needed to compile the program.
+-- Runs parse + import resolution only, skipping the frontend and codegen.
 handle opt@ListDeps{..} _ = do
     parsedFiles <- flip execStateT [] $ parseProgram $ getParseOptions opt
     let (fileNames, results) = unzip parsedFiles
@@ -121,10 +115,10 @@ handle opt@ListDeps{..} _ = do
     if not $ null parseErrors
         then exitErrors parseErrors
         else do
-            let rendered = renderFileListPlain $ filterAndSortFiles fileNames
+            let deps = renderDeps fileNames
             if null file_list
-                then putStr rendered
-                else writeIfChanged file_list rendered
+                then putStr deps
+                else writeIfChanged file_list deps
             exitSuccess
 
 -- Run languange server
@@ -133,30 +127,21 @@ handle opt@ListDeps{..} _ = do
 -- Print usage
 handle opt _ = print opt
 
--- | Render a sorted list of dependency paths in the simple plain format:
--- one absolute path per line, terminated with a newline.
-renderFileListPlain :: [FilePath] -> String
-renderFileListPlain = unlines
+-- | One sorted path per line, excluding internal synthetic modules whose
+-- names start with '.' (e.g. .cmdargs.k, .options.k).
+renderDeps :: [FilePath] -> String
+renderDeps = unlines . filter (('.' /=) . head) . sort
 
--- | Convenience wrapper used by the @compile@ path: write the plain-format
--- file list to disk only if the contents differ from what is already on
--- disk. Avoids touching mtime when nothing has changed (CMake-friendly).
-writeFileListPlain :: FilePath -> [FilePath] -> IO ()
-writeFileListPlain listfile = writeIfChanged listfile . renderFileListPlain
-
--- | Write @content@ to @path@ only if the existing file's contents differ.
--- A non-existent file is treated as having empty contents.
+-- | Write @content@ to @path@, leaving the file (and its mtime) untouched if
+-- it already has those contents.
 writeIfChanged :: FilePath -> String -> IO ()
 writeIfChanged path content = do
-    old <- listfileContent
+    exists <- doesFileExist path
+    old <- if exists
+        then T.unpack <$> TIO.readFile path
+        else return ""
     when (old /= content) $
         writeFile path content
-  where
-    listfileContent = do
-        exists <- doesFileExist path
-        if exists
-            then T.unpack <$> TIO.readFile path
-            else return ""
 
 getParseOptions :: Options -> ParseOptions
 getParseOptions opt = case opt of
