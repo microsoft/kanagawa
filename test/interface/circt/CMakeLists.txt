@@ -70,3 +70,15 @@ add_circt_mlir_test(esi_wrapper_ports
   TEST
     "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_esi_wrapper_ports.py ${CMAKE_CURRENT_BINARY_DIR}/esi_wrapper_ports"
 )
+
+add_circt_mlir_test(named_type_aliases
+  SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/named_type_aliases.k
+  OPTIONS
+    --backend=sv
+    --skip-circt-lowering
+    --base-library=${CMAKE_SOURCE_DIR}/library/base.k
+    --import-dir=${CMAKE_SOURCE_DIR}/library
+    --place-iterations=1
+  TEST
+    "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_named_type_aliases.py ${CMAKE_CURRENT_BINARY_DIR}/named_type_aliases"
+)
