@@ -116,3 +116,29 @@ add_golden_test(cli.list_deps
   ACTUAL ${CMAKE_CURRENT_BINARY_DIR}/list_deps.txt
   GOLDEN list_deps.golden.in
 )
+
+# Generate the same file list via compile --file-list
+add_test(
+  NAME cli.list_deps.compile_file_list
+  COMMAND $<TARGET_FILE:kanagawa::exe> compile
+            --base-library=${CMAKE_SOURCE_DIR}/library/mini-base.k
+            --import-dir=${CMAKE_SOURCE_DIR}/library
+            --file-list=${CMAKE_CURRENT_BINARY_DIR}/compile_file_list.txt
+            --output=${CMAKE_CURRENT_BINARY_DIR}/list_deps_compile
+            ${CMAKE_CURRENT_SOURCE_DIR}/list_deps.k
+)
+set_tests_properties(cli.list_deps.compile_file_list PROPERTIES
+  FIXTURES_REQUIRED cli.list_deps
+  FIXTURES_SETUP cli.list_deps.compile_file_list
+)
+
+# Verify that `list-deps` and `compile --file-list` produce the same output
+add_test(
+  NAME cli.list_deps.compare_file_lists
+  COMMAND ${CMAKE_COMMAND} -E compare_files
+          ${CMAKE_CURRENT_BINARY_DIR}/list_deps.txt
+          ${CMAKE_CURRENT_BINARY_DIR}/compile_file_list.txt
+)
+set_tests_properties(cli.list_deps.compare_file_lists PROPERTIES
+  FIXTURES_REQUIRED cli.list_deps.compile_file_list
+)
