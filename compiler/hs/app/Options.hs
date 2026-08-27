@@ -129,6 +129,17 @@ data Options
         , write_ir_post_opt :: Bool
         , skip_circt_lowering :: Bool
         }
+    | ListDeps
+        { base_library :: FilePath
+        , define :: [String]
+        , file_list :: FilePath
+        , files :: [FilePath]
+        , import_dir :: [FilePath]
+        , no_implicit_base :: Bool
+        , parse_docs :: Bool
+        , target_device :: String
+        , using :: [String]
+        }
     | LangServer
         { verbose :: Bool
         , log_file :: Maybe String

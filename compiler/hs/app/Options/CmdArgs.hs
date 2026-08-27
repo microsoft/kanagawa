@@ -152,8 +152,19 @@ pretty = PrettyPrint
     name "pretty" &=
     help "Parse and pretty print source file(s)"
 
+listDeps :: Options
+listDeps = ListDeps{} &=
+    name "list-deps" &=
+    help "List the transitive .k source files needed to compile (parse only; no frontend or codegen)" &=
+    details [ "Usage example:"
+            , "    Print the dependency list for source.k to stdout:"
+            , "      kanagawa list-deps source.k"
+            , "    Write the dependency list to a file:"
+            , "      kanagawa list-deps --file-list=deps.txt source.k"
+            ]
+
 mode :: Mode (CmdArgs Options)
-mode = cmdArgsMode $ modes [compile &= auto, pretty] &=
+mode = cmdArgsMode $ modes [compile &= auto, pretty, listDeps] &=
     program "kanagawa" &=
     verbosity &=
     help "Kanagawa compiler" &=
