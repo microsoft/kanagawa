@@ -481,3 +481,50 @@ function(add_kanagawa_verilator_test name)
   endif()
 endfunction()
 
+
+# Helper function for tests that run a command and compare a file it produces
+# against a checked-in golden.
+#
+# The golden is expanded with configure_file-style @VAR@ substitution and then
+# converted to native path separators, so a golden can reference absolute
+# locations portably via @KANAGAWA_SOURCE_DIR@ (the source tree with symlinks
+# resolved, matching the canonical paths the compiler reports).
+#
+# Usage:
+#   add_golden_test(<test_name>
+#     COMMAND <cmd> [<arg> ...]   # command that writes ACTUAL
+#     ACTUAL <file>               # file produced by COMMAND
+#     GOLDEN <file>               # golden template, relative to the current source dir
+#   )
+#
+# Adds <test_name>.run and <test_name>.golden CTests, chained via a fixture so
+# the comparison only runs after the command succeeds.
+function(add_golden_test test_name)
+  set(_one ACTUAL GOLDEN)
+  set(_multi COMMAND)
+  cmake_parse_arguments(_ARG "" "${_one}" "${_multi}" ${ARGN})
+
+  foreach(_required IN ITEMS COMMAND ACTUAL GOLDEN)
+    if(NOT _ARG_${_required})
+      message(FATAL_ERROR "add_golden_test(${test_name}): ${_required} is required.")
+    endif()
+  endforeach()
+
+  get_filename_component(KANAGAWA_SOURCE_DIR "${CMAKE_SOURCE_DIR}" REALPATH)
+
+  set(_golden "${CMAKE_CURRENT_BINARY_DIR}/${test_name}.golden")
+  file(READ "${CMAKE_CURRENT_SOURCE_DIR}/${_ARG_GOLDEN}" _text)
+  string(CONFIGURE "${_text}" _text @ONLY)
+  file(TO_NATIVE_PATH "${_text}" _text)
+  file(WRITE "${_golden}" "${_text}")
+
+  add_test(NAME ${test_name}.run COMMAND ${_ARG_COMMAND})
+  set_tests_properties(${test_name}.run PROPERTIES FIXTURES_SETUP ${test_name})
+
+  add_test(
+    NAME ${test_name}.golden
+    COMMAND ${CMAKE_COMMAND} -E compare_files --ignore-eol "${_ARG_ACTUAL}" "${_golden}"
+  )
+  set_tests_properties(${test_name}.golden PROPERTIES FIXTURES_REQUIRED ${test_name})
+endfunction()
+
