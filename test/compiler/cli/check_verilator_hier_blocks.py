@@ -2,9 +2,9 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 """
-Verify the output of a `--verilator-hier-blocks` compile.
+Verify hier_block annotations in generated SystemVerilog output.
 
-Contract of the flag: the exported design (core) module should carry a
+Contract: the exported design (core) module should carry a
 `/*verilator hier_block*/` metacomment, which enables hierarchical
 Verilation. Verilator requires this metacomment to appear inside the
 module body (after the `module name(...);` port list). The metacomment is
@@ -74,7 +74,7 @@ def main():
 
     sv_files = sorted(output_dir.glob('*.sv'))
     if not sv_files:
-        print("--verilator-hier-blocks should produce a .sv file, but none was found.")
+        print("Expected at least one generated .sv file, but none was found.")
         return 1
 
     modules = collect_modules(sv_files)
@@ -91,14 +91,14 @@ def main():
     # Check 2: the metacomment must appear inside at least one module body.
     if not with_meta:
         print(
-            f"--verilator-hier-blocks must emit {HIER_BLOCK!r} into a generated "
+            f"Expected {HIER_BLOCK!r} in a generated "
             f"module, but none of these modules contain it: {module_names}."
         )
         return 1
 
     if not with_meta_after_ports:
         print(
-            f"--verilator-hier-blocks must emit {HIER_BLOCK!r} after a generated "
+            f"Expected {HIER_BLOCK!r} after a generated "
             "module's port list (after `);`), but no module matches this placement "
             f"requirement: {module_names}."
         )
@@ -109,8 +109,8 @@ def main():
     # must not carry the metacomment.
     if not without_meta:
         print(
-            f"--verilator-hier-blocks should only annotate the exported design "
-            f"module, but every generated module contains {HIER_BLOCK!r}: "
+            f"Expected only the exported design module to be annotated with "
+            f"{HIER_BLOCK!r}, but every generated module contains it: "
             f"{module_names}."
         )
         return 1

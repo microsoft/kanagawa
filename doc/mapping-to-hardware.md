@@ -34,6 +34,12 @@ class Foo
 
 <img src="./content/simple-pipeline.svg">
 
+## Verilator hierarchical blocks
+The generated core design module for each `export` class includes the
+`/*verilator hier_block*/` metacomment immediately after the module port list.
+This enables [hierarchical Verilation](https://veripool.org/guide/latest/verilating.html#hierarchical-verilation)
+for Verilator users while leaving helper modules (such as wrappers) unannotated.
+
 ## Threads
 Threads in Kanagawa are runtime constructs.  The source does not specify the
 number of threads that will be created.  A thread is defined by:

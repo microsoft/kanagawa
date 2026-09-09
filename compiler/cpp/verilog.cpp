@@ -7134,16 +7134,13 @@ public:
 
         coreModule.FinishPorts();
 
-        // Optionally mark this module as a Verilator hierarchical block to enable
-        // hierarchical Verilation. The /*verilator hier_block*/ metacomment must
-        // appear inside the module body, after the port list.
-        if (GetCodeGenConfig()._emitVerilatorHierBlocks)
+        // Mark this module as a Verilator hierarchical block. The
+        // /*verilator hier_block*/ metacomment must appear inside the module
+        // body, after the port list.
+        coreModule.AddVerbatimOp(GetUnknownLocation(), [&](VerbatimWriter &writer)
         {
-            coreModule.AddVerbatimOp(GetUnknownLocation(), [&](VerbatimWriter &writer)
-            {
-                writer << "/*verilator hier_block*/";
-            });
-        }
+            writer << "/*verilator hier_block*/";
+        });
 
         DeclareDebugVariables();
 

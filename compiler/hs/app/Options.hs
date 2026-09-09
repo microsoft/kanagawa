@@ -122,7 +122,6 @@ data Options
         , template_iterations :: Int
         , template_passes :: Int
         , using :: [String]
-        , verilator_hier_blocks :: Bool
         , warnings_state :: [WarningState WarningKind]
         , warnings_as_errors :: Bool
         , work_list_size :: Int
@@ -146,4 +145,3 @@ data Options
         , log_file :: Maybe String
         }
       deriving (Show, Data, Typeable)
-
