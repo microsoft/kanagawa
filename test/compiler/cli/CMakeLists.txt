@@ -105,6 +105,17 @@ add_cli_test(skip_circt_lowering
     "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_skip_circt_lowering.py ${CMAKE_CURRENT_BINARY_DIR}/skip_circt_lowering"
 )
 
+add_cli_test(verilator_hier_blocks
+  SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/verilator_hier_blocks.k
+  OPTIONS
+    --backend=sv
+    --base-library=${CMAKE_SOURCE_DIR}/library/mini-base.k
+    --import-dir=${CMAKE_SOURCE_DIR}/library
+    --place-iterations=1
+  TEST
+    "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_verilator_hier_blocks.py ${CMAKE_CURRENT_BINARY_DIR}/verilator_hier_blocks"
+)
+
 # `list-deps` resolves imports without running the frontend or codegen, so it
 # does not fit add_cli_test's compile-and-inspect shape.
 add_golden_test(cli.list_deps

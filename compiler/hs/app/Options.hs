@@ -145,4 +145,3 @@ data Options
         , log_file :: Maybe String
         }
       deriving (Show, Data, Typeable)
-

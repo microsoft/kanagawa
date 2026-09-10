@@ -7134,6 +7134,14 @@ public:
 
         coreModule.FinishPorts();
 
+        // Mark this module as a Verilator hierarchical block. The
+        // /*verilator hier_block*/ metacomment must appear inside the module
+        // body, after the port list.
+        coreModule.AddVerbatimOp(GetUnknownLocation(), [&](VerbatimWriter &writer)
+        {
+            writer << "/*verilator hier_block*/";
+        });
+
         DeclareDebugVariables();
 
         DeclareStringTable();
