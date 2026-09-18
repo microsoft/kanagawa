@@ -7277,6 +7277,12 @@ public:
     // names must differ because both files are compiled into the same design.
     // Both are derived from the exported class name so that a design containing
     // several exported classes gets a distinct package per class.
+    //
+    // Note that the two schemes only stay distinct as long as no exported class
+    // is named '<OtherExportedClass>Core', since that class's '_types.sv'
+    // package would take this name. That is the same class of hazard as
+    // FixupString() mapping two Kanagawa names onto one SystemVerilog
+    // identifier, and is not guarded against here.
     std::string GetCirctPackageName()
     {
         std::ostringstream str;
