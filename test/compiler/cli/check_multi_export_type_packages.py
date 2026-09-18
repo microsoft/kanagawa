@@ -34,8 +34,10 @@ def package_body(text, name):
 def main():
     output_dir = Path(sys.argv[1])
 
-    # The hand-written '<prefix><ExportedClassName>_types.sv' files are a
-    # separate, pre-existing feature; only the generated designs are checked.
+    # '<prefix><ExportedClassName>_types.sv' holds the '<ExportedClassName>Types'
+    # package, which the SystemVerilog backend writes directly rather than
+    # routing through CIRCT. It is a separate, pre-existing feature; only the
+    # CIRCT-generated designs are checked here.
     sv_files = sorted(p for p in output_dir.glob('*.sv') if not p.name.endswith('_types.sv'))
     if len(sv_files) != 2:
         raise RuntimeError(f"expected two generated designs, found {[p.name for p in sv_files]}")

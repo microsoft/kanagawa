@@ -7272,10 +7272,11 @@ public:
     // module file. It holds the typedefs for the named types which appear on
     // the generated module's (and ESI wrapper's) ports.
     //
-    // This is distinct from GetPackageName(), which names the hand-written
-    // package emitted into the separate '_types.sv' file. Both are derived from
-    // the exported class name so that a design containing several exported
-    // classes gets a distinct package per class.
+    // This is distinct from GetPackageName(), which names the package that
+    // WritePackage() emits into the separate '_types.sv' file. The two package
+    // names must differ because both files are compiled into the same design.
+    // Both are derived from the exported class name so that a design containing
+    // several exported classes gets a distinct package per class.
     std::string GetCirctPackageName()
     {
         std::ostringstream str;
