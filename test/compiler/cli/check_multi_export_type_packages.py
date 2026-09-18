@@ -30,13 +30,29 @@ TYPEDEF_DECL = re.compile(r'^\s*typedef\s+.*?\b(\w+);$', re.MULTILINE)
 # Named types each exported class needs declared in its own package, and the
 # type on its ports. 'Op' and 'Header' only appear nested inside the payload
 # structs, where the package qualifier is not used.
+#
+# The TemplateSender entries are the shape issue #138 was reported with: each
+# instantiation declares a same-named type of a different width, so dropping
+# one file's declarations yields a silently wrong-width reference.
 EXPECTED_TYPEDEFS = {
     'SmallSender': {'Op', 'Header', 'SmallPayload'},
     'BigSender': {'Op', 'Header', 'BigPayload'},
+    'TemplateSender___8__': {'Op', 'Header', 'TemplatePayload___8__'},
+    'TemplateSender___64__': {'Op', 'Header', 'TemplatePayload___64__'},
 }
 PORT_TYPES = {
     'SmallSender': 'SmallPayload',
     'BigSender': 'BigPayload',
+    'TemplateSender___8__': 'TemplatePayload___8__',
+    'TemplateSender___64__': 'TemplatePayload___64__',
+}
+
+# Widths the template instantiations must declare, keyed by exported class.
+# Pinned explicitly so that two files declaring the same width (the #138
+# failure mode) is caught even though the type names differ.
+EXPECTED_WIDTHS = {
+    'TemplateSender___8__': '[7:0]',
+    'TemplateSender___64__': '[63:0]',
 }
 
 
@@ -55,8 +71,10 @@ def main():
     # routing through CIRCT. It is a separate, pre-existing feature; only the
     # CIRCT-generated designs are checked here.
     sv_files = sorted(p for p in output_dir.glob('*.sv') if not p.name.endswith('_types.sv'))
-    if len(sv_files) != 2:
-        raise RuntimeError(f"expected two generated designs, found {[p.name for p in sv_files]}")
+    if len(sv_files) != len(EXPECTED_TYPEDEFS):
+        raise RuntimeError(
+            f"expected {len(EXPECTED_TYPEDEFS)} generated designs, found {[p.name for p in sv_files]}"
+        )
 
     packages_by_file = {}
     for filename, name, body in collect_blocks(sv_files, 'package', end_keyword='endpackage'):
@@ -70,9 +88,12 @@ def main():
         if '_TYPESCOPE_' in text:
             raise RuntimeError(f"{sv.name} still uses a shared typescope include guard")
 
-        exported = next((name for name in EXPECTED_TYPEDEFS if sv.name.endswith(f"{name}.sv")), None)
-        if exported is None:
-            raise RuntimeError(f"unexpected generated design {sv.name}")
+        # Require an unambiguous match, so that one exported class name being a
+        # suffix of another cannot silently check the wrong expectations.
+        matches = [name for name in EXPECTED_TYPEDEFS if sv.name.endswith(f"{name}.sv")]
+        if len(matches) != 1:
+            raise RuntimeError(f"{sv.name} matched exported classes {matches}, expected exactly one")
+        exported = matches[0]
 
         packages = packages_by_file.get(sv.name, [])
         declared = [name for name, _ in packages]
@@ -87,6 +108,12 @@ def main():
         missing = EXPECTED_TYPEDEFS[exported] - set(TYPEDEF_DECL.findall(body))
         if missing:
             raise RuntimeError(f"{sv.name}: package {package} is missing typedefs {sorted(missing)}")
+
+        # Each template instantiation must declare its own width. Sharing one
+        # declaration between instantiations is the #138 failure mode.
+        width = EXPECTED_WIDTHS.get(exported)
+        if width is not None and width not in body:
+            raise RuntimeError(f"{sv.name}: package {package} does not declare a {width} payload:\n{body.strip()}")
 
         # The port type must be referenced package-qualified from module scope.
         qualified = f"{package}::{PORT_TYPES[exported]}"
