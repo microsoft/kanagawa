@@ -116,6 +116,17 @@ add_cli_test(verilator_hier_blocks
     "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_verilator_hier_blocks.py ${CMAKE_CURRENT_BINARY_DIR}/verilator_hier_blocks"
 )
 
+add_cli_test(multi_export_type_packages
+  SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/multi_export_type_packages.k
+  OPTIONS
+    --backend=sv
+    --base-library=${CMAKE_SOURCE_DIR}/library/mini-base.k
+    --import-dir=${CMAKE_SOURCE_DIR}/library
+    --place-iterations=1
+  TEST
+    "python3 ${CMAKE_CURRENT_SOURCE_DIR}/check_multi_export_type_packages.py ${CMAKE_CURRENT_BINARY_DIR}/multi_export_type_packages"
+)
+
 # `list-deps` resolves imports without running the frontend or codegen, so it
 # does not fit add_cli_test's compile-and-inspect shape.
 add_golden_test(cli.list_deps

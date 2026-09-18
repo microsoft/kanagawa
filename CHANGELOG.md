@@ -8,6 +8,10 @@ Check the release summary for a detailed history based on commits.
 
 ### Changed
 - `compile --file-list` now refreshes the dependency manifest immediately after parsing succeeds (instead of after codegen). Failed compiles (frontend or backend errors) still update the manifest, so build systems can pick up newly added imports without requiring a successful build.
+- Named types in the CIRCT IR are now declared in an `sv.package` named `<ExportedClassName>CoreTypes` instead of a shared `hw.type_scope`. The generated SystemVerilog declares one package per exported class and refers to those types package-qualified.
+
+### Fixed
+- Typedefs are no longer dropped when several exported classes are compiled into the same design. Previously every generated `.sv` file emitted its type declarations behind an identical `` `ifndef _TYPESCOPE_* `` include guard, so only the first file's declarations survived and the others referenced undeclared types (#138).
 
 ## [1.2.0] - 2025-11-09
 ### Added

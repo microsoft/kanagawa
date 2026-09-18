@@ -39,39 +39,39 @@ def main():
     require(state, ": ui2")
 
     require(metadata, "!hw.struct<x: ui6")
-    require(metadata, "e: !hw.typealias<@CoreModuleTypeScope::@E,")
+    require(metadata, "e: !hw.typealias<@TestCoreTypes::@E,")
 
     require(payload, "!hw.union<y: si8, x: ui8>")
     match = re.search(r"hw\.typedecl @([^,]+),", payload)
     if match is None:
         raise RuntimeError(f"could not parse template union alias from:\n  {payload.strip()}")
-    payload_alias = f"!hw.typealias<@CoreModuleTypeScope::@{match.group(1)},"
+    payload_alias = f"!hw.typealias<@TestCoreTypes::@{match.group(1)},"
 
     require(body, "!hw.union<")
     require(body, f"u: {payload_alias}")
-    require(body, "s: !hw.typealias<@CoreModuleTypeScope::@S,")
+    require(body, "s: !hw.typealias<@TestCoreTypes::@S,")
     require(body, "a: !hw.array<2xui4>")
     require(body, "x: ui8")
 
     require(packet, "!hw.struct<")
     require(packet, "a: !hw.array<2x")
     require(packet, payload_alias)
-    require(packet, "f: !hw.typealias<@CoreModuleTypeScope::@Foo,")
-    require(packet, "s: !hw.typealias<@CoreModuleTypeScope::@S,")
+    require(packet, "f: !hw.typealias<@TestCoreTypes::@Foo,")
+    require(packet, "s: !hw.typealias<@TestCoreTypes::@S,")
 
     run = find_line(lines, 'kanagawa.port.input "Run" sym @Run')
-    require(run, "!hw.typealias<@CoreModuleTypeScope::@Bar,")
-    require(run, "!hw.struct<x: !hw.typealias<@CoreModuleTypeScope::@Bar,")
-    require(run, "y: !hw.typealias<@CoreModuleTypeScope::@Foo,")
-    require(run, "z: !hw.typealias<@CoreModuleTypeScope::@E,")
+    require(run, "!hw.typealias<@TestCoreTypes::@Bar,")
+    require(run, "!hw.struct<x: !hw.typealias<@TestCoreTypes::@Bar,")
+    require(run, "y: !hw.typealias<@TestCoreTypes::@Foo,")
+    require(run, "z: !hw.typealias<@TestCoreTypes::@E,")
     require(run, 'from "result"')
     require(run, 'to "arg"')
 
     callback = find_line(lines, 'kanagawa.port.output "callback" sym @callback')
-    require(callback, "_param_0: !hw.typealias<@CoreModuleTypeScope::@Bar,")
-    require(callback, "_param_1: !hw.typealias<@CoreModuleTypeScope::@Foo,")
-    require(callback, "_param_2: !hw.typealias<@CoreModuleTypeScope::@E,")
-    require(callback, "!esi.channel<!hw.typealias<@CoreModuleTypeScope::@Bar,")
+    require(callback, "_param_0: !hw.typealias<@TestCoreTypes::@Bar,")
+    require(callback, "_param_1: !hw.typealias<@TestCoreTypes::@Foo,")
+    require(callback, "_param_2: !hw.typealias<@TestCoreTypes::@E,")
+    require(callback, "!esi.channel<!hw.typealias<@TestCoreTypes::@Bar,")
     require(callback, 'to "arg"')
     require(callback, 'from "result"')
 
