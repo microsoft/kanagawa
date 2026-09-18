@@ -57,7 +57,8 @@ mlir::ModuleOp CreateMlirModuleAndDesign(const mlir::Location &loc, const std::s
     // Create it here
     circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(&mlirModule.getBodyRegion().front());
 
-    circt::kanagawa::DesignOp designOp = circt::kanagawa::DesignOp::create(opb, loc, StringToStringAttr(designName));
+    circt::kanagawa::DesignOp designOp =
+        circt::kanagawa::DesignOp::create(opb, loc, StringToStringAttr(designName), mlir::StringAttr());
 
     // add 1 block to the design op
     designOp.getBodyRegion().emplaceBlock();
@@ -1677,7 +1678,8 @@ void ModuleDeclarationHelper::AddTypedefs(const std::string &typeScopeName)
 
         _opb.setInsertionPointToStart(&_mlirModule.getBodyRegion().front());
 
-        _typeScopeOp = circt::hw::TypeScopeOp::create(_opb, _location, StringToStringAttr(typeScopeName));
+        _typeScopeOp =
+            circt::hw::TypeScopeOp::create(_opb, _location, StringToStringAttr(typeScopeName), mlir::StringAttr());
     }
 
     // Add the one and only block to the type container
@@ -1690,7 +1692,7 @@ void ModuleDeclarationHelper::AddTypedefs(const std::string &typeScopeName)
 
         if (GetCodeGenConfig()._inspection)
         {
-            circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(InspectableValueName),
+            circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(InspectableValueName), mlir::StringAttr(),
                                           GetInspectableStructType(), StringToStringAttr(InspectableValueName));
         }
     }
@@ -1864,7 +1866,7 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
     {
         circt::OpBuilder::InsertionGuard g(_opb);
         _opb.setInsertionPointToEnd(_typeScopeOp.getBodyBlock());
-        circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(typeName), mlirType,
+        circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(typeName), mlir::StringAttr(), mlirType,
                                       StringToStringAttr(typeName));
     }
 
