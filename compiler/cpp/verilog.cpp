@@ -7111,12 +7111,13 @@ public:
         ExitScope nullCoreModule([this]()
                                  { _coreModule = nullptr; });
 
-        // Emit typedefs for structs referenced by ports on this module
-        // The same symbol is used for all export classes
-        // to ensure that the generate `ifndef _TYPESCOPE_* macros all agree
-        coreModule.AddTypedefs("CoreModuleTypeScope");
+        // Emit typedefs for structs referenced by ports on this module into a
+        // SystemVerilog package. The package name is derived from the exported
+        // class name so that compiling several exported classes into the same
+        // design produces one package per class rather than colliding.
+        coreModule.AddTypedefs(GetCirctPackageName());
 
-        // Register named types as type aliases in the CIRCT IR type scope
+        // Register named types as type aliases in the CIRCT IR type package
         // so that port types and ESI channel payloads use named type aliases
         // _exportedTypes is already topologically sorted by SortExportedTypes()
         for (const Type *const type : _program._exportedTypes)
@@ -7265,6 +7266,30 @@ public:
         str << GetModuleName() << "Types";
 
         return str.str();
+    }
+
+    // Name of the SystemVerilog package which CIRCT emits into the generated
+    // module file. It holds the typedefs for the named types which appear on
+    // the generated module's (and ESI wrapper's) ports.
+    //
+    // This is distinct from GetPackageName(), which names the package that
+    // WritePackage() emits into the separate '_types.sv' file. The two package
+    // names must differ because both files are compiled into the same design.
+    // Both are derived from the exported class name so that a design containing
+    // several exported classes gets a distinct package per class.
+    //
+    // Note that the two schemes only stay distinct as long as no exported class
+    // is named '<OtherExportedClass>Core', since that class's '_types.sv'
+    // package would take this name. That is the same class of hazard as
+    // FixupString() mapping two Kanagawa names onto one SystemVerilog
+    // identifier, and is not guarded against here.
+    std::string GetCirctPackageName()
+    {
+        std::ostringstream str;
+
+        str << GetModuleName() << "CoreTypes";
+
+        return FixupString(str.str());
     }
 
     void WritePackage(SourceWriter &writer)

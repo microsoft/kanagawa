@@ -6,6 +6,7 @@
 #include <circt/Dialect/HW/HWOps.h>
 #include <circt/Dialect/Kanagawa/KanagawaOps.h>
 #include <circt/Dialect/Pipeline/PipelineOps.h>
+#include <circt/Dialect/SV/SVOps.h>
 #include <circt/Dialect/Seq/SeqTypes.h>
 #include <circt/Support/LLVM.h>
 #include <mlir/IR/Value.h>
@@ -319,7 +320,7 @@ class ModuleDeclarationHelper
     // AssignPort() must have been called first for this port.
     mlir::Value GetOutputNetInOutValue(const std::string& portName) const;
 
-    void AddTypedefs(const std::string& typeScopeName);
+    void AddTypedefs(const std::string& packageName);
 
     void RegisterNamedType(const Type* kanagawaType);
 
@@ -410,7 +411,7 @@ class ModuleDeclarationHelper
     std::map<std::string, mlir::Value> _inputPortOps;
     std::map<std::string, mlir::Value> _outputPortOps;
 
-    circt::hw::TypeScopeOp _typeScopeOp;
+    circt::sv::PackageOp _packageOp;
 
     // Maps Kanagawa Type* to hw::TypeAliasType for named types
     std::map<const Type*, mlir::Type> _typeAliasCache;

@@ -1222,8 +1222,13 @@ std::string GetSVTypeString(mlir::Type type, const std::string &arrayDims)
     else if (llvm::isa<circt::hw::TypeAliasType>(type))
     {
         // Emit the name of the type alias
-        // not the referenced type
-        return llvm::cast<circt::hw::TypeAliasType>(type).getRef().getLeafReference().str() + arrayDims;
+        // not the referenced type.
+        // The declaration lives in an sv.package, so qualify the reference
+        // with the package name.
+        const circt::hw::TypeAliasType aliasType = llvm::cast<circt::hw::TypeAliasType>(type);
+
+        return aliasType.getRef().getRootReference().str() + "::" + aliasType.getRef().getLeafReference().str() +
+               arrayDims;
     }
     else if (llvm::isa<circt::hw::StructType>(type))
     {
@@ -1670,25 +1675,27 @@ mlir::Value ModuleDeclarationHelper::GetOutputNetInOutValue(const std::string &p
 
 static const std::string InspectableValueName("InspectableValueT");
 
-void ModuleDeclarationHelper::AddTypedefs(const std::string &typeScopeName)
+void ModuleDeclarationHelper::AddTypedefs(const std::string &packageName)
 {
     {
-        // Add a type container to the mlir module
+        // Add a SystemVerilog package to the mlir module.
+        // It is inserted at the start of the module body so that it precedes
+        // (and therefore is emitted before) every module which references it.
         circt::OpBuilder::InsertionGuard g(_opb);
 
         _opb.setInsertionPointToStart(&_mlirModule.getBodyRegion().front());
 
-        _typeScopeOp =
-            circt::hw::TypeScopeOp::create(_opb, _location, StringToStringAttr(typeScopeName), mlir::StringAttr());
+        _packageOp =
+            circt::sv::PackageOp::create(_opb, _location, StringToStringAttr(packageName), mlir::StringAttr());
     }
 
-    // Add the one and only block to the type container
-    _typeScopeOp.getBodyRegion().emplaceBlock();
+    // Add the one and only block to the package
+    _packageOp.getBodyRegion().emplaceBlock();
 
     {
         circt::OpBuilder::InsertionGuard g(_opb);
 
-        _opb.setInsertionPointToStart(_typeScopeOp.getBodyBlock());
+        _opb.setInsertionPointToStart(_packageOp.getBodyBlock());
 
         if (GetCodeGenConfig()._inspection)
         {
@@ -1715,6 +1722,11 @@ void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type &circtTypeAlia
 
     const std::string circtTypeAliasName = typeAliasType.getRef().getLeafReference().str();
 
+    // The typedef lives inside an sv.package, so references to it from module
+    // scope must be qualified with the package name.
+    const std::string qualifiedTypeAliasName =
+        typeAliasType.getRef().getRootReference().str() + "::" + circtTypeAliasName;
+
     const size_t structWidth = GetMlirTypeWidth(circtType);
 
     DisableTranslation disableTranslation(_verbatimBuffer);
@@ -1724,7 +1736,7 @@ void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type &circtTypeAlia
     {
         AutoIndent autoIndent(_verbatimBuffer);
 
-        _verbatimBuffer.Str() << circtTypeAliasName << " a;";
+        _verbatimBuffer.Str() << qualifiedTypeAliasName << " a;";
         _verbatimBuffer.Str() << otherStructName << " b;";
 
         for (const circt::hw::StructType::FieldInfo &field : circtType.getElements())
@@ -1746,10 +1758,10 @@ void ModuleDeclarationHelper::AssertStructsMatch(const mlir::Type &circtTypeAlia
 mlir::Type ModuleDeclarationHelper::CreateTypeAlias(const std::string &name, const mlir::Type &referencedType)
 {
     // AddTypedefs must be called first
-    assert(_typeScopeOp);
+    assert(_packageOp);
 
     mlir::SymbolRefAttr symbolRefAttr =
-        mlir::SymbolRefAttr::get(_typeScopeOp.getSymNameAttr(), mlir::FlatSymbolRefAttr::get(StringToStringAttr(name)));
+        mlir::SymbolRefAttr::get(_packageOp.getSymNameAttr(), mlir::FlatSymbolRefAttr::get(StringToStringAttr(name)));
 
     return circt::hw::TypeAliasType::get(symbolRefAttr, referencedType);
 }
@@ -1789,7 +1801,7 @@ static bool IsMlirLowerable(const Type *kanagawaType)
 
 void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
 {
-    assert(_typeScopeOp);
+    assert(_packageOp);
 
     // Skip if already registered
     if (_typeAliasCache.count(kanagawaType))
@@ -1862,10 +1874,10 @@ void ModuleDeclarationHelper::RegisterNamedType(const Type *kanagawaType)
     // which passes signedness=true to produce signed/unsigned integer types.
     mlir::Type mlirType = ToMlirTypeAliased(kanagawaType, true, *this);
 
-    // Create the TypedeclOp in the TypeScope block
+    // Create the TypedeclOp in the package block
     {
         circt::OpBuilder::InsertionGuard g(_opb);
-        _opb.setInsertionPointToEnd(_typeScopeOp.getBodyBlock());
+        _opb.setInsertionPointToEnd(_packageOp.getBodyBlock());
         circt::hw::TypedeclOp::create(_opb, _location, StringToStringAttr(typeName), mlir::StringAttr(), mlirType,
                                       StringToStringAttr(typeName));
     }

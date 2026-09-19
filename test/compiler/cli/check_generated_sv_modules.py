@@ -2,28 +2,56 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 """
-Generic checks for generated SystemVerilog modules.
+Generic checks for generated SystemVerilog declarations.
 
-This script parses all `module` declarations in `*.sv` files under an output
-directory and applies generic pattern-based assertions.
+This script parses declarations (`module`, `package`, ...) in `*.sv` files under
+an output directory and applies generic pattern-based assertions.
+
+The parsing helpers are shared with scenario-specific check scripts; the
+assertions in `check_modules` are existential ("expect *any* module to ..."),
+so checks that must hold for *every* file belong in a scenario script that
+drives `collect_blocks` itself.
 """
 import argparse
 import re
 import sys
 from pathlib import Path
 
-MODULE_DECL = re.compile(r'(?:^|\s)module\s+(\w+)', re.MULTILINE)
+
+def block_decl_regex(keyword):
+    return re.compile(rf'(?:^|\s){keyword}\s+(\w+)', re.MULTILINE)
+
+
+MODULE_DECL = block_decl_regex('module')
+
+
+def collect_blocks(sv_files, keyword='module', end_keyword=None):
+    """Split each file into (filename, name, body) triples.
+
+    Each block starts at a `<keyword> <name>` declaration. It ends at
+    `end_keyword` when one is given, and otherwise at the next declaration or
+    end of file.
+    """
+    decl_regex = block_decl_regex(keyword)
+    end_regex = re.compile(rf'^\s*{end_keyword}\b', re.MULTILINE) if end_keyword else None
+
+    blocks = []
+    for sv in sv_files:
+        text = sv.read_text()
+        decls = list(decl_regex.finditer(text))
+        for i, decl in enumerate(decls):
+            end = decls[i + 1].start() if i + 1 < len(decls) else len(text)
+            if end_regex is not None:
+                terminator = end_regex.search(text, decl.end())
+                if terminator is None:
+                    raise RuntimeError(f"{sv.name}: {keyword} {decl.group(1)} has no '{end_keyword}'")
+                end = min(end, terminator.start())
+            blocks.append((sv.name, decl.group(1), text[decl.start():end]))
+    return blocks
 
 
 def collect_modules(sv_files):
-    modules = []
-    for sv in sv_files:
-        text = sv.read_text()
-        decls = list(MODULE_DECL.finditer(text))
-        for i, decl in enumerate(decls):
-            end = decls[i + 1].start() if i + 1 < len(decls) else len(text)
-            modules.append((sv.name, decl.group(1), text[decl.start():end]))
-    return modules
+    return collect_blocks(sv_files, 'module')
 
 
 def check_modules(
