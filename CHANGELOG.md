@@ -4,6 +4,10 @@ Check the release summary for a detailed history based on commits.
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-09-21
+### Fixed
+- Update VERSION file to reflect the new release.
+
 ## [1.3.0] - 2026-09-21
 ### Added
 - `list-deps` sub-command that enumerates the transitive source files by running parse + import resolution only. Suitable for fast dependency tracking from build systems (e.g. CMake configure-time staleness checks). Writes a plain list (one path per line) to `--file-list <path>` or stdout.
