@@ -112,7 +112,7 @@ jobs:
       # Free up some disk space - this is a major constraint on GitHub-hosted runners
       - name: Free disk space
         if: runner.os == 'Linux'
-        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        uses: jlumbroso/free-disk-space@ceedf095f4ec1a097402bc6bd80831f2e1a6fde6 # v2.0.0
         with:
           android: true
           dotnet: true
@@ -166,7 +166,7 @@ jobs:
 
       - name: Install Haskell
         id: haskell
-        uses: haskell-actions/setup@6037f33647c3f17758a2356c80fc4a53d7e0685d # v2.12.0
+        uses: haskell-actions/setup@0f8e8c99d88aeb3fbfd523f1ef2c6f762d10d64d # v2.12.1
         with:
           ghc-version: '9.6.7'
           cabal-version: '3.12.1.0'
