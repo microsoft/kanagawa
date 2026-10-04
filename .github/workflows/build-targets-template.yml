@@ -119,7 +119,7 @@ jobs:
           haskell: false   # keep
           docker-images: true
           large-packages: true
-          tool-cache: false
+          preinstalled-runtimes: false
 
       # Derive the CIRCT submodule commit
       - name: Get CIRCT submodule SHA
