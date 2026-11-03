@@ -4,6 +4,14 @@ Check the release summary for a detailed history based on commits.
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-11-03
+### Changed
+- Advance the CIRCT submodule by 177 commits, from `b0148643f` to `2d74cea6f`, and migrate compiler-generated CIRCT IR from the retiring `!hw.inout` type to SystemVerilog variable and net handles. Downstream integrations that consume CIRCT IR may need updates (#149).
+- Update GitHub Actions dependencies used by CI and release workflows.
+
+### Fixed
+- Refresh the Sandcastle golden output for compatibility with Pandoc 3.13 (#148).
+
 ## [1.3.1] - 2026-09-21
 ### Fixed
 - Update VERSION file to reflect the new release.
