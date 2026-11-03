@@ -1112,8 +1112,7 @@ void AccumulateOutputPortUpdates::Flush(circt::OpBuilder &opb, const mlir::Locat
         return;
     }
 
-    const size_t portWidth =
-        GetMlirTypeWidth(mlir::cast<circt::hw::InOutType>(portSsaValue.getType()).getElementType());
+    const size_t portWidth = GetMlirTypeWidth(circt::sv::getHandleElementType(portSsaValue.getType()));
 
     // Sort the accumulate records by offset so that (smallest to largest)
     Value v = it->second;
@@ -1172,7 +1171,9 @@ void SetLoweringOperations(mlir::ModuleOp &moduleOp)
     circt::LoweringOptions loweringOptions;
 
     loweringOptions.omitVersionComment = true;
-    loweringOptions.emitWireInPorts = true;
+    loweringOptions.emitPortType = circt::LoweringOptions::EmitPortType::emitWire;
+    // Declare sv.var as `logic x` rather than `var logic x`
+    loweringOptions.varOpDeclStyle = circt::LoweringOptions::VarOpDeclStyle::Logic;
     // Removing local variables makes debugging on the generated SystemVerilog easier
     loweringOptions.disallowLocalVariables = true;
     // Make some lint tools happy
@@ -1645,22 +1646,22 @@ std::string ModuleDeclarationHelper::AssignPort(const std::string &portName)
     // To enable callers to write to subsets of the net
     if (_outputValues.end() == _outputValues.find(portName))
     {
-        // Declare a logic net at the start of the container
-        mlir::Value logicOp;
+        // Declare a logic variable at the start of the container
+        mlir::Value varOp;
         {
             circt::OpBuilder::InsertionGuard g(_opb);
             _opb.setInsertionPointToStart(GetBodyBlock());
 
-            logicOp = circt::sv::LogicOp::create(_opb, _location, portInfo._hwPortInfo.type,
-                                                 StringToStringAttr(newNetName));
+            varOp = circt::sv::VarOp::create(_opb, _location, portInfo._hwPortInfo.type,
+                                             StringToStringAttr(newNetName));
         }
 
-        // Store the InOut value for callers that need to assign to it via sv::AssignOp
-        SafeInsert(_outputNetInOutValues, portName, logicOp);
+        // Store the variable handle for callers that need to assign to it via sv::VarAssignOp
+        SafeInsert(_outputVarValues, portName, varOp);
 
-        // Read the logic net value for use as the output port value
+        // Read the logic variable value for use as the output port value
         mlir::Value readValue = circt::sv::ReadInOutOp::create(_opb, _location,
-                                                               portInfo._hwPortInfo.type, logicOp);
+                                                               portInfo._hwPortInfo.type, varOp);
 
         SafeInsert(_outputValues, portName, readValue);
     }
@@ -1668,9 +1669,9 @@ std::string ModuleDeclarationHelper::AssignPort(const std::string &portName)
     return newNetName;
 }
 
-mlir::Value ModuleDeclarationHelper::GetOutputNetInOutValue(const std::string &portName) const
+mlir::Value ModuleDeclarationHelper::GetOutputVarValue(const std::string &portName) const
 {
-    return SafeLookup(_outputNetInOutValues, portName);
+    return SafeLookup(_outputVarValues, portName);
 }
 
 static const std::string InspectableValueName("InspectableValueT");

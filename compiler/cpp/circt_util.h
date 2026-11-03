@@ -316,9 +316,9 @@ class ModuleDeclarationHelper
 
     std::string AssignPortOptional(const std::string& portName);
 
-    // Returns the InOut-typed sv::LogicOp value for an output port's net.
+    // Returns the sv::VarOp handle (!sv.var) backing an output port.
     // AssignPort() must have been called first for this port.
-    mlir::Value GetOutputNetInOutValue(const std::string& portName) const;
+    mlir::Value GetOutputVarValue(const std::string& portName) const;
 
     void AddTypedefs(const std::string& packageName);
 
@@ -404,8 +404,8 @@ class ModuleDeclarationHelper
     std::map<std::string, size_t> _portNameToIndex;
     std::map<std::string, mlir::Value> _outputValues;
 
-    // Maps port name to the InOut-typed sv::LogicOp value for the output net
-    std::map<std::string, mlir::Value> _outputNetInOutValues;
+    // Maps port name to the sv::VarOp handle (!sv.var) backing the output port
+    std::map<std::string, mlir::Value> _outputVarValues;
 
     // Maps port name to mlir operation which represents the port
     std::map<std::string, mlir::Value> _inputPortOps;

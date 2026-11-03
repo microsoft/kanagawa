@@ -865,10 +865,10 @@ public:
         coreModule.FlushVerbatimStrings();
 
         circt::OpBuilder &opb = coreModule.OpBuilder();
-        const mlir::Value netInOut = coreModule.GetOutputNetInOutValue("stall_rate_supported_out");
+        const mlir::Value outputVar = coreModule.GetOutputVarValue("stall_rate_supported_out");
         const mlir::Value constVal = circt::hw::ConstantOp::create(opb, GetUnknownLocation(),
                                                                    opb.getIntegerAttr(GetI1Type(), (_program._numStallers > 0) ? 1 : 0));
-        circt::sv::AssignOp::create(opb, GetUnknownLocation(), netInOut, constVal);
+        circt::sv::VarAssignOp::create(opb, GetUnknownLocation(), outputVar, constVal);
     }
 
     struct BypassAndWriteDelay
@@ -1335,12 +1335,12 @@ public:
                 const std::string &codeCoverageVar = codeCoverageVars[i];
                 const size_t codeCoverageReg = codeCoverageRegs[i];
 
-                // Declare logic net and assign from container port
+                // Declare logic variable and assign from container port
                 mod.FlushVerbatimStrings();
                 circt::OpBuilder opb = circt::OpBuilder::atBlockEnd(_coreModule->GetBodyBlock());
 
-                mlir::Value logicNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                                                                  GetIntegerType(1), StringToStringAttr(codeCoverageVar));
+                mlir::Value logicVar = circt::sv::VarOp::create(opb, GetUnknownLocation(),
+                                                                GetIntegerType(1), StringToStringAttr(codeCoverageVar));
 
                 const mlir::Value pathToInstance =
                     GetPathToGlobalContainer(mod, ObjectPath(), codeCoverageReg, globalsRequiringNext);
@@ -1351,7 +1351,7 @@ public:
                     ReadContainerPort(opb, GetUnknownLocation(), pathToInstance,
                                       key.GetFieldSymbol("value_out").getSymName(), GetIntegerType(1));
 
-                circt::sv::AssignOp::create(opb, GetUnknownLocation(), logicNet, value);
+                circt::sv::VarAssignOp::create(opb, GetUnknownLocation(), logicVar, value);
             }
 
             const std::string coverGroupName = "codeCoverage" + CodeCoverageTypeToString(codeCoverageType);
@@ -1701,8 +1701,8 @@ public:
                         circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
 
                     // Declare a logic of the struct type
-                    mlir::Value structNet = circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
-                                                                       structType, StringToStringAttr(GetGlobalStructName(i)));
+                    mlir::Value structVar = circt::sv::VarOp::create(structOpb, GetUnknownLocation(),
+                                                                     structType, StringToStringAttr(GetGlobalStructName(i)));
 
                     // Build the struct value and assign
                     mlir::Value valueField = readOutputPort("value_out", GetIntegerType(regDesc._width));
@@ -1710,7 +1710,7 @@ public:
                     fieldValues.push_back(valueField);
                     mlir::Value structVal = circt::hw::StructCreateOp::create(structOpb,
                                                                               GetUnknownLocation(), structType, fieldValues);
-                    circt::sv::AssignOp::create(structOpb, GetUnknownLocation(), structNet, structVal);
+                    circt::sv::VarAssignOp::create(structOpb, GetUnknownLocation(), structVar, structVal);
                 }
             }
         }
@@ -2879,14 +2879,14 @@ public:
                             circt::hw::StructType::get(g_compiler->GetMlirContext(), fields);
 
                         const std::string structName = "memory_data_" + std::to_string(i);
-                        circt::sv::LogicOp::create(structOpb, GetUnknownLocation(),
-                                                   structType, StringToStringAttr(structName));
+                        circt::sv::VarOp::create(structOpb, GetUnknownLocation(),
+                                                 structType, StringToStringAttr(structName));
 
                         writeInputPort("inspection_addr_in", GetIntegerType(addrWidth),
                                        structName + ".inspection_addr");
 
                         // Assign inspection_success and inspection_data per-field via verbatim.
-                        // We cannot use a whole-struct sv::AssignOp here because inspection_addr
+                        // We cannot use a whole-struct sv::VarAssignOp here because inspection_addr
                         // is driven externally (by the inspectable variable chain); assigning the
                         // full struct would create multiple drivers on that field.
                         _coreModule->AddVerbatimOp(
@@ -2931,12 +2931,12 @@ public:
         _coreModule->FlushVerbatimStrings();
 
         // route reset signal throughout the chip
-        circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                                   GetIntegerType(resetReplicas), StringToStringAttr("reg_rst_delayed"));
+        circt::sv::VarOp::create(opb, GetUnknownLocation(),
+                                 GetIntegerType(resetReplicas), StringToStringAttr("reg_rst_delayed"));
 
         // Give wrapper code access to the delayed reset signals
-        mlir::Value combinedResetNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                                                                  GetI1Type(), StringToStringAttr("combined_reset"));
+        mlir::Value combinedResetVar = circt::sv::VarOp::create(opb, GetUnknownLocation(),
+                                                                GetI1Type(), StringToStringAttr("combined_reset"));
         // assign combined_reset = rst;
         // VerbatimExprOp is used here because `rst` is an HW module input port
         // whose SSA value is not yet threaded through the Kanagawa container port
@@ -2945,27 +2945,27 @@ public:
             const llvm::SmallVector<mlir::Value> subs;
             mlir::Value rstExpr = circt::sv::VerbatimExprOp::create(opb, GetUnknownLocation(),
                                                                     GetI1Type(), StringToStringAttr("rst"), subs, nullptr);
-            circt::sv::AssignOp::create(opb, GetUnknownLocation(), combinedResetNet, rstExpr);
+            circt::sv::VarAssignOp::create(opb, GetUnknownLocation(), combinedResetVar, rstExpr);
         }
 
         // 1 on the cycle when the reset sequence is done
-        circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                                   GetI1Type(), StringToStringAttr("reset_sequence_finished_this_cycle"));
+        circt::sv::VarOp::create(opb, GetUnknownLocation(),
+                                 GetI1Type(), StringToStringAttr("reset_sequence_finished_this_cycle"));
 
-        mlir::Value hasStartupCompletedRawNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                                                                           GetI1Type(), StringToStringAttr("has_startup_completed_raw"));
+        mlir::Value hasStartupCompletedRawVar = circt::sv::VarOp::create(opb, GetUnknownLocation(),
+                                                                         GetI1Type(), StringToStringAttr("has_startup_completed_raw"));
 
         const mlir::Value hasStartupCompletedRaw = circt::sv::ReadInOutOp::create(opb,
-                                                                                  GetUnknownLocation(), GetI1Type(), hasStartupCompletedRawNet);
+                                                                                  GetUnknownLocation(), GetI1Type(), hasStartupCompletedRawVar);
         const mlir::Value hasOthersCompleted =
             circt::comb::AndOp::create(opb, GetUnknownLocation(), hasStartupCompletedRaw, hasMemInitCompleted, TwoState);
 
-        {
-            // Source of has_others_complete_in of KanagawaResetControl
-            mlir::Value hasOthersNet = circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                                                                  GetI1Type(), StringToStringAttr("has_others_completed"));
-            circt::sv::AssignOp::create(opb, GetUnknownLocation(), hasOthersNet, hasOthersCompleted);
-        }
+        // Source of has_others_complete_in of KanagawaResetControl
+        const mlir::Value hasOthersVar =
+            circt::sv::VarOp::create(opb, GetUnknownLocation(), GetI1Type(), StringToStringAttr("has_others_completed"));
+        circt::sv::VarAssignOp::create(opb, GetUnknownLocation(), hasOthersVar, hasOthersCompleted);
+        const mlir::Value hasOthersCompletedRead =
+            circt::sv::ReadInOutOp::create(opb, GetUnknownLocation(), GetI1Type(), hasOthersVar);
 
         // rst_and_startup_done_out is a top level port used to indicate either:
         //   (a) no reset has ever been applied, or
@@ -2976,8 +2976,8 @@ public:
         //        ready to accept data
         {
             _coreModule->FlushVerbatimStrings();
-            circt::sv::LogicOp::create(opb, GetUnknownLocation(),
-                                       GetI1Type(), StringToStringAttr("rst_and_startup_done_raw"));
+            circt::sv::VarOp::create(opb, GetUnknownLocation(),
+                                     GetI1Type(), StringToStringAttr("rst_and_startup_done_raw"));
 
             std::ostringstream str;
 
@@ -3018,7 +3018,7 @@ public:
         instance.SetInstanceName("reset_control");
         instance.AddPort("clk", circt::hw::ModulePort::Direction::Input, GetClockType(), "clk");
         instance.AddPort("rst_in", circt::hw::ModulePort::Direction::Input, GetI1Type(), "combined_reset");
-        instance.AddPort("has_others_completed_in", circt::hw::ModulePort::Direction::Input, hasOthersCompleted);
+        instance.AddPort("has_others_completed_in", circt::hw::ModulePort::Direction::Input, hasOthersCompletedRead);
         instance.AddPort("rst_and_startup_done_out", circt::hw::ModulePort::Direction::Output, GetI1Type(),
                          mod.AssignPort("rst_and_startup_done_out"));
         instance.AddPort("rst_delayed_out", circt::hw::ModulePort::Direction::Output, GetIntegerType(resetReplicas),
@@ -8175,11 +8175,11 @@ private:
 
                 _compileContext.SetCurrentStage(&(_compileContext._basicBlock->_stages.back()));
 
-                circt::sv::AssignOp::create(_compileContext.OpBuilder(),
-                                            LocationToCirctLocation(basicBlock._location),
-                                            _compileContext.PortNameToValue("decr_semaphore_thread_count_" +
-                                                                            std::to_string(releasedSemaphoreIndex) + "_out"),
-                                            _compileContext.GetCurrentStageEnableSignal());
+                circt::sv::VarAssignOp::create(_compileContext.OpBuilder(),
+                                               LocationToCirctLocation(basicBlock._location),
+                                               _compileContext.PortNameToValue("decr_semaphore_thread_count_" +
+                                                                               std::to_string(releasedSemaphoreIndex) + "_out"),
+                                               _compileContext.GetCurrentStageEnableSignal());
             }
 
             // Finialize CIRCT objects for the basic block
@@ -8284,14 +8284,14 @@ private:
                     const std::string inputWireName =
                         std::string("data_prop_in_") + std::to_string(regIndexNorm) + "_" + std::to_string(sliceOffset);
 
-                    mlir::Value inputSliceWire = circt::sv::LogicOp::create(opb,
-                                                                            mlirBbLocation, sliceType, StringToStringAttr(inputWireName),
-                                                                            GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), inputWireName));
+                    mlir::Value inputSliceVar = circt::sv::VarOp::create(opb,
+                                                                         mlirBbLocation, sliceType, StringToStringAttr(inputWireName),
+                                                                         GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), inputWireName));
 
-                    SafeInsert(offsetToInputWire, sliceOffset, inputSliceWire);
+                    SafeInsert(offsetToInputWire, sliceOffset, inputSliceVar);
 
                     sparseConcat.Insert(sliceOffset,
-                                        circt::sv::ReadInOutOp::create(opb, mlirBbLocation, sliceType, inputSliceWire));
+                                        circt::sv::ReadInOutOp::create(opb, mlirBbLocation, sliceType, inputSliceVar));
                 }
 
                 // Concatenate all slices into the input value
@@ -8324,7 +8324,7 @@ private:
                                                        "_" + std::to_string(sliceOffset);
 
                     mlir::Value outputSliceWire = circt::sv::WireOp::create(opb,
-                                                                            mlirBbLocation, sliceType, StringToStringAttr(outputWireName),
+                                                                            mlirBbLocation, circt::sv::NetType::get(sliceType), StringToStringAttr(outputWireName),
                                                                             GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), outputWireName));
 
                     SafeInsert(offsetToOutputWire, sliceOffset, outputSliceWire);
@@ -8409,7 +8409,8 @@ private:
 
         StartNewThreadResult result;
 
-        result._startConditionWire = circt::sv::WireOp::create(opb, bbLocation, opb.getI1Type(), "start_condition");
+        result._startConditionWire =
+            circt::sv::WireOp::create(opb, bbLocation, circt::sv::NetType::get(opb.getI1Type()), "start_condition");
 
         mlir::Value startConditionValue =
             circt::sv::ReadInOutOp::create(opb, bbLocation, opb.getI1Type(), result._startConditionWire);
@@ -9732,11 +9733,11 @@ private:
 
             const mlir::Value value = SourceOperandToMlirValue(op, i, width);
 
-            const mlir::Value &wire = SafeLookup(offsetToWire, offset);
+            const mlir::Value &var = SafeLookup(offsetToWire, offset);
 
-            assert(width == GetMlirTypeWidth(mlir::cast<circt::hw::InOutType>(wire.getType()).getElementType()));
+            assert(width == GetMlirTypeWidth(circt::sv::getHandleElementType(var.getType())));
 
-            _compileContext._batchAssignments.Append(opLocation, wire, value);
+            _compileContext._batchAssignments.Append(opLocation, var, value);
         }
     }
 
@@ -9769,8 +9770,7 @@ private:
 
             const mlir::Value &srcWire = SafeLookup(offsetToWire, offset);
 
-            const size_t wireWidth =
-                GetMlirTypeWidth(mlir::cast<circt::hw::InOutType>(srcWire.getType()).getElementType());
+            const size_t wireWidth = GetMlirTypeWidth(circt::sv::getHandleElementType(srcWire.getType()));
 
             // It is possible for not all bits of the result to be used
             // The width of the wire is passed to ReadInOutOp
@@ -10297,7 +10297,7 @@ private:
                 std::string("cycle_count_wire") + std::to_string(_compileContext._stage->_atomicSequence);
 
             cycleCountWire = circt::sv::WireOp::create(opb,
-                                                       opLocation, _compileContext._cycleCountReg.getType(), StringToStringAttr(wireName),
+                                                       opLocation, circt::sv::NetType::get(_compileContext._cycleCountReg.getType()), StringToStringAttr(wireName),
                                                        GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), wireName));
 
             circt::sv::AssignOp::create(opb, opLocation, cycleCountWire, _compileContext._cycleCountReg);
@@ -11546,12 +11546,12 @@ private:
 
             if (pi._portInfo.dir == circt::hw::ModulePort::Direction::Output)
             {
-                // Create a logicop that the will be connected to the output port
-                const mlir::Value logicOp = circt::sv::LogicOp::create(opb,
-                                                                       mlirBbLocation, pi._portInfo.type, pi._portInfo.name,
-                                                                       GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), pi._portInfo.name.str()));
+                // Create a logic variable that will be connected to the output port
+                const mlir::Value varOp = circt::sv::VarOp::create(opb,
+                                                                   mlirBbLocation, pi._portInfo.type, pi._portInfo.name,
+                                                                   GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), pi._portInfo.name.str()));
 
-                SafeInsert(_compileContext._moduleOutputWireMap, pi._portInfo.name.str(), logicOp);
+                SafeInsert(_compileContext._moduleOutputWireMap, pi._portInfo.name.str(), varOp);
             }
             else
             {
@@ -11615,7 +11615,7 @@ private:
             const std::string wireName = "threshold_sel_wire";
 
             _compileContext._thresholdSelWire =
-                circt::sv::WireOp::create(opb, mlirBbLocation, thresholdSelReg.getType(), StringToStringAttr(wireName),
+                circt::sv::WireOp::create(opb, mlirBbLocation, circt::sv::NetType::get(thresholdSelReg.getType()), StringToStringAttr(wireName),
                                           GetFullyQualifiedInnerSymAttr(basicBlock.GetObjectPath(), wireName));
 
             circt::sv::AssignOp::create(opb, mlirBbLocation, _compileContext._thresholdSelWire, thresholdSelReg);
@@ -11869,14 +11869,14 @@ private:
 
         // Convert a port string name to an mlir value corresponding to that name
         // For inputs, this mlir value can be used as a regular operand
-        // For outputs, only use sv.assign
+        // For outputs, the value is an sv.var handle: only use sv.var_assign or sv.bpassign
         mlir::Value PortNameToValue(const std::string &name)
         {
             const circt::hw::PortInfo &portInfo = SafeLookup(_portNameToInfo, name);
 
             if (portInfo.dir == circt::hw::ModulePort::Direction::Output)
             {
-                // Return a wire that the result value can be assigned to with sv::assign
+                // Return a variable that the result value can be assigned to
                 return SafeLookup(_moduleOutputWireMap, name);
             }
 
