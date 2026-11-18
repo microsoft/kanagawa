@@ -186,14 +186,14 @@ jobs:
         run: cabal update
 
       - name: Init ccache
-        uses: hendrikmuhs/ccache-action@f09c25b45002a07be2955cbe52e8cee55643f89d # v1.2.24
+        uses: hendrikmuhs/ccache-action@dbeefd73e8e2ffc1bbc412570072735eb4db3607 # v1.2.25
         with:
           max-size: ${{ env.CCACHE_MAXSIZE }}
           verbose: 1
 
       - name: Install Verilator
         if: runner.os == 'Linux'
-        uses: veryl-lang/setup-verilator@7464f6aacf42efab9a92b9138e9ce16ff1135f69 # v2.0.0
+        uses: veryl-lang/setup-verilator@76aba8a3059d050453f35d4589e623ef60309089 # v2.1.0
         with:
           version: '5.040'
 
